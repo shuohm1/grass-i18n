@@ -1,0 +1,205 @@
+r.mfilter(1)                  Grass User's Manual                 r.mfilter(1)
+
+
+
+NNAAMMEE
+       rr..mmffiilltteerr - Raster file matrix filter.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..mmffiilltteerr
+       rr..mmffiilltteerr hheellpp
+       rr..mmffiilltteerr  [--qqppzz]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  ffiilltteerr==_n_a_m_e  [rreeppeeaatt==_v_a_l_u_e]
+       [TTIITTLLEE==_"_p_h_r_a_s_e_"]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._m_f_i_l_t_e_r filters the raster _i_n_p_u_t to produce the raster _o_u_t_p_u_t accord-
+       ing to the matrix _f_i_l_t_e_r designed by the user (see _F_I_L_T_E_R_S below).  The
+       filter is applied _r_e_p_e_a_t times (default _v_a_l_u_e is 1).  The _o_u_t_p_u_t raster
+       map  layer  can be given a _T_I_T_L_E if desired.  (This TITLE should be put
+       in quotes if it contains more than one word.)
+
+OOPPTTIIOONNSS
+       The program can be run either non-interactively or  interactively.   To
+       run  _r_._m_f_i_l_t_e_r  non-interactively, the user should specify desired flag
+       settings and parameter values on the command line, using the form:
+
+
+       rr..mmffiilltteerr  [--qqppzz]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  ffiilltteerr==_n_a_m_e  [rreeppeeaatt==_v_a_l_u_e]
+       [TTIITTLLEE==_"_p_h_r_a_s_e_"]
+
+
+
+       If  the user specifies _i_n_p_u_t, _o_u_t_p_u_t, and _f_i_l_t_e_r file names on the com-
+       mand line, other parameters whose values are unspecified on the command
+       line will be set to their default values (see below).
+
+
+       Alternately,  the  user  can simply type rr..mmffiilltteerr on the command line,
+       without program arguments.  In this case, the user will be prompted for
+       flag  settings  and  parameter  values  using the standard GRASS parser
+       interface described in the manual entry for _p_a_r_s_e_r.
+
+
+
+   FFllaaggss::
+       --qq     _r_._m_f_i_l_t_e_r will normally print messages to indicate  what  is  is
+              doing  as  it  proceeds.  If the user specifies the -q flag, the
+              program will run quietly.
+
+       --zz     The filter is applied only to zero category values in the  input
+              raster map layer.  The non-zero category values are not changed.
+              Note that if there is more than one filter step,  this  rule  is
+              applied  to the intermediate raster map layer -- only zero cate-
+              gory values which result from the first filter will be  changed.
+              In  most  cases  this  will NOT be the desired result.  Hence -z
+              should be used only with single step filters.
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The name of an existing raster file containing data values to be
+              filtered.
+
+       oouuttppuutt==_n_a_m_e
+              The name of the new raster file to contain filtered program out-
+              put.
+
+       ffiilltteerr==_n_a_m_e
+              The name of an existing, user-created UNIX ASCII file whose con-
+              tents  is a matrix defining the way in which the _i_n_p_u_t file will
+              be filtered.  The format of this file is described below,  under
+              FILTERS.
+
+       rreeppeeaatt==_v_a_l_u_e
+              The  number  of  times  the _f_i_l_t_e_r is to be applied to the _i_n_p_u_t
+              data.
+              Options:  integer values
+              Default:  1
+
+       TTIITTLLEE== A TITLE to be assigned to the filtered raster  _o_u_t_p_u_t  map.   If
+              the TITLE exceeds one word, it should be quoted.
+              Default:  (none)
+
+
+
+
+
+
+FFIILLTTEERRSS
+       The  _f_i_l_t_e_r  file is a normal UNIX ASCII file designed by the user.  It
+       has the following format:
+            TITLE      TITLE
+            MATRIX     n
+                         .
+            n lines of n integers
+                         .
+            DIVISOR    d
+            TYPE        S/P
+
+
+       TITLE  A one-line TITLE for the filter.  If a TITLE was  not  specified
+              on the command line, it can be specified here.  This TITLE would
+              be used to construct a TITLE for the resulting raster map layer.
+              It should be a one-line description of the filter.
+
+       MATRIX The  matrix  (n  x n) follows on the next n lines.  _n must be an
+              odd integer greater than or equal to 3.  The matrix itself  con-
+              sists  of  n rows of n integers.  The integers must be separated
+              from each other by at least 1 blank.
+
+       DIVISOR
+              The filter divisor is _d.  If not specified, the  default  is  1.
+              If the divisor is zero (0), then the divisor is dependent on the
+              category values in the neighborhood (see HOW  THE  FILTER  WORKS
+              below).
+
+       TYPE   The filter type.  _S means sequential, while _P mean parallel.  If
+              not specified, the default is S.
+
+
+       Sequential filtering happens in place.  As the filter is applied to the
+       raster  map layer, the category values that were changed in neighboring
+       cells affect the resulting category value of  the  current  cell  being
+       filtered.
+
+
+       Parallel  filtering  happens in such a way that the original raster map
+       layer category values are used to produce the new category value.
+
+
+
+
+       More than one filter may be specified in the filter  file.   The  addi-
+       tional  filter(s)  are described just like the first.  For example, the
+       following describes two filters:
+
+
+
+
+EEXXAAMMPPLLEE FFIILLTTEERR FFIILLEE
+
+             TITLE     3x3 average, non-zero data only, followed by 5x5  aver-
+       age
+            MATRIX    3
+            1 1 1
+            1 1 1
+            1 1 1
+            DIVISOR   0
+            TYPE      P
+
+            MATRIX    5
+            1 1 1 1 1
+            1 1 1 1 1
+            1 1 1 1 1
+            1 1 1 1 1
+            1 1 1 1 1
+            DIVISOR   25
+            TYPE      P
+
+
+HHOOWW TTHHEE FFIILLTTEERR WWOORRKKSS
+       The  filter  process produces a new category value for each cell in the
+       input raster map layer by multiplying the category values of the  cells
+       in  the  n x n neighborhood around the center cell by the corresponding
+       matrix value and adding them together.  If a divisor is specified,  the
+       sum is divided by this divisor, rounding to the nearest integer.  (If a
+       zero divisor was specified, then the divisor is computed for each  cell
+       as  the  sum of the MATRIX values where the corresponding input cell is
+       non-zero.)
+
+
+       If more than one filter step is specified, either  because  the  repeat
+       value  was  greater  than one or because the filter file contained more
+       than one matrix, these steps are  performed  sequentially.  This  means
+       that  first  one filter is applied to the entire input raster map layer
+       to produce an intermediate result; then the next filter is  applied  to
+       the intermediate result to produce another intermediate result;  and so
+       on, until the final filter is applied.  Then the output cell  is  writ-
+       ten.
+
+NNOOTTEESS
+       If the resolution of the geographic region does not agree with the res-
+       olution of the raster map layer, unintended resampling of the  original
+       data  may occur.  The user should be sure that the geographic region is
+       set properly.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _r_._c_l_u_m_p
+
+       _r_._n_e_i_g_h_b_o_r_s
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.mfilter(1)

@@ -1,0 +1,93 @@
+m.region.ll(1)                Grass User's Manual               m.region.ll(1)
+
+
+
+NNAAMMEE
+       mm..rreeggiioonn..llll  - Converts Universal Transverse Mercator (UTM) coordinates
+       falling within the current geographic region from  UTM  coordinates  to
+       geographic (latitude/longitude) coordinates.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g_)
+
+SSYYNNOOPPSSIISS
+       mm..rreeggiioonn..llll
+       mm..rreeggiioonn..llll hheellpp
+       mm..rreeggiioonn..llll sspphheerrooiidd==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._r_e_g_i_o_n_._l_l  takes  current  geographic  region settings in UTM coordi-
+       nates, and converts them to geographic coordinates (i.e., latitudes and
+       longitudes).   It  also prints the length (in meters) of one arc-second
+       at each of the four edges of the  geographic  region.   The  user  must
+       enter the spheroid upon which to base the geographic coordinates.
+
+
+       The  list  of spheroids available is somewhat dynamic.  It may not con-
+       tain exactly the ones listed below.  To determine the current  list  of
+       possible spheroids, simply type in: mm..rreeggiioonn..llll hheellpp
+
+       A list of available spheroids will be printed on the screen.
+
+   AAVVAAIILLAABBLLEE SSPPHHEERROOIIDDSS
+       (The on-line listing includes only the spheroid names.)
+       Spheroid: Semi-major  axis     Eccentricity  sqrd  (e),   Commonly used
+       for:
+                 (Equatorial Radius) Flattening (f),
+                 (a): or Polar Radius (b):
+       _
+       airy           a=6377563.396 e=.006670540
+       australian     a=6378160     f=1/298.25      Australia
+       bessel         a=6377397.155 e=.006674372         Japan
+       clark66        a=6378206.4   b=6356583.8          N. America
+       everest        a=6377276.345 e=.0066378466        India, Burma
+       grs80          a=6378137     f=1/298.257
+       hayford        a=6378388     f=1/297
+       international  a=6378388     f=1/297              Europe
+       krasovsky      a=6378245     f=1/298.3
+       wgs66          a=6378145     f=1/298.25      worldwide coverage
+       wgs72          a=6378135     f=1/298.26      worldwide coverage
+       wgs84          a=6378137     f=1/298.257223563         worldwide cover-
+       age
+
+
+EEXXAAMMPPLLEE
+       mm..rreeggiioonn..llll sspphheerrooiidd==_c_l_a_r_k_6_6
+
+       Results:
+       WINDOW 4928000.00N 609000.00E ZONE 13
+              4914000.00S 590000.00W
+
+             44.30.06N 44.29.57N
+            103.52.04W 103.37.44W
+
+             44.22.32N 44.22.23N
+            103.52.13W 103.37.55W
+
+            At northern edge 1 arc-second longitude=22.088500m
+
+            At southern edge 1 arc-second longitude=22.135998m
+
+            At western edge 1 arc-second latitude=30.860285m
+
+            At eastern edge 1 arc-second latitude=30.863082m
+
+       The  values  for  the geographic coordinates are rounded to the nearest
+       second in this example.   They would be more precise in the actual out-
+       put that is printed on the screen.
+
+SSEEEE AALLSSOO
+       _m_._d_a_t_u_m_._s_h_i_f_t
+
+       _m_._l_l_2_u
+
+       _m_._u_2_l_l
+
+       _r_._i_n_._l_l
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       m.region.ll(1)

@@ -1,0 +1,123 @@
+s.surf.idw(1)                 Grass User's Manual                s.surf.idw(1)
+
+
+
+NNAAMMEE
+       ss..ssuurrff..iiddww  - Surface interpolation from sites data by Inverse Distance
+       Squared Weighting.
+       _(_G_R_A_S_S Sites Program)
+
+SSYYNNOOPPSSIISS
+       ss..ssuurrff..iiddww [[--nn]] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [[nnppooiinnttss==_c_o_u_n_t]] [[ffiieelldd==_n_u_m_b_e_r]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._s_u_r_f_._i_d_w fills a raster matrix  with  interpolated  values  generated
+       from a set of irregularly spaced data points using numerical approxima-
+       tion (weighted averaging) techniques. The interpolated value of a  cell
+       is  determined  by values of nearby data points and the distance of the
+       cell from those input points.  In comparison with other methods, numer-
+       ical approximation allows representation of more complex surfaces (par-
+       ticularly those with anomalous features), restricts the spatial  influ-
+       ence  of  any  errors,  and generates the interpolated surface from the
+       data points.
+
+
+       This program allows the user to use a GRASS site list file, rather than
+       a raster map layer, as input.
+
+
+       The  program  will  be  run non-interactively if the user specifies the
+       values of needed program parameters and any desired optional  parameter
+       values on the command line, using the form:
+
+
+       ss..ssuurrff..iiddww [[--nn]] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [[nnppooiinnttss==_c_o_u_n_t]] [[ffiieelldd==_n_u_m_b_e_r]]
+
+       Alternately,  the  user can simply type ss..ssuurrff..iiddww on the command line,
+       without program arguments. In this case, the user will be prompted  for
+       needed inputs and option choices using the standard GRASS _p_a_r_s_e_r inter-
+       face.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --nn     Don't index sites by cell. (for very large  regions;  uses  less
+              memory, but is very slow if there is a large number of sites)
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+           Name  of  an  input  site list file that contains sites with one or
+           more floating point attributes.
+
+       oouuttppuutt==_n_a_m_e
+           Name to be assigned to the new output raster map layer containing a
+           smooth  surface  generated  from the known data values in the input
+           site list file.
+
+       nnppooiinnttss==_c_o_u_n_t
+           The number of points to use for interpolation.  By default, the  12
+           nearest points are used for interpolation.
+           Default: 12
+
+       ffiieelldd==_n_u_m_b_e_r
+           Number of floating point attribute to use for interpolation.
+           Default: 1
+
+
+NNOOTTEESS
+       The  amount  of memory used by this program is related to the number of
+       sites in the current region.  If the site list  is  very  dense  (i.e.,
+       contains  many data points), the program may not be able to get all the
+       memory it needs from the system.   The  time  required  to  execute  is
+       related to the resolution of the current region, after an initial delay
+       determined by the time taken to read the input sites file.
+
+
+       If the user has a mask set, then interpolation is only done  for  those
+       cells  that  fall  within  the  mask. However, all sites in the current
+       region are used even if they fall outside the mask. Sites  outside  the
+       current  region  are not used in the interpolation. A larger region may
+       be set and a mask used to limit interpolation to a smaller area  if  it
+       is desired to use sites from outside the region in the interpolation.
+
+
+       If  more than _c_o_u_n_t sites fall into one target raster cell, the mean of
+       all the site values will determine the cell value (unless the  -n  flag
+       is  specifed,  in which case only the _c_o_u_n_t sites closest to the centre
+       of the cell will be interpolated).
+
+SSEEEE AALLSSOO
+       _d_._s_i_t_e_s
+
+       _g_._r_e_g_i_o_n
+
+       _r_._m_a_s_k
+
+       _r_._s_u_r_f_._c_o_n_t_o_u_r
+
+       _r_._s_u_r_f_._i_d_w
+
+       _r_._s_u_r_f_._i_d_w_2
+
+       _r_._s_u_r_f_._g_a_u_s_s
+
+       _r_._s_u_r_f_._f_r_a_c_t_a_l
+
+       _r_._s_u_r_f_._r_a_n_d_o_m
+
+       _v_._s_u_r_f_._r_s_t
+
+       _s_._s_u_r_f_._r_s_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+       Improved  algorithm  (indexes sites according to cell and ignores sites
+       outside current region) by Paul Kelly
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                        s.surf.idw(1)

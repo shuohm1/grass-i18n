@@ -1,0 +1,79 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      05.09.unix
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    UNIX:  dd, tar
+  </CENTER>
+    <P>GRASS operates under the UNIX operating system.  Users therefore have
+access to the UNIX commands on their systems, as well as to GRASS
+commands.  UNIX commands can be run at the system level (i.e., outside
+of GRASS) and can also be run while the user is running GRASS.  This
+capability is extremely useful.
+    <P>The UNIX commands &quot;dd&quot; and &quot;tar&quot; are useful for extracting data from
+other storage media (e.g., magnetic tapes).  These commands can also be
+used to load GRASS (and other) data onto other storage media for export
+to other systems.
+    <P>&quot;dd&quot; copies a user-named input file to a user-named output location. 
+The user can copy files from (or to) tape by specifying a tape device
+as the input (or output) file name.  The user can specify input and
+output block sizes, and perform file conversions between ASCII and
+EBDIC formats, fixed and variable length records, and upper and lower
+case, and perform other functions.
+    <P>The user should use the UNIX &quot;dd&quot; command to extract elevation data from
+magnetic tape.  This process is detailed in the paper
+<A HREF="./../../../../documents/html/help/18.biblio/adp.n-87.22.html">&quot;DTED and DEM Elevation Data Extraction&quot;</A> available from the GRASS
+Information Center at USACERL.
+    <P>The UNIX &quot;tar&quot; command &quot;archives and extracts multiple files onto a
+single tar-file archive, called a tarfile.  A tarfile is usually a
+magnetic tape, but it can be any file.&quot; The user specifies the file or
+directory names that specify which files are to be archived or
+extracted.
+    <P>If the user specifies a directory name, tar recursively extracts or
+archives all of the files and subdirectories of that directory.  The
+user can specify a specific blocking factor to use when extracting or
+archiving data.  &quot;tar&quot; will automatically determine the tape blocking
+factor when extracting data.  &quot;tar&quot; can also follow symbolic links.
+One useful function performed by tar is to list the contents of a
+tarfile.  (Reference:  &quot;UNIX Reference Manual&quot;, Section 1)
+    <P>Users can read about the specific syntax of &quot;dd&quot; and &quot;tar&quot; in the
+&quot;UNIX Reference Manual&quot;. On most systems, the manual is available
+on-line.  Users can read about a specific UNIX command by typing
+&quot;man command_name&quot;, where &quot;command_name&quot; is the command the user wishes
+to read about.  For example, the user can read about the UNIX &quot;dd&quot;
+command by typing &quot;man dd&quot;.
+    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

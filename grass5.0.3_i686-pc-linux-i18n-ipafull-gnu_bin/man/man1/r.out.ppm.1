@@ -1,0 +1,74 @@
+r.out.ppm(1)                  Grass User's Manual                 r.out.ppm(1)
+
+
+
+NNAAMMEE
+       rr..oouutt..ppppmm  -  converts  a  GRASS raster file to a PPM image file at the
+       pixel resolution of the CURRENTLY DEFINED REGION.
+
+
+
+UUssaaggee::
+       rr..oouutt..ppppmm [-qG] iinnppuutt==name oouuttppuutt==name
+
+FFllaaggss::
+       -q   Run quietly
+
+
+       -G   Output greyscale instead of color
+
+
+
+PPaarraammeetteerrss::
+       input   Raster file to be converted.
+
+
+       output   Name for new PPM file. (use out=- for stdout)
+
+       default: .ppm
+
+
+
+
+       This program converts a GRASS raster file to a PPM image  file  at  the
+       pixel  resolution  of  the  CURRENTLY DEFINED REGION.  e.g., to get the
+       resolution of the raster map, do:
+
+
+       g.region rast=[mapname]
+
+
+       before running r.out.ppm.
+
+
+       The PPM file created is 24bit color, rawbits storage by default.  Using
+       -G,  you  may  force  r.out.ppm  to  use  8bit  greyscale instead.  The
+       greyscale conversion uses the NTSC conversion:
+
+
+       Y = .30*Red + .59*Green + .11*Blue
+
+
+       One pixel is written for each cell value, so if ew_res and ns_res  dif-
+       fer, the aspect ratio of the resulting image will be off.
+
+
+
+NNOOTTEE
+       A  few  ppm  file  comments  are written - the name of the GRASS raster
+       file, resolution, etc.  Although these are perfectly legal, I've  found
+       one  PD image utility that chokes on them, so if you need a commentless
+       ppm file, use out=- > outfile.ppm. (When sending output to  stdout,  no
+       comments are written.)
+
+
+
+TTOODDOO
+       Allow  combination of 3 grass files to represent R, G, B components  of
+       ppm file?  Bill Brown
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.out.ppm(1)

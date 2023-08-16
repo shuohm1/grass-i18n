@@ -1,0 +1,134 @@
+r.cross(1)                    Grass User's Manual                   r.cross(1)
+
+
+
+NNAAMMEE
+       rr..ccrroossss  - Creates a cross product of the category values from multiple
+       raster map layers.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ccrroossss
+       rr..ccrroossss hheellpp
+       rr..ccrroossss [--qqzz] iinnppuutt==_n_a_m_e_,_n_a_m_e[,_n_a_m_e,...] oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_r_o_s_s creates an _o_u_t_p_u_t raster map layer representing all unique com-
+       binations   of   category   values   in   the   raster   input   layers
+       (input=_n_a_m_e_,_n_a_m_e_,_n_a_m_e, ...).  At least two,  but  not  more  than  ten,
+       _i_n_p_u_t  map layers must be specified.  The user must also specify a name
+       to be assigned to the _o_u_t_p_u_t raster map layer created by _r_._c_r_o_s_s.
+
+OOPPTTIIOONNSS
+       The program will be run non-interactively if  the  user  specifies  the
+       names  of between 2-10 raster map layers be used as _i_n_p_u_t, and the name
+       of a raster map layer to hold program _o_u_t_p_u_t, using the  form:  rr..ccrroossss
+       [--qqzz] iinnppuutt==_n_a_m_e_,_n_a_m_e[,_n_a_m_e,...] oouuttppuutt==_n_a_m_e
+
+       where  each  input  _n_a_m_e specifies the name of a raster map layer to be
+       used in calculating the cross product, the output  _n_a_m_e  specifies  the
+       name  of  a raster map layer to hold program output, and the options --qq
+       and --zz respectively specify that the program  is  to  run  quietly  and
+       exclude zero data values.
+
+
+       Alternately,  the  user  can  simply  type rr..ccrroossss on the command line,
+       without program arguments. In this case, the user will be prompted  for
+       needed  input and output map names and flag settings using the standard
+       GRASS parser interface.
+
+
+
+   FFllaaggss::
+       --qq     Run quietly. Supresses output of program  percent-complete  mes-
+              sages.   If  this  flag  is not used, these messages are printed
+              out.
+
+       --zz     Do not cross zero data values.  This means that if a zero  cate-
+              gory  value  occurs  in any input data layer, the combination is
+              assigned to category zero in the resulting map  layer,  even  if
+              other  data  layers contain non-zero data.  In the example given
+              above, use of the --zz option would cause 3 categories to be  gen-
+              erated instead of 5.
+
+
+       If  the  --zz flag is not specified, then map layer combinations in which
+       not all category values are zero will be  assigned  a  unique  category
+       value in the resulting map layer.
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e_,_n_a_m_e[,_n_a_m_e,...]
+              The  names  of between two and ten existing raster map layers to
+              be used as input.  Category values in the new _o_u_t_p_u_t  map  layer
+              will  be  the  cross-product  of  the category values from these
+              existing _i_n_p_u_t map layers.
+
+       oouuttppuutt==_n_a_m_e
+              The name assigned  to  the  new  raster  map  layer  created  by
+              _r_._c_r_o_s_s, containing program output.
+
+
+EEXXAAMMPPLLEE
+       For  example,  suppose that, using two raster map layers, the following
+       combinations occur:
+                 map1   map2
+                 ___________
+                  0      1
+                  0      2
+                  1      1
+                  1      2
+                  2      4
+
+       _r_._c_r_o_s_s would produce a new raster map layer with 5 categories:
+                 map1   map2   output
+                 ____________________
+                  0      1       1
+                  0      2       2
+                  1      1       3
+                  1      2       4
+                  2      4       5
+
+       Note: The actual category value assigned to a particular combination in
+       the  _r_e_s_u_l_t  map  layer is dependent on the order in which the combina-
+       tions occur in the input map layer data and can  be  considered  essen-
+       tially random.  The example given here is illustrative only.
+
+SSUUPPPPOORRTT FFIILLEESS
+       The category file created for the _o_u_t_p_u_t raster map layer describes the
+       combinations of input map layer category values  which  generated  each
+       category.  In the above example, the category labels would be:
+                 category   category
+                 value      label
+                 ______________________________
+                    1       layer1(0) layer2(1)
+                    2       layer1(0) layer2(2)
+                    3       layer1(1) layer2(1)
+                    4       layer1(1) layer2(2)
+                    5       layer1(2) layer2(4)
+
+       A random color table is also generated for the _o_u_t_p_u_t map layer.
+
+NNOOTTEESS
+       When  run non-interactively, _r_._c_r_o_s_s will not protect existing files in
+       the user's mapset. If the user  specifies  an  _o_u_t_p_u_t  file  name  that
+       already  exists in his mapset, the existing file will be overwritten by
+       the new _r_._c_r_o_s_s output.
+
+SSEEEE AALLSSOO
+       _r_._c_o_v_a_r
+
+       _r_._s_t_a_t_s
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                           r.cross(1)

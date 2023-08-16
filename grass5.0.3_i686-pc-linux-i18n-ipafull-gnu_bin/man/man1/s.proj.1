@@ -1,0 +1,70 @@
+s.proj(1)                     Grass User's Manual                    s.proj(1)
+
+
+
+NNAAMMEE
+       ss..pprroojj   - Allows the user to re-project a sites file from one location
+       to the current location.
+
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..pprroojj
+
+       ss..pprroojj hheellpp
+
+       ss..pprroojj [[--ll]] iinnppuutt==_n_a_m_e location=_n_a_m_e [[mmaappsseett==_n_a_m_e]]  [[ddbbaassee==_n_a_m_e]]  [[oouutt--
+       ppuutt==_n_a_m_e]]
+
+DDEESSCCRRIIPPTTIIOONN
+       Allows  the  user to create a new sites file in the current location by
+       re-projecting a sites file from another location, similar to _v_._p_r_o_j and
+       _r_._p_r_o_j.   Each  site  will  retain all associated category, double, and
+       string attributes.  The header information is copied and an  additional
+       header  comment  is  written containing the _s_._p_r_o_j command line used to
+       create the new file.
+
+   FFllaaggss::
+       --ll     List sites files in input location and exit
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  Name of the input sites list.
+
+       mmaappsseett Mapset of input sites list.
+
+       llooccaattiioonn
+              Location of the input sites list.
+
+       ddbbaassee  path to GRASS database of input location.
+
+       oouuttppuutt Name of the output sites list.
+
+
+NNOOTTEESS
+       v.proj supports transformations between nad27 and nad83.   It  performs
+       the  transformation  automatically  based on the datum specified in the
+       mapset region.  See BUGS section.
+
+
+
+BBUUGGSS
+       Currently v.proj does not support general datum conversions.   It  only
+       supports  conversion between nad27 and nad83, and only within the CONUS
+       conversion grid; 20 degrees to 50 degrees north latitude, 63 degrees to
+       131  degrees  west  longitude.  That covers all of the conterminous USA
+       plus Mexico north of Mexico City and most of Canada farther south  than
+       Winnipeg, Manitoba.
+
+SSEEEE AALLSSOO
+         _m_._p_r_o_j_,  _r_._p_r_o_j_, _v_._p_r_o_j_, _g_._s_e_t_p_r_o_j_, _i_._r_e_c_t_i_f_y_, _i_._r_e_c_t_i_f_y_3_, _r_._s_u_p_p_o_r_t_,
+       _r_._s_t_a_t_s_, _s_._s_a_m_p_l_e_, _s_._s_u_r_f_._i_d_w_, _s_._s_u_r_f_._r_s_t
+
+AAUUTTHHOORR
+       Bill Brown
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_2_2 _1_6_:_0_9_:_2_2 _$
+
+
+
+GRASS 5.0                                                            s.proj(1)

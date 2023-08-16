@@ -1,0 +1,78 @@
+g.list(1)                     Grass User's Manual                    g.list(1)
+
+
+
+NNAAMMEE
+       gg..lliisstt    - Lists available GRASS data base files of the user-specified
+       data type to standard output.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..lliisstt
+       gg..lliisstt hheellpp
+       gg..lliisstt [--ff] ttyyppee==_d_a_t_a_t_y_p_e [mmaappsseett==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._l_i_s_t allows the user to list user-specified, available and accessible
+       files from _m_a_p_s_e_t_s under the user's current location.
+
+OOPPTTIIOONNSS
+       When  invoked  simply  as  gg..lliisstt, the program prompts the user for the
+       type of data to be listed from all _m_a_p_s_e_t_s in the user's current mapset
+       search  path.   The user can list files from a mapset not listed in the
+       current mapset search path by running  the  program  non-interactively,
+       specifying the (optional) flag setting and parameter values on the com-
+       mand line.  Program flag and parameters are described below.
+
+   FFllaaggss::
+       --ff     Returns a verbose file listing, that includes map TITLEs.
+
+
+   PPaarraammeetteerrss::
+       ttyyppee==_d_a_t_a_t_y_p_e
+              The type of data to be listed.
+              Options:  (listed in bold)
+
+       rraasstt   Raster files
+
+       vveecctt   Binary vector files
+
+       iiccoonn   Paint icon files
+
+       llaabbeellss Paint labels files
+
+       ssiitteess  Site list files
+
+       rreeggiioonn Region definition files
+
+       ggrroouupp  Imagery group files
+
+
+       mmaappsseett==_n_a_m_e
+              The name of a mapset to be searched for files of  the  specified
+              _t_y_p_e.   Any  mapset  name under the current location, whether or
+              not it is listed in the user's current mapset search  path,  can
+              be specified.
+              Default:   If  unspecified, files of the specified _t_y_p_e from all
+              mapsets in the user's current search  path  will  be  listed  to
+              standard output.
+
+
+NNOOTTEESS
+       If  the user requests that files from a mapset to which access has been
+       restricted (see _g_._a_c_c_e_s_s) be listed, no files from this mapset will  be
+       listed.
+
+SSEEEE AALLSSOO
+       _g_._a_c_c_e_s_s
+
+       _g_._m_a_p_s_e_t_s
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                            g.list(1)

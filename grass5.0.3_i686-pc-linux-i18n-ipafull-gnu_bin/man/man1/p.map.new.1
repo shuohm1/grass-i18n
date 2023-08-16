@@ -1,0 +1,1324 @@
+p.map.new(1)                  Grass User's Manual                 p.map.new(1)
+
+
+
+NNAAMMEE
+       _p_._m_a_p_._n_e_w - Color map output utility.
+
+       _(_G_R_A_S_S _H_a_r_d_c_o_p_y _O_u_t_p_u_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       pp..mmaapp..nneeww
+
+       pp..mmaapp..nneeww [iinnppuutt= _n_a_m_e] [ssccaallee= _m_a_p_s_c_a_l_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _p_._m_a_p_._n_e_w  command produces color maps for output on a color hard-
+       copy device or a graphics monitor. Output can include a raster map, any
+       number  of  vector overlays, site data, text labels, and other map ele-
+       ments.
+
+       This command has  three  modes  of  operation.  The  command-line  mode
+       requires  a previously prepared file of mapping instructions describing
+       the map elements to be printed. The interactive mode (i.e., no command-
+       line  arguments)  will  prompt the user for items to be mapped and does
+       not require the user to prepare a file of  instructions.  The  keyboard
+       mode is started by entering a hyphen ( - ) for the iinnppuutt parameter. The
+       _p_._m_a_p_._n_e_w instructions would then be entered via the keyboard.
+
+       The command-line parameters are:
+
+       iinnppuutt=_n_a_m_e
+           File containing mapping instructions (or  enter  iinnppuutt=--  to  enter
+           instructions  from  the keyboard). These instructions are described
+           in detail below.
+
+       ssccaallee=_m_a_p_s_c_a_l_e
+           Scale of the output map, e.g. 1:25000
+
+           Default: 1 panel
+
+           The options for this parameter are identical to the  _s_c_a_l_e  mapping
+           instruction  described  below. If a _s_c_a_l_e instruction is present in
+           an input file, it is superseded by the command-line  ssccaallee  parame-
+           ter.
+
+
+       An  output  device  can  be  selected  using  _p_._s_e_l_e_c_t  before  running
+       _p_._m_a_p_._n_e_w. Valid devices include on-line hardcopy  devices,  plus  _p_r_e_-
+       _v_i_e_w_, _p_r_e_v_i_e_w_2, and _p_p_m. See manual entry for _p_._s_e_l_e_c_t.
+
+       The  current geographic region determines the area that is mapped using
+       _p_._m_a_p_._n_e_w
+
+NNOONN--IINNTTEERRAACCTTIIVVEE MMAAPPPPIINNGG IINNSSTTRRUUCCTTIIOONNSS
+       Mapping instructions allow the user to specify various map elements  to
+       be  plotted.  These instructions are normally prepared in an ASCII text
+       file using a system editor. All of the listed mapping instructions  are
+       usable in a prepared file in the command-line mode. Not all of them are
+       available in the interactive and keyboard modes.
+
+       Some instructions are single line instructions while others are  multi-
+       ple  line.  Multiple-line  instructions consist of the main instruction
+       followed by a subsection of one or more  additional  instructions.  All
+       multiple-line instructions must be completed by the eenndd terminator.
+
+       Some  instructions,  such as those using data layers, icons, or labels,
+       access files via the current mapset search path.
+
+bbaarrssccaallee
+       Places a barscale on the output map.
+               bbaarrssccaallee  x_% y_%
+               uunniitt  _f_t| _m_i| _m| _k_m
+               lleennggtthh  #
+               iinntteerrvvaall  #
+               ssttyyllee  _d_a_s_h| _t_i_c_k
+               wwiiddtthh  #
+               ccoolloorr  color
+               tteexxttssiizzee  #
+               tteexxttccoolloorr  color| _n_o_n_e
+               tteexxttffoonntt  font
+               bbaacckkggrroouunndd  color| _n_o_n_e
+               bboorrddeerr  color| _n_o_n_e
+               eenndd
+
+
+       The location of the zero point of the scale bar is entered on the first
+       instruction line. The location can be defined either by map coordinates
+       or by percentages of the map area, where 0% 0% is the lower left corner
+       of the map.
+
+       The  user  specifies the barscale uunniitt of measurement, the total lleennggtthh
+       using that unit, and the length  of  one  iinntteerrvvaall  (a  smaller  length
+       evenly divisible into the total length).
+
+       The  ssttyyllee  of the scale bar can be specified. The _d_a_s_h style has solid
+       lines representing each interval, separated by gaps. The _t_i_c_k style has
+       a solid total length with vertical ticks marking each interval.
+
+       The  user  can  also  specify the wwiiddtthh of the bar in pixels, its ccoolloorr
+       (see VALID COLORS NAMES), the tteexxttccoolloorr, tteexxttssiizzee in geographic  units,
+       tteexxttffoonntt (see VALID FONT NAMES), bbaacckkggrroouunndd color, and bboorrddeerr color.
+
+       The bbaarrssccaallee instruction set must be completed with the eenndd terminator.
+
+       This example would result in a scale bar representing  two  kilometers.
+       Vertical  ticks would be placed at the scale origin, the mid-point, and
+       at the end. The black bar and its accompanying black text would overlay
+       a white box trimmed be a red border.
+               bbaarrssccaallee  605000 4915000
+               uunniitt  km
+               lleennggtthh  2
+               iinntteerrvvaall  1
+               ssttyyllee  tick
+               wwiiddtthh  2
+               ccoolloorr  black
+               tteexxttccoolloorr  black
+               tteexxttssiizzee  150
+               bbaacckkggrroouunndd  white
+               bboorrddeerr  red
+               eenndd
+
+
+ccoolloorrmmooddee
+       Selects  the  method  to  portray the colors of the raster map layer or
+       image.
+
+       There are two options for ccoolloorrmmooddee: _a_p_p_r_o_x and _b_e_s_t.
+       The
+       _a_p_p_r_o_x option should be used for raster map layers with few
+       categories, and
+       _b_e_s_t should be used for images like LANDSAT images
+       or NHAP photos, or maps with very many categories. The
+       _a_p_p_r_o_x mode
+       treats each pixel independently, giving it the printer color that best
+       approximates the true color. The
+       _b_e_s_t mode "blends" colors from
+       pixel to pixel using a dithering technique to simulate more colors than
+       the printer can actually print. If unspecified, the default is
+       _b_e_s_t_.
+
+       This example would select the
+       _a_p_p_r_o_x colormode. The assumption
+       is  that  the raster map layer being printed has few colors or that the
+       colors
+       would not look good dithered.
+
+               ccoolloorrmmooddee  approx
+
+
+ccoolloorrttaabbllee
+       Includes the color table for the raster map layer in the area below the
+       map on hardcopy output.
+
+       The color table will display the colors for each raster map layer cate-
+       gory
+       and the category value. The ccoolloorrttaabbllee instruction can not precede
+       the rraasstteerr instruction in the
+       _p_._m_a_p_._n_e_w input. The color
+       table is not shown when the output device is the color monitor.
+
+       The user should be careful about asking for color tables for raster
+       map layers that have very many categories, such as an elevation  layer.
+       This  could  result  in the printing of an extremely long and generally
+       useless
+       color table!
+
+       This example would print a color table below the data area of the  map.
+
+               ccoolloorrttaabbllee  y
+
+
+ccoommmmeennttss
+       Prints comments beneath the map on hardcopy output.
+
+               comments
+               eenndd
+       Comment text can be entered in the
+       _p_._m_a_p_._n_e_w file or from a separate,
+       previously prepared file. Comments are not shown when the output device
+       is the color monitor. The ccoommmmeennttss instruction set must be completed
+       by the eenndd terminator.
+
+       This example prints the comment "This is a comment" below the data area
+       on the the map.
+
+               ccoommmmeennttss
+               This is a comment.
+               eenndd
+       This  example  prints  the  text in a file called "veg.comments" in the
+       current
+       directory.
+
+               rraasstteerr  vegetation
+               ccoommmmeennttss  veg.comments
+               eenndd
+
+
+ddeeffppaatt
+       Defines an area fill pattern to be used in sseettppaatt instructions.
+
+               pattern
+               ccoolloorr  #  color
+               eenndd
+       An area fill pattern is given a name on the ddeeffppaatt instruction line.
+       This name can then be used in subsequent _s_e_t_p_a_t instructions. The
+       ddeeffppaatt instruction can be used more than once to specify multiple
+       patterns.
+
+       The specified pattern is composed of a sequence of numbers (0-9, and
+       blanks, which are equivalent to 0) on one or more lines. The zeros and
+       blanks indicate areas in the pattern where the normal  category  colors
+       are
+       visible.  The  other  digits,  1-9,  indicate pattern pixels and can be
+       assigned
+       any valid color.
+
+       The ccoolloorr option specifies a non-zero digit in the pattern, followed
+       by a valid color name. It can be repeated for each of the non-zero dig-
+       its
+       in  the  pattern.  The  default  color for all non-zero digits is black
+       unless
+       specified with the ccoolloorr option.
+
+       The ddeeffppaatt instruction set must be completed by the eenndd
+       terminator.
+
+       In the _p_._m_a_p_._n_e_w input, the ddeeffppaatt instruction must precede
+       any sseettppaatt instruction using the specified pattern.
+
+       NNoottee:: Indented pattern specifications will be interpreted as
+       having leading blanks.
+
+       This example creates a black horizontal line pattern called "horiz".
+       Each black line in the pattern would be one pixel  wide  and  would  be
+       three
+       pixels from neighboring lines.
+
+               ddeeffppaatt  horiz
+               1
+               0
+               0
+               0
+               ccoolloorr  1 black
+               eenndd
+       This example creates a green vertical line pattern.
+
+               ddeeffppaatt  vert
+               1000
+               ccoolloorr  1 green
+               eenndd
+       The following example creates a red diagonal line pattern.
+
+               ddeeffppaatt  diag
+               00001
+               0001
+               001
+               01
+               1
+               ccoolloorr  1 red
+               eenndd
+       This example creates a two-toned tree pattern with orange "trunks" and
+       green "leaves".
+
+               ddeeffppaatt  tree
+                    2
+                   222
+                  22122
+                 22 1 22
+                     1
+
+
+                              2
+                             222
+                            22122
+                           22 1 22
+                               1
+               ccoolloorr  1 orange
+               ccoolloorr  2 black
+               eenndd
+
+
+eenndd
+       Terminates  input  and  begins  the  painting  of the map to the output
+       device.
+
+       An eenndd instruction completes the entire input to _p_._m_a_p_._n_e_w.
+       It is normally the last line in an input file, but it can be moved for-
+       ward
+       to eliminate any instructions following its position.
+
+       The eenndd instruction for the entire input should not be confused
+       with  eenndd terminators that are required with all multiple-line instruc-
+       tion
+       sets.
+
+eennddppaanneell
+       Specifies which panel number to end printing. The  default  is  0,  and
+       will
+       print all panels from the startpanel to the last panel.
+
+               eennddppaanneell 4
+       This example would end output at panel 4.
+
+ggrriidd
+       Overlays a coordinate grid on the output map.
+
+               ppaatttteerrnn  _n_o_t_i_c_k| _t_i_c_k # #
+               mmaasskkeedd  [_d_a_t_a| _n_o_d_a_t_a| _a_l_l]
+               ssttyyllee  sequence
+               wwiiddtthh  #
+               ccoolloorr  color
+               nnuummbbeerrss  #  [color] [_i_n| _o_u_t]
+               nnuummbbeerrssbbgg  color| _n_o_n_e
+               nnuummbbeerrssiizzee  #
+               eenndd
+       The  spacing  of the grid in geographic coordinate system units must be
+       be
+       specified on the first instruction line. The user can specify the over-
+       all
+       look of the grid using the ppaatttteerrnn parameter. The
+       _n_o_t_i_c_k
+       option is for a complete net of intersecting lines. The _t_i_c_k option
+       is  for smaller tick marks where grid intervals intersect. The horizon-
+       tal
+       and vertical lengths, in pixels, must be specified with the _t_i_c_k
+       option.
+
+       The user can control the areas covered by the grid by using the
+       mmaasskkeedd
+       parameter. With the _d_a_t_a option of mmaasskkeedd, the grid will
+       be seen over all areas of the map's raster  layer  except  the  no-data
+       (category
+       0) areas. With the _n_o_d_a_t_a option, the grid will be seen only over
+       the no-data areas. The entire grid is seen with the _a_l_l option to
+       mmaasskkeedd.
+
+       The grid line ssttyyllee can be specified using a series of 1's and
+       0's.  The  1's  represent the visible dashes and the 0's represent gaps
+       between
+       the dashes. The default is solid lines. The wwiiddtthh (in pixels) and
+       ccoolloorr of the grid lines can also be specified.
+
+       The user can control the placement and look of grid label numbers using
+       the nnuummbbeerrss, nnuummbbeerrssbbgg, and nnuummbbeerrssiizzee parameters.
+       The nnuummbbeerrss parameter is used to include grid labels, to specify
+       which  labels  should be shown (where 1 is every grid label, 2 is every
+       other
+       grid label, etc.), and to specify the label color. It is also  used  to
+       place
+       the  labels  inside or outside the current region. The background color
+       behind
+       each label is specified by the nnuummbbeerrssbbgg parameter. The user controls
+       the grid label size using the nnuummbbeerrssiizzee parameter, in geographic
+       units.
+
+       The ggrriidd instruction set must be concluded by the eenndd
+       parameter.
+
+       When used in a metric location, this example would produce grid ticks
+       every 5000 meters. The purple ticks would have "arms" ten  pixels  long
+       and
+       would  be  visible  over  the  entire map area. The purple grid numbers
+       would
+       be 350 meters high (to scale), inside the current region map area, and
+       have no background color. A grid label would appear every 5000  meters.
+
+               ggrriidd  5000
+               ppaatttteerrnn  tick 10 10
+               mmaasskkeedd  all
+               wwiiddtthh  1
+               ccoolloorr  purple
+               nnuummbbeerrss  1 purple in
+               nnuummbbeerrssbbgg  none
+               nnuummbbeerrssiizzee  350
+               eenndd
+       The following example would produce black grid lines every 1000 meters.
+       The lines would be visible only in the areas of category  0,  and  they
+       would
+       be  dashed,  with  one  long dash for every short gap. Every other grid
+       label
+       would be shown, each with a white background.
+
+               ggrriidd  1000
+               ppaatttteerrnn  notick
+               mmaasskkeedd  nodata
+               ssttyyllee  11111100
+               wwiiddtthh  1
+               ccoolloorr  black
+               nnuummbbeerrss  2 black in
+               nnuummbbeerrssbbgg  white
+               nnuummbbeerrssiizzee  200
+               eenndd
+
+
+llaabbeellss
+       Selects a labels file for output.
+
+       The llaabbeellss instruction includes previously  prepared  label  specifica-
+       tions.
+       See manual entry for
+       _p_._l_a_b_e_l_sfor correct
+       format  of  the labels file. The labels file must be accessible via the
+       current
+       mapset search path. The _l_i_s_t option is available in keyboard mode.
+
+       This example would paint labels from a labels file called
+       _t_o_w_n_._n_a_m_e_s.
+
+               llaabbeellss  town.names
+
+
+lleeggeenndd
+       Places a user-designed map legend on the output.
+
+               lleeggeenndd  x_% y_%
+               hheeiigghhtt  #
+               wwiiddtthh  #
+               vvlleenn  #
+               tteexxttccoolloorr  color
+               tteexxttssiizzee  #
+               tteexxttwwiiddtthh  #
+               xxssppaaccee  #
+               yyssppaaccee  #
+               bbaacckkggrroouunndd  color
+               bboorrddeerr  color
+               bbeeggiinnrraasstt
+               rraammpp  _v_a_l_u_e| _l_a_b_e_l _v_e_r_t_i_c_a_l| _h_o_r_i_z_o_n_t_a_l
+               ccaattnnuumm  cat description
+               eenndd
+               bbeeggiinnvveecctt
+               vveeccttnnaammee  vectormap description
+               vveeccttTTIITTLLEE  vectormap
+               eenndd
+               bbeeggiinnssiittee
+               ssiitteennaammee  sitemap description
+               eenndd
+               eenndd
+       The location of the upper left corner of the legend must be entered on
+       the first instruction line. The location can be defined either  by  map
+       coordinates
+       or by percentages of the map area, where 0% 0% is the lower left corner
+       of the map.
+
+       The user specifies the hheeiigghhtt and wwiiddtthh of the boxes that
+       will show raster category colors and/or patterns. The  length  of  line
+       segments
+       that  will  show  vector line colors and patterns is specified with the
+       vvlleenn
+       parameter. The user controls horizontal spacing between legend symbols
+       and legend text using xxssppaaccee. The yyssppaaccee parameter is used
+       to control vertical spacing between legend symbols. All of  these  mea-
+       surements
+       are in pixels.
+
+       The user designs the legend text using the tteexxttccoolloorr, tteexxttssiizzee,
+       and
+       tteexxttwwiiddtthh parameters. Colors are listed in the VALID COLOR NAMES
+       section of this manual entry. The tteexxttssiizzee is specified in pixels.
+       The tteexxttwwiiddtthh is also specified in pixels.
+
+       The user can specify the color for the bbaacckkggrroouunndd box containing
+       the  entire  legend.  If a color is chosen, underlying map elements are
+       opaqued.
+       The user can also specify a bboorrddeerr color for the legend box.
+
+       The user specifies the symbols to be included in the legend using the
+       bbeeggiinnrraasstt,
+       bbeeggiinnvveecctt, and bbeeggiinnssiittee parameters. Each of these parameters
+       starts a subsection of the lleeggeenndd instruction that must be completed
+       by an eenndd terminator. These should not be confused with the eenndd
+       terminator for the entire lleeggeenndd instruction set.
+
+       If the user simply uses the bbeeggiinnrraasstt parameter followed by eenndd,
+       all categories of the map's raster layer will be  shown  in  individual
+       boxes,
+       and  the  legend labels will be the corresponding category names in the
+       layer's
+       _c_a_t_s file. The user can include specific categories and optional
+       labels by using one or more ccaattnnuumm lines, each including a category
+       number and the accompanying legend text. If the map's raster layer por-
+       trays
+       a  continuous range of data, a rraammpp in the legend might be appropriate.
+       The rraammpp can be vertical or horizontal, and it's accompanying text
+       can be either the smallest and largest category values, or the _c_a_t_s
+       labels associated with the smallest and largest categories. The  bbeeggiinn--
+       rraasstt
+       subsection must be completed with an eenndd terminator.
+
+       Symbols for vector data on the map can be included in the legend by
+       using the bbeeggiinnvveecctt parameter. If the user simply follows bbeeggiinnvveecctt
+       with  eenndd, all vector layers in the map will be included in the legend.
+       The user can include specific vector layers in the legend by using the
+       vveeccttnnaammee
+       line one or more times, each including  a  vector  layer  name  and  an
+       accompanying
+       description. The vector layer TITLEs as written in
+       _d_i_g___c_a_t_s files
+       can be included as the legend text by using the vveeccttTTIITTLLEE line one
+       or more times. The bbeeggiinnvveecctt subsection must be completed with an
+       eenndd terminator.
+
+       Site symbols are included in the legend by using one or more ssiitteennaammee
+       lines in the bbeeggiinnssiittee subsection. Each line includes the name of
+       the site list and an accompanying description. The bbeeggiinnssiittee subsection
+       must be completed with an eenndd terminator.
+
+       The entire lleeggeenndd instruction set must be completed by an eenndd
+       terminator.
+
+       In the _p_s_._m_a_p_._n_e_w input, the lleeggeenndd instruction can not
+       precede the instructions for any of the map elements  that  are  to  be
+       shown
+       in the legend.
+
+       This example would produce a legend with five symbols: a point symbol,
+       the  colors and patterns for three raster categories, and a line repre-
+       senting
+       one vector layer, in that order. The background of the legend would be
+       white and surrounded by a red border. All text in the legend  would  be
+       black.
+
+               lleeggeenndd  589000 4921200
+               hheeiigghhtt  10
+               wwiiddtthh  20
+               vvlleenn  20
+               xxssppaaccee  10
+               yyssppaaccee  7
+               tteexxttccoolloorr  black
+               tteexxttssiizzee  250
+               tteexxttwwiiddtthh  1
+               bbaacckkggrroouunndd  white
+               bboorrddeerr  red
+               bbeeggiinnssiittee
+               ssiitteennaammee  archsites Arch. site
+               eenndd
+               bbeeggiinnrraasstt
+               ccaattnnuumm  4 Sandstone
+               ccaattnnuumm  5 Limestone
+               ccaattnnuumm  6 Shale
+               eenndd
+               bbeeggiinnvveecctt
+               vveeccttnnaammee  roads Road
+               eenndd
+               eenndd
+       The following example would produce a legend with a vertical ramp show-
+       ing
+       all the colors in the map's raster layer. The labels of the  first  and
+       last
+       categories would be included.
+
+               lleeggeenndd  589000 4921200
+               hheeiigghhtt  10
+               wwiiddtthh  20
+               xxssppaaccee  10
+               tteexxttccoolloorr  black
+               tteexxttssiizzee  250
+               tteexxttwwiiddtthh  1
+               bbaacckkggrroouunndd  gray
+               bboorrddeerr  black
+               bbeeggiinnrraasstt
+               rraammpp  label vertical
+               eenndd
+               eenndd
+
+
+lliinnee
+       Draws a line that is independent of any vector map layer on the output
+       map.
+
+               lliinnee  x_% y_% x_% y_%
+               ssttyyllee  sequence
+               ccoolloorr  [# ] color
+               wwiiddtthh  #
+               hhccoolloorr  color
+               hhwwiiddtthh  #
+               mmaasskkeedd  [_y| _n]
+               eenndd
+       The  beginning  and  ending  points of the line are entered on the main
+       instruction
+       line. These points can be defined either by map coordinates or by using
+       percentages  of  the  geographic  region, where 0% 0% is the lower left
+       corner
+       of the map.
+
+       The default line style is a continuous, solid line, but the user can
+       specify a dashed line using the ssttyyllee parameter. The ssttyyllee
+       parameter can contain a sequence of digits (0-9) that represent a  col-
+       ored
+       pattern  on  the  desired line. Colors can be assigned to each non-zero
+       digit
+       by using the ccoolloorr parameter multiple times. If the ccoolloorr
+       parameter is used without a specified digit, the named  color  will  be
+       assigned
+       to the entire line. Colors are listed in the VALID COLOR NAMES section
+       in this manual entry.
+
+       The user can specify line wwiiddtthh in pixels. A highlight color
+       can be assigned with hhccoolloorr, and the highlight's width in pixels
+       can be assigned with hhwwiiddtthh. The user can also specify if the line
+       is to be
+       mmaasskkeedd by the current mask. (See manual entry for _r_._m_a_s_kfor
+       more information on the mask.)
+
+       The lliinnee instruction set must be completed by an eenndd terminator.
+
+       The lliinnee instruction can be used more than once to create multiple
+       lines.
+
+       This example would draw a blue line from the point x= 10% y= 80% to
+       the  point  x=  30% y= 70%. The line would be two pixels wide and would
+       appear
+       even if there is a mask.
+
+               lliinnee  10% 80% 30% 70%
+               ccoolloorr  blue
+               wwiiddtthh  2
+               mmaasskkeedd  n
+               eenndd
+       The following example would draw a line with yellow dashes on  a  black
+       background.
+
+               lliinnee  605000 4915000 595300 4918200
+               ssttyyllee  1111100
+               ccoolloorr  1 yellow
+               wwiiddtthh  1
+               hhccoolloorr  black
+               hhwwiiddtthh  1
+               eenndd
+
+
+oouuttlliinnee
+       Outlines areas of a raster map layer with a specified color.
+
+               ccoolloorr  color
+               eenndd
+       The oouuttlliinnee instruction can be used to place a border around all
+       contiguous  groups  of  same-value cells in a raster map layer. A valid
+       color
+       name can be specified with the optional ccoolloorr parameter. The default
+       color is black.
+
+       The oouuttlliinnee instruction set must be completed by the
+       eenndd
+       terminator, even if the ccoolloorr parameter is not used.
+
+       The oouuttlliinnee instruction can not precede a rraasstteerr instruction
+       in a _p_._m_a_p_._n_e_w input file.
+
+       The instruction sequence in this example would outline in grey the cat-
+       egory
+       areas of a raster map layer called "soils".
+
+               rraasstteerr  soils
+               oouuttlliinnee
+               ccoolloorr  grey
+               eenndd
+
+
+ppooiinntt
+       Places a point symbol on the output map.
+
+               ppooiinntt  x_% y_%
+               iiccoonn  iconfile| _l_i_s_t
+               ccoolloorr  color
+               ssiizzee  #
+               mmaasskkeedd  [_y| _n]
+               eenndd
+       The  user  enters a point symbol location on the main instruction line.
+       The
+       location can be defined either by map coordinates or by percentages of
+       the map area, where 0% 0% is the lower left corner of the map.
+
+       The icon to be used can be specified with the iiccoonn parameter.
+       The user can use any icon in an _i_c_o_n_s directory within the current
+       mapset search path. Icons can be created using _p_._i_c_o_n_sor
+       by simply using a system editor. The default icon  is  a  diamond.  The
+       _l_i_s_t
+       option for iiccoonn is available in keyboard mode.
+
+       The user can specify the symbol ccoolloorr. Colors are listed in the
+       VALID COLOR NAMES section of this manual entry.
+
+       The icon ssiizzee is a positive, floating-point scaling factor of
+       the  pattern  in  the  icon file. A size of 1 produces an icon with the
+       same
+       number of pixels (at the output device's resolution) as  ASCII  charac-
+       ters
+       in the icon file.
+
+       The user can also specify whether the point symbol is to be mmaasskkeedd
+       by the current mask. (See manual entry for _r_._m_a_s_kfor
+       more information on the mask.)
+
+       The ppooiinntt instruction set must be completed be an eenndd
+       terminator. Multiple points may be drawn with multiple
+       ppooiinntt instructions.
+
+       This example would access an icon file called "box" within the current
+       mapset  search  path.  The  red box symbol would be placed at the point
+       E603000,
+       N4921750. The box would have the same number of pixels as characters in
+       the icon file. It would not be masked by the current mask.
+
+               ppooiinntt  603000 4921750
+               iiccoonn  box
+               ccoolloorr  red
+               ssiizzee  1
+               mmaasskkeedd  n
+               eenndd
+
+
+rraasstteerr
+       Selects a raster map layer for output.
+
+       Only one GRASS raster map layer can be specified in a _p_._m_a_p_._n_e_w
+       input  file.  If  no  raster map layer is requested, a white background
+       will
+       be produced. The _l_i_s_t option is available in keyboard mode.
+
+       The raster layer must be accessible within the current mapset search
+       path. In a _p_._m_a_p_._n_e_w input file, the rraasstteerr instruction must
+       precede these instructions: ccoolloorrttaabbllee,
+       oouuttlliinnee, sseettccoolloorr,
+       and sseettppaatt. It also must precede any lleeggeenndd instruction set
+       that applies to the raster map layer.
+
+       This example would paint a map of the raster map layer _s_o_i_l_s.
+
+               rraasstteerr  soils
+
+
+rreeaadd
+       Provides input to _p_._m_a_p_._n_e_w from a previously prepared instruction
+       file.
+
+       Mapping instructions can be placed in a file and read as input to
+       _p_._m_a_p_._n_e_w_.
+       If a certain set of mapping instructions are  used  in  many  different
+       maps,
+       they  can  be  placed  in one separate file and efficiently accessed by
+       each
+       map's instructions using the rreeaadd instruction.
+
+       Note: _p_._m_a_p_._n_e_w will not search for the file to be read. The
+       file must be in the current directory or a full path needs to be speci-
+       fied
+       on the rreeaadd instruction line. (Note to /bin/csh users: the tilde
+       [ ~ ] path alias will not work with this instruction).
+
+       This example reads the ASCII file "pmap.roads" into _p_._m_a_p_._n_e_w.
+
+               rreeaadd  pmap.roads
+
+
+rreeggiioonn
+       Places the outline of a geographic region on the output map.
+
+               ssttyyllee  sequence
+               ccoolloorr  [# ] color
+               wwiiddtthh  #
+               hhccoolloorr  color
+               hhwwiiddtthh  #
+               mmaasskkeedd  [_y| _n]
+               eenndd
+       The user can place the outline of a saved geographic region on the map
+       using rreeggiioonn. The named region file must be in a
+       _w_i_n_d_o_w_s
+       directory within the current mapset search path. Geographic region set-
+       tings
+       can be created and saved using _g_._r_e_g_i_o_n.
+       The _l_i_s_t option is available in keyboard mode.
+
+       The default region outline style is a continuous, solid line, but the
+       user can specify a dashed line using the ssttyyllee parameter. The ssttyyllee
+       parameter can contain a sequence of digits (0-9) that represent a  col-
+       ored
+       pattern  on  the  desired line. Colors can be assigned to each non-zero
+       digit
+       by using the ccoolloorr parameter multiple times. If the ccoolloorr
+       parameter is used without a specified digit, the named  color  will  be
+       assigned
+       to  the  entire  region  outline.  Colors are listed in the VALID COLOR
+       NAMES
+       section in this manual entry.
+
+       The user can specify the region outline wwiiddtthh in pixels. A highlight
+       color can be assigned with hhccoolloorr, and the highlight's width can
+       be assigned with hhwwiiddtthh. The user can also specify if the outline
+       is to be
+       mmaasskkeedd by the current mask. (See manual entry for _r_._m_a_s_kfor
+       more information on the mask.)
+
+       The rreeggiioonn instruction set must be completed by an eenndd
+       terminator.
+
+       The rreeggiioonn instruction can be used more than once to show multiple
+       regions.
+
+       This example would produce a white outline, two pixels wide, showing
+       the geographic region called "fire.zones".
+
+               rreeggiioonn  fire.zones
+               ccoolloorr  white
+               wwiiddtthh  2
+               eenndd
+
+
+ssccaallee
+       Specifies the scale of the hardcopy output map.
+
+       The scale of the output map can be specified in one of several  differ-
+       ent
+       forms:
+
+       relative ratio e.g. 1:25000
+
+       number of geographic units per map unit e.g. 1 inch equals 4 miles
+
+       absolute width of the printed map e.g. 10 inches
+
+       width in number of printed panels e.g. 3 panels
+
+
+
+
+       Map  inches  can be equated with these geographic units: miles, kilome-
+       ters,
+       and meters. Valid width units are inches, centimeters, and panels. One
+       panel is the single-sheet  maximum  width  available  on  the  hardcopy
+       medium.
+
+       The final size of the hardcopy map output is determined by the combina-
+       tion
+       of the specified scale and the current geographic region.
+
+       The ssccaallee instruction does not affect output to the _p_r_e_v_i_e_w
+       device. If used, the command-line _s_c_a_l_e parameter overrides the
+       ssccaallee instruction.
+
+       This example would set the scale of the map to one map unit represents
+       25,000 geographic units.
+
+               ssccaallee  1:25000
+       The following example would specify an output map that would be fifteen
+       centimeters wide.
+
+               ssccaallee  15 centimeters
+
+
+sseettccoolloorr
+       Overrides  the  color  assigned to one or more categories of the raster
+       map
+       layer.
+
+       The user can assign a desired color to categories in a raster map layer
+       by using sseettccoolloorr. Categories are specified on the parameter line
+       before  a  valid color name. One or more category numbers can appear on
+       the
+       parameter line, separated by commas (with  no  spaces),  or  in  ranges
+       using
+       hyphens.
+
+       The sseettccoolloorr instruction can be used more than once for assignment
+       of multiple colors.
+
+       In the input _p_._m_a_p_._n_e_w file, the sseettccoolloorr instruction
+       must follow the rraasstteerr instruction.
+
+       Colors  are  listed  in  the  VALID  COLOR NAMES section of this manual
+       entry.
+
+       In this example, the color for raster map categories 1 through 3, plus
+       category 5, would be set to green, categories 4, 6, and 8 would be set
+       to blue, and category 7 would  be  set  to  red,  regardless  of  their
+       assigned
+       colors in the database.
+
+               rraasstteerr  watersheds
+               sseettccoolloorr  1-3,5 green
+               sseettccoolloorr  4,6,8 blue
+               sseettccoolloorr  7 red
+
+
+
+sseettppaatt
+       Assigns  a  previously  defined pattern to one or more raster map layer
+       categories.
+               sseettppaatt  cat(s) _#number
+               sseettppaatt  _a_l_l| _b_u_i_l_t_i_n
+       The user can assign a pattern to categories in a raster  map  layer  by
+       using
+       sseettppaatt. Categories are specified on the parameter line before the
+       name of a pattern defined earlier using ddeeffppaatt, or before the number
+       signifying a built-in
+       _p_._m_a_p_._n_e_w pattern. One or more category numbers
+       can appear on the parameter line, separated by commas (with no spaces),
+       or in ranges using hyphens.
+
+       The built-in patterns are defined in etc/paint/patterns in the compiled
+       GRASS  code  directory.  Each  built-in pattern has an assigned number.
+       These
+       numbers can be used following a pound sign ( # ) on a  sseettppaatt  instruc-
+       tion
+       line. By using the _b_u_i_l_t_i_n option, each category in a raster map
+       layer can be assigned the correspondingly numbered builtin pattern.
+
+       All raster map categories can be assigned the same defined pattern if
+       the _a_l_l option is used. In this case, only one pattern should be
+       defined within the _p_._m_a_p_._n_e_w mapping instruction file.
+
+       The sseettppaatt instruction can be used more than once for assignment
+       of multiple patterns.
+
+       In the input _p_._m_a_p_._n_e_w file, the sseettppaatt instruction must
+       follow the rraasstteerr instruction, as well as the
+       ddeeffppaatt instruction
+       defining the pattern that is used.
+
+       This example assigns a pattern called "vert" to categories 3 and 4 of
+       the  raster map layer "vegetation" and a pattern called "tree" to cate-
+       gory
+       10.
+
+               rraasstteerr  veg
+               sseettppaatt  3-4 vert
+               sseettppaatt  10 tree
+       This example reads a previously prepared ASCII file called
+       _h_o_r_i_z_._p_a_t
+       containing
+       ddeeffppaatt instructions for creating a black, horizontal
+       pattern called "horiz", and assigns that pattern to category 5  of  the
+       raster
+       map layer "soils".
+
+               rraasstteerr  soils
+               rreeaadd  horiz.pat
+               sseettppaatt  5 horiz
+       This  example  assigns  built-in pattern 1 to category 1 of the "soils"
+       raster
+       layer, pattern 2 to category 2, and so on.
+
+               rraasstteerr  soils
+               sseettppaatt  builtin
+       This example assigns built-in pattern 1 to categories 5  through  7  in
+       the
+       "soils"  raster  map layer, and built-in pattern 2 to categories 10 and
+       12.
+
+               rraasstteerr  soils
+               sseettppaatt  5-7 # 1
+               sseettppaatt  10,12 # 2
+
+
+ssiitteess
+       Selects sites data to be placed on the output map.
+
+               iiccoonn  iconfile| _l_i_s_t
+               ccoolloorr color
+               ssiizzee  #
+               ddeesscc  [_y| _n]
+               tteexxttccoolloorr  color
+               tteexxttssiizzee  #
+               eenndd
+       GRASS sites data can be portrayed on the map using the
+       ssiitteess instruction.
+       The user can specify the point symbol to be used,  and  whether  labels
+       are
+       to  appear  next  to the symbols. The sites data must be accessible via
+       the
+       current mapset search path. The _l_i_s_t option is available in keyboard
+       mode.
+
+       An icon can be specified with the iiccoonn parameter. The user can
+       use any icon in an _i_c_o_n_s directory within the current mapset search
+       path. Icons can be created using _p_._i_c_o_n_sor
+       by simply using a system editor. The default icon  is  a  diamond.  The
+       _l_i_s_t
+       option for iiccoonn is available in keyboard mode.
+
+       The user can specify the symbol ccoolloorr. Colors are listed in the
+       VALID COLOR NAMES section of this manual entry.
+
+       The icon ssiizzee is a positive, floating-point scaling factor of
+       the  pattern  in  the  icon file. A size of 1 produces an icon with the
+       same
+       number of pixels (at the output device's resolution) as  ASCII  charac-
+       ters
+       in the icon file.
+
+       The ddeesscc parameter is used to specify whether or not the description
+       of each site in the _s_i_t_e___l_i_s_t_s file is also to be printed. These
+       labels will appear directly to the right of each site symbol. The user
+       controls the color of the labels using the tteexxttccoolloorr parameters.
+       Valid  colors  are  listed  in  the named colors section of this manual
+       entry.
+       The label size is specified in geographic units using tteexxttssiizzee.
+
+       The ssiitteess instruction set must be completed by the
+       eenndd
+       terminator.
+
+       This instruction can be used more than once to portray multiple site
+       lists.
+
+       This example would produce point symbols representing the data in a
+       _s_i_t_e___l_i_s_t_s file called "windmills". An icon called "windmill" would
+       be placed at each site location.  These  symbols  would  be  two  times
+       larger
+       than  the  size  of  the icon in the icon file (twice as many pixels as
+       there
+       are characters in the icon file). Descriptions from the sites list file
+       would not be produced in this example.
+
+               ssiitteess  windmills
+               iiccoonn  windmill
+               ccoolloorr  blue
+               ssiizzee  2
+               ddeesscc  n
+               eenndd
+
+
+ssttaarrttppaanneell
+       Specifies  at  which  panel  number to begin printing. Default is 0 and
+       would
+       start printing from the first panel.
+
+               ssttaarrttppaanneell 2
+       This example would begin printing at panel 2.
+
+tteexxtt
+       Places text at a user-specified location on the map.
+
+               tteexxtt  x_% y_%  text
+               tteexxttffoonntt  font
+               ssiizzee  #
+               ccoolloorr  color| _n_o_n_e
+               wwiiddtthh  #
+               hhccoolloorr  color| _n_o_n_e
+               hhwwiiddtthh  #
+               rreeff  reference_point
+               rroottaattiioonn  #
+               xxooffffsseett  #
+               yyooffffsseett  #
+               bbaacckkggrroouunndd  color| _n_o_n_e
+               ooppaaqquuee  [_y| _n]
+               bboorrddeerr  color| _n_o_n_e
+               eenndd
+       The user specifies where text will be placed by providing  map  coordi-
+       nates
+       or percentages of the map area, where 0% 0% is the lower left corner of
+       the map. The text  follows  the  locational  information  on  the  same
+       instruction
+       line. Multiple lines of text can be specified by notating the end of a
+       line with
+       \\nn (e.g., USA\nCERL). Leading blanks an be inserted
+       by  preceding  the  text  string with a backslash and the blanks (e.g.,
+       text
+       600000 4920500\ See\nWall Drug ).
+
+       The user can control the appearance of the text, its location, and the
+       appearance of its background box.
+
+       The user can specify tteexxttffoonntt (see VALID FONT NAMES in this manual
+       entry), ssiizzee in geographic units,
+       ccoolloorr (see VALID COLOR
+       NAMES), and wwiiddtthh in pixels. The user can further control the text
+       appearance by specifying a highlight color (hhccoolloorr) and the width
+       of the highlight color (hhwwiiddtthh).
+
+       The text is located at the specified coordinate or percentage pair in
+       relation to a reference point on the text string. This point, specified
+       with the
+       rreeff parameter, has two parts. The first part refers to
+       a vertical location on the text string. Valid choices are _l_o_w_e_r,
+       _c_e_n_t_e_r, and
+       _u_p_p_e_r. The second part refers to a horizontal
+       location: _l_e_f_t, _c_e_n_t_e_r, and _r_i_g_h_t.
+
+       The  text  string  can  be  rotated at the reference point by using the
+       rroottaattiioonn
+       parameter. The value specified will be the  counter-clockwise  rotation
+       in
+       degrees from the horizontal.
+
+       The
+       xxooffffsseett parameter provides finer placement of text by shifting
+       the  text  a  horizontal distance in pixels from the specified easting.
+       The
+       xxooffffsseett will shift the text location east if positive and west if
+       negative. The
+       yyooffffsseett parameter shifts the text a vertical distance
+       in pixels from the specified northing. The
+       yyooffffsseett will shift the
+       location to the south if positive, north if negative.
+
+       The user can specify if a bbaacckkggrroouunndd box is present, and what
+       color it should be. The user can also specify whether or not the  back-
+       ground
+       box is
+       ooppaaqquuee to other map elements. The color of the bboorrddeerr
+       of this box can be specified.
+
+       This example would place the text "SPEARFISH LAND COVER" at the coordi-
+       nates
+       E650000, N7365000. The text would be a total of three pixels wide (one
+       pixel of red text and one pixel of black on each side),  have  a  white
+       background
+       enclosed in a red box, and be 500 meters in size (to scale). The lower
+       left  corner  of  the text would be placed at the coordinates provided.
+       All
+       other map elements would not be seen under the text.
+
+               tteexxtt  650000 7365000 SPEARFISH LAND COVER
+               tteexxttffoonntt  romand
+               ccoolloorr  red
+               wwiiddtthh  1
+               ssiizzee  500
+               rreeff  lower left
+               hhccoolloorr  black
+               hhwwiiddtthh  1
+               bbaacckkggrroouunndd  white
+               bboorrddeerr  red
+               ooppaaqquuee  y
+               eenndd
+
+
+vveeccttoorr
+       Selects a vector map layer for output.
+
+               ssttyyllee  sequence
+               ccoolloorr  [# ] color
+               wwiiddtthh  #
+               hhccoolloorr  color
+               hhwwiiddtthh  #
+               mmaasskkeedd  [_y| _n]
+               eenndd
+       GRASS vector data can be portrayed on the map using the
+       vveeccttoorr instruction.
+       The name of the vector layer is  specified  on  the  first  instruction
+       line.
+       The named vector layer must be accessible via the current mapset search
+       path. The
+       _l_i_s_t option is available in keyboard mode.
+
+       The default vector line style is a continuous, solid line, but the user
+       can specify a dashed line using the ssttyyllee parameter. The ssttyyllee
+       parameter  can contain a sequence of digits (0-9) that represent a col-
+       ored
+       pattern on the vectors. Colors can be assigned to each  non-zero  digit
+       by
+       using the ccoolloorr parameter multiple times. If the ccoolloorr parameter
+       is used without a specified digit, the named color will be assigned to
+       the entire lengths of the vectors. Colors are listed in the VALID COLOR
+       NAMES section in this manual entry.
+
+       The user can specify the vector line wwiiddtthh in pixels. A highlight
+       color can be assigned with hhccoolloorr, and the highlight's width in
+       pixels can be assigned with hhwwiiddtthh. The user can also specify if
+       the vectors are to be
+       mmaasskkeedd by the current mask. (See manual entry
+       for _r_._m_a_s_kfor more information on the
+       mask.)
+
+       The vveeccttoorr instruction set must be completed by an eenndd
+       terminator.
+
+       The vveeccttoorr instruction can be used more than once to portray
+       multiple vector data layers.
+
+       This example would include a vector map layer named "streams" in the
+       output map. These streams would be a total of  four  pixels  wide  (two
+       blue
+       pixels  with  a white outer highlight one pixel wide on each side). The
+       map
+       would not show streams outside of the current mask.
+
+               vveeccttoorr  streams
+               ccoolloorr  blue
+               wwiiddtthh  2
+               hhccoolloorr  white
+               hhwwiiddtthh  1
+               mmaasskkeedd  y
+               eenndd
+       The following example would portray a vector map layer  named  "roads".
+       These
+       roads would be two pixels wide and would be dashed blank-black-red (the
+       blank areas would show other map elements under the roads).  The  roads
+       would
+       be visible inside and outside of the current mask.
+
+               vveeccttoorr  roads
+               wwiiddtthh  2
+               ssttyyllee  001122
+               ccoolloorr  1 black
+               ccoolloorr  2 red
+               mmaasskkeedd  n
+               eenndd
+
+
+vveerrbboossee
+       Sets the amount of feedback sent out by _p_._m_a_p_._n_e_w.
+
+       A higher value set using vveerrbboossee results in more feedback. The default
+       is 2.
+
+       This example sets the amount of feedback to a minimum.
+
+               vveerrbboossee  0
+
+
+VVAALLIIDD CCOOLLOORR NNAAMMEESS
+       The following are the valid color names in _p_._m_a_p_._n_e_w:
+
+       black   gray    magenta violet
+       blue    green   orange  white
+       brown   grey    purple  yellow
+       any integer from 0 through 124, representing printer color numbers (see
+       _p_._c_o_l_o_r_smanual entry)
+
+VVAALLIIDD FFOONNTT NNAAMMEESS
+       The following are the valid font names in _p_._m_a_p_._n_e_w:
+
+       gothgbt greekp  romanc  scriptc
+       gothgrt greeks  romancs scripts
+       gothitt italicc romand
+       greekc  italiccs        romans (default)
+
+
+IICCOONNSS VVSS.. PPAATTTTEERRNNSS
+       Icons and patterns as used in _p_._m_a_p_._n_e_w are not the same things.
+       Patterns can only be used to cover the extended areas of a  raster  map
+       layer
+       category.  A  pattern  will repeat above, below and adjacent to itself.
+       Icons
+       are used to represent single points.
+
+       Patterns can be defined directly within
+       _p_._m_a_p_._n_e_w using the
+       ddeeffppaatt
+       instruction, while icons are created outside of _p_._m_a_p_._n_e_w using
+       the
+       _p_._i_c_o_n_scommand or a system editor.
+
+EEXXAAMMPPLLEE pp..mmaapp..nneeww IINNPPUUTT FFIILLEE
+       The following is an example of a _p_._m_a_p_._n_e_w script file. The file
+       has been named "spear.soils". For the purposes  of  illustration  only,
+       the
+       file  is  shown  in two columns. This script file can be entered at the
+       command
+       line.
+
+       pp..mmaapp..nneeww iinnppuutt==_s_p_e_a_r_._s_o_i_l_s
+
+       rraasstteerr soils            ddeeffppaatt diag
+       vveeccttoorr streams          000001
+          ccoolloorr blue           00001
+          wwiiddtthh 2              0001
+          hhccoolloorr white         001
+          hhwwiiddtthh 1             01
+          mmaasskkeedd y             1
+          eenndd                     ccoolloorr 1 red
+       vveeccttoorr roads               eenndd
+          wwiiddtthh 2              sseettppaatt 4 diag
+          ssttyyllee 001122         tteexxtt 608000 3476004 SPEARFISH SOILS MAP
+          ccoolloorr 1 black           ccoolloorr red
+          ccoolloorr 2 red             wwiiddtthh 2
+          mmaasskkeedd n                hhccoolloorr black
+          eenndd                     hhwwiiddtthh 1
+       llaabbeellss town.names          bbaacckkggrroouunndd white
+       rreeggiioonn subregion           bboorrddeerr red
+          ccoolloorr white             ssiizzee 500
+          wwiiddtthh 2                 rreeff lower left
+          eenndd                     ooppaaqquuee y
+       ggrriidd 10000                 eenndd
+          ccoolloorr green          lliinnee 606969 3423092 616969 3423092
+          nnuummbbeerrss 2 red          ccoolloorr yellow
+          eenndd                     wwiiddtthh 2
+       oouuttlliinnee                    ooppaaqquuee yes
+          ccoolloorr black             eenndd
+          eenndd                  ppooiinntt 40% 60%
+       ccoolloorrttaabbllee y              ccoolloorr purple
+       ccoommmmeennttss                   iiccoonn diamond
+          This is a comment       ssiizzee 2
+          eenndd                     mmaasskkeedd n
+       ssccaallee 1:25000              eenndd
+       sseettccoolloorr 6,8,9 white    eenndd
+       sseettccoolloorr 10 green
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       If the user enters _p_._m_a_p_._n_e_w on the command-line without arguments,
+       a prompting session occurs. Some, but not all, of  the  non-interactive
+       requests
+       are available in this mode.
+
+SSEEEE AALLSSOO
+       _g_._m_a_p_s_e_t_s
+
+       _g_._r_e_g_i_o_n
+
+       _p_._c_h_a_r_t
+
+       _p_._c_o_l_o_r_s
+
+       _p_._i_c_o_n_s
+
+       _p_._l_a_b_e_l_s
+
+       _p_._p_p_m
+
+       _p_._s_e_l_e_c_t
+
+       _r_._m_a_s_k
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       Joo Joo Chia, U.S. Army Construction Engineering Research Laboratories
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                         p.map.new(1)

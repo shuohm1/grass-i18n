@@ -1,0 +1,82 @@
+m.proj(1)                     Grass User's Manual                    m.proj(1)
+
+
+
+NNAAMMEE
+       mm..pprroojj  - Calculates conversion coordinates for geographic positions.
+       _(_G_R_A_S_S _M_a_p _D_e_v_e_l_o_p_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..pprroojj
+       mm..pprroojj hheellpp
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program  allows a user to interactively: convert coordinates from
+       one projection to another
+
+
+
+       It allows a user to do all of the above:
+              reading from a file, writing to the screen,  or reading from the
+              keyboard,  writing to a file, or reading from a file, writing to
+              a file,
+
+
+
+       Note:  The program does not transform GRASS files, it  is  designed  to
+       determine coordinate values on an individual position.
+
+
+       The  map  projections currently supported are listed in etc/projections
+       file
+
+
+       Each of the above projections (with the exception of State  Plane)  can
+       be computed with the spheroids listed in etc/ellipse.table file
+
+
+
+IINNPPUUTT FFIILLEE FFOORRMMAATT
+       When reading from a file of LATITUDE/LONGITUDE data the
+              file  will  contain  three (2) columns of information: the first
+              column - latitude   - in degrees  minutes  seconds,  the  second
+              column - longitude - in degrees minutes seconds,
+
+
+
+       For example:
+            +40 36 31.4563 -87 2 7.8193
+            40n 36 31.4563 87w 2 7.8193
+
+
+
+
+       When reading from a file of PROJECTION COORDINATES data the
+              file  will  contain  three (2) columns of information: the first
+              column - easting - ground coordinates the second column  -  nor-
+              thing - ground coordinates
+
+
+
+       For example:
+             500000.00     4496918.64
+            -424489.11     1908736.13
+
+
+
+
+       NNoottee:: NO column headings are required, just the numbers.
+
+SSEEEE AALLSSOO
+        _r_._p_r_o_j_, _r_._p_r_o_j_, _s_._p_r_o_j_, _v_._p_r_o_j
+
+AAUUTTHHOORRSS
+       Irina Kosinovsky, US Army CERL
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+       Updated to PROJ 4 by Morten Hulden morten@ngb.se
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                            m.proj(1)

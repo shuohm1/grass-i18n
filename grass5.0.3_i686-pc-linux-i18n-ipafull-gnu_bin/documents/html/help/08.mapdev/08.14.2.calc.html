@@ -1,0 +1,240 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      08.14.2.calc
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    Installing a Calcomp Digitizer
+  </CENTER>
+    <P>This file details how to set up the hardware for a Calcomp 9100 series
+digitizer.  The cabling and switching settings are suggestions only.
+A different Masscomp or Sun may need a different cable configuration.
+    <P>NOTE:  That the table size has to be set by the SB1 dip switches. Consult
+your Calcomp manual for your particular table settings.
+    <P>WARNING:  These switch settings and cable configurations are for Port A/C.
+There is information about Port B/D mentioned later in this file.
+    <P>    <P>Switch Settings
+  <PRE>---------------
+</PRE>
+There are two banks of eight switches (SW1 and SW2) on the Communication
+Interface Board.  There is one bank of eight switches (SB1) on the
+Digitizing Processor.
+    <P>Switch settings:
+    <P>
+  <CENTER>
+    <H2>
+      SW1
+    </H2>
+  </CENTER>
+  <PRE>	---
+</PRE>
+
+  <CENTER>
+    1 - closed
+  </CENTER>
+
+  <CENTER>
+    2 - closed    parity disabled
+  </CENTER>
+
+  <CENTER>
+    3 - closed
+  </CENTER>
+
+  <CENTER>
+    4 - closed    1 stop parity
+  </CENTER>
+
+  <CENTER>
+    5 - open      8 data bits
+  </CENTER>
+
+  <CENTER>
+    6 - closed
+  </CENTER>
+
+  <CENTER>
+    7 - closed    9600 baud
+  </CENTER>
+
+  <CENTER>
+    8 - open
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    <H2>
+      SW2
+    </H2>
+  </CENTER>
+  <PRE>	---
+</PRE>
+
+  <CENTER>
+    1 - open    port B/D on
+  </CENTER>
+
+  <CENTER>
+    2 - open
+  </CENTER>
+
+  <CENTER>
+    3 - closed  LF port A/C off
+  </CENTER>
+
+  <CENTER>
+    4 - open    Port A/C on
+  </CENTER>
+
+  <CENTER>
+    5 - closed  menu off
+  </CENTER>
+
+  <CENTER>
+    6 - open    cursor on
+  </CENTER>
+
+  <CENTER>
+    7 - closed  echo off
+  </CENTER>
+
+  <CENTER>
+    8 - closed  LF port B/D on
+  </CENTER>
+    <P>    <P>    <P>
+  <CENTER>
+    <H2>
+      SB1
+    </H2>
+  </CENTER>
+  <PRE>	---
+</PRE>
+
+  <CENTER>
+    1 - open
+  </CENTER>
+
+  <CENTER>
+    2 - open    operating mode (run)
+  </CENTER>
+
+  <CENTER>
+    3 - closed
+  </CENTER>
+
+  <CENTER>
+    4 - open    output format 2
+  </CENTER>
+
+  <CENTER>
+    5 - closed
+  </CENTER>
+
+  <CENTER>
+    6 - close   resolution 1000 LPI
+  </CENTER>
+
+  <CENTER>
+    7 - open
+  </CENTER>
+
+  <CENTER>
+    8 - close   91480,  36 X 48 inches (table size)
+  </CENTER>
+    <P>    <P>Cabling
+  <PRE>-------
+</PRE>
+    <P>The cabling between the digitizer and the computer differ for different
+computers.  Some known cable configurations for port A/C:
+    <P>    <P>
+  <CENTER>
+    <H2>
+      SUN 3/110:
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    Sun     Calcomp
+  </CENTER>
+  <PRE>	 2  ----  3
+</PRE>
+  <PRE>	 3  ----  2
+</PRE>
+  <PRE>	 4  ----  4
+</PRE>
+  <PRE>	 5  ----  5
+</PRE>
+  <PRE>	 7  ----  7
+</PRE>
+  <PRE>	 20 ----  20
+</PRE>
+    <P>  <PRE>-------------------------------------------------------
+</PRE>
+    <P>What follows is a description if you want to use Port B/D instead of
+Port A/C.  Port B/D does echoing of commands.  Make sure the echoing
+of port B/D is off by with the dip switches (SW2-7 closed).
+Turn off LF on port B/D (SW2-8 closed).
+    <P>
+  <CENTER>
+    Some known cable configurations for port A/C:
+  </CENTER>
+    <P>
+  <CENTER>
+    SUN 386i:
+  </CENTER>
+    <P>
+  <CENTER>
+    Sun     Calcomp
+  </CENTER>
+  <PRE>	 2  ----  2
+</PRE>
+  <PRE>	 3  ----  3
+</PRE>
+  <PRE>	 7  ----  7
+</PRE>
+    <P>
+  <CENTER>
+    There should be no 4 or it will not work.
+  </CENTER>
+    <P>  <PRE>-------------------------------------------------------
+</PRE>
+    <P>If the <A HREF="./../../../../documents/html/v.digit.html">v.digit</A> program isn't working, make sure the tty the digitizer is
+on has the getty off, the tty permissions are set to 'crw-rw-rw', the
+'digitcap' file is correct for your system configuration, and the switch
+settings on the digitizer are correct.  There are some diagnostic programs
+under $GISBASE/src/mapdev/digitizers/calcomp/Diagnostics.  If none of the
+programs work, then there is something wrong with either the cabling or
+the digitizer.
+    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

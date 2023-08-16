@@ -1,0 +1,90 @@
+d.dm(1)                       Grass User's Manual                      d.dm(1)
+
+
+
+NNAAMMEE
+       _d_._d_m  -  Display  manager.  GUI tool for easy display/zoom/query of map
+       sets.  (_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m)
+
+SSYYNNOOPPSSIISS
+       dd..ddmm
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._d_m may be started by typing "d.dm &" in GRASS shell.  MMOOUUSSEE--OOVVEERR HHEELLPP
+       IISS  AAVVAAIILLAABBLLEE  FFOORR MMOOSSTT OOFF TTHHEE WWIINNDDOOWW PPAARRTTSS!!  Window of d.dm is devided
+       into more frames:
+
+       SSeettss ffrraammee: in upper left corner, contains list of map sets
+
+       MMaappss ffrraammee in upper right corner, contains list of maps in selected set
+
+       SSeett//mmaapp  bbuuttttoonnss  on  the  left  side  below Sets/Maps frames, used for
+       manipulating with sets and maps
+
+       SSaavvee//CClloossee bbuuttttoonnss on the right side below Sets/Maps frames
+
+       MMoonniittoorrss below Set/Map, Save/Close buttons
+
+       DDiissppllaayy//qquueerryy bbuuttttoonnss on the bottom of the d.dm window
+
+
+
+
+   MMaanniippuullaattiinngg SSeettss
+       After first start of d.dm in GRASS mapset, empty Set named double click
+       on  set  name  and retyping text.  NNeeww sseett may be added by pressing the
+       button AAdddd sseett.  Existin Set may be sseelleecctteedd by  single  click  on  set
+       name.  Selected Set may be rreemmoovveedd by pressing DDeell sseett button.
+
+   MMaanniippuullaattiinngg MMaappss
+       List  of  maps in selected Set is displayed in Maps frame.  New map may
+       be added by pressing the button AAdddd mmaapp, and selecting  map  type  from
+       displayed  list  of types.  Map row appeares in Map frame. Each map row
+       starts by map type button. The map may be selected by pressing the  map
+       type  button.  Next item is text field mmaapp nnaammee which is name of map as
+       is used in GRASS, for example roads@PERMANENT or rivers.  Map name  may
+       be  selected  from  list  of available maps opend by right mouse button
+       click on the map name field.  Following items in the map row depend  on
+       the  map type.  Selected map may be removed by pressing DDeell mmaapp button.
+       Selected maps may be moved up and down by pressing buttons with up  and
+       down arrow symbols.
+
+   SSeelleeccttiinngg mmoonniittoorrss
+       Monitor  is  selected  in Monitors frame by radio button.  Monitor does
+       not need to be opend and will be opened automaticaly.
+
+   DDiissppllaayy,, ZZoooomm
+       DDiissppllaayy button is used to display all maps in  selected  map  Set.  AAllll
+       button  resets region to full default region.  ZZoooomm and PPaann buttons are
+       used for zooming in monitor.
+
+   QQuueerryy
+       QQuueerryy button is used to query selected map.
+
+   PPNNGG
+       PPNNGG button creates a file named 'map.png' containing the selected  maps
+       in  the  current  directory.  If  such a file already exists it will be
+       overwritten !  Does not handle legend files. Issues such as true  color
+       support  and  background  color have to be set with environmental vari-
+       ables (see PNG-driver for details).
+
+   SSaavvee,, CClloossee
+       d.dm session may be saved by SSaavvee  button.  The  session  is  saved  in
+       $LOCATION/$MAPSET/.d.dmrc  file.  This file is read in on next session.
+       d.dm is quit by CClloossee button (without saving).
+
+OOPPTTIIOONNSS
+       No options.
+
+BBUUGGSS
+       Error codes returned by GRASS commads are not handled.
+
+SSEEEE AALLSSOO
+       d.mon
+
+AAUUTTHHOORR
+_L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_2_/_0_9 _1_2_:_0_7_:_2_3 _$
+
+
+
+GRASS 5.0                                                              d.dm(1)

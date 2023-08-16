@@ -1,0 +1,57 @@
+r.to.sites(1)                 Grass User's Manual                r.to.sites(1)
+
+
+
+NNAAMMEE
+       _r_._t_o_._s_i_t_e_s   -  Converts  point data in a GRASS raster map layer into a
+       GRASS site_lists file.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ttoo..ssiitteess
+
+       rr..ttoo..ssiitteess hheellpp
+
+       rr..ttoo..ssiitteess [[--aazz]] iinnppuutt_=_n_a_m_e oouuttppuutt_=_n_a_m_e [llaabbeell_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The _r_._t_o_._s_i_t_e_s program extracts data from a GRASS raster map layer  and
+       stores  output in a new GRASS _s_i_t_e___l_i_s_t_s file.  The resulting sites map
+       layer can be used with such programs as _d_._s_i_t_e_s.
+
+
+       The user can run the program non-interactively by specifying the  names
+       of  an  existing  raster input map layer and a new site list file to be
+       output on the command line.  The program will be run  interactively  if
+       the  user  types  _r_._t_o_._s_i_t_e_s without arguments on the command line.  In
+       this case, the user will be prompted to enter parameter values  through
+       the standard user interface described in the manual entry for _p_a_r_s_e_r.
+
+OOPPTTIIOONNSS::
+   FFllaaggss::
+       --aa     Output as decimal attribute rather than cat
+
+       --zz     Output as third dimension rather than cat
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  Name of an existing raster map layer from which site data are to
+              be extracted
+
+       oouuttppuutt Name of new sites file
+
+       llaabbeell  Label for site values Default: No Label
+
+
+SSEEEE AALLSSOO
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Bill Brown
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.to.sites(1)

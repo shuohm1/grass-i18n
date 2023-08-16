@@ -1,0 +1,100 @@
+r.contour(1)                  Grass User's Manual                 r.contour(1)
+
+
+
+NNAAMMEE
+       _r_._c_o_n_t_o_u_r  -  Produces  a GRASS binary vector map of specified contours
+       from GRASS raster map layer.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ccoonnttoouurr
+
+       rr..ccoonnttoouurr hheellpp
+
+       rr..ccoonnttoouurr [[--qqnn]] iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  [lleevveellss==_v_a_l_u_e,_v_a_l_u_e,...,_v_a_l_u_e]
+       [mmiinnlleevveell==_v_a_l_u_e] [mmaaxxlleevveell==_v_a_l_u_e] [sstteepp==_v_a_l_u_e] [ccuutt==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_o_n_t_o_u_r produces a contour map of user-specified levels from a raster
+       map layer. This program works two ways:
+
+              Contours are produced from a user-specified list of levels.
+
+              Contours are produced at some regular increment from user-speci-
+              fied  minimum  level  to maximum level. If no minimum or maximum
+              level is specified, minimum or maximum data value will be  used.
+
+
+OOPPTTIIOONNSS
+       _r_._c_o_n_t_o_u_r  may  be  run  interactively or non-interactively. To run the
+       program non-interactively, the user must specify the input  and  output
+       file  names,  either  a list of levels or a step value and, optionally,
+       minimum and maximum  levels:  rr..ccoonnttoouurr  [[--qqnn]]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e
+       [lleevveellss==_v_a_l_u_e,_v_a_l_u_e,...,_v_a_l_u_e]     [mmiinnlleevveell==_v_a_l_u_e]    [mmaaxxlleevveell==_v_a_l_u_e]
+       [sstteepp==_v_a_l_u_e] [ccuutt==_v_a_l_u_e]
+
+       To run the program interactively, the user may simply type rr..ccoonnttoouurr at
+       the command line and will be prompted for parameter values.
+
+
+
+   FFllaaggss::
+       --qq   Suppress progress report & min/max information
+
+       --nn   Suppress single crossing error messages
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+           Name of input raster map layer.
+
+       oouuttppuutt==_n_a_m_e
+           Name of the binary vector file created.
+
+       lleevveellss==_v_a_l_u_e,_v_a_l_u_e,...,_v_a_l_u_e
+           Comma separated list of desired levels.
+
+       mmiinnlleevveell==_v_a_l_u_e
+           Beginning (lowest) value to be used when stepping through contours.
+           Default is minimum data value.
+
+       mmaaxxlleevveell==_v_a_l_u_e
+           Ending (highest) value to be used when stepping  through  contours.
+           Default is maximum data value.
+
+       sstteepp==_v_a_l_u_e
+           Increment between contour levels.
+
+       ccuutt==_v_a_l_u_e
+           Minimum  number  of  points  for  a  contour  line  (0 -> no limit,
+           default: 0)
+
+
+NNOOTTEESS
+       _r_._c_o_n_t_o_u_r will either step through incremental contours or produce con-
+       tours  from  a list of levels, not both. If both a list of levels and a
+       step are specified, the list will be produced  and  the  step  will  be
+       ignored.
+
+       Zero is treated as a valid data value by _r_._c_o_n_t_o_u_r.
+
+       If a contour level exactly matches a category value in the raster file,
+       the contour line may backtrack on itself, causing illegal  arcs  to  be
+       produced in the output GRASS vector file.
+
+       The  optional _c_u_t parameter allows to specify a minimum number of point
+       for a contour line to be put into output  vector  map,  so  that  small
+       spurs,  single points and so on won't be present and the output will be
+       more clear.
+
+AAUUTTHHOORRSS
+       Terry Baker, U.S. Army Construction Engineering Research Laboratory
+
+       3/2001: cut parameter and fixes by Andrea Aime (aaime@libero.it)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.contour(1)

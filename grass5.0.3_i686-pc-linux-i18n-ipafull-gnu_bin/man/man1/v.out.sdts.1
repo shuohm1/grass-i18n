@@ -1,0 +1,137 @@
+v.out.sdts(1)                 Grass User's Manual                v.out.sdts(1)
+
+
+
+NNAAMMEE
+       vv..oouutt..ssddttss   -  Creates  an  SDTS dataset conforming to the Topological
+       Vector Profile from a GRASS vector map layer.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _E_x_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..ssddttss
+       vv..oouutt..ssddttss hheellpp
+       vv..oouutt..ssddttss [--aamm] iinnppuutt=_n_a_m_e [ppaatthh=_n_a_m_e] oouuttppuutt=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._o_u_t_._s_d_t_s creates an SDTS dataset that conforms to the requirements of
+       both  the federal Spatial Data Transfer Standard and the SDTS Topologi-
+       cal Vector Profile.  It creates the dataset from the  files  associated
+       with a vector map layer which is specified by the user.  The files that
+       make up the SDTS dataset are output to the  current  directory,  unless
+       otherwise  specified by the user (with the path parameter).  The output
+       dataset is in the  mandatory  ISO  8211  (FIPS  123)  format;  the  ISO
+       8211/SDTS output files can be inspected with _m_._s_d_t_s_._r_e_a_d.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --aa     transfer  Lines  of  "AREA type" only; omit Lines of "LINE type"
+              from output SDTS dataset.
+
+       --mm     access user-defined metadata file. This file is  typically,  but
+              not  necessarily,  created with _v_._s_d_t_s_._m_e_t_a.  See the discussion
+              of SDTS data quality files and metadata below.
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              name of vector map layer from which the SDTS dataset wil be cre-
+              ated.
+
+       ppaatthh==_n_a_m_e
+              full  path  to  location  for  placement of output SDTS dataset.
+              Path must exist and be writable by the user.   If  path  is  not
+              specified, dataset will be output to the current directory.
+
+       oouuttppuutt==_n_a_m_e
+              four-character  string to be used as prefix for each of the out-
+              put SDTS files.  Can be any combination of letters  and  digits,
+              although letters must be upper-case.
+
+
+
+
+LLIINNEE TTYYPPEESS IINN GGRRAASSSS AANNDD SSDDTTSS
+       GRASS  makes  a  distinction between types of lines, between those that
+       are edges of areas or polygons and those that are not.   GRASS  handles
+       these  types different topologically: AREA type lines carry pointers to
+       left and right polygons, but LINE type lines carry no such pointers.
+
+
+       The SDTS Topological Vector Profile, however, does not distinguish line
+       types,  and  does  require  that ALL lines carry left and right polygon
+       references.  This has meant that during the  export  process  topology-
+       building  algorithms are applied to construct the missing topology that
+       SDTS requires.  A potential problem arises, however, with the  transfer
+       of  object  attributes  in  certain circumstances. E.g. if a polygon in
+       GRASS is bisected by a line of type LINE, the  resulting  SDTS  dataset
+       will  contain two polygons where only one existed in GRASS: should both
+       these polygons be assigned the attribute of the original, now non-exis-
+       tent  polygon?   The "-a" option, which transfers only AREA type lines,
+       works around this problem.
+
+SSDDTTSS RREEQQUUIIRREEMMEENNTTSS:: DDAATTAA QQUUAALLIITTYY RREEPPOORRTTSS
+       SDTS datasets are required to contain 5 different data  quality  report
+       modules,  for Lineage, Positional Accuracy, Attribute Accuracy, Logical
+       Consistency, and Completeness.  When _v_._o_u_t_._s_d_t_s is run, it searches  in
+       the  user's  mapset's _d_i_g___m_i_s_c directory for appropriate files, one for
+       each module, containing narrative text in ASCII format.  If found, they
+       are  converted to SDTS/ISO 8211 format and added to the export dataset;
+       warning messages are displayed if any data quality modules are missing.
+
+
+       Data  quality reports can be created, and installed in the proper loca-
+       tion under _d_i_g___m_i_s_c, with _v_._s_d_t_s_._m_e_t_a.
+
+OOTTHHEERR MMEETTAADDAATTAA
+       When _v_._o_u_t_._s_d_t_s is run, if the "-m" flag is set, the  program  searches
+       in the _d_i_g___m_i_s_c directory for a supplementary metadata file for the map
+       layer being transferred.  If found, its contents  are  incorporated  in
+       the  SDTS  dataset.  This  file  can  be  created  and  installed  with
+       _v_._s_d_t_s_._m_e_t_a; for details see the _m_a_n page for this program.
+
+SSDDTTSS RREEQQUUIIRREEMMEENNTTSS:: TTHHEE ''RREEAADDMMEE'' FFIILLEE
+       In addition to the files created by  v.out.sdts,  every  SDTS  transfer
+       must  contain a README file.  This file is not generated by _v_._o_u_t_._s_d_t_s,
+       and must be created by hand. It should contain:
+
+        .PP    "volume name [if appropriate], date, a list of  SDTS  transfers
+              (if  more  than one), and then for each SDTS transfer: a list of
+              subdirectories and non-SDTS files, if approriate, the file  name
+              of  the  Catalog/Directory module, where it can be found, and an
+              explanation that this file and all other SDTS files are  in  ISO
+              8211  format,  and  that the Catalog/Directgory module carries a
+              complete directory to all other SDTS ISO 8211  files  comprising
+              the  SDTS  transfer,  notes about any non-SDTS adjunct/auxiliary
+              files, a brief explanation of the spatial domain,  the  purpose,
+              authority  (FIPS  173),  source  (e.g. agency name) and contacts
+              within the source organization...."  (_S_D_T_S_, _I_V_: _T_o_p_o_l_o_g_i_c_a_l _V_e_c_-
+              _t_o_r _P_r_o_f_i_l_e_, _6_._1_0).
+
+GGRRAASSSS AATTTTRRIIBBUUTTEESS IINN TTHHEE SSDDTTSS DDAATTAASSEETT
+       The  SDTS  dataset produced by _v_._o_u_t_._s_d_t_s contains two attribute module
+       files.   One,  containing  attribute  module  "AP00",   stores   global
+       attributes,  i.e.,  metadata  items  applicable  to the entire transfer
+       (most are  derived  from  the  _d_i_g  file  header).   The  second  holds
+       attribute module "AP01", and contains records with two fields: ATTR_NUM
+       contains _d_i_g___a_t_t integer values; and  ATTR_LABEL  contains  the  corre-
+       sponding labels or descriptions from the _d_i_g___c_a_t_s file.
+
+RREESSTTRRIICCTTIIOONNSS
+       Currently,  the user can only create an SDTS dataset from a single vec-
+       tor map layer in his or her mapset at a time.
+
+SSEEEE AALLSSOO
+       _m_._s_d_t_s_._r_e_a_d_,  _v_._i_n_._s_d_t_s_,  _v_._o_u_t_._s_d_t_s_,   _v_._s_d_t_s_._d_p_._c_p_,   _v_._s_d_t_s_._m_e_t_a_._c_p_,
+       _v_._s_d_t_s_._m_e_t_a
+
+AAUUTTHHOORRSS
+       David Stigberg, U.S.Army Construction Engineering Research Laboratory
+       Tin Qian, University of Illinois
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                        v.out.sdts(1)

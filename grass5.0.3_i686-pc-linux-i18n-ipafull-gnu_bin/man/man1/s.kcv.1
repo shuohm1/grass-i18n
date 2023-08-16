@@ -1,0 +1,81 @@
+s.kcv(1)                      Grass User's Manual                     s.kcv(1)
+
+
+
+NNAAMMEE
+       ss..kkccvv  -  Randomly  partition sites into test/train sets.  _(_G_R_A_S_S _S_i_t_e_s
+       _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..kkccvv
+
+       ss..kkccvv hheellpp
+
+       ss..kkccvv [--ddqq] kk==vvaalluuee ssiitteess=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._k_c_v  randomly  divides  a  sites  lists  into  _k sets  of  test/train
+       data  (for  kk-fold  ccross vvalidation).  Test  partitions  are  mutually
+       exclusive.  That  is,  a site will appear in only  one  test  partition
+       and  _k_-_1 training  partitions.  The  program  generates  a random point
+       using the selected random number generator and then finds  the  closest
+       site to it.  This site is removed from the candidate list (meaning that
+       it will not be selected for any other test  set)   and  saved   in  the
+       first  test  partition file.  This is repeated until enough points have
+       been selected for the test partition.  The  number  of   sites   chosen
+       for  test partitions depends upon the number of sites available and the
+       number of partitions chosen (this number is made as consistent as  pos-
+       sible while ensuring that all sites will be chosen  for testing).  This
+       process of filling up a test partition is done _k times.
+
+FFllaaggss::
+       --dd   Use _d_r_a_n_d_4_8_(_) (default is _r_a_n_d_(_)_)_.
+
+       --qq  Run quietly. Don't report progress.
+
+
+PPaarraammeetteerrss::
+       kk=_v_a_l_u_e            Positive integer  value  indicating  the  number  of
+       partitions.
+
+       ssiitteess=_n_a_m_e          Name  of  a  sites  file to store random points in.
+
+
+       Test/train pairs are saved as sites list using _n_a_m_e as a basename. Test
+       sites  are saved in _n_a_m_e-test._i while training sites are saved in _n_a_m_e-
+       train._i, where _i ranges from zero to _k_.
+
+NNOOTTEESS
+       Existing files are silently overwritten.
+
+
+       An ideal random sites generator will follow a Poisson dis  only  be  as
+       random as the  original  sites.   This  program simply divides sites up
+       in a random manner.
+
+
+       Be  warned  that  random number generation occurs  over  the  intervals
+       defined by the current region.
+
+
+       This program may not work properly with Lat-long data.
+
+SSEEEE AALLSSOO
+       _s_._r_a_n_d_o_m and _g_._r_e_g_i_o_n
+
+BBUUGGSS
+       Please  send  all  bug  fixes  and  comments to the author or the grass
+       development team.
+
+       http://www.geog.uni-hannover.de/grass/
+
+AAUUTTHHOORR
+       James Darrell McCauley ,
+
+       when he was at: Agricultural Engineering Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                             s.kcv(1)

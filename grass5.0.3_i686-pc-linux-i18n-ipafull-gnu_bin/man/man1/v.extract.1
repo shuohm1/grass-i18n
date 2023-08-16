@@ -1,0 +1,131 @@
+v.extract(1)                  Grass User's Manual                 v.extract(1)
+
+
+
+NNAAMMEE
+       vv..eexxttrraacctt   -  Selects  vector  objects from an existing vector map and
+       creates a new map containing only the selected objects.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..eexxttrraacctt
+       vv..eexxttrraacctt hheellpp
+       vv..eexxttrraacctt[[ --dd] ttyyppee==_n_a_m_e iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e nneeww==_v_a_l_u_e  [lliisstt==_r_a_n_g_e]
+       [ffiillee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._e_x_t_r_a_c_t allows a user to create a new vector map layer from an exist-
+       ing vector map layer.  User provides the program with category numbers,
+       input  vector  file  name,  an output vector file name, and the type of
+       input object.  There is an option (d)  to  dissolve  common  boundaries
+       between  adjoining  map  areas in the same category list.  The user may
+       specify a file containing category numbers or labels.
+
+
+       Note:
+
+        The dissolve option will work on only those areas which are in the
+              given category list.  If a map area is inside (island) a  listed
+              category  area and is NOT in the given category list, its bound-
+              aries are output to the resultant map.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --dd     Dissolve common boundaries (default is no).
+
+
+
+   PPaarraammeetteerrss::
+       ttyyppee==_n_a_m_e
+              Select area, area edge, line, or site.
+              Options:  area, edge, line, site
+
+       iinnppuutt==_n_a_m_e
+              Input vector map name.
+
+       oouuttppuutt==_n_a_m_e
+              Output vector map name.
+
+       nneeww==_v_a_l_u_e
+              Enter 0 (keep original category) or a desired NEW category  num-
+              ber.
+
+       lliisstt==_r_a_n_g_e
+              Category ranges.
+              For example:  1, 3-8, 13
+              For example:  Abc, Def2, XyZ
+
+       ffiillee==_n_a_m_e
+              Text file name for category range/list .
+
+
+
+EEXXAAMMPPLLEE
+        vv..eexxttrraacctt --dd lliisstt==1,2,3,4
+              iinnppuutt==soils oouuttppuutt==soil_groupa ttyyppee==area nneeww==1
+
+
+       Produces  a  new  vector area file _s_o_i_l___g_r_o_u_p_a containing 'area' bound-
+       aries from _s_o_i_l_s with area category numbers of 1 thru  4;   any  common
+       boundaries are dissolved, and all areas of the new map will be assigned
+       category number 1.
+
+
+
+        vv..eexxttrraacctt --ddnn lliisstt==Abc,Def1,12A,WWd
+              iinnppuutt==soils oouuttppuutt==soil_groupa ttyyppee==area nneeww==0
+
+
+       Produces a new vector area file _s_o_i_l___g_r_o_u_p_a  containing  'area'  bound-
+       aries  from _s_o_i_l_s with area category labels of Abc,Def1, 12A,WWd; these
+       labels correspond to numbers 1 thru 4 of _s_o_i_l_s.  Any common  boundaries
+       are  dissolved,  all areas of the new map will be retain their original
+       category numbers 1 thru 4, in this case, since new was set to 0.
+
+
+
+        vv..eexxttrraacctt --nn iinnppuutt==soils oouuttppuutt==soil_groupa
+              ttyyppee==area nneeww==1 ffiillee==sample
+
+
+       Produces a new vector area file _s_o_i_l___g_r_o_u_p_a  containing  'area'  bound-
+       aries from _s_o_i_l_s.  No common boundaries are dissolved, all areas of the
+       new map will be assigned category number 1.  The "labels"  (-n  option)
+       can be found in the file sample of the current directory.
+
+        The format for
+
+
+       Abc
+       Def1
+       12A
+       WWd
+
+        vv..eexxttrraacctt iinnppuutt==soils oouuttppuutt==soil_groupa
+              ttyyppee==area nneeww==1 ffiillee==sample
+
+
+       Produces  a  new  vector area file _s_o_i_l___g_r_o_u_p_a containing 'area' bound-
+       aries from _s_o_i_l_s.  No common boundaries are dissolved, all areas of the
+       new  map  will be assigned category number 1.  The numbers can be found
+       in the file sample of the current directory.
+
+        The format for
+
+
+       1
+       33
+       45
+       56
+
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                         v.extract(1)

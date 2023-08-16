@@ -1,0 +1,118 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      08.14.6.numon
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    2200 Series NUMONICS digitizing tablet
+  </CENTER>
+    <P>The Numonics drivers will operate with any 2200 Series board set-up in the
+standard configuration.  This version was written for a cursor with more
+than 5 buttons.  You can, however, setup system up to use the keyboard
+(see below).
+    <P>    <P>If you have any questions please give me a call:
+    <P>
+  <CENTER>
+    Ken Shepardson
+  </CENTER>
+
+  <CENTER>
+    SPECTRUM SCIENCES &amp; SOFTWARE, INC.
+  </CENTER>
+
+  <CENTER>
+    242 Vicki Leigh Rd.
+  </CENTER>
+
+  <CENTER>
+    Fort Walton Beach, FL 32548
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      (904) 862-3031
+    </H2>
+  </CENTER>
+    <P>    <P>  <PRE>==========================================================================
+</PRE>
+KEYBOARD INPUT
+    <P>If you do not have a cursor with more that 5 buttons, you can set up
+the digitizer to use the keyboard for user input.  To set up the digitizer
+for keyboard input you will need to modify two files:
+    <P>
+  <CENTER>
+    1.  Copy K.dig_menu.h to dig_menu.h
+  </CENTER>
+    <P>
+  <CENTER>
+    2.  Edit the function D_cursor_buttons in interface.c (line #49)
+  </CENTER>
+
+  <CENTER>
+    to return a value of 0:
+  </CENTER>
+    <P>
+  <CENTER>
+    int D_cursor_buttons()
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      {
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    return(0);
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      }
+    </H2>
+  </CENTER>
+    <P>Note that you can use the old collect_p.c in $GIS/mapdev/digit to run the
+    <P>Numonics driver w/ keyboard input.
+    <P>  <PRE>===========================================================================
+</PRE>
+    <P>See files stored under $GISBASE/src/mapdev/digitizers/numonics.
+    <P>If you have any problems with the Numonics code please call:
+    <P>Kenneth Shepardson
+Spectrum Sciences &amp; Software, Inc.
+242 Vicki Leigh Rd
+Fort Walton Beach, FL 32548
+(904) 862-3031 
+    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

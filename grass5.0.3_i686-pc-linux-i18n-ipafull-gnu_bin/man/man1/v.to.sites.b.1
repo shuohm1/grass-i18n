@@ -1,0 +1,55 @@
+v.to.sites.b(1)               Grass User's Manual              v.to.sites.b(1)
+
+
+
+NNAAMMEE
+       vv..ttoo..ssiitteess   -  Converts  point data in a binary GRASS vector map layer
+       into a GRASS _s_i_t_e___l_i_s_t_s file.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ttoo..ssiitteess
+       vv..ttoo..ssiitteess hheellpp
+       vv..ttoo..ssiitteess iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The _v_._t_o_._s_i_t_e_s program extracts site data from a GRASS vector map layer
+       and  stores output in a new GRASS site_lists file.  The resulting sites
+       map layer can be used with such programs as _d_._s_i_t_e_s.  Only site (point)
+       features  in  the  named vector map layer are extracted and placed into
+       the resulting site list.  Lines  and  areas  in  the  vector  file  are
+       ignored.
+
+OOPPTTIIOONNSS
+       The  user can run the program non-interactively by specifying the names
+       of an existing vector _i_n_p_u_t map layer and a new site list  file  to  be
+       _o_u_t_p_u_t  on  the command line.  The program will be run interactively if
+       the user types vv..ttoo..ssiitteess without arguments on the  command  line.   In
+       this  case, the user will be prompted to enter parameter values through
+       the standard user interface described in the manual entry for _p_a_r_s_e_r.
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing binary vector map layer from which site data
+              are to be extracted.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the resultant _s_i_t_e___l_i_s_t_s file.
+
+
+
+       If  any  of  the  sites have been labeled in _v_._d_i_g_i_t then the resultant
+       site list will contain category information.  If none of the sites  are
+       labeled, a binary (0/1) site list file will be produced.
+
+SSEEEE AALLSSOO
+       _d_._s_i_t_e_s, _s_._d_b_._r_i_m, _s_._m_e_n_u, _v_._d_b_._r_i_m, _v_._d_i_g_i_t and _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Dave Gerdes, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                      v.to.sites.b(1)

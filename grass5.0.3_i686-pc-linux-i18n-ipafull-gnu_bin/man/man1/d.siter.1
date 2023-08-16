@@ -1,0 +1,76 @@
+d.siter(1)                    Grass User's Manual                   d.siter(1)
+
+
+
+NNAAMMEE
+       _d_._s_i_t_e_r  - Interactively displays subsets of a sites list based on site
+       attributes (_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m)
+
+SSYYNNOOPPSSIISS
+       dd..ssiitteerr
+
+       dd..ssiitteerr hheellpp
+
+       dd..ssiitteerr _n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._s_i_t_e_r is a script which calls s.info to determine the  number,  types
+       and ranges of site attributes, then calls a tcl script which presents a
+       user interface. On the interface there are two sliders for each  dimen-
+       sion,  category,  or  decimal  attribute in the sites file. If a header
+       with labels is in the file, the sliders will  be  labeled.   The  value
+       range  for  each  slider pair is determined by the range for the corre-
+       sponding attribute found in the sites file for sites within the current
+       region.  At startup one slider in each pair is set at the minimum value
+       and the other slider is set at the  maximum  value.  The  user  adjusts
+       sliders  as  needed to set ranges of desired values for each attribute,
+       dimension, or category. The interface also has controls for setting the
+       size,  color, and type of marker, and buttons for ddiissppllaayy, eerraassee, rreesseett
+       ssccaalleess, and qquuiitt.
+
+
+
+              When  the  ddiissppllaayy  button  is   chosen,   the   GRASS   program
+              d.sites.qual is called with rules derived from the current state
+              of the interface and the specified subset is drawn in the active
+              GRASS  monitor.  By adjusting the size, color and type of marker
+              and drawing multiple subsets, the user may more easily visualize
+              spatial  relationships of various subsets or determine inconsis-
+              tant attribute values.
+
+              Subsets may be saved by entering a filename in  the  text  entry
+              box of the interface and choosing ssaavvee aass::.
+
+              Due  to  the  limited  resolution of sliders and considering the
+              wide range and distribution often found in site attribute  data,
+              a  rreessccaallee  button  is provided. Choosing rreessccaallee results in the
+              currently defined ranges becoming the new min and  max  and  the
+              sliders  being  reset to their left and right extremes, allowing
+              further refinement of the range.
+
+              To undo the rreessccaallee operation, the user may select rreesseett  ssccaalleess
+              which  resets  all  scales  to their startup values (loosing any
+              ranges already specified).
+
+OOPPTTIIOONNSS
+       This program can be run non-interactively or interactively. If the user
+       gives  the  name of a GRASS site_lists map on the command line the pro-
+       gram will be run non-interactively. Alternately, the user can type sim-
+       ply  d.siter on the command line; in this case, the program will prompt
+       the user for a site_lists map.
+
+BBUUGGSS
+       Due to pixel rounding, startup ranges for sliders may be  slightly  off
+       for  floating  point  attributes. The slider min value will be slightly
+       lower than the min value found in the file and  the  slider  max  value
+       will be slightly higher.
+
+SSEEEE AALLSSOO
+       d.sites.qual, s.info
+
+AAUUTTHHOORR
+_L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           d.siter(1)

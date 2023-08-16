@@ -1,0 +1,59 @@
+s.kernel(1)                   Grass User's Manual                  s.kernel(1)
+
+
+
+NNAAMMEE
+       ss..kkeerrnneell  - Generates a raster density map from sites data using a mov-
+       ing 2D isotropic Gaussian kernel
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..kkeerrnneell
+       ss..kkeerrnneell hheellpp
+       ss..kkeerrnneell  ssiitteeffiillee==_n_a_m_e   oouuttppuutt==_n_a_m_e   [ssttddddeevviiaattiioonn==_v_a_l_u_e]   [rreessoolluu--
+       ttiioonn==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._k_e_r_n_e_l  generates a raster density map from sites data using a moving
+       2D isotropic Gaussian kernel.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ssiitteeffiillee==_n_a_m_e
+              Name of sites list.
+
+       oouuttppuutt==_n_a_m_e
+              output raster map
+
+       ssttddddeevviiaattiioonn
+              stddeviation in map units default: 1
+
+       rreessoolluuttiioonn
+              resolution of the output raster map default: 25.0
+
+
+
+NNOOTTEESS
+       _s_._k_e_r_n_e_l uses moving 2D isotropic Gaussian kernel.
+
+LLIIMMIITTAATTIIOONNSS
+       The modules only considers the presence of sites,  but  not  (yet)  any
+       attribute values.
+
+SSEEEE AALLSSOO
+       s.surf.rst
+
+BBUUGGSS
+       Please  send  all  bug  fixes  and  comments to the author or the grass
+       development team.
+
+       http://grass.itc.it/
+
+AAUUTTHHOORR
+       Stefano Menegon, ITC-irst, Trento, Italy
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          s.kernel(1)

@@ -1,0 +1,81 @@
+v.rm.dangles(1)               Grass User's Manual              v.rm.dangles(1)
+
+
+
+NNAAMMEE
+       vv..rrmm..ddaanngglleess - Remove lines of specified length from GRASS vector file.
+       (GRASS Vector Program)
+
+SSYYNNOOPPSSIISS
+       vv..rrmm..ddaanngglleess
+
+       vv..rrmm..ddaanngglleess hheellpp
+
+       vv..rrmm..ddaanngglleess iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [mmaaxxlleennggtthh==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._r_m_._d_a_n_g_l_e_s removes lines from a binary vector file (input) which have
+       a  length  less  than or equal to maxlength.  The length is computed as
+       sum(sqrt(x^2+y^2)) for the entire length of the line in  the  units  of
+       the  map.  Lines that have attached lines at BOTH ends are not removed,
+       regardless of length.  (Note that nodes that  have  more  than  1  line
+       attached  show  as  red  in  v.digit.  Nodes with a single line show as
+       green.)
+
+
+       Specifying maxlength of less than or equal 0 (default is  -1)  disables
+       length  checking  and  only  lines with attached lines at both ends are
+       output. Note that the lines at the ends of a string of  lines  will  be
+       eliminated  because  they  have 2 lines attached at one node (endpoint)
+       and only 1 line attached at  the  other  node.  For  example,  5  lines
+       attached in a row would have the first and last line eliminated leaving
+       3 lines when using maxlength = -1. Running v.rm.dangles maxlength =  -1
+       again would remove 2 more lines, leaving 1 line in this example.
+
+
+       See  v.build.polylines for building single lines from multiple attached
+       lines.
+
+
+       To remove small segments on the order of the  map  resolution  (from  a
+       raster to vector conversion, for example) consider specifying maxlength
+       to be slightly greater than sqrt(2) times the map resolution  (assuming
+       the Easting and Northing resolutions are the same).
+
+
+       The  input file is NOT changed. The input file is coppied to the output
+       file with appropriate lines removed.
+
+
+       This program is very simple.  It copies header information to  the  new
+       map file but does not copy catagory or attribute information.
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of a binary vector file
+
+       oouuttppuutt==_n_a_m_e
+              Name given to binary vector output file.
+
+       mmaaxxlleennggtthh==_v_a_l_u_e
+              Threshold length for deleting lines. Default value is -1
+
+
+SSEEEE AALLSSOO
+        _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s_, _v_._c_l_e_a_n_, _v_._d_i_g_i_t_, _v_._p_r_u_n_e_, _v_._s_p_a_g_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       J.Soimasuo
+
+       Faculty of Forestry
+
+       University of Joensuu, Finland
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_2_/_0_5 _1_1_:_0_6_:_5_1 _$
+
+
+
+GRASS 5.0                                                      v.rm.dangles(1)

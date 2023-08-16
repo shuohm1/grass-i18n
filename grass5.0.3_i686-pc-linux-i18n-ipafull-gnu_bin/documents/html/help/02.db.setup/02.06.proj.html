@@ -1,0 +1,110 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      02.06.proj
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      COORDINATE SYSTEMS AND PROJECTIONS
+    </H2>
+  </CENTER>
+    <P>A map coordinate system is either a geographic coordinate system
+(like <A HREF="./../../../../documents/html/help/16.glossary/utm.def.html">UTM</A> or latitude/longitude) or an arbitrary coordinate system
+(like the x,y coordinate system initially assigned to imported
+satellite imagery) used to reference the locations of objects in a
+two-dimensional space.
+    <P>A map projection describes the manner in which the spherical surface
+of the earth is represented on a two-dimensional surface.  It attempts
+to minimize distortion in area, shape, distance, and direction.
+    <P>All of the data stored beneath the same GRASS &quot;location&quot; directory must
+use the same map coordinate system and map projection.  This means that
+latitude/longitude data, Universal Transverse Mercator data, State Plane
+coordinate system data, and unrectified (x,y) imagery data, should be
+stored under different GRASS &quot;locations&quot; and &quot;mapsets&quot;.
+    <P>Often, one wishes to combine data that are available in different
+coordinate systems and/or different map projections.  To do this, users
+must convert these data to a common map coordinate system and projection.
+    <P>The commands listed below are useful to those importing and exporting
+data to and from GRASS.  They can be used to perform map coordinate
+system and map projection conversions.
+    <P>
+  <CENTER>
+    <A HREF="./../../../../documents/html/m.datum.shift.html">-  m.datum.shift</A>    <A HREF="./../../../../documents/html/help/Commands.def/rmapcalc.def.html">-  r.mapcalc</A>    <A HREF="./../../../../documents/html/help/Commands.def/vtrans.def.html">-  v.transform</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/m.gc2ll.html">-  m.gc2ll</A>          <A HREF="./../../../../documents/html/help/Commands.def/rinll.def.html">-  r.in.ll</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/m.ll2gc.html">-  m.ll2gc</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/Commands.def/mll2u.def.html">-  m.ll2u</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/Commands.def/mu2ll.def.html">-  m.u2ll</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/Commands.def/mregll.def.html">-  m.region.ll</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/m.tiger.region.html">-  m.tiger.region</A>
+  </CENTER>
+    <P>Satellite <A HREF="./../../../../documents/html/help/16.glossary/img.def.html">imagery</A> data are generally made available in an x,y
+coordinate system.  In order to analyze imagery data in combination with
+other GRASS data layers, it is necessary that all these data be
+rectified to the same map coordinate system and projection.  Several
+GRASS programs are used to rectify imagery data.
+    <P>
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/Commands.def/ipts.def.html">-  i.points</A>     <A HREF="./../../../../documents/html/help/Commands.def/irect.def.html">-  i.rectify</A>      <A HREF="./../../../../documents/html/help/Commands.def/irecblk.def.html">-  i.rectify.blk</A>
+  </CENTER>
+    <P>General information on use of imagery in GRASS is accessible by
+selecting <A HREF="./../../../../documents/html/imagery.html">imagery discussion</A>.
+    <P>For more information on a specific command, select a command and press
+ESC.
+    <P>Read the section on Geometric Rectification under the
+Image Processing topic area for a more detailed description of the
+image rectification process.
+    <P>See also the references for:
+<A HREF="./../../../../documents/html/help/18.biblio/snyder.html">&quot;Map Projections - A Working Manual&quot;</A> (Snyder, 1989),
+<A HREF="./../../../../documents/html/help/18.biblio/seppelin.html">&quot;The Department of Defense World Geodetic System 1972&quot;</A> (Seppelin, 1974).
+    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

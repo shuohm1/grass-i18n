@@ -1,0 +1,115 @@
+r.reclass.pg(1)               Grass User's Manual              r.reclass.pg(1)
+
+
+
+NNAAMMEE
+       rr..rreeccllaassss..ppgg  -  Generate a new raster reclass map based on the results
+       of multiple queries to the currently  selected  database.  (GRASS-RDBMS
+       Raster Interface Program)
+
+SSYYNNOOPPSSIISS
+       rr..rreeccllaassss..ppgg
+
+       rr..rreeccllaassss..ppgg hheellpp
+
+       rr..rreeccllaassss..ppgg ssqqll_=_f_i_l_e iinnppuutt_=_n_a_m_e kkeeyy_=_n_a_m_e oouuttppuutt_=_n_a_m_e [llaabbeell_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._r_e_c_l_a_s_s_._p_g  generates  reclass rules for a new raster map layer based
+       on the results of multiple queries to the currently selected  database.
+       The  user  constructs a series of mutually exclusive SQL retrieve stat-
+       ments designed to return groups of  records  from  the  database.  Each
+       group of records should be interanally consistent in terms of attribute
+       characteristics specified by the user in the  retrieve  clause.   These
+       groups  should  also be mutually exclusive, thereby insuring that a row
+       returned by one retrieve clause is not also returned  by  a  subsequent
+       retrieve  clause. Each group of records therefore forms the basis for a
+       single  category  in  the   resulting   GRASS   raster   reclass   map.
+       _r_._r_e_c_l_a_s_s_._p_g  processes each retrieve statement in order generating the
+       GRASS reclass rules needed to create a new raster map. As each retrieve
+       statment  is  processed the group of records returned receives a common
+       category value. The category value is incremented by one for each  sub-
+       sequent  retrieve  statment  which is processed.  The resulting reclass
+       map will have one category for each of the original retrieve statements
+       and  an  additional  category  for  no data areas. No data in this case
+       includes actual no data areas and areas for which no rows were returned
+       by the database queries.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ssqqll==ffiilleennaammee
+              Name of file containing SQL query statements.
+
+
+
+       iinnppuutt==mmaapp
+              Name of an existing raster map layer.
+
+
+
+       kkeeyy==ddaattaabbaasseeccoolluummnnnnaammee
+              Name  of  the database column linked to GRASS via the categories
+              in the input map layer.
+
+
+
+       oouuttppuutt==mmaapp
+              Name of new raster (reclass), file.
+
+
+
+       llaabbeell==nnaammee
+              Label for new categories.
+
+
+
+       EEXXAAMMPPLLEE::
+
+
+       _r_._r_e_c_l_a_s_s_._p_g   _s_q_l_=_d_b_r_r_._s_q_l    _k_e_y_=_g_r_a_s_s_c_a_t    _i_n_p_u_t_=_s_e_c_o_._s_o_i_l_s    _o_u_t_-
+       _p_u_t_=_t_f_a_c_t_._r_e_c_l _l_a_b_e_l_=_"_T_f_a_c_t_=_"
+
+
+       dbrr.sql:
+
+       _r_e_t_r_i_e_v_e _(_s_e_c_o_s_o_i_l_c_a_t_s_._g_r_a_s_s_c_a_t_)
+
+       _w_h_e_r_e  _l_a_y_e_r_._t_f_a_c_t  _>_0  _a_n_d  _l_a_y_e_r_._t_f_a_c_t  _<_=_2  _a_n_d _l_a_y_e_r_._m_u_i_d_=_s_e_c_o_s_o_i_l_-
+       _c_a_t_s_._m_u_i_d
+
+
+       retrieve (secosoilcats.grasscat)
+
+       where layer.tfact  >0  and  layer.tfact  <=2  and  layer.muid=secosoil-
+       cats.muid
+
+
+       retrieve (secosoilcats.grasscat)
+
+       where layer.tfact = 5 and layer.muid=secosoilcats.muid
+
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original  Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and W.
+       Fredrick Limp University of Arkansas, CAST
+
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                      r.reclass.pg(1)

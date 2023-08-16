@@ -1,0 +1,183 @@
+s.info(1)                     Grass User's Manual                    s.info(1)
+
+
+
+NNAAMMEE
+       _s_._i_n_f_o  - reports attribute, label, and other information about a sites
+       file.
+
+       (_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m)
+
+
+SSYYNNOOPPSSIISS
+       ss..iinnffoo
+
+       ss..iinnffoo hheellpp
+
+       ss..iinnffoo [[--qqwwQQ]] ssiitteess=name
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._i_n_f_o reads the entire sites file and reports header & label  informa-
+       tion,  type of category, number of attributes & dimensions, and min and
+       max values for  each  dimension,  attribute,  or  category.   For  best
+       results sites should conform to the multiple attribute format as speci-
+       fied in GRASS5.0.
+
+
+
+OOPPTTIIOONNSS
+       This program can be run non-interactively or interactively. The program
+       will  be  run non-interactively; if the user spcifies program arguments
+       and flag settings on the command line using the form
+
+       ss..iinnffoo [[--qqwwQQ]] ssiitteess=name
+
+        Alternately, the user can type simply s.info on the command  line;  in
+       this  case, the program will prompt the user for parameter values using
+       the standard GRASS parser interface described in the manual  entry  for
+       _p_a_r_s_e_r.
+
+        FFllaaggss
+
+         --qq   Load quietly
+
+       --ww   Only count sites in current window for min/max.
+
+       --QQ   Show quartiles for decimal attributes
+
+       PPaarraammeetteerrss
+
+        ssiitteess _= _n_a_m_e
+
+        Name of sites file.
+
+       EExxaammppllee oouuttppuutt
+       SITES FILENAME: r_analys
+       --------------
+
+       Header Information:
+       ------------------
+               name          r_analys
+               description   soil data from Germany
+               format        |||%%%%%%%
+               labels        X|Y|Horizon|%pH%Kcal%Pcal%Corg%Ccarb%Nt%Trd
+
+       Number of DIMENSIONS:         3
+       --------------------
+                        - - MIN - -     - - MAX - -
+               dim  1  4457986.000000  4459536.000000  X
+               dim  2  5372514.000000  5374314.000000  Y
+               dim  3      0.000000      120.000000    Horizon
+
+       Type of CATEGORY information: NO CATEGORY
+       ----------------------------
+
+       Number of DOUBLE attributes:  7
+       ---------------------------
+                        - - MIN - -     - - Q1 - -      - - MED - -     - - Q3
+       - -      - - MAX - -
+               dbl    1                0                5.4                  6
+       6.2             7.7    pH
+               dbl     2                0              0.058               0.1
+       0.174           1.212    Kcal
+               dbl    3                0              0.009              0.017
+       0.044           0.415    Pcal
+               dbl     4                0               0.18              0.34
+       1.09           13.68    Corg
+               dbl    5                0                  0                  0
+       0            3.82    Ccarb
+               dbl     6                0              0.031              0.05
+       0.117           0.744    Nt
+               dbl    7             0.31               1.45               1.55
+       1.6            1.89    Trd
+
+       Number of STRING attributes:  0
+       ---------------------------
+
+       TOTAL SITES COUNTED: 2343
+
+
+
+
+       SITES FILENAME: US.places
+       --------------
+
+       Header Information:
+       ------------------
+               name          US Places
+               description   names of populated places in the United States
+               format        ||#@@@%%%%%
+               labels                                             easting|nor-
+       thing|#FIPS@place@state@place_type%population%house-
+       holds%land_area%water_area%popu
+       lation_density
+               time          21 Jul 1995
+
+       Number of DIMENSIONS:         2
+       --------------------
+                        - - MIN - -     - - MAX - -
+               dim  1   -124.610970      -67.012039    easting
+               dim  2     24.562840       48.996136    northing
+
+       Type of CATEGORY information: CELL_TYPE
+       ----------------------------
+                        - - MIN - -     - - MAX - -
+                             100124         5686665    FIPS
+
+       Number of DOUBLE attributes:  5
+       ---------------------------
+                        - - MIN - -     - - Q1 - -      - - MED - -     - - Q3
+       - -      - - MAX - -
+               dbl    1                0                437               1371
+       4605     7.32256e+06    population
+               dbl     2                0                190               583
+       1905     2.99217e+06    households
+               dbl    3                5               1659               3973
+       10396     1.96495e+06    land_area
+               dbl     4                0                  0                 0
+       76          781914    water_area
+               dbl    5                0           0.191793           0.393334
+       0.712237          17.692    population_density
+
+       Number of STRING attributes:  3
+       ---------------------------
+                        - MIN_LEN -     - MAX_LEN -
+               str  1        3              35         place
+               str  2        2               2         state
+               str  3        3               7         place_type
+
+       TOTAL SITES COUNTED: 22993
+       ----------------------------------------------------------
+
+
+
+
+
+
+
+BBUUGGSS
+       If  the  --QQ  flag  is given, the sites are cached in order to determine
+       quartile values; otherwise the  sites  are  read  sequentially  without
+       caching.   Therefore, use of the --QQ option may result in an out-of-mem-
+       ory error for very large sites files. The algorithm used to find  quar-
+       tile values matches that used by _s_._u_n_i_v_a_r, so if the number of sites is
+       not evenly divisible by 4, the resulting Q1 and Q3 values may not exist
+       in the data, but is an average of the two neighboring values. Likewise,
+       if the number of sites is not evenly  divisible  by  2,  the  resulting
+       median will be an average of its neighbors.
+
+
+SSEEEE AALLSSOO
+       d.sites, d.siter, d.sites.qual, s.univar
+
+
+AAUUTTHHOORR
+       Bill Brown, UI GMS Laboratory
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                            s.info(1)

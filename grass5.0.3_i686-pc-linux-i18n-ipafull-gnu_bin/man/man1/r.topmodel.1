@@ -1,0 +1,100 @@
+r.topmodel(1)                 Grass User's Manual                r.topmodel(1)
+
+
+
+NNAAMMEE
+       _r_._t_o_p_m_o_d_e_l  -  simulates  TOPMODEL which is physically based hydrologic
+       model
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ttooppmmooddeell [--iiooww] [eelleevvaattiioonn_=_n_a_m_e]  [bbaassiinn_=_n_a_m_e]  [ddeepprreessssiioonnlleessss_=_n_a_m_e]
+       [ddiirreeccttiioonn_=_n_a_m_e]   [bbeelleevvaattiioonn_=_n_a_m_e]   [ttooppiiddxx_=_n_a_m_e]  [nniiddxxccllaassss_=_v_a_l_u_e]
+       iiddxxssttaattss_=_n_a_m_e  ppaarraammeetteerrss_=_n_a_m_e   iinnppuutt_=_n_a_m_e   oouuttppuutt_=_n_a_m_e   [QQoobbss_=_n_a_m_e]
+       [ttiimmeesstteepp_=_v_a_l_u_e] [iiddxxccllaassss_=_v_a_l_u_e]
+
+   FFllaaggss::
+       --ii     Input  data given for (i/o).  Without this flag, all input data,
+              (i) or (i/o), should be given and intermediate output can not be
+              input for run.
+
+
+       In  example,  [belevation]  map  will  be  created from [elevation] and
+       [basin] every run.  However, every [belevation] output map is the  same
+       and this is useless process if [belevation] map is already given.
+
+
+       With this flag, intermediate output can be input for run.  (i/o) param-
+       eters can be affected by this flag.
+
+       --oo     Overwrite outputs
+
+       --ww     Wide output.  No limit for 80 columns output
+
+
+   PPaarraammeetteerrss::
+       Note: (i) means input; (o) means output; (i/o) means input or output
+
+       eelleevvaattiioonn
+              (i)   Rectangular elevation map
+
+       bbaassiinn  (i)   Basin map created by _r_._w_a_t_e_r_._o_u_t_l_e_t
+
+       ddeepprreessssiioonnlleessss
+              (o)   Depressionless elevation map This can be omitted if  [ele-
+              vation]  map  is  already depressionless map.  If this is given,
+              [depressionless]   map will be used as [elevation] map.
+
+       ddiirreeccttiioonn
+              (o)   Direction map with depressionless elevation map
+
+       bbeelleevvaattiioonn
+              (i/o) Basin elevation map (extracted).   Study  basin  extracted
+              elevation map
+
+       ttooppiiddxx (i/o) Topographic index ln(a/tanB) map (extracted).  Study basin
+              extracted topographic index map
+
+       nniiddxxccllaassss
+              (i)   Number of topographic index classes Default: 30
+
+       iiddxxssttaattss
+              (i/o) Topographic index statistics file
+
+       ppaarraammeetteerrss
+              (i)   TOPMODEL parameters file
+
+       iinnppuutt  (i)   Rainfall and potential evapotranspiration data file
+
+       oouuttppuutt (o)   Output file
+
+       QQoobbss   Observed Q file.  Compare Qt with Qobs and calculate model effi-
+              ciency
+
+       ttiimmeesstteepp
+              OPTIONAL output for given time step
+
+       iiddxxccllaassss
+              OPTIONAL output for given topographic index class
+
+
+SSEEEE AALLSSOO
+       _r_._t_o_p_i_d_x
+
+AAUUTTHHOORRSS
+       Main algorithm sources are rewritten from TMOD9502.FOR.
+
+       TMOD9502.FOR is available from www.es.lancs.ac.uk/hfdg/topmodel.html.
+       Thanks to Keith Beven.
+
+
+       GRASS port by Huidae Cho
+
+       Hydro Laboratory, Kyungpook National University, South Korea
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.topmodel(1)

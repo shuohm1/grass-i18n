@@ -1,0 +1,113 @@
+p.ppm(1)                      Grass User's Manual                     p.ppm(1)
+
+
+
+NNAAMMEE
+       pp..ppppmm  - Reads portable pixmap (ppm) files created by PPM utilities.
+       _(_G_R_A_S_S _P_a_i_n_t_/_P_r_i_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       pp..ppppmm
+       pp..ppppmm hheellpp
+       pp..ppppmm [--ff] [iinnppuutt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program, _p_._p_p_m, reads a user-specified portable pixmap (ppm) file
+       and outputs it to the currently selected printer (see  _p_._s_e_l_e_c_t).   The
+       _i_n_p_u_t ppm file should be one that has been created using the PPM utili-
+       ties developed by Jeff Poskanzer.  These utilities can  import  various
+       image  formats  (including  Sun  raster, X Windows pixmaps, and others)
+       into the PPM formats _p_p_m (color pixmaps), _p_g_m (grey  scale  maps),  and
+       _p_b_m (black and white bit-maps).
+
+
+       If  the  image doesn't fit the output device, it won't get printed.  If
+       you want the image printed (but clipped), use the pp..ppppmm --ff  option,  or
+       scale the input using _p_p_m_s_c_a_l_e, or rotate the image using _p_p_m_r_o_t_a_t_e (if
+       it will fit that way -- otherwise you might have to scale it as  well).
+       If  the  image  doesn't  fit, _p_._p_p_m will tell you what scaling value to
+       enter to _p_p_m_s_c_a_l_e that will make it fit.
+
+
+
+EEXXAAMMPPLLEESS
+       If the user is running GRASS under SunOS, the following  command  could
+       be used to send a monitor screen image to the printer:
+
+
+       ssccrreeeenndduummpp || rraassttttooppppmm || pp..ppppmm
+
+
+
+
+
+       If you are running suntools, the user might type:
+
+
+       sslleeeepp 1100;; ssccrreeeenndduummpp || rraassttttooppppmm || ppppmmrroottaattee 9900 || pp..ppppmm
+
+
+
+       The UNIX _s_l_e_e_p command allows you time to arrange the frames before the
+       screen dump starts.  The _p_p_m_r_o_t_a_t_e is usually needed  because  the  Sun
+       screens  are  wider  than  they  are long (and wider than 1024 pixels -
+       which is the width of most of our printers).
+
+
+       If you are running X, the user might type:
+
+
+       xxwwdd || xxwwddttooppppmm || ppppmmrroottaattee 9900 || pp..ppppmm
+
+
+NNOOTTEESS
+       This program only supports the ppm binary format (P6).
+
+
+       Maximum color level is 255.  If the ppm file has more color levels, use
+       _p_p_m_c_s_c_a_l_e to reduce the number of colors.
+
+
+       No scaling is done.  Use _p_p_m_s_c_a_l_e to change image size.
+
+
+       No rotation is done.  Use _p_p_m_r_o_t_a_t_e to rotate the image.
+
+SSEEEE AALLSSOO
+       See also:
+
+
+       The  PPM utilities _p_p_m_r_o_t_a_t_e (rotates ppm images), _p_p_m_s_c_a_l_e (scales ppm
+       images for printing), _r_a_s_t_t_o_p_p_m (converts a Sun raster file to ppm for-
+       mat), and _x_w_d_t_o_p_p_m (converts an X Windows dump file to ppm format).
+
+
+       The  SunOS  program  _s_c_r_e_e_n_d_u_m_p  (dumps the image on the color graphics
+       monitor into a file in Sun raster file format).
+
+
+       The X program _x_w_d (dumps the image in an X window into a file in X win-
+       dow dump [xwd] format).
+
+
+       The GRASS programs
+
+       _d_._s_a_v_e
+
+       _p_._m_a_p
+
+       _p_._s_e_l_e_c_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+
+       This program uses the PPM utilities, developed by Jeff Poskanzer.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                             p.ppm(1)

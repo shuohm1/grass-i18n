@@ -1,0 +1,71 @@
+r.out.hdf(1)                  Grass User's Manual                 r.out.hdf(1)
+
+
+
+NNAAMMEE
+       _r_._o_u_t_._h_d_f  -  Convert data in a GRASS raster map layer into HDF format.
+       (GRASS Raster Data Export Program)
+
+SSYYNNOOPPSSIISS
+       rr..oouutt..hhddff
+
+       rr..oouutt..hhddff hheellpp
+
+       rr..oouutt..hhddff [[--qq]] iinnppuutt_=_n_a_m_e [oouuttppuutt_=_n_a_m_e] [mmuulltt_=_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._o_u_t_._h_d_f allows a user to create a data file in NCSA Hierarchical Data
+       Format (HDF) from an existing GRASS raster file.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaagg::
+       --qq     Run quietly
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  Raster file to be converted.
+
+       oouuttppuutt Name for new hdf file.  Default: .hdf
+
+       mmuulltt   Floating point multiplier. (file.hdf = cellfile * multiplier)
+
+       NCSA HDF is a multi-object file format developed by The National Center
+       for Supercomputing Applications at Champaign, Illinois for the transfer
+       of  graphical  and  floating-point  data  between machines.  The format
+       defines both a raster type and a SDS type.  The later  is  basically  a
+       highly  structured multi-dimensional array of floating point values.  A
+       single HDF file may contain more than one SDS, but using _r_._o_u_t_._h_d_f will
+       create  a  single  HDF file containing a single 2-dimensional SDS.  The
+       HDF raster format consists of a palette and a 2D array  of  8-bit  num-
+       bers,  but  _r_._o_u_t_._h_d_f  does  not  yet create this format file, so color
+       tables are not transferrable.
+
+
+       NCSA distributes the HDF library and several public  domain  visualiza-
+       tion  applications  which use the HDF format.  Some commercial applica-
+       tions also support HDF.  For more information, use the  NCSA  anonymous
+       ftp server ftp.ncsa.uiuc.edu or contact:
+
+
+       NCSA
+
+       152 Computing Applications Building
+
+       605 E. Springfield Ave.
+
+       Champaign, IL 61820
+
+       (217) 244-0072
+
+
+SSEEEE AALLSSOO
+       _r_._i_n_._h_d_f
+
+AAUUTTHHOORR
+       Bill Brown, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.out.hdf(1)

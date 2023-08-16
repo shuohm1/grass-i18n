@@ -1,0 +1,66 @@
+mapcalculator.sh(1)           Grass User's Manual          mapcalculator.sh(1)
+
+
+
+NNAAMMEE
+       mmaappccaallccuullaattoorr..sshh   - TCLTK-Frontend for r.mapcalc
+
+SSYYNNOOPPSSIISS
+       mmaappccaallccuullaattoorr..sshh   [[hheellpp==[[_h_e_l_p_,_m_a_n]]]]   [[eexxppeerrtt==_e_x_p_e_r_t]]   AA__MMAAPP==[[_m_a_p   ]]
+       BB__MMAAPP==[[_m_a_p]]......
+
+DDEESSCCRRIIPPTTIIOONN
+       mmaappccaallccuullaattoorr..sshh is a bash-script  usally called via  mmaappccaallccuullaattoorr  in
+       TCLTKGRASS.  It creates a r.mapcalc call from the parameters you choose
+       in mapcalculator. If you want to use mapcalc  on  the  commandline  you
+       should use the original r.mapcalc command.
+
+       In  TTCCLLTTKKGGRRAASSSS   you  can  choose up to six maps  [_e_n_t_r_i_e_s _A _- _F] to be
+       included in the calculation. Then you have to enter  a  formula  and  a
+       name  for the resulting raster map. You won't receive a warning, if you
+       choose the name of an allready existing raster map, but you can protect
+       your files from overwriting by activating the appropriate checkbox.
+
+       You can create a calculation formula in the field formula like this:
+       _A_+_C or (more complex:) _e_x_p_(_A_+_C_)_+_(_B_-_2_)_*_7_. A, B, C, etc. are your choosen
+       raster maps. You must not insert the output file:
+
+
+       RRiigghhtt:: _A_+_B
+
+       WWrroonngg::  _n_e_w_f_i_l_e _= _A_+ _B Use no blanks! Blanks are inserted by the script
+       to devide the map names from the rest of the formula.
+
+
+       The  script won't check the syntax or logic of the formula and you will
+       only receive the error  messages  from  r.mapcalc,  if   anything  went
+       wrong.  For details on creating a formula see the _r_._m_a_p_c_a_l_c manual page
+       (man r.mapcalc).
+
+BBUUGGSS
+       It is not possible to choose  maps  from  different  mapsets  with  the
+       _r_a_s_t_e_r button. But you can choose maps from different mapsets by enter-
+       ing the name  _m_a_p_@_m_a_p_s_e_t in any of the map fields  _[_A_-_E_]_.
+
+
+       You may have difficulties to calculate formulas  containing   _n_e_i_g_h_b_o_r_-
+       _h_o_o_d  modifier.  The  only way to use  _n_e_i_g_h_b_o_r_h_o_o_d modifier is entring
+       them directly  into  the  formula  field:  A+B*map_with_modifier  where
+       map_with_modifier  is the name of your map. The name of your map should
+       not contain any uppercase _A _- _F, because they will  be  interpreted  as
+       raster map entries. Don't forget to mask the brackets with backslashes,
+       or you will receive errormessages form  TTCCLLTTKKGGRRAASSSS..
+
+SSEEEE AALLSSOO
+       r.mapcalc
+
+AAUUTTHHOORR
+       RR.. BBrruunnzzeemmaa
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_0_8_:_3_1 _$
+
+
+
+GRASS 5.0                                                  mapcalculator.sh(1)

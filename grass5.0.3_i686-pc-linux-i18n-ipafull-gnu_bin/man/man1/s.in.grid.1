@@ -1,0 +1,45 @@
+s.in.grid(1)                  Grass User's Manual                 s.in.grid(1)
+
+
+
+NNAAMMEE
+       ss..iinn..ggrriidd - convert Arc GRIDASCII output to site list.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       ss..iinn..ggrriidd ffiillee
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._i_n_._g_r_i_d is a _a_w_k script that reads the output of Arc/INFO's GRIDASCII
+       command and converts it to a GRASS site list.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       _f_i_l_e   Name of the output of GRIDASCII.
+
+
+EEXXAAMMPPLLEE
+       Typing the following: Arc: GGRRIIDDAASSCCIIII nniittrraatteess ttmmpp Arc: qquuiitt GRASS GRID>
+       ss..iinn..ggrriidd ttmmpp || ss..iinn..aasscciiii nniittrraatteess ffss=='|' GRASS GRID> rrmm ttmmpp
+
+       This procedure exports the GRID file _n_i_t_r_a_t_e_s from Arc/INFO and imports
+       it as the GRASS site list _n_i_t_r_a_t_e_s.
+
+NNOOTTEESS
+       _a_w_k may not be able to handle large ASCII grids.  In  these  instances,
+       try using _n_a_w_k, or better yet, _g_a_w_k.
+
+FFIILLEESS
+       $GISBASE/scripts/s.in.grid
+
+SSEEEE AALLSSOO
+       _s_._i_n_._a_s_c_i_i
+
+AAUUTTHHOORR
+       James Darrell McCauley, Agricultural Engineering, Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         s.in.grid(1)

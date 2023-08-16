@@ -1,0 +1,132 @@
+d.what.s.pg(1)                Grass User's Manual               d.what.s.pg(1)
+
+
+
+NNAAMMEE
+       _d_._w_h_a_t_._s_._p_g  -  Report  database  attributes associated with a specific
+       point location. (GRASS-RDBMS Attribute Interface Program)
+
+SSYYNNOOPPSSIISS
+       dd..wwhhaatt..ss..ppgg
+
+       dd..wwhhaatt..ss..ppgg hheellpp
+
+       dd..wwhhaatt..ss..ppgg ttaabb=name xxccooll=name yyccooll=name [xxppooss=value] [yyppooss=value] ddiiss--
+       ttaannccee=value [hhvv=name]
+
+AALLTTEERRNNAATTEE
+       dd..wwhhaatt..ss..ppgg --ss hheellpp
+
+       dd..wwhhaatt..ss..ppgg [[--ss]] [ssqqll=file] ddiissttaannccee=value [hhvv=name]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._w_h_a_t_._s_._p_g  reports  database  attributes  in  the  currently selected
+       database which are associated with a specific point location. The  cur-
+       rent database is identified by the GRASS environment variable $PG_DBASE
+       which is set using the  _g_._s_e_l_e_c_t_._p_g  GRASS-RDBMS  interface  tool.  The
+       location  to  query  is selected by the user with the mouse. The radius
+       around this point to search is  specified  by  the  distance  argument.
+       Sites are selected by comparing the values in the database columns con-
+       taining X and Y coordinate data against the coordinate data at the cur-
+       rent  mouse location.The columns in the table containing the coordinate
+       values are returned in the report.  If information from more  than  one
+       table is required use the _-_s flag and the alternate command line format
+       (see below). The user can also provide the center of the  search  point
+       and  the  distance around it to find sites within the circle around the
+       search center non-interactively.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ttaabb==ddaattaabbaasseettaabblleennaammee
+           Table containing X, Y coordinate values
+
+       xxccooll==ddaattaabbaasseeccoolluummnnnnaammee
+           Column containing the X coordinate (E/W) value.
+
+       yyccooll==ddaattaabbaasseeccoolluummnnnnaammee
+           Column containing the Y coordinate (N/S) value.
+
+       ddiissttaannccee==vvaalluuee
+           Radius distance from the current mouse location to conduct database
+           search.
+
+           xxppooss==vvaalluuee X coord. (E/W) of search.
+
+           yyppooss==vvaalluuee Y coord. (N/S) of search.
+
+           hhvv==nnaammee (h)Horizontal/(v)vertical output (default is v)
+
+
+AALLTTEERRNNAATTEE CCOOMMMMAANNDD LLIINNEE UUSSAAGGEE
+       The  alternate  command  line  structure is selected using the the _[_-_s_]
+       flag on the command line. When using this flag the  user  must  include
+       the  name  of  a  text file on the command line as well. This file must
+       include a complete, well formed SQL  SELECT  statement  specifying  the
+       query criteria.
+
+       The  user must also specify the name of the GRASS data layer containing
+       these category values on the command line. The following example illus-
+       trates the syntax which must be used in constructing a SELECT statement
+       for use with the _-_s flag.
+
+       EEXXAAMMPPLLEE 11.. (single table)
+
+       _d_._w_h_a_t_._s_._p_g _-_s _s_q_l_=_i_z_b_._s_q_l _d_i_s_t_a_n_c_e_=_1_0_0
+
+       here _i_z_b_._s_q_l:
+
+       SELECT * from izb where point(xcoor,ycoor)
+
+       EEXXAAMMPPLLEE 22.. (two tables)
+
+       _d_._w_h_a_t_._s_._p_g _-_s _s_q_l_=_i_z_b_2_._s_q_l _d_i_s_t_a_n_c_e_=_1_0_0
+
+       here _i_z_b_2_._s_q_l:
+
+       SELECT *, huts_info.description from izb  where  huts_info.num=num  and
+       point(xcoor,ycoor)
+
+   FFllaagg::
+       --ss  SQL select statements are input from a prepared file.
+
+
+   PPaarraammeetteerrss::
+       ssqqll==ffiilleennaammee
+           SQL  statements  specifying  well  formed selection criteria. These
+           criteria must include the database table name, the  Xcol  and  Ycol
+           names  as  well  as the search distance. Additional criteria may be
+           placed in the "where" clause to further subset information returned
+           from the database.
+
+
+
+       ddiissttaannccee==vvaalluuee
+           Radius distance from the current mouse location to conduct database
+           search.
+
+
+       hhvv==nnaammee (h)Horizontal/(v)vertical output (default is v)
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_, _g_._s_t_a_t_s_._p_g_, _g_._t_a_b_l_e_._p_g_, _d_._r_a_s_t_._p_g_,  _d_._s_i_t_e_._p_g_,  _d_._v_e_c_t_._p_g_,
+       _d_._w_h_a_t_._r_._p_g_, _d_._w_h_a_t_._v_._p_g_, _r_._r_e_c_l_a_s_s_._p_g_, _r_._r_e_s_c_a_l_e_._p_g_, _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original  Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and W.
+       Fredrick Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                       d.what.s.pg(1)

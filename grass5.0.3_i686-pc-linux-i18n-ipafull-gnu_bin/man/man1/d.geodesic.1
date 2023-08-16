@@ -1,0 +1,75 @@
+d.geodesic(1)                 Grass User's Manual                d.geodesic(1)
+
+
+
+NNAAMMEE
+       dd..ggeeooddeessiicc   -  Displays a geodesic line, tracing the shortest distance
+       between two geographic points along a great circle, in a longitude/lat-
+       itude data set.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ggeeooddeessiicc
+       dd..ggeeooddeessiicc hheellpp
+       dd..ggeeooddeessiicc [ccoooorr==_l_o_n_1_,_l_a_t_1_,_l_o_n_2_,_l_a_t_2] [llccoolloorr==_n_a_m_e] [ttccoolloorr==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._g_e_o_d_e_s_i_c  displays  a geodesic line in the active frame on the user's
+       graphics monitor. This line traces the shortest  distance  between  two
+       user-specified  points  on  the  curved surface of a longitude/latitude
+       data set.  The two coordinate locations  named  must  fall  within  the
+       boundaries of the user's current geographic region.
+
+OOPPTTIIOONNSS
+       This  program can be run either interactively or non-interactively.  If
+       the user types dd..ggeeooddeessiicc on the command  line  without  other  program
+       parameters,  the  mouse will be activated; the user is asked to use the
+       mouse to indicate the starting and ending points of each geodesic  line
+       to  be  drawn. The default line color (white) and text color (red) will
+       be used.
+
+
+       Alternately, the user can specify the starting and  ending  coordinates
+       of  the  geodesic,  line color, and text color on the command line, and
+       run the program non-interactively.
+
+
+       Once the user indicates the starting  and  ending  coordinates  of  the
+       geodesic,  the  line  and  its  length  (in miles) are displayed to the
+       user's graphics monitor.
+
+
+
+   PPaarraammeetteerrss::
+       ccoooorr==_l_o_n_1_,_l_a_t_1_,_l_o_n_2_,_l_a_t_2
+              Starting and ending coordinates, in longitude and latitude  val-
+              ues, of the geodesic line to be drawn.
+
+       llccoolloorr==_n_a_m_e
+              Line color in which geodesic will be displayed.
+              Options: red, orange, yellow, green, blue, magenta, indigo, vio-
+              let, gray, white, black
+              Default: white
+
+       ttccoolloorr==_n_a_m_e
+              Text color in which the length of  the  geodesic  will  be  dis-
+              played.
+              Options: red, orange, yellow, green, blue, magenta, indigo, vio-
+              let, gray, white, black.  Default: red
+
+
+NNOOTTEESS
+       This program works only on GRASS data bases using a  longitude/latitude
+       coordinate system.
+
+SSEEEE AALLSSOO
+       _d_._r_h_u_m_b_l_i_n_e
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                        d.geodesic(1)

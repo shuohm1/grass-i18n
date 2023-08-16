@@ -1,0 +1,165 @@
+r.average(1)                  Grass User's Manual                 r.average(1)
+
+
+
+NNAAMMEE
+       rr..aavveerraaggee   -  Finds  the average of values in a cover map within areas
+       assigned the same category value in a user-specified base map.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..aavveerraaggee
+       rr..aavveerraaggee hheellpp
+       rr..aavveerraaggee [--cc] bbaassee==_n_a_m_e ccoovveerr==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._a_v_e_r_a_g_e calculates the average value of data  contained  in  a  _c_o_v_e_r
+       raster  map  layer  for  areas  assigned the same category value in the
+       user-specified _b_a_s_e raster map layer.  These averaged values are stored
+       in  the  category  labels  file associated with a new _o_u_t_p_u_t map layer.
+       The values to be averaged are taken from a  user-specified  _c_o_v_e_r  map.
+       The  _c_a_t_e_g_o_r_y  _v_a_l_u_e_s for the _c_o_v_e_r map will be averaged, unless the --cc
+       flag is set.  If the --cc flag is set, the values that appear in the _c_a_t_-
+       _e_g_o_r_y _l_a_b_e_l_s file for the _c_o_v_e_r map will be averaged instead (see exam-
+       ple below).
+
+
+       The _o_u_t_p_u_t map is actually a _r_e_c_l_a_s_s of the _b_a_s_e map  (see  _r_._r_e_c_l_a_s_s),
+       and  will  have  exactly the same _c_a_t_e_g_o_r_y _v_a_l_u_e_s as the _b_a_s_e map.  The
+       averaged values computed by _r_._a_v_e_r_a_g_e are stored in  the  _o_u_t_p_u_t  map's
+       _c_a_t_e_g_o_r_y _l_a_b_e_l_s file.
+
+
+       If  the  user  simply  types rr..aavveerraaggee on the command line, the user is
+       prompted for the flag setting and parameter values through the standard
+       parser  interface.   Alternately,  the  user can supply all needed flag
+       settings and parameter values on the command line.
+
+   FFllaagg::
+       --cc     Take the average of the values found in the _c_a_t_e_g_o_r_y _l_a_b_e_l_s  for
+              the  _c_o_v_e_r map, rather than the average of the _c_o_v_e_r map's _c_a_t_e_-
+              _g_o_r_y _v_a_l_u_e_s.
+
+
+
+
+   PPaarraammeetteerrss::
+       bbaassee==_n_a_m_e
+              An existing raster map layer in the user's current mapset search
+              path.   For each group of cells assigned the same category value
+              in the _b_a_s_e map, the values assigned these cells  in  the  _c_o_v_e_r
+              map will be averaged.
+
+       ccoovveerr==_n_a_m_e
+              An  existing raster map layer containing the values (in the form
+              of cell category values or cell category labels) to be  averaged
+              within each category of the _b_a_s_e map.
+
+       oouuttppuutt==_n_a_m_e
+              The name of a new map layer to contain program output (a _r_e_c_l_a_s_s
+              of the _b_a_s_e map). Averaged values will be stored in  the  _o_u_t_p_u_t
+              map's  category  labels  file  under  the  user's $LOCATION/cats
+              directory.
+
+
+EEXXAAMMPPLLEE
+       Assume that _f_a_r_m_s is a map with 7 farms (i.e., 7 categories), and  that
+       _s_o_i_l_s_._K_f_a_c_t_o_r  is  a  map  of  soil  K factor values with the following
+       category file:
+            cat  cat
+            value     label
+            0    no soil data
+            1    .10
+            2    .15
+            3    .17
+            4    .20
+            5    .24
+            6    .28
+            7    .32
+            8    .37
+            9    .43
+
+       Then
+
+
+       rr..aavveerraaggee --cc bbaassee==_f_a_r_m_s ccoovveerr==_s_o_i_l_s_._K_f_a_c_t_o_r oouuttppuutt==_K_._b_y_._f_a_r_m
+
+       will compute the average soil K factor for each  farm,  and  store  the
+       result  in  the  output map _K_._b_y_._f_a_r_m, which will be a reclass of _f_a_r_m_s
+       with category labels as follows (example only):
+            cat  cat
+            value     label
+            1    .1023
+            2    .1532
+            3    .172
+            4    .3872
+            5    .003
+            6    .28
+            7    .2345
+
+
+NNOOTTEESS
+       The --cc option requires that the category label for each category in the
+       _c_o_v_e_r  map be a valid number, integer, or decimal.  To be exact, if the
+       first item in the label is numeric, then that value is used. Otherwise,
+       zero is used.  The following table covers all possible cases:
+
+
+
+                category    value
+                label       used by -c
+                ______________________
+                 .12          .12
+                 .80 KF        .8
+                 no data      0
+
+
+
+       (This flag is very similar to the @ operator in _r_._m_a_p_c_a_l_c, and the user
+       is encouraged to read the manual entry for  _r_._m_a_p_c_a_l_c  to  see  how  it
+       works there.)
+
+
+       The  user  should  use  the results of _r_._a_v_e_r_a_g_e with care.  Since this
+       utility assigns a value to each cell which is based on global  informa-
+       tion  (i.e., information at spatial locations other than just the loca-
+       tion of the cell itself), the resultant map layer is only valid if  the
+       geographic  region  and  mask settings are the same as they were at the
+       time that the result map was created.
+
+
+       Results are affected by the current region settings and mask.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _r_._c_a_t_s
+
+       _r_._c_l_u_m_p
+
+       _r_._d_e_s_c_r_i_b_e
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._m_a_s_k
+
+       _r_._m_f_i_l_t_e_r
+
+       _r_._m_o_d_e
+
+       _r_._n_e_i_g_h_b_o_r_s
+
+       _r_._r_e_c_l_a_s_s
+
+       _r_._s_t_a_t_s
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.average(1)

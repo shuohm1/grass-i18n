@@ -1,0 +1,315 @@
+UNUSED=
+OBJARCH=OBJ.i686-pc-linux-gnu
+LIBARCH=LIB.i686-pc-linux-gnu
+
+#############################################################################
+#
+# $Id: head.in,v 1.44.2.3 2003/03/16 12:25:20 glynn Exp $
+#
+# MODULE:   	Grass Compilation
+# AUTHOR(S):	Original author unknown - probably CERL
+#		Markus Neteler - Germany - neteler@geog.uni-hannover.de
+#   	    	Justin Hickey - Thailand - jhickey@hpcc.nectec.or.th
+#   	    	Huidae Cho - Korea - hdcho@geni.knu.ac.kr
+#   	    	Eric G. Miller - egm2@jps.net
+# PURPOSE:  	The source file for this Makefile is in src/CMD/head/head.in.
+#		It is the top part of a file called make.rules which is used
+#		for compiling all GRASS modules. This part of the file provides
+#		make variables that are dependent on the results of the
+#		configure script.
+# COPYRIGHT:    (C) 2000 by the GRASS Development Team
+#
+#               This program is free software under the GNU General Public
+#   	    	License (>=v2). Read the file COPYING that comes with GRASS
+#   	    	for details.
+#
+#############################################################################
+
+############################## Make Variables ###############################
+
+SRCDIR              = /usr/src/grass-5.0.3
+DSTDIR              = /usr/src/grass-5.0.3
+
+CC                  = gcc
+FC                  = g77
+LEX                 = flex
+YACC                = bison -y
+PERL                = /usr/bin/perl
+MAKE                = make
+AR                  = ar
+RANLIB              = ranlib
+
+ARCH                = i686-pc-linux-gnu
+prefix              = /usr/local
+exec_prefix         = ${prefix}
+UNIX_BIN            = ${exec_prefix}/bin
+SRC                 = /usr/src/grass-5.0.3/src
+
+GISBASE             = /usr/src/grass-5.0.3/dist.i686-pc-linux-gnu
+GRASS_BIN           = /usr/src/grass-5.0.3/bin.i686-pc-linux-gnu
+
+VERSION_NUMBER      = 5.0.3
+VERSION_DATE        = October 2003
+VERSION_UPDATE_PKG  = 
+VERSION_FILE        = /usr/src/grass-5.0.3/src/CMD/VERSION
+NAME_VER            = 5
+LIB_VER             = 5.0.3
+
+DEFAULT_DATABASE    =
+DEFAULT_LOCATION    =
+
+COMPILE_FLAGS       = -g -O2  
+LINK_FLAGS          = 
+
+DLLIB               = -ldl
+XCFLAGS             =  -I/usr/X11R6/include
+# XXX - replace SYSV in code with configure results in config.h
+# XXX - need SYSV defined for hpux10
+XLDFLAGS            = 
+XMINC               = 
+XLIBPATH            =  -L/usr/X11R6/lib
+XLIB                =  -lSM -lICE -lX11
+XTLIB               = -lXt
+XMLIB               = 
+XEXTRALIBS          = 
+
+COMPATLIB           = -lbsd-compat
+CURSES              = -lncurses $(COMPATLIB)
+MATHLIB             = -lm 
+XDRLIB              =     -lz 
+ICONVLIB            = 
+INTLLIB             = 
+SOCKLIB             = 
+
+#ZLIB:
+ZLIB                =    -lz 
+ZLIBINCPATH         = 
+ZLIBLIBPATH         = 
+
+#DBM:
+DBMINCPATH          = 
+DBMLIBPATH          = 
+DBMLIB              = 
+
+#readline
+READLINEINCPATH     = 
+READLINELIBPATH     = 
+READLINELIB         = 
+HISTORYLIB          = 
+
+#PostgreSQL:
+PQINCPATH           = 
+PQLIBPATH           = 
+PQLIB               =  -lpq 
+
+#ODBC:
+ODBCINC             = 
+ODBCLIB             =  -lodbc 
+
+#Image formats:
+PNGINC              = 
+PNGLIB              =  -lpng  -lz  -lm
+
+JPEGINCPATH         = 
+JPEGLIBPATH         = 
+JPEGLIB             =  -ljpeg 
+
+TIFFINCPATH         = 
+TIFFLIBPATH         = 
+TIFFLIB             =  -ltiff -lm
+
+#GD library (for PNGdriver):
+GDINC               = 
+GDLIB               =  -lgd 
+
+#openGL files for NVIZ/r3.showdspf
+OPENGLINC           = 
+OPENGLwINC          = 
+OPENGLLIB           =   -lGL 
+OPENGLULIB          =   -lGLU 
+LGLWM               = 
+
+#tcl/tk stuff
+TCLINCDIR           = 
+TKINCDIR            = 
+TCLTKLIBPATH        = 
+TCLTKLIBS           =  -ltk8.4 -lm  -ltcl8.4 -lm
+
+#FFTW:
+FFTWINC             = 
+FFTWLIB             =  -lfftw -lm
+
+#LAPACK/BLAS stuff for gmath lib:
+BLASLIB             = 
+LAPACKLIB           = 
+
+#GDAL:
+GDAL_LIBS           = -ldl
+GDAL_CFLAGS         = 
+
+#FreeType:
+FTINC               =  -I/usr/include/freetype2
+FTLIB               =  -lfreetype 
+
+GMAKE = /usr/src/grass-5.0.3/src/CMD/gmake5.0
+# to force make to use /bin/sh
+SHELL           = /bin/sh
+#########################################################################
+# these define the various directories which contain GRASS programs
+# or files used by GRASS programs
+BIN             = $(GISBASE)/bin
+ETC             = $(GISBASE)/etc
+BIN_INTER       = $(ETC)/bin/inter
+BIN_CMD         = $(ETC)/bin/cmd
+TXT             = $(GISBASE)/txt
+MAN1            = $(GISBASE)/man/1
+MAN2            = $(GISBASE)/man/2
+MAN3            = $(GISBASE)/man/3
+MAN4            = $(GISBASE)/man/4
+MAN5            = $(GISBASE)/man/5
+MAN6            = $(GISBASE)/man/6
+HELP            = $(GISBASE)/man/help
+HTML            = $(GISBASE)/documents
+SCRIPTS         = $(GISBASE)/scripts
+LOCALE          = $(GISBASE)/locale
+
+# other
+CFLAGS      = -I$(INCLUDE_DIR) $(COMPILE_FLAGS) $(EXTRA_CFLAGS) $(USE_TERMIO)
+LDFLAGS     = -L$(LIBDIR)/$(LIBARCH) $(LINK_FLAGS)
+MANROFF     = # 
+MAKEALL     = $(GMAKE) -all
+LIBRULE_ST  = $(GMAKE) -makeparentdir $@; ar ruv $@ $?; $(RANLIB) $@
+LIBRULE     = $(LIBRULE_ST)
+SLIBRULE    = $(LIBRULE_ST)
+
+# various directories
+LIBDIR      = $(SRC)/libes
+INCLUDE_DIR = $(SRC)/include
+
+
+# libraries
+DEPGISLIB      = $(LIBDIR)/$(LIBARCH)/libgis.a
+GISLIB         = -lgis $(SOCKLIB) $(INTLLIB)
+
+DEPVASKLIB     = $(LIBDIR)/$(LIBARCH)/libvask.a
+VASKLIB        = -lvask
+
+DEPEDITLIB     = $(LIBDIR)/$(LIBARCH)/libgedit.a
+EDITLIB        = -lgedit
+
+DEPG3DLIB      = $(LIBDIR)/$(LIBARCH)/libg3d.a
+G3DLIB         = -lg3d
+
+DEPICONLIB     = $(LIBDIR)/$(LIBARCH)/libicon.a
+ICONLIB        = -licon
+
+DEPLOCKLIB     = $(LIBDIR)/$(LIBARCH)/liblock.a
+LOCKLIB        = -llock
+
+DEPIMAGERYLIB  = $(LIBDIR)/$(LIBARCH)/libI.a
+IMAGERYLIB     = -lI
+
+DEPROWIOLIB    = $(LIBDIR)/$(LIBARCH)/librowio.a
+ROWIOLIB       = -lrowio
+
+DEPCOORCNVLIB  = $(LIBDIR)/$(LIBARCH)/libcoorcnv.a
+COORCNVLIB     = -lcoorcnv
+
+DEPSEGMENTLIB  = $(LIBDIR)/$(LIBARCH)/libsegment.a
+SEGMENTLIB     = -lsegment
+
+DEPGPROJLIB    = $(LIBDIR)/$(LIBARCH)/libproj.a
+GPROJLIB       = -lproj
+
+DEPBTREELIB    = $(LIBDIR)/$(LIBARCH)/libbtree.a
+BTREELIB       = -lbtree
+
+DEPIBTREELIB   = $(LIBDIR)/$(LIBARCH)/libibtree.a
+IBTREELIB      = -libtree
+
+DEPGMATHLIB    = $(LIBDIR)/$(LIBARCH)/libgmath.a
+GMATHLIB       = -lgmath
+
+DEPDLGLIB      = $(LIBDIR)/$(LIBARCH)/libdlg.a
+DLGLIB         = -ldlg
+
+DEPRASTERLIB   = $(LIBDIR)/$(LIBARCH)/libraster.a
+RASTERLIB      = -lraster
+
+DEPDISPLAYLIB  = $(LIBDIR)/$(LIBARCH)/libdisplay.a
+DISPLAYLIB     = -ldisplay
+
+DEPD_LIB       = $(LIBDIR)/$(LIBARCH)/libD.a
+D_LIB          = -lD
+
+DEPDATETIMELIB = $(LIBDIR)/$(LIBARCH)/libdatetime.a
+DATETIMELIB    = -ldatetime
+
+DEPDRIVERLIB   = $(LIBDIR)/$(LIBARCH)/libdriver.a
+DRIVERLIB      = -ldriver
+
+DEPLINKMLIB    = $(LIBDIR)/$(LIBARCH)/liblinkm.a
+LINKMLIB       = -llinkm
+
+DEPBITMAPLIB   = $(LIBDIR)/$(LIBARCH)/libbitmap.a
+BITMAPLIB      = -lbitmap
+
+DEPDIGLIB      = $(LIBDIR)/$(LIBARCH)/libdig.a
+DIGLIB         = -ldig
+
+DEPDIG2LIB     = $(LIBDIR)/$(LIBARCH)/libdig2.a
+DIG2LIB        = -ldig2
+
+DEPVECTLIB_REAL= $(LIBDIR)/$(LIBARCH)/libvect.a
+VECTLIB_REAL   = -lvect
+
+DEPDIG_ATTLIB  = $(LIBDIR)/$(LIBARCH)/libdig_atts.a
+DIG_ATTLIB     = -ldig_atts
+
+DEPVECTLIB     = $(DEPVECTLIB_REAL) $(DEPDIG2LIB)
+VECTLIB        = $(VECTLIB_REAL) $(DIG2LIB)
+
+DEPDBMILIB     = $(LIBDIR)/$(LIBARCH)/libdbmi.a
+DBMILIB        = -ldbmi
+
+DEPIMAGESUPLIB = $(LIBDIR)/$(LIBARCH)/libimage_sup.a
+IMAGESUPLIB    = -limage_sup
+
+# triangulation libraries
+
+DEPSOSLIB      = $(LIBDIR)/$(LIBARCH)/libsos.a
+SOSLIB         = -lsos
+
+DEPLIALIB      = $(LIBDIR)/$(LIBARCH)/liblia.a
+LIALIB         = -llia
+
+DEPOPTRILIB    = $(LIBDIR)/$(LIBARCH)/liboptri.a
+OPTRILIB       = -loptri
+
+DEPBASICLIB    = $(LIBDIR)/$(LIBARCH)/libbasic.a
+BASICLIB       = -lbasic
+
+DEPGEOMLIB     = $(DEPOPTRILIB) $(DEPSOSLIB) $(DEPLIALIB) $(DEPBASICLIB)
+GEOMLIB        = $(OPTRILIB) $(SOSLIB) $(LIALIB) $(BASICLIB)
+
+DEPXDISPLAYLIB = $(LIBDIR)/$(LIBARCH)/libXdisplay.a
+XDISPLAYLIB    = -lXdisplay
+
+#########################################################################
+GRASS_NVIZ_DOCS=$(GISBASE)/documents/nviz
+
+all:
+	if [ ! -d $(GRASS_NVIZ_DOCS) ]; then mkdir $(GRASS_NVIZ_DOCS); fi
+#fix for CVS and Gmakefile:
+	(tar -cf - *  | (cd $(GRASS_NVIZ_DOCS); tar  -xf - 2>/dev/null ); true)
+
+#########################################################################
+# the tags file created by "make ctags" is great for
+# editing to look for function definitions
+# vi -t <function name>
+
+ctags:
+	ctags *.[ch]
+	sed 's/\?/\//g' tags > tags.tmp
+	mv tags.tmp tags
+tags: ctags ; #

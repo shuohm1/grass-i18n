@@ -1,0 +1,127 @@
+s.out.ascii(1)                Grass User's Manual               s.out.ascii(1)
+
+
+
+NNAAMMEE
+       ss..oouutt..aasscciiii  - Converts a GRASS site list file into an ASCII listing of
+       site locations and their descriptions.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..oouutt..aasscciiii
+       ss..oouutt..aasscciiii hheellpp
+       ss..oouutt..aasscciiii [--aaddii] ssiitteess==_n_a_m_e [ffss==character|space|tab]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._o_u_t_._a_s_c_i_i converts an existing site list file  (ssiitteess==_n_a_m_e)  into  an
+       ASCII listing of site locations and (optionally) their category labels,
+       in a format suitable for  input  to  other  programs  (e.g.,  _d_._p_o_i_n_t_s,
+       _m_._u_2_l_l, etc.).
+
+
+       Each  line  of  output  consists of the easting, northing, and category
+       label for a site listed in the named ssiitteess file.   The  ffss==_n_a_m_e  option
+       (where  _n_a_m_e  is  either a character, a space, or a tab) can be used to
+       place a particular field separator between these three  output  fields.
+       This is useful when output is to be manipulated by other programs, like
+       _a_w_k or _s_e_d.
+
+
+       The GRASS program _s_._i_n_._a_s_c_i_i can be used to perform the  reverse  func-
+       tion,  converting a UNIX file containing eastings, northings, and cate-
+       gory labels associated with site locations into GRASS  site  list  file
+       format.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --aa     Output all sites found in the named ssiitteess file, rather than lim-
+              iting output to sites  falling  within  the  current  geographic
+              region.
+
+       --dd     Include site descriptions (category labels) in the output.
+
+       --ii     Include site attribute identifiers in the output
+
+
+   PPaarraammeetteerrss::
+       ssiitteess==_n_a_m_e
+              Name of an existing site list file.
+
+       ffss==character|space|tab
+              The  field separator to be placed between the easting, northing,
+              and (optionally) category label on each  line  of  output.   The
+              field separator can be a character, a space, or a tab.
+              Default: space
+
+       _s_._o_u_t_._a_s_c_i_i  can be run either non-interactively or interactively.  The
+       program will be run non-interactively if the user specifies the name of
+       an  existing  site list file and (optionally) a value for ffss, using the
+       form
+
+
+       ss..oouutt..aasscciiii [--aadd] ssiitteess==_n_a_m_e [ffss==character|space|tab]
+
+       where _n_a_m_e is the name of an existing site list file to be converted to
+       a  brief  ASCII  listing,  and  ffss  is the field separator to be placed
+       between output fields. The user can also the --aa and --dd options  to  use
+       all  sites  in the named ssiitteess file and to include site descriptions in
+       the output.
+
+
+       Alternately, the user can simply type ss..oouutt..aasscciiii on the command  line,
+       without  program arguments. In this case, the user will be prompted for
+       parameter values using the standard GRASS parser interface.
+
+NNOOTTEESS
+       To output GRASS data in x,y,z ASCII style, the s.out.ascii may be used:
+
+
+       ss..oouutt..aasscciiii --dd ssiitteess==sitesmap
+
+       Resulting to:
+            3566393.75 5773293.75 168.3
+            3566818.75 5773293.75 158.8
+            3568843.75 5773293.75 114.3
+            3568981.25 5773293.75 117.5
+            [...]
+
+       To  export  raster  maps  into this x,y,z format, the raster map can be
+       converted to sites format using _r_._t_o_._s_i_t_e_s and _s_._o_u_t_._a_s_c_i_i subsequently
+       as described above.
+
+
+       The output from _s_._o_u_t_._a_s_c_i_i may be placed into a file by using the UNIX
+       redirection mechanism; e.g.:
+
+
+       ss..oouutt..aasscciiii ssiitteess==archsites > out.file
+
+       _s_._o_u_t_._a_s_c_i_i output may also be redirected into other programs; e.g.:
+
+
+       ss..oouutt..aasscciiii ssiitteess==archsites | d.points ccoolloorr==red ssiizzee==10 ttyyppee==diamond
+
+
+SSEEEE AALLSSOO
+       _d_._p_o_i_n_t_s
+
+       _d_._s_i_t_e_s
+
+       _m_._l_l_2_u
+
+       _m_._u_2_l_l
+
+       _s_._i_n_._a_s_c_i_i
+
+       _r_._t_o_._s_i_t_e_s
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                       s.out.ascii(1)

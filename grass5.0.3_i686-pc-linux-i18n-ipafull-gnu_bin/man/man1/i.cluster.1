@@ -1,0 +1,195 @@
+i.cluster(1)                  Grass User's Manual                 i.cluster(1)
+
+
+
+NNAAMMEE
+       ii..cclluusstteerr  - An imagery function that generates spectral signatures for
+       land cover types in an image using a clustering algorithm.  The result-
+       ing  signature file is used as input for _i_._m_a_x_l_i_k, to generate an unsu-
+       pervised image classification.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..cclluusstteerr
+       ii..cclluusstteerr hheellpp
+       ii..cclluusstteerr  [--qq]  ggrroouupp==_n_a_m_e  ssuubbggrroouupp==_n_a_m_e  ssiiggffiillee==_n_a_m_e  ccllaasssseess==_v_a_l_u_e
+       [sseeeedd==_n_a_m_e] [ssaammppllee==_r_o_w___i_n_t_e_r_v_a_l_,_c_o_l___i_n_t_e_r_v_a_l] [iitteerraattiioonnss==_v_a_l_u_e] [ccoonn--
+       vveerrggeennccee==_v_a_l_u_e] [sseeppaarraattiioonn==_v_a_l_u_e] [mmiinn__ssiizzee==_v_a_l_u_e] [rreeppoorrttffiillee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._c_l_u_s_t_e_r performs the first pass in the  GRASS  two-pass  unsupervised
+       classification  of  imagery,  while the GRASS program _i_._m_a_x_l_i_k executes
+       the second pass. Both programs must be run to complete the unsupervised
+       classification.
+
+
+       _i_._c_l_u_s_t_e_r  is  a  clustering  algorithm that reads through the (raster)
+       imagery  data  and  builds  pixel  clusters  based  on   the   spectral
+       reflectances  of the pixels.  The pixel clusters are imagery categories
+       that can be related to land cover types on the  ground.   The  spectral
+       distributions  of  the  clusters (which will be the land cover spectral
+       signatures) are influenced by six parameters  set  by  the  user.   The
+       first parameter set by the user is the initial number of clusters to be
+       discriminated.  _i_._c_l_u_s_t_e_r starts by generating spectral signatures  for
+       this  number  of  clusters and "attempts" to end up with this number of
+       clusters during the clustering process.  The resulting number of  clus-
+       ters  and their spectral distributions, however, are also influenced by
+       the range of the spectral values (category values) in the  image  files
+       and  the  other parameters set by the user.  These parameters are:  the
+       minimum cluster size, minimum cluster separation, the  percent  conver-
+       gence,  the  maximum  number of iterations, and the row and column sam-
+       pling intervals.
+
+
+       The cluster spectral signatures that result  are  composed  of  cluster
+       means  and  covariance  matrices.   These  cluster means and covariance
+       matrices are used in the second pass (_i_._m_a_x_l_i_k) to classify the  image.
+       The  clusters  or  spectral classes result can be related to land cover
+       types on the ground.
+
+OOPPTTIIOONNSS
+       The program can be run either non-interactively  or  interactively.  It
+       will  be  run non-interactively if the user specifies the name of group
+       file, the name of subgroup file, the name of a file to  contain  result
+       signatures,  the  initial  number  of clusters to be discriminated, and
+       optionally other parameters (see below) on the command line  using  the
+       form:    ii..cclluusstteerr    [--qq]    ggrroouupp==_n_a_m_e   ssuubbggrroouupp==_n_a_m_e   ssiiggffiillee==_n_a_m_e
+       ccllaasssseess==_v_a_l_u_e  [sseeeedd==_n_a_m_e]  [ssaammppllee==_r_o_w___i_n_t_e_r_v_a_l_,_c_o_l___i_n_t_e_r_v_a_l]  [iitteerraa--
+       ttiioonnss==_v_a_l_u_e]  [ccoonnvveerrggeennccee==_v_a_l_u_e]  [sseeppaarraattiioonn==_v_a_l_u_e]  [mmiinn__ssiizzee==_v_a_l_u_e]
+       [rreeppoorrttffiillee==_n_a_m_e]
+
+       where the _g_r_o_u_p should contain the imagery files that the  user  wishes
+       to  classify.   The  _s_u_b_g_r_o_u_p is a subset of this group.  The user must
+       create a group and subgroup by running the GRASS program _i_._g_r_o_u_p before
+       running  _i_._c_l_u_s_t_e_r.   The subgroup should contain only the imagery band
+       files that the user wishes to classify.  Note that this  subgroup  must
+       contain more than one band file.  The purpose of the group and subgroup
+       is to collect map layers for classification or analysis. The _s_i_g_f_i_l_e is
+       the  file  to  contain result signatures which can be used as input for
+       _i_._m_a_x_l_i_k.  The classes value is the initial number of  clusters  to  be
+       discriminated;  any  parameter values left unspecified are set to their
+       default values. Alternatively, the program will be run interactively if
+       the user types only _i_._c_l_u_s_t_e_r; in this case the program will prompt the
+       user for parameter values using the standard GRASS _p_a_r_s_e_r.
+
+   FFllaaggss::
+       --qq     Run quietly.  Suppresses output of program percent-complete mes-
+              sages and the time elapsed from the beginning of the program. If
+              this flag is not used, these messages are printed out.
+
+
+   PPaarraammeetteerrss::
+       ggrroouupp==_n_a_m_e
+              The name of the group file which contains the imagery files that
+              the user wishes to classify.
+
+       ssuubbggrroouupp==_n_a_m_e
+              The  name  of the subset of the group specified in group option,
+              which must contain only imagery band files  and  more  than  one
+              band  file.  The user must create a group and a subgroup by run-
+              ning the GRASS program _i_._g_r_o_u_p before running _i_._c_l_u_s_t_e_r.
+
+       ssiiggffiillee==_n_a_m_e
+              The name assigned to output signature file which contains signa-
+              tures of classes and can be used as the input file for the GRASS
+              program _i_._m_a_x_l_i_k for an unsupervised classification.
+
+       ccllaasssseess==_v_a_l_u_e
+              The number of clusters that will initially be identified in  the
+              clustering process before the iterations begin.
+
+       sseeeedd==_n_a_m_e
+              The  name  of a seed signature file is optional. The seed signa-
+              tures are signatures that contain cluster means  and  covariance
+              matrices  which  were  calculated  prior  to  the current run of
+              _i_._c_l_u_s_t_e_r. They may be acquired from a previously run of _i_._c_l_u_s_-
+              _t_e_r  or from a supervised classification signature training site
+              section (e.g., using the signature file output by _i_._c_l_a_s_s).  The
+              purpose  of  seed signatures is to optimize the cluster decision
+              boundaries (means) for the number of clusters specified.
+
+       ssaammppllee==_r_o_w___i_n_t_e_r_v_a_l_,_c_o_l___i_n_t_e_r_v_a_l
+              These numbers are optional with default values based on the size
+              of  the  data  set such that the total pixels to be processed is
+              approximately 10,000 (consider round up).
+
+       iitteerraattiioonnss==_v_a_l_u_e
+              This parameter determines the maximum number of iterations which
+              is  greater  than  the number of iterations predicted to achieve
+              the optimum percent convergence. The default value is 30. If the
+              number of iterations reaches the maximum designated by the user;
+              the user may want to rerun _i_._c_l_u_s_t_e_r with  a  higher  number  of
+              iterations (see _r_e_p_o_r_t_f_i_l_e).
+              Default: 30
+
+       ccoonnvveerrggeennccee==_v_a_l_u_e
+              A  high  percent convergence is the point at which cluster means
+              become stable during the iteration process.  The  default  value
+              is  98.0  percent.  When clusters are being created, their means
+              constantly change as pixels are assigned to them and  the  means
+              are  recalculated  to include the new pixel.  After all clusters
+              have been created, _i_._c_l_u_s_t_e_r begins iterations that change clus-
+              ter  means  by  maximizing the distances between them.  As these
+              means shift, a higher  and  higher  convergence  is  approached.
+              Because  means  will never become totally static, a percent con-
+              vergence and a maximum number of iterations are supplied to stop
+              the  iterative  process.   The  percent  convergence  should  be
+              reached before the maximum number of iterations. If the  maximum
+              number of iterations is reached, it is probable that the desired
+              percent convergence was not reached. The number of iterations is
+              reported  in  the  cluster  statistics  in  the report file (see
+              _r_e_p_o_r_t_f_i_l_e).
+              Default: 98.0
+
+       sseeppaarraattiioonn==_v_a_l_u_e
+              This is the minimum separation  below  which  clusters  will  be
+              merged  in the iteration process. The default value is 0.0. This
+              is an image-specific number (a "magic" number) that  depends  on
+              the image data being classified and the number of final clusters
+              that are acceptable. Its determination requires experimentation.
+              Note  that  as  the  minimum  class  (or  cluster) separation is
+              increased, the maximum  number  of  iterations  should  also  be
+              increased  to  achieve this separation with a high percentage of
+              convergence (see _c_o_n_v_e_r_g_e_n_c_e).
+              Default: 0.0
+
+       mmiinn__ssiizzee==_v_a_l_u_e
+              This is the minimum number of pixels that will be used to define
+              a  cluster,  and  is  therefore the minimum number of pixels for
+              which means and covariance matrices will be calculated.
+              Default: 17
+
+       rreeppoorrttffiillee==_n_a_m_e
+              The reportfile is  an  optional  parameter  which  contains  the
+              result, i.e., the statistics for each cluster. Also included are
+              the resulting percent convergence for the clusters,  the  number
+              of  iterations that was required to achieve the convergence, and
+              the separability matrix.
+
+
+NNOOTTEESS
+       Running in command line mode, _i_._c_l_u_s_t_e_r will overwrite the output  sig-
+       nature  file and reportfile (if required by the user) without prompting
+       if the files existed.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g
+
+
+       _i_._c_l_a_s_s
+
+       _i_._g_r_o_u_p
+
+       _i_._g_e_n_s_i_g
+
+       _i_._m_a_x_l_i_k
+
+AAUUTTHHOORRSS
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+       Tao Wen, University of Illinois at Urbana-Champaign, Illinois
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                         i.cluster(1)

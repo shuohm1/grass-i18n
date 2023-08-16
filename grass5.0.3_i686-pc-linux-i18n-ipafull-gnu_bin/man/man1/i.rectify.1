@@ -1,0 +1,174 @@
+i.rectify(1)                  Grass User's Manual                 i.rectify(1)
+
+
+
+NNAAMMEE
+       ii..rreeccttiiffyy   -  rectifies an image by computing a coordinate transforma-
+       tion for each pixel in the image based on the control points created by
+       _i_._p_o_i_n_t_s or _i_._v_p_o_i_n_t_s.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..rreeccttiiffyy
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._r_e_c_t_i_f_y  uses  the control points identified in _i_._p_o_i_n_t_s or _i_._v_p_o_i_n_t_s
+       to calculate a transformation matrix based  on  a   first,  second,  or
+       third  order polynomial and then converts x,y cell coordinates to stan-
+       dard map coordinates for each pixel in the  image.   The  result  is  a
+       planimetric image with a transformed coordinate system (i.e., a differ-
+       ent coordinate system than before it was rectified).
+
+
+       _i_._p_o_i_n_t_s or _i_._v_p_o_i_n_t_s must be run before _i_._r_e_c_t_i_f_y, and  both  programs
+       are required to rectify an image.  An image must be rectified before it
+       can reside in a standard coordinate LOCATION, and therefore be analyzed
+       with  the  other  map layers in the standard coordinate LOCATION.  Upon
+       completion of _i_._r_e_c_t_i_f_y, the rectified image is deposited in the target
+       standard  coordinate  LOCATION.  This LOCATION is selected using _i_._t_a_r_-
+       _g_e_t.
+
+PPrrooggrraamm PPrroommppttss
+       The first prompt in the program asks for the name of the group contain-
+       ing the files to be rectified.
+            Enter the group containing files to be rectified
+            Enter 'list' for a list of existing imagery groups
+            Enter 'list -f' for a verbose listing
+            Hit RETURN to cancel request
+            >
+
+       This  is  the  same  imagery  group  that  was  selected in _i_._p_o_i_n_t_s or
+       _i_._v_p_o_i_n_t_s and the group that contains the cell files  with  the  marked
+       points  and  their  associated map  coordinates.  You are then asked to
+       select the cell file(s) within the group to be rectified:
+       Please select the file(s) to rectify by naming an output file
+
+              spot1.1 in mapsetname      .............
+              spot1.2 in mapsetname      .............
+              spot1.3 in mapsetname      .............
+              spotclass1 in mapsetname   spotrectify1.
+
+              spotreject1 in mapsetname  .............
+
+       (enter list by any name to get a list of existing cell files)
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                  (OR<Ctrl-C> TO CANCEL)
+
+       More than one cell file may be rectified at a  time.   Each  cell  file
+       should be given a unique output file name.
+
+
+       Next, you are asked to select one of two windows regions:
+         Please select one of the following options
+         1.  Use the current window in the target location
+         2.  Determine the smallest window which covers the image
+         >
+
+       The  _i_._r_e_c_t_i_f_y  program  will only rectify that portion of the image or
+       cell file that occurs within the chosen window region,  and  only  that
+       portion  of the cell file will be relocated in the target database.  It
+       is important therefore, to check the current mapset window in the  tar-
+       get LOCATION if choice number one is selected.
+
+
+       If  you  are  rectifying  a file with plans to patch it to another file
+       using the GRASS program _r_._p_a_t_c_h, choose option number one, the  current
+       window  in  the  target  location.   This  window, however, must be the
+       default window for the target LOCATION.  When a file being rectified is
+       smaller  than  the default window in which it is being rectified, zeros
+       are added to the rectified file.  Patching files of the same size  that
+       contain  0/non-zero  data, eliminates the possibility of a no-data line
+       the patched result.  This is because, when the images are patched,  the
+       zeros in the image are "covered" with non-zero pixel values.  When rec-
+       tifying files that are going to be patched, rectify all  of  the  files
+       using the same default window.
+
+
+       By  selecting  the  1st  ORDER option, the user may select the order of
+       transformation desired:
+       Select order of transformation    1st Order   2nd Order  3rd Order
+
+       The program will immediately recalculate the RMSE  and  the  number  of
+       points required.
+
+   LLiinneeaarr aaffffiinnee ttrraannssffoorrmmaattiioonn ((11sstt oorrddeerr ttrraannssffoorrmmaattiioonn))
+       x' = ax + by +c y' = Ax + Bt +C
+
+       The a,b,c,A,B,C are determined by least squares regression based on the
+       control points entered.  This transformation applies scaling,  transla-
+       tion and rotation.  It is NOT a general purpose rubber-sheeting, nor is
+       it ortho-photo rectification using a DEM, not second order  polynomial,
+       etc.   It can be used if (1) you have geometrically correct images, and
+       (2) the terrain or camera distortion effect can be ignored.
+
+   PPoollyynnoommiiaall TTrraannssffoorrmmaattiioonn MMaattrriixx ((22nndd,, 33dd oorrddeerr ttrraannssffoorrmmaattiioonn))
+       The ANALYZE function has been changed to support calculating the regis-
+       tration  coefficients using a first, second, or third order transforma-
+       tion matrix.  The number of control  points  required  for  a  selected
+       order of transformation (represented by n) is ((n + 1) * (n + 2) / 2)
+
+       or  3,  6,  and 10 respectively. It is strongly recommended that one or
+       more additional points be identified to allow for an overly- determined
+       transformation  calculation  which  will  generate the Root Mean Square
+       (RMS) error values for each included point.  The RMS error  values  for
+       all  the  included control points are immediately recalculated when the
+       user selects a different transformation order from the menu  bar.   The
+       polynomial  equations  are performed using a modified Gaussian elimina-
+       tion method.
+
+   PPrrooggrraamm EExxeeccuuttiioonn
+       _i_._r_e_c_t_i_f_y will run in the background and notify you by mail when it  is
+       finished.
+
+
+       Note:   The  rectified image or rectified cell files will be located in
+       the target LOCATION when the program is completed.  The original unrec-
+       tified files are not modified or removed.
+
+
+       Note:  In interactive mode it is possible to define a new file name for
+       the target images. This is (currently) not  provided  in  command  line
+       mode.
+
+NNOOTTEESS
+       _i_._r_e_c_t_i_f_y  uses  nearest  neighbor resampling during the transformation
+       choosing the actual pixel that has its  centre  nearest  to  the  point
+       location  in  the  image.  Advantage  of  this method is that the pixel
+       brightness of the image is kept as _i_._r_e_c_t_i_f_y rearranges the geometry of
+       the image pixels.
+
+
+       In case i.rectify starts normal and after some time a mail with follow-
+       ing text is sent:
+
+
+       GIS ERROR: error while writing to temp file
+       the user may try the flag _-_c (or the module needs more  free  space  on
+       the hard drive).
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g
+
+
+          _m_._p_r_o_j_,   _s_._p_r_o_j_,  _s_._p_r_o_j_,  _v_._p_r_o_j_,  _i_._g_r_o_u_p_,  _i_._p_o_i_n_t_s_,  _i_._p_o_i_n_t_s_3_,
+       _i_._v_p_o_i_n_t_s_, _i_._r_e_c_t_i_f_y_3_, _i_._t_a_r_g_e_t
+
+AAUUTTHHOORR
+       William R. Enslin, Michigan State University, Center for Remote Sensing
+
+
+       Modified for GRASS 5.0 by:
+
+       Luca Palmeri (palmeri@ux1.unipd.it)
+
+       Bill Hughes
+
+       Pierre de Mouveaux (pmx@audiovu.com)
+       CMD mode by Bob Covill
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_6_/_1_6 _1_5_:_2_9_:_1_8 _$
+
+
+
+GRASS 5.0                                                         i.rectify(1)

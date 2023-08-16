@@ -1,0 +1,92 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      02.01.5.files
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>MAPSET FILES:
+    <P>Two of these files, &quot;DEFAULT_WIND&quot; and &quot;MYNAME&quot;, are special files
+found only under the &quot;PERMANENT&quot; mapset under each &quot;location&quot;.
+    <P>
+  <CENTER>
+    <H2>
+      $GISDBASE
+    </H2>
+  </CENTER>
+  <PRE>                           |
+</PRE>
+
+  <CENTER>
+    <H2>
+      $GISDBASE/$LOCATION_NAME
+    </H2>
+  </CENTER>
+  <PRE>                           |
+</PRE>
+
+  <CENTER>
+    <H2>
+      $GISDBASE/$LOCATION_NAME/$MAPSET
+    </H2>
+  </CENTER>
+  <PRE>                           |
+</PRE>
+  <PRE>     -------------------------------------------------------------&gt;
+</PRE>
+  <PRE>     |              |        |            |            |
+</PRE>
+
+  <CENTER>
+    <H2>
+      DEFAULT_WIND     WIND    MYNAME    SEARCH_PATH    ..........
+    </H2>
+  </CENTER>
+    <P>    <P>The &quot;WIND&quot; file is the user's &quot;current window&quot;, and contains the
+geographic boundaries and data resolution used by GRASS programs.
+The user can alter these settings as he wishes during a GRASS session.
+    <P>The &quot;DEFAULT_WIND&quot; file contains the geographic boundaries and data
+resolution to be used if the user's current mapset does not contain
+a &quot;WIND&quot; file with this information.  This file is stored under the
+PERMANENT &quot;mapset&quot; directory.
+    <P>The file &quot;MYNAME&quot; simply contains the name of the geographic region to
+which maps under the &quot;current location&quot; refer.  For example, this file
+might simply say &quot;Spearfish, SD&quot;.  This file is stored under the
+PERMANENT &quot;mapset&quot; directory.
+    <P>The &quot;SEARCH_PATH&quot; file contains a listing of the &quot;mapsets&quot; whose data
+files the user wishes to use, in the order these &quot;mapset&quot; directories
+are to be accessed.  This allows a user to have non-destructive access
+to other relevant maps for a geographic area without modifying other
+users' original data.  It is possible to prevent others' access to your
+mapset directories.
+    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

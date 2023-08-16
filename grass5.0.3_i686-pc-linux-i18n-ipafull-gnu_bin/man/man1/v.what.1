@@ -1,0 +1,104 @@
+v.what(1)                     Grass User's Manual                    v.what(1)
+
+
+
+NNAAMMEE
+       vv..wwhhaatt  - Query the category contents of a (binary) vector map layer at
+       user-selected locations.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..wwhhaatt
+       vv..wwhhaatt hheellpp
+       vv..wwhhaatt [--11ii] mmaapp==_n_a_m_e [eeaasstt__nnoorrtthh==_e_a_s_t_,_n_o_r_t_h[,_e_a_s_t_,_n_o_r_t_h,...]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._w_h_a_t outputs the category  value(s)  associated  with  user-specified
+       location(s) in a vector map layer.
+
+OOPPTTIIOONNSS
+       If  the  --ii  flag  is  specified,  the program activates the mouse, and
+       expects the user to indicate the location(s) to be queried by  depress-
+       ing  a  mouse  button  over desired location(s) within the current geo-
+       graphic region in the active display frame on the graphic monitor.
+
+
+       If the --ii flag is not used, the program expects eastings and  northings
+       to  be  entered from standard input.  In this case, input is terminated
+       by typing Control-D.
+
+   FFllaaggss::
+       --11     Identify and query just one point location.
+
+       --ii     Query interactively using mouse.
+
+
+   PPaarraammeetteerr::
+       mmaapp==_n_a_m_e
+              Name of an existing binary  vector  map  in  the  user's  mapset
+              search path.
+
+       eeaasstt__nnoorrtthh==
+              One or multiple coordinate pairs for query
+
+
+EEXXAAMMPPLLEE
+       Two sample _v_._w_h_a_t sessions are given below.
+
+
+       Although  it  is not necessary that the user first display a vector map
+       to be queried in the active display frame, it is helpful to have a  map
+       displayed there for reference for interactive queries.
+
+       vv..wwhhaatt --ii mmaapp==_r_o_a_d_s_._2_4_0_0_0
+
+       After  typing  this,  the user moves the mouse to a desired location on
+       the displayed _r_o_a_d_s map layer, and presses the  left  mouse  button  to
+       query the category value of the _r_o_a_d_s vector map at this location.  The
+       program then outputs the category value of a line type corresponding to
+       this  user-selected  map  location,  for  the vector map queried by the
+       user.
+
+
+       The query may be repeated as often as desired using the left mouse but-
+       ton.  The right button on the mouse is used to quit the _v_._w_h_a_t session.
+
+
+       Users can also use this program inside of shell scripts.  For  example,
+       if the file _c_o_o_r_d_s contains three UTM coordinates:
+       599817.37 4922332.96
+       593512.25 4917170.38
+       604979.96 4921655.90
+
+
+       ccaatt ccoooorrddss || vv..wwhhaatt mmaapp==_l_a_n_d_c_o_v_e_r
+
+       will return information about these three locations and then exit.
+
+NNOOTTEESS
+       _v_._w_h_a_t output can be redirected into a file.
+
+
+       _d_._w_h_a_t_._r_a_s_t  can  be  used to interactively query the map category con-
+       tents of multiple raster map layers at user-selected locations.
+
+
+       _v_._w_h_a_t was created from _d_._w_h_a_t_._v_e_c_t so that  non-interactively  queries
+       could  be  made.  Specifying  the  --ii  flag makes _v_._w_h_a_t behave just as
+       _d_._w_h_a_t_._v_e_c_t does.
+
+SSEEEE AALLSSOO
+       _d_._v_e_c_t, _d_._w_h_a_t_._r_a_s_t, _d_._w_h_a_t_._v_e_c_t, _g_._r_e_g_i_o_n, and _p_a_r_s_e_r,
+
+AAUUTTHHOORRSS
+       Jim Hinthorn, Central Washington University, was the original author.
+       Dennis Finch, National Park Service
+       James Darrell McCauley, Agricultural Engineering, Purdue University
+
+       added the non-interactive part and renamed to _v_._w_h_a_t
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                            v.what(1)

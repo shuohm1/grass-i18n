@@ -1,0 +1,87 @@
+g.stats.pg(1)                 Grass User's Manual                g.stats.pg(1)
+
+
+
+NNAAMMEE
+       _g_._s_t_a_t_s_._p_g  - Generate a range of simple statistics for the values in a
+       database column. (GRASS-RDBMS General Interface Program)
+
+SSYYNNOOPPSSIISS
+       gg..ssttaattss..ppgg
+
+       gg..ssttaattss..ppgg hheellpp
+
+       gg..ssttaattss..ppgg [[--vvff]] ttaabbllee_=_n_a_m_e ccoolluummnn_=_n_a_m_e [wwhheerree_=_c_l_a_u_s_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._s_t_a_t_s_._p_g generates a series of simple statistics for a numeric column
+       in  the  specified  table  of the currently selected database. The cur-
+       rently selected database is identified by the GRASS  environment  vari-
+       able  $PG_DBASE  which  is  set  using the command _g_._s_e_l_e_c_t_._p_g. If this
+       environment variable is not set the program terminates with  a  message
+       to the user.  _g_._s_t_a_t_s_._p_g generates statistics for any numeric column in
+       the table specified by the user. To identify the data types  for  indi-
+       vidual  columns  in  a table in the currently selected database use the
+       command _g_._c_o_l_u_m_n_._p_g with the _-_v flag. Statistics generated for the col-
+       umn include count, sum, average, minimum value and maximum value.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ttaabbllee==ddaattaabbaasseettaabblleennaammee
+           Name of table in currently selected database.
+
+       ccoolluummnn==ddaattaabbaasseeccoolluummnnnnaammee
+           Column in [table] which is numeric in type.
+
+           wwhheerree_=ccllaauussee Clause to select only some records from table
+
+
+   FFllaaggss::
+       --vv Verbose output
+
+       --ff Use frequencies instead of min, max, mean
+
+
+       EEXXAAMMPPLLEE
+
+       _g_._s_t_a_t_s_._p_g _t_a_b_l_e_=_u_t_m _c_o_l_u_m_n_=_u_k_f_a_c_t
+
+       Statistics for column: ukfact
+               171
+               sum
+               47.67
+               avg
+               0.28
+               max
+               0.49
+               min
+               0.00
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_,
+       _d_._r_a_s_t_._p_g_,
+       _d_._v_e_c_t_._p_g_,
+       _d_._w_h_a_t_._s_._p_g_,
+       _r_._r_e_c_l_a_s_s_._p_g_,
+       _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original  Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and W.
+       Fredrick
+       Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                        g.stats.pg(1)

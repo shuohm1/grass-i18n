@@ -1,0 +1,244 @@
+r.colors(1)                   Grass User's Manual                  r.colors(1)
+
+
+
+NNAAMMEE
+       _r_._c_o_l_o_r_s  -  Creates/Modifies  the color table associated with a raster
+       map layer.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ccoolloorrss
+
+       rr..ccoolloorrss hheellpp
+
+       rr..ccoolloorrss [--wwqq] mmaapp==_n_a_m_e [ccoolloorr==_t_y_p_e] [rraasstt_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_o_l_o_r_s allows the user to create and/or modify the color table for  a
+       raster  map  layer.  The  map  layer  (specified on the command line by
+       mmaapp==_n_a_m_e) must exist in the user's  current  mapset  search  path.  The
+       color table specified by ccoolloorr==_t_y_p_e must be one of the following:
+            color type    description
+            aspect        (aspect oriented grey colors)
+            grey          (grey scale)
+            grey.eq       (histogram-equalized grey scale)
+            grey.log      (histogram logarithmic transformed grey scale)
+            byg           (blue through yellow to green colors)
+            byr           (blue through yellow to red colors)
+            gyr           (green through yellow to red colors)
+            rainbow       (rainbow color table)
+            ramp          (color ramp)
+            random        (random color table)
+            ryg           (red through yellow to green colors)
+            wave          (color wave)
+            rules          (create  new  color  table  based on user-specified
+       rules)
+
+       If the user specifies the --ww flag, the current color table file for the
+       input  map  will not be overwritten. This means that the color table is
+       created only if the _m_a_p does not already have a color  table.  If  this
+       option  is  not  specified, the color table will be created if one does
+       not exist, or modified if it does.
+
+       If the user sets the --qq flag, _r_._c_o_l_o_r_s will run quietly, Without print-
+       ing numerous messages on its progress to standard output.
+
+       Color  table  types  _a_s_p_e_c_t_,  _g_r_e_y_,  _g_r_e_y_._e_q  (histogram-equalized grey
+       scale), _b_y_g (blue-yellow-green), _b_y_r (blue-yellow-red), _g_y_r (green-yel-
+       low-red),  _r_a_i_n_b_o_w_,  _r_a_m_p_, _r_y_g (red-yellow-green), _r_a_n_d_o_m, and _w_a_v_e are
+       pre-defined color tables that _r_._c_o_l_o_r_s knows how to create without  any
+       further input.
+
+       The  _r_u_l_e_s  color  table  type  will cause _r_._c_o_l_o_r_s to read color table
+       specifications from standard input (stdin) and will build the color ta-
+       ble accordingly.
+
+       Using color table type _r_u_l_e_s, there are three ways to build a color ta-
+       ble: by color list, by category values, and by "percent" values.
+
+       Building a customized color table by color list is the simplest of  the
+       three  rules  methods:  just  list the colors you wish to appear in the
+       color table in the order that you wish them to appear. Use the standard
+       GRASS  color  names:  white,  black, red, green, blue, yellow, magenta,
+       cyan, aqua, grey, gray, orange, brown, purple, violet, and indigo.
+
+       For example, to create a color table for the raster map layer _e_l_e_v_a_t_i_o_n
+       that  assigns  greens  to  low  map category values, browns to the next
+       larger map category values, and yellows to the still larger  map  cate-
+       gory values, one would type:
+
+       rr..ccoolloorrss mmaapp==_e_l_e_v_a_t_i_o_n ccoolloorr==_r_u_l_e_s
+
+       green
+
+       brown
+
+       yellow
+
+       end
+
+       To  build  a  color  table by category values' indices, the user should
+       determine the range of category values in the  raster  map  layer  with
+       which  the color table will be used. Specific category values will then
+       be associated with specific colors. Note that a color does not have  to
+       be assigned for every valid category value because _r_._c_o_l_o_r_s will inter-
+       polate a color ramp to fill in where  color  specification  rules  have
+       been left out. The format of such a specification is as follows:
+
+       ccaatteeggoorryy__vvaalluuee ccoolloorr__nnaammee
+
+       ccaatteeggoorryy__vvaalluuee ccoolloorr__nnaammee
+
+
+
+       ccaatteeggoorryy__vvaalluuee ccoolloorr__nnaammee
+
+       eenndd
+
+       Each  category  value  must be valid for the raster map layer, category
+       values must be in ascending order and only  use  standard  GRASS  color
+       names (see above).
+
+       Colors  can also be specified by color numbers each in the range 0-255.
+       The format of a category value color table  specification  using  color
+       numbers instead of color names is as follows:
+
+       ccaatteeggoorryy__vvaalluuee rreedd__nnuummbbeerr ggrreeeenn__nnuummbbeerr bblluuee__nnuummbbeerr
+
+       ccaatteeggoorryy__vvaalluuee rreedd__nnuummbbeerr ggrreeeenn__nnuummbbeerr bblluuee__nnuummbbeerr
+
+
+
+       ccaatteeggoorryy__vvaalluuee rreedd__nnuummbbeerr ggrreeeenn__nnuummbbeerr bblluuee__nnuummbbeerr
+
+       eenndd
+
+       Specifying  a  color  table  by  "percent" values allows one to treat a
+       color table as if it were numbered from 0 to 100. The format of a "per-
+       cent"  value  color  table  specification is the same as for a category
+       value color specification, except that the category values are replaced
+       by "percent" values, each from 0-100, in ascending order. The format is
+       as follows:
+
+       ppeerrcceenntt__vvaalluuee%% ccoolloorr__nnaammee
+
+       ppeerrcceenntt__vvaalluuee%% ccoolloorr__nnaammee
+
+
+
+       ppeerrcceenntt__vvaalluuee%% ccoolloorr__nnaammee
+
+       eenndd
+
+       Using "percent" value color table specification rules, colors can  also
+       be  specified by color numbers each in the range 0-255. The format of a
+       percent value color table specification using color numbers instead  of
+       color names is as follows:
+
+       ppeerrcceenntt__vvaalluuee%% rreedd__nnuummbbeerr ggrreeeenn__nnuummbbeerr bblluuee__nnuummbbeerr
+
+       ppeerrcceenntt__vvaalluuee%% rreedd__nnuummbbeerr ggrreeeenn__nnuummbbeerr bblluuee__nnuummbbeerr
+
+
+
+       ppeerrcceenntt__vvaalluuee%% rreedd__nnuummbbeerr ggrreeeenn__nnuummbbeerr bblluuee__nnuummbbeerr
+
+       eenndd
+
+       Note  that you can also mix these three methods of color table specifi-
+       cation; for example:
+
+       00 bbllaacckk
+
+       1100%% yyeellllooww
+
+       7788 bblluuee
+
+       mmaaggeennttaa
+
+       ppuurrppllee
+
+       bbrroowwnn
+
+       110000%% 00 225555 223300
+
+       eenndd
+
+       To set the NULL (no data) color, use the "nv" parameter:
+
+       00 bbllaacckk
+
+       1100%% yyeellllooww
+
+       nnvv wwhhiittee
+
+       eenndd
+
+EEXXAAMMPPLLEESS
+              The below example shows how you can specify colors for  a  three
+              category  map, assigning red to category 1, green to category 2,
+              and blue to category 3. Start by using a text editor,  like  _v_i,
+              to  create  the following rules specification file. Save it with
+              the name _r_u_l_e_s_._f_i_l_e.
+
+
+       11 rreedd
+
+       22 ggrreeeenn
+
+       33 bblluuee
+
+       eenndd
+
+       The color table can then by assigned to map  _t_h_r_e_e_c_a_t_s  by  typing  the
+       following  command  at  the  GRASS>  prompt:  ccaatt rruulleess..ffiillee || rr..ccoolloorrss
+       mmaapp==_t_h_r_e_e_c_a_t_s ccoolloorr==_r_u_l_e_s
+
+
+              To create a natural looking LUT for true  map  layer  _e_l_e_v_a_t_i_o_n,
+              use the following rules specification file. It will assign light
+              green shades to the lower elevations (first 20% of the LUT), and
+              then  darker  greens  (next  15%, and next 20%) and light browns
+              (next 20%) for middle elevations, and darker browns  (next  15%)
+              for  higher elevations, and finally yellow for the highest peaks
+              (last 10% of LUT).  0% 0 230 0
+
+              20% 0 160 0
+
+              35% 50 130 0
+
+              55% 120 100 30
+
+              75% 120 130 40
+
+              90% 170 160 50
+
+
+       Option rraasstt allows user to specify a raster map _n_a_m_e from which to copy
+       the color map.
+
+SSEEEE AALLSSOO
+       _d_._c_o_l_o_r_m_o_d_e
+
+       _d_._c_o_l_o_r_s
+
+       _d_._c_o_l_o_r_t_a_b_l_e
+
+       _d_._d_i_s_p_l_a_y
+
+       _d_._l_e_g_e_n_d
+
+       _p_._c_o_l_o_r_s
+
+       _r_._s_u_p_p_o_r_t
+
+AAUUTTHHOORRSS
+       Michael Shapiro and David Johnson
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_4_/_1_8 _0_8_:_5_8_:_2_1 _$
+
+
+
+GRASS 5.0                                                          r.colors(1)

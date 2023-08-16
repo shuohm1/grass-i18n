@@ -1,0 +1,166 @@
+r.neighbors(1)                Grass User's Manual               r.neighbors(1)
+
+
+
+NNAAMMEE
+       rr..nneeiigghhbboorrss   - Makes each cell value a function of the values assigned
+       to the cells around it, and stores new cell values in an output  raster
+       map layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..nneeiigghhbboorrss
+       rr..nneeiigghhbboorrss hheellpp
+       rr..nneeiigghhbboorrss   [--aaqq]   iinnppuutt==_n_a_m_e   oouuttppuutt==_n_a_m_e  mmeetthhoodd==_n_a_m_e  ssiizzee==_v_a_l_u_e
+       [TTIITTLLEE==_"_p_h_r_a_s_e_"]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._n_e_i_g_h_b_o_r_s looks at each cell in a raster input file, and examines the
+       values assigned to the cells in some user-defined "neighborhood" around
+       it.  It outputs a new raster map layer in which each cell is assigned a
+       value  that  is  some  (user-specified)  function of the values in that
+       cell's neighborhood.  For example, each cell in the output layer  might
+       be assigned a value equal to the average of the values appearing in its
+       3 x 3 cell "neighborhood" in the input layer.
+
+
+       The program will be run non-interactively if the user specifies program
+       arguments (see OPTIONS) on the command line.  Alternately, the user can
+       simply type rr..nneeiigghhbboorrss on the command line, without program arguments.
+       In this case, the user will be prompted for flag settings and parameter
+       values.
+
+OOPPTTIIOONNSS
+       The user must specify the names of the raster map layers to be used for
+       _i_n_p_u_t and _o_u_t_p_u_t, the _m_e_t_h_o_d used to analyze neighborhood values (i.e.,
+       the neighborhood function or operation to be performed), and  the  _s_i_z_e
+       of  the  neighborhood.  Optionally, the user can also specify the _T_I_T_L_E
+       to be assigned to the raster map layer _o_u_t_p_u_t, elect to not  align  the
+       resolution  of  the  output with that of the input (the _-_a option), and
+       elect to run _r_._n_e_i_g_h_b_o_r_s quietly (the _-_q option).   These  options  are
+       described further below.
+
+
+       _N_e_i_g_h_b_o_r_h_o_o_d  _O_p_e_r_a_t_i_o_n  _M_e_t_h_o_d_s_:  The _n_e_i_g_h_b_o_r_h_o_o_d operators determine
+       what new value a center cell in a neighborhood will have after  examin-
+       ing  values  inside  its  neighboring cells.  Each cell in a raster map
+       layer becomes the center cell of a  neighborhood  as  the  neighborhood
+       window  moves  from cell to cell throughout the map layer.  _r_._n_e_i_g_h_b_o_r_s
+       can perform the following operations:
+
+
+
+       aavveerraaggee
+              The average value within the  neighborhood.   In  the  following
+              example, the result would be:
+              (7*4 + 6 + 5 + 4*3)/9 = 5.66
+              The result is rounded to the nearest integer (in this case 6).
+
+       mmeeddiiaann The  value  found  half-way through a list of the neighborhood's
+              values, when these are ranged in numerical order.
+
+       mmooddee   The most frequently occurring value in the neighborhood.
+
+       mmiinniimmuumm
+              The minimum value within the neighborhood.
+
+       mmaaxxiimmuumm
+              The maximum value within the neighborhood.
+                     Raw Data     Operation     New Data
+                 ----------------          ----------------
+                 | 7  | 7  |  5 |          |    |    |    |
+                 |----|----|----| average  |----|----|----|
+                 | 4  | 7  |  4 |-------|    |  6 |    |
+                 |----|----|----|          |----|----|----|
+                 | 7  | 6  |  4 |          |    |    |    |
+                 |----|----|----|          |----|----|----|
+
+
+       ssttddddeevv The statistical standard deviation of values within  the  neigh-
+              borhood (rounded to the nearest integer).
+
+       ssuumm    The sum of values within the neighborhood.
+
+       vvaarriiaannccee
+              The  statistical  variance  of  values  within  the neighborhood
+              (rounded to the nearest integer).
+
+       ddiivveerrssiittyy
+              The number of different values within the neighborhood.  In  the
+              above example, the diversity is 4.
+
+       iinntteerrssppeerrssiioonn
+              The  percentage of cells containing values which differ from the
+              values assigned to the center cell in the neighborhood, plus  1.
+              In the above example, the interspersion is:
+              5/8 * 100 + 1 = 63.5
+              The  result is rounded to the nearest integer (in this case 64).
+              ERROR .RE
+
+
+       _N_e_i_g_h_b_o_r_h_o_o_d _S_i_z_e_: The neighborhood size  specifies  which  cells  sur-
+       rounding  any given cell fall into the neighborhood for that cell.  The
+       size must be an odd integer.  Options are:  1, 3, 5, 7, 9, 11, 13,  15,
+       17, 19, 21, 23, and 25.  For example,
+                                     _ _ _
+                                    |_|_|_|
+           3 x 3 neighborhood -  |_|_|_|
+                                    |_|_|_|
+
+
+
+       --aa     If  specified,  _r_._n_e_i_g_h_b_o_r_s will not align the output raster map
+              layer with that of the input raster map layer.  The  _r_._n_e_i_g_h_b_o_r_s
+              program  works  in  the current geographic region.  It is recom-
+              mended, but not required, that the resolution of the  geographic
+              region be the same as that of the raster map layer.  By default,
+              if unspecified, _r_._n_e_i_g_h_b_o_r_s will align these  geographic  region
+              settings.
+
+       --qq     If  specified,  _r_._n_e_i_g_h_b_o_r_s  will  run relatively quietly (i.e.,
+              without printing to  standard  output  notes  on  the  program's
+              progress).   If  unspecified, the program will print messages to
+              standard output by default.
+
+
+NNOOTTEESS
+       The _r_._n_e_i_g_h_b_o_r_s program works in the current geographic region with the
+       current  mask,  if  any.  It is recommended, but not required, that the
+       resolution of the geographic region be the same as that of  the  raster
+       map  layer.  By default, _r_._n_e_i_g_h_b_o_r_s will align these geographic region
+       settings.  However, the user can elect to keep original input and  out-
+       put  resolutions  which are not aligned by specifying this (e.g., using
+       the _-_a option).
+
+
+       _r_._n_e_i_g_h_b_o_r_s copies the GRASS _c_o_l_o_r  files  associated  with  the  input
+       raster  map  layer  for  those  output map layers that are based on the
+       neighborhood average, median,  mode,  minimum,  and  maximum.   Because
+       standard deviation, variance, diversity, and interspersion are indices,
+       rather than direct correspondents to input values, no _c_o_l_o_r  files  are
+       copied  for  these map layers.  (The user should note that although the
+       _c_o_l_o_r file is copied for _a_v_e_r_a_g_ed neighborhood function output, whether
+       or  not  the color file makes sense for the output will be dependent on
+       the input data values.)
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _r_._c_l_u_m_p
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._m_a_s_k
+
+       _r_._m_f_i_l_t_e_r
+
+       _r_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_2_/_0_9 _1_2_:_0_7_:_2_3 _$
+
+
+
+GRASS 5.0                                                       r.neighbors(1)

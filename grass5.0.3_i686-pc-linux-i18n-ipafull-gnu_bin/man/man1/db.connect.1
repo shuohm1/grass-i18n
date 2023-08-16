@@ -1,0 +1,79 @@
+db.connect(1)                 Grass User's Manual                db.connect(1)
+
+
+
+NNAAMMEE
+       ddbb..ccoonnnneecctt - Set up connection to the database through DBMI.
+       _(_G_R_A_S_S _D_B _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ddbb..ccoonnnneecctt
+       ddbb..ccoonnnneecctt hheellpp
+       ddbb..ccoonnnneecctt    [--pp]    [ddrriivveerr==_n_a_m_e]   [ddaattaabbaassee==_n_a_m_e]   [llooccaattiioonn==_n_a_m_e]
+       [uusseerr==_n_a_m_e] [ppaasssswwoorrdd==_n_a_m_e] [kkeeyy==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_b_._c_o_n_n_e_c_t  allows  the  user  to  set  parameters  for  connection  to
+       database.  These parameters are then taken by modules as default values
+       and user do not need enter parameters each time. Values are  stored  in
+       user  file.
+
+OOPPTTIIOONNSS
+       When  invoked  simply  as  ddbb..ccoonnnneecctt, the program prompts the user for
+       parameters. The user can run the program non-interactively,  specifying
+       the  (optional) flag setting and parameters values on the command line.
+       Program flag and parameters are described below.
+
+   FFllaaggss::
+       --pp     Print only current settings.
+
+
+   PPaarraammeetteerrss::
+       ddrriivveerr==_n_a_m_e
+              The name of a DBMI driver. Currently only  the  ooddbbcc  driver  is
+              available.  You can use _d_b_._d_r_i_v_e_r_s to list available drivers.
+
+
+
+       ddaattaabbaassee==_n_a_m_e
+              The  name of a database. You can use _d_b_._d_a_t_a_b_a_s_e_s to list avail-
+              able databases.
+
+
+
+       llooccaattiioonn==_n_a_m_e
+              The location of the database.
+
+
+
+       uusseerr==_n_a_m_e
+              The database user name (login).
+
+
+
+       ppaasssswwoorrdd==_n_a_m_e
+              The database user password. WWaarrnniinngg:: ppaasssswwoorrdd iiss ssaavveedd iinn
+
+
+
+       kkeeyy==_n_a_m_e
+              The key column name. Key column is column corresponding to cate-
+              gories.
+
+
+
+
+EEXXAAMMPPLLEE
+       ddbb..ccoonnnneecctt ddrriivveerr==_o_d_b_c ddaattaabbaassee==_g_t_e_s_t kkeeyy==_i_d
+
+SSEEEE AALLSSOO
+       _d_b_._d_r_i_v_e_r_s _d_b_._d_a_t_a_b_a_s_e_s
+
+AAUUTTHHOORR
+       Radim Blazek
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_0_9 _0_9_:_1_9_:_2_2 _$
+
+
+
+GRASS 5.0                                                        db.connect(1)

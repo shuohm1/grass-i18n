@@ -1,0 +1,156 @@
+htmlmapdriver(1)              Grass User's Manual             htmlmapdriver(1)
+
+
+
+NNAAMMEEHHTTMMLLMMAAPP ddrriivveerr - driver to create HTML image maps
+       _(_d_r_i_v_e_r_s_)
+
+DDEESSCCRRIIPPTTIIOONNTThhee HHTTMMLLMMAAPP ddrriivveerr aalllloowwss tthhee ggeenneerraattiioonn ooff HHTTMMLL iimmaaggee mmaappss
+       for  area  vector  data.  HTML  image maps are used in conjunction with
+       images to provide unique URL  targets  for  different  portions  of  an
+       image. The HTMLMAP driver can create both client-side image maps embed-
+       ded into HTML files, or server-side image maps used by web server soft-
+       ware.
+
+       Note  that  GRASS display commands that require the MOUSE will not work
+       correctly (or at all!)
+
+       Polygons can at most have 100 vertices  (this  limit  imposed  by  HTML
+       image  map  formats,  see  GGRRAASSSS__HHTTMMLLMMAAXXPPOOIINNTTSS  below.) The driver will
+       attempt to trim polygons that have more that 100 vertices  by  removing
+       vertices  with the least amount of angle to the next vertice. Also, any
+       polygon that is entirely bounded by another polygon will be  discarded.
+
+       Text written to the driver before polygons are used as the HREF tag for
+       all subsequent polygons written. All polygons that exist  in  a  vector
+       file will have the same HREF tag.
+
+       The  only  GRASS  display commands that should be used with this driver
+       are:
+
+                     d.text - pass href information for resulting image  maps.
+
+                     d.area - draw polygons from a vector file.
+
+
+
+UUSSAAGGEE
+   EEnnvviirroonnmmeenntt vvaarriiaabblleessSSeevveerraall eennvviirroonnmmeenntt vvaarriiaabblleess eeffffeecctt tthhee ooppeerraattiioonn
+       of HTMLMAP.
+
+                     GGRRAASSSS__WWIIDDTTHH==xxxxxx
+                     the width of the image map (default is 640).
+
+
+                     GGRRAASSSS__HHEEIIGGHHTT==yyyyyy
+                     the height of the image map (default is 480).
+
+
+                     GGRRAASSSS__HHTTMMLLTTYYPPEE==ttyyppee
+                     the type of image mape to create (default is CLIENT):
+                     CCLLIIEENNTT        Netscape/IE    client-side    image    map.
+                     (NAME="map")
+
+                     AAPPAACCHHEE    Apache/NCSA server-side image map.
+
+                     RRAAWW         Raw url and polygon vertices (  _u_r_l   _x_1   _y_1
+                     _x_2  _y_2 _f_o_r_m_a_t _w_i_t_h _u_s_e_r _s_u_p_p_l_i_e_d _c_o_n_v_e_r_s_i_o_n _p_r_o_g_r_a_m_.
+
+
+
+                     GGRRAASSSS__HHTTMMLLFFIILLEE==ffiilleennaammee
+                     specifies the resulting file to store the html image map,
+                     default is hhttmmllmmaapp. Files without absolute path names are
+                     written  in  the  current  directory where the driver was
+                     started.
+
+                     _A_n_y _e_x_i_s_t_i_n_g _f_i_l_e _o_f _t_h_e _s_a_m_e _n_a_m_e _i_s _o_v_e_r_w_r_i_t_t_e_n _w_i_t_h_o_u_t
+                     _w_a_r_n_i_n_g_.
+
+
+                     GGRRAASSSS__HHTTMMLLMMIINNDDIISSTT==nn
+                     specifies  the  minimum  distance  in pixels that a point
+                     must change from the previous point to keep in  the  list
+                     of vertices for a polygon.  The default is 22, which means
+                     that a point's x and y difference from the previous point
+                     must  change  by  a  number  of  pixels greater than this
+                     value.  This parameter helps to eliminate closely  spaced
+                     points.
+
+
+                     GGRRAASSSS__HHTTMMLLMMIINNBBBBOOXX==nn
+                     specifies the minimum bounding box dimensions to record a
+                     polygon as a clickable area.  The  default  is  22,  which
+                     means  that  a  polygon  with a bounding box of less than
+                     this value is not included. This parameter helps to elim-
+                     inate polygons than are a point or line.
+
+
+                     GGRRAASSSS__HHTTMMLLMMAAXXPPOOIINNTTSS==nn
+                     specifies  the  maximum  number of vertices included in a
+                     polygon's clickable  area.   The  default  is  9999.   Some
+                     browsers  can only accomodate polygons of 100 vertices or
+                     less.  The HTMLMAP driver automatically  ensures  that  a
+                     polygon  is  closed  by making the last point the same as
+                     the first
+
+
+
+   TTyyppiiccaall uussaaggee
+              Start up the driver
+                       d.mon start=HTMLMAP d.mon select=HTMLMAP
+
+
+              Display text strings (HREF's) and polygons
+                       echo  "http://www.no-such-place.net/area51/"  |  d.text
+              d.area     map=area51    echo    "http://www.roswell-nm.net/lit-
+              tle/green/men.html" | d.text d.area map=roswell
+
+
+              Stop the driver when all polygon have been displayed. This  will
+              cause  a  file  named  'htmlmap'  to  be created in your current
+              directory.
+                       d.mon stop=HTMLMAP
+
+
+              You will also want to create an image for your  image  map.  Use
+              the  CELL  driver  and  other utilities to create .gif, .jpg, or
+              .png files
+                       #  using  previous  GRASS_WIDTH  &  GRASS_HEIGHT  d.mon
+              start=CELL   d.mon   select=CELL   d.rast   map=terrain   d.area
+              map=area51  fillcolor=white  linecolor=blue  d.area  map=roswell
+              fillcolor=yellow  linecolor=blue  d.vect map=states  color=green
+              d.vect map=roads   color=black d.mon stop=CELL # make the region
+              the  same  as  the  newly  created  cell for ppm export g.region
+              save=saved.reg g.region raster=D_cell r.out.ppm -q  input=D_cell
+              output=alien.ppm  #  use  the  netpbm  utilities to create a gif
+              (quantize if needed) ppmquant 128 alien.gif # assemble some html
+              with  the  image  and  the image map echo '<;img src="alien.gif"
+              usemap="#map">;'        >;alien.html         cat         htmlmap
+              >>alien.html                       echo                       ''
+              >;>;alien.html # don't forget  to  reset  your  region  g.region
+              region=saved.reg  #  take  a  look  and  test  it  out  netscape
+              file:`pwd`/alien.html &
+
+
+
+NNOOTTEESSHHTTMMLLMMAAPP wwaass aaddaapptteedd ffrroomm tthhee CCEELLLL ddrriivveerr iinn GGRRAASSSS 44..33..
+       Point-in-polygon test code was  lifted  from  Randolph  Franklin's  web
+       page, see
+
+       http://www.ecse.rpi.edu/Homepages/wrf/research/geom/pnpoly.html
+
+       If  you create an HTML file with two or more images and image maps, you
+       will need to edit the map names. The HTMLMAP  driver  creates  its  map
+       with  the  name _m_a_p. A small sed script can easily change the map name:
+       sed -e 's/NAME="map"/NAME="foomap"/' foomap.html
+
+
+SSEEEE AALLSSOO_c_e_l_l_d_r_i_v_e_r,
+       _X_D_R_I_V_E_R, _d_._t_e_x_t, _d_._a_r_e_a
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_2_7_:_4_5 _$
+
+
+
+GRASS 5.0                                                     htmlmapdriver(1)

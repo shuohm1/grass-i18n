@@ -1,0 +1,109 @@
+r.in.hdf(1)                   Grass User's Manual                  r.in.hdf(1)
+
+
+
+NNAAMMEE
+       rr..iinn..hhddff - Convert data in HDF format into a (binary) raster map layer.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+GGRRAASSSS VVEERRSSIIOONN
+       4.x
+
+SSYYNNOOPPSSIISS
+       rr..iinn..hhddff
+
+       rr..iinn..hhddff hheellpp
+
+       rr..iinn..hhddff     [--qqaall]     iinnppuutt==_n_a_m_e      [oouuttppuutt==_n_a_m_e]      [mmuulltt==_v_a_l_u_e]
+       [ddsseettss==_v_a_l_u_e_[_,_v_a_l_u_e_,_._._._]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_._h_d_f  allows  a user to create a GRASS raster map layer from a file
+       in NCSA Hierarchical Data Format (HDF).
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --qq     Run quietly.
+
+       --aa     Convert ALL data sets in the HDF file.
+
+       --ll     Only list the contents of the HDF file (no conversion).
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  HDF file to be converted.
+
+       oouuttppuutt Name of new raster file.  Default: hdf.rast
+
+       mmuulltt   Floating point multiplier. (rastfile = (int)(file.hdf  *  multi-
+              plier))
+
+       ddsseettss  A list of reference numbers for datasets to be extracted.
+
+       The  raster file created will have its southwest origin at 0 East and 0
+       North, with resolution of 1.  To view the new GRASS  raster  file,  use
+       _g_._r_e_g_i_o_n _r_a_s_t_=_n_e_w_f_i_l_e, then use _d_._r_a_s_t as normal.  You may wish to man-
+       ually change the new raster's cellhd file.
+
+
+       NCSA HDF is a multi-object file format developed by The National Center
+       for Supercomputing Applications at Champaign, Illinois for the transfer
+       of graphical and floating-point data between machines.  NASA Pathfinder
+       AVHRR  data  is  stored  in  HDF format.  The HDF format defines both a
+       raster type and a SDS (scientific data set) type.  The later  is  basi-
+       cally  a highly structured multi-dimensional array of values.  A single
+       HDF file may contain more than one SDS or raster; using the  _-_a  option
+       will extract all data sets from the HDF file, creating a separate GRASS
+       raster file from each data set and  naming  the  raster  files  output-
+       name01,  outputname02,  outputname03.... If the _-_a option is not speci-
+       fied and the HDF file contains more than one data set, only  the  first
+       data set is extracted unless the user specifies specific reference num-
+       bers for desired data sets in the file using the dsets option.  To  see
+       a  list  of  reference numbers for data sets in an HDF file, use the _-_l
+       flag.  If the HDF file contains labels or  descriptions  of  the  data,
+       these  will  be  shown  when using the _-_l flag. Labels and descriptions
+       from the HDF file will also be written to the GRASS history  file  when
+       creating  the  raster  map.   If  a  multiplier is given using the mult
+       option, every file created will be the product of the  input  data  set
+       and  the  multiplier.  If the HDF file contains an SDS, it must be only
+       two dimensional in order for _r_._i_n_._h_d_f to accept it as  input.   If  the
+       HDF  file  contains an 8-bit raster image with an associated palette, a
+       GRASS color file will be created.  This program will not import  24-bit
+       HDF raster images.
+
+
+       NCSA  distributes  the HDF library and several public domain visualiza-
+       tion applications which use the HDF format.  Some  commercial  applica-
+       tions  also  support HDF.  For more information, use the NCSA anonymous
+       ftp server ftp.ncsa.uiuc.edu or contact:
+
+
+       NCSA
+
+       152 Computing Applications Building
+
+       605 E. Springfield Ave.
+
+       Champaign, IL 61820
+
+       (217) 244-0072
+
+BBUUGGSS
+       If a data set contains long labels and descriptions, some of it may  be
+       truncated  when  writing  to  the GRASS history file. The GRASS history
+       structure currently allows 50 lines of 80 characters  each.   But  when
+       editing  history using r.support, only 20 lines of 65 characters may be
+       used.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+AAUUTTHHOORR
+       Bill Brown, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.in.hdf(1)

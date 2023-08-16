@@ -1,0 +1,583 @@
+v.import(1)                   Grass User's Manual                  v.import(1)
+
+
+
+NNAAMMEE
+       vv..iimmppoorrtt  - SCS user interface to GRASS import programs.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iimmppoorrtt
+       vv..iimmppoorrtt hheellpp
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program  performs all of the processes that are needed to convert
+       ASCII DLG files .  files, ASCII DXF files,  and ASCII vector files into
+       binary  vector files.  It also creates support files, the dig_plus file
+       and the dig_att file (only created when importing DLG.   file  contains
+       topological  information  obtained  by  analyzing the vector file.  The
+       dig_att file contains attribute information  'stripped'  from  the  DLG
+       file.  by the labeling function of the GRASS _v_._d_i_g_i_t program.
+
+       This command must be run interactively.
+
+
+       IIMMPPOORRTT FFIILLEESS
+       After entering the command  v.import, the user will be asked which type
+       of file to import and create support files for:
+       Imports to GRASS Vector Format and Creates Needed Support Files
+          1  -   Ascii DLG file  to GRASS Vector Format
+          2  -   Ascii VECTOR file  to GRASS Vector Format
+          3  -   Binary VECTOR file to GRASS Vector Format
+            3  -   ASCII DIGIT file  to GRASS Vector Format
+            4  -   Binary DIGIT file to GRASS Vector Format
+            5  -   ASCII SCS-GEF file to GRASS Vector Format
+            6  -   ASCII ARC/INFO file to GRASS Vector Format
+            7  -   ASCII DXF file to GRASS Vector Format
+            8  -   ASCII TIGER file to GRASS Vector Format
+
+
+        .     If numbers 1-3 or 5-8 are chosen, _v_._i_m_p_o_r_t will respond with the
+              current  database  units (in feet or meters), and ask if the new
+              vector file is in the correct units for the  database  location.
+              If  the  new  vector  file is not in the correct units, _v_._i_m_p_o_r_t
+              will not allow it to be placed in the current database location.
+              For  each database location, all data layer should have the same
+              units.  If, for some reason, a data layer  has  different  units
+              than  the  rest  of  the data layers in the same database, a new
+              database location will have to be created for it.
+
+
+       AASSCCIIII DDLLGG FFiillee ttoo GGRRAASSSS VVeeccttoorr
+       Converts ASCII DLG files (such as those created in GRASS) to  a  vector
+       file  and  creates the _d_i_g___p_l_u_s and _d_i_g___a_t_t support files.  The user is
+       asked several questions:
+
+
+
+               The name of the DLG data file.
+
+
+       NOTE: It should be available in the $LOCATION/dlg  directory.   If  the
+       DLG  data  has  an  attribute  flat  file,  it should also be in $LOCA-
+       TION/dlg.
+
+
+
+              Determine if this map is composed of Area or Line information.
+
+
+       NOTE: Some machine-processed DLG files  do  not  make  the  distinction
+       between  lines  and area edges.  For example, in a roads map, where the
+       desired information is line data, a downtown block surrounded by  roads
+       may  be  processed  as  an area.  Because of this, the user is asked to
+       choose whether to give precedence to areas or lines.  If precedence  is
+       given  to  lines,  the  user  should be aware that any lines that bound
+       unlabeled areas in the DLG file will be stored as line data.  Any unla-
+       beled  areas would therefore be lost (this is only a concern when areas
+       are unlabeled, labeled area information will be retained).   If  prece-
+       dence  is  given  to areas, lines will be stored as boundaries to areas
+       that are unlabeled.
+
+
+
+              Determine if you want to snap nodes  to  other  nodes  within  a
+              threshold.
+
+
+       NOTE:   BE  CAREFUL!!!  This threshold is calculated using the scale of
+       the original DLG or _v_._d_i_g_i_t file.  If the threshold is too high, exces-
+       sive snapping may occur, destroying the file.  In general, users seldom
+       need to snap nodes.  If snapping of nodes is desired, the user may want
+       to  run  _v_._s_u_p_p_o_r_t  separately.   _v_._s_u_p_p_o_r_t  allows the user to set the
+       snapping threshold.
+
+
+
+              Does the DLG data contain GRASS category codes?
+
+
+       NOTE:  Most non-GRASS computer systems will not be able to provide  the
+       necessary  codes.  The flat attribute file serves this purpose.  If the
+       answer to this question is NO:
+
+
+
+               Enter a SUBJECT MATTER file name.  A subject file will be  used
+              to  assign  GRASS  category codes to the DLG data.  It is struc-
+              tured the same as a _d_i_g___c_a_t_s category  file.   It  is  suggested
+              that  a  SUBJ  directory  be created in the GRASS location and a
+              file containing all DLG attribute text  labels  by  category  be
+              created.   This  will  be required to provide consistency across
+              several maps (quads) within one location.  The user may use  the
+              _v_i text editor or the SCS macro _m_a_k_e___s_u_b_j_e_c_t to create it.
+
+
+
+               Enter an ATTRIBUTE file name.
+
+
+       This  is  the  name  of the flat file which will accompany a DLG from a
+       non-GRASS system.  This file contains all of the DLG area numbers  with
+       a corresponding text label.
+
+
+
+              Is the DLG data from an ARC/INFO system.
+
+
+       ARC/INFO DLG data is handled in a slightly different manner.
+
+
+
+              Does The DLG contain a Universe Polygon.
+
+
+       Some DLG files may or may NOT have this and processing will be required
+       to handle each case differently.
+
+        This process is done in three phases:
+
+
+
+              If the DLG does NOT contain category codes, then a category file
+              from  the attribute file is created.  Then the ASCII dlg file is
+              converted to a binary _d_l_g file.
+
+
+       - OR -
+
+
+       If the DLG does contain category codes, then the ASCII DLG file is con-
+       verted to a binary DLG file.
+
+
+
+              The  binary  _d_l_g  file is converted to a binary vector file, and
+              the _d_i_g___a_t_t support file  containing  attribute  information  is
+              created.
+
+
+
+              The  _d_i_g___p_l_u_s  support  file  is created by analyzing the vector
+              file for topological information.
+
+
+
+
+
+       BBiinnaarryy DDLLGG FFiillee ttoo GGRRAASSSS VVeeccttoorr
+       Converts binary DLG files (which should be in the _b_d_l_g directory) to  a
+       vector  file  and  creates the _d_i_g___p_l_u_s and _d_i_g___a_t_t support files.  The
+       user is asked whether precedence should be given to Areas or Lines  and
+       if  nodes  should be snapped to other nodes within a calculated thresh-
+       old.
+
+
+       This process is done in two phases:
+
+
+
+              The binary DLG (_b_d_l_g) file is converted to a binary vector file,
+              and the _d_i_g___a_t_t support file containing attribute information is
+              created.
+
+
+
+              The _d_i_g___p_l_u_s support file is created  by  analyzing  the  vector
+              file for topological information.
+
+
+
+       AASSCCIIII VVeeccttoorr FFiillee iinnttoo GGRRAASSSS VVeeccttoorr
+       Converts ASCII _v_._d_i_g_i_t files (which are located in _d_i_g___a_s_c_i_i directory)
+       into binary vector files and creates the _d_i_g___p_l_u_s support file.   Since
+       a  vector  file keeps the distinction between lines and area edges, the
+       user is not asked to give precedence to either.  However, the user will
+       be  asked  if the user wants to snap from nodes to other nodes within a
+       calculated threshold.
+
+
+       This process is done in two phases:
+
+
+
+              The ASCII vector file is converted to a binary vector file,  and
+              the _d_i_g___p_l_u_s support file is created.
+
+
+
+              The  _d_i_g___p_l_u_s  support  file  is created by analyzing the vector
+              file for topological information.
+
+
+
+       BBiinnaarryy VVeeccttoorr FFiillee ttoo GGRRAASSSS VVeeccttoorr
+       Creates the _d_i_g___p_l_u_s support file.
+
+
+       This process is done in one phase: The _d_i_g___p_l_u_s support file is created
+       by analyzing the vector file for topological information.
+
+        .  AAccssiiii SSCCSS--GGEEFF FFiillee ttoo GGRRAASSSS VVeeccttoorr
+
+       Creates  the  _d_i_g___p_l_u_s, _d_i_g___a_t_t, and _d_i_g___c_a_t_s support files.  Creates a
+       registration coordinates file.  Allows a user to create a GRASS  vector
+       file from a SCS-GEF format ASCII file.
+
+
+
+              The  program  will first request the name of the SCS-GEF file to
+              be read in, it expects to find the  data  in  the  $LOCATION/gef
+              directory.
+
+
+
+              The program will then request the name of a GRASS vector file.
+
+
+
+              The  program  will  then  request the name of a SUBJECT file.  A
+              subject file will be used to assign GRASS category codes to  the
+              SCS-GEF  data.  It is structured the same as a _d_i_g___c_a_t_s category
+              file.  It is suggested that a SUBJ directory be created  in  the
+              GRASS  location and a file containing all SCS-GEF text labels by
+              category be created.  This will be required to  provide  consis-
+              tency  across  several mapsets (quads) within one location.  The
+              user may use the _v_i text editor or the SCS macro _m_a_k_e___s_u_b_j_e_c_t to
+              create it.
+
+
+
+              The  program  will  then  read  the  SCS-GEF header information,
+              interactively  present  information  that  was  available,   and
+              request additional data of the user.  These questions are :
+                         Name of their organization. (from SCS-GEF)
+                         Digitized Date.             (from SCS-GEF)
+                         Map Name.                   (from SCS-GEF)
+                         Map Location.               (from SCS-GEF)
+                         Other Information.          (from SCS-GEF)
+                         State FIPS code.
+                         County FIPS code.
+                         Present  GEF Coord. System (table, stplane, ll, utm).
+                         Coord. System Desired (utm, stplane, ll, albers).
+
+              The program will then actively read the SCS-GEF  data  file  and
+              process it.
+
+
+       Note: scripts contains SCS macro _m_a_k_e___1___g_e_f.  This macro makes one file
+       out of the three (3) files found in SCS-GEF  (  see  SCS-GEF  technical
+       specifications  for  more  information).  The macro must be run on each
+       data set BEFORE _v_._i_m_p_o_r_t.
+
+
+
+       AASSCCIIII AARRCC//IINNFFOO UUnnggeenneerraattee FFoorrmmaatt FFiilleess ttoo GGRRAASSSS VVeeccttoorr
+       Creates the _d_i_g___p_l_u_s, _d_i_g___a_t_t, and _d_i_g___c_a_t_s support files.
+       The program will prompt you to enter the names of ARC/INFO files to  be
+       imported  to  GRASS.   ARC/INFO  vector files to be imported into GRASS
+       must be exported from ARC/INFO using the ARC/INFO  _U_n_g_e_n_e_r_a_t_e  command.
+       ARC/INFO vector files which are to are to be imported to GRASS, must be
+       either line or polygon coverages.  They must also be placed in a $LOCA-
+       TION/arc  directory.  The section of the ARC/INFO manual that cover the
+       _U_n_g_e_n_e_r_a_t_e command describes how to export line and polygon  coverages.
+
+
+       A polygon coverage is represented by three files:
+
+
+
+              a  lines  file,  which  contains coordiates of all the area edge
+              lines;
+
+
+
+              label-point file, which contains coordintes of label-points each
+              with  a  unique label-point ID number.  There is one label-point
+              for each polygon defined in the lines file; and
+
+
+
+              a label-text file, which associates label-point ID number with a
+              category value and attribute text.
+
+
+       A line coverage is represented by two files:
+
+
+
+              a  lines  file, which contains coordinates of of the lines, each
+              with a line-ID number; and
+
+
+
+              a label-text file, which associates each line-ID number  with  a
+              category value and attribute text.
+
+
+
+       The  program  will start out by asking you which type of coverage is to
+       be imported, as follows:
+
+
+       IIMMPPOORRTTIINNGG AA PPOOLLYYGGOONN CCOOVVEERRAAGGEE
+
+
+       The prompts that will be presented for coverage type "polygon."
+                    COVERAGE TYPE
+                    Enter "polygon" or "line"
+                    Hit RETURN to cancel request
+                    >
+               Answer "polygon"
+
+
+                    NEATLINE
+                    Do you want a neatline ?
+                    Enter "yes" or "no"
+                    >
+               If you answer yes then vectors representing
+            a box around the data will be inserted into
+            the resulting GRASS vector file, otherwise
+            no neatline will be created.
+
+       Next the program will prompt for the name of the lines-file  containing
+       the arc coodinates of the polygons.  The lines-file is created with the
+       _U_n_g_e_n_e_r_a_t_e _L_I_N_E_S option and is the same format as the _m_a_p___n_a_m_e_._p_o_l file
+       created by the program.  The following is the prompt:
+                    LINES FILENAME
+                    Enter name of the file created with the LINES
+                    option of the ARC/INFO Ungenerate command.
+                    Hit RETURN to cancel request
+                    >
+
+       The  next  prompt  for coverage type "polygon" asks for the name of the
+       label-points file.  The label-points files is created with the _U_n_g_e_n_e_r_-
+       _a_t_e  _P_O_I_N_T_S  option and is the same format as the _m_a_p_n_a_m_e_._l_a_b file cre-
+       ated by the _e_x_p_o_r_t_._v_e_c_t ARC program.  The following is the prompt:
+                   LABEL-POINTS FILENAME
+                   Enter name of file created with the POINTS
+                   option of the ARC/INFO Ungenerate command.
+                   Hit RETURN if there is no such file
+                   >
+
+       The last prompt for coverage type "polygon" asks for the  name  of  the
+       label-text  file.  This file associates each label-point ID number with
+       a text string and is the same format as the _m_a_p_n_a_m_e_._t_x_t file created by
+       the _e_x_p_o_r_t_._v_e_c_t ARC program.  The following is the prompt:
+                   LABEL-TEXT FILENAME
+                   Enter the name of a file that associates
+                   label-point ID numbers with text label strings
+                   Hit RETURN if there is no such file
+                   >
+
+       The  program  will  then scan the label-text file to determine how many
+       columns are in the file and to determine which column should be used as
+       the label-point ID number column.
+
+
+       The  program  will  then tell you how many lines and columns are in the
+       label-text file.  Next you will be prompted to enter the number of  the
+       column  to be used for GRASS category values.  The category number col-
+       umn MUST contain only integers.
+                     Enter the number of the column that is to be used
+                     for GRASS category values:
+
+       and the number the column to be used for  GRASS  attribute  text.   The
+       attribute  text column can contain a floating point number, an integer,
+       or a word.
+                     Enter the number of the column that should be used
+                     for GRASS attribute text:
+
+       Once you enter the category and attribute column numbers,  the  program
+       will  begin conversion of the ARC/INFO _U_n_g_e_n_e_r_a_t_e files into GRASS vec-
+       tor format.
+
+
+       IIMMPPOORRTTIINNGG AA LLIINNEE CCOOVVEERRAAGGEE
+
+
+       First, you are prompted for the name of the lines-file  containing  the
+       arc  coordinates  of  the  lines.   The  lines-file is created with the
+       _U_n_g_e_n_e_r_a_t_e _L_I_N_E_S option and is the same format as the _m_a_p_n_a_m_e_._l_i_n  file
+       created by the _e_x_p_o_r_t_._v_e_c_t ARC program.
+                     LINES FILENAME
+                     Enter name of the file created with the lines
+                     option of the ARC/INFO Ungenerate command.
+                     Hit RETURN to cancel request
+                     >
+
+       The  last  prompt  for  coverage  type  "line" asks for the name of the
+       label-text file.  This file associates each line-ID number with a  text
+       string  and  is  the same format as the _m_a_p_n_a_m_e_._t_x_t file created by the
+       _e_x_p_o_r_t_._v_e_c_t ARC program.
+                     LABEL-TEXT FILENAMES
+                     Enter name of file associating line ID numbers
+                     numbers with label text.
+                     Hit RETURN if there is no such file
+                     >
+
+       The program will scan the label-text file to determine how many columns
+       are  in  the  file  and  will then tell you how many columns are in the
+       label-text.  Next you will be prompted to enter the number of the  col-
+       umn to be used for line-ID numbers.
+                     Enter the number of the column that is to be used
+                     for line-ID numbers:
+
+       Next  you will be prompted to enter the number of the column to be used
+       for GRASS category values.  The category  number  column  MUST  contain
+       only integers.
+                     Enter the number of the column that is to be used
+                     for GRASS category values:
+
+       and  the number of the column to be used for GRASS attribute text.  The
+       attribute text column can contain a floating point number, an  integer,
+       or a word.
+                     Enter the number of the column that should be used as
+                     for GRASS attribute text:
+
+       Once  you enter the column numbers the program will begin conversion of
+       the ARC/INFO Ungenerate files into GRASS vector format.
+
+
+       DDAATTAA FFIILLEE FFOORRMMAATTSS
+
+
+       Following are examples of the  data  files  discussed  in  the  section
+       above.
+
+        LINES FILE, also known as _x_x_x_._l_i_n or _x_x_x_._p_o_l file.
+              This  type of file can be created in ARC/INFO by using the _l_i_n_e_s
+              subcommand of the _U_n_g_e_n_e_r_a_t_e command.  Each  line,  or  arc,  is
+              defined  by a line-ID number, followed by a list of at least two
+              easting and northing coordinate pairs, followed by a  line  with
+              the word "END".  The file is terminated with the word "END".
+              The  line-ID number is only important for line coverages.  For a
+              line coverage, the line-ID number is the number that  associates
+              each line with its attribute data.
+                               3
+                                 711916.000000 4651803.000000
+                                 711351.875000 4651786.000000
+                               END
+                                        3
+                                 709562.500000 4651731.000000
+                                 709617.250000 4651624.000000
+                                 709617.250000 4651567.000000
+                                 709585.000000 4651503.000000
+                                 709601.125000 4651470.000000
+                                 709696.875000 4651503.000000
+                                 709720.500000 4651574.000000
+                                 709823.750000 4651575.000000
+                                 709893.125000 4651741.000000
+                               END
+                                        3
+                                 710296.875000 4651491.000000
+                                 710295.125000 4651470.000000
+                                 710223.000000 4651454.000000
+                                 710154.500000 4651463.000000
+                               END
+                               END
+
+
+        LABEL-POINTS FILE, also known as _x_x_x_._l_a_b file.
+              This  type  of  file can be created created in ARC/INFO by using
+              the _P_o_i_n_t_s subcommand of the _U_n_g_e_n_e_r_a_t_e command.  The first num-
+              ber  on  each line is a label-point ID number, the following two
+              are easting northing coordinates for the label-point.
+                               1  711539.875000 4651743.000000
+                               2  711429.000000 4650632.000000
+                               3  711027.625000 4651736.000000
+                               4  711022.625000 4651519.000000
+                               5  710482.750000 4651494.000000
+                               6  710474.500000 4651667.000000
+                               7  709269.750000 4651018.000000
+                               8  709726.500000 4651604.000000
+                               9  708926.375000 4651195.000000
+                               10 708567.500000 4651644.000000
+                               11 708272.750000 4651407.000000
+                               END
+
+
+        LABEL-TEXT FILE, also known as _x_x_x_._t_x_t file.  This type of file
+              can be created in ARC/INFO by using the _D_i_s_p_l_a_y command.
+                        1    -2.30228E+07    19,399.848      1       0       0
+              0
+                        2      81,079.875     1,678.826      2       1      15
+              3
+                        3     955,952.500    10,229.637      3       2      19
+              8
+                        4      41,530.875       926.887      4       3      17
+              3
+                        5      87,900.188     1,900.909      5       4      13
+              3
+                        6     166,125.125     3,512.950      6       5      15
+              3
+                        7      29,460.563       824.968      7       6      17
+              3
+                        8     1022769.875     9,105.707      8       7      20
+              9
+                        9      51,385.500     1,075.638      9       8      17
+              3
+                        10    376,834.875     4,470.027     10       9       9
+              2
+                        11     65,802.688     1,575.088     11      10      16
+              3
+
+
+        NOTES When  importing a polygon coverage, the program finds the label-
+              point ID in a label-text file by looking for the  second  column
+              in  the file that contains a "1" on line 1, and a "2" on line 2.
+              If you are missing a label-points or a label-text file  you  can
+              still import ARC/INFO data (but none of your lines or areas will
+              be labelled).
+
+
+
+       AASSCCIIII DDXXFF FFoorrmmaatt FFiilleess ttoo GGRRAASSSS VVeeccttoorr
+       Creates the _d_i_g___p_l_u_s, _d_i_g___a_t_t, and _d_i_g___c_a_t_s support files.
+
+
+       AASSCCIIII TTIIGGEERR FFoorrmmaatt FFiilleess ttoo GGRRAASSSS VVeeccttoorr
+       This program imports Census line features from TIGER records type1  and
+       type2  into  GRASS vector format.  Both pre-Census and post-Census data
+       formats can be used.  Specific Census Feature Class Codes (CFCC) can be
+       extracted  completely  or  in  various  combinations.   These codes are
+       described in the TIGER/line Census Files 1990  documemtation  available
+       from  the  Bureau of the Census.  An additional feature code consisting
+       of the three letters "BOU" may also be specified to  extract  a  county
+       boundary.   Condensed  Record 1 files may be imported with the -c flag.
+       These files should be identified with a trailing "x" character  on  the
+       filename.
+       The  TIGER  files  must in sorted order before being used.  This can be
+       done by using the following command:
+            sort TGR12113.F21 -o t12113.1
+            sort TGR12113.F22 -o t12113.2
+
+       For consistency the sorted file should be written as above.  It  should
+       consist of a 't' followed by the State and County FIPS code, then a '.'
+       and then a value to identify the record number.
+
+
+SSEEEE AALLSSOO
+       _v_._i_n_._d_l_g_._s_c_s
+
+       _v_._i_n_._d_l_g
+
+       _v_._i_n_._a_s_c_i_i
+
+       _v_._i_n_._a_r_c
+
+       _v_._i_n_._d_x_f
+
+       _v_._i_n_._t_i_g_e_r
+
+AAUUTTHHOORR
+       R.L.Glenn, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                          v.import(1)

@@ -1,0 +1,102 @@
+d.colormode(1)                Grass User's Manual               d.colormode(1)
+
+
+
+NNAAMMEE
+       dd..ccoolloorrmmooddee  -  Allows the user to establish whether a map will be dis-
+       played using its own color table or the fixed color table of the graph-
+       ics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ccoolloorrmmooddee
+       dd..ccoolloorrmmooddee hheellpp
+       dd..ccoolloorrmmooddee mmooddee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._c_o_l_o_r_m_o_d_e  establishes  what color table will be used to display maps
+       to the graphics monitor.
+
+
+
+   PPaarraammeetteerrss::
+       mmooddee==_n_a_m_e
+              Options: _f_i_x_e_d or _f_l_o_a_t
+
+
+
+       Each time a new raster map layer is drawn on the screen, a color  table
+       associated  with  that map is loaded into the graphics display monitor.
+       The command dd..ccoolloorrmmooddee mmooddee==ffiixxeedd requests that  the  monitor's  color
+       look-up table be _f_i_x_e_d (i.e., static).  The effect is that colors drawn
+       on the screen by graphics calls will not change  when  subsequent  maps
+       are  drawn to the screen.  When the _f_i_x_e_d option is used, the colors in
+       the map's color table are mapped to the nearest colors available in the
+       monitor's  fixed color table.  When the _f_l_o_a_t option is used, the map's
+       color table is loaded directly into the monitor's color look-up  table.
+
+
+       There  are  advantages  to using each color display mode. The _d_._d_i_s_p_l_a_y
+       and _d_._c_o_l_o_r_s programs allow the user to interactively modify the  color
+       tables  of  maps  displayed  to  the graphics monitor.  This is done by
+       allowing the user to directly modify the monitor's color look-up table.
+       Hence, to accommodate this option in _d_._c_o_l_o_r_s, the _f_l_o_a_t option is cho-
+       sen.  However, this option has  the  sometimes  undesirable  effect  of
+       changing  the  colors in which other maps are subsequently displayed to
+       the graphics monitor (although it does not actually  change  the  _c_o_l_o_r
+       _t_a_b_l_e_s  of  these  latter maps).  The _f_l_o_a_t colormode is therefore best
+       used when the user wishes to interactively change a map's color  table,
+       or  when  the  user  wishes to display one or more maps having the same
+       color table.  The _f_i_x_e_d option allows any number of  maps  to  be  dis-
+       played to the screen, where each map uses different colors, but all use
+       the same fixed color look-up table.  You cannot toggle  a  map's  color
+       table when running in fixed mode.
+
+
+       This  program  will  be run non-interactively if the user specifies the
+       color _m_o_d_e on the command line (e.g., by typing dd..ccoolloorrmmooddee  mmooddee==ffiixxeedd
+       or  dd..ccoolloorrmmooddee  mmooddee==ffllooaatt).   Alternately,  if  the user simply types
+       dd..ccoolloorrmmooddee on the command line, the program will prompt the  user  for
+       the color mode using the standard GRASS _p_a_r_s_e_r interface.
+
+NNOOTTEESS
+       Some devices support only a fixed color look-up. Whether or not XDRIVER
+       supports float mode depends upon the X display in use; modes with  more
+       than  256  colors  usually only support fixed mode. The number of color
+       categories capable of being displayed is also device-dependent; if your
+       colors fall outside this range when in _f_l_o_a_t mode, they may not be _d_i_s_-
+       _p_l_a_y_e_d in the colors indicated in the map's color table file.  However,
+       the  color  table files themselves will accurately represent the user's
+       changes.
+
+
+       Color table files associated with raster map layers are stored  in  the
+       user's current mapset under the _c_o_l_r and _c_o_l_r_2 directories.
+
+BBUUGGSS
+       It  is  strongly  recommended  that the user erase the graphics monitor
+       screen (e.g., by running _d_._e_r_a_s_e) immediately after changing  the  mode
+       between _f_i_x_e_d and _f_l_o_a_t_.
+
+SSEEEE AALLSSOO
+       _d_._c_o_l_o_r_s_,
+
+       _d_._c_o_l_o_r_t_a_b_l_e_,
+
+       _d_._d_i_s_p_l_a_y_,
+
+       _d_._e_r_a_s_e_,
+
+       _d_._r_a_s_t,
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James  Westervelt,  U.S. Army Construction Engineering Research Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_2 _$
+
+
+
+GRASS 5.0                                                       d.colormode(1)

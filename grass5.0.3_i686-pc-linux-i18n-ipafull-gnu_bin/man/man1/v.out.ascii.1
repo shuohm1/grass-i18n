@@ -1,0 +1,68 @@
+v.out.ascii(1)                Grass User's Manual               v.out.ascii(1)
+
+
+
+NNAAMMEE
+       vv..oouutt..aasscciiii   -  Converts a binary GRASS vector map layer into an ASCII
+       GRASS vector map layer.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..aasscciiii
+       vv..oouutt..aasscciiii hheellpp
+       vv..oouutt..aasscciiii iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._o_u_t_._a_s_c_i_i converts a GRASS vector map in binary  format  to  a  GRASS
+       vector map in ASCII format.
+
+
+       The  program  can  be  run  non-interactively if the user specifies all
+       needed program arguments on the command line, in the  form  vv..oouutt..aasscciiii
+       iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name  of  the  binary GRASS vector input file to be converted to
+              ASCII format.
+
+       oouuttppuutt==_n_a_m_e
+              Name of the ASCII GRASS vector output file.
+
+
+
+       If the user runs _v_._o_u_t_._a_s_c_i_i without giving the names of an  input  and
+       output  file  on the command line, the program will prompt the user for
+       these names.
+
+NNOOTTEESS
+       The GRASS program _v_._i_n_._a_s_c_i_i performs the function  of  _v_._o_u_t_._a_s_c_i_i  in
+       reverse; i.e., it converts vector files in ASCII format to their binary
+       format.  These two companion programs are useful both for importing and
+       exporting vector files between GRASS and other software, and for trans-
+       ferring data between machines.
+
+
+       The output from _v_._o_u_t_._a_s_c_i_i will be placed in the user's current mapset
+       under the _$_L_O_C_A_T_I_O_N_/_d_i_g___a_s_c_i_i directory.
+
+
+       _v_._o_u_t_._a_s_c_i_i  does not copy the _d_i_g___c_a_t_s file associated with the binary
+       vector _i_n_p_u_t map to the new _o_u_t_p_u_t file name.  The user must  copy  the
+       _d_i_g___c_a_t_s  file  to  the new _o_u_t_p_u_t name if this is desired (e.g., using
+       the UNIX _c_p command).
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t_, _v_._i_m_p_o_r_t_, _v_._i_n_._a_s_c_i_i_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORRSS
+       Michael Higgins, U.S. Army Construction Engineering Research Laboratory
+       James  Westervelt,  U.S. Army Construction Engineering Research Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                       v.out.ascii(1)

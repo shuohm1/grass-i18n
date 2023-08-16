@@ -1,0 +1,75 @@
+v.merge(1)                    Grass User's Manual                   v.merge(1)
+
+
+
+NNAAMMEE
+       vv..mmeerrggee  - Merges vector map files.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..mmeerrggee
+       vv..mmeerrggee hheellpp
+       vv..mmeerrggee [ --mmvv] mmaapp==_n_a_m_e[,_n_a_m_e,...]  oouuttppuutt==_n_a_m_e ssuubbjj==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       Program to read the _d_i_g___c_a_t_s file for each named map.  The program then
+       compares the category label (NOT the value) to the labels in the  named
+       subject  file.  If  the  label is found in the subject file, the corre-
+       sponding attribute values of the map are changed to  the  subject  file
+       category  value.  When all maps are completed a patch operation is per-
+       formed.
+       This program was designed to merge maps for areas that  have  the  same
+       category  labels,  but  different category values associated with those
+       labels.
+       There are two flags for _v_._m_e_r_g_e:
+
+
+
+   FFllaaggss::
+       --mm     Use RAM to hold subject  file  category  values.   This  may  be
+              faster  than  the  default (use of disc files);  however, memory
+              may not be large enough for all of the subject file.
+
+       --vv     By default, only the name of the mapset processing  is  sent  to
+              standard  output.  In verbose mode, the user is given additional
+              information on program operations.
+
+
+
+
+   PPaarraammeetteerrss::
+              Vector map--source for composite.
+
+       oouuttppuutt==_n_a_m_e
+              New name assigned to vector composite map.
+
+       ssuubbjj==_n_a_m_e
+              SUBJ file name.
+
+
+NNOOTTEESS
+       The program _v_._m_a_k_e_._s_u_b_j can be run prior to using _v_._m_e_r_g_e.  _v_._m_a_k_e_._s_u_b_j
+       will read the category labels of each map in its list and create a sub-
+       ject file of labels and values.  Users may opt to  create  the  subject
+       file by other means if they wish.
+
+
+       _v_._r_m_e_d_g_e  must be run on any mapsets in the _v_._m_e_r_g_e list prior to issu-
+       ing the _v_._m_e_r_g_e command.  Common edges will need to be removed prior to
+       the _v_._m_e_r_g_e operation.
+
+SSEEEE AALLSSOO
+       _v_._m_a_k_e_._s_u_b_j
+
+       _v_._r_m_e_d_g_e
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.merge(1)

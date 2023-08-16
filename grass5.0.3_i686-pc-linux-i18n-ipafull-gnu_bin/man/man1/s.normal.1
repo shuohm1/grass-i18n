@@ -1,0 +1,95 @@
+s.normal(1)                   Grass User's Manual                  s.normal(1)
+
+
+
+NNAAMMEE
+       ss..nnoorrmmaall - tests for normality for sites.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..nnoorrmmaall
+       ss..nnoorrmmaall hheellpp
+       ss..nnoorrmmaall [--qq] ssiitteess==_n_a_m_e [tteessttss==_r_a_n_g_e[,_r_a_n_g_e,...]]  [[ffiieelldd==_v_a_l_u_e]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._n_o_r_m_a_l computes tests of normality on a site list.
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --qq     Quiet. Cut out the chatter when reading site list.
+
+
+   PPaarraammeetteerrss::
+       ssiitteess==_n_a_m_e
+              Name of sites list.
+
+       tteessttss==_r_a_n_g_e[,_r_a_n_g_e,...]]
+              Tests of normality requested (see below).
+
+       ffiieelldd  Number of z-field attribute to use for calculation default: 1
+
+
+
+NNOOTTEESS
+       The tests that _s_._n_o_r_m_a_l performs are indexed below.  The tests that are
+       performed are specified by giving an index, ranges of indices, or  mul-
+       tiple thereof.
+
+               Sample skewness and kurtosis
+
+               Geary's a-statistic and an approximate normal transformation
+
+               Extreme normal deviates
+
+               D'Agostino's D-statistic
+
+               Modified Kuiper V-statistic
+
+               Modified Watson U^2-statistic
+
+               Durbin's Exact Test (modified Kolmogorov)
+
+               Modified Anderson-Darling statistic
+
+               Modified Cramer-Von Mises W^2-statistic
+
+               Kolmogorov-Smirnov D-statistic (modified for normality testing)
+
+               Chi-Square test statistic (equal probability classes)  and  the
+              number of degrees of freedom
+
+               Shapiro-Wilk W Test
+
+               Weisberg-Binghams W'' (similar to Shapiro-Francia's W')
+
+               Royston's extension of W for large samples
+
+               Kotz Separate-Families Test for Lognormality vs. Normality
+
+
+EEXXAAMMPPLLEE
+       ss..nnoorrmmaall ssiitteess==_s_o_i_l_s tteessttss==_1_-_3_,_1_4
+
+       computes  the  sample skewness and kurtosis, Geary's a-statistic and an
+       approximate normal transformation, extreme normal deviates,  and  Roys-
+       ton's W for the _s_o_i_l_s site list.
+
+SSEEEE AALLSSOO
+       s.univar
+
+BBUUGGSS
+       Please  send  all  bug  fixes  and  comments to the author or the grass
+       development team.
+
+       http://www.geog.uni-hannover.de/grass/
+
+AAUUTTHHOORR
+       James Darrell McCauley ,
+
+       when he was at: Agricultural Engineering Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                          s.normal(1)

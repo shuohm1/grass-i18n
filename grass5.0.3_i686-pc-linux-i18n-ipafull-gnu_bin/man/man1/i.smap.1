@@ -1,0 +1,153 @@
+i.smap(1)                     Grass User's Manual                    i.smap(1)
+
+
+
+NNAAMMEE
+       ii..ssmmaapp   - An imagery function that performs contextual image classifi-
+       cation using sequential maximum a posteriori (SMAP) estimation.
+       _(_G_R_A_S_S _I_m_a_g_e_r_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ssmmaapp
+       ii..ssmmaapp hheellpp
+       ii..ssmmaapp  [--mmqq]  ggrroouupp==_n_a_m_e  ssuubbggrroouupp==_n_a_m_e   ssiiggnnaattuurreeffiillee==_n_a_m_e   [bblloocckk--
+       ssiizzee==_v_a_l_u_e] oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _i_._s_m_a_p  program  is  used  to segment multispectral images using a
+       spectral class model known as a Gaussian mixture  distribution.   Since
+       Gaussian  mixture distributions include conventional multivariate Gaus-
+       sian distributions, this program may also be used to segment multispec-
+       tral images based on simple spectral mean and covariance parameters.
+
+
+       _i_._s_m_a_p  has  two  modes of operation.  The first mode is the sequential
+       maximum a posteriori (SMAP) mode [2].  The SMAP segmentation  algorithm
+       attempts  to improve segmentation accuracy by segmenting the image into
+       regions rather than segmenting each pixel separately (see NOTES).
+
+
+       The second mode is the more conventional maximum likelihood (ML)  clas-
+       sification  which  classifies each pixel separately, but requires some-
+       what less computation. This mode is selected  with  the  --mm  flag  (see
+       below).
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --mm     Use  maximum  likelihood  estimation  (instead of smap).  Normal
+              operation is to use SMAP estimation (see NOTES).
+
+       --qq     Run quietly, without printing messages about  program  progress.
+              Without  this  flag, messages will be printed (to stderr) as the
+              program progresses.
+
+
+   PPaarraammeetteerrss::
+       ggrroouupp==_n_a_m_e
+              imagery group
+
+              The imagery group that defines the image to be classified.
+
+       ssuubbggrroouupp==_n_a_m_e
+              imagery subgroup
+
+              The subgroup within the group specified that specifies the  sub-
+              set  of  the  band files that are to be used as image data to be
+              classified.
+
+       ssiiggnnaattuurreeffiillee==_n_a_m_e
+              imagery signaturefile
+
+              The signature file that contains the spectral signatures  (i.e.,
+              the  statistics)  for the classes to be identified in the image.
+              This signature file is produced by the program _i_._g_e_n_s_i_g_s_e_t  (see
+              NOTES).
+
+       bblloocckkssiizzee==_v_a_l_u_e
+              size of submatrix to process at one time
+
+              default: 128
+
+              This  option  specifies the size of the "window" to be used when
+              reading the image data.
+
+
+       This program was written to be nice about memory usage  without  influ-
+       encing  the  resultant  classification.  This option allows the user to
+       control how much memory is used.   More  memory  may  mean  faster  (or
+       slower)  operation  depending  on how much real memory your machine has
+       and how much virtual memory the program uses.
+
+
+       The size of the submatrix used in segmenting the image has a  principle
+       function  of controlling memory usage; however, it also can have a sub-
+       tle effect on the quality of the segmentation in the  smap  mode.   The
+       smoothing parameters for the smap segmentation are estimated separately
+       for each submatrix.  Therefore, if the image has regions with  qualita-
+       tively  different behavior, (e.g., natural woodlands and man-made agri-
+       cultural fields) it may be useful to use a submatrix  small  enough  so
+       that  different  smoothing  parameters may be used for each distinctive
+       region of the image.
+
+
+       The submatrix size has no effect on the performance of the ML segmenta-
+       tion method.
+
+       oouuttppuutt==_n_a_m_e
+              output raster map.
+
+              The  name  of  a raster map that will contain the classification
+              results.  This new raster map layer will contain categories that
+              can be related to landcover categories on the ground.
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       If none of the arguments are specified on the command line, _i_._s_m_a_p will
+       interactively prompt for the names of the maps and files.
+
+NNOOTTEESS
+       The SMAP algorithm exploits the fact that nearby pixels in an image are
+       likely  to  have  the  same class.  It works by segmenting the image at
+       various scales or resolutions and using the course scale  segmentations
+       to  guide  the  finer scale segmentations.  In addition to reducing the
+       number of misclassifications, the  SMAP  algorithm  generally  produces
+       segmentations  with larger connected regions of a fixed class which may
+       be useful in some applications.
+
+
+       The amount of smoothing that is performed in the segmentation is depen-
+       dent  of  the  behavior of the data in the image.  If the data suggests
+       that the nearby pixels often change  class,  then  the  algorithm  will
+       adaptively  reduce  the  amount of smoothing.  This ensures that exces-
+       sively large regions are not formed.
+
+RREEFFEERREENNCCEESS
+              C. Bouman and  M.  Shapiro,  "Multispectral  Image  Segmentation
+              using  a  Multiscale  Image Model," _P_r_o_c_. _o_f _I_E_E_E _I_n_t_'_l _C_o_n_f_. _o_n
+              _A_c_o_u_s_t_._, _S_p_e_e_c_h _a_n_d _S_i_g_. _P_r_o_c_._, pp. III-565 - III-568, San Fran-
+              cisco, California, March 23-26, 1992.
+
+              C.  Bouman and M. Shapiro 1994, "A Multiscale Random Field Model
+              for Bayesian Image Segmentation,_" _I_E_E_E _T_r_a_n_s_. _o_n _I_m_a_g_e  _P_r_o_c_e_s_s_-
+              _i_n_g_._, _3_(_2_)_, _1_6_2_-_1_7_7_"
+
+              McCauley, J.D. and B.A. Engel 1995, "Comparison of Scene Segmen-
+              tations: SMAP, ECHO and Maximum Likelyhood,_" _I_E_E_E _T_r_a_n_s_. _o_n _G_e_o_-
+              _s_c_i_e_n_c_e _a_n_d _R_e_m_o_t_e _S_e_n_s_i_n_g_, _3_3_(_6_)_: _1_3_1_3_-_1_3_1_6_.
+
+
+SSEEEE AALLSSOO
+       _i_._g_r_o_u_p for creating groups and subgroups
+
+
+       _i_._g_e_n_s_i_g_s_e_t to generate the signature file required by this program
+
+AAUUTTHHOORRSS
+       Charles Bouman, School of Electrical Engineering, Purdue University
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                            i.smap(1)

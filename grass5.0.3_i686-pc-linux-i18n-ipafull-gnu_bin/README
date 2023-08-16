@@ -1,0 +1,43 @@
+GRASS Development Team
+c/o Markus Neteler
+ITC-irst
+SSI/MPA
+Via Sommarive, 18
+38050 Povo (Trento)
+Italy
+
+The University of Illinois GMS Lab
+220 Davenport Hall, 
+607 South Matthews, 
+Urbana, IL 61801
+
+General Email:         weblist@grass.itc.it
+
+Contributions to GRASS 5: weblist@grass.itc.it,grass5@grass.itc.it
+
+Internet:  http://grass.itc.it
+           http://grass.ibiblio.org
+           http://www3.baylor.edu/grass/ (partially outdated)
+
+GRASS Development Team 2003
+
+-------------------------------------------------------
+GRASS Installation:
+
+Please see the INSTALL file for installation
+instructions.
+
+-------------------------------------------------------
+GRASS 5 Programmer's Manual:
+
+http://grass.itc.it/grassdevel.html
+
+Or LaTeX sources from CVS server
+(http://grass.itc.it/grasscvs.html)
+
+cvs -z3 co progmangrass50
+
+Please see the SUBMITTING file for instructions on
+submitting code to the GRASS code base
+
+-------------------------------------------------------

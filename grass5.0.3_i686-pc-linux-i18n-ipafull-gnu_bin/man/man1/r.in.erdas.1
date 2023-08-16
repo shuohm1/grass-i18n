@@ -1,0 +1,58 @@
+r.in.erdas(1)                 Grass User's Manual                r.in.erdas(1)
+
+
+
+NNAAMMEE
+       rr..iinn..eerrddaass   -  Creates  raster files from ERDAS files.  It creates one
+       raster file for each band,  and  creates  color  support  if  an  ERDAS
+       trailer file is specified.
+       _"_(_S_C_S _G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..eerrddaass
+       rr..iinn..eerrddaass hheellpp
+       rr..iinn..eerrddaass eerrddaass==_n_a_m_e [ttrrll==_n_a_m_e] pprreeffiixx==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       This command prompts the user twice:
+
+
+       First  the  user  is asked if he wishes to select a subset of the bands
+       available in the ERDAS file for output.  If unspecified  by  the  user,
+       all bands are used, by default.
+
+
+       Second,  the  user  is  asked if he wishes to select a subregion of the
+       image available in the ERDAS file.  If unspecified  by  the  user,  the
+       complete image is used, by default.
+
+
+
+       Note:  GRASS raster files will be named _p_r_e_f_i_x_._b_a_n_d Remember that it is
+       necessary to run: _r_._s_u_p_p_o_r_t: to create  the  histogram  or  change  the
+       color  table.   _i_._g_r_o_u_p: to associate the individual raster files as an
+       image group.
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       eerrddaass==_n_a_m_e
+              Input ERDAS file name.
+
+       ttrrll==_n_a_m_e
+              Input ERDAS trailer file name.
+
+       pprreeffiixx==_n_a_m_e
+              Prefix of the GRASS raster files to be created.
+
+
+AAUUTTHHOORR
+       M.L. Holko, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.in.erdas(1)

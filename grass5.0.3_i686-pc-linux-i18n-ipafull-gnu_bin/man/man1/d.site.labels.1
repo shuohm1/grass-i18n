@@ -1,0 +1,135 @@
+d.site.labels(1)              Grass User's Manual             d.site.labels(1)
+
+
+
+NNAAMMEE
+       dd..ssiittee..llaabbeellss  -  Interactively  label  sites  using a string or double
+       attribute value or the category value on the current graphics  monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ssiittee..llaabbeellss
+
+       dd..ssiittee..llaabbeellss    --mm    ffiillee==_n_a_m_e    [aattttrr==string|cat|double|coords|dim]
+       [iinnddeexx==_n_u_m_b_e_r]    [xxrreeff==left|center|right]     [yyrreeff==top|center|bottom]
+       [ssiizzee==_n_u_m_b_e_r]  [ccoolloorr==_c_o_l_o_r_n_a_m_e]  [bbaacckkggrr==_c_o_l_o_r_n_a_m_e] [bboorrddeerr==_c_o_l_o_r_n_a_m_e]
+       [ffoonntt==_f_o_n_t_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._s_i_t_e_._l_a_b_e_l_s performs interactive placement  of  labels  for  a  GRASS
+       _s_i_t_e___l_i_s_t_s  on the current graphics monitor.  Labels can be chosen from
+       the category value, a double attribute or a string attribute, the coor-
+       dinates,  or a dimension.  The default uses the first string attribute.
+       The _i_n_d_e_x is a number greater than zero for the attribute to use  as  a
+       label.   The  user  may  select  the  position, color and sizing of the
+       labels.  Labels are only drawn within the current region.
+
+
+       This program can be run non-interactively  or  interactively.   If  the
+       user  gives  the  name of a GRASS _s_i_t_e___l_i_s_t_s and (optionally) any other
+       parameters, the command will be run non-interactively.   Any  parameter
+       left unspecified will be set to its default value (see below). Alterna-
+       tively, the user can type _d_._s_i_t_e_._l_a_b_e_l_s at  the  command  line  and  be
+       prompted  for  the  parameter  values  using  the standard GRASS _p_a_r_s_e_r
+       interface.
+
+   PPaarraammeetteerrss::
+       --mm     Use the mouse to place labels interactively. If the user chooses
+              no, this program behaves similarly to d.sites.label.
+
+              Default: _N_o
+
+       ffiillee==_n_a_m_e
+              Name  of  a  GRASS  _s_i_t_e___l_i_s_t_s  map in the user's current mapset
+              search path.
+
+       aattttrr==string|cat|double|coords|dim
+              Type of attribute to use for the label.
+
+              Default: _s_t_r_i_n_g
+
+       iinnddeexx==_n_u_m_b_e_r
+              Index number to the attribute. For  instance,  _3  would  request
+              values  from  the third attribute column. This option is ignored
+              if the _a_t_t_r option is set to _c_a_t or _c_o_o_r_d_s.
+
+              Default: _1
+
+       xxrreeff==left|center|right
+              Horizontal label placement in relation to the site point.
+
+              Default: _c_e_n_t_e_r
+
+       yyrreeff==top|center|bottom
+              Vertical label placement in relation to the site point.
+
+
+       ssiizzee==_n_u_m_b_e_r
+              The size of letters in pixels.
+
+              Default: _1_0
+
+       ccoolloorr==_c_o_l_o_r_n_a_m_e
+              The GRASS _c_o_l_o_r_n_a_m_e to use for the label text.
+
+              Options: red,  orange,  yellow,  green,  blue,  indigo,  violet,
+              magenta, brown, gray, white or black
+
+              Default: _w_h_i_t_e
+
+       bbaacckkggrr==_c_o_l_o_r_n_a_m_e
+              Color to use for text box background.
+
+              Options: grey, red, white, magenta, brown, blue, indigo, yellow,
+              black, orange, green, violet, none
+
+              Default: none
+
+       bboorrddeerr==_c_o_l_o_r_n_a_m_e
+              Color to use for text box border.
+
+              Options: grey, red, white, magenta, brown, blue, indigo, yellow,
+              black, orange, green, violet, none
+
+              Default: none
+
+       ffoonntt==_f_o_n_t_n_a_m_e
+              The GRASS _f_o_n_t_n_a_m_e to use for the label.
+
+              Options:  cyrilc,  gothgbt,  gothgrt,  gothitt, greekc, greekcs,
+              greekp, greeks, italicc,  italiccs,  italict,  romanc,  romancs,
+              romand, romans, romant, scriptc or scripts
+
+              Default: _r_o_m_a_n_s
+
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._i_c_o_n_s
+
+       _d_._s_i_t_e_s
+
+       _d_._s_i_t_e_s_._l_a_b_e_l
+
+       _d_._p_o_i_n_t_s
+
+       _d_._r_a_s_t
+
+       _d_._v_e_c_t
+
+       _g_._r_e_g_i_o_n
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Eric G. Miller, _U_n_k_n_o_w_n _o_t_h_e_r_s
+
+
+       _$_I_d_: _d_._s_i_t_e_._l_a_b_e_l_s_._h_t_m_l_,_v _1_._6_._2_._1 _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_2 _m_a_r_k_u_s _E_x_p _$
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_2 _$
+
+
+
+GRASS 5.0                                                     d.site.labels(1)

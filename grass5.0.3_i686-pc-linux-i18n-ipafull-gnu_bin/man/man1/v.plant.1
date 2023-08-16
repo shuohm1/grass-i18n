@@ -1,0 +1,121 @@
+v.plant(1)                    Grass User's Manual                   v.plant(1)
+
+
+
+NNAAMMEE
+       vv..ppllaanntt  -  module to insert intermediate points on GRASS vector lines.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ppllaanntt
+       vv..ppllaanntt hheellpp
+       vv..ppllaanntt mmaapp==_n_a_m_e
+
+
+       v.plant is an interactive program.
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       This report describes the use and operation  of  the  program  _v_._p_l_a_n_t,
+       used  with  the GRASS GIS system.  The report contains (i) a discussion
+       of the problem which motivated the development of the program,  (ii)  a
+       description  of  the  method used, (iii) the manual page describing the
+       usage of the program,  (iv) a listing of the source-code.
+
+IInnttrroodduuccttiioonn
+       _M_a_p _p_r_o_j_e_c_t_i_o_n_s
+
+       Projections are representations of information defined on  curved  sur-
+       faces  (usually  spheroids)  in two-dimensional space.  This allows the
+       description of the location information in  cartesian  or  other  plane
+       coordinate  systems.   Particular  projections  are  defined by precise
+       mathematical relations, which allows conversion of  maps  from  between
+       projections  to  be  achieved using straightforward mathematical opera-
+       tions [1].
+
+       _P_r_o_j_e_c_t_i_n_g _l_i_n_e _s_e_g_m_e_n_t_s
+
+       When converted from  one  map  projection  to  another,  straight-lines
+       become  curves.   Thus,  a  line segment which can be described by four
+       parameters only (eg the coordinates of the end points) in  one  projec-
+       tion  becomes  an arc which needs more parameters in other projections.
+       In GIS systems which describe arcs as a sequence of line segments, this
+       means  that  intermediate  points  between  the ends of the segment are
+       used.  The easiest method of projecting a line accurately is to include
+       intermediate  points  in  the  description in the source projection, so
+       that all these points are included in the target map.
+
+       _C_o_n_t_e_x_t _w_i_t_h_i_n _t_h_e _G_R_A_S_S _G_I_S
+
+       Vector maps (lines and arcs) in the GRASS GIS are represented by a rel-
+       atively  straightforward format.  This is exemplified in the ascii ver-
+       sion of vector files, as produced by _v_._o_u_t_._a_s_c_i_i [2] and  described  in
+       the  programmer's manual [3].  Individual vector segments are described
+       by a sequence of coordinate pairs, with the number of coordinated pairs
+       for  the segment recorded in a brief header for each segment.  The pro-
+       gram _v_._p_r_u_n_e [4] is provided to  remove  points  which  are  considered
+       redundant  through  being too close together within a segment.  _v_._p_l_a_n_t
+       has been designed as the complement of this, to insert extra points  at
+       a specified spacing along straight-line segments.
+
+        DDeessiiggnn ooff vv..ppllaanntt
+
+       _v_._p_l_a_n_t  has been implemented as a Bourne shell script.  The basic pro-
+       cedure is as follows:
+
+       1.  Write out the existing map in the _d_i_g___a_s_c_i_i format;
+
+       2.  Use an included _a_w_k script to process each vector segment in  turn,
+       moving  from  point  to point along the segment.  If a span between two
+       adjacent points is greater than the specified threshold (in map  units)
+       extra points are inserted collinearly.
+
+       3.   The modified _d_i_g___a_s_c_i_i file is re-imported, overwriting the origi-
+       nal file.
+
+       Because the original _d_i_g file is overwritten, all the support files are
+       preserved.   Since the vector segments remain in the same sequence, and
+       all the original points remain in the modified map, including the  end-
+       points of each segment, all topology, attributes, etc are maintained.
+
+       The  usage is exemplified in the attached manual page.  The source code
+       is also attached, which may be examined for a detailed understanding of
+       the method.
+
+TTOODDOO
+       A command-line version of _v_._p_l_a_n_t would be highly desirable.
+
+SSEEEE AALLSSOO
+       _v_._p_r_u_n_e _v_._s_u_p_p_o_r_t
+
+RReeffeerreenncceess
+       [1]  Evenden,  G.I.   (1990) Cartographic projection procedures for the
+       UNIX environment - a user's manual.  USGS Open-File Report 90-284 (Also
+       see  Interim Report and 2nd Interim Report on Release 4, Evenden 1994).
+
+       [2]  Higgins, M. & Westervelt, J.   v.out.ascii  -  Converts  a  binary
+       GRASS vector map layer into an ASCII GRASS vector map layer.  GRASS 4.1
+       documentation (main section).
+
+       [3]  Shapiro, M., Westervelt, J, Gerdes, D., Larson,  M.  &  Brownfeld,
+       K.R.  (1993) GRASS 4.1 programmer's manual.  US Army Construction Engi-
+       neering Research Laboratory.
+
+       [4]  Gerdes D.,  v.prune - Prunes points from binary GRASS vector  data
+       files.  GRASS 4.1 documentation (main section).
+
+
+       Copyright (C) 1997 AGCRC & CSIRO
+
+       CSIRO Exploration & Mining Report 239F, March 1996.
+
+       S.J.D. Cox
+
+       _A_G_C_R_C_, _C_S_I_R_O _E_x_p_l_o_r_a_t_i_o_n _& _M_i_n_i_n_g_, _N_e_d_l_a_n_d_s_, _W_A
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.plant(1)

@@ -1,0 +1,59 @@
+s.delaunay(1)                 Grass User's Manual                s.delaunay(1)
+
+
+
+NNAAMMEE
+       ss..ddeellaauunnaayy  -  Module  to create a vector delaunay triangulation from a
+       sites file.
+
+SSYYNNOOPPSSIISS
+       ss..ddeellaauunnaayy [[--aaqqll]] ssiitteess_=_n_a_m_e vveecctt_=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._d_e_l_a_u_n_a_y uses an existing sites list (sitesname) to do Delaunay  tri-
+       angulation, putting the results in a binary vector file (vectname).
+
+   FFllaagg::
+       --aa     Use all sites (do not limit to current region)
+
+       --qq     Quiet
+
+       --ll     Output triangulation as a graph, not areas
+
+
+   PPaarraammeetteerrss::
+       ssiitteess  Sites file to process
+
+       vveecctt   Vector map layer to contain delaunay triangulation.
+
+       s.delaunay  can be run either non-interactively or interactively.   The
+       program will be run non-interactively if the user specifies the name of
+       an existing site list file and a name for a vect file, using the form
+
+
+                     s.delaunay [-aql] sitesname vectname
+
+       where  sitesname is the name of an existing site list file and vectname
+       is the name of vector output file.  Alternately, the  user  can  simply
+       type  _s_._d_e_l_a_u_n_a_y   on  the command line, without program arguments.  In
+       this case, the user will be prompted for  parameter  values  using  the
+       standard  GRASS  parser  interface  described  in  the manual entry for
+       parser.  In either case, v.support should be run on the output.
+
+RREEFFEERREENNCCEE
+       Steve  J.  Fortune,  (1987).   A  Sweepline  Algorithm for Voronoi Dia-
+       grams, Algorithmica 2, 153-174.
+
+SSEEEE AALLSSOO
+        _v_._a_u_t_o_c_o_r_r_, _v_._s_p_a_g_, _v_._s_u_p_p_o_r_t_, _s_._h_u_l_l_, _s_._v_o_r_o_n_o_i_, _s_._s_w_e_e_p
+
+AAUUTTHHOORR
+       James Darrell McCauley,
+
+       GRASS 5 update, improvements: Andrea Aime, Modena, Italy
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                        s.delaunay(1)

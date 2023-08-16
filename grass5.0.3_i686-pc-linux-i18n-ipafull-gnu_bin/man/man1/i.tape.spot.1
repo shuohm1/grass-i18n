@@ -1,0 +1,204 @@
+i.tape.spot(1)                Grass User's Manual               i.tape.spot(1)
+
+
+
+NNAAMMEE
+       ii..ttaappee..ssppoott   -  An  imagery  function  that extracts SPOT imagery from
+       half-inch tape.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ttaappee..ssppoott
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._t_a_p_e_._s_p_o_t is a program that extracts SPOT imagery from 9-track, half-
+       inch tape.
+
+
+       This program must be run in a LOCATION_NAME with an x,y coordinate sys-
+       tem (i.e., a coordinate system with projection 0).  For further  infor-
+       mation  regarding  this  LOCATION_NAME type refer to the _i_m_a_g_e_r_y manual
+       entry.
+
+
+       The first prompt in _i_._t_a_p_e_._s_p_o_t asks the user for the tape device name.
+       Enter tape device name:
+
+       This  is sometimes  /dev/rmt0 (for a half-inch tape having a density of
+       1600 bpi), but this varies with each machine.
+
+
+       The next prompt is:
+
+
+       Mount SPOT tape and  hit RETURN
+
+
+IIMMAAGGEE IIDDEENNTTIIFFIICCAATTIIOONN MMEENNUU
+       The first menu in the program asks the user for information  about  the
+       data.
+             Please enter the following information
+
+       TAPE IDENTIFICATION:                             __
+
+       IMAGE DESCRIPTION:                               __
+
+       TITLE FOR THE EXTRACTED CELL (RASTER) FILES:     __
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+       This program automatically reads the satellite name, tape product code,
+       instrument name, interleaving indicator, spectral  mode,  preprocessing
+       level  and  work  order  number into the field for TAPE IDENTIFICATION.
+       The mission, path, row, scene shift, scene center date and time, orien-
+       tation,  incidence,  azimuth, elevation angle, and absolute calibration
+       coefficients and offsets are automatically entered into the  field  for
+       IMAGE  DESCRIPTION.   User  can type in any other messages into the two
+       sections and a description as the TITLE of raster map layer.  The  sec-
+       ond menu is:
+                       SPOT IMAGE EXTRACT
+           Please select region of the image to extract
+
+                    start row: 0______(1-3002)
+                      end row: 0______(1-3002)
+
+                    start col: 0______(1-3166)
+                      end col: 0______(1-3166)
+
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+       The  numbers in parentheses are the total number of rows and columns on
+       the tape including zeros (filler).   This  information  and  additional
+       information can also be obtained by running the program _m_._e_x_a_m_i_n_e_._t_a_p_e.
+       _m_._e_x_a_m_i_n_e_._t_a_p_e will read any tape and provide the user with the  number
+       of  files  on  a  tape, the number of records on a tape, and the record
+       lengths.  Any subset of the image on the tape may be extracted.  For  a
+       discussion of row and column extraction see the subheading enTITLEd ROW
+       AND COLUMN EXTRACTION below.
+
+
+       The next menu is:
+         Please mark an x by the bands you want extracted
+
+                             _____ 1
+                             _____ 2
+                             _____ 3
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+       SPOT imagery has three bands, but the user may want to extract a subset
+       of these bands.  See the subheading in this entry enTITLEd ROW AND COL-
+       UMN EXTRACTION.
+
+
+       The user then is asked to enter the prefix/group name  for  the  raster
+       band  files  to  be  created.   This  name  will precede each band file
+       extracted into GRASS.  For example, if two bands are extracted the fol-
+       lowing two band files will result:
+
+
+       _p_r_e_f_i_x_n_a_m_e_._1
+       _p_r_e_f_i_x_n_a_m_e_._2
+
+
+       The  specified  _p_r_e_f_i_x_n_a_m_e  will also automatically become the name for
+       the imagery group file being created.  Each image or subset (i.e., each
+       run of _i_._t_a_p_e_._s_p_o_t) should be given a unique prefix/group name.
+
+
+
+       The  extraction  process will begin by first skipping a number of files
+       which are not data or  not  requested,  advancing  to  the  first  band
+       requested,  forwarding  to  the  requested column, and then reading the
+       data.  After extracting the requested rows and columns from each  band,
+       the  program  creates support files for the raster band map layer.  The
+       percent completion of  the  extraction  is  displayed  on  the  screen.
+       Because  sometimes SPOT imagery is very large and is stored in multiple
+       tape sets, the program is designed to read image by  pausing  when  the
+       tape  need  to  be  changed  and inform the user to mount and load next
+       tape.  The number of tapes required to store one scene depends  on  the
+       number of bytes per inch (bpi) in which the data are stored.
+
+
+       The  extracted band files will be listed as raster map layers available
+       in the current MAPSET and may be displayed  using  the  GRASS  commands
+       _d_._d_i_s_p_l_a_y, _d_._r_a_s_t, or _i_._p_o_i_n_t_s.
+
+RROOWW AANNDD CCOOLLUUMMNN EEXXTTRRAACCTTIIOONN
+       The  display options in GRASS allow the user to locate rows and columns
+       on the digital image.  If enough disk space is available, one  band  of
+       an  entire  image or one band of a portion of an image known to contain
+       the area of interest, can be extracted and displayed.  The _m_e_a_s_u_r_e_m_e_n_t_s
+       option  in  _d_._d_i_s_p_l_a_y, or _d_._w_h_e_r_e (following use of _d_._r_a_s_t) will echo x
+       and y coordinates to the screen.  (These coordinates will display nega-
+       tive  numbers  in  the north-south direction, but ignoring the negative
+       sign will yield the row number.)  See the _i_m_a_g_e_r_y manual entry for fur-
+       ther explanation.
+
+
+       Each  scene  of a SPOT image contains filler on both the left and right
+       sides of the quad.  The user may want to identify the  row  and  column
+       numbers  in order to exclude the filler.  This filler will otherwise be
+       extracted with the image and take up unnecessary disk space.
+
+
+       If a photograph of the digital image is available, the rows and columns
+       to  be  extracted  can be determined from it by associating inches with
+       the total number of known rows and columns in the scene.  For  example,
+       if the total length of the photograph is 12 inches, the total number of
+       rows on the tape is 2000, and the  northwest  corner  of  the  area  of
+       interest  begins  2  inches from the top of the photo, then: 12" / 2000
+       rows = 2" / x rows x = 333.333
+
+       The northwest corner of the area of interest starts at  row  333.   The
+       starting  row,  ending  row,  starting column, and ending column can be
+       calculated in this manner.
+
+NNOOTTEESS
+       After extracting an image from tape the geographic region definition in
+       the  x,y  coordinate LOCATION_NAME will be set based upon the extracted
+       rows and columns from the tape.  The  relationship  between  the  image
+       rows  and  columns and the coordinates of the geographic region is dis-
+       cussed in the _i_m_a_g_e_r_y format manual entry.
+
+
+       This program is interactive and requires no command line arguments.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o _c_e_s_s_i_n_g
+
+
+       _d_._d_i_s_p_l_a_y
+
+       _d_._r_a_s_t
+
+       _d_._w_h_e_r_e
+
+       _i_._g_r_o_u_p
+
+       _i_._p_o_i_n_t_s
+
+       _i_._t_a_p_e_._m_s_s
+
+       _i_._t_a_p_e_._m_s_s_._h
+
+       _i_._t_a_p_e_._o_t_h_e_r
+
+       _i_._t_a_p_e_._t_m
+
+       _i_m_a_g_e_r_y
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+AAUUTTHHOORR
+       Tao Wen, University of Illinois at Urbana-Champaign
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       i.tape.spot(1)

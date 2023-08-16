@@ -1,0 +1,42 @@
+r3.mask(1)                    Grass User's Manual                   r3.mask(1)
+
+
+
+NNAAMMEE
+       rr33..mmaasskk  - Creates a new 3D-mask file.
+       _(_G_R_A_S_S _3_D _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr33..mmaasskk
+
+       rr33..mmaasskk [[mmaasskkvvaalluueess==_v_a_l_[_-_v_a_l_]_[_,_v_a_l_[_-_v_a_l_]_,_._._._]]]  ggrriidd33dd == _g_3_d_-_m_a_p
+
+DDEESSCCRRIIPPTTIIOONN
+       File  _m_a_p  is  used as reference file.  Cells in the mask are marked as
+       "mask out" if the corresponding cell in _m_a_p contains  a  value  in  the
+       range specified with _m_a_s_k_v_a_l_u_e_s.
+
+
+       Before a new 3d-mask can be created the exisitng mask has to be removed
+       with _g_._r_e_m_o_v_e.
+
+   PPaarraammeetteerrss::
+       mmaasskkvvaalluueess
+              Values specified to be masked out
+
+       ggrriidd33dd Name of G3D-map that is used as the mask reference
+
+
+SSEEEE AALLSSOO
+       _r_._m_a_s_k
+
+
+AAUUTTHHOORRSS
+       Roman Waupotitsch, Michael Shapiro, Helena Mitasova, Bill Brown,  Lubos
+       Mitas, Jaro Hofierka
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           r3.mask(1)

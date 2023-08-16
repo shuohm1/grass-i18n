@@ -1,0 +1,74 @@
+v.spag(1)                     Grass User's Manual                    v.spag(1)
+
+
+
+NNAAMMEE
+       vv..ssppaagg  - Process spaghetti-digitized binary vector file.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ssppaagg
+       vv..ssppaagg hheellpp
+       vv..ssppaagg [--iisspp] mmaapp==_n_a_m_e [tthhrreesshhoolldd==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program  will  fix vector data that were not digitized in correct
+       GRASS vector format.  It will create a node at every line crossing, and
+       will delete all hanging lines of length less than the specified thresh-
+       old.
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --ii     Only do identical line removal pass.
+
+       --ss     Snap nodes.
+
+       --pp     Prompt user for threshold value.
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of the binary vector file to be fixed.
+
+       tthhrreesshhoolldd==_v_a_l_u_e
+              Node-snapping threshold value.
+
+
+NNOOTTEESS
+       The user must run _v_._s_u_p_p_o_r_t after running _v_._s_p_a_g to correct the  topol-
+       ogy (_d_i_g___p_l_u_s) file.
+
+
+       _v_._s_p_a_g  generally  deletes  many lines from the input vector map layer.
+       Because deleted lines are not eliminated from a vector data (_d_i_g) file,
+       but  are  only  marked  as  deleted, the user will probably wish to run
+       _v_._c_l_e_a_n on the vector  file  after  running  _v_._s_p_a_g  to  eliminate  any
+       deleted lines from the _d_i_g file and decrease its size.
+
+BBUUGGSS
+       This  program contains several known bugs.  It will sometimes get stuck
+       in a loop in which it creates the same line over and  over  again.   It
+       will  occasionally  create an incorrect line.  Users are strongly urged
+       to back-up their vector data files before running this alpha version of
+       _v_._s_p_a_g.
+
+
+       Update Note:
+
+       1/93:   For  GRASS  Release  4.1,  the  --ii flag has been added and bugs
+       fixed.  It works better than the 4.0 release.
+
+       6/00:  The --ss and --pp flags has been added.  One reason for loop  fixed,
+       please report if you get into the loop after this date.
+
+SSEEEE AALLSSOO
+        _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s_, _v_._c_l_e_a_n_, _v_._d_i_g_i_t_, _v_._p_r_u_n_e_, _v_._r_m_d_u_p_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                            v.spag(1)

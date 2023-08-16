@@ -1,0 +1,51 @@
+g.select.pg(1)                Grass User's Manual               g.select.pg(1)
+
+
+
+NNAAMMEE
+       _g_._s_e_l_e_c_t_._p_g  -  Select  a  Postgres  database  to be used in subsequent
+       GRASS-RDBMS applications. (GRASS-RDBMS General Interface Program)
+
+SSYYNNOOPPSSIISS
+       gg..sseelleecctt..ppgg
+
+       gg..sseelleecctt..ppgg hheellpp
+
+       gg..sseelleecctt..ppgg ddaattaabbaassee_=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._s_e_l_e_c_t_._p_g is used to identify  a  Postgres  database  for  subsequent
+       GRASS-RDBMS applications. If the database specified on the command line
+       can be found _g_._s_e_l_e_c_t_._p_g sets the GRASS environment  variable  PG_DBASE
+       to  this  name.  If  the  database  is not found a list of the database
+       directories is provided to the user. This program assumes that database
+       queries have been granted to the user.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerr::
+       ddaattaabbaassee==ddaattaabbaasseennaammee
+           Name of existing Postgres database
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_t_a_t_s_._p_g_,    _d_._r_a_s_t_._p_g_,    _d_._v_e_c_t_._p_g_,    _d_._w_h_a_t_._s_._p_g_,   _r_._r_e_c_l_a_s_s_._p_g_,
+       _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and  W.
+       Fredrick Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                       g.select.pg(1)

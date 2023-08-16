@@ -1,0 +1,90 @@
+g.column.pg(1)                Grass User's Manual               g.column.pg(1)
+
+
+
+NNAAMMEE
+       _g_._c_o_l_u_m_n_._p_g - Generate a list of database columns for a specified table
+       in the currently selected database. (GRASS-RDBMS General Interface Pro-
+       gram)
+
+SSYYNNOOPPSSIISS
+       gg..ccoolluummnn..ppgg
+
+       gg..ccoolluummnn..ppgg hheellpp
+
+       gg..ccoolluummnn..ppgg [[--vv]] ttaabbllee_=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._c_o_l_u_m_n_._p_g  is used to generate a list of the columns in the specified
+       table [table] of the currenty selected database. If the _[_-_v_] option  is
+       used  the  data type and length of the column are reported as well. The
+       currently selected database is  identified  by  the  GRASS  environment
+       variable  $PG_DBASE  which  is  set  using  the _g_._s_e_l_e_c_t_._p_g GRASS-RDBMS
+       interface tool. If this environment variable is  not  set  the  program
+       terminates with a message to the user. To generate a list of the avail-
+       able tables in the currently selected database use  the  command  _g_._t_a_-
+       _b_l_e_._p_g.  The information provided by _g_._c_o_l_u_m_n_._p_g will be used in subse-
+       quent GRASS-RDBMS applications to formulate and construct  well  formed
+       database queries.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaagg::
+       --vv  Use v for a verbose listing of columns
+
+
+   PPaarraammeetteerr::
+       ttaabbllee==ddaattaabbaasseettaabblleennaammee
+           Name of table in the currently selected database.
+
+       EEXXAAMMPPLLEE OOUUTTPPUUTT ((tteerrssee))
+
+       _g_._c_o_l_u_m_n_._p_g _t_a_b_l_e_=_n_r_i
+
+       The following columns are defined in table: utm
+              landcl82         landcl87          mlra
+              nriptr           other             point
+              psu              refname           slope
+              soil5            textmod           texture
+              tfact            ukfact            utme
+              utmn             xfact
+       EEXXAAMMPPLLEE OOUUTTPPUUTT ((vveerrbboossee))
+
+       _g_._c_o_l_u_m_n_._p_g _t_a_b_l_e_=_n_r_i _-_v
+
+       The following columns are defined in table: utm
+
+                           hydunit  char16
+                          landcl82  char
+                          landcl87  char
+                              mlra  char16
+                            nriptr  int4
+                             other  text
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_t_a_t_s_._p_g_,
+       _d_._r_a_s_t_._p_g_,
+       _d_._v_e_c_t_._p_g_,
+       _d_._w_h_a_t_._s_._p_g_,
+       _r_._r_e_c_l_a_s_s_._p_g_,
+       _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original  Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and W.
+       Fredrick
+       Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                       g.column.pg(1)

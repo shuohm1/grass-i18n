@@ -1,0 +1,66 @@
+r.out.bin(1)                  Grass User's Manual                 r.out.bin(1)
+
+
+
+NNAAMMEE
+       _r_._o_u_t_._b_i_n - exports a GRASS raster to a binary array
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..oouutt..bbiinn [[--ii]] [[--hh]] [[--bb]] [[--ss]] iinnppuutt_=_n_a_m_e oouuttppuutt_=_n_a_m_e [nnuullll_=_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _r_._o_u_t_._b_i_n  program  exports  a  GRASS raster map to a binary array
+       file. Optionally, output can be sent to standard  output  (stdout)  for
+       direct  input (pipe) into other applications.  Data is exported accord-
+       ing to the original GRASS raster type (e.g. float). If the "-i" flag is
+       specified,  an  integer  array  is  output.  The  region parameters are
+       printed to stderr.
+
+   FFllaaggss::
+       --ii     Output integer category values, not raster cell values
+
+       --hh     Include a Generic Mapping Tools (GMT) binary header on the file
+
+       --bb     Generate seperate BIL world and header description files
+
+       --ss     Byte swap the data and optional header during output
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  Name of an existing raster map
+
+       oouuttppuutt Name of an output binary file (use output=- for stdout)
+
+       nnuullll   Value to write out for null Default: 0
+
+
+NNOOTTEESS
+       With the -h flag, data can be directly used by GMT  as  Grid  Format  1
+       (float) or 2 (short). For example:
+       r.out.bin -h input=grass.raster output=new.grd
+       grdinfo new.grd=1 (if float)
+
+
+
+       Exported data can be piped directly into the GMT program xyz2grd.
+
+       The example uses the GMT program xyz2grd with the -ZTLf flag indicating
+       that a float array was output.
+
+AAUUTTHHOORR
+       This program is derived from _r_._o_u_t_._a_s_c_i_i with a few modifications.
+
+       Author: Bob Covill
+
+
+
+SSEEEE AALLSSOO
+       _r_._i_n_._b_i_n_, _r_._i_n_._a_s_c_i_i _r_._o_u_t_._a_s_c_i_i _r_._i_n_._a_r_c_, _r_._o_u_t_._a_r_c
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_0_8_:_3_1 _$
+
+
+
+GRASS 5.0                                                         r.out.bin(1)

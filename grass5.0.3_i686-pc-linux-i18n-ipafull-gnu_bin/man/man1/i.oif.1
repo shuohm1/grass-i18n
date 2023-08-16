@@ -1,0 +1,52 @@
+i.oif(1)                      Grass User's Manual                     i.oif(1)
+
+
+
+NNAAMMEE
+       ii..ooiiff  - Calculates Optimum Index Factor for LANDSAT TM bands 1,2,3,4,5
+       and 7
+       _(_G_R_A_S_S _s_h_e_l_l _s_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       ii..ooiiff
+       ii..ooiiff hheellpp
+       ii..ooiiff ttmm11 ttmm22 ttmm33 ttmm44 ttmm55 ttmm77
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._o_i_f calculates the
+
+         OOppttiimmuumm IInnddeexx ffaaccttoorr ((OOIIFF))  for  all  LANDSAT  TM  band  combinations
+       (LANDSAT TM 1,2,3,4,5,7 without termal band 6).
+
+
+       The  result  is  a ranked list, which shows the information content for
+       all possible combinations (20).  The list is ranked from the best  com-
+       bination  down  to  the  combination containing less information.  From
+       this the user can derive which band  combinations  are  interesting  to
+       analyse.
+
+
+       Calculation (after CHAVEZ et al. 1984):
+                  Sum of Standard deviations of 3 bands
+           OIF = ------------------------------------------------
+                  Sum of ABS(correlation coefficients of 3 bands)
+
+
+
+       Ref.:  Jensen:  Introductory  digital  image processing 1996, p.98 ISBN
+       0-13-205840-5
+
+
+
+AAUUTTHHOORR
+       Markus Neteler
+
+       University of Hannover, Germany
+
+       neteler@itc.it
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                             i.oif(1)

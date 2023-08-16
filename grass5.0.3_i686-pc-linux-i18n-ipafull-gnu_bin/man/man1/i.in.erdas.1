@@ -1,0 +1,79 @@
+i.in.erdas(1)                 Grass User's Manual                i.in.erdas(1)
+
+
+
+NNAAMMEE
+       ii..iinn..eerrddaass  -Creates raster files from ERDAS files.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..iinn..eerrddaass
+       ii..iinn..eerrddaass hheellpp
+       ii..iinn..eerrddaass      [--ll]      iinnppuutt==_n_a_m_e     oouuttppuutt==_n_a_m_e     [ttrraaiilleerr==_n_a_m_e]
+       [bbaannddss==_v_a_l_u_e[,_v_a_l_u_e,...]]    [ssrrooww==_v_a_l_u_e]   [ssccooll==_v_a_l_u_e]   [rroowwss==_v_a_l_u_e]
+       [ccoollss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program creates raster map files from ERDAS files.  It creates one
+       raster file for each selected band, up to a  maximum  of  seven  bands.
+       GRASS  color and category support files are created if an ERDAS trailer
+       file is specified.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ll     List the ERDAS header only (no raster files created)
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              ERDAS input file name
+
+       oouuttppuutt==_n_a_m_e
+              output prefix of the GRASS raster files to be created.
+
+       ttrraaiilleerr==_n_a_m_e
+              ERDAS trailer input file name
+
+       bbaannddss==_v_a_l_u_e[,_v_a_l_u_e,...]
+              Selected bands to extract. (defaults to all bands)
+
+       ssrrooww==_v_a_l_u_e
+              Starting row. (defaults to first row in file)
+
+       ssccooll==_v_a_l_u_e
+              Starting column. (defaults to first column in file)
+
+       rroowwss==_v_a_l_u_e
+              Number of rows to extract. (defaults to all rows)
+
+       ccoollss==_v_a_l_u_e
+              Number of columns to extract. (defaults to all columns)
+
+
+NNOOTTEESS
+       Remember that it is necessary to run: _r_._s_u_p_p_o_r_t to create the histogram
+       or  change the color table.  _i_._g_r_o_u_p to associate the individual raster
+       files as an image group.
+
+
+       Only ERDAS version 7.4 or later files in 4-bit, 8-bit, or  16-bit  for-
+       mats are supported.
+
+
+       GRASS raster files will be named _p_r_e_f_i_x_._b_a_n_d
+
+SSEEEE AALLSSOO
+       _r_._s_u_p_p_o_r_t, _r_._i_n_._g_d_a_l and _i_._g_r_o_u_p
+
+AAUUTTHHOORRSS
+       M.L. Holko, USDA, SCS, NHQ-CGIS,
+
+       Paul H. Fukuhara, USDA, SCS, NCG-GSS
+
+       Angus Carr, Canada
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_6_/_1_6 _1_5_:_2_9_:_1_8 _$
+
+
+
+GRASS 5.0                                                        i.in.erdas(1)

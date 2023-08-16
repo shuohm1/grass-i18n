@@ -1,0 +1,88 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      08.14.4.geo
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    Geographics Digitizer Information
+  </CENTER>
+    <P>Documentation on cabling configuration needed for geographics.
+There is also a diagnostics program under
+$GISBASE/src/mapdev/digitizers/geograph/Diagnostics.
+    <P>    <P>Cabling set-up for Geographics digitizer.
+RS232 pins needed:  2, 3, 7.   all straight through.
+    <P>    <P>
+  <CENTER>
+    Pin		Meaning
+  </CENTER>
+  <PRE>	---		-------
+</PRE>
+
+  <CENTER>
+    2		Transmit data
+  </CENTER>
+
+  <CENTER>
+    3		Receive data
+  </CENTER>
+
+  <CENTER>
+    7		Signal ground
+  </CENTER>
+    <P>
+  <CENTER>
+    6		Data set ready
+  </CENTER>
+
+  <CENTER>
+    8		Received line signal detector
+  </CENTER>
+
+  <CENTER>
+    20		Data terminal ready
+  </CENTER>
+    <P>*************************************************************************
+*  For MASSCOMPs only.   Others may vary.
+*  Besides having pins 2, 3, and 7 straight through:
+*
+*  The newer, slimmer, smaller serial box has to also have 6, 8, and 20
+*  looped back in the cable or on the masscomp end.
+*
+*  The old very large serial box has 8, and 20 straight through.
+*
+*************************************************************************
+    <P>The /etc/inittab file must have the getty off for the digitizer port (tty).
+    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

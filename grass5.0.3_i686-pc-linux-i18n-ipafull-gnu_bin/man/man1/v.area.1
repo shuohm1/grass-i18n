@@ -1,0 +1,57 @@
+v.area(1)                     Grass User's Manual                    v.area(1)
+
+
+
+NNAAMMEE
+       vv..aarreeaa  - Display GRASS area and perimeter information for GRASS vector
+       map.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..aarreeaa
+       vv..aarreeaa hheellpp
+       vv..aarreeaa [ --ff] mmaapp==_n_a_m_e [ccoolloorr==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS program _v_._a_r_e_a first displays the selected vector file.  Then
+       user  can  select area on map by clicking with mouse within the desired
+       area. Selected area will be highlighted in selected color  on  graphics
+       display.  On  regular  screen  area  information  will be displayed, in
+       square meters, hectares, acres, and square  miles,  Perimeter  measure-
+       ments, in meters, feet, and miles, are also displayed.
+
+
+       User can repeatedly select areas for analysis, one at a time.
+
+   FFllaagg::
+       --ff     Fill  selected  area  with  selected  color on graphics display,
+              rather than simply outlining it in the _h_i_g_h_l_i_g_h_t color.
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of the vector map layer to be displayed.
+
+       ccoolloorr==_n_a_m_e
+              Color in which perimeter will be highlighted.
+              Default: red
+
+
+
+       If the user simply types vv..aarreeaa without specifying program arguments on
+       the  command  line,  the program will prompt the user for the name of a
+       map. Then the user is given the option of specifying a highlight color,
+       and  then,  whether  or  not  the  display of selected area(s) is to be
+       filled, rather than merely outlined, with the highlight color.
+
+SSEEEE AALLSSOO
+       _d_._v_e_c_t
+
+AAUUTTHHOORR
+       Bruce Powell, National Park Service, Denver CO.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                            v.area(1)

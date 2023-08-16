@@ -1,0 +1,182 @@
+r.stats(1)                    Grass User's Manual                   r.stats(1)
+
+
+
+NNAAMMEE
+       rr..ssttaattss  - Generates area statistics for raster map layers.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ssttaattss
+       rr..ssttaattss hheellpp
+       rr..ssttaattss   [--11aaccllmmqqggxxnnNNCCrrii]  iinnppuutt==_n_a_m_e[,_n_a_m_e,...]  [ffss==_c_h_a_r_a_c_t_e_r_|_s_p_a_c_e]
+       [oouuttppuutt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._s_t_a_t_s calculates the area present in each of the categories of  user-
+       selected  raster  map  layer(s).  Area statistics are given in units of
+       square meters and/or cell counts. This analysis uses the  current  geo-
+       graphic  region and mask settings.  Output can be sent to a file in the
+       user's current working directory.
+
+
+       The program will be run non-interactively if  the  user  specifies  the
+       program  arguments  and  desired options on the command line, using the
+       form
+
+
+       rr..ssttaattss  [--11aaccllmmqqggxxnnNNCCrrii]  iinnppuutt==_n_a_m_e[,_n_a_m_e,...]   [ffss==_c_h_a_r_a_c_t_e_r_|_s_p_a_c_e]
+       [oouuttppuutt==_n_a_m_e]
+
+
+       where  each  input  _n_a_m_e  is  the  name  of a raster map layer on which
+       area/cell statistics are to be generated, the (optional) output _n_a_m_e is
+       the  name  of a file to contain program output (sent to the user's cur-
+       rent working directory), the fs _c_h_a_r_a_c_t_e_r or space is the field separa-
+       tor to be used to separate data fields in the output file (default is a
+       space if unspecified), and the (optional) flags _-_1, _-_a, _-_c, _-_l, _-_m, _-_q,
+       _-_g,  _-_x,  _-_n,  _-_N,  _-_C,  _-_r,  and _-_i have the meanings described in the
+       OPTIONS section.
+
+
+       Alternately, the user can simply type  rr..ssttaattss  on  the  command  line,
+       without program arguments.  In this case, the user will be prompted for
+       needed inputs and option choices using the standard GRASS parser.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --11     The data for each cell in the current geographic region will  be
+              output,  one cell per line, rather than the totals for each dis-
+              tinct combination.
+
+       --aa     Print area totals in square meters.
+
+       --cc     Print total cell counts.
+
+       --mm     Report all zero  values  present  in  the  _i_n_p_u_t  map  layer(s),
+              whether or not they fall inside or outside the current mask (see
+              _r_._m_a_s_k).  When a mask is present, _r_._s_t_a_t_s will only report  zero
+              values falling within the mask area unless the user runs _r_._s_t_a_t_s
+              with the _-_m option.  When the user  runs  _r_._s_t_a_t_s  with  the  _-_m
+              option, _r_._s_t_a_t_s will report zero values falling outside the mask
+              area, in addition to those within the mask.
+
+       --ll     Prints the category label(s) as well as the category  number(s).
+
+       --qq     Run  quietly, and suppress printing of percent complete messages
+              to standard output.
+
+       --gg     Print the grid coordinates  (easting  and  northing),  for  each
+              cell. This option works only if the _-_1 option is also specified.
+
+       --xx     Print the x and y (column and row) values, for each  cell.  This
+              option works only if the _-_1 option is also specified.
+
+       --nn     Suppress reporting of any nulls.
+
+       --NN     Suppress reporting of nulls when all values are null.
+
+       --CC     Report for cats fp ranges (fp maps only).
+
+       --rr     Print raw indexes of fp ranges (fp maps only).
+
+       --ii     Read fp map as integer (use map's quant rule).
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The  name(s)  of  one or more existing raster map layer(s) whose
+              cell counts or area statistics are to be calculated.
+
+              The field separator (fs) to be used to separate data  fields  in
+              the _o_u_t_p_u_t file.  Options:  a character or space
+              Default:  a space
+
+       oouuttppuutt==_n_a_m_e
+              The name to be assigned to the ASCII output file.
+
+
+NNOONN--IINNTTEERRAACCTTIIVVEE PPRROOGGRRAAMM UUSSEE
+       If users invoke program options on the command line, _r_._s_t_a_t_s will print
+       out area statistics for the  user-specified  raster  map  layers  in  a
+       columnar  format  suitable for input to UNIX programs like _a_w_k and _s_e_d.
+       Output can be saved by specifying the name of an  _o_u_t_p_u_t  file  on  the
+       command line.
+
+
+       If a single map layer is specified on the command line, a list of areas
+       in square meters (assuming the map's coordinate system  is  in  meters)
+       for  each  category in the raster map layer will be printed. (If the _-_c
+       option is chosen, areas will be stated in number of cells.) If multiple
+       raster map layers are specified on the command line, a cross-tabulation
+       table of areas for each combination of categories  in  the  map  layers
+       will be printed.
+
+
+       For  example,  if one raster map layer were specified, the output would
+       look like:
+                 1:1350000.00
+                 2:4940000.00
+                 3:8870000.00
+
+       If three raster map layers _a_, _b, and  _c,  were  specified,  the  output
+       would look like:
+                 0:0:0:8027500.00
+                 0:1:0:1152500.00
+                 1:0:0:164227500.00
+                 1:0:1:2177500.00
+                 1:1:0:140092500.00
+                 1:1:1:3355000.00
+                 2:0:0:31277500.00
+                 2:0:1:2490000.00
+                 2:1:0:24207500.00
+                 2:1:1:1752500.00
+                 3:0:0:17140000.00
+                 3:1:0:11270000.00
+                 3:1:1:2500.00
+
+       Within each grouping, the first field represents the category  value of
+       map layer _a, the second represents the category values associated  with
+       map  layer _b, the third represents category values for map layer _c, and
+       the last field gives the area in square meters for the particular  com-
+       bination  of  these  three map layers' categories.  For example, above,
+       combination 3,1,1 covered 2500 square meters. Fields are  separated  by
+       colons.
+
+NNOOTTEESS
+       _r_._s_t_a_t_s works in the current geographic region with the current mask.
+
+
+       If a nicely formatted output is desired, pipe the output into a command
+       which can create columnar output.  For example, the command:
+
+
+       rr..ssttaattss iinnppuutt==a,b,c | pr -3 | cat -s
+
+
+       will create a three-column output
+       1:4:4:10000.00       2:1:5:290000.00      2:4:5:2090000.00
+       1:4:5:1340000.00     2:2:5:350000.00      3:1:2:450000.00
+       2:1:1:1090000.00     2:4:1:700000.00      3:1:3:5280000.00
+       2:1:3:410000.00      2:4:3:10000.00       3:1:5:3140000.00
+
+       The output from _r_._s_t_a_t_s on more than one map layer is sorted.
+
+
+       Note that the user has only the option of printing out cell  statistics
+       in  terms  of cell counts and/or area totals. Users wishing to use dif-
+       ferent units than are available  here  should  use  the  GRASS  program
+       _r_._r_e_p_o_r_t.
+
+SSEEEE AALLSSOO
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_1_0_/_1_0 _2_1_:_0_6_:_3_8 _$
+
+
+
+GRASS 5.0                                                           r.stats(1)

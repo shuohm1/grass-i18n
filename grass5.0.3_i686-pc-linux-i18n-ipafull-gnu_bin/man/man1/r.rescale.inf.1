@@ -1,0 +1,117 @@
+r.rescale.inf(1)              Grass User's Manual             r.rescale.inf(1)
+
+
+
+NNAAMMEE
+       rr..rreessccaallee..iinnff   -  Generate  a raster map layer in which the categories
+       represent values in a database column  which  have  been  divided  into
+       equal interval units.
+       _(_G_R_A_S_S_-_R_D_B_M_S _R_a_s_t_e_r _I_n_t_e_r_f_a_c_e _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..rreessccaallee..iinnff
+       rr..rreessccaallee..iinnff hheellpp
+       rr..rreessccaallee..iinnff  ttaabb==_n_a_m_e  kkeeyy==_n_a_m_e  ccooll==_n_a_m_e  ccaattss==_n_a_m_e  iinnppuutt==_n_a_m_e oouutt--
+       ppuutt==_n_a_m_e [[jjooiinn==_t_a_b_,_t_a_b_k_e_y_,_p_k_e_y_]
+
+DDEESSCCRRIIPPTTIIOONN
+       r.rescale.inf creates a reclassed raster map layer by dividing the val-
+       ues  in  a numeric column in the currently selected database into equal
+       interval units. The number of resulting categories is determined by the
+       user  via  the  command line parameter [cats=]. r.rescale.inf evaluates
+       the range of values for the database column and  subsets  these  values
+       into  equal interval groups of records returned by the query. For exam-
+       ple, if the database column contains values which range from 1-1000 and
+       the  [cats]  value  is  equal to 10 the resulting raster map layer will
+       contain the 10 categories:1=1-100, 2=101-200 etc. In other words,  each
+       category in the new raster map layer will represent a range of 100 val-
+       ues from the  database  column  used  in  the  rescale  operation.  The
+       database  column  being  evaluated must be numeric in type. To identify
+       the data types of columns in a database table use the g.column.inf com-
+       mand with the [-v] flag. r.rescale.inf does not take outlying data val-
+       ues into account. Therefore, if the range of values for a database col-
+       umn  contains  a limited number of extreme values the resulting rescale
+       operation will be skewed in the direction of these values.
+
+
+
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+       Parameters
+
+       ttaabb==database_table_name
+              Table containing a column linked to category values in an exist-
+              ing raster map.
+
+       kkeeyy==database_column_name
+              Column  corresponding  to  category values in an existing raster
+              map.
+
+       ccooll==database_column_name
+              Column to base rescale operation on which is numeric in type.
+
+       ccaattss==value
+              Number of categories to define in the resulting reclass map.
+
+       iinnppuutt==map
+              Name of an existing raster file with category values linked to a
+              column in the currently selected databae.
+
+       oouuttppuutt==map
+              Name of new raster map.
+
+       jjooiinn==tab,tabkey,pkey
+
+
+       Tab  is  the table used to develop the current SQL query. Tabkey is the
+       database column used to relate information in this table with  data  in
+       the  table  linked  to  the GRASS category file. Pkey is the associated
+       column in the table linked to the GRASS category file which is  related
+       to tabkey in the current table.
+
+
+       For instance, assume that stf1_main is a table containing column values
+       associated with category values in a the GRASS raster file  blkgrp.ids.
+       In addition, assume that stf1_main is a table containing attribute data
+       on age in the column pop100. In this example  stf1_main  is  the  table
+       associated with the GRASS raster map and tract_blck is the column link-
+       ing stf1_main  to  the  GRASS  category  file.  The  column  pop100  in
+       stf1_main  will  be  the  basis for the rescale effort.  To specify the
+       rescale: rr..rreessccaallee..iinnff ttaabb==_s_t_f_1___m_a_i_n kkeeyy==_t_r_a_c_t___b_l_c_k  ccooll==_p_o_p_1_0_0  ccaattss==_5
+       iinnppuutt==_b_l_k_g_r_p_._i_d_s oouuttppuutt==_p_o_p_1_0_0_._r_e_s_c_a_l_e
+
+       Specifying  these  conditions  would  insure  that  all rows from table
+       stf1_main which satisfy the query criteria would be related to the spa-
+       tial features in the GRASS data layer via the GRASS category values.
+
+
+
+
+
+BBUUGGSS
+       None known.
+
+
+
+NNOOTTEE
+       This program requires the Informix database software.
+
+
+
+SSEEEE AALLSSOO
+       g.column.inf,   g.select.inf,   g.stats.inf,  g.table.inf,  d.rast.inf,
+       d.site.inf,  d.vect.inf,  d.what.r.inf,   d.what.s.inf,   d.what.v.inf,
+       r.reclass.inf, v.reclass.inf
+
+
+
+AAUUTTHHOORR
+       James A. Farley, Wang Song and W. Fredrick Limp University of Arkansas,
+       CAST
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                     r.rescale.inf(1)

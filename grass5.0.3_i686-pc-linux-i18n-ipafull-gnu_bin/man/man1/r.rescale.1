@@ -1,0 +1,98 @@
+r.rescale(1)                  Grass User's Manual                 r.rescale(1)
+
+
+
+NNAAMMEE
+       rr..rreessccaallee   -  Rescales  the  range  of category values in a raster map
+       layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..rreessccaallee
+       rr..rreessccaallee hheellpp
+       rr..rreessccaallee  [--qqzz]  iinnppuutt==_n_a_m_e  [ffrroomm==_m_i_n_,_m_a_x]   oouuttppuutt==_n_a_m_e   ttoo==_m_i_n_,_m_a_x
+       [ttiittllee=="_p_h_r_a_s_e"]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _r_._r_e_s_c_a_l_e  program rescales the range of category values appearing
+       in a raster map layer.  A new raster map layer, and an appropriate cat-
+       egory  file  and  color table based upon the original raster map layer,
+       are generated with category labels that reflect the  original  category
+       values that produced each category.  This command is useful for produc-
+       ing representations with a reduced number of categories from  a  raster
+       map  layer  with  a  large  range of category values (e.g., elevation).
+       _R_e_s_c_a_l_e_d map layers are appropriate for use in such GRASS  programs  as
+       _r_._s_t_a_t_s, _r_._r_e_p_o_r_t, and _r_._c_o_i_n.
+
+OOPPTTIIOONNSS
+       _r_._r_e_s_c_a_l_e  will  be run non-interactively if the user specifies program
+       arguments on the command line, using the form:
+
+
+       rr..rreessccaallee  [--qqzz]  iinnppuutt==_n_a_m_e  [ffrroomm==_m_i_n_,_m_a_x]   oouuttppuutt==_n_a_m_e   ttoo==_m_i_n_,_m_a_x
+       [ttiittllee==""_p_h_r_a_s_e"]
+
+
+       Alternately, the user can simply type: rr..rreessccaallee
+
+       on  the command line without program arguments.  In this case, the user
+       will be prompted for parameter values using  the  standard  GRASS  user
+       interface described in the manual entry for _p_a_r_s_e_r.
+
+   FFllaagg::
+       --qq     Run  quietly,  without  printing messages on program progress to
+              the user's terminal.
+
+
+       --zz     Use zero (0) for transparency instead of NULL,  that  means  set
+              values outside range to zero (0) instead of NULL.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The name of the raster map layer whose category values are to be
+              rescaled.
+
+       ffrroomm==_m_i_n_,_m_a_x
+              The input map range to be rescaled.
+              Default:  The full range of the input map layer.
+
+       oouuttppuutt==_n_a_m_e
+              The name of the new, rescaled raster map layer.
+
+       ttoo==_m_i_n_,_m_a_x
+              The output map range (after rescaling).
+
+       ttiittllee== Title for new output raster map layer.
+
+
+EEXXAAMMPPLLEE
+       To rescale an elevation raster map layer with category  values  ranging
+       from  1090  meters  to  1800 meters into the range 0-255, the following
+       command line could be used:  rr..rreessccaallee  iinnppuutt==elevation  ffrroomm==1090,1800
+       oouuttppuutt==elevation.255 ttoo==0,255
+
+
+NNOOTTEESS
+       Category  values  that  fall  beyond  the input range will become NULL.
+       This allows the user to select a subset  of  the  full  category  value
+       range  for  rescaling if desired.  This also means that the user should
+       know the category value range for the input raster map layer.  The user
+       can  request  the  _r_._r_e_s_c_a_l_e  program  to  determine this range, or can
+       obtain it using the _r_._i_n_f_o command.  If the  category  value  range  is
+       determined using _r_._r_e_s_c_a_l_e, the input raster map layer is examined, and
+       the minimum and maximum non-NULL category values are  selected  as  the
+       input range.
+
+SSEEEE AALLSSOO
+       _r_._c_o_i_n, _r_._d_e_s_c_r_i_b_e, _r_._i_n_f_o, _r_._m_a_p_c_a_l_c, _r_._r_e_c_l_a_s_s, _r_._r_e_p_o_r_t, _r_._r_e_s_a_m_p_l_e,
+       _r_._s_t_a_t_s, and _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_0_8_:_3_1 _$
+
+
+
+GRASS 5.0                                                         r.rescale(1)

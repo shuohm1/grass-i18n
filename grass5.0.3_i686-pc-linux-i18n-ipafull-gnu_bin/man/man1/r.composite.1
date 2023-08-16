@@ -1,0 +1,89 @@
+r.composite(1)                Grass User's Manual               r.composite(1)
+
+
+
+NNAAMMEE
+       rr..ccoommppoossiittee  -  Converts  three user-specified raster map layers into a
+       composite RGB layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ccoommppoossiittee
+       rr..ccoommppoossiittee hheellpp
+       rr..ccoommppoossiittee [--oo]  [--dd]  [--cc]  rr__mmaapp==_n_a_m_e  gg__mmaapp==_n_a_m_e  bb__mmaapp==_n_a_m_e  [lleevv--
+       eellss==_v_a_l_u_e] [lleevv__rr==_v_a_l_u_e] [lleevv__gg==_v_a_l_u_e] [lleevv__bb==_v_a_l_u_e] oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program  combines three raster map layers to form a composite RGB
+       layer. For each layer, the corresponding  component  from  the  layer's
+       color table is used (e.g. for the red layer, the red component is used,
+       and so on). In general, the layers should use a gray-scale color table.
+
+
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --oo     Overwrite output maps.
+
+       --dd     Dither.
+
+       --cc     Use closest color.
+
+
+   PPaarraammeetteerrss::
+       rr__mmaapp==_n_a_m_e
+              Name of raster map layer to be used for RED component.
+
+       gg__mmaapp==_n_a_m_e
+              Name of raster map layer to be used for GREEN component.
+
+       bb__mmaapp==_n_a_m_e
+              Name of raster map layer to be used for BLUE component.
+
+       lleevveellss==_v_a_l_u_e
+              Number  of levels to use for each component (default 32), except
+              where overridden by the appropriate lleevv__[[rrggbb]] parameter.
+
+       lleevv__rr==_v_a_l_u_e
+              Number of levels to use for the  RED  component  (overrides  the
+              lleevveellss parameter).
+
+       lleevv__gg==_v_a_l_u_e
+              Number  of  levels to use for the GREEN component (overrides the
+              lleevveellss parameter).
+
+       lleevv__bb==_v_a_l_u_e
+              Number of levels to use for the BLUE  component  (overrides  the
+              lleevveellss parameter).
+
+       oouuttppuutt==_n_a_m_e
+              Name of raster map to contain results
+
+
+NNOOTTEESS
+       The  default  number  of  intensity  levels  for  each component is 32,
+       resulting in a total of 32768 possible colors (equivalent  to  15  bits
+       per  pixel).  If significantly more levels than this are used, not only
+       will _r_._c_o_m_p_o_s_i_t_e take longer to run, but displaying the resulting layer
+       with _d_._r_a_s_t will also be significantly slower.
+
+
+       Floyd-Steinberg dithering is optionally used.
+
+SSEEEE AALLSSOO
+       _d_._r_a_s_t
+
+       _d_._r_g_b
+
+       _r_._c_o_l_o_r_s
+
+       _i_._c_o_m_p_o_s_i_t_e
+
+AAUUTTHHOORR
+       Glynn Clements
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_5 _0_7_:_4_9_:_3_0 _$
+
+
+
+GRASS 5.0                                                       r.composite(1)

@@ -1,0 +1,142 @@
+nviz(1)                       Grass User's Manual                      nviz(1)
+
+
+
+NNAAMMEE
+       nnvviizz - Visualization and animation tool for GRASS data
+
+SSYYNNOOPPSSIISS
+       nnvviizz
+
+       nnvviizz  [[--qq]]  [[ppaatthh_=_d_i_r]  [eelleevvaattiioonn_=_n_a_m_e  _[  _,_n_a_m_e_,_._._. _]] [vveeccttoorr_=_n_a_m_e _[
+       _,_n_a_m_e_,_._._. _]] [ssiitteess_=_n_a_m_e _[ _,_n_a_m_e_,_._._. _]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _n_v_i_z organizes several useful tools for combining and visualizing GRASS
+       raster, vector and site files.  In particular, _n_v_i_z provides a detailed
+       user interface with several panels used for specifying various options.
+       The  user  may  specify  arbitrary  combinations of raster maps, vector
+       maps, and site maps.  The attributes associated with each map (such  as
+       color, masking, line width, etc.) may be modified independently.  Also,
+       cut-planes may be used to display an interpolated cross  section  of  a
+       set  of  raster  maps.   _n_v_i_z emphasizes a flexible and natural viewing
+       mechanism allowing the user to modify view parameters  such  as  camera
+       position,  surface  exaggeration,  display resolution, lighting models,
+       and light position.  Lastly, _n_v_i_z supports an animation  and  scripting
+       mechanism  for building visualizations of sequences of GRASS data.  The
+       scripting mechanism may be used to record and playback  any  user  ses-
+       sion.   Other  miscellaneous  features include: a facility for querying
+       map displays for information, and image processing  tools  which  allow
+       the placement of labels and scales on the display.
+
+OOPPTTIIOONNSS
+       The  initial  set  of  files used by _n_v_i_z may be specified by providing
+       file arguments for elevation, vector and sites.  If the user  specifies
+       program  arguments on the command line, the program will start with the
+       given set of files.  Alternatively, the user can simply  type  _n_v_i_z  on
+       the command line and the program will ask for parameter values and flag
+       settings interactively, using the standard GRASS parser interface.
+
+   FFllaagg::
+       --qq     Quickstart.  Skip over the  usual  GRASS  parser  interface  and
+              start  _n_v_i_z.   Ignores  any  file parameters which may have been
+              specified on the command line.
+
+
+   PPaarraammeetteerrss::
+       ppaatthh==ddiirr
+              Search for additional panels in the specified directory.
+
+       eelleevvaattiioonn==nnaammee[[,,nnaammee,,......]]
+              Use the given list of existing raster files as input.
+
+       vveeccttoorr==nnaammee[[,,nnaammee,,......]]
+              Use the given list of existing vector files as input.
+
+       ssiitteess==nnaammee[[,,nnaammee,,......]]
+              Use the given list of existing sites files as input.
+
+
+PPAANNEELLSS
+       _n_v_i_z features are presented to the user using "panels".  A panel encap-
+       sulates  some  functionality  and  provides  an  interface for users to
+       access this functionality.  For example, _n_v_i_z is distributed with  pan-
+       els  for manipulating surfaces, vector files, light sources, and so on.
+       In addition to these default panels, _n_v_i_z may  also  be  configured  to
+       load application specific panels.
+
+
+       In addition to the default panels, _n_v_i_z can be instructed to load addi-
+       tional panels by either using the path option (see above) or by setting
+       the  GRASS  resource  NvizPanelPath to the appropriate list of directo-
+       ries.  Any directory specified as a path directory must contain a  pan-
+       elIndex  file  which  names  the panels stored in that directory. Panel
+       creation and panelIndex files are described elsewhere.
+
+GGRRAASSSS RREESSOOUURRCCEE SSEETTTTIINNGGSS
+       NvizPanelPath
+              Specifies a list of  directories  containing  additional  panels
+              (see PANELS).
+
+       NvizAutoSurfColors
+              If  set  to  true then any surface loaded from the surface panel
+              will have the color attribute set to the  map  used  to  specify
+              topology.  This is the default behavior.
+
+
+NNOOTTEESS
+       Currently,  _n_v_i_z  must be invoked from within GRASS (preferably version
+       5.x).  That is, start GRASS then invoke _n_v_i_z from the GRASS shell.
+
+
+       _n_v_i_z is built on top of the Tcl/Tk environment.  Be sure  you  have  at
+       least  Tcl  8.0 or later and Tk 8.0 or later and that appropriate envi-
+       ronment variables are set correctly.
+
+DDIIAAGGNNOOSSTTIICCSS
+       ERROR: LOCATIONNAME not set
+
+       The program was run outside of GRASS.
+
+
+       TclAppInit failed: can't find /usr/local/lib/tcl/init.tcl; perhaps  you
+       need to install Tcl or set your TCLLIBRARY environment variable?
+
+       Tcl  not installed correctly or TCLLIBRARY environment variable not set
+       correctly.
+
+
+       TclAppInit failed: can't  find  /usr/local/lib/tk/tk.tcl;  perhaps  you
+       need to install Tk or set your TKLIBRARY environment variable?
+
+       Tk  not  installed  correctly or TKLIBRARY environment variable not set
+       correctly.
+
+
+       Usage: nviz [-q]  [elevation=name[,name,...]]  [vector=name[,name,...]]
+       [sites=name[,name,...]]
+
+       Invalid options were specified on the command line.
+
+SSEEEE AALLSSOO
+       _S_G_3_d
+
+AAUUTTHHOORRSS
+       Original program (Sg3d(NASA Panels) and Nviz(Motif) versions):
+
+       David Gerdes, Bill Brown, and Helena Mitasova, U.S. Army CERL.
+
+
+       Current version (Tcl/Tk version):
+
+       Bill  Brown,  David  Gerdes,  Helena  Mitasova,  Terry  Baker, and Mark
+       Astley, U.S. Army CERL.
+
+       Various members  of  the  GRASS  community  have  provided  suggestions
+       throughout the duration of the project.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                              nviz(1)

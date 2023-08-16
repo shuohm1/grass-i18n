@@ -1,0 +1,9 @@
+#!/bin/sh
+TEXTDOMAIN=pause
+export TEXTDOMAIN
+TEXTDOMAINDIR=$GISBASE/locale
+export TEXTDOMAINDIR
+eval $*
+printf "\n"
+echo `gettext "Finished - press RETURN or ENTER to continue"`
+read line

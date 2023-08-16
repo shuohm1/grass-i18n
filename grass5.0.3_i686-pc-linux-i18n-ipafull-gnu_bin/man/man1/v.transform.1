@@ -1,0 +1,152 @@
+v.transform(1)                Grass User's Manual               v.transform(1)
+
+
+
+NNAAMMEE
+       vv..ttrraannssffoorrmm   -  Transforms an binary vector map layer from one coordi-
+       nate system into another coordinate system.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ttrraannssffoorrmm
+       vv..ttrraannssffoorrmm hheellpp
+       vv..ttrraannssffoorrmm [--yy] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ppooiinnttssffiillee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program has been used to import vector files that were in  scanner
+       or  digitizer (x,y) coordinates and to transform these into UTM coordi-
+       nates.
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --yy     Suppress the printing of residuals or other information to stan-
+              dard output.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of the binary vector map layer to be transformed.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the resultant (transformed) binary vector
+              map layer.
+
+       ppooiinnttssffiillee==_n_a_m_e
+              Name of a file containing transformation points, whose format is
+              given  below.  Give a full path name for this file or it will be
+              assumed to be located in the user's current directory.
+
+       The user can run this program non-interactively by specifying parameter
+       values (and optionally, the flag setting) on the command line.
+
+
+       If  the  user  runs vv..ttrraannssffoorrmm without specifying program arguments on
+       the command line, the program will prompt the user  for  inputs.   When
+       the program prompts the user for two sets of transformation points, the
+       first set of points entered by the user should  be  in  the  coordinate
+       system  of the input map, and the second set of points should represent
+       the corresponding geographic points in the coordinate system into which
+       the  map  will  transformed.   A user must enter 4 to 10 of each set of
+       points for the transformation to work correctly.
+
+
+       After the user has entered both sets of points, the program  will  show
+       the  amount  of  error  associated with the transformation of the given
+       points as the _r_e_s_i_d_u_a_l _m_e_a_n _a_v_e_r_a_g_e (RMS).  (An acceptable  RMS  for  a
+       1:24,000 UTM map would be 1.2 to 2.4 (meters).) It will then ask if the
+       transformation RMS value is acceptable.  After an RMS  is  accepted  by
+       the  user,  _v_._t_r_a_n_s_f_o_r_m  will transform the binary vector (_d_i_g) map and
+       its associated attribute (_d_i_g___a_t_t) file into the  requested  coordinate
+       system.
+
+
+       Remember to run _v_._s_u_p_p_o_r_t on the output map.
+
+NNOOTTEESS
+       When  rectifying  a map to another coordinate system using _v_._t_r_a_n_s_f_o_r_m,
+       the user should specify the coordinates of between 4 to 10 points,  and
+       state  these  both  in  the  coordinate systems of the input and output
+       maps.  The two sets of coordinates can be input to _v_._t_r_a_n_s_f_o_r_m interac-
+       tively,  or  from a file specified on the command line with the _p_o_i_n_t_s_-
+       _f_i_l_e option.  The _p_o_i_n_t_s_f_i_l_e option is especially useful  when  several
+       maps  in  the same geographic area require transformation, as it elimi-
+       nates the necessity for the user to repeatedly type in the same  trans-
+       formation coordinates.
+
+
+       A  _p_o_i_n_t_s_f_i_l_e  file  will contain between 4 to 10 lines; each line will
+       contain the set of coordinate transformation points for the  input  map
+       and  the corresponding set of coordinates for the output map. The mini-
+       mum number of lines for the transformation to take place is four.
+
+
+       The format of the _p_o_i_n_t_s_f_i_l_e file is shown below:
+        Input Map   Output Map
+
+        x       y   x        y
+        x       y   x        y
+        x       y   x        y
+        x       y   x        y
+
+       In the format shown above the _x's and _y's can be thought of as eastings
+       and  northings, depending on what coordinate systems you are transform-
+       ing to and from.
+
+
+       An example of the _p_o_i_n_t_s_f_i_l_e file:
+        1       1       589000   4913000
+        1       17000   589000   4930000
+        17000   17000   610000   4930000
+        17000   1       610000   4913000
+
+       Within the _p_o_i_n_t_s_f_i_l_e file, numbers on a line must be spaced apart with
+       tabs  or  blanks.  The example shown above was used to convert a map in
+       digitizer coordinates (range of 1-18000) to UTM coordinates within  the
+       UTM zone for the Spearfish sample data base location.
+
+
+       Because  this  _p_o_i_n_t_s_f_i_l_e  file  is not your usual GRASS data file, the
+       user will have to keep track of where it is on the  system.   When  the
+       _p_o_i_n_t_s_f_i_l_e  option is used on the command line to input the transforma-
+       tion points, the program does not ask  whether  or  not  everything  is
+       acceptable before converting the vector file and the attribute file.
+
+
+       The  user  is advised to run this program interactively with a specific
+       set of transformation coordinates and to examine the resulting  residu-
+       als,  to  determine how accurate the transformation will be (i.e., pick
+       points with known values in both coordinate systems).  After the resid-
+       uals  are acceptable, those transformation coordinates can be used with
+       the program run non-interactively to transform other maps in  the  same
+       geographic area.
+
+WWAARRNNIINNGG
+       This  is  a  general  purpose program and can be fooled into giving low
+       residuals. It is strongly suggested that any transformed map be checked
+       for  accuracy.  The program assumes that the coordinate systems will be
+       planimetric and has never been tested with negative values.
+
+
+       If this program is being used to transform maps from State Plane to UTM
+       coordinates,  and  vice  versa,  users should be aware of the following
+       points.  This program will work better with State Plane zones that  use
+       the  Transverse  Mercator  projection. Those are states that have their
+       state zones  splitting  the  state  vertically,  like  Illinois.   This
+       program  will not work as well with states that use the Lambert Confor-
+       mal Conic projection. Those are states  that  have  their  state  zones
+       splitting  the  state  horizontally, like Wisconsin. It is also best to
+       keep the area being transformed relatively small.
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t
+
+       _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Michael Higgins, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_0_3 _0_9_:_1_9_:_4_0 _$
+
+
+
+GRASS 5.0                                                       v.transform(1)

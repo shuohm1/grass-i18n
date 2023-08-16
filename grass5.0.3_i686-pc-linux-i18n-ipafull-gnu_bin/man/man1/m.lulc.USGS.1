@@ -1,0 +1,108 @@
+m.lulc.USGS(1)                Grass User's Manual               m.lulc.USGS(1)
+
+
+
+NNAAMMEE
+       _m_._l_u_l_c_._U_S_G_S   -  Creates  raster map layers from a Composite Theme Grid
+       (CTG) file created by _m_._l_u_l_c_._r_e_a_d .  _m_._l_u_l_c_._r_e_a_d extracts the CTG  data
+       from  an ASCII landuse/landcover (lulc) CTG format file supplied by the
+       USGS.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..lluullcc..UUSSGGSS _i_n_p_u_t___f_i_l_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._l_u_l_c_._U_S_G_S creates the following raster map layers from the  CTG  file
+       created  by  _m_._l_u_l_c_._r_e_a_d  ,  and  places  them  into the user's current
+       mapset:
+
+
+       1. Land Use & Land Cover
+       2. Political Units
+       3. Census Units
+       4. Hydrologic Units
+       5. Federal Land Ownership
+       6. State Land Ownership
+
+
+
+       Since the CTG  file  may  not  contain  all  of  layers  listed  above,
+       _m_._l_u_l_c_._U_S_G_S  will extract only the raster map layers which exist in the
+       CTG file.
+
+
+       The CTG file contains all of the geographic region definition  informa-
+       tion necessary for creating the raster map layers, including:
+
+
+       1.  Grid Zone
+       2.  Projection Type (UTM)
+       3.  Cell Resolution (ew_res = nw_res)
+       4.  Multi-byte data formation
+       5.  Geographic region coordinates
+
+
+
+       _m_._l_u_l_c_._U_S_G_S  will use the geographic region information definition sup-
+       plied with the CTG file and NOT the geographic region  definition  cur-
+       rently  set for the user's mapset; (note that this is different than is
+       the case with many of the other GRASS map development commands).
+
+
+       When _m_._l_u_l_c_._U_S_G_S is executed, it will check the file  for  a  specified
+       layer  and  then  ask  the  user if he wishes to extract the associated
+       raster map layer.  The user is then prompted for  the  name  of  a  new
+       raster  file  in  which  output is to be placed.  _m_._l_u_l_c_._U_S_G_S will then
+       create this raster  file  and  all  supporting  (e.g.,  category,  cell
+       header, color table, etc.) files.
+
+EEXXAAMMPPLLEE
+       In  the  example below, raster data is extracted from a CTG file (named
+       _l_u_l_c) that contains only LAND USE/LAND COVER data:
+
+
+       mm..lluullcc..UUSSGGSS lluullcc
+            MAP TITLE: DODGE CITY, KS 1:250,000 LU, PB, CN, HU, FO
+            The Composite Theme Grid file contains <1> overlays
+            and has a map code type of <01>
+
+            Do you Wish to Create <LAND USE/LAND COVER> Raster File (y/n)  [y]
+       yy
+
+            Enter File Name for LAND USE/LAND COVER Overlay
+            Enter 'list' for a list of existing raster files
+            Hit RETURN to cancel request
+
+            > llaanndduussee
+
+
+            Creating <landuse> from <LAND USE/LAND COVER> Overlay: 95%
+            Number of Categories: 76  (UNLABELED)
+            Writing Cell Header Information
+            Writing Color Table Information
+
+            Conversion is Complete
+
+
+BBUUGGSS
+       _m_._l_u_l_c_._U_S_G_S  does  not  currently extract Census unit data.  Also, only
+       the cataloging unit is extracted from the CTG file (see  the  _L_a_n_d  _U_s_e
+       _a_n_d _L_a_n_d _C_o_v_e_r _D_a_t_a _U_s_e_r_'_s _G_u_i_d_e supplied by the USGS).
+
+SSEEEE AALLSSOO
+       USGS LLaanndd UUssee aanndd LLaanndd CCoovveerr DDaattaa UUsseerr''ss GGuuiiddee
+
+
+        _g_._r_e_g_i_o_n
+
+        _m_._l_u_l_c_._r_e_a_d
+
+AAUUTTHHOORR
+       Kenneth Shepardson Spectrum Sciences & Software, Inc.  (904) 862-3031
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       m.lulc.USGS(1)

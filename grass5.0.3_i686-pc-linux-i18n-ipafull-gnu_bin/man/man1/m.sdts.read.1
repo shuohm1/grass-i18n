@@ -1,0 +1,73 @@
+m.sdts.read(1)                Grass User's Manual               m.sdts.read(1)
+
+
+
+NNAAMMEE
+       mm..ssddttss..rreeaadd  - Program for reading SDTS or other data from files in ISO
+       8211 (FIPS 123) format.
+       (GRASS Data Import/Processing Program)
+
+SSYYNNOOPPSSIISS
+       mm..ssddttss..rreeaadd
+       mm..ssddttss..rreeaadd hheellpp mm..ssddttss..rreeaadd [--ss] iinnppuutt==_n_a_m_e [oouuttppuutt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The program enables the user to read SDTS and other data files  in  ISO
+       8211  (FIPS 123) format.  Output read from the file can be displayed to
+       the screen and/or dumped to a user-specified file.
+
+
+       Data read from the ISO 8211 file  is  displayed  or  dumped  record  by
+       record.   The contents of each field of each record are displayed along
+       with field name, subfield name, format, and length.  Binary field  data
+       are displayed in hex format.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --ss     suppress screen display of data; dump to specified file only.
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              name of SDTS ISO 8211 file to be read.
+
+       oouuttppuutt==_n_a_m_e
+              name of file to store output read from the ISO 8211 file.
+
+
+
+
+NNOOTTEESS
+       The  original version of this program, _s_d_t_s_d_u_m_p, is included along with
+       other utility program accompanying the U.S. Geological Survey's distri-
+       bution  of their public domain FIPS 123 Function Library. Both _s_d_t_s_d_u_m_p
+       and _m_._s_d_t_s_._r_e_a_d make use of this library.  To create _m_._s_d_t_s_._r_e_a_d, _s_d_t_s_-
+       _d_u_m_p  was only modified enough to make it conform to GRASS program con-
+       ventions.
+
+SSEEEE AALLSSOO
+       _m_._s_d_t_s_._r_e_a_d
+
+       _v_._i_n_._s_d_t_s
+
+       _v_._o_u_t_._s_d_t_s
+
+       _v_._s_d_t_s_._d_p_._c_p
+
+       _v_._s_d_t_s_._m_e_t_a_._c_p
+
+       _v_._s_d_t_s_._m_e_t_a
+
+AAUUTTHHOORRSS
+       Robert Lazar, U.S. Geological Survey, National Mapping Division
+       David Stigberg, U.S.Army Construction Engineering Research Laboratory
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       m.sdts.read(1)

@@ -1,0 +1,94 @@
+d.measure(1)                  Grass User's Manual                 d.measure(1)
+
+
+
+NNAAMMEE
+       dd..mmeeaassuurree  -  Measures  the  lengths and areas of features drawn by the
+       user in the active display frame on the graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..mmeeaassuurree
+       dd..mmeeaassuurree hheellpp
+       dd..mmeeaassuurree [--sskkmm] [cc11==_n_a_m_e] [cc22==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._m_e_a_s_u_r_e provides the user with an  interactive  way  to  measure  the
+       lengths and areas of lines and polygons drawn by the user in the active
+       frame on the graphics monitor.  Lines and polygons are  drawn  using  a
+       pointing  device  (mouse).  Each line segment is drawn in colors _c_1 and
+       _c_2.  A mouse button menu indicates that the user can find out the  geo-
+       graphic  coordinates of the cursor location, draw line segments between
+       user-specified vertices, and quit _d_._m_e_a_s_u_r_e.  Lines  and  polygons  are
+       defined  by the series of vertices marked by the user. If more than two
+       successive vertices are drawn, _d_._m_e_a_s_u_r_e prints  the  area  encompassed
+       (_d_._m_e_a_s_u_r_e  will  assume  the  area  is closed even if the user has not
+       joined the first and last vertices).  Line lengths are  stated  in  the
+       same units as those of the current LOCATION. In a XY-LOCATION, where no
+       units are available, _d_._m_e_a_s_u_r_e prints a warning and gives results with-
+       out  units.   Areas are stated in hectares, square miles, square meters
+       and square kilometers.  Lines and polygons drawn using  _d_._m_e_a_s_u_r_e  will
+       overlay  (not  overwrite)  whatever  display  currently  appears in the
+       active frame on the graphics monitor.  The user can, for  example,  run
+       _d_._r_a_s_t or _d_._v_e_c_t prior to running _d_._m_e_a_s_u_r_e, and use raster and/or vec-
+       tor maps as a backdrop.
+
+OOPPTTIIOONNSS
+       The user can specify the colors in which line segments will be drawn by
+       setting the values of _c_1 and _c_2 on the command line.  Default line col-
+       ors (see below) will be used if the user does not specify the values of
+       _c_1 and _c_2 on the command line.
+
+   FFllaaggss
+       --ss     Suppesses  clear screen and writes messages to stderr instead of
+              stdout. Usefull for work with the TCLTKGRASS gui.
+
+       --mm     Use metric units (meters, kilometers) only
+
+       --kk     Output results (additionally) in kilometers and  square  kilome-
+              ters
+
+
+   PPaarraammeetteerrss::
+       cc11==_n_a_m_e
+              The first color in which each line segment is drawn, while being
+              positioned.
+              Options: red,  orange,  yellow,  green,  blue,  indigo,  violet,
+              magenta, brown, gray, white, and black
+              Default: _w_h_i_t_e
+
+       cc22==_n_a_m_e
+              The  second color in which each line segment is drawn, after its
+              vertices are fixed.  Options: Same as _c_1.
+              Default: _w_h_i_t_e
+
+
+NNOOTTEESS
+       _d_._m_e_a_s_u_r_e uses all segments drawn by the user when computing area.   If
+       the  user  draws an area within another area, the combined area of both
+       regions will be output.
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._f_r_a_m_e
+
+       _d_._g_r_a_p_h
+
+       _d_._m_a_p_g_r_a_p_h
+
+       _d_._r_a_s_t
+
+       _d_._v_e_c_t
+
+       _d_._w_h_e_r_e
+
+AAUUTTHHOORRSS
+       James Westervelt,
+       Michael Shapiro,
+
+       U.S. Army Construction Engineering Research Laboratory
+
+
+
+GRASS 5.0                                                         d.measure(1)

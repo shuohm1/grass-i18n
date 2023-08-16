@@ -1,0 +1,67 @@
+r.quant(1)                    Grass User's Manual                   r.quant(1)
+
+
+
+NNAAMMEE
+       rr..qquuaanntt   - This routine produces the quantization file for a floating-
+       point map.
+       _(_G_R_A_S_S _5 _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..qquuaanntt
+
+
+       rr..qquuaanntt [--ttrr] iinnppuutt==_n_a_m_e[_,_n_a_m_e_._._.]  [bbaasseemmaapp==_m_a_p]   [ffpprraannggee==_d_m_i_n_,_d_m_a_x]
+       [rraannggee==_m_i_n_,_m_a_x]
+
+DDEESSCCRRIIPPTTIIOONN
+       r.quant produces the quantization file for a floating-point map.
+
+
+       _m_a_p_=_n_a_m_e    The  map for which the rules be to be created. If more than
+       one map is specified, then this implies that the  floating-point  range
+       is  the  miniumum  and  maximum of all the maps together, unless either
+       basemap=map or fprange=min,max is specified.
+
+        _b_a_s_e_m_a_p_=_m_a_p  The quant rules of this map set the quantization.
+
+        _f_p_r_a_n_g_e_=_m_i_n_,_m_a_x   This sets the floating-point range for the quantiza-
+       tion.
+
+            _-_t _f_l_a_g   Truncate floating point data
+
+            _-_r _f_l_a_g  Round floating point data
+
+        _r_a_n_g_e_=_m_i_n_,_m_a_x   This sets the integer range for the quantization. Oth-
+       erwise a default of 1-255 is used.
+
+
+
+QQuuaanntt rruulleess TThhee qquuaanntt rruulleess hhaavvee ttoo bbee eenntteerreedd iinntteerraaccttiivveellyy..
+       If rules is specified, the input has the form:
+
+
+       value1:value2:cat1:[cat2]
+
+
+       where value1 and value2 are floating point values and  cat1  cand  cat2
+       are  integers. If cat2 is missing, it is taken to be equal to cat1. All
+       values can be "*" which means infinity.
+
+
+
+NNOOTTEE
+       It is an error for both basemap and fprange to be specified.
+
+SSEEEE AALLSSOO
+        _r_._s_u_p_p_o_r_t and _r_._n_u_l_l
+
+AAUUTTHHOORR
+       Michael Shapiro, Olga Waupotitcsh,  U.S.Army  Construction  Engineering
+       Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                           r.quant(1)

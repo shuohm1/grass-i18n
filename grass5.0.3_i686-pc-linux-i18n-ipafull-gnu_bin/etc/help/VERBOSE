@@ -1,0 +1,4 @@
+  d/Down   - Scrolls down one line   r         - Redraws the screen 
+  f/PgDn   - Scrolls down a screen   Return    - Moves "*" to a topic/word
+  u/Up     - Scrolls up one line     Space     - Selects a topic/word 
+  b/PgUp   - Scrolls up a screen     q         - Returns to previous topic

@@ -1,0 +1,60 @@
+s.to.vect(1)                  Grass User's Manual                 s.to.vect(1)
+
+
+
+NNAAMMEE
+       ss..ttoo..vveecctt  - Converts a GRASS site_lists file into a vector file.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..ttoo..vveecctt
+       ss..ttoo..vveecctt hheellpp
+       ss..ttoo..vveecctt [--pp] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ccaatt==_t_y_p_e_,_i_n_d_e_x]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._t_o_._v_e_c_t  converts  GRASS  site_lists  file  into  vector  files.  The
+       resulting vector file can be treated as any  other  vector  file.   The
+       requirements  of  the  site_lists  file  are  standard (i.e., a regular
+       site_lists file format is required).  site_lists file values  are  used
+       as dig_cats category values.
+
+OOPPTTIIOONNSS
+FFllaaggss::
+       --pp     Don't prompt for map header information.
+
+
+PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of input GRASS site_lists file to be converted.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the vector output file.
+
+       ccaatt==_t_y_p_e_,_i_n_d_e_x
+              Field  type ("string", "dim", or "decimal") and index to use for
+              the vector category value. By default, the  category  number  is
+              used.   The  _t_y_p_e  is the site_lists attribute type of "string",
+              "dim" (or dimension), or "decimal".  The  _i_n_d_e_x  is  a  positive
+              integer  attribute  number for the specified _t_y_p_e.  That is, the
+              second "string" attribute would be "2" or the  fourth  dimension
+              would  be "four".  For the "dim" type, the _i_n_d_e_x must be greater
+              than 2.
+
+
+NNOOTTEESS
+       The specification for site_lists allows category numbers to be  missing
+       or  to be floating point.  Since attributes in vector layers are linked
+       by positive integers, when a site_lists  file  has  floating  point  or
+       missing  category  numbers,  a  positive  sequential  numbering is used
+       instead.  This may have the unfortunate side-effect of generating  dif-
+       ferent  category numbers for category values that are exactly the same.
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+       GRASS 5.0 Team
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         s.to.vect(1)

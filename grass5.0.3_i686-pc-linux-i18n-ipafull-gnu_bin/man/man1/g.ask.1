@@ -1,0 +1,129 @@
+g.ask(1)                      Grass User's Manual                     g.ask(1)
+
+
+
+NNAAMMEE
+       gg..aasskk - Prompts the user for the names of GRASS data base files.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..aasskk hheellpp
+       gg..aasskk  ttyyppee==_n_a_m_e  [pprroommpptt==_"_s_t_r_i_n_g_"]  eelleemmeenntt==_n_a_m_e [ddeesscc==_"_s_t_r_i_n_g_"] uunniixx--
+       ffiillee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._a_s_k is designed for shell scripts that need to prompt  the  user  for
+       the  name  of  a  data  base file in the user's current GRASS location.
+       After _g_._a_s_k is invoked with needed parameters, it will query  the  user
+       for  a  file  name  of  the specified _t_y_p_e and _e_l_e_m_e_n_t.  After the user
+       responds to this query, the program will write four lines to  the  UNIX
+       output file specified by _u_n_i_x_f_i_l_e.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ttyyppee==_n_a_m_e
+              The  type  of  query.   Options  for _n_a_m_e are _o_l_d, _n_e_w, _a_n_y, and
+              _m_a_p_s_e_t;  their functions are given  below.   "New",  "any",  and
+              "mapset" only look in the user's current mapset.
+
+       oolldd    For  existing  data  files  anywhere in the user's mapset search
+              path.
+
+       nneeww    Used to create a new file in the current mapset, which must  not
+              already  exist  there (if a file with this name exists there, it
+              will not be overwritten).
+
+       aannyy    Creates a file in the current  mapset,  which  may  or  may  not
+              already  exist  there.   If  a file with this name exists in the
+              current mapset, it will be overwritten; if not, a new file  with
+              this name will be created.
+
+       mmaappsseett For  files that must exist in the current mapset The shell write
+              wants the name of a file which  exists  in  the  user's  current
+              mapset.  This type would used instead of "old" if the file is to
+              be modified.
+
+
+       pprroommpptt==
+              The prompt to be displayed to the user.  If more than one  word,
+              the prompt should be enclosed within double quotes ("").
+
+       eelleemmeenntt==_n_a_m_e
+              The name of the GRASS data base element (i.e., directory under a
+              GRASS mapset) whose files are to be queried.
+
+       ddeesscc==  A short description of the data base element which is meaningful
+              to  the  user.   If  description contains more than one word, it
+              should be enclosed within double quotes ("").
+
+       uunniixxffiillee==_n_a_m_e
+              The name of a UNIX file to store the user's response.  See  next
+              section  for what is written to this file and how it can be used
+              by shell scripts.
+
+
+OOUUTTPPUUTT
+       Upon receiving the user's response to its  request  for  a  file  name,
+       _g_._a_s_k  writes four lines to the specified _u_n_i_x_f_i_l_e; this output file is
+       placed in the user's current working directory, unless otherwise speci-
+       fied, and contains the following lines: name='_s_o_m_e___n_a_m_e'
+
+       mapset='_s_o_m_e___m_a_p_s_e_t'
+
+       fullname='_s_o_m_e___f_u_l_l_n_a_m_e'
+
+       file='_s_o_m_e___f_u_l_l_p_a_t_h'
+
+
+
+       The  output  is  _/_b_i_n_/_s_h  commands to set the variable _n_a_m_e to the file
+       name specified by the user  (of  the  _e_l_e_m_e_n_t  and  _t_y_p_e  requested  by
+       _g_._a_s_k),  _m_a_p_s_e_t to the GRASS mapset in which this file resides (or will
+       be created), _f_u_l_l_n_a_m_e is the name with the mapset embedded in  it,  and
+       _f_i_l_e to the full UNIX path name identifying this file.  These variables
+       may be set in the _/_b_i_n_/_s_h as follows: .. uunniixxffiillee
+
+
+
+       The . is a shell command which means read the _u_n_i_x_f_i_l_e and execute  the
+       commands  found there.  It is NOT part of the _u_n_i_x_f_i_l_e name and MUST be
+       followed by a space.
+
+NNOOTTEESS
+       The user may choose to simply hit the return key and not enter  a  file
+       name.  If this happens the variables will be set as follows: name=
+
+       mapset=
+
+       fullname=
+
+       file=
+
+
+
+       The following is a way to test for this case:
+                 if [ ! "$file" ]
+                 then
+                      exit
+                 fi
+
+
+SSEEEE AALLSSOO
+       _d_._a_s_k
+
+       _g_._f_i_l_e_n_a_m_e
+
+       _g_._f_i_n_d_f_i_l_e
+
+       _g_._g_i_s_e_n_v
+
+       _g_._p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                             g.ask(1)

@@ -1,0 +1,176 @@
+v.to.pg(1)                    Grass User's Manual                   v.to.pg(1)
+
+
+
+NNAAMMEE
+       _v_._t_o_._p_g  -  Export areas and lines from an existing vector map to Post-
+       gres/PostGIS table. (GRASS-RDBMS Interface Display Program)
+
+SSYYNNOOPPSSIISS
+       vv..ttoo..ppgg
+
+       vv..ttoo..ppgg hheellpp
+
+       vv..ttoo..ppgg  [[--ffvvttpp]]  kkeeyy=_n_a_m_e  ttaabb=_n_a_m_ettyyppee=_n_a_m_e   [wwhheerree=_n_a_m_e]   mmaapp=_n_a_m_e
+       [ccoolloorr=_n_a_m_e]
+
+AALLTTEERRNNAATTEE
+       vv..ttoo..ppgg --ss hheellpp
+
+       vv..ttoo..ppgg ]]--ssffvvpp]] ssqqll_=_f_i_l_e_n_a_m_e mmaapp_=_n_a_m_e ttyyppee=_n_a_m_e [ccoolloorr_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._t_o_._p_g exports vectors from an existing vector map based on the unique
+       values in a database column (or optionally all vectors  without  refer-
+       encing  to  any  existing table, see -t option). Each row returned by a
+       user constructed database query will be associated with a  vector  fea-
+       ture which may be drawn on the graphics display if X-windows are there.
+       The user can control the color of the vector draw by specifying a color
+       on the command line.
+
+       As  result, a new Postgres table _t_a_b_l_e___b_n_d or _t_a_b_l_e___a_r_c (or _t_a_b_l_e___m_p_o_l_y
+       and _t_a_b_l_e___m_s_t_r_i_n_g for PostGIS) is created to  hold  areas  as  internal
+       type "polygon" and lines as "open path", where _t_a_b_l_e is the ttaabb parame-
+       ter. Besides these elements in fields called _b_o_u_n_d_a_r_y or  _s_e_g_m_e_n_t,  the
+       table  would  also have the category field (named after kkeeyy parameter),
+       case number this category occurred in map (as field called 'num'),  and
+       an  extra  boolean field 'ex' for 'true' if the polygon is external and
+       'f' if it is a hole for _t_a_b_l_e___b_n_d only.
+
+       For PostGIS, the difference is that types of the imported entities  are
+       POLYGON (i.e., with "holes" all in one POLYGON) and LINESTRING, respec-
+       tively.  The fields are called _g_r_a_s_s___p_o_l_y and _g_r_a_s_s___l_i_n_e. There  is  no
+       need  to  define whether a polygon is internal ("hole") or external, in
+       this case, therefore there is no field 'ex'.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaagg::
+       --ff  Fill polygons selected on the query criteria.
+
+       --tt  Export all map vectors without reference to existing table ('where'
+           clause ignored).
+
+       --vv  Verbose mode with statistics on the completion of the insertions.
+
+       --pp  Create and populate PostGIS GEOMETRY format table instead of normal
+           Postgres geometry types.
+
+
+   PPaarraammeetteerrss::
+       kkeeyy==ddaattaabbaasseeccoolluummnnnnaammee
+           Column in table "tab" of the currently selected database containing
+           values  corresponding  to the vector maps category values. Table is
+           designated on the command line by tab=tablename and vector is given
+           on the command line by map=mapname.
+
+       ttaabb==ddaattaabbaasseettaabblleennaammee
+           Table  in the currently selected database containing a column which
+           has values corresponding to  vector  category  values  in  the  map
+           designated by map=map.
+
+       wwhheerree==SSQQLLwwhheerreeccllaauussee
+           SQL "where" clause which specifies the query criteria to be used in
+           subsetting the database. The field names  specified  in  the  where
+           option  must indicate the column(s) to be used, the operators to be
+           used in the evaluation and the values which the data in the  column
+           will be evaluated against.
+
+       If  the  database  column used as the selection criteria is a character
+       field then the associated value must be placed in quotes. To  determine
+       the  data  types  associated  with  columns  in  the currently selected
+       database use the _g_._c_o_l_u_m_n_._p_g command with the _-_v flag.
+
+       Queries which are more complex are best implemented using the  _-_s  flag
+       and a prepared SQL file.
+
+       mmaapp==mmaapp
+           Name  of  an  existing vector map with category values which corre-
+           spond to values in a specified column  in  the  currently  selected
+           database.
+
+       ccoolloorr==nnaammee
+           Color  to draw vectors in Colors: red, orange, yellow, green, blue,
+           indigo, violet, magenta, brown, gray, white, black
+
+       ttyyppee==aarreeaa,,lliinnee
+           Type of the coverage to export.
+
+
+AALLTTEERRNNAATTEE CCOOMMMMAANNDD LLIINNEE UUSSAAGGEE
+       The alternate command line usage is provided to simplify the process of
+       retrieving  information from more than one table in the query criteria.
+       The alternate command line structure is selected  using  the  the  _[_-_s_]
+       flag  on  the  command line. When using this flag the user must include
+       the name of a text file on the command line as  well.  This  file  must
+       include  a  complete,  well  formed SQL SELECT statement specifying the
+       query criteria to retrieve values which correspond to  category  values
+       in a GRASS data layer.
+
+   FFllaagg::
+       --ss  SQL select statements are input from a prepared file
+
+       --ff  Fill polygons selected on the query criteria
+
+       --vv  Verbose mode with statistics on the completion of the insertions.
+
+       --pp  Create and populate PostGIS GEOMETRY format table instead of normal
+           Postgres geometry types.
+
+
+   PPaarraammeetteerrss::
+       ssqqll==ffiilleennaammee
+           SQL statements specifying well formed selection criteria.
+
+       mmaapp==nnaammee
+           Name of an existing vector map
+
+       ccoolloorr==nnaammee
+           Color to draw vectors in Colors: red, orange, yellow, green,  blue,
+           indigo, violet, magenta, brown, gray, white, black
+
+       ttyyppee==aarreeaa,,lliinnee
+           Type of the coverage to export.
+
+
+
+       EEXXAAMMPPLLEE::
+
+       11..   _v_._t_o_._p_g  _-_f  _k_e_y_=_r_e_c___i_d  _m_a_p_=_k_u_r_u_m_a___i_d  _t_a_b_=_i_n_f_o___k_u_r_u_m_a  _t_y_p_e_=_a_r_e_a
+       _w_h_e_r_e_=_'_t_y_p_e___i_d _>_3_2 _a_n_d _t_y_p_e___i_d _< _3_8_'  _c_o_l_o_r_=_r_e_d
+
+
+
+       RReessuulltt:: only polygons with type in 33-37 range would be inserted in ta-
+       ble _i_n_f_o___k_u_r_u_m_a___b_n_d and displayed in red color.
+
+       22.. _v_._t_o_._p_g _-_v _-_s _-_f _-_p _s_q_l_=_o_a_k_._s_q_l _m_a_p_=_k_u_r_u_m_a___i_d _t_y_p_e_=_a_r_e_a
+
+       oak.sql is:
+
+       _s_e_l_e_c_t _r_e_c___i_d _f_r_o_m _i_n_f_o___k_u_r_u_m_a _w_h_e_r_e _t_y_p_e___i_d _> _3_2 _a_n_d _t_y_p_e___i_d _<_3_8_;
+
+       RReessuulltt::  this  command  would do the same as in the first example, some
+       information printed on screen. However, the result table  would  be  in
+       PostGIS format.
+
+BBUUGGSS
+       none
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+       The 'total' mode of import (i.e., without referencing to existing table
+       _a_n_d to categories count in map) leads to that  field  'num'  in  result
+       tables  would  be  incoherent  (simply counts vectors from beginning to
+       end).
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_, _g_._s_t_a_t_s_._p_g_, _g_._t_a_b_l_e_._p_g_, _d_._r_a_s_t_._p_g_, _d_._s_i_t_e_._p_g_, _d_._w_h_a_t_._r_._p_g_,
+       _d_._w_h_a_t_._s_._p_g_, _d_._w_h_a_t_._v_._p_g_, _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                           v.to.pg(1)

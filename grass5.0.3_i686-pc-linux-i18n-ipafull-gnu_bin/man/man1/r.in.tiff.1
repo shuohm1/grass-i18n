@@ -1,0 +1,103 @@
+r.in.tiff(1)                  Grass User's Manual                 r.in.tiff(1)
+
+
+
+NNAAMMEE
+       rr..iinn..ttiiffff  - Imports a TIFF (8 or 24 bit) raster file into GRASS raster
+       file(s).
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..ttiiffff [--vv] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       This program imports a TIFF raster file (8 or 24 bit) to  GRASS  raster
+       file(s).  Output is placed in the _/_c_e_l_l directory under the user's cur-
+       rent GRASS mapset.
+
+
+
+   FFllaagg::
+       --vv     Verbose mode
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing TIFF raster file to be imported.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to resultant binary raster map layer.
+
+
+
+       The program prompts the user to enter the name of the TIFF raster  file
+       to be converted and the name to be assigned to the GRASS raster file to
+       contain the resultant image. Currently "TIFF/uncompressed", "TIFF/Pack-
+       Bits-compression" and "TIFF/deflate" formats are supported.  Other com-
+       pression schemes may not be read correctly.   LZW  compression  is  not
+       supported due to UNISYS patent.
+
+
+       If  the  image is a 24-bit RGB TIFF, then the output will be split into
+       respective red, green and blue band files; each having the _o_u_t_p_u_t  name
+       as its prefix followed by _._r, _._g or _._b, respectively.  Color composites
+       can be displayed with d.rgb.
+
+
+       If a TIFF World file exists with an extension of "tfw", "tifw",  "TFW",
+       or  "TIFW",  it  will  be used to set the boundary coordinates and cell
+       size.  Rotation in the TIFF World file is  not  supported  (second  and
+       third  numbers),  and  if  present  the  TIFF will be imported as an XY
+       (unreferenced) image.  If no TIFF World file exists,  the  user  should
+       adjust  boundary  coordinates  stored  in  the cell header after import
+       using _r_._s_u_p_p_o_r_t .
+
+
+       A sample TFW file opened up would look like:
+                              6.00
+                              0.00
+                              0.00
+                             -6.00
+                        1709053.00
+                         807714.00
+
+                Line 1 - Cell size in the "X" direction
+                Line 2 - "Rotation" term for the row
+                Line 3 - "Rotation" term for the column
+                Line 4 - Cell size in the "Y" direction
+                Line 5 - Easting value of insertion point "X"
+                Line 6 - Northing value of insertion point "Y"
+
+       Note: The y-scale (4) is negative because the origins of an image and a
+       geographic  coordinates system are different. The origin of an image is
+       located in the upper-left corner, whereas the origin of the map coordi-
+       nate  system  is  located  in  the lower-left corner. Row values in the
+       image increase from the origin downward, while y-coordinate  values  in
+       the map increase from the origin upward.
+
+NNOOTTEE
+       This module only supports TIFF's conforming to the base TIFF 6 specifi-
+       cation.  These include monochrome, grayscale, palette  and  RGB  ("True
+       Color"), with at most 8 bits per "sample".  Other features, like larger
+       bits/sample, floating point  (or  rational)  samples,  alpha  blending,
+       transparency masks, and multiband images, are not currently handled.
+
+
+       This  module  also doesn't handle true GeoTIFF's (those with coordinate
+       reference information actually embedded in  the  TIFF  file).   So  the
+       assumption  with  the TIFF world file is that it make sense in whatever
+       coordinate system the current region settings return.
+
+SSEEEE AALLSSOO
+        _r_._s_u_p_p_o_r_t _p_a_r_s_e_r and _r_._o_u_t_._t_i_f_f, _r_._i_n_._g_d_a_l
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+
+       GRASS 5.0 team
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_5_/_1_0 _0_8_:_0_6_:_0_7 _$
+
+
+
+GRASS 5.0                                                         r.in.tiff(1)

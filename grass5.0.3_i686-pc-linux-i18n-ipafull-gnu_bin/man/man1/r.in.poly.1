@@ -1,0 +1,87 @@
+r.in.poly(1)                  Grass User's Manual                 r.in.poly(1)
+
+
+
+NNAAMMEE
+       rr..iinn..ppoollyy   -  Create raster maps from ascii polygon/line data files in
+       the current directory.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..ppoollyy
+       rr..iinn..ppoollyy hheellpp
+       rr..iinn..ppoollyy iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [TTIITTLLEE==_"_p_h_r_a_s_e_"] [rroowwss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_._p_o_l_y allows the creation of GRASS binary raster  maps  from  ASCII
+       files  in the current directory containing polygon and linear features.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Unix input file, in ascii format,  containing  the  polygon  and
+              linear  features.   The  format of this file is described in the
+              section IINNPPUUTT FFOORRMMAATT below.
+
+       oouuttppuutt==_n_a_m_e
+              Raster output file
+
+       TTIITTLLEE== Title for resultant raster map (optional)
+
+       rroowwss==_v_a_l_u_e
+              Number of rows to hold in memory (default: 512).  This parameter
+              allows  users with less memory (or more) on their system to con-
+              trol how much memory _r_._i_n_._p_o_l_y uses.
+
+
+IINNPPUUTT FFOORRMMAATT
+       The input format for the iinnppuutt file  consists  of  sections  describing
+       either polygonal areas or linear features.  The basic format is:
+       A                      <for polygonal areas>
+           easting northing
+           .
+           .
+           .
+       =   cat# label
+       L                      <for linear features>
+           easting northing
+           .
+           .
+           .
+       =   cat# label
+
+       The  _A  signals the beginning of a polygon. It must appear in the first
+       column.  The _L signal the beginning of a linear feature. It  also  must
+       appear  in  the  first  column.  The coordinates of the vertices of the
+       polygon, or the coordinates defining the linear feature follow and must
+       have  a  space  in  the first column and at least one space between the
+       _e_a_s_t_i_n_g and the _n_o_r_t_h_i_n_g_. To give meaning to the features, the _=  indi-
+       cates  that  the  feature  currently being processed has category value
+       _c_a_t_# (which must be an integer) and a _l_a_b_e_l (which may be more than one
+       word, or which may be omitted).
+
+EEXXAAMMPPLLEE
+       An area described by four points:
+         A
+         591316.80   4926455.50
+         591410.25   4926482.40
+         591434.60   4926393.60
+         591341.20   4926368.70
+         = 42 stadium
+
+
+SSEEEE AALLSSOO
+       r.digit  for  interactive  on-screen polygon/line digitizing for raster
+       maps
+
+
+       r.colors for creates color tables for raster maps
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.in.poly(1)

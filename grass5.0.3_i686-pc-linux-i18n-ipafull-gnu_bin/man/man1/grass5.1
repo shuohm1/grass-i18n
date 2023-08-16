@@ -1,0 +1,329 @@
+grass5(1)                     Grass User's Manual                    grass5(1)
+
+
+
+NNAAMMEE
+       ggrraassss55  - The GRASS startup program
+
+
+SSYYNNOOPPSSIISS
+       ggrraassss55  [--]  [--hh  ||  --hheellpp  || ----hheellpp] [--tteexxtt || --ttccllttkk] [--vv || ----vveerrssiioonn]
+       [[[//]//] ]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program is used to start GRASS. It will  parse  the  command  line
+       arguments  and then initialize GRASS for the user. Since GRASS programs
+       require a specific environment, this program must be called before  any
+       other  GRASS  program  can run. The command line arguments are optional
+       and provide the user with a method to indicate the desired user  inter-
+       face, as well as the desired mapset to work on.
+
+FFEEAATTUURREESS
+       The GRASS program will save both the desired user interface and mapset.
+       Thus, the next time the user runs GRASS,  typing  _g_r_a_s_s_5  (without  any
+       options)  will  start  grass  with  the  previous settings for the user
+       interface and mapset.
+
+
+       If you specify a graphical user interface (eg Tcl/Tk) the  _g_r_a_s_s_5  pro-
+       gram  will  try to verify that the system you specified exists and that
+       you can access it successfully. If  any  of  these  checks  fail,  then
+       _g_r_a_s_s_5  will automatically switch back to the text user interface mode.
+
+OOPPTTIIOONNSS
+       All command line options are optional.
+
+   FFllaaggss::
+       --      Tries to start GRASS using location environment  variables  (see
+              below)
+
+       --hh --hheellpp ----hheellpp
+              Prints a brief usage message
+
+       --tteexxtt  Indicates that the text based user interface should be used
+
+       --ttccllttkk Indicates  that the Tcl/Tk based graphical user interface should
+              be used
+
+       --vv ----vveerrssiioonn
+              Prints the version for GRASS
+
+
+   PPaarraammeetteerrss::
+       GGIISSDDBBAASSEE
+              Initial database directory which should  be  a  fully  qualified
+              path (eg /usr/local/grassData)
+
+       LLOOCCAATTIIOONN__NNAAMMEE
+              Initial location directory which is a subdirectory of GISDBASE
+
+       MMAAPPSSEETT Initial  mapset  directory  which  is  a  subdirectory  of LOCA-
+              TION_NAME
+
+       NNoottee   You must specify one of the following
+
+              MAPSET
+
+              LOCATION_NAME/MAPSET
+
+              GISDBASE/LOCATION_NAME/MAPSET
+
+
+
+EENNVVIIRROONNMMEENNTT VVAARRIIAABBLLEESS
+   UUsseerr IInntteerrffaaccee EEnnvviirroonnmmeenntt VVaarriiaabbllee
+       The _g_r_a_s_s_5 program will check for the existence of an environment vari-
+       able  called  GRASS_GUI  which indicates the type of user interface for
+       GRASS to use. If this variable is not set when _g_r_a_s_s_5 is run,  then  it
+       will be created and then saved in the $HOME/.grassrc5 file for the next
+       time GRASS is run.
+
+
+       There is an order of precedence in the way _g_r_a_s_s_5 determines  the  user
+       interface  to  use.  The following is the hierarchy from highest prece-
+       dence to lowest.
+
+
+       The user may add own environment variable settings  to  $HOME/.grassrc5
+       file  which  are used during next startup of GRASS (list of implemented
+       environment variables).
+
+       IInntteerrffaaccee pprreecceeddeennccee
+              Command line argument
+
+              Environment variable GRASS_GUI
+
+              Value set in $HOME/.grassrc5
+
+              Default value - currently tcltk
+
+
+   TTccll//TTkk EEnnvviirroonnmmeenntt VVaarriiaabblleess
+       If you choose to use the Tcl/Tk graphical user interface, then the fol-
+       lowing  environment  variables  can  be  used  to  override your system
+       default tclsh and wish commands. See the section immediately  following
+       the variable descriptions for an example.
+
+       GGRRAASSSS__TTCCLLSSHH
+              Command to use to override tclsh
+
+       GGRRAASSSS__WWIISSHH
+              Command to use to override wish
+
+       Example Use of GRASS Tcl/Tk Environment Variables
+
+
+       Suppose  your system has Tcl/Tk 8.0 installed and you install your per-
+       sonal version of Tcl/Tk 8.3 binaries installed under $HOME/bin. You can
+       use  the  above  variables  to  have  GRASS use the Tcl/Tk 8.3 binaries
+       instead.
+
+
+       GRASS_TCLSH = $HOME/bin/tclsh8.3
+
+       GRASS_WISH  = $HOME/bin/wish8.3
+
+   AAddddoonn ppaatthh ttoo eexxttrraa llooccaall GGRRAASSSS mmoodduulleess
+       This environment variables allows to extend the GRASS paths to  locally
+       developed/installed modules which are not distributes through the stan-
+       dard release of GRASS.
+
+
+       GRASS_ADDON_PATH=/usr/mytools
+
+       GRASS_ADDON_PATH=/usr/mytools:/usr/local/othertools
+
+
+       In this example above path(s) would be added to the standard GRASS path
+       environment.
+
+   LLooccaattiioonn EEnnvviirroonnmmeenntt VVaarriiaabblleess
+       The  Synopsis  and  Options sections above describe options that can be
+       used to set the location and mapset that GRASS will use.  These  values
+       can  also  be  set  with environment variables. However, specifying the
+       location and mapset variables on the command line will  override  these
+       environment variables. The available variables are as follows:
+
+       LLOOCCAATTIIOONN
+              A  fully  qualified  path  to  a  mapset  (eg  /usr/local/grass-
+              Data/spearfish/PERMANENT). This environment  variable  overrides
+              the GISDBASE, LOCATION_NAME, and MAPSET variables.
+
+       GGIISSDDBBAASSEE
+              Initial  database  directory  which  should be a fully qualified
+              path (eg /usr/local/grassData)
+
+       LLOOCCAATTIIOONN__NNAAMMEE
+              Initial location directory which is a subdirectory of GISDBASE
+
+       MMAAPPSSEETT Initial mapset  directory  which  is  a  subdirectory  of  LOCA-
+              TION_NAME
+
+
+
+       There  are  a  variety  of ways in which these variables can be used to
+       specify the mapset to use. The following are some possible examples.
+
+       EExxaammppllee 11
+              The environment variables are defined as follows:
+
+              LOCATION = /usr/local/grassData/spearfish/PERMANENT
+
+              GISDBASE = /usr/local/grassData
+
+              LOCATION_NAME = spearfish
+
+              MAPSET = PERMANENT
+
+              Start GRASS with the following command:
+
+              grass5 -
+
+              GRASS will start with the mapset defined by LOCATION  since  the
+              LOCATION variable overrides the other variables.
+
+
+       EExxaammppllee 22
+              The environment variables are defined as follows:
+
+              GISDBASE = /usr/local/grassData
+
+              LOCATION_NAME = spearfish
+
+              MAPSET = PERMANENT
+
+              Start GRASS with the following command:
+
+              grass5 -
+
+              GRASS  will  start  with  the  mapset  defined by GISDBASE/LOCA-
+              TION_NAME/MAPSET.
+
+
+       EExxaammppllee 33
+              The environment variables are defined as follows:
+
+              LOCATION = /usr/local/grassData/spearfish/PERMANENT
+
+              GISDBASE = /usr/local/grassData
+
+              LOCATION_NAME = spearfish
+
+              MAPSET = PERMANENT
+
+              Start GRASS with the following command:
+
+              grass5 /usr/home/grass/data/thailand/forests
+
+              GRASS  will  start  with   the   mapset   /home/grass/data/thai-
+              land/forests which overrides the environment variables.
+
+
+       EExxaammppllee 44
+              The environment variables are defined as follows:
+
+              LOCATION = /usr/local/grassData/spearfish/PERMANENT
+
+              GISDBASE = /usr/local/grassData
+
+              LOCATION_NAME = spearfish
+
+              MAPSET = PERMANENT
+
+              Start GRASS with the following command:
+
+              grass5 swamps
+
+              GRASS  will  start  with  the  mapset  defined by GISDBASE/LOCA-
+              TION_NAME/swamps since the command line argument for the  mapset
+              overrides the environment variable MAPSET.
+
+
+       EExxaammppllee 55
+              The environment variables are defined as follows:
+
+              LOCATION = /usr/local/grassData/spearfish/PERMANENT
+
+              GISDBASE = /usr/local/grassData
+
+              LOCATION_NAME = spearfish
+
+              MAPSET = PERMANENT
+
+              Start GRASS with the following command:
+
+              grass5 thailand/forests
+
+              GRASS  will  start  with  the  mapset  defined by GISDBASE/thai-
+              land/forests since the command line arguments for  the  location
+              and mapset overrides the environment variables LOCATION_NAME and
+              MAPSET.
+
+
+
+   NNoottee
+       Note that you will need to set these variables  using  the  appropriate
+       method required for the UNIX shell that you use.
+
+EEXXAAMMPPLLEESS
+       The following are some examples of how you could start GRASS
+
+       ggrraassss55 Start  GRASS  using the default user interface. The user will be
+              prompted to choose the appropriate location and mapset.
+
+       ggrraassss55 --ttccllttkk
+              Start GRASS using the Tcl/Tk based user interface. The user will
+              be prompted to choose the appropriate location and mapset.
+
+       ggrraassss55 --tteexxtt
+              Start  GRASS  using the text based user interface. The user will
+              be prompted to choose the appropriate location and mapset.
+
+       ggrraassss55 --ttccllttkk --
+              Start GRASS using the Tcl/Tk based user  interface  and  try  to
+              obtain the location and mapset from environment variables.
+
+       OOtthheerr eexxaammpplleess
+              See the LLooccaattiioonn EEnnvviirroonnmmeenntt VVaarriiaabblleess section for further exam-
+              ples.
+
+
+BBUUGGSS AANNDD CCAAVVEEAATT
+       If you start GRASS using the Tcl/Tk interface you must have a _w_i_s_h com-
+       mand  in  your  $PATH variable. That is, the command must be named _w_i_s_h
+       and not something like _w_i_s_h_8_._3. By default, a Tcl/Tk installation  does
+       not  create  a _w_i_s_h command. Thus, the system administrator must create
+       an appropriate link to the actual wish program.
+
+
+       For  example,  suppose   Tcl/Tk   8.3   programs   are   installed   in
+       /usr/local/bin.   Then  the  system  administrator  should  go  to  the
+       /usr/local/bin directory and run the commands _l_n _-_s _w_i_s_h_8_._3 _w_i_s_h and _l_n
+       _-_s _t_c_l_s_h_8_._3 _t_c_l_s_h to properly install Tcl/Tk for use with GRASS.
+
+
+       Furthermore,  if  you  have  more than one version of Tcl/Tk installed,
+       make sure that the version you want to use with GRASS is the first ver-
+       sion  found  in your $PATH variable. GRASS searches your $PATH variable
+       until it finds the first version of _w_i_s_h.
+
+FFIILLEESS
+       _$_U_N_I_X___B_I_N_/_g_r_a_s_s_5 - GRASS startup program
+
+       _$_G_I_S_B_A_S_E_/_e_t_c_/_I_n_i_t_._s_h - GRASS initialization script called by _g_r_a_s_s_5
+
+       _$_G_I_S_B_A_S_E_/_t_c_l_t_k_g_r_a_s_s_/_s_c_r_i_p_t_/_g_i_s___s_e_t_._t_c_l - Tcl/Tk script to set the loca-
+       tion and mapset to use. Called by _I_n_i_t_._s_h
+
+
+SSEEEE AALLSSOO
+       List of implemented GRASS environment variables.
+
+AAUUTTHHOORR
+       Justin Hickey (jhickey@hpcc.nectec.or.th)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_0_8_:_3_1 _$
+
+
+
+GRASS 5.0                                                            grass5(1)

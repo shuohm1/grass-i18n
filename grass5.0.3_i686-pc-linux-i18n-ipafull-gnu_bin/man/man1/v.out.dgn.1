@@ -1,0 +1,85 @@
+v.out.dgn(1)                  Grass User's Manual                 v.out.dgn(1)
+
+
+
+NNAAMMEE
+       vv..oouutt..ddggnn  -  GRASS vector format to Microstation DGN format conversion
+       program.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..ddggnn
+       vv..oouutt..ddggnn hheellpp
+       vv..oouutt..ddggnn    [--aa]     input=_n_a_m_e     ddggnn==_n_a_m_e     [ttyyppee==_n_a_m_e_[_n_a_m_e_,_._._._]]
+       [ccaattaass==_n_a_m_e_[_n_a_m_e_,_._._._]]    [eennttiittyy==_n_a_m_e]   [lleevveell==_v_a_l_u_e]   [ccoolloorr==_v_a_l_u_e]
+       [ccaatt==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS _v_._o_u_t_._d_g_n conversion program  generates  an  Micostation  DGN
+       file.  Lines  with  more than 101 points are written as complex chains.
+       Areas are written as filled shapes and areas with  islands  as  complex
+       shapes with holes.
+
+       Categories may be written as texts, levels or mslinks. Mslink is Micro-
+       station link to external databe.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --aa     Append to existing DGN file.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The name of an existing GRASS vector.
+
+
+
+       ddggnn==_n_a_m_e
+              Full path to DGN output file.
+              NOTE: DGN files output by Microstation have the suffix .dgn
+
+
+
+       ttyyppee==_n_a_m_e
+              The type of grass objects which should be exported:
+
+              ppooiinntt,,lliinnee,,aarreeaa,,bboouunnddaarryy oorr cceennttrrooiidd.
+
+              Area is exported as shape and boundary as line.
+
+
+
+       ccaattaass==_n_a_m_e
+              Specifies how categories should be exported. Options are:  nnootthh--
+              iinngg,,mmsslliinnkk,,tteexxtt,,lleevveell,,ccoolloorr.
+
+
+
+       eennttiittyy==_n_a_m_e
+              Entity number used for mslinks if catas=mslink is used.
+
+
+
+       lleevveell==_v_a_l_u_e
+              The level the elements will be written on.
+
+
+
+       ccoolloorr==_v_a_l_u_e
+              Color number used for elements.
+
+
+
+       ccaatt==_v_a_l_u_e
+              Output only GRASS objects of specified category.
+
+
+SSEEEE AALLSSOO
+       _v_._i_n_._d_g_n
+
+AAUUTTHHOORR
+       Radim Blazek
+
+
+
+GRASS 5.0                                                         v.out.dgn(1)

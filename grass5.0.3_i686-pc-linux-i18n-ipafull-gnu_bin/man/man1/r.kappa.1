@@ -1,0 +1,115 @@
+r.kappa(1)                    Grass User's Manual                   r.kappa(1)
+
+
+
+NNAAMMEE
+       rr..kkaappppaa   -  Calculate  error  matrix  and kappa parameter for accuracy
+       assessment of classification result.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..kkaappppaa
+       rr..kkaappppaa hheellpp
+       rr..kkaappppaa   [--mmwwqqzzhh]   ccllaassssiiffiiccaattiioonn==_n_a_m_e   rreeffeerreennccee==_n_a_m_e   oouuttppuutt==_n_a_m_e
+       [TTIITTLLEE=="_n_a_m_e"]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._k_a_p_p_a tabulates the error matrix of classification result by crossing
+       classified map layer with respect to reference map layer.  Both overall
+       _k_a_p_p_a  (accompanied  by  its _v_a_r_i_a_n_c_e) and conditional _k_a_p_p_a values are
+       calculated.  This analysis  program  respects  the  current  geographic
+       region and mask settings.
+
+OOPPTTIIOONNSS
+       The user can run the program non-interactively by specifying all needed
+       flag settings and parameter values on the command line,  in  the  form:
+       rr..kkaappppaa   [--mmwwqqzzhh]   ccllaassssiiffiiccaattiioonn==_n_a_m_e   rreeffeerreennccee==_n_a_m_e   oouuttppuutt==_n_a_m_e
+       [TTIITTLLEE=="_n_a_m_e"]
+
+
+   FFllaaggss::
+       --mm     Report zero values due to mask.
+
+       --ww     Print a wide report, 132 columns (default: 80)
+
+       --qq     Run quietly,
+
+       --zz     Report non-zero values only.
+
+       --hh     Report without header.
+
+
+   PPaarraammeetteerrss::
+       ccllaassssiiffiiccaattiioonn==_n_a_m_e
+              Name of classified raster map layer.
+
+       rreeffeerreennccee==_n_a_m_e
+              Name of reference raster map layer.
+
+       oouuttppuutt==_n_a_m_e
+              Name of ascii file in which to output report results.
+
+       TTIITTLLEE==_n_a_m_e
+              Title of the report file which is the first line in output file.
+              Default:  _A_C_C_U_R_A_C_Y _A_S_S_E_S_S_M_E_N_T
+
+       Alternately,  the  user  can run _r_._k_a_p_p_a interactively by simply typing
+       _r_._k_a_p_p_a without command line arguments; in this case, the user will  be
+       prompted  for  the  names  of  classified result map and reference map,
+       which will be the subjects of the analysis.   _r_._k_a_p_p_a  then  calculates
+       the  error  matrix  of  the  two map layers and prepares the table from
+       which the report is to be created.  _k_a_p_p_a values for overall  and  each
+       classes  are  computed along with their variances. Also percent of com-
+       mission and ommission error, total correct classified result  by  pixel
+       counts,  total area in pixel counts and percentage of overall correctly
+       classified pixels are tabulated.
+
+
+       The report will be write to an output file which is in plain text  for-
+       mat and named by user at prompt of running the program.
+
+
+       The  body  of  the report is arranged in panels.  The classified result
+       map layer categories is arranged along the vertical axis of the  table,
+       while  the  reference  map  layer categories along the horizontal axis.
+       Each panel has a maximum of 5 categories (9 if wide format) across  the
+       top.   In  addition, the last column of the last panel reflects a cross
+       total of each column for each row.  All of the categories  of  the  map
+       layer  arranged along the vertical axis, i.e., the reference map layer,
+       are included in each panel.  There is a total at  the  bottom  of  each
+       column representing the sum of all the rows in that column.
+
+
+
+NNOOTTEESS
+       It  is  recommended  to  reclassify categories of classified result map
+       layer into a more manageable number before running _r_._k_a_p_p_a on the clas-
+       sified  raster  map  layer. Because _r_._k_a_p_p_a calculates and then reports
+       information for each and every category.
+
+
+       _N_A's in output file mean non-applicable in case _M_A_S_K exists.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _m_._i_p_f
+
+       _r_._c_a_t_s
+
+       _r_._m_a_s_k
+
+       _r_._r_e_c_l_a_s_s
+
+       _r_._r_e_p_o_r_t
+
+       _r_._s_t_a_t_s
+
+AAUUTTHHOORR
+       Tao Wen, University of Illinois at Urbana-Champaign,  Illinois
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                           r.kappa(1)

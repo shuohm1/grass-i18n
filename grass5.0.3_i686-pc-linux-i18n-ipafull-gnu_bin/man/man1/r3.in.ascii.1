@@ -1,0 +1,75 @@
+r3.in.ascii(1)                Grass User's Manual               r3.in.ascii(1)
+
+
+
+NNAAMMEE
+       rr33..iinn..aasscciiii  - Imports files in 3D ASCII format into G3D.
+       _(_G_R_A_S_S _3_D _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr33..iinn..aasscciiii  [[ttyyppee  ==  _d_e_f_a_u_l_t _| _d_o_u_b_l_e _| _f_l_o_a_t]] [[pprreecciissiioonn == _d_e_f_a_u_l_t _|
+       _m_a_x _| _0 _- _5_2]] [[ccoommpprreessssiioonn == _d_e_f_a_u_l_t _| _r_l_e  _|  _n_o_n_e]]  [[ttiilleeddiimmeennssiioonn  ==
+       _X_x_Y_x_Z]] [[nnvv == none | _d_o_u_b_l_e]] iinnppuutt == _a_s_c_i_i_-_f_i_l_e oouuttppuutt == _g_3_d_-_m_a_p
+
+DDEESSCCRRIIPPTTIIOONN
+   PPaarraammeetteerrss::
+       ttyyppee   Data  type  used  in  the  output file Options: default, double,
+              float
+
+       pprreecciissiioonn
+              Precision used in the output file Options: default, max, 0-52
+
+       ccoommpprreessssiioonn
+              Note that the _n_o_n_e option only specifies that  neither  LZW  nor
+              RLE  is used for compression.  It does not turn off the compres-
+              sion all together.  G3D does not support  non-compressed  files.
+              Options: default, rle, none
+
+       ttiilleeddiimmeennssiioonn
+              The  dimension of the tiles used in the output file.  The format
+              is: XxYxZ
+
+       nnvv     Specifies which value to convert to NULL-value.  If  the  speci-
+              fied  value  is  _n_o_n_e,  no  conversion is performed.  Default is
+              _n_o_n_e.
+
+       iinnppuutt  Path and name of ASCII file to be imported
+
+       oouuttppuutt Name of the G3D output map
+
+
+NNOOTTEESS
+       The format for the ASCII file:
+       north: _f_l_o_a_t_i_n_g _p_o_i_n_t
+       south: _f_l_o_a_t_i_n_g _p_o_i_n_t
+       east: _f_l_o_a_t_i_n_g _p_o_i_n_t
+       west: _f_l_o_a_t_i_n_g _p_o_i_n_t
+       top: _f_l_o_a_t_i_n_g _p_o_i_n_t
+       bottom: _f_l_o_a_t_i_n_g _p_o_i_n_t
+       rows: _i_n_t_e_g_e_r
+       cols: _i_n_t_e_g_e_r
+       levels: _i_n_t_e_g_e_r
+
+       This header is followed by the cell values  in  _f_l_o_a_t_i_n_g  _p_o_i_n_t  format
+       organized in rows with constant _c_o_l and _l_e_v_e_l coordinate.  The rows are
+       organized by constant _l_e_v_e_l coordinate. Individual cell values are sep-
+       arated by _s_p_a_c_e or _C_R.
+
+
+       NOTE:  Currently,  after  the file has been imported, the stored values
+       are compared with the original data. This feature is used to find  bugs
+       in the library at an early stage and will be turned off as soon as con-
+       fidence has built up.
+
+AAUUTTHHOORRSS
+       Roman Waupotitsch, Michael Shapiro, Helena Mitasova, Bill Brown,  Lubos
+       Mitas, Jaro Hofierka
+
+SSEEEE AALLSSOO
+       _r_3_._o_u_t_._a_s_c_i_i, _s_._t_o_._r_a_s_t_3, _G_R_A_S_S _A_S_C_I_I _f_o_r_m_a_t_s
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                       r3.in.ascii(1)

@@ -1,0 +1,526 @@
+r.water.fea(1)                Grass User's Manual               r.water.fea(1)
+
+
+
+NNAAMMEE
+       rr..wwaatteerr..ffeeaa   -  Finite element analysis program for hydrologic simula-
+       tions.
+
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..wwaatteerr..ffeeaa
+
+
+
+OOVVEERRVVIIEEWW
+       rr..wwaatteerr..ffeeaa is an interactive program that allows the user to  simulate
+       storm  water  runoff  analysis using the finite element numerical tech-
+       nique.  Infiltration is calculated using the Green  and  Ampt  formula-
+       tion.  rr..wwaatteerr..ffeeaa  computes  and  draws hydrographs for every basin as
+       well as at stream junctions in an analysis area. It also  draws  anima-
+       tion maps at the basin level.
+
+
+
+DDAATTAA RREEQQUUIIRREEMMEENNTTSS
+       The maps required by rr..wwaatteerr..ffeeaa  are:
+
+
+       1) Basin map
+       2) Stream map
+       3) Drainage map
+       4) Accumulation map
+       5) Slope map
+
+
+       The other data requirements of rr..wwaatteerr..ffeeaa are the parameters needed to
+       calculate infiltration  and  the  channel  roughness  parameter.  Model
+       parameters may be provided either in the form of maps or as values:
+
+
+       1) Manning roughness coefficient map or basin value
+       2) Saturated hydraulic conductivity map or basin value
+       3) Suction head at wetting front map or basin value
+       4) Effective porosity map or basin value
+       5) Degree of saturation basin value
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       On  running rr..wwaatteerr..ffeeaa for the first time, the directory _"_r_._w_a_t_e_r_._f_e_a_"
+       is created under $LOCATION. When the user runs rr..wwaatteerr..ffeeaa, the program
+       will  prompt  the user for the project name. The project name refers to
+       the directory that is created under the  _"_r_._w_a_t_e_r_._f_e_a_"  directory.  All
+       files (not maps) related to the analysis carried out by rr..wwaatteerr..ffeeaa are
+       stored under this directory. If the project does  not  exist  then  the
+       user  is  further  requested for the input maps. If the project already
+       exists, then the program looks for the proper project related files  to
+       proceed with stopped work.
+
+
+       CCoonnffiigguurraattiioonn
+
+
+       The  user is  asked for the following  configuration modes: I) Rainfall
+       mode: The rainfall mode is defined as follows:
+
+
+       1 = spatially uniform and constant in time
+       2 = spatially uniform but varying in time
+
+
+       If the user decides to use mode 2, then  a  mechanism  is  provided  to
+       allow creation of a rainfall rate file (described in step 4).
+
+
+       II) Basin-level hydrographs: This configuration mode allows the user to
+       view intermediate hydrographs for every basin. The hydrographs will  be
+       displayed on the graphics monitor. Each basin is considered to be inde-
+       pendent of every other basin in the analysis area.
+
+
+       III) Basin-level animation maps: This  configuration  mode  allows  the
+       user  to  create time-series maps for later animation of flow depth for
+       all the basins that have been analyzed. All animation maps use a multi-
+       plication  factor of 1000.  The map cell value divided by the multipli-
+       cation factor yields the actual value of flow depth in meters. The user
+       will  require enough file space in the GRASS database for this configu-
+       ration. All animation map names have the following naming scheme:
+
+
+       fea..#
+
+
+       Here '#' represents the time step. One time step refers  to  1/40th  of
+       the  total monitoring time. Twenty maps are created at every other time
+       step.
+
+
+       PPrrooggrraamm ffllooww
+
+
+       The basin and stream maps are displayed on the monitor  when  the  user
+       starts working on a project. The entire analysis is divided into a num-
+       ber of steps.  The user is presented with a menu to proceed through the
+       set  of  steps to facilitate easy changes to the simulation for a given
+       analysis area or to stop analysis between menu steps and continue at  a
+       more convenient time.
+
+
+       The main menu is shown below:
+
+
+
+
+       Choose from the menu:
+
+
+
+
+       *   1. Process steps without breaks.
+       *->  2. Select basins for simulation.
+       X   3. Extract topographical data.
+       X   4. Select hydraulic parameters and simulation time.
+       X   5. Basin simulation.
+       X   6. Simulate any particular basin.
+       X   7. Channel routing of basin hydrographs.
+       *   8. Stop.
+
+
+
+
+       You are starting from the beginning.
+
+
+       Choice:
+
+
+       The "X", "*", and "*->" above have the following meaning.
+
+
+
+       * 8    The user can select this part from the menu.
+
+       *-> 8  This  is  the step that the user must select in order to proceed
+              in a sequence.
+
+       X 8    The user can not select these parts of the menu (until  previous
+              steps have been executed).
+
+
+
+
+       Throughout  the  program the symbols described above change as the user
+       moves from step to step.  The message just above the Choice prompt sig-
+       nals  the  status of the program, and guides the user as to what should
+       be the next step.
+
+
+
+
+
+        This  part of the menu will not prompt for steps 2-5, 7 and will carry
+        out  all  the analysis. The user will find it advantageous to use this
+        step when analyzing a small area or a few basins.
+
+
+
+         This part of the menu draws the basin and stream maps for the user to
+         select the area of analysis. The mouse is then activated to provide a
+         point and click environment for the user to select basins in the area
+         of analysis. Upon successfully selecting the basins the user is given
+         the choice of deleting basins  from  the  selected  area.  The  basin
+         topology  is  then  determined and information on basin statistics is
+         gathered. The information on connectivity between basins is stored in
+         the  _"_i_n_p_u_t_._b_a_s_i_n_"  file  and  the information on basin statistics is
+         stored in the _"_b_a_s_i_n___i_n_f_o_" file.  Two  reclass  maps  describing  the
+         analysis  area  are  also created. The maps have the following naming
+         scheme:
+
+
+       _"_f_e_a_._s_t_r_e_a_m_._"
+       _"_f_e_a_._b_a_s_i_n_._"
+
+
+       The user should avoid using these names  to  create  other  maps.  Once
+       these  maps  are  created the user should not destroy them, if the user
+       wishes to continue working on the project.
+
+
+
+          This part of the menu generates information about  the  connectivity
+          between cells and boundary conditions. This information is stored in
+          the _"_i_n_p_u_t_._f_i_l_e_" file in the project directory.   If  the  animation
+          configuration has been set then another file called _"_c_o_o_r_d_i_n_a_t_e_s_" is
+          created in the project directory. This file contains information  on
+          the coordinates of every cell in the analysis area.
+
+
+
+
+
+           This  part  of  the  menu  carries  out  two  tasks. The first task
+           involves querying the user for simulation parameters.  The  simula-
+           tion  parameters  include  duration of rainfall, maximum intensity,
+           time step for simulation, monitoring time and names  of  simulation
+           maps if any. The second task involves querying channel characteris-
+           tics assuming the channels as trapezoidal cross-sections.  The user
+           is required to provide channel side slope, channel bottom width and
+           the channel roughness coefficient values for every stream category.
+
+
+       The program creates a file _"_t_i_m_e_d_a_t_a_" in the project directory to store
+       information from this part of the menu. If the user  has  selected  the
+       "Spatially uniform and time varying rainfall" mode (mode = 2), then the
+       user is queried for the the name of a time file. If the file  does  not
+       exist then a screen like the one shown below appears:
+
+
+
+       center;
+       l l l.
+       ------------------------------------------------------------------
+                                      Rainfall data
+                                      -------------
+       [The time column must be filled in increasing order.]
+
+                            Time[minutes]        Intensity[cm/hr]
+
+           1                    ______              ______
+           2                    ______              ______
+           3                    ______              ______
+           4                    ______              ______
+           5                    ______              ______
+           6                    ______              ______
+           7                    ______              ______
+           8                    ______              ______
+           9                    ______              ______
+          10                    ______              ______
+          11                    ______              ______
+          12                    ______              ______
+          13                    ______              ______
+          14                    ______              ______
+          15                    ______              ______
+       c s s s
+       c s s s
+       l l l l.
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+       (OR <Ctrl-C> TO CANCEL)
+       ------------------------------------------------------------------
+
+
+
+
+
+
+
+       It  is  important to note  that the values in the time column should be
+       in an increasing order. It is also not necessary to fill all  the  rows
+       and  the  user  can  stop  after filling only a few rows. The number of
+       lines are limited to fifteen. If more than fifteen lines  are  required
+       then  the  user  will  have to create the file using an editor. In that
+       case the user should just type the time since commencement of  rainfall
+       (minutes)  in  the  first  column  followed  by  the rainfall intensity
+       (cm/hr) in the second column as shown below:
+
+
+
+       center;
+       l l
+       l c.
+       10   2.54
+       30   4.52
+       60   5.62
+
+
+
+
+
+
+
+            This part of the menu carries out the simulation for each basin in
+            the  area  of  analysis. Every basin is analyzed as independent of
+            every other basin.  The user is shown the independent basin hydro-
+            graph   for   every  basin  on  the  graphics  monitor.  The  file
+            _"_d_i_s_c_h_._b_a_s_i_n_" is created  towards the end of simulation of all the
+            basins.  This  file contains  columns of discharge for each basin.
+            The column number corresponds to the basin category value  in  the
+            legend. If the animation configuration mode was set then a file is
+            created in the project directory called _"_d_i_s_c_h___f_i_l_e_"_.   This  file
+            holds  basin discharge values at every point in every basin of the
+            analysis area.
+
+
+
+             This part of the menu provides the  facility  of  changing  basin
+             characteristics  such  as  the  Manning roughness coefficient and
+             other infiltration parameters.  This  choice  can  be  used  only
+             after  the  successful  completion  of choice 5.  If the user has
+             provided maps for the parameters  then  the  user  should  select
+             "stop"  from  the menu to make changes to the parameter maps pro-
+             vided to the model.
+
+
+
+              This part of the menu connects the basins that  were  considered
+              independent  in  the  previous  step. Routing of the basin-level
+              hydrographs is done based on the  connectivity  between  basins.
+              This  can  generate hydrographs only for seven stream junctions.
+              If there are more than seven stream  junctions  then  the  first
+              seven  stream  junction  hydrographs  are  shown. The process of
+              drawing individual basin animation maps follows the  drawing  of
+              the  hydrographs  at  stream  junctions.   After completing this
+              choice a file _"_d_i_s_c_h_._j_u_n_c_t_i_o_n_" is created.  This  file  contains
+              discharge values at different steps for every stream junction.
+
+
+
+               This  part  of  the  menu  is available to the user at any time
+               between the different choices described in the menu  and  exits
+               the user out of the program.
+
+
+
+
+LLIIMMIITTAATTIIOONNSS
+       1.)  Negative values of drainage direction inside basins maps cannot be
+       accepted. Negative values are  generated  as  a  result  of  incomplete
+       information  regarding  the  basin  drainage pattern (e.g., rr..wwaatteerrsshheedd
+       produces negative values as a result of outflowing drainage basins).
+
+
+       2.) The drainage map should route the water and not form  pits,  lakes,
+       or  ponds.  Note that this does not imply that the DEM by itself should
+       not have any pits.
+
+
+       3) Interstorm modeling, interflow, or baseflow are not considered.
+
+
+       4) Backwater effects are not considered.
+
+
+       5) The kinematic wave analogy is appropriate  where  the  land  surface
+       slope and channel slope are large. This may not be true in flat, marshy
+       terrain and in slow, meandering river channels.
+
+
+
+OOUUTTPPUUTT FFIILLEESS OOFF IINNTTEERREESSTT
+       These are ASCII files that can be found in the _"_$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_"
+       directory.   The  files  have  a format such that it can be imported to
+       various analysis packages.
+
+
+
+       _d_i_s_c_h_._b_a_s_i_n 8
+              This file contains multiple columns which contain the individual
+              basin  discharge  values in order of first column containing the
+              discharge values for basin one and the second for basin two  and
+              so on.
+
+
+
+       _d_i_s_c_h_._j_u_n_c_t_i_o_n 8
+              This file contains the results of the discharge values at stream
+              junctions specified by the icons. The first column in this  file
+              shows  the  time  step in minutes. The remaining columns specify
+              the discharge values. The first row specifies the  stream  junc-
+              tion icon numbers.
+
+
+
+NNOOTTEESS
+       1. rr..wwaatteerr..ffeeaa alters the region in the _W_I_N_D file. This is done by mak-
+       ing a systems call to:
+
+
+       g.region align=name
+
+
+       just when the program rr..wwaatteerr..ffeeaa is run.
+
+
+       2. A small watershed can be  analyzed  by  providing  values  of  model
+       parameters.   However  it  is advisble to provide maps of various model
+       parameters if there are many basins in the watershed.   In  the  former
+       case  the  value  provided by the user shall be constant for the entire
+       basin for which the value is queried. The user shall create the  infil-
+       tration maps using the following set of rules. The map value divided by
+       the multiplication factor yields the  actual  value  in  the  described
+       units:
+
+
+
+       center tab(:);
+       ll
+       lc.
+       Parameter:Multiplication factor
+
+
+
+
+
+       Soil saturated hydraulic
+       conductivity map (meters/sec):10,000,000
+
+
+
+
+
+       Manning roughness coefficient:1000
+
+
+
+
+
+       Soil suction at wetting front (m):1000
+
+
+
+
+
+       Soil porosity map (m3/m3):1000
+
+
+
+
+
+
+       3.  If the user has provided a slope map that has zero slope value any-
+       where in the map, then a slope value of 5% is assumed for that cell.
+
+
+       4. It is preferred that none of the basins in  the  analysis  area  has
+       more than 750 cells, as this will increase the computation time drasti-
+       cally.  The number of cells in a basin can be controlled by setting the
+       threshold value to small values when running rr..wwaatteerrsshheedd.
+
+
+       5.  Using larger cells can speed up the analysis process significantly.
+       It is important to note that rr..wwaatteerrsshheedd should be run for the  resolu-
+       tion at which the user desires to run the rr..wwaatteerr..ffeeaa analysis.
+
+
+
+FFIILLEESS
+       All  the files listed below are ASCII files. None of these files should
+       be deleted if the user wishes to continue working on the same  project.
+
+
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_i_n_p_u_t_._b_a_s_i_n 8
+              This file contains information on connectivity between different
+              basins in the analysis area.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_i_n_p_u_t_._f_i_l_e 8
+              This file contains information on connectivity between different
+              cells for every basin in the analysis area.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_d_i_s_c_h_._b_a_s_i_n 8
+              This file contains discharge values for every basin in the anal-
+              ysis area.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_d_i_s_c_h_._j_u_n_c_t_i_o_n 8
+              This file contains discharge values at every stream junction  in
+              the analysis area.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_t_i_m_e_d_a_t_a 8
+              This file contains the response querried from the user in choice
+              4 of the menu.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_b_a_s_i_n___i_n_f_o 8
+              This file contains information on statistics of  the  basins  in
+              the analysis area.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_c_o_o_r_d_i_n_a_t_e_s 8
+              This  file  contains information on coordinates of every cell in
+              the analysis area.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_c_o_n_t_r_o_l 8
+              This file  contains  information  on  map  names,  configuration
+              modes, and stopped choice in the menu.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_d_i_s_c_h___f_i_l_e 8
+              This  file  contains  the discharge values at every point in the
+              analysis area.
+
+       _$_L_O_C_A_T_I_O_N_/_r_._w_a_t_e_r_._f_e_a_/_/_t_i_m_e_f_i_l_e_s_/ 8
+              This file contains the spatially constant and time variant rain-
+              fall mode file.
+
+
+
+
+RREEFFEERREENNCCEESS
+       Finite element methodology used by r.water.fea is described in
+       Vieux,  B. E., Bralts, V. F., Segerlind, L. J., Wallace, R. B., (1990),
+       "FINITE ELEMENT WATERSHED MODELING:  ONE-DIMENSIONAL ELEMENTS",  J.  of
+       Water Resources Planning and Management, Vol. 116, No. 6, p803-819.
+
+
+
+SSEEEE AALLSSOO
+       _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+       _r_._w_a_t_e_r_s_h_e_d
+
+       _r_._m_a_s_k
+
+       _r_._r_e_c_l_a_s_s
+
+       _r_._s_t_a_t_s
+
+       _r_._c_o_l_o_r_s
+
+AAUUTTHHOORR
+       Baxter E. Vieux, University of Oklahoma, Norman
+       Nalneesh Gaur, University of Oklahoma, Norman
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                       r.water.fea(1)

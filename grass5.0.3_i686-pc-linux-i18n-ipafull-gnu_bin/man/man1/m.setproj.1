@@ -1,0 +1,68 @@
+m.setproj(1)                  Grass User's Manual                 m.setproj(1)
+
+
+
+NNAAMMEE
+       mm..sseettpprroojj  - Allows the user to create the PROJ_INFO and the PROJ_UNITS
+       files to record the projection information associated with a  specified
+       mapset.
+       _"_(_S_C_S _G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..sseettpprroojj
+       mm..sseettpprroojj hheellpp
+       mm..sseettpprroojj [sseett==_n_a_m_e] pprroojj==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       allows  a  user to create a new PROJ_INFO file in the specified mapset.
+       The file is used to record the projection information  associated  with
+       the specified mapset.
+
+
+       Note:
+
+        The   PROJ_UNITS file.
+              The  specification  of any projection other than ll and xxx will
+              generate a request to the user for a name of a standard ellipse.
+              The  projections  of  aea,  lcc, merc, and tmerc will generate a
+              request to the user for the prime meridian and standard parallel
+              for the output map.
+              The  projection  of  stp will generate a request to the user for
+              the state abbreviation and choice of zone for the output map.
+              The projection of xxx will request mapgen _p_r_o_j parameters.   See
+              the mapgen _p_r_o_j documentation for the uses of this software.
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       sseett==_n_a_m_e
+              Mapset in which the projection information file is to be stored.
+
+       pprroojj==_n_a_m_e
+              Map projection name.
+              Options:  utm, aea, stp, ll, lcc, merc, tmerc, xxx
+
+
+EEXXAAMMPPLLEE
+       To create a PROJ_INFO file recording mapset SAMPLE as being a UTM  pro-
+       jection in zone 13:
+
+
+       mm..sseettpprroojj sseett==_S_A_M_P_L_E pprroojj==_u_t_m
+
+
+
+       The  user will be prompted for the spheroid and zone of the UTM projec-
+       tion.
+
+SSEEEE AALLSSOO
+       _M_a_p_g_e_n _p_r_o_j
+
+AAUUTTHHOORR
+       M.L. Holko, USDA, SCS, NHQ-CGIS
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                         m.setproj(1)

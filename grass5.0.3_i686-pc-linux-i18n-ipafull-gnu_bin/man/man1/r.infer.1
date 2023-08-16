@@ -1,0 +1,265 @@
+r.infer(1)                    Grass User's Manual                   r.infer(1)
+
+
+
+NNAAMMEE
+       rr..iinnffeerr   -  Outputs a raster map layer whose category values represent
+       the application of user-specified criteria (rules statements) to  other
+       raster map layers' category values.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinnffeerr
+       rr..iinnffeerr hheellpp
+       rr..iinnffeerr [--vvtt] rruulleessffiillee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_f_e_r  is  an  inference engine which applies a set of user-specified
+       rules to named raster map layers.  A new raster map layer  named  _i_n_f_e_r
+       is created as output, whose category values reflect the ability of each
+       cell in the named input layers to satisfy the named conditions.
+
+
+       _r_._i_n_f_e_r commands (conditions and consequences) are typed into a file by
+       the  user  using  a system editor like _v_i, and then input to _r_._i_n_f_e_r as
+       the _r_u_l_e_s_f_i_l_e named on the command line.  The results are used to  gen-
+       erate  a new raster map layer named _i_n_f_e_r in the user's current mapset.
+       This program performs analyses similar to _r_._c_o_m_b_i_n_e, but uses a (possi-
+       bly) more pleasing syntax and approach.
+
+OOPPTTIIOONNSS
+       The  program  will  be  run non-interactively if the user specifies the
+       name of a rules file and any desired flags on the command  line,  using
+       the form: rr..iinnffeerr [--vvtt] rruulleessffiillee==_n_a_m_e
+
+       where _n_a_m_e is the name of an ASCII file containing valid input rules to
+       _r_._i_n_f_e_r, and the (optional) flags _-_v and _-_t have the meanings described
+       in the OPTIONS section, below.
+
+
+       Alternately,  the  user  can  simply  type rr..iinnffeerr on the command line,
+       without program arguments.  In this case, the user will be prompted for
+       the  needed  parameter value and flag settings using the standard GRASS
+       parser interface.
+
+   FFllaaggss::
+       --tt     Allows the user to run _r_._i_n_f_e_r in _t_e_s_t mode.  The user is  ques-
+              tioned  about  the  truth  of  each condition named in the file.
+              _r_._i_n_f_e_r then outputs the value that would be placed in  the  new
+              layer _i_n_f_e_r for a cell meeting conditions specified by the user.
+              When no sets of conditions stated in the input file  are  satis-
+              fied  (based  upon  the user's answers), cell values of zero are
+              output.  Test mode is used to test the accuracy  of  the  user's
+              logic.   Users  are encouraged to run _r_._i_n_f_e_r in test mode prior
+              to actually creating map layers.
+
+       --vv     Makes _r_._i_n_f_e_r run _v_e_r_b_o_s_e_l_y, giving information about each  cell
+              as it is analyzed according to the statement conditions.
+
+
+   PPaarraammeetteerrss::
+       rruulleessffiillee==_n_a_m_e
+              Allows  the  user  to input rules to _r_._i_n_f_e_r from an ASCII file,
+              rather than from standard input.  This rulesfile must  exist  in
+              the  user's  current  working  directory or be given by its full
+              pathname.  File rules statements take the  same  form  as  those
+              given  on  the command line.  Examples of valid rules statements
+              are given in the sections below.
+
+
+CCOOMMMMAANNDDSS AANNDD SSTTAATTEEMMEENNTTSS
+       The following commands are available in _r_._i_n_f_e_r_:
+       COMMANDS AND STATEMENTS
+       The following commands are available in r.infer:
+        Command   |  Aliases  |   Followed By       |       Such As
+       -----------+-----------+---------------------+----------------------
+       IFMAP      | ANDIFMAP  | cellmap cat#        | geology 2
+                  | ANDMAP    |                     |
+       -----------+-----------+---------------------+----------------------
+       IFNOTMAP   | ANDNOTMAP | cellmap cat#        | geology 2
+       -----------+-----------+---------------------+----------------------
+       THENMAPHYP |           | cat# [statement]    | 3 nice vacation spot
+       -----------+-----------+---------------------+----------------------
+       THEN       |           | statement           | No sandstone
+                  |           | condition           |
+       -----------+-----------+---------------------+----------------------
+       IF         | AND       | predefined          | No sandstone
+               | ANDIF     | statement condition |
+
+
+       These five commands may be used to formulate statements with  functions
+       ranging  from a simple reclassification to a more complex expert system
+       type application.  Statements are composed of one  or  more  ccoonnddiittiioonnss
+       followed  by  one  or  more  hhyyppootthheesseess and/or ccoonncclluussiioonnss.  The use of
+       aliases is provided to allow for the use of  a  command  which  has  an
+       English meaning consistent with the logic at that point.
+
+
+       Following  is a description of each of the five commands.  The map lay-
+       ers used in the examples are in the Spearfish sample data base.
+
+
+
+       IIFFMMAAPP Map condition
+
+
+       Map conditions are questions to each cell about the presence of  speci-
+       fied  map  layer  category  values.  _r_._i_n_f_e_r questions each cell in the
+       named map layer (here, _g_e_o_l_o_g_y)  about  its  contents  (i.e.,  category
+       value).   Cells  which  satisfy  the named condition(s) stated by IFMAP
+       (i.e., here, those cells which contain _g_e_o_l_o_g_y map layer category  val-
+       ues  4 or 5) will be assigned the subsequently-stated map conclusion or
+       hypothesis (category), in the new map layer _i_n_f_e_r.  Cells which fail to
+       satisfy  named  map condition(s) will continue to move down through the
+       user's _r_u_l_e_s_f_i_l_e (searching for conditions it is able  to  satisfy)  if
+       any  additional  conclusions/hypotheses are stated in the file, or will
+       be assigned category zero in the new map layer _i_n_f_e_r (if no  additional
+       conclusions/hypotheses are possible in this _r_u_l_e_s_f_i_l_e).
+
+
+       example:  IIFFMMAAPP ggeeoollooggyy 44 55
+
+
+
+       IIFFNNOOTTMMAAPP Map condition
+
+
+       Like IFMAP, but instead questions each cell about the _a_b_s_e_n_c_e of speci-
+       fied map layer categories.  Cells which meet  the  IFNOTMAP  conditions
+       (i.e., below, those cells which do NOT include owner map layer category
+       value 2) will be assigned the named conclusionothesis, in the  new  map
+       layer _i_n_f_e_r.
+
+
+       example: IIFFNNOOTTMMAAPP oowwnneerr 22
+
+
+       TTHHEENNMMAAPPHHYYPP Map conclusion
+
+
+       Assigns each cell a specified category value in the new map layer _i_n_f_e_r
+       based on the cell's ability or failure to meet conditions  named  above
+       this  THENMAPHYP statement in the _r_u_l_e_s_f_i_l_e.  The user should note that
+       although the user  can  specify  a  uniquely-named  _r_u_l_e_s_f_i_l_e,  _r_._i_n_f_e_r
+       always  directs  its output to a file named _i_n_f_e_r in the current mapset
+       (overwriting whatever is currently in this file).   Therefore,  if  the
+       user  wishes  to  save  this  file  for future use, this file should be
+       renamed before the user next runs _r_._i_n_f_e_r (e.g., using the  GRASS  com-
+       mand _g_._r_e_n_a_m_e).
+
+
+       It  is  important  to  realize that _r_._i_n_f_e_r runs through the conditions
+       stated in the named _r_u_l_e_s_f_i_l_e one cell at a time, moving from  the  top
+       of  the  raster  input file to the bottom of the raster input file.  As
+       soon as the cell currently being examined by _r_._i_n_f_e_r satisfies a set of
+       conditions, it is assigned a category value in the new map layer _i_n_f_e_r.
+       _r_._i_n_f_e_r does NOT check to see if that same cell satisfies other  condi-
+       tions  named further down in the input file, too.  Instead, it moves on
+       to the next cell, and begins anew with the conditions named at the  top
+       of  the  input  file.   Essentially,  this  means that conclusions made
+       higher-up in the input file have precedence over conditions named  fur-
+       ther down in the input file.
+
+
+       example:
+
+        IIFFMMAAPP ddeennssiittyy 11
+       TTHHEENNMMAAPPHHYYPP 11 nnoo ttrreeeess
+
+
+       In  the above example, all cells having a category value of _1 (non-for-
+       est) in the map layer _d_e_n_s_i_t_y, are assigned a category value  of  _1  in
+       the resultant map layer _i_n_f_e_r.  The trailing text "no trees" is entered
+       into the category support file for category 1  in  the  new  map  layer
+       _i_n_f_e_r.
+
+
+
+       TTHHEENN Statement hypothesis
+
+
+       At  the  conclusion  of one or several condition statements, instead of
+       making a map conclusion as with THENMAPHYP, the conditions are used  to
+       create  a  hypothesis.  This may then be referenced in later statements
+       using the IF command.  The trailing text at the end of the THEN  state-
+       ment  is  used as the means with which to reference the hypothesis.  An
+       example follows the description of IF below.
+
+
+
+       IIFF Statement condition.
+
+
+       States a condition based on an hypothesis that was created by a  previ-
+       ous  THEN  statement.   IF may be used only after a THEN has set up the
+       group of statements that are to be referenced later.
+
+
+       example:
+
+
+       IIFFMMAAPP eelleevvaattiioonn..225555 117700--225555
+       AANNDDIIFFMMAAPP ddeennssiittyy 33 44
+       TTHHEENN hhiigghh eelleevvaattiioonn wwiitthh ttrreeeess
+       !!
+       IIFF hhiigghh eelleevvaattiioonn wwiitthh ttrreeeess
+       AANNDDIIFFMMAAPP oowwnneerr 22
+       TTHHEENNMMAAPPHHYYPP 11 tthhiiss iiss tthhee ppllaaccee
+
+
+       The above example queries each cell for the presence of _b_o_t_h elevations
+       greater  than  1580  meters  (i.e.,  for  _e_l_e_v_a_t_i_o_n_._2_5_5 category values
+       170-255) and a medium to high density of trees (i.e., density  category
+       values  3  4).  All areas (i.e., cells) that satisfy these criteria are
+       assigned to the hypothesis "high elevation with trees." The "!"  simply
+       tells _r_._i_n_f_e_r to ignore whatever appears on that line (a comment state-
+       ment), and is used here for readability.
+
+
+       The IF statement then references  cells  having  "high  elevation  with
+       trees"  (i.e.,  those cells that satisfied both of the above conditions
+       named by the IFMAP and ANDIFMAP statements).  If a cell _b_o_t_h has  "high
+       elevations  with  trees" and _o_w_n_e_r map layer category 2 (areas owned by
+       the Forest Service), it is assigned by the THENMAPHYP statement to cat-
+       egory  1  in  the  new map layer _i_n_f_e_r.  The trailing text "this is the
+       place" is automatically entered into the category support file for  the
+       new  map  _i_n_f_e_r.  Cells failing to meet all of the conditions stated in
+       this input file will be assigned category 0 in the new map layer _i_n_f_e_r.
+
+SSEEEE AALLSSOO
+       _g_._r_e_n_a_m_e, _r_._c_o_m_b_i_n_e, _r_._m_a_p_c_a_l_c, _r_._w_e_i_g_h_t, and _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S.Army Construction Engineering Research Laboratory
+
+
+       Special recognition goes to:
+
+
+       George W. Hageman
+
+       SOFTMAN Enterprises
+
+       P.O. Box 11234
+
+       Boulder, Colorado  80301
+
+
+       Daniel S. Cox
+
+       In Touch
+
+       796 West Peachtree St. NE
+
+       Atlanta, GA 30308
+
+
+       Mr. Hageman, in the spring of 1986, submitted an  inference  engine  to
+       the  UNIX network.  Mr. Cox reworked the code submitting an new version
+       shortly thereafter.  It is this code that forms the guts of _r_._i_n_f_e_r.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                           r.infer(1)

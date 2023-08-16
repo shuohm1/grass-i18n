@@ -1,0 +1,170 @@
+m.in.e00(1)                   Grass User's Manual                  m.in.e00(1)
+
+
+
+NNAAMMEE
+       _m_._i_n_._e_0_0 - Read an ESRI e00 file
+
+       _(_G_R_A_S_S _V_e_c_t_o_r_/_R_a_s_t_e_r_/_S_i_t_e_s _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..iinn..ee0000
+
+       mm..iinn..ee0000  [--iiddttss]  iinnppuutt==_n_a_m_e  [mmaappsseett==_n_a_m_e]  [aaccttiioonn==_w_h_a_t _t_o _d_o] [vveerr--
+       bboossee==_d_e_b_u_g _l_e_v_e_l] [llooggffiillee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The m.in.e00 program is designed to  import  ESRI  Arc/Info  e00  ascii
+       archives.   The input file may be a compressed e00 file : m.in.e00 will
+       automatically recognize the format.
+
+       The module not only can analyse the content of an  Arc/Info  file,  but
+       try to create the objects described (geometry and attributes).
+
+       m.in.e00  will  be  run non-interactively if the user specifies program
+       arguments on the command line, using the form:
+
+       mm..iinn..ee0000 [--iiddttss] iinnppuutt==_n_a_m_e [mmaappsseett==_n_a_m_e]  [aaccttiioonn==_w_h_a_t  _t_o  _d_o]  [vveerr--
+       bboossee==_d_e_b_u_g _l_e_v_e_l] [llooggffiillee==_n_a_m_e]
+
+       Alternately, the user can simply type:
+
+       mm..iinn..ee0000
+
+       on  the  command line without program arguments. In this case, the user
+       will be prompted for parameter values using  the  standard  GRASS  user
+       interface described in the manual entry for parser.
+
+FFEEAATTUURREESS
+       m.in.e00 attemps to retrieve all information in an Arc/Info export file
+       (.e00): points, line, polygon, and grid coverage. The attribute of each
+       "vector" object (points, line, and polygon) is the Arc/Info coverage-ID
+       (and not the coverage-#). Both single and  double  precision  are  sup-
+       ported.
+
+       GRASS  files created have the name extracted from the first line of the
+       e00 file, i.e. the name of the coverage. The file is read from the cur-
+       rent directory unless specified differently.
+
+       The following rules are used : A line vector file is created when there
+       is a non-empty ARC section, and neither PAL (Polygon  Attribute  Label)
+       section, neither PAT (Point/Polygon Attribute Table) table in INFO sec-
+       tion. Otherwise a polygon vector file is created, excepted when the ARC
+       section  is  empty  or doesn't exist, in which case a site file is cre-
+       ated.
+
+       Dig_cats files are created if the PAT  or  AAT  (Arc  Attribute  Table)
+       tables  have  more  attributes  than  the standard one. If there is one
+       extra attribute, the dig_cats file has the name  of  the  vector  (dig)
+       file  created.  If there is more than one extra attribute, the dig_cats
+       files have names of the form cover_name.attribute_name. If you want  to
+       use  one of them, you must rename it so it matches the name of the vec-
+       tor file. Doing this, the vector modules will use  it  for  the  raster
+       file created.
+
+
+       To  "activate"  a  category label file for the vector map "cover_name",
+       change to:
+
+
+           cd $LOCATION/dig_cats/
+           ls cover_name.*
+           cp cover_name.attribute_name cover_name
+           cd $HOME
+           v.support cover_name
+
+       If you want to use another table entry, you have to run above procedure
+       accordingly with cover_name.other_attribute_name.
+
+
+       When  importing  raster  file ("GRID"), cats files are created the same
+       way in $LOCATION/cats.  Note that an empty cat file is automaticaly put
+       in  this  directory  when a raster file is created, so m.in.e00 allways
+       use the cover_name.attribute_name form for raster category files.
+
+OOPPTTIIOONNSS
+       _m_._i_n_._e_0_0 requires the user to enter the following information:
+
+   FFllaaggss::
+       --ii  Use the "feature-ID" of the arc info objects to link  geometry  and
+           attribute's  tables.  The  default  is to use the "feature-#" field
+           (which is an internal link, but you should not rely on it for link-
+           ing Arc/Info objects to an external database.
+
+       --dd  Use  a  database  instead  of  as  many  dig_cats files as you have
+           attributes in the INFO tables (not yet operational).
+
+       --tt  Put all attributes in one category file, separated by tabs (not yet
+           operational).
+
+       --ss  Automatically run "v.support" on newly created vector file.
+
+
+   PPaarraammeetteerrss::
+       mmaappsseett==_n_a_m_e
+           For  creating  a new mapset for the data imported. This may be use-
+           ful, since we cannot create a projection info file  and  a  default
+           window  in  an existing mapset. When a file is imported in the cur-
+           rent mapset, you should take care that they are in the same projec-
+           tion.  Unfortunately,  you may run in trouble after that when using
+           g.region (Cf BUGS).
+
+       aaccttiioonn==_w_h_a_t _t_o _d_o
+           Five options: analyse, raster, lines, vector and all.  By  default,
+           all  is  used  and  everything  (grid,  points, lines, polygons) is
+           imported. Analyze produces no files, but only a log  output  (level
+           5) on stderr, and is useful to see whether the e00 file is clean or
+           not. Raster imports only grid  section.   Lines  imports  only  the
+           geometry  (no  label  are  attached  to the lines or polygons) of a
+           point/line/polygon coverage. Vector  imports  a  point/line/polygon
+           coverage with their attributes.
+
+       vveerrbboossee==_d_e_b_u_g _l_e_v_e_l
+           Number between 0 (no trace of what's happening) and 9 (very verbose
+           log).
+
+       llooggffiillee==_n_a_m_e
+           Name of file where log info will be written. By  default  log  info
+           are directed to stderr.
+
+
+BBUUGGSS AANNDD CCAAVVEEAATT
+       If  the E00 file contains areas, it is recommended to set the map scale
+       (in v.digit)  to  some  big  value  (1:1),  and  run  v.support  again.
+       Otherwise  map  threshold  is  too  big, and v.support may fail even on
+       clean data.
+
+
+       You must know what to do with all  the  dig_cats  file  generated  when
+       importing a vector coverage.
+
+       The program may crash when unexpexted data (mainly in INFO section) are
+       found, or when the input file is corrupted.
+
+       There is no support for projection. Using verbose=1 lets  you  see  the
+       parameters  of  the  e00 file, but you must create the DEFAULT_WIND and
+       the PROJ file yourself. Using verbose=4 (at least),  the  logfile  will
+       show the content of the projection info of the e00 file imported.
+
+       New  mapset are always created with proj=0 zone=99. If the default proj
+       and zone are not the same, g.region  complains  and  d.vect  or  d.rast
+       refuse  to  display your data. The only thing to do is to import in the
+       current mapset.
+
+RREEFFEERREENNCCEESS
+       E00 format
+
+SSEEEE AALLSSOO
+       g.mapsets,  g.region,  g.setproj,   r.in.arc,   v.support,   v.to.rast,
+       v.in.shape
+
+AAUUTTHHOORR
+       Michel J. Wurtz, DIG/cemagref
+
+       mw@teledetection.fr
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_6_/_1_7 _1_7_:_2_0_:_3_9 _$
+
+
+
+GRASS 5.0                                                          m.in.e00(1)

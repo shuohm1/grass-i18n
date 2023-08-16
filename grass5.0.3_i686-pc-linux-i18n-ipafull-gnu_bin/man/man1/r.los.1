@@ -1,0 +1,97 @@
+r.los(1)                      Grass User's Manual                     r.los(1)
+
+
+
+NNAAMMEE
+       rr..llooss  - Line-of-sight raster analysis program.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..llooss
+       rr..llooss hheellpp
+       rr..llooss    iinnppuutt==_n_a_m_e    oouuttppuutt==_n_a_m_e    ccoooorrddiinnaattee==_x_,_y    [ppaatttt__mmaapp==_n_a_m_e]
+       [oobbss__eelleevv==_v_a_l_u_e] [mmaaxx__ddiisstt==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._l_o_s generates a raster map output in which the cells that are visible
+       from  a user-specified observer location are marked with integer values
+       that represent the vertical angle (in degrees) required  to  see  those
+       cells (viewshed).
+
+
+       The  program  can be run either non-interactively or interactively.  To
+       run _r_._l_o_s non-interactively, the user must specify at  least  an  iinnppuutt
+       file  name,  oouuttppuutt  file  name,  and the geographic ccoooorrddiinnaattees of the
+       user's viewing location on the command line; any  remaining  parameters
+       whose  values  are unspecified on the command line will be set to their
+       default values (see below).  Non-interactive  usage  format  is:  rr..llooss
+       iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e ccoooorrddiinnaattee==_x_,_y [ppaatttt__mmaapp==_n_a_m_e] [oobbss__eelleevv==_v_a_l_u_e]
+       [mmaaxx__ddiisstt==_v_a_l_u_e]
+
+
+
+       Alternately, the user can type simply rr..llooss on  the  command  line;  in
+       this  case, the program will prompt the user for parameter values using
+       the standard GRASS _p_a_r_s_e_r.
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of a raster map layer containing elevation  data,  used  as
+              program input.
+
+       oouuttppuutt==_n_a_m_e
+              Name  assigned  to  the  file in which the raster program output
+              will be stored.
+
+       ccoooorrddiinnaattee==_x_,_y
+              Geographic coordinates (i.e., easting and northing values) iden-
+              tifying the desired location of the viewing point.
+
+       ppaatttt__mmaapp==_n_a_m_e
+              Name  of  a  binary (1/0) raster map layer in which cells within
+              the areas of interest are assigned the category value  '1',  and
+              all  other  cells  are  assigned the category value '0'. If this
+              parameter is omitted, the analysis will  be  performed  for  the
+              whole area within a certain distance of the viewing point inside
+              the geographic region boundaries.
+              Default: assign all cells  that  are  within  the  mmaaxx__ddiisstt  and
+              within  the  user's current geographic region boundaries a value
+              of 1.
+
+       oobbss__eelleevv==_v_a_l_u_e
+              Height of the observer (in meters)  above  the  viewing  point's
+              elevation.
+              Default: 1.75 (meters)
+
+       mmaaxx__ddiisstt==_v_a_l_u_e
+              Maximum  distance  (in  meters) from the viewing point inside of
+              which the line of sight analysis will be  performed.  The  cells
+              outside this distance range are assigned the category value '0'.
+              Options: 0-99999 (stated in map units)
+              Default: 1000
+
+
+NNOOTTEESS
+       For accurate results, the program must be run with  the  resolution  of
+       the  geographic  region  set  equal  to the resolution of the data (see
+       _g_._r_e_g_i_o_n).
+
+
+       It is advisable to use a 'pattern layer' which identifies the areas  of
+       interest  in which the line of sight analysis is required.  Such a mea-
+       sure will reduce the time taken by the program to run.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Kewan Q. Khawaja, Intelligent Engineering Systems Laboratory, M.I.T.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                             r.los(1)

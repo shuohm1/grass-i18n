@@ -1,0 +1,93 @@
+v.in.scsgef(1)                Grass User's Manual               v.in.scsgef(1)
+
+
+
+NNAAMMEE
+       vv..iinn..ssccssggeeff   - Converts SCS Geographic Exchange Format (SCS-GEF) ASCII
+       data into a GRASS vector file.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ssccssggeeff
+       vv..iinn..ssccssggeeff hheellpp
+       vv..iinn..ssccssggeeff [ --oo] [ggeeff==_n_a_m_e] [oouuttppuutt==_n_a_m_e] [ccaatt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._i_n_._s_c_s_g_e_f allows a user to create a GRASS vector file from a  SCS-GEF
+       format ASCII file.
+
+
+
+        1.  The program will first request the name of the SCS-GEF file to be
+              read  in,  it expects to find the data in the current directory.
+              It is suggested to create a _g_e_f directory and  put  all  SCS-GEF
+              data there.
+
+
+       2.  The program will then request the name of a GRASS vector file.
+
+
+       3.   The  program will then request the name of a SUBJECT file.  A sub-
+       ject file will be used to assign GRASS category codes  to  the  SCS-GEF
+       data.   It  is  structured the same as a _d_i_g___c_a_t_s category file.  It is
+       suggested that a SUBJ directory be created in the GRASS location and  a
+       file  containing  all SCS-GEF text labels by category be created.  This
+       will be required to provide consistancy  across  several  maps  (quads)
+       within  one  location.   The user may use the _v_i text editor or the SCS
+       macro _m_a_k_e___s_u_b_j_e_c_t to create it.
+
+
+       4.  The program will then read the SCSGEF header information,  interac-
+       tively  present  information that was available, and request additional
+       data of the user.  These questions are :
+
+
+       Name of their organization. (from SCS-GEF)
+       Digitized Date.             (from SCS-GEF)
+       Map Name.                   (from SCS-GEF)
+       Map Location.               (from SCS-GEF)
+       Other Information.          (from SCS-GEF)
+       State FIPS code.
+       County FIPS code.
+       Present GEF Coord. System (table, stplane, ll, utm).
+       Coordinate System Desired (utm, stplane, ll, albers).
+
+
+       The program will then actively read the SCS-GEF data file  and  process
+       it,
+
+
+       scripts  contains  SCS macro _m_a_k_e___1___g_e_f.  This macro makes one file out
+       of the three (3) files found in SCS-GEF (see SCS-GEF technical specifi-
+       cations  for more information).  The macro must be run on each data set
+       BEFORE _v_._i_n_._s_c_s_._g_e_f.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --oo     The SCS-GEF is in the OLD format (24 char).
+
+
+
+   PPaarraammeetteerrss::
+       ggeeff==_n_a_m_e
+              ASCII SCS-GEF file name.
+
+       oouuttppuutt==_n_a_m_e
+              Vector file name.
+
+       ccaatt==_n_a_m_e
+              Category file name.
+
+SSEEEE AALLSSOO
+       _m_a_k_e___1___g_e_f, _m_a_k_e___s_u_b_j_e_c_t, v.import
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                       v.in.scsgef(1)

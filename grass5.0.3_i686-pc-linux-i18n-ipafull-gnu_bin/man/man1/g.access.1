@@ -1,0 +1,86 @@
+g.access(1)                   Grass User's Manual                  g.access(1)
+
+
+
+NNAAMMEE
+       gg..aacccceessss  - Controls user access to the current GRASS mapset.
+       _(_G_R_A_S_S File Management Program)
+
+SSYYNNOOPPSSIISS
+       gg..aacccceessss
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program  allows the user to control access to the current mapset.
+       Normally, any user can read data from any GRASS mapset.  But  sometimes
+       it  is  desirable  to  prohibit  access  to certain sensitive data. The
+       _g_._a_c_c_e_s_s command allows a user to restrict read and execute  access  to
+       the  current mapset (see UNIX _c_h_m_o_d command).  _g_._a_c_c_e_s_s will not modify
+       write access to the current mapset.
+
+
+       The user may, for example, allow only users in the same UNIX  group  to
+       read  data  files in the mapset, or restrict the mapset to personal use
+       only.
+
+
+       After typing gg..aacccceessss
+
+       the user will be presented with a screen page which reflects  the  cur-
+       rent  mapset  permissions.  The  user can then change them.  The screen
+       page looks like:
+        __________________________________________________________
+       | LOCATION: spearfish                          MAPSET: demo|
+       |                                                          |
+       | This program allows you to control access to your        |
+       | mapset by other users.                                   |
+       |                                                          |
+       | Access may be granted/removed for everyone, or for       |
+       | everyone in your group.                                  |
+       |                                                          |
+       | Mark an 'x' to allow access;  erase the field to         |
+       | restrict access.                                         |
+       |                                                          |
+       |     GROUP: _x_                                           |
+       |     OTHER: _x_                                           |
+       |                                                          |
+       |    AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE       |
+       |                    (OR   <Ctrl-C>   TO   CANCEL)
+       |
+       |__________________________________________________________|
+
+
+       If  you  remove  the  x (using the space bar), access will be denied to
+       that class of user (group or other).  If you type an x, access will  be
+       granted to that class of user.
+
+NNOOTTEESS
+       There is no non-interactive version of _g_._a_c_c_e_s_s.
+
+
+       Under GRASS version 4.0, access to the mapset PERMANENT must be open to
+       all users.  This is because GRASS looks for  the  user's  default  geo-
+       graphic region definition settings and the location TITLE in files that
+       are stored under the PERMANENT mapset directory.  The _g_._a_c_c_e_s_s command,
+       therefore,  will  not  allow  you  to  restrict access to the PERMANENT
+       mapset.
+
+
+       The _g_._m_a_p_s_e_t_s command isn't smart enough to tell if access to a  speci-
+       fied mapset is restricted, and the user is therefore allowed to include
+       the names of restricted mapsets in his search path.  However, the  data
+       in  a restricted mapset is still protected; any attempts to look for or
+       use data in a restricted mapset will fail.  The user  will  simply  not
+       see any data listed for a restricted mapset.
+
+SSEEEE AALLSSOO
+       UNIX manual entries for _c_h_m_o_d and _g_r_o_u_p
+       _g_._m_a_p_s_e_t_s
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                          g.access(1)

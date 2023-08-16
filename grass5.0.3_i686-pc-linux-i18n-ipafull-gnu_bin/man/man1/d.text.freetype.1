@@ -1,0 +1,183 @@
+d.text.freetype(1)            Grass User's Manual           d.text.freetype(1)
+
+
+
+NNAAMMEE
+       dd..tteexxtt..ffrreeeettyyppee  -  Draws text in the graphics monitor's active display
+       frame using TrueType fonts
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+
+
+SSYYNNOOPPSSIISS
+       dd..tteexxtt..ffrreeeettyyppee
+       dd..tteexxtt..ffrreeeettyyppee hheellpp
+       dd..tteexxtt..ffrreeeettyyppee [--rrppsscc]  [tteexxtt==_"_s_t_r_i_n_g_"]  [eeaasstt__nnoorrtthh==_e_a_s_t_i_n_g_,_n_o_r_t_h_i_n_g]
+       [ffoonntt==_n_a_m_e]   [ppaatthh==_n_a_m_e]   [cchhaarrsseett==_n_a_m_e]   [ccoolloorr==_n_a_m_e]  [ssiizzee==_v_a_l_u_e]
+       [aalliiggnn==_n_a_m_e] [rroottaattiioonn==_v_a_l_u_e]
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._t_e_x_t_._f_r_e_e_t_y_p_e draws text in the  graphics  monitor's  active  display
+       frame using TrueType fonts already installed on the user's system.
+
+   FFllaaggss::
+       --rr     Use radians instead of degrees for rotation
+
+       --pp     Use pixel coordinates ([0,0] is top left)
+
+       --ss     Font size is height in pixels
+
+       --cc     Command mode (Compatibility with d.text)
+
+
+   PPaarraammeetteerrss::
+       tteexxtt==_s_t_r_i_n_g
+              Text to be displayed. Enclose multiple words "in quotes".
+
+       eeaasstt__nnoorrtthh==_e_a_s_t_i_n_g_,_n_o_r_t_h_i_n_g
+              Locates  the  text  at  these map coordinates. If this option is
+              omitted, the user will be prompted to use the mouse  to  specify
+              the location.
+
+       ffoonntt==_n_a_m_e
+              Specifies  a  font  listed in the GRASS 'freetypecap' definition
+              file.
+
+       ppaatthh==_/_p_a_t_h_/_f_i_l_e_n_a_m_e_._t_t_f
+              Specifies a TrueType font with full pathname.
+
+       cchhaarrsseett==_n_a_m_e
+              Sets character encoding for input tteexxtt. (e.g. ISO-8859-1)
+
+       ccoolloorr==_n_a_m_e
+              Sets text color to _n_a_m_e. It can also be a hexadecimal  value  of
+              0xRRGGBB.
+
+              Options: red, orange, yellow, green, blue, indigo, violet, gray,
+              white, and black
+
+              Default: _g_r_a_y
+
+
+       ssiizzee==_v_a_l_u_e
+              Sets text height in percent of available frame height.
+
+              Default: 10
+
+       aalliiggnn==_n_a_m_e
+              Aligns text in this way.
+
+              Options: ll, lc, lr, cl, cc, cr, ul, uc, ur
+
+              l?: Lower, c?: Vertically Centered, u?: Upper,
+
+              ?l: Left, ?c: Horizontally Centered, ?r: Right
+
+              Default: _l_l  (Lower Left)
+
+
+       rroottaattiioonn==_v_a_l_u_e
+              Rotates text counterclockwise. The default unit is degrees.
+
+              Default: 0
+
+
+
+   CCoommmmaanndd mmooddee::
+       Key
+
+       {REQUIRED}
+
+       [OPTIONAL]
+
+       THIS|orTHAT
+
+       +, -   Relative value
+
+       r, %, p
+              Radian, Percentage, and Pixels respectively
+
+       Commands
+
+       .F {font|path}[:charset] _f_o_n_t
+
+       .C {color_name|0xRRGGBB} _c_o_l_o_r
+
+       .S [+|-]size[p] _s_i_z_e
+
+       .A {ll|lc|lr|cl|cc|cr|ul|uc|ur} _a_l_i_g_n
+
+       .R [+|-]rotation[r] _r_o_t_a_t_i_o_n
+
+       .X [+|-]x[%|p] _x_-_c_o_o_r_d
+
+       .Y [+|-]y[%|p] _y_-_c_o_o_r_d
+
+       .L {0|1} _l_i_n_e_f_e_e_d
+
+       .E [+|-]east[%|p] _x_-_o_r_i_g_i_n
+
+       .N [+|-]north[%|p] _y_-_o_r_i_g_i_n
+
+       .. _d_o_t
+
+       To end input, press Ctrl-d on a blank line.
+
+
+
+EEXXAAMMPPLLEESS
+       Standard       mode:       dd..tteexxtt..ffrreeeettyyppee       text="GRASS       GIS"
+       east_north=2107055,5603133 .br
+
+       size=7 path=/usr/X11R6/lib/X11/fonts/TTF/luximb.ttf
+
+
+       Command   mode:  The  following  example  prints  three  lines:  "GRASS
+       d.text.freetype  output",  "See  test.input  file",   and   "for   more
+       details.".
+
+       dd..tteexxtt..ffrreeeettyyppee --cc
+              GRASS  d.text.freetype  output  See  test.input  file  for  more
+              details.
+
+       Command mode instructions may also be read directly from a text file:
+
+       dd..tteexxtt..ffrreeeettyyppee -c < test.input
+
+
+
+DDEEFFIINNIITTIIOONN FFIILLEE
+       To help users select fonts conveniently, the  definition  file,  $(GIS-
+       BASE)/etc/freetypecap, is provided.  Its format is as follows:
+            font:fontpath:charset:color:size:description
+            *default_font:fontpath:charset:color:size:description
+
+       See the file for examples.
+
+
+
+SSEEEE AALLSSOO
+       _d_._t_e_x_t
+
+       _d_._f_o_n_t
+
+       _d_._t_i_t_l_e
+
+       _s_h_o_w_._f_o_n_t_s_._s_h
+
+       _d_._w_h_e_r_e
+
+       _p_a_r_s_e_r
+
+
+
+AAUUTTHHOORR
+       Huidae Cho grass@geni.cemtlo.com>
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_1_0_/_1_2 _0_4_:_5_3_:_3_1 _$
+
+
+
+GRASS 5.0                                                   d.text.freetype(1)

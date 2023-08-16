@@ -1,0 +1,86 @@
+d.vect.line(1)                Grass User's Manual               d.vect.line(1)
+
+
+
+NNAAMMEE
+       _d_._a_r_e_a - Draws labelled vector lines to the GRASS display
+
+       _(_G_R_A_S_S _D_i_s_p_l_a_y_/_V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..vveecctt..lliinnee  mmaapp_=_n_a_m_e  [ccoolloorr_=_n_a_m_e_|_R_:_G_:_B]  [ccaattnnuumm_=_i_[_,_j_,_k_,_._._._,_n_]] [lleegg--
+       eenndd_=_f_i_l_e_n_a_m_e_|_"_-_"]
+
+   PPaarraammeetteerrss::
+       mmaapp    Name of existing vector map to be displayed
+
+       ccoolloorr  Color desired for drawing lines. May be specified as a  standard
+              grass  color  name,  or  as  an  RGB  triplet (e.g. 80:198:255).
+              Default: white
+
+       ccaattnnuumm List of category numbers to  restrict  which  lines  are  drawn.
+              Ignored if the _l_e_g_e_n_d option is used.
+
+       lleeggeenndd Name of a legend file specifying what color to use for each cat-
+              egory (see below). If "-" is specified, the legend will be  read
+              from standard input.  Default: none
+
+
+DDEESSCCRRIIPPTTIIOONN
+       Use  _d_._v_e_c_t_._l_i_n_e  to draw labelled lines from a vector map to the GRASS
+       display.  By default, _d_._v_e_c_t_._l_i_n_e will draw all labelled lines  in  the
+       vector  map with white.  The lines drawn may be restricted via the _c_a_t_-
+       _n_u_m argument or by using a _l_e_g_e_n_d file.
+
+
+       The _c_o_l_o_r argument may be any of the standard named  GRASS  colors,  or
+       and  RGB (red, green, blue) triplet.  An RGB triplet must have the form
+       _:_:_<_;_n_u_m_>_; where _n_u_m is between 0 and 255.
+
+
+       An optional list of category numbers may  be  used  to  restrict  which
+       lines are drawn (option ignored if a _l_e_g_e_n_d option is given).
+
+
+       More control can be had by creating a _l_e_g_e_n_d file.  At the time of this
+       writing, GRASS does not have any management  functions  for  specifying
+       how  vectors  should  be drawn, so this file must be created by "hand".
+       The easiest way to create such a file, is to copy the category file for
+       the  vector map, and edit it to contain color specifications.  The for-
+       mat of the _l_e_g_e_n_d file is _c_a_t_e_g_o_r_y _r_e_d _g_r_e_e_n _b_l_u_e, with one  entry  per
+       line.   If  a  category for a map is not included in this file, it will
+       not be drawn unless there is a special "default" entry with a  category
+       of -1.
+
+       EExxaammppllee LLeeggeenndd FFiillee
+              -1 255 255 255
+
+              1  210 198 168
+
+              5  168 198 220
+
+
+
+
+       In the above, all labelled lines will be drawn in white (255, 255, 255)
+       except those labelled as categories 1 or 5.  If the "default" entry had
+       been omitted, then only lines labelled 1 or 5 would have been drawn.
+
+
+       One  may  place  comments on any line in the legend file by starting it
+       with a non-numeric character ('#' is a good choice).  Empty  lines  are
+       ignored.
+
+NNOOTTEESS
+       It is expected that the legend specification aspect of this module will
+       change when an infrastructure for managing  vector  drawing  styles  is
+       implemented.
+
+AAUUTTHHOORR
+       Eric G. Miller
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_2_/_0_6 _0_6_:_1_9_:_2_6 _$
+
+
+
+GRASS 5.0                                                       d.vect.line(1)

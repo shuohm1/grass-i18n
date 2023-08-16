@@ -1,0 +1,103 @@
+d.rast.arrow(1)               Grass User's Manual              d.rast.arrow(1)
+
+
+
+NNAAMMEE
+       dd..rraasstt..aarrrrooww   -  Draws arrows representing cell aspect direction for a
+       raster map layer.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..rraasstt..aarrrrooww
+       dd..rraasstt..aarrrrooww hheellpp
+       dd..rraasstt..aarrrrooww      [mmaapp==_n_a_m_e]       [ttyyppee==_n_a_m_e]       [aarrrrooww__ccoolloorr==_n_a_m_e]
+       [ggrriidd__ccoolloorr==_n_a_m_e] [xx__ccoolloorr==_n_a_m_e] [uunnkknnoowwnn__ccoolloorr==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._r_a_s_t_._a_r_r_o_w  is  designed to help users better visualize surface water
+       flow direction, as indicated in an aspect raster map layer.  There  are
+       two  ways to specify the aspect layer the program is to use.  The first
+       is to display the aspect map layer on the graphics monitor before  run-
+       ning  _d_._r_a_s_t_._a_r_r_o_w.  The second method involves setting the _m_a_p parame-
+       ter to the name of the desired aspect map.  This allows the  arrows  to
+       be drawn over any other maps already displayed on the graphics monitor.
+
+
+       _d_._r_a_s_t_._a_r_r_o_w will draw an arrow over each displayed cell to indicate in
+       which  direction  the  cell slopes.  An arrow can point in one of eight
+       directions.  If the aspect layer has a category  value  denoting  loca-
+       tions  of "unknown" aspect, _d_._r_a_s_t_._a_r_r_o_w draws a question mark over the
+       displayed cells of that category.  Cells of category 0 (no  data)  will
+       be marked with an "X".
+
+
+        NNoottee::   Arrows  are  cell size and cannot be seen if the raster map is
+       relatively close in scale.  From a command line mode, the  user  cannot
+       run  _d_._r_a_s_t_._a_r_r_o_w  and  then  run _d_._z_o_o_m and still see the arrows.  The
+       zooming action erases the arrows and the  user  must  run  _d_._r_a_s_t_._a_r_r_o_w
+       again.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of an existing raster map layer to be displayed.
+
+       ttyyppee==_n_a_m_e
+              Type of existing raster data to be displayed.
+              Options:  grass, agnps, answers
+              Default:  grass
+              Using  this  information, _d_._r_a_s_t_._a_r_r_o_w uses internal information
+              to convert category values into appropriate arrow directions.
+
+       aarrrrooww__ccoolloorr==_n_a_m_e
+              Color in which arrows will be drawn.
+              Options:  white, red, orange, yellow, green, blue, indigo,  vio-
+              let, magenta, brown, gray, black
+              Default:  green
+
+       ggrriidd__ccoolloorr==_n_a_m_e
+              Color in which grid outlines will be drawn.
+              Options:   white, red, orange, yellow, green, blue, indigo, vio-
+              let, magenta, brown, gray, black
+              Default:  gray
+
+       xx__ccoolloorr==_n_a_m_e
+              Color in which x's will be drawn.
+              Options:  white,  red,  orange,  yellow,  green,  blue,  indigo,
+              violet, magenta, brown, gray, black
+              Default:  white
+
+       uunnkknnoowwnn__ccoolloorr==_n_a_m_e
+              Color in which unknown information will be displayed.
+              Options:   white, red, orange, yellow, green, blue, indigo, vio-
+              let, magenta, brown, gray, black
+              Default:  red
+
+
+SSEEEE AALLSSOO
+       _d_._f_r_a_m_e
+
+       _d_._r_a_s_t
+
+       _d_._r_a_s_t_._e_d_i_t
+
+       _d_._r_a_s_t_._n_u_m
+
+       _d_._z_o_o_m
+
+       _g_._r_e_g_i_o_n
+
+       _r_._m_a_s_k
+
+       _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Chris Rewerts, Agricultural Engineering, Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                      d.rast.arrow(1)

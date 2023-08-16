@@ -1,0 +1,209 @@
+v.out.arc(1)                  Grass User's Manual                 v.out.arc(1)
+
+
+
+NNAAMMEE
+       vv..oouutt..aarrcc  - Exports GRASS vector files to ARC/INFO's "ungenerate" file
+       format.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..aarrcc
+       vv..oouutt..aarrcc hheellpp
+       vv..oouutt..aarrcc ttyyppee==_n_a_m_e vveecctt==_n_a_m_e aarrcc__pprreeffiixx==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._o_u_t_._a_r_c is a GRASS data export program that converts files  in  GRASS
+       vector format to ARC/INFO's "Generate" file format.  The companion pro-
+       gram _v_._i_n_._a_r_c imports data in ARC/INFO's "Generate" format and converts
+       them to GRASS vector format.
+
+
+       This program can be run either non-interactively or interactively.  The
+       program will be run non-interactively if the user  specifies  parameter
+       values on the command line using the following format:
+
+
+       vv..oouutt..aarrcc ttyyppee==_n_a_m_e vveecctt==_n_a_m_e aarrcc__pprreeffiixx==_n_a_m_e
+
+
+
+       Alternately, the user can simply type:
+
+
+       vv..oouutt..aarrcc
+
+
+
+       on  the  command  line;  in this case, the program will prompt the user
+       for parameter values.
+
+
+
+
+
+   PPaarraammeetteerrss::
+       ttyyppee==_n_a_m_e
+              Coverage (feature) type.
+              Options:  polygon, line
+
+       vveecctt==_n_a_m_e
+              The name of a GRASS vector file to be converted to ARC/INFO for-
+              mat.
+
+       aarrcc__pprreeffiixx==_n_a_m_e
+              A  prefix  to be assigned to the ARC/INFO-format files output by
+              _v_._o_u_t_._a_r_c.
+
+
+
+
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE:: UUSSEERR PPRROOMMPPTTSS
+       _v_._o_u_t_._a_r_c will prompt the user to enter the name of a GRASS vector file
+       to be exported to ARC/INFO and for a filename prefix to be used in nam-
+       ing the files created by the program.
+
+
+       A GRASS vector file to be exported to ARC/INFO must either contain only
+       linear  features  (i.e.,  have only line coverage) or contain only area
+       edge features (i.e., have only polygon coverage).  _v_._o_u_t_._a_r_c will begin
+       by  asking  the  user which type of coverage (line or polygon) is to be
+       imported:
+            COVERAGE TYPE
+            Enter "polygon" or "line"
+            Hit RETURN to cancel request
+            >
+
+       The program then prompts the user for the name of the GRASS vector file
+       to be converted to ARC/INFO format:
+            VECTOR (DIGIT) FILENAME
+            Enter 'list' for a list of existing binary vector files
+            Hit RETURN to cancel request
+            >
+
+       Next, the user is asked for a file-name prefix to be used in naming the
+       output ARC/INFO Generate format files:
+            ARC/INFO (GENERATE) FILENAME PREFIX
+            Hit RETURN to cancel request
+            >
+
+       The filename prefix will be used to name the various files that will be
+       created for export to ARC/INFO.  When labeled polygon coverage data are
+       exported, three such files will be created:  a _l_i_n_e_s _f_i_l_e with the suf-
+       fix  .lin,  a  _l_a_b_e_l_-_p_o_i_n_t_s _f_i_l_e with the suffix .lab, and a _l_a_b_e_l_-_t_e_x_t
+       _f_i_l_e with the suffix .txt.  When line coverage data are  exported,  two
+       such  files  will  be created: a _l_i_n_e_s _f_i_l_e with the suffix .lin, and a
+       _l_a_b_e_l_-_t_e_x_t _f_i_l_e with the suffix .txt.  Export of unlabeled  polygon  or
+       line  coverage  data will result in creation of a _l_i_n_e_s _f_i_l_e (.lin suf-
+       fix) only. All exported files are stored in the current directory.
+
+       See the DATA FILE FORMATS section for more information on these  files.
+
+
+
+
+
+EEXXAAMMPPLLEE
+       Linear  features  and  polygon  data  are made up of the series of arcs
+       (aka, vectors) outlining their perimeters.  The _A_R_C_/_I_N_F_O _U_s_e_r_s_'  _G_u_i_d_e,
+       in  its  discussion  of  the  _U_n_g_e_n_e_r_a_t_e command, explains how line and
+       polygon coverage data can be created from files  (like  _p_r_e_f_i_x_._l_i_n  and
+       _p_r_e_f_i_x_._p_o_l)  containing  the  geographic coordinates of these arcs, and
+       from files (like _p_r_e_f_i_x_._l_a_b) containing the geographic  coordinates  of
+       label-points.   Below  is  an  example  which illustrates the creation,
+       within ARC/INFO, of a polygon coverage data file (named _s_o_i_l_s) from the
+       files _s_o_i_l_s_._p_o_l and _s_o_i_l_s_._l_a_b.
+          Arc: GENERATE SOILS
+          Generate: INPUT soils.pol
+          Generate: LINES
+          Generating lines ...
+          Generate: INPUT soils.lab
+          Generate: POINTS
+          Generating points ...
+          Generate: QUIT
+          Arc: _
+
+       The above example would create a polygon coverage data file named _s_o_i_l_s
+       with label-points.  The label-points would have ID numbers that  corre-
+       spond  to  the  GRASS category values for the polygons in the coverage.
+       The INFO portion of ARC/INFO can be used to associate these label-point
+       ID numbers with descriptive text from the _s_o_i_l_s_._t_x_t file.
+
+
+
+DDAATTAA FFIILLEE FFOORRMMAATTSS
+       LINES FILE, also know as _p_r_e_f_i_x_._l_i_n or _p_r_e_f_i_x_._p_o_l file:
+       This  text file is a "Generate" format lines file.  The _l_i_n_e_s option of
+       the ARC/INFO _G_e_n_e_r_a_t_e command can  be  used  to  read  this  file  into
+       ARC/INFO.  Each line in the file has a unique line-ID number.
+       101
+       223343.62 218923.15
+       223343.62 222271.06
+       259565.31 222271.06
+       259565.31 195577.37
+       END
+       102
+       237862.53 203392.37
+       244970.75 203744.28
+       253137.66 195577.37
+       259565.31 195577.37
+       END
+       103
+       237862.53 203392.37
+       237862.53 203744.28
+       223343.62 218392.37
+       END
+       104
+       239072.44 186200.56
+       237862.53 187410.50
+       237862.53 203392.37
+       END
+       END
+
+       LABEL-POINTS FILE, also known as _p_r_e_f_i_x_._l_a_b file:
+       This  text  file  will be created by _v_._o_u_t_._a_r_c if the vector file being
+       exported represents a polygon coverage.  _p_r_e_f_i_x_._l_a_b consists of a  list
+       of  label-point  (x,y)  coordinates,  each with a unique label-point ID
+       number.
+       1 242777.81 211533.09
+       2 243458.37 199282.28
+       3 243458.37 195199.28
+
+       LABEL-TEXT FILE, also known as _p_r_e_f_i_x_._t_x_t file:
+       In the case of polygon coverage data, this file associates  an  integer
+       category value and a category label ("attribute") text string (contain-
+       ing no spaces) with each label-point ID number.  In the  case  of  line
+       coverage  data,  this  file associates an integer category value and an
+       attribute text string with each line-ID number.
+
+
+       The first column is the row number (which  is  arbitrary),  the  second
+       column  contains the category value, the third column holds the line or
+       label-point ID number, and the fourth  column  contains  the  attribute
+       text string.
+       1 4 1 Coniferous
+       2 5 2 Deciduous
+       3 2 3 Rangeland
+
+
+SSEEEE AALLSSOO
+        _v_._i_n_._a_r_c
+
+        _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Dave Johnson
+
+       DBA Systems, Inc.
+
+       10560 Arrowhead Drive
+
+       Fairfax, Virginia 22030
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         v.out.arc(1)

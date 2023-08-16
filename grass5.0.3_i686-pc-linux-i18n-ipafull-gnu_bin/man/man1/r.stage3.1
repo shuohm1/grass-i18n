@@ -1,0 +1,113 @@
+r.stage3(1)                   Grass User's Manual                  r.stage3(1)
+
+
+
+NNAAMMEE
+       rr..ssttaaggee33 - NEXRAD weather radar input tool.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+GGRRAASSSS VVEERRSSIIOONN
+       4.x
+
+SSYYNNOOPPSSIISS
+       rr..ssttaaggee33 [--vv] iinnppuutt==_n_a_m_e [oouuttppuutt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       A  Stage III precipitation product is a mosaic of all the Stage II pre-
+       cipitation estimates within the RFC (River Forecast Center) area.   The
+       Stage  III  products  are produced by merging radar precipitation esti-
+       mates (Stage I) with ground truth data provided by rain gages.  In  the
+       Arkansas-red River Forecast Center (ABRFC) this includes 15 88-D radars
+       and approximately 500 rain gages.   The  13  RFC's  within  the  United
+       States  will  eventually  produce  Stage  III products.  As of 4-94 the
+       ABRFC is the only RFC currently producing Stage III products.  As  more
+       radars  come  on  line other RFC's will begin producing this product as
+       well.  The 88-D radars have difficulty detecting precipitation when the
+       raindrops  are  very  small or when the precipitation is in the form of
+       snow.  Under these conditions precipitation estimates tend to be  under
+       estimated.  Large Hail within a storm causes the radar to over estimate
+       precipitation amounts.  The grid cell size is approximately 4 km  by  4
+       km.   The NetCDF files containing the precipitation values in the units
+       of 1/100 of mm can be obtained from ABRFC's  gopher  server.   _r_._s_t_a_g_e_3
+       program generates the GRASS raster map layers only in the Lat/Lon coor-
+       dinate system.  UTM is not utilized because the area  being  referenced
+       is  too large for a UTM zone.  The region settings for the ABRFC's cov-
+       erage area is:
+        __________________________________________
+        projection: 3 (Latitude-Longitude)
+        zone:  0
+        north: 41:16:06N
+        south: 32:48:28N
+        east:  90:53:28W
+        west:  107:08:03W
+        __________________________________________
+
+
+       You may use the clark66 spheroid and use any  resolution  that  may  be
+       suitable  as  far as your other data requirements are concerned. (start
+       with esres= nsres = 0:00:30).
+
+
+       This version of _r_._s_t_a_g_e_3 will work only on NetCDF files  created  after
+       the 6th of April 1994.
+
+
+       You  will need the NetCDF libraries created by the Unidata Program Cen-
+       ter.  The NetCDF libraries can  be  obtained  via  anonymous  ftp  from
+       unidata.ucar.edu  under  pub/netcdf/netcdf.tar.Z.  You will the need to
+       compile  the  libraries.   _r_._s_t_a_g_e_3  can  be  only  run  within  GRASS.
+       _r_._s_t_a_g_e_3  needs  both  the  NetCDF  libraries  as  well  as  the  GRASS
+       libraries.  If you have all the libraries then _r_._s_t_a_g_e_3 can be compiled
+       simply by running "gmake" (For GRASS 4.2 it is gmake4.2) in this direc-
+       tory.
+
+
+       In the above, if the output parameter is not specified then  a  mapname
+       with  the  same  name  as  that of the input parameter is created.  The
+       rainbow colortable is created for the  resultant  map.   The  resulting
+       maps have a resolution of 0:02:59.
+
+
+       A  few sample NetCDF files and the corresponding GIF files are provided
+       in the sample directory.  The  vector  directory  contains  the  vector
+       boundary output from the command _v_._o_u_t_._a_s_c_i_i of the ABRFC basin.
+
+
+       To  run  _r_._s_t_a_g_e_3 on the sample files just go into the sample directory
+       and type:
+
+
+       _r_._s_t_a_g_e_3 _-_v _i_n_=_0_4_0_5_9_4_1_8_._n_c
+
+
+       This will create a raster  map  by  the  name  04059418.nc.   Similarly
+       _r_._s_t_a_g_e_3  can be run on other sample files. You can use the correspond-
+       ing GIF files to compare them.  Since the GIF files are in a  different
+       projection  system, there is some distortion in between the raster maps
+       and the GIF file.  However the values in the raster are  properly  geo-
+       referenced.
+
+   OOPPTTIIOONNSS
+   FFllaagg::
+       --vv     Verbose
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt == nnaammee
+              Name of the netcdf file to be converted.
+
+       oouuttppuutt == nnaammee
+              Name of the resultant raster map.
+
+
+AAUUTTHHOORRSS
+       Nalneesh Gaur, Arkansas Red Basin River Forecast Center
+
+       Norman L. Bingham, Arkansas Red Basin River Forecast Center
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.stage3(1)

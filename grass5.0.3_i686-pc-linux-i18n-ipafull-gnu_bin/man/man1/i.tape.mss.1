@@ -1,0 +1,173 @@
+i.tape.mss(1)                 Grass User's Manual                i.tape.mss(1)
+
+
+
+NNAAMMEE
+       ii..ttaappee..mmssss   -  An imagery function that extracts Multispectral Scanner
+       (MSS) imagery data from half-inch tape.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ttaappee..mmssss
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._t_a_p_e_._m_s_s is a  program  that  extracts  Multispectral  Scanner  (MSS)
+       imagery data from tape.
+
+
+       This  program must be run in a LOCATION_NAME with a x,y coordinate sys-
+       tem (i.e., a coordinate system with projection 0).  For further  infor-
+       mation  regarding  this  LOCATION_NAME  refer  to  the manual entry for
+       _i_m_a_g_e_r_y.
+
+
+       The first prompt in _i_._t_a_p_e_._m_s_s asks the user for the tape device  name.
+       This  is sometimes  /dev/rmt0 (for a half-inch tape with a tape density
+       of 1600), but this varies with each machine.
+
+
+       The next prompt is:
+       Please mount and load tape, then hit RETURN
+
+
+IIMMAAGGEE IIDDEENNTTIIFFIICCAATTIIOONN MMEENNUU
+       The first menu in the program asks the user for information  about  the
+       data.
+
+
+
+           please enter the following information
+
+        Tape Identification:                             __
+
+        Image Description:                               __
+
+        Title for the Extracted Raster (Cell) Files:     __
+
+        AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                      (OR <Ctrl-C> TO CANCEL)
+
+
+       This  program  automatically enters the scene ID number and the date of
+       the image into the field for Tape Identification.  The sun  angles  are
+       automatically entered into the field for Image Description.
+
+
+       The second menu is:
+                       MSS TAPE EXTRACTION
+       please select the desired tape window (geographic
+       region definition) to extract
+
+                    first row: _______(1-2984)
+                    last row: _______(1-2984)
+
+                    first col: _______(1-3548)
+                    last col: _______(1-3548)
+
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+
+       The  numbers in parentheses are the total number of rows and columns on
+       the tape including filler (zeros).   This  information  and  additional
+       information   can  also  be  obtained  by  running  the  GRASS  program
+       _i_._t_a_p_e_._m_s_s_._h which reads the header information on an  MSS  tape.   Any
+       subset  of the image on tape may be extracted.  For a discussion of row
+       and column extraction see the subheading TITLEd ROW AND COLUMN  EXTRAC-
+       TION below.
+
+
+       The next menu is:
+       please make an x by the bands you want extracted
+
+                             _____ 1
+                             _____ 2
+                             _____ 3
+                             _____ 4
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+       MSS imagery has 4 bands, but the user may want to extract only a subset
+       of these bands.  See the subheading in this entry TITLEd ROW AND COLUMN
+       EXTRACTION.
+
+
+       The  user then is asked to enter the prefix/group for the band files to
+       be created.  This name will  precede  each  band  file  extracted  into
+       GRASS.   For  example, if three bands are extracted the following three
+       (raster) band files will result:
+
+
+       _p_r_e_f_i_x_n_a_m_e_._1
+       _p_r_e_f_i_x_n_a_m_e_._2
+       _p_r_e_f_i_x_n_a_m_e_._3
+
+
+       Whatever _p_r_e_f_i_x_n_a_m_e is specified will  also  automatically  become  the
+       name  for the imagery group file being created.  Each image (i.e., each
+       run of _i_._t_a_p_e_._m_s_s) should be given a unique prefix/group name.
+
+
+       The extraction process will begin by first skipping the number of spec-
+       ified  files, advancing to the starting row, and then reading the tape.
+       The percent completion of the extraction is displayed on the screen. If
+       more  than  one  tape  is required to store the image, the program will
+       pause and inform the user to mount the next tape.
+
+
+       The extracted (raster) band files will be listed as raster  map  layers
+       available  in  the  current MAPSET and may be displayed using the GRASS
+       commands _d_._d_i_s_p_l_a_y, _d_._r_a_s_t or _i_._p_o_i_n_t_s.
+
+NNOOTTEESS
+       After extracting an image from tape, the geographic  region  definition
+       in  the  x,y  coordinate  LOCATION_NAME  will  be  set  based  upon the
+       extracted rows and columns from the tape.  The relationship between the
+       image  rows and columns and the geographic coordinates of the region is
+       discussed in the manual entry for _i_m_a_g_e_r_y.
+
+
+       This program is interactive and requires no command line arguments.
+
+RROOWW AANNDD CCOOLLUUMMNN EEXXTTRRAACCTTIIOONN
+       The display options in GRASS allow the user to locate rows and  columns
+       on  the  digital image.  If enough disk space is available, one band of
+       an entire image, or one band of a portion of an image known to  contain
+       the area of interest, can be extracted and displayed.  The _m_e_a_s_u_r_e_m_e_n_t_s
+       option in _d_._d_i_s_p_l_a_y, or _d_._w_h_e_r_e (following the use of _d_._r_a_s_t) will echo
+       x  and  y  coordinates  to the screen.  (These coordinates will display
+       negative numbers in the north-south direction, but ignoring  the  nega-
+       tive sign will yield the row number.)  See the _i_m_a_g_e_r_y manual entry for
+       further explanation.
+
+
+       If a photograph of the digital image is available, the rows and columns
+       to  be  extracted  can be determined from it by associating inches with
+       the total number of known rows and columns in the scene.  For  example,
+       if the total length of the photograph is 12 inches, the total number of
+       rows on the tape is 2000, and the  northwest  corner  of  the  area  of
+       interest begins 2 inches from the top of the photo, then:
+            12" / 2000 rows = 2" / x rows
+            x = 333.333
+
+       The  northwest  corner  of the area of interest starts at row 333.  The
+       starting row, ending row, starting column, and  ending  column  can  be
+       calculated in this manner.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o _c_e_s_s_i_n_g
+
+
+       _d_._d_i_s_p_l_a_y,    _d_._r_a_s_t,   _d_._w_h_e_r_e,   _i_._g_r_o_u_p,   _i_._p_o_i_n_t_s,   _i_._t_a_p_e_._m_s_s_._h,
+       _i_._t_a_p_e_._o_t_h_e_r, _i_._t_a_p_e_._t_m, _i_m_a_g_e_r_y
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                        i.tape.mss(1)

@@ -1,0 +1,205 @@
+r.volume(1)                   Grass User's Manual                  r.volume(1)
+
+
+
+NNAAMMEE
+       rr..vvoolluummee   -  Calculates  the volume of data "clumps", and (optionally)
+       produces a GRASS _s_i_t_e___l_i_s_t_s file containing the calculated centroids of
+       these clumps.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..vvoolluummee
+       rr..vvoolluummee hheellpp
+       rr..vvoolluummee [--ffqq] ddaattaa==_n_a_m_e [cclluummpp==_n_a_m_e] [ssiittee__lliisstt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program  computes  the  cubic  volume  of data contained in user-
+       defined clumps.  _r_._v_o_l_u_m_e outputs:
+
+              The category value assigned to each clump formed  by  the  _c_l_u_m_p
+              map  layer.   This value is stored under the "Cat Number" column
+              (field 1) in the output table.
+
+              The average category value of the cells found in a _d_a_t_a map that
+              fall  within  the  boundaries of each clump in a _c_l_u_m_p map.  The
+              table stores this value under  the  "Average  in  Clump"  column
+              (field 2).
+
+              The  summed  total  value of the category values assigned to the
+              cells falling within each of these clumps.  This value is output
+              under the "Data Total" column (field 3).
+
+              The  number  of  cells  from  the  _d_a_t_a map that fall within the
+              boundaries of each clump formed by the _c_l_u_m_p  map  layer.   This
+              cell  count is stored under the "# Cells in Clump" column (field
+              4) in the output table.
+
+              The centroid easting of each clump.
+
+              The centroid northing of each clump.  These  values  are  output
+              under  the  "Centroid  Easting"  and "Centroid Northing" columns
+              (fields 5 and 6) in the output.
+
+              The total "volume" of each clump. For each clump, the volume  is
+              calculated  by multiplying the area of each cell by its category
+              value, and taking the sum of this value for all cells within the
+              clump.  Since, in GRASS, each cell in the _d_a_t_a map will have the
+              same cell dimensions (i.e., the same area), this  is  equivalent
+              to  multiplying  the area of one cell by the "Data Total" column
+              (field 3).
+              (The area of each cell is equal to the product of its  east-west
+              resolution by its north-south resolution. See _g_._r_e_g_i_o_n.)
+
+
+
+       Results  are  sent  to  standard output in the form of a table.  If the
+       user sets the --ff flag, this table will be output in a form suitable for
+       input  to  such  UNIX  programs as _a_w_k and _s_e_d; the table's columns are
+       stored as colon-separated fields.  The user can also (optionally) elect
+       to  store  clump  centroids in a GRASS _s_i_t_e___l_i_s_t_s file. A sample output
+       report is shown below.
+
+
+       _r_._v_o_l_u_m_e works with  the  current  geographic  region  definitions  and
+       respects the current MASK.
+
+
+       The  user  can  run  _r_._v_o_l_u_m_e non-interactively by specifying parameter
+       values on the command line. If the user omits parameter values from the
+       command  line,  the  program  will  prompt the user for input using the
+       standard interface described in the manual entry for _p_a_r_s_e_r.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ff     Generate unformatted output.  Output is in a form  suitable  for
+              input  to  UNIX  programs like _a_w_k; each column in the output is
+              separated by a colon. Results are sent to standard output.
+
+       --qq     Run quietly, suppressing the printing of debugging  messages  to
+              standard output.
+
+
+   PPaarraammeetteerrss::
+       ddaattaa==_n_a_m_e
+              Name  of  an  existing  raster map layer containing the category
+              values to be summed. The cell resolution (area) of the ddaattaa  map
+              will also be used.
+
+       cclluummpp==_n_a_m_e
+              Name of an existing raster map layer that defines the boundaries
+              of each clump. Preferably, this map  should  be  the  output  of
+              _r_._c_l_u_m_p.   If the user has imposed a mask, the program uses this
+              mask as the cclluummpp map layer if no other cclluummpp layer is specified
+              by the user.
+
+       ssiittee__lliisstt==_n_a_m_e
+              The  name to be assigned to a new GRASS ssiittee__lliisstt file, in which
+              clump centroids can be stored.
+
+
+EEXXAAMMPPLLEE OOFF RREEPPOORRTT
+       The following report might be generated by the command: rr..vvoolluummee dd==_e_l_e_-
+       _v_a_t_i_o_n cc==_f_i_e_l_d_s_._o_n_l_y ss==_f_i_e_l_d_._c_e_n_t_e_r_s
+
+
+       Cat  Average   Data  # Cells       Centroid             Total
+        #   in clump  Total in clump Easting   Northing       Volume
+        1   1181.09   75590     64  595500.0  4927700.0   755900000.0
+        2   1163.50   69810     60  597100.0  4927700.0   698100000.0
+        3   1146.83   34405     30  598300.0  4927700.0   344050000.0
+        4   1193.20  366311    307  599400.0  4927300.0  3663110000.0
+            .....
+            .....
+       60   1260.08  351563    279  603100.0  4921000.0  3515630000.0
+       61   1213.93   35204     29  603700.0  4921500.0   352040000.0
+       62   1207.71   33816     28  604100.0  4921500.0   338160000.0
+                                         Total Volume = 67226740000.0
+
+
+
+       For  ease  of example, it is assumed that each clump in the _f_i_e_l_d_s_._o_n_l_y
+       map layer is a field, that cell category values in  the  _e_l_e_v_a_t_i_o_n  map
+       layer  represent  actual  elevation values in meters, and that the data
+       base is a UTM data base (in meters).  This means that field  #1  (clump
+       #1)  contains  64  cells;  the average elevation in field #1 is 1181.09
+       meters. The sum of all of the elevation values assigned to cells within
+       field  #1  is  75590 meters. The volume (x*y*z) of space in field #1 is
+       equal to 755900000 cubic meters.
+
+
+       The "Data Total" column is the sum of the cell category values  appear-
+       ing  in  the  _e_l_e_v_a_t_i_o_n map layer, within each field of the _f_i_e_l_d_s_._o_n_l_y
+       map layer.  The Total Volume is the sum multiplied by the  e-w  resolu-
+       tion times the n-s resolution.
+
+CCEENNTTRROOIIDDSS
+       The  coordinates of the clump centroids are the same as those stored in
+       the GRASS _s_i_t_e___l_i_s_t_s file (if one was requested).  They are  guaranteed
+       to  fall  on  a  cell  of  the appropriate category; thus, they are not
+       always the true, mathematical centroids. However, they will always fall
+       at a cell center.
+
+FFOORRMMAATT OOFF SSIITTEE LLIISSTT
+       For each line of above table the GRASS _s_i_t_e___l_i_s_t_s file reads:
+
+
+       easting|northing|#cat v=volume a=average t=sum n=count
+
+
+
+       This  can  be  converted  directly  to a raster map layer in which each
+       point is assigned to a separate category.
+
+AAPPPPLLIICCAATTIIOONNSS
+       By preprocessing the _e_l_e_v_a_t_i_o_n map layer with _r_._m_a_p_c_a_l_c and using suit-
+       able  masking  or clump maps, very interesting applications can be done
+       with _r_._v_o_l_u_m_e.  For instance, one can calculate: the volume of rock  in
+       a  potential  quarry; cut/fill volumes for roads; and, water volumes in
+       potential reservoirs.  Data layers of other measures of real values can
+       also be used.
+
+NNOOTTEESS
+       The  output  is  sent  to the terminal screen. The user can capture the
+       output in a file using the UNIX redirection mechanism, as in  the  fol-
+       lowing example: rr..vvoolluummee dd==_d_a_t_a___m_a_p cc==_c_l_u_m_p___m_a_p ss==_s_i_t_e___l_i_s_t > _t_a_b_l_e_._o_u_t
+
+
+
+       Output can also be sent directly to the printer, as shown below: rr..vvooll--
+       uummee dd==_d_a_t_a___m_a_p cc==_c_l_u_m_p___m_a_p ss==_s_i_t_e___l_i_s_t | lpr
+
+
+
+       The  user should be aware of what units of measurement the cell e-w and
+       n-s resolution are in, and in what units the _d_a_t_a map's  cell  category
+       values are stated (since these three values will be multiplied together
+       to produce the volume).
+
+
+       This program respects the current mask, and uses this mask as the _c_l_u_m_p
+       map layer if none is specified by the user.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _r_._c_l_u_m_p
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._m_a_s_k
+
+       _s_._d_b_._r_i_m
+
+       _s_._m_e_n_u
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Dr. James Hinthorne, GIS Laboratory, Central Washington University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.volume(1)

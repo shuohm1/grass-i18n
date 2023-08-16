@@ -1,0 +1,103 @@
+d.display(1)                  Grass User's Manual                 d.display(1)
+
+
+
+NNAAMMEE
+       dd..ddiissppllaayy - A menu-driven, highly interactive display program for view-
+       ing maps and producing final map products
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ddiissppllaayy
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS program _d_._d_i_s_p_l_a_y is used to display maps on a graphics moni-
+       tor  and  prepare  final map products for printing.  It is advisable to
+       first run _d_._e_r_a_s_e before each run of _d_._d_i_s_p_l_a_y to  prepare  the  screen
+       for graphics.
+
+
+       After  invoking the command dd..ddiissppllaayy, the DISPLAY MAIN MENU appears on
+       the monitor.  Options  in  this  and  subsequent  _d_._d_i_s_p_l_a_y  menus  are
+       selected  through  use  of  the pointing device (mouse). When the mouse
+       cursor is over the desired menu selection, the user simply presses  any
+       button on the mouse.
+
+
+       _d_._d_i_s_p_l_a_y  is  a  macro  that allows the user to access a wide range of
+       GRASS display functions in a menu-driven and highly  interactive  envi-
+       ronment.   Most  of the functions accessible through _d_._d_i_s_p_l_a_y can also
+       be run independently of one another by running the GRASS  display  (_d_.)
+       commands listed in the SEE ALSO section, below. However, in many cases,
+       these other _d_. commands give the  user  greater  flexibility  and  make
+       available  more options than are available through the _d_._d_i_s_p_l_a_y menus.
+       For example, the _d_._d_i_s_p_l_a_y _l_a_b_e_l file option runs the  _d_._l_a_b_e_l  command
+       using  defaults.  Users  running _d_._l_a_b_e_l directly from the command line
+       have the choice of stipulating specific label background and text  col-
+       ors,  as  well  as  text sizes and font types.  Users running the _l_a_b_e_l
+       file option through _d_._d_i_s_p_l_a_y cannot specify  these  options;  instead,
+       default values are used (see _d_._l_a_b_e_l for default values used).
+
+
+       The  _d_._d_i_s_p_l_a_y tool is best learned by playing with its options.  Refer
+       to the individual _d_. and other commands in the SEE ALSO section  for  a
+       detailed examination of these functions.
+
+NNOOTTEESS
+       The  user  can also modify the current region settings from the DISPLAY
+       MAIN MENU.  Using the mouse, the user can choose to _z_o_o_m in on  a  por-
+       tion  of  the displayed raster map layer to create a smaller geographic
+       region.  Once the user has defined the corners of this area  using  the
+       mouse,  the  smaller  area is enlarged and replotted on the screen. The
+       user can similarly choose to _z_o_o_m out. In this case, the user uses  the
+       mouse to encompass that portion of the reduced map that the user wishes
+       to make the current geographic region and display in the center of  the
+       screen.  The  larger  map is then replotted and displayed. Finally, the
+       user can enter geographic coordinates for the region's corners from the
+       keyboard  using  the  GRASS command _g_._r_e_g_i_o_n. This is done by selecting
+       the _t_y_p_e coordinates option.
+
+
+       The main menu also offers the user the option of hiding the  main  menu
+       for ten seconds (_h_i_d_e _m_e_n_u _f_o_r _1_0 _s_e_c_o_n_d_s).
+
+
+       The  _d_._d_i_s_p_l_a_y  command must be run in conjunction with a program which
+       converts the GRASS graphics commands  generated  by  _d_._d_i_s_p_l_a_y  to  the
+       graphics commands that the current device understands. This device will
+       almost always be a graphics  monitor.  On  most  systems  the  user  is
+       required  to start up this other program separately from (and prior to)
+       _d_._d_i_s_p_l_a_y.  In such cases, a locally-defined  program,  usually  "moni-
+       tor",  is  used  (see  your  GRASS  manager). (For example, on MASSCOMP
+       machines, the _d_._m_o_n program must be running in the  foreground  on  the
+       graphics  monitor.   On  SUN machines, the _d_._m_o_n program can be started
+       from any terminal and run in the background.)
+
+
+       _d_._d_i_s_p_l_a_y sends program output to the current graphics frame  (set,  by
+       default, to the full graphics screen unless modified by the user).  You
+       can use _d_._f_r_a_m_e to create and choose a smaller  display  frame  on  the
+       graphics monitor for use by _d_._d_i_s_p_l_a_y.
+
+
+       See  the  GRASS  macro  _3_d_._v_i_e_w_._s_h stored under $GISBASE/scripts for an
+       example of how you can create a  _d_._d_i_s_p_l_a_y-like  macro  using  a  shell
+       script.
+
+SSEEEE AALLSSOO
+       See  _3_d_._v_i_e_w_._s_h or _s_l_i_d_e_._s_h_o_w_._s_h under $GISBASE/scripts for examples of
+       _d_._d_i_s_p_l_a_y-like macros.
+
+
+       _d_._3_d _d_._c_o_l_o_r_m_o_d_e _d_._c_o_l_o_r_s  _d_._f_r_a_m_e  _d_._l_a_b_e_l  _d_._l_e_g_e_n_d  _d_._m_e_a_s_u_r_e  _d_._m_o_n
+       _d_._r_a_s_t _d_._s_c_a_l_e _d_._s_i_t_e_s _d_._v_e_c_t _d_._z_o_o_m _g_._r_e_g_i_o_n _d_._m_e_n_u _v_._d_i_g_i_t
+
+AAUUTTHHOORR
+       James  Westervelt,  U.S. Army Construction Engineering Research Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                         d.display(1)

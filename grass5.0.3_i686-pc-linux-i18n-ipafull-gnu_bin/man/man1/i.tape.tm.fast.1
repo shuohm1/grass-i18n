@@ -1,0 +1,117 @@
+i.tape.tm.fast(1)             Grass User's Manual            i.tape.tm.fast(1)
+
+
+
+NNAAMMEE
+       ii..ttaappee..ttmm..ffaasstt   -  An  imagery  function that extracts Thematic Mapper
+       (TM) imagery from tape media
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ttaappee..ttmm..ffaasstt
+       ii..ttaappee..ttmm..ffaasstt hheellpp
+       ii..ttaappee..ttmm..ffaasstt hheellpp [--qq] iinnppuutt==_n_a_m_e ggrroouupp==_n_a_m_e  bbaannddss==_v_a_l_u_e[,_v_a_l_u_e,...]
+       [rroowwss==_f_i_r_s_t_r_o_w_-_l_a_s_t_r_o_w] [ccoollss==_f_i_r_s_t_c_o_l_-_l_a_s_t_c_o_l] [TTIITTLLEE==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._t_a_p_e_._t_m_._f_a_s_t  is  a  program that extracts TM imagery from tape media
+       with different blocking factors (its value indicates how many rows  are
+       combined into one physical record on the tape).
+
+
+       _i_._t_a_p_e_._t_m_._f_a_s_t  must  be run in a LOCATION_NAME with a (x,y) coordinate
+       system (i.e., a coordinate  system  with  projection  0).  For  further
+       information  regarding  the  LOCATION_NAME  type,  please  refer to the
+       _i_m_a_g_e_r_y manual entry.
+
+
+       _i_._t_a_p_e_._t_m_._f_a_s_t reads the blocking factor from the header file  as  well
+       as  other parameters, such as gains and offsets for each band, map pro-
+       jection, sun elevation and azimuth, etc., and writes into history  file
+       (depending upon the contents of the header file).
+
+OOPPTTIIOONNSS
+       This  program  can be run either non-interactively or interactively. It
+       will be run non-interactively if the user specifies the name  of  input
+       device,  the  name  of  output  group  file, bands to be extracted, and
+       optionally other parameters (see below) on the command line  using  the
+       form:
+
+
+       ii..ttaappee..ttmm..ffaasstt  hheellpp [--qq] iinnppuutt==_n_a_m_e ggrroouupp==_n_a_m_e bbaannddss==_v_a_l_u_e[,_v_a_l_u_e,...]
+       [rroowwss==_f_i_r_s_t_r_o_w_-_l_a_s_t_r_o_w] [ccoollss==_f_i_r_s_t_c_o_l_-_l_a_s_t_c_o_l] [TTIITTLLEE==_n_a_m_e]
+
+       where the _i_n_p_u_t should be the device name on which the tape  media  are
+       mounted.  The  _g_r_o_u_p is an imagery group which will store the extracted
+       TM imagery.  The _b_a_n_d_s value in a list separated by commas is the bands
+       the user wants to extract from the imagery. The _r_o_w_s and _c_o_l_s represent
+       the region which the user wishes to extract, where the default is whole
+       imagery.   At last an optional _T_I_T_L_E is for information only.  Alterna-
+       tively, the program will be run interactively if the  user  types  only
+       _i_._t_a_p_e_._t_m_._f_a_s_t;  in  this  case  the  program  will prompt the user for
+       parameter values using the standard GRASS _p_a_r_s_e_r interface.
+
+   FFllaaggss::
+       --qq     Run quietly.  Supresses output of program percent-complete  mes-
+              sages.   If  this  flag  is not used, these messages are printed
+              out.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The name of the device on which the tape  media  containing  the
+              imagery files mounted.
+
+       ggrroouupp==_n_a_m_e
+              The  name  of  the group, which will store the imagery extracted
+              from tape media.
+
+       bbaannddss==_v_a_l_u_e[,_v_a_l_u_e,...]
+              The bands the user wishes to extracted from the tape media.
+              Options: 1-7
+
+       rroowwss==_f_i_r_s_t_r_o_w_-_l_a_s_t_r_o_w
+              The values of first and last row of the extracting region.
+              Default: full imagery
+
+       ccoollss==_f_i_r_s_t_c_o_l_-_l_a_s_t_c_o_l
+              The values of first and last column of the extracting region.
+              Default: full imagery
+
+       TTIITTLLEE==_n_a_m_e
+              The TITLE of the extracting imagery.
+              Default: TM Imagery File Extracted from Tape
+
+
+NNOOTTEESS
+       Running in command line mode, _i_._t_a_p_e_._t_m_._f_a_s_t will overwrite  the  group
+       file and support files without prompting if the files existed.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g
+
+
+       _i_._g_r_o_u_p
+
+       _i_._t_a_p_e_._m_s_s
+
+       _i_._t_a_p_e_._m_s_s_._h
+
+       _i_._t_a_p_e_._o_t_h_e_r
+
+       _i_._t_a_p_e_._t_m
+
+       _i_._t_a_p_e_._s_p_o_t
+
+       _i_m_a_g_e_r_y
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+AAUUTTHHOORR
+       Tao Wen, University of Illinois at Urbana-Champaign
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                    i.tape.tm.fast(1)

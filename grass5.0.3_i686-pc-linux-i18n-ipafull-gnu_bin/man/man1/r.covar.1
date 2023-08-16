@@ -1,0 +1,116 @@
+r.covar(1)                    Grass User's Manual                   r.covar(1)
+
+
+
+NNAAMMEE
+       rr..ccoovvaarr   -  Outputs a covariance/correlation matrix for user-specified
+       raster map layer(s).
+       _(_G_R_A_S_S Raster Program)
+
+SSYYNNOOPPSSIISS
+       rr..ccoovvaarr
+       rr..ccoovvaarr hheellpp
+       rr..ccoovvaarr [--mmrrqq] mmaapp==_n_a_m_e[,_n_a_m_e,...]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_o_v_a_r outputs  a  covariance/correlation  matrix  for  user-specified
+       raster  map layer(s).  The output can be printed, or (if run non-inter-
+       actively) saved by redirecting output into a file.
+
+
+       The output is an N x N symmetric covariance (correlation) matrix, where
+       N  is  the  number  of raster map layers specified on the command line.
+       For example, rr..ccoovvaarr map=_l_a_y_e_r_._1,_l_a_y_e_r_._2,_l_a_y_e_r_._3
+
+       would produce a 3x3 matrix (values are example only):
+            1.000000  0.914922  0.889581
+            0.914922  1.000000  0.939452
+            0.889581  0.939452  1.000000
+
+
+OOPPTTIIOONNSS
+       The program will be run non-interactively, if the  user  specifies  the
+       names of raster map layers and any desired options on the command line,
+       using the form rr..ccoovvaarr [--mmrrqq] mmaapp==_n_a_m_e[,_n_a_m_e,...]
+
+       where each _n_a_m_e specifies the name of a raster map layer to be used  in
+       calculating  the  correlations, and the (optional) flags --mm, --rr, and --qq
+       have meanings given below.  If these flags are  not  specified  on  the
+       command line, their answers default to "no".
+
+   FFllaaggss::
+       --mm     Include  zero values in the correlation calculations, due to the
+              mask.
+
+       --rr     Print out the correlation matrix.
+
+       --qq     Run quietly (without comments on program progress).
+
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e[,_n_a_m_e,...]
+              Existing raster map layer(s)  to  be  included  in  the  covari-
+              ance/correlation matrix calculations.
+
+
+
+       Alternately,  the  user  can  simply  type rr..ccoovvaarr on the command line,
+       without program arguments. In this case, the user will be prompted  for
+       flag  settings  and  parameter  values  using the standard GRASS parser
+       interface.
+
+PPRRIINNCCIIPPLLEE CCOOMMPPOONNEENNTTSS
+       This module can be used as the first step  of  a  principle  components
+       transformation.   The  covariance  matrix  would be input into a system
+       which determines eigen values and  eigen  vectors.  An  NxN  covariance
+       matrix  would  result  in N real eigen values and N eigen vectors (each
+       composed of N real numbers).  In the above example,  the  eigen  values
+       and corresponding eigen vectors for the covariance matrix are:
+       component   eigen value               eigen vector
+           1       1159.745202   < 0.691002    0.720528    0.480511 >
+           2          5.970541   < 0.711939   -0.635820   -0.070394 >
+           3        146.503197   < 0.226584    0.347470   -0.846873 >
+
+       The component corresponding to each vector can be produced using _r_._m_a_p_-
+       _c_a_l_c as follows: rr..mmaappccaallcc 'pc.1 = 0.691002*layer.1 +  0.720528*layer.2
+       + 0.480511*layer.3'
+       rr..mmaappccaallcc    'pc.2    =    0.711939*layer.1    -   0.635820*layer.2   -
+       0.070394*layer.3'
+       rr..mmaappccaallcc   'pc.3   =    0.226584*layer.1    +    0.347470*layer.2    -
+       0.846873*layer.3'
+
+       Note  that  based  on the relative sizes of the eigen values, _p_c_._1 will
+       contain about 88% of the variance in the data set,  _p_c_._2  will  contain
+       about  1%  of the variance in the data set, and _p_c_._3 will contain about
+       11% of the variance in the data set.  Also, note that the range of val-
+       ues  produced in _p_c_._1, _p_c_._2, and _p_c_._3 will not (in general) be the same
+       as those for _l_a_y_e_r_._1, _l_a_y_e_r_._2, and _l_a_y_e_r_._3.  It  may  be  necessary  to
+       rescale  _p_c_._1,  _p_c_._2  and _p_c_._3 to the desired range (e.g. 0-255).  This
+       can be done with _r_._r_e_s_c_a_l_e.
+
+NNOOTTEESS
+       If your system has a FORTRAN compiler, then the  program  _m_._e_i_g_e_n_s_y_s_t_e_m
+       in  src.contrib  can  be compiled and used to generate the eigen values
+       and vectors.
+
+SSEEEE AALLSSOO
+       _i_._p_c_a
+
+       _m_._e_i_g_e_n_s_y_s_t_e_m
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._r_e_s_c_a_l_e
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_1_0_/_1_4 _1_5_:_4_1_:_0_7 _$
+
+
+
+GRASS 5.0                                                           r.covar(1)

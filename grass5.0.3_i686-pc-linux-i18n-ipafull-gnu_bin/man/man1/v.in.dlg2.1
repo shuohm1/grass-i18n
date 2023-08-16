@@ -1,0 +1,82 @@
+v.in.dlg2(1)                  Grass User's Manual                 v.in.dlg2(1)
+
+
+
+NNAAMMEE
+       vv..iinn..ddllgg22  -  Converts  an  ASCII or binary USGS DLG-3 (bdlg) file to a
+       binary GRASS vector (dig) file.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ddllgg22
+       vv..iinn..ddllgg22 hheellpp
+       vv..iinn..ddllgg22 [--bbll] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       This program converts  an  ASCII  or  binary  USGS  DLG-3  (_d_l_g_._o_l_d  or
+       _b_d_l_g_._o_l_d) file into a binary GRASS vector (dig) file.
+
+
+       _v_._i_n_._d_l_g_2  also creates a dig_att file containing the label information
+       'stripped' from the DLG-3 file.  However, the user must  run  _v_._s_u_p_p_o_r_t
+       (or  _v_._i_m_p_o_r_t option 4) on the _o_u_t_p_u_t file created by _v_._i_n_._d_l_g_2 to cre-
+       ate a dig_plus file containing the file topology, before using the _o_u_t_-
+       _p_u_t file in _v_._d_i_g_i_t.
+
+
+       The  user  can  avoid  this two-step process by converting the ASCII or
+       binary DLG-3 file to binary GRASS vector format using option 1 or 2  of
+       the GRASS program _v_._i_m_p_o_r_t.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --bb     Input is a binary DLG-3 file (default is ASCII).
+
+       --ll     Give precedence to line information (default is area).
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of USGS DLG-3 Optional format input file.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the binary GRASS vector files created.
+
+       If  the user simply types vv..iinn..ddllgg22 without specifying parameter values
+       on the command line, the program will prompt the user to enter these.
+
+NNOOTTEESS
+   AArreeaa vvss LLiinnee PPrreecceeddeennccee::
+       Some machine-processed DLG-3 files do not make the distinction  between
+       line  edges  and  area  edges.   For example, in a roads map, where the
+       desired information is line edge data, a downtown block  surrounded  by
+       roads  may be processed as an area.  Because of this, the user is asked
+       to choose whether to give precedence to areas or lines.  If  precedence
+       is  given  to lines, the user should be aware that any lines that bound
+       unlabeled areas in the DLG-3 file will be stored  as  line  data.   Any
+       unlabeled  areas  would  therefore be lost (this is only a concern when
+       areas are unlabeled;  labeled area information will be  retained).   If
+       precedence  is  given  to  areas, lines will be stored as boundaries to
+       areas that are unlabeled.
+
+   BBuuiillddiinngg ssuuppppoorrtt ffiilleess wwiitthh
+       _v_._s_u_p_p_o_r_t: When you run _v_._s_u_p_p_o_r_t you will have the option of  snapping
+       the  nodes  in your vector file that fall within a certain threshold of
+       one another.  WARNING:  the default threshold is calculated  using  the
+       scale  of  the  original  DLG-3  file.   If  the threshold is too high,
+       excessive snapping may occur, destroying the  file!!   With  _v_._s_u_p_p_o_r_t,
+       the user has the option of snapping or not snapping nodes, and further,
+       of setting a particular snapping threshold.
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t, _v_._i_m_p_o_r_t, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Michael Higgins, U.S.Army Construction Engineering Research Laboratory
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         v.in.dlg2(1)

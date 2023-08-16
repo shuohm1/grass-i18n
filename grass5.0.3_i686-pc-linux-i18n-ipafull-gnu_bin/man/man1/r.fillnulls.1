@@ -1,0 +1,92 @@
+r.fillnulls(1)                Grass User's Manual               r.fillnulls(1)
+
+
+
+NNAAMMEE
+       rr..ffiillllnnuullllss   -  Fills  NULL  (no  data  areas) in input map and stores
+       filled map to a new output map. The fill data are interpolated from the
+       no data area boundaries using s.surf.rst spline interpolation.
+
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       rr..ffiillllnnuullllss
+
+
+        rr..ffiillllnnuullllss iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              raster map containing NULL data area(s)/pixel(s)
+
+       oouuttppuutt==_n_a_m_e
+              raster map with NULL areas filled by RST interpolation
+
+
+NNOOTTEESS
+       During the interpolation following warning may occur:
+
+
+       Warning: strip exists with insufficient data
+
+       Warning:  taking  too  long  to  find  points for interpolation--please
+       change the region to area where your points are
+
+
+       This warning is generated if large data holes exist within the surface.
+       As  the  idea of _r_._f_i_l_l_n_u_l_l_s is to fill such holes, the user may ignore
+       the warning. The interpolation will be continued. However, the user may
+       pay attention to below notes.
+
+AATTTTEENNTTIIOONN
+       The  algorithm  is based on _s_._s_u_r_f_._r_s_t regularized splines with tension
+       interpolation module which interpolates the raster cell values for NULL
+       data  areas from the boundary values of the NULL data area. An eventual
+       raster MASK is respected during the  NULL  data  area(s)  filling.  The
+       interpolated values are patched into the NULL data area(s) of the input
+       map and saved into a new raster map.
+
+WWAARRNNIINNGG
+       Depending on the shape of the NULL data area(s) problems may occur  due
+       to  an  insufficient  number of input cell values for the interpolation
+       process. Most problems will occur if a NULL data area reaches  a  large
+       amount  of  the map boundary. The user will have to carefully check the
+       result using _r_._m_a_p_c_a_l_c (generating a difference map to the  input  map)
+       and/or _d_._w_h_a_t_._r_a_s_t to query individual cell values.
+
+
+
+SSEEEE AALLSSOO
+       _r_._f_i_l_l_._d_i_r_, _s_._s_u_r_f_._r_s_t
+
+        Mitas,  L.,  Mitasova, H., 1999, Spatial Interpolation. In: P.Longley,
+       M.F. Goodchild, D.J. Maguire, D.W.Rhind (Eds.),  Geographical  Informa-
+       tion  Systems:  Principles,  Techniques,  Management  and Applications,
+       Wiley, pp.481-492
+
+       Mitasova H., Mitas L.,   Brown  W.M.,   D.P.  Gerdes,  I.   Kosinovsky,
+       Baker, T.1995, Modeling spatially and temporally distributed phenomena:
+       New methods and tools for GRASS GIS. _I_n_t_e_r_n_a_t_i_o_n_a_l _J_o_u_r_n_a_l  _o_f  _G_I_S,  9
+       (4),  special  issue  on  Integrating  GIS  and Environmental modeling,
+       433-446.
+
+       Mitasova H.  and Mitas L. 1993:  Interpolation  by  Regularized  Spline
+       with  Tension:  I.  Theory and Implementation, _M_a_t_h_e_m_a_t_i_c_a_l _G_e_o_l_o_g_y 25,
+       641-655.
+
+       Mitasova H.  and Hofierka L. 1993: Interpolation by Regularized  Spline
+       with  Tension: II. Application to Terrain Modeling and Surface Geometry
+       Analysis, _M_a_t_h_e_m_a_t_i_c_a_l _G_e_o_l_o_g_y 25, 657-667.
+
+AAUUTTHHOORRSS
+       r.fillnulls: Markus Neteler, University of Hannover
+
+
+       and authors of s.surf.rst
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_2_/_0_5 _1_2_:_4_6_:_0_3 _$
+
+
+
+GRASS 5.0                                                       r.fillnulls(1)

@@ -1,0 +1,115 @@
+m.dted.extract(1)             Grass User's Manual            m.dted.extract(1)
+
+
+
+NNAAMMEE
+       mm..ddtteedd..eexxttrraacctt   - Extracts digital terrain elevation data (DTED - lev-
+       els 1 and 2) produced and supplied by the Defense Mapping Agency  (DMA)
+       on 1/2-inch magnetic tapes.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..ddtteedd..eexxttrraacctt iiff==_n_a_m_e ooff==_n_a_m_e hhff==_n_a_m_e nn=="_s_t_r_i_n_g" ss=="_s_t_r_i_n_g" ee=="_s_t_r_i_n_g"
+       ww=="_s_t_r_i_n_g"
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._d_t_e_d_._e_x_t_r_a_c_t extracts DTED (Levels 1 and 2) digital terrain elevation
+       data  produced  by  the Defense Mapping Agency (DMA) from 1/2-inch mag-
+       netic tapes obtained from DMA.
+
+OOPPTTIIOONNSS
+       Data is read from the input file (iiff).  If the user  does  not  specify
+       any input file name on the command line, the program assumes that input
+       is coming from /dev/rmt0.  The extracted data is placed in  the  output
+       file  (ooff).   This  program should be used in conjunction with the pro-
+       grams _m_._r_o_t_9_0 and _r_._i_n_._l_l to convert DTED data to GRASS raster  format.
+
+   PPaarraammeetteerrss::
+       iinnppuutt=_n_a_m_e
+              The  pathname  of the tape device where the raw DTED data exists
+              (default is /dev/rmt0)
+
+       oouuttppuutt=_n_a_m_e
+              The full pathname of the output file into  which  the  extracted
+              tape data is to be copied
+
+       hheeaaddeerr=_n_a_m_e
+              The  full  pathname of a file to contain descriptive information
+              about the extracted data;  should be placed in the  same  direc-
+              tory as the output file
+
+       nnoorrtthh= North  latitude  value defining the boundaries of the extraction
+              geographic region (format: _d_d_._m_m_._s_s_[_n_|_s_])
+
+       ssoouutthh= South latitude value defining the extraction  geographic  region
+              (format: _d_d_._m_m_._s_s_[_n_|_s_])
+
+       eeaasstt=  East  longitude  value defining the extraction geographic region
+              (format: _d_d_._m_m_._s_s_[_e_|_w_])
+
+       wweesstt=  West longitude value defining the extraction  geographic  region
+              (format: _d_d_._m_m_._s_s_[_e_|_w_])
+
+       The  nnoorrtthh,  ssoouutthh, eeaasstt and wweesstt parameters define a geographic region
+       that should completely encompass the data set.   _d_d_._m_m_._s_s  are  degree,
+       minute,  and  second  values.  Only data that falls within this defined
+       geographic region will be extracted from the tape.
+
+EEXXAAMMPPLLEE
+       The   command   line:    mm..ddtteedd..eexxttrraacctt    iinn==_/_d_e_v_/_r_m_t_0    oouutt==_d_t_e_d_._o_u_t
+       hheeaadd==_d_t_e_d_._h_e_a_d nn==_3_7_._3_0_._0_0_n ss==_3_7_._1_5_._0_0_n ee==_1_0_3_._3_0_._0_0_w  ww==_1_0_3_._4_5_._0_0_w
+
+       will  extract  DTED  data  from  /dev/rmt0,  store  it  in a file named
+       dted.out, and store some supporting information in the file  dted.head.
+       Only  data that falls within the geographic region defined by the coor-
+       dinates nnoorrtthh, ssoouutthh, eeaasstt and wweesstt will be extracted.
+
+NNOOTTEE
+       The user should examine the contents of the  header  file  produced  by
+       this  program;  it  contains  information  needed as inputs to the data
+       rotation and raster file import programs _m_._r_o_t_9_0 and _r_._i_n_._l_l,  respect-
+       fully.
+
+BBUUGGSS
+       The  format  of the header file for DTED Level 1 and 2 data was changed
+       in 1987.  _m_._d_t_e_d_._e_x_t_r_a_c_t and _m_._d_t_e_d_._e_x_a_m_i_n_e only operate on  DTED  data
+       containing pre-1987 headers.  DTED data containing the pre-1987 headers
+       may be purchased from the DMA upon request.
+
+DDIIAAGGNNOOSSTTIICCSS
+       Invalid requests are so designated.
+
+SSEEEE AALLSSOO
+       _P_u_r_s_u_a_n_c_e _o_f _E_l_e_v_a_t_i_o_n _D_a_t_a, by Stuart Bradshaw, USACERL
+       _D_T_E_D _a_n_d _D_E_M _E_l_e_v_a_t_i_o_n _D_a_t_a _E_x_t_r_a_c_t_i_o_n, by Stuart Bradshaw,  Mary  Mar-
+       tin, and Chester Kos, USACERL
+
+
+       _g_._r_e_g_i_o_n
+
+       _m_._d_m_a_U_S_G_S_r_e_a_d
+
+       _m_._d_t_e_d_._e_x_a_m_i_n_e
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+       _m_._r_e_g_i_o_n_._l_l
+
+       _m_._r_o_t_9_0
+
+       _r_._d_e_s_c_r_i_b_e
+
+       _r_._i_n_._l_l
+
+       _r_._r_e_s_c_a_l_e
+
+       _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_2_/_2_8 _1_2_:_4_7_:_2_5 _$
+
+
+
+GRASS 5.0                                                    m.dted.extract(1)

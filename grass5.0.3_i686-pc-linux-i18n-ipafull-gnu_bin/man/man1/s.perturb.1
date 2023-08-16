@@ -1,0 +1,85 @@
+s.perturb(1)                  Grass User's Manual                 s.perturb(1)
+
+
+
+NNAAMMEE
+       ss..ppeerrttuurrbb  - Random location perturbations of GRASS sites.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..ppeerrttuurrbb
+       ss..ppeerrttuurrbb hheellpp
+       ss..ppeerrttuurrbb  [--qq]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  ddiissttrriibbuuttiioonn==[_u_n_i_f_o_r_m|_n_o_r_m_a_l]
+       ppaarraammeetteerrss==_v_a_l_u_e,[_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._p_e_r_t_u_r_b reads a site list and writes the same list but  _p_e_r_t_u_r_b_s  the
+       eastings  and  northings  by  adding  either  a uniform or normal delta
+       value. Perturbation means that a variating spatial deviation  is  added
+       to the coordinates.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --qq     Quiet. Cut out the chatter.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing sites file.
+
+       oouuttppuutt==_n_a_m_e
+              Name of output sites file.
+
+       ddiissttrriibbuuttiioonn==[_u_n_i_f_o_r_m|_n_o_r_m_a_l]
+              Distribution of perturbation.
+
+       ppaarraammeetteerrss==_v_a_l_u_e[_,_v_a_l_u_e]
+              Parameter(s)  of  distribution.  If the distribution is uniform,
+              only one parameter, the maximum, is needed.  For a  normal  dis-
+              tribution,  two parameters, the mean and standard deviation, are
+              required.
+
+
+NNOOTTEESS
+       The uniform distribution is always centered about zero.  The associated
+       parameter  is  constrained  to be positive and specifies the maximum of
+       the distribution; the minimum is the negation of that parameter.
+
+
+       Usually, the mean (first parameter) of the normal distribution is  zero
+       (i.e.,  the  distribution  is centered at zero). The standard deviation
+       (second parameter) is naturally constrained to be positive.
+
+
+       Output sites are not guaranteed to be contained within the current geo-
+       graphic region.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _s_._r_a_n_d_o_m
+
+       _s_._u_n_i_v_a_r
+
+       _s_._k_c_v
+
+
+BBUUGGSS
+       Please  send  all  bug  fixes  and  comments to the author or the GRASS
+       development team.
+
+
+AAUUTTHHOORR
+       James Darrell McCauley ,
+
+       when he was at: Agricultural Engineering Purdue University
+
+
+       Random number generators originally written in FORTRAN by Wes  Peterson
+       and translated to C using _f_2_c
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                         s.perturb(1)

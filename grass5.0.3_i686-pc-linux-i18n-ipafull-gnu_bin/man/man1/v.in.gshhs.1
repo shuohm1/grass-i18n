@@ -1,0 +1,88 @@
+v.in.gshhs(1)                 Grass User's Manual                v.in.gshhs(1)
+
+
+
+NNAAMMEE
+       _v_._i_n_._g_s_h_h_s - import Global Self-consistant Hierarchical High-resolution
+       Shoreline (GSHHS) data
+
+       _(_G_R_A_S_S _V_e_c_t_o_r _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ggsshhhhss [[--gg]] [[--ss]] [[--aa]] iinnppuutt_=_n_a_m_e  oouuttppuutt_=_n_a_m_e  [nn_=_v_a_l_u_e]  [ss_=_v_a_l_u_e]
+       [ee_=_v_a_l_u_e] [ww_=_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN TThhee _v_._i_n_._g_s_h_h_s program imports Global
+       Self-consistant  Hierarchical  High-resolution  Shoreline  (GSHHS) data
+       available   from   http://www.soest.hawaii.edu/wessel/gshhs/gshhs.html.
+       Coordinates  are originally lat/long and, if required, reprojected dur-
+       ing import to the current GRASS projection. The user may supply  bound-
+       ing  coordinates by manually entering north, south, east, and west val-
+       ues, or optionally using the "-g" flag to use the current GRASS  region
+       as the bounding coordinates.
+
+   FFllaaggss::
+       --gg     Obtain  north,  south,  east, and west bounding coordinates from
+              the current GRASS region
+
+       --ss     Automatically run _v_._s_u_p_p_o_r_t after import
+
+       --aa     Import vector data as area-line type (default is line)
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  The name of the GSHHS shoreline file There are five files (reso-
+              lutions) available: crude, low, intermediate, high, and full
+
+       oouuttppuutt The name of the GRASS vector file to be created
+
+       nn      North limit for imported vector
+
+       nn      North limit for imported vector
+
+       ss      South limit for imported vector
+
+       ee      East limit for imported vector
+
+       ww      West limit for imported vector
+
+
+NNOOTTEESS
+       Imported  vector  data  is assigned labels (eg.land, lake, etc) derived
+       from GSHHS data. Solid lines that exit and re-enter the import area are
+       broken at the point of exit.
+
+
+       A  GSHHS map shift sometimes reported  may be related to the map datum.
+       The GSHHS reference ellipsoid is the same as for the GSHHS data sources
+       WVS  ("World  Vector  Shoreline")  and  WDBII ("World Databank II") for
+       which the reference ellipsoid is unknown.  The GSHHS data set  is  pro-
+       vided in Latitude/Longitude.
+
+EEXXAAMMPPLLEE
+       The following example imports an intermediate resolution shoreline into
+       GRASS using the current GRASS region and automatically  runs  _v_._s_u_p_p_o_r_t
+       after import:
+       v.in.gshhs -gs input=gshhs_i.b output=shoreline.int
+
+
+SSEEEE AALLSSOO
+       Appendix K in: The Generic Mapping Tools. Technical Reference and Cook-
+       book.
+
+AAUUTTHHOORRSS
+       This program is based on _g_s_h_h_s_t_o_g_r_a_s_s
+
+       Author: Simon Cox
+
+       Author: Paul Wessel
+
+       Author: Bob Covill
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                        v.in.gshhs(1)

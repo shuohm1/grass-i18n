@@ -1,0 +1,82 @@
+bug.report.sh(1)              Grass User's Manual             bug.report.sh(1)
+
+
+
+NNAAMMEE
+       bbuugg..rreeppoorrtt..sshh   -  A  mechanism for writing, storing, and e-mailing bug
+       reports on GRASS 5 commands.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       bbuugg..rreeppoorrtt..sshh _m_o_d_u_l_e___n_a_m_e [_m_o_d_u_l_e___a_r_g_u_m_e_n_t_s]
+
+DDEESSCCRRIIPPTTIIOONN
+       _b_u_g_._r_e_p_o_r_t_._s_h is a Bourne shell (sh(1))  script  which,  when  given  a
+       GRASS  5 module name, allows the user to complete a bug report for that
+       program.  Completed bug reports can be e-mailed to the  GRASS  develop-
+       ment Team (GRASS Bug report system), saved to a file in the user's home
+       directory, or discarded.
+
+OOPPTTIIOONNSS
+       This program is not interactive;  the user must specify the name  of  a
+       5.x  module  on  the command line.  Program arguments can optionally be
+       entered by the user.
+
+   PPaarraammeetteerrss::
+       _m_o_d_u_l_e___n_a_m_e
+              The name of an existing GRASS version 5 program  tested  by  the
+              user.
+
+       _m_o_d_u_l_e___a_r_g_u_m_e_n_t_(_s_)
+              Program  arguments (parameters and/or flags) for the _m_o_d_u_l_e___n_a_m_e
+              tested by the user.  The  user  should  enter  whatever  command
+              arguments were actually run when the program bug occurred.
+
+
+EEXXAAMMPPLLEE
+       For  example,  if the user wished to complete a bug report on _v_._t_o_._r_a_s_t
+       after running the program, the  user  might  then  type:  bbuugg..rreeppoorrtt..sshh
+       v.to.rast
+
+       A  standard  bug report form would then be displayed on the user's text
+       terminal, containing the user's current GRASS region settings, and  the
+       machine  name, GRASS data base, location, and mapset, on which the user
+       is currently running GRASS.  Program parameters and flag settings,  and
+       the command entered by the user on the command line, are also automati-
+       cally entered on the bug report form.  The user is put into a text edi-
+       tor  and expected to enter additional information describing the nature
+       of the bug found or the results of program testing.
+
+
+       The user is then asked whether the completed bug report is to be:  1  -
+       mailed to grass-bugs@intevation.de
+       2 - added to the file grass.bugs in the user's home directory
+       3 - both 1 and 2
+       4 - thrown away
+
+
+NNOOTTEESS
+       This  program  prints  whatever region settings, GRASS data base, loca-
+       tion, and mapset are current when the  user  runs  _b_u_g_._r_e_p_o_r_t_._s_h.   The
+       user  is therefore advised to run _b_u_g_._r_e_p_o_r_t_._s_h immediately after expe-
+       riencing a program bug, to ensure that the settings  current  when  the
+       bug occurred are reported on the bug report form.
+
+
+       Note,  that  the  $EDITOR  environment  variable  is used to define the
+       editor. The "vi" editor is the default editor.
+
+FFIILLEESS
+       This shell script is stored under the $GISBASE/scripts directory on the
+       user's system.  The user is encouraged to examine the shell script com-
+       mands stored in this directory and to produce similar scripts for their
+       own use.
+
+AAUUTTHHOORR
+       James Westervelt, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                     bug.report.sh(1)

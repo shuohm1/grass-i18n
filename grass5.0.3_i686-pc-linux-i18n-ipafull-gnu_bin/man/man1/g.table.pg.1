@@ -1,0 +1,71 @@
+g.table.pg(1)                 Grass User's Manual                g.table.pg(1)
+
+
+
+NNAAMMEE
+       _g_._t_a_b_l_e_._p_g  -  Generate  a  list  of  database  tables in the currently
+       selected database. (GRASS-RDBMS General Interface Program)
+
+SSYYNNOOPPSSIISS
+       gg..ttaabbllee..ppgg
+
+       gg..ttaabbllee..ppgg hheellpp
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._t_a_b_l_e_._p_g is used to generate a list of the tables  in  the  currently
+       selected SQL database. The currently selected database is identified by
+       the GRASS  environment  variable  $PG_DBASE  which  is  set  using  the
+       _g_._s_e_l_e_c_t_._p_g GRASS-RDBMS interface tool. If this environment variable is
+       not set the program terminates with a message to the  user.  Otherwise,
+       the  names  of  the  tables in the currently selected database are dis-
+       played on the screen in three columns. The names of the tables  in  the
+       current database are needed to construct query criteria for use in many
+       of the other tools. This command can be run at any time and is provided
+       for  reference purposes, to be used while performing GRASS-RDBMS appli-
+       cations.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+       None
+
+       EEXXAAMMPPLLEE
+
+       _g_._t_a_b_l_e_._p_g
+
+        The following tables are available in database: nri
+              hydros           landclass         locks
+              mlra             nrifldvals        point
+              practices        priors            psu
+              psutrends        recorders         state
+              stdrpts          streams           treatments
+              trends82         trends87          udrpt
+              udsubj           utm               valuelist
+              water            windbreaks
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_,
+       _d_._r_a_s_t_._p_g_,
+       _d_._v_e_c_t_._p_g_,
+       _d_._w_h_a_t_._s_._p_g_,
+       _r_._r_e_c_l_a_s_s_._p_g_,
+       _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and  W.
+       Fredrick
+       Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                        g.table.pg(1)

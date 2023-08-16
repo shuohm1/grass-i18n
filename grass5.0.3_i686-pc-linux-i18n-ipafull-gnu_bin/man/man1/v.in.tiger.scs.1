@@ -1,0 +1,106 @@
+v.in.tiger.scs(1)             Grass User's Manual            v.in.tiger.scs(1)
+
+
+
+NNAAMMEE
+       vv..iinn..ttiiggeerr..ssccss   -  Converts ASCII TIGER data files from the U.S. Dept.
+       of Commerce Bureau of the Census.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ttiiggeerr..ssccss
+       vv..iinn..ttiiggeerr..ssccss hheellpp
+       vv..iinn..ttiiggeerr..ssccss [ --ccvv] ttiigg11==_n_a_m_e ttiigg22==_n_a_m_e oouutt==_n_a_m_e  ccffcc==_n_a_m_e[,_n_a_m_e,...]
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program imports Census line features from TIGER records type1 and
+       type2 into GRASS vector format.  Both pre-Census and  post-Census  data
+       formats can be used.  Specific Census Feature Class Codes (CFCC) can be
+       extracted completely or  in  various  combinations.   These  codes  are
+       described  in  the TIGER/line Census Files 1990 documemtation available
+       from the Bureau of the Census.  An additional feature  code  consisting
+       of  the  three  letters "BOU" may also be specified to extract a county
+       boundary.  Condensed Record 1 files may be imported with the  -c  flag.
+       These  files  should be identified with a trailing "x" character on the
+       filename.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --cc     Condensed TIGER file.
+
+       --vv     Verbose output.
+
+
+
+
+   PPaarraammeetteerrss::
+       ttiigg11==_n_a_m_e
+              TIGER file 1.
+
+       ttiigg22==_n_a_m_e
+              TIGER file 2.
+
+       oouutt==_n_a_m_e
+              New vector file name.
+
+              Specific Census Feature Class (CFCC) codes.
+
+
+EEXXAAMMPPLLEE
+       To extract all Primary (A1) and Secondary (A2) roads  from  a  county's
+       TIGER files the following command would be used:
+
+
+
+        vv..iinn..ttiiggeerr..ssccss ttiigg11==t12113.1 ttiigg22==t12113.2 oouutt==roads
+              ccffcc==A1,A2
+
+
+       To extract all the Hydrographic features in a county's TIGER files with
+       verbose output:
+
+
+
+        vv..iinn..ttiiggeerr..ssccss --vv ttiigg11==t12113.1 ttiigg22==t12113.2 oouutt==hydro
+              ccffcc==H
+
+
+       To extract the county boundary the command would be:
+
+
+
+        vv..iinn..ttiiggeerr..ssccss ttiigg11==t12113.1 ttiigg22==t12113.2 oouutt==bou
+              ccffcc==BOU
+
+
+
+NNOOTTEESS
+       The TIGER files must in sorted order before being used.   This  can  be
+       done by using the following command:
+            sort TGR12113.F21 -o t12113.1
+            sort TGR12113.F22 -o t12113.2
+
+       For  consistency the sorted file should be written as above.  It should
+       consist of a 't' followed by the State and County FIPS code, then a '.'
+       and then a value to identify the record number.
+
+
+       The  CFCC code 'BOU' used to extract the County Boundary should be used
+       alone as it will result in a polygon AREA being created.
+
+
+       Currently output is in UTM only.
+
+SSEEEE AALLSSOO
+       v.import
+
+AAUUTTHHOORR
+       Paul H. Fukuhara, USDA SCS National Cartographic Center
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                    v.in.tiger.scs(1)

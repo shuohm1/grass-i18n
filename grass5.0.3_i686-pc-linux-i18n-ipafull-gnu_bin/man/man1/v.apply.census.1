@@ -1,0 +1,351 @@
+v.apply.census(1)             Grass User's Manual            v.apply.census(1)
+
+
+
+NNAAMMEE
+       vv..aappppllyy..cceennssuuss  - Calculate/Import Demographics from Census STF1 Files
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..aappppllyy..cceennssuuss
+       vv..aappppllyy..cceennssuuss hheellpp
+       vv..aappppllyy..cceennssuuss [[--dd]] [[--pp]] [[--ll]] [[--uu]]
+
+       vv..aappppllyy..cceennssuuss iinnppuutt__ssttff11==name
+              [oouutt==name]         [eeff==name]        [ffoorrmmuullaa==mapname=expression]
+              [nnaammee__ffiieelldd==name] [zzoonnee==value] [sspphheerrooiidd==name]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program reads a previously selected subset  of  STF1  or  PL94-171
+       U.S. Census Bureau demographic records (see _m_._i_n_._s_t_f_1_._t_a_p_e), and writes
+       one of the following: GRASS site list (coordinates and a value).  GRASS
+       vector  polygon  attribute labels file (coordinates and a label value).
+       Text report to stdout in one of two formats.
+
+
+
+       Any arithmetic expression combining constants with any of the more than
+       900  hundred  demographic  (numeric)  fields can be defined and will be
+       evaluated (by the Unix _b_c _-_l utility) to compute  the  value  for  each
+       input record.
+
+
+       The  location coordinates for the polygon label point or the site loca-
+       tion is obtained from certain columns (269-287) in the  input  records,
+       making  this program quite specific for the specified types of STF1 and
+       PL94-171 input file records.  Use with other types of input data is not
+       advised.
+
+
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --dd     Output IDENTIFICATION SECTION to stdout (20 pages)
+
+       --pp     Output STF1 MATRIX TABLE to stdout (30 pages)
+
+       --ll     Output PL94-171 MATRIX TABLE to stdout (1 page)
+
+       --uu     Output STF1 SUMLEV TABLE to stdout (4 pages)
+
+
+
+       NNoottee::  Only  the  first  flag given will be executed; the program exits
+              after  sending  one  table  to  stdout.   Other  parameters  are
+              ignored.
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt__ssttff11==_n_a_m_e
+              Path/name of STF1 or PL94 input file
+
+       oouutt==_n_a_m_e
+              Type of output: site | atts | table:Lxxx | - (stdout) default: -
+
+       _a_t_t    for results to vector map attribute file
+
+       _s_i_t_e   for results to site list
+
+       -      for results to stdout; this is the default
+
+       _t_a_b_l_e  for results in table form to stdout  with  the  column  value(s)
+              represented by the ':Lxxx:Lxxx' string preceeding the expression
+              value instead of easting and northing.  Lxxx is in  same  choice
+              of  representation as column designation in formula (see below).
+
+
+       eeff==_n_a_m_e
+              Path/name of text file with formula expression(s)
+
+       ffoorrmmuullaa==_m_a_p_=_e_x_p_r_e_s_s_i_o_n
+              mapname=Computation with STF1A columns, constants and _b_c  opera-
+              tors  (see  below).   mapname  of  vector or site map to make is
+              required in all cases (but ignored for '-'  or  'table:'  output
+              modes).
+
+       nnaammee__ffiieelldd==_n_a_m_e
+              field name for parsing stdin lines (-a to ignore)
+
+              default: -a
+
+              _n_a_m_e  is Keyword in stdin stream preceeding the number of a STF1
+              record to read from input_stf1 file.  The number is  a  physical
+              sequence  number,  not  a  record  identification  number.  This
+              parameter is appropriate only in special uses of  this  program.
+              If  '-a'  is given, or this parameter is omitted, all records in
+              STF.file will be processed.
+
+       zzoonnee==_v_a_l_u_e
+              UTM zone number; default is location zone
+
+              options: 1-60
+
+              default: 10
+
+       sspphheerrooiidd==_n_a_m_e
+              Spheroid for LL to UTM conversion; see m.gc.ll
+
+              default: clark66
+
+
+
+       NOTE:  Only one of the "ef" or "formula" input fields may be used.
+
+
+
+TTHHEE ffoorrmmuullaa PPAARRAAMMEETTEERR
+       The string after the '='  in  this  parameter  almost  always  must  be
+       enclosed  in  quotes to protect it from Shell interpretation of charac-
+       ters such as * / (  ) and spaces (which may be used to  increase  read-
+       ability,  but  are  not  necessary).  This string is always of the form
+       _m_a_p_n_a_m_e_=_e_x_p_r_e_s_s_i_o_n.
+
+
+       The _m_a_p_n_a_m_e string can be any legal GRASS map name (up  to  14  charac-
+       ters).  The second '=' is required and may be preceeded and followed by
+       a space.
+
+
+       In the _e_x_p_r_e_s_s_i_o_n, great flexibility is provided for the computation of
+       interesting   combinations   of   the  data  fields  contained  in  the
+       demographic records.
+
+
+       The usual operators used in the _e_x_p_r_e_s_s_i_o_n include: +, -, *, /, and  %.
+       The  user should review the Unix manual entry for the _b_c calculator for
+       the complete list of available functions and other operators.
+
+
+       Parentheses are used in the normal algebraic manner.
+
+
+       The operands in the _e_x_p_r_e_s_s_i_o_n may consist of any mixture of:
+
+
+       integer constants real constants functions allowed by _b_c numeric fields
+       from the demographic records
+
+
+       Numeric  fields from both the IDENTIFICATION and MATRIX SECTIONS of the
+       demographic records may be used.  Review the User and  Technical  Docu-
+       mentation  for  these  demographic  files; or use the _-_p option of this
+       program to print the MATRIX  SECTION  document  (the  demographic  data
+       fields).   When  substituting  values  from the numeric fields into the
+       expression,  characters are replaced by zero.  (Spaces, which are  rare
+       in  the  demographic  data, are usually the result of missing values or
+       restricted information).
+
+
+       The numeric fields from the demographic records may  be  designated  in
+       one of three ways in the _e_x_p_r_e_s_s_i_o_n.
+
+
+
+              length of the numeric field in the data records: A=1, B=2, ... ,
+              I=9, J=10, O=15, etc; and 'cccc' is the starting  column  number
+              for  the  data field of interest: 301 for 100% population count,
+              7221 for total number of four-room housing units, 58  for  101st
+              Congressional  District,  etc.   The proper specification of the
+              Congressional District number would be 'B58'  because  it  is  a
+              two-column field.  'I301' would indicate that the 100% poplation
+              should be used in the calculation; it's a nine-column field.
+
+
+
+               'Pnna0nnn' or 'Hnna0nnn', where 'n' is a digit  and  'a'  is  a
+              digit  or (rarely) upper case letter.  These forms represent the
+              MATRIX field naming schemes used in the CD-ROM "dBase 3"  files.
+              They  can  be used in processing STF1 records extracted from the
+              CD-ROM or TAPE distribution media.  All eight characters of  the
+              field  name  must  be  used.  (Note: this form cannot be used in
+              processing the PL94-171 records.)
+
+
+
+              IDENTIFICATION SECTION field names (67 fields)  for  the  "loca-
+              tional"  information  contained  in  the first 300 characters of
+              each record.  The field name, in all upper case letters, may  be
+              used  if the numeric value of the field is needed in the _e_x_p_r_e_s_-
+              _s_i_o_n.  Two of the most useful fields are  AREALAND  and  AREAWAT
+              which allow the direct computation of population density values.
+
+
+
+       The _b_c calculator usually returns a value with a very large  number  of
+       decimal  places.   Vector  attributes are automatically truncated(!) to
+       integers by the v.support program when  the  topology  file  is  built.
+       Site list descriptions are likewise truncated to integers by GRASS pro-
+       grams which use the descriptions as numeric values (e.g., sites to cell
+       in _s_._m_e_n_u ).
+
+
+
+TTHHEE ''oouutt==ttaabbllee::'' PPAARRAAMMEETTEERR
+       The  default  operation of _v_._a_p_p_l_y_._c_e_n_s_u_s when tabular reports are pro-
+       duced to _s_t_d_o_u_t (when not making a sites list or vector attribute file)
+       is  to  print  the  easting and northing coordinates and then the value
+       resulting from the _e_x_p_r_e_s_s_i_o_n.  Often the user wishes to have an  iden-
+       tifier  different  from  the  coordinates.   The  construction  _o_u_t_=_t_a_-
+       _b_l_e_:_f_i_e_l_d will replace the coordinates with the character string  indi-
+       cated  by _f_i_e_l_d, which may have any of the three forms used for numeric
+       fields in the formula _e_x_p_r_e_s_s_i_o_n, see  above.   Note:  a  special  case
+       exists  for  the  66 character description field which begins in column
+       192; the entire field will be printed if designated by either of  these
+       two forms: _o_u_t_=_t_a_b_l_e_:_A_N_P_S_A_D_P_I or _o_u_t_=_t_a_b_l_e_:_Z_1_9_2.
+
+
+       Complex  tables may be produced by making multiple runs of _v_._a_p_p_l_y_._c_e_n_-
+       _s_u_s, redirecting the tabular output to files, and using the Unix  tools
+       _c_u_t_, _p_a_s_t_e, and _c_o_l_r_m to combine the resulting files.
+
+
+
+EEXXAAMMPPLLEESS
+       [These  examples  assume  that STF1 records for the census tracts (SUM-
+       LEV=140) in a particular county (CNTY=037) have been extracted from the
+       distribution  source  (with  _m_._i_n_._s_t_f_1_._t_p_e)  and  saved in a file named
+       037.140 in the current directory.]
+
+
+
+              Create a site list where the label values are the percentage  of
+              females in each input record:
+
+
+       vv..aappppllyy..cceennssuuss  iinn=037.140 oouutt==site ffoorrmmuullaa=='pct.female = 100 * (I373 /
+       I301)'
+
+
+
+
+              Label an existing vector map (named tract.pop) of  tract  bound-
+              aries with the total population of each tract (run _v_._s_u_p_p_o_r_t
+               and build topology after creating the attributes file):
+
+
+       vv..aappppllyy..cceennssuuss  iinn==037.140  oouutt==atts  ffoorrmmuullaa==tract.pop=P0010001   (or)
+       vv..aappppllyy..cceennssuuss iinn==037.140 oouutt==atts ffoorrmmuullaa==tract.pop=I301
+
+
+
+
+              Produce a tabular report of the census  tract  numbers  and  the
+              number of Hispanics per square kilometer:
+
+
+       vv..aappppllyy..cceennssuuss  iinn=037.140 oouutt==table:TRACTBNA ffoorrmmuullaa=="m=(P0080001/ARE-
+       ALAND)*1000"
+
+
+
+
+              Produce a tabular report of the number  of  people  per  housing
+              unit  for each tract and the coordinates of the internal (label)
+              point:
+
+
+       vv..aappppllyy..cceennssuuss iinn==037.140 ffoorrmmuullaa=="map=P0010001/H0010001"
+
+
+
+
+
+FFOORRMMAATT OOFF TTHHEE FFOORRMMUULLAA TTEEXXTT FFIILLEE
+       Running this program with the _e_f_=_f_i_l_e command line parameter causes the
+       named  file  to  be  read and each formula contained therein to be pro-
+       cessed as if it were entered on the command line.  The  _o_u_t_=  parameter
+       may optionally be respecified in this file; each _o_u_t_= selection remains
+       in effect until explicitly changed.  The program exits after  the  last
+       formula is processed.
+
+
+       The  following  is a sample formula file.  Note the use of lines begin-
+       ning with '#' as manditory formula separators and comment lines.   Also
+       note  that  expressions may be continued on successive lines; the lines
+       are concatenated to a maximum of 500 characters for a  single  formula.
+       Blank lines are ignored.
+       popden.sqkm = 1000 * P0010001 / (AREALAND+AREAWAT)
+       # that computes population density in people per sq. km.
+       #
+       # next do people per sq. mile as a vector attribute file
+       out=att
+       popden.sqmi = 2.59*1000 *
+       P0010001 / (AREALAND+
+       AREAWAT)
+       #
+       # next do total population as a vector attribute file
+       total.pop = I301
+       #
+       # output the county identification numbers as the descriptions
+       # in a site list
+       out=sites county = CNTY
+       #
+       # output the 66 char. description and FIPS Place Code as a table
+       out=table:ANPSADPI
+       map=PLACEFP
+       # optional ending comment line
+
+
+BBUUGGSS//FFEEAATTUURREESS
+       Computational errors in _b_c are not handled too gracefully: a warning is
+       output and a zero result is used.
+
+
+       _b_c tends to output lots of decimal places.  The user must clean this up
+       for output sent to stdout.
+
+
+       The  GRASS  site  list  output  format used includes the '#' before the
+       label value to facilitate the production of raster maps with cell  val-
+       ues representing the results of the formula execution.
+
+
+       If  using  the  "name_field"  and "ef" parameters, the formula file may
+       contain only one formula.
+
+
+
+SSEEEE AALLSSOO
+       _m_._i_n_._s_t_f_1_._t_a_p_e is used as a preprocessor to select subsets of  STF1  or
+       PL-171 tape format records for input to this program.
+
+
+         _U_n_i_x  _u_t_i_l_i_t_y _p_r_o_g_r_a_m_s _s_u_c_h _a_t _g_r_e_p or _a_w_k can also be used to select
+       subsets of lines from the PL94-171 files, but not from  the  STF1  tape
+       files due to their very long record lengths.
+
+
+
+AAUUTTHHOORR
+       Dr.  James  Hinthorne,  GIS  Laboratory, Central Washington University.
+       July, 1992.
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                    v.apply.census(1)

@@ -1,0 +1,68 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      10.13.region
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      MANAGEMENT OF ANALYSIS WINDOWS
+    </H2>
+  </CENTER>
+    <P>GRASS commands can be used to modify the settings of the user's current
+<A HREF="./../../../../documents/html/help/16.glossary/georeg.def.html">geographic region</A>.  The settings define the geographic boundaries, map
+<A HREF="./../../../../documents/html/help/16.glossary/projtn.def.html">projection</A>, coordinate system, and <A HREF="./../../../../documents/html/help/16.glossary/res.def.html">resolution</A> of data sets.
+    <P>If the user does not explicitly modify these region settings, GRASS will
+use the default settings established when the user's current location
+was first set up; these are stored in the DEFAULT_WIND file under the
+PERMANENT mapset and copied to the file &quot;WIND&quot; in the user's own mapset.
+However, these settings can be altered using the <A HREF="./../../../../documents/html/g.region.html">g.region</A> program, or
+by simply editing the &quot;WIND&quot; file using a text editor like &quot;<A HREF="./../../../../documents/html/help/16.glossary/vi.def.html">vi</A>&quot;. The
+user may wish to use different settings for different purposes and
+frequently alter the current region settings.  These &quot;tailored&quot; settings
+can be stored under the &quot;windows&quot; directory, located under the user's
+current mapset for possible later use.
+    <P>GRASS commands commonly ignore data falling outside of the user's
+current geographic region.  For example, when the user digitizes with
+<A HREF="./../../../../documents/html/v.digit.html">v.digit</A>, only those areas of the map that fall inside the user's
+current geographic region will be saved to the vector file produced by
+&quot;v.digit&quot;.  When the user displays data to the graphics monitor, only
+map areas within the user's current geographic region are displayed.
+When raster analysis programs are run on map layers, only those map
+areas that fall inside the user's current geographic region will be
+analyzed and included in the resultant raster map layer.  
+    <P>In previous GRASS releases, the &quot;geographic region&quot; was referred to as
+the &quot;geographic window&quot;;  the latter term is now obsolete.
+    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

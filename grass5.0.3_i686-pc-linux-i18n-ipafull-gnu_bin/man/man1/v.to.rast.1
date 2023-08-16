@@ -1,0 +1,66 @@
+v.to.rast(1)                  Grass User's Manual                 v.to.rast(1)
+
+
+
+NNAAMMEE
+       vv..ttoo..rraasstt   -  Converts  a  binary  GRASS vector map layer into a GRASS
+       raster map layer.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ttoo..rraasstt
+       vv..ttoo..rraasstt hheellpp
+       vv..ttoo..rraasstt iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._t_o_._r_a_s_t transforms (binary) GRASS vector map layers into GRASS raster
+       map layer format.  Most GRASS analysis programs operate on raster data.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of the binary vector map layer to be converted.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the raster map layer output.
+
+
+
+       The user can run the program non-interactively by specifying the  names
+       of  a  vector  input  file  and raster output file on the command line,
+       using the form: vv..ttoo..rraasstt iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+       If the user instead types simply vv..ttoo..rraasstt on  the  command  line,  the
+       program will prompt the user to enter these names.
+
+NNOOTTEESS
+       _v_._t_o_._r_a_s_t will only affect data in areas lying inside the boundaries of
+       the current geographic region.   Before  running  _v_._t_o_._r_a_s_t,  the  user
+       should therefore ensure that the current geographic region is correctly
+       set and that the region resolution is at the desired level; the program
+       may  otherwise  create  an empty raster map layer.  An empty raster map
+       layer will also be created  if  the  vector  map  layer  has  not  been
+       assigned  category/attribute  labels  (e.g., through use of the _v_._d_i_g_i_t
+       program).
+
+
+       The _v_._t_o_._r_a_s_t program creates two files: a raster map layer, and a his-
+       tory file. The GRASS program _r_._s_u_p_p_o_r_t must be run to create additional
+       support files for the raster map.
+
+
+       Additional problems sometimes lead to the creation of empty raster  map
+       layers. Unfortunately, error messages explaining these phenomena do not
+       yet exist.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n, _r_._p_o_l_y, _r_._l_i_n_e, _r_._s_u_p_p_o_r_t, _v_._d_i_g_i_t, _v_._i_m_p_o_r_t, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORRSS
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         v.to.rast(1)

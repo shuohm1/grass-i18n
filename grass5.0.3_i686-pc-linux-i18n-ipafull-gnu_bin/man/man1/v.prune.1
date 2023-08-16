@@ -1,0 +1,70 @@
+v.prune(1)                    Grass User's Manual                   v.prune(1)
+
+
+
+NNAAMMEE
+       vv..pprruunnee  - Prunes points from binary GRASS vector data files.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..pprruunnee
+       vv..pprruunnee hheellpp
+       vv..pprruunnee [--ii] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e tthhrreesshh==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS program _v_._p_r_u_n_e allows the user to remove extra points from a
+       vector file.  This allows users to reduce disk space required by a vec-
+       tor file and still have data accuracy within a given tolerance.
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --ii     The  pruning  threshold value is specified in map inches, rather
+              than in data base units on the ground.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of binary GRASS vector file containing data to be pruned.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to new, pruned vector output file.
+
+       tthhrreesshh==_v_a_l_u_e
+              Threshold value used for pruning.
+
+       The program will be run non-interactively if  the  user  specifies  all
+       parameters  and (optionally) the _-_i flag on the command line, using the
+       form: vv..pprruunnee [--ii] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e tthhrreesshh==_v_a_l_u_e
+
+       If the user simply types vv..pprruunnee without specifying  program  arguments
+       on  the command line, the program will prompt the user to enter parame-
+       ter values.
+
+NNOOTTEESS
+       The threshold value is the same as the _v_._d_i_g_i_t pruning threshold.  This
+       is  specified  in data base units on the ground (e.g., in ground meters
+       for UTM data bases).  The threshold can also be specified in inches  on
+       the  map,  and the program will convert these to data base ground units
+       using the _s_c_a_l_e in the vector file.  If you specify the  scale  in  map
+       inches  rather  than  in ground units, you must specify that inches are
+       used by setting the _-_i flag.  The input vector data layer will be  read
+       and  the resultant pruned vector data layer will be placed into a newly
+       created output file whose name is specified by the  user,  leaving  the
+       original vector map unchanged.
+
+
+       The pruning algorithm throws away redundant points within the specified
+       threshold.  It works on each vector separately, working  from  node  to
+       node.  It does not change the position or number of nodes.
+
+SSEEEE AALLSSOO
+        _v_._i_n_._a_s_c_i_i_, _v_._c_l_e_a_n_, _v_._d_i_g_i_t_, _v_._p_r_u_n_e_, _v_._r_m_d_u_p_, _v_._s_p_a_g_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.prune(1)

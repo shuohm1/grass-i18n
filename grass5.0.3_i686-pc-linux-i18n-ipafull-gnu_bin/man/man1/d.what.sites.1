@@ -1,0 +1,116 @@
+d.what.sites(1)               Grass User's Manual              d.what.sites(1)
+
+
+
+NNAAMMEE
+       dd..wwhhaatt..ssiitteess - interactively query a single site list descriptions
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..wwhhaatt..ssiitteess
+       dd..wwhhaatt..ssiitteess hheellpp
+       dd..wwhhaatt..ssiitteess [--11ttqq] [ssiitteeffiillee==_n_a_m_e] [ddccoolloorr==_c_o_l_o_r] [rreeccoolloorr==_c_o_l_o_r]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._w_h_a_t_._s_i_t_e_s outputs the east, north coordinate values and descriptions
+       with site(s) nearest to the user-specified  location(s)  on  user-named
+       site list.
+
+
+       The  program  will query the contents of site list named by the user on
+       the command line.  These site lists must exist in  the  user's  current
+       mapset search path.
+
+
+       The  program  activates the mouse, and expects the user to indicate the
+       site location(s) to be  queried  by  depressing  a  mouse  button  over
+       desired  location(s) within the current geographic region in the active
+       display frame on the graphic monitor.
+
+   FFllaagg::
+       --11     Identify and query just one point location. Only one mouse click
+              is  executed. This option is provided for shell scripts and pro-
+              grams that want to obtain only one point from the user.
+
+       --tt     Provide only terse output. This option is provided  to  simplify
+              the parsing of output by other programs.
+
+       --qq     Load  quietly.  Do  not  show progress in loading the sites file
+              into memory.
+
+
+   PPaarraammeetteerrss::
+       ssiitteeffiillee==_n_a_m_e
+              Name of existing site list.
+
+       ddccoolloorr==_n_a_m_e
+              Sets the display color to name.  Options:  red, orange,  yellow,
+              green,  blue,  indigo,  violet, magenta, brown, gray, white, and
+              black Default:  red
+
+       rreeccoolloorr==_n_a_m_e
+              Sets the redraw color to name.  Options:  red,  orange,  yellow,
+              green,  blue,  indigo,  violet, magenta, brown, gray, white, and
+              black Default:  yellow
+
+       ssiizzee==_v_a_l_u_e
+              Size, in pixels, in which the site icons are to be drawn.
+              Options:  0-1000
+              Default:  5
+
+       ttyyppee==_n_a_m_e
+              The type of icon to be displayed at site locations.
+              Options:  x, diamond, box, +
+              Default:  x
+
+
+EEXXAAMMPPLLEE
+       It is helpful, but not necessary, to first display a site  list  to  be
+       used   for  reference  in  the  active  display  frame  before  running
+       _d_._w_h_a_t_._s_i_t_e_s.  For example, the user might type the following series of
+       commands and receive the output below.  dd..ssiitteess ssiitteeffiillee==_w_e_l_l_s
+
+       To  first display the well site list in the active frame.  dd..wwhhaatt..ssiitteess
+       ssiitteeffiillee==_w_e_l_l_s
+
+       User then moves the mouse to desired location  on  the  displayed  well
+       site list, and presses the left mouse button to query the category con-
+       tents of the nearest well location.  The program then outputs the below
+       information to the user's terminal.
+       the closest site is: -613988.990000 east, 804343.040000 north
+       08376300 1968 1980 13
+
+       The query may be repeated as often as desired using the left mouse but-
+       ton.  The right button on the mouse is used to  quit  the  _d_._w_h_a_t_._s_i_t_e_s
+       session.  The middle button will allow to redraw the site list.
+
+NNOOTTEESS
+       _d_._w_h_a_t_._s_i_t_e_s  will  always  print  its  output  to the terminal screen.
+       _d_._w_h_a_t_._s_i_t_e_s output can be redirected into a file; however, if  it  is,
+       the  output  will  go both to the screen and to the file.  For example:
+       dd..wwhhaatt..ssiitteess ssiitteeffiillee==_w_e_l_l_s >> wwhhaatt..oouutt
+
+       will both send d.what.sites output to the screen and capture its output
+       in the file named _w_h_a_t_._o_u_t.
+
+SSEEEE AALLSSOO
+       _d_._s_i_t_e_s
+
+       _d_._w_h_a_t_._r_a_s_t
+
+       _d_._w_h_a_t_._v_e_c_t
+
+       _d_._w_h_e_r_e
+
+       _g_._r_e_g_i_o_n
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Raghavan Srinivasan, Blackland Research Center, TAES, Temple, TX 76502
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                      d.what.sites(1)

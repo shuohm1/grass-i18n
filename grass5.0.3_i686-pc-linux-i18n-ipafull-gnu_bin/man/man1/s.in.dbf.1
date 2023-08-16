@@ -1,0 +1,91 @@
+s.in.dbf(1)                   Grass User's Manual                  s.in.dbf(1)
+
+
+
+NNAAMMEE
+       ss..iinn..ddbbff   -  Imports  a dBase (.dbf) table of site locations and their
+       descriptions into a GRASS site list file.
+       _(_G_R_A_S_S _S_i_t_e_s _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..iinn..ddbbff
+       ss..iinn..ddbbff hheellpp
+       ss..iinn..ddbbff [-lz] iinnppuutt==_n_a_m_e [ssiitteess==_n_a_m_e] [ddaattee==_t_i_m_e_s_t_a_m_p[/_t_i_m_e_s_t_a_m_p]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._i_n_._d_b_f converts a dBase (.dbf) table of site locations  and  category
+       labels into a file in GRASS site list file format.
+
+
+       Input  can  be  entered  from  the  file iinnppuutt==_n_a_m_e. Each line of input
+       should contain the easting, northing,  and  (optionally)  the  category
+       label  associated  with a site. Output is stored in the file ssiitteess==_n_a_m_e
+       and placed in  the  site_lists/  directory  under  the  user's  current
+       mapset.
+
+   FFllaaggss::
+       --ll     List  fields (including the field types and field widths) of DBF
+              file, then exit.
+
+       --zz     treat third column as third dimension (z)
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an  existing  dBase  file  containing  the  data  to  be
+              imported.
+
+       ssiitteess==_n_a_m_e
+              Name of the new GRASS site list file to be output.
+
+       ddaattee==_t_i_m_s_t_a_m_p[/_t_i_m_e_s_t_a_m_p]
+              String specifying timestamp or timestamp range.
+
+
+
+       _s_._i_n_._d_b_f  can  be  run  either non-interactively or interactively.  The
+       program will be run non-interactively if the user specifies a  name  to
+       be  assigned  to the ssiitteess file output, and the name of an existing DBF
+       file containing iinnppuutt.
+
+
+       Alternately, the user can simply type ss..iinn..ddbbff  on  the  command  line,
+       without  program arguments. In this case, the user will be prompted for
+       parameter values using the standard GRASS parser interface described in
+       the manual entry for _p_a_r_s_e_r.
+
+       To  define  a  ddaattee  (timestamp),  several  date  strings are accepted.
+       Please see _r_._t_i_m_e_s_t_a_m_p for details.
+
+GGRRAASSSS 55..00 iinntteerrnnaall ssiitteess ffoorrmmaatt iinn ssiittee__lliissttss//
+       See _s_._i_n_._a_s_c_i_i
+
+TTOODDOO
+       A field selection/reordering parameter is not  yet  provided.   So  the
+       EAST/NORTH columns have to be the first and second column in the table.
+
+SSEEEE AALLSSOO
+       _s_._i_n_._a_s_c_i_i
+
+       _s_._o_u_t_._s_h_a_p_e
+
+       _s_._o_u_t_._a_s_c_i_i
+
+       _r_._t_i_m_e_s_t_a_m_p
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORRSS
+       Markus Neteler, University of Hannover, with code from:
+
+       Alex Shevlakov (pg.in.dbf)
+
+       Frank Warmerdam (DBF Routines in pg.in.dbf)
+
+       David D. Gray (-l flag in v.in.shape)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                          s.in.dbf(1)

@@ -1,0 +1,95 @@
+v.in.tig.rim(1)               Grass User's Manual              v.in.tig.rim(1)
+
+
+
+NNAAMMEE
+       _v_._i_n_._t_i_g_._r_i_m   - Imports Census Bureau line data (TIGER files) to GRASS
+       vector format.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ttiigg..rriimm
+       vv..iinn..ttiigg..rriimm hheellpp
+       vv..iinn..ttiigg..rriimm ddbbnnaammee==_n_a_m_e iinn11ffiillee==_n_a_m_e iinn22ffiillee==_n_a_m_e zzoonnee==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._i_n_._t_i_g_._r_i_m imports Census line data  (called  TIGER)  and  creates  a
+       "master" binary vector file containing a large amount of data.  Various
+       map layers can then be created by querying information from the  master
+       vector file using _v_._d_b_._r_i_m
+        or  one  of  the  _G_e_n_.  shell  scripts listed in the SEE ALSO section,
+       below.  The database name (_d_b_n_a_m_e) given on the command  line  will  be
+       the name of the rim data base, and the master vector file in GRASS will
+       be named "dbname.Master".  The master  vector  file  will  include  all
+       information  from  the type1 and type2 TIGER files given on the command
+       line as _i_n_1_f_i_l_e and _i_n_2_f_i_l_e.  If the user simply types _v_._i_n_._t_i_g_._r_i_m  on
+       the  command  line,  all  parameters will be queried using the standard
+       GRASS parser described in the manual entry for _p_a_r_s_e_r .
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ddbbnnaammee==_n_a_m_e
+              Vector/rim data name (with a maximum of 7 characters).
+
+       iinn11ffiillee==_n_a_m_e
+              TIGER type1 input file name.
+
+       iinn22ffiillee==_n_a_m_e
+              TIGER type2 input file name.
+
+       zzoonnee==_v_a_l_u_e
+              Universal Transverse Mercator (UTM) zone in which these data are
+              located.
+              Options:  -60 - 60
+
+
+NNOOTTEESS
+       TIGER  data  are  presented  in latitude/longitude format, and are con-
+       verted to UTM (Universal Transverse Mercator) coordinates  as  part  of
+       this  importing  routine.  The spheroid used in the conversion is clark
+       66, as it is the most consistent with the original data.
+
+
+       This command must be compiled separately, and requires the use  of  _r_i_m
+       and  _v_._d_b_._r_i_m which contain FORTRAN code.  The user must have access to
+       a FORTRAN compiler in order to compile and use this command,  since  it
+       calls both _r_i_m and _v_._d_b_._r_i_m.
+
+
+       If  the  user  does not know the UTM zone for this data input file, the
+       command _m_._t_i_g_e_r_._r_e_g_i_o_n
+        should be run first to determine the zone.
+
+
+       _v_._s_u_p_p_o_r_t must be run separately on the output file if needed.
+
+FFIILLEESS
+       Source code for RIM is located under $GISBASE/../src.related/rim
+
+
+       Source  code  for  _v_._d_b_._r_i_m  is  located   under   $GISBASE/../src.gar-
+       den/grass.rim/v.db.rim
+
+
+       Source  code  for  _v_._i_n_._t_i_g_._r_i_m  is  located under $GISBASE/../src.gar-
+       den/grass.tig.rim/v.in.tig.rim
+
+
+       Source   code   for   _m_._t_i_g_e_r_._r_e_g_i_o_n    is    located    under    $GIS-
+       BASE/../src.alpha/misc/m.tiger.region
+
+SSEEEE AALLSSOO
+        _t_i_g_._r_i_m_._s_h,
+        _m_._t_i_g_e_r_._r_e_g_i_o_n,
+        _v_._d_b_._r_i_m,
+        _t_i_g_e_r_._i_n_f_o_._s_h.
+
+AAUUTTHHOORR
+       Jim  Hinthorne  and David Satnik, _S _L_a_b_, _C_e_n_t_r_a_l _W_a_s_h_i_n_g_t_o_n _U_n_i_v_e_r_s_i_t_y_,
+       _E_l_l_e_n_s_b_u_r_g_, _W_A_.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                      v.in.tig.rim(1)

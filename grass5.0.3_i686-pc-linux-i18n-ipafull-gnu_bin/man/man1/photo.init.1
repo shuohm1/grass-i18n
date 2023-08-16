@@ -1,0 +1,123 @@
+photo.init(1)                 Grass User's Manual                photo.init(1)
+
+
+
+_T_h_i_s _i_s _n_o_t _a _c_o_m_m_a_n_d _i_t_s_e_l_f_, _b_u_t _a_n _o_p_t_i_o_n _o_f _t_h_e _c_o_m_m_a_n_d _i_._o_r_t_h_o_._p_h_o_t_o_.
+
+NNAAMMEE
+       _p_h_o_t_o_._i_n_i_t  - An imagery function that creates or modifies the optional
+       entries in a camera initial exposure station file for an imagery group.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       Selected from _i_._o_r_t_h_o_._p_h_o_t_o
+
+DDEESSCCRRIIPPTTIIOONN
+       Aerial  photographs  may  be  either vertical or oblique. Vertical pho-
+       tographs can be truly vertical (nadir), or slightly tilted (less than 3
+       degree  from  the  vertical).  Usually aerial photos are tilted to some
+       degree. We refer to the term _v_e_r_t_i_c_a_l _p_h_o_t_o_g_r_a_p_h up  to  a  tilt  of  3
+       degree.
+       Oblique  aerial photographs are purposely taken with an angle between 3
+       and 90 degree from the nadir direction.
+
+
+       TThhee uussee ooff _p_h_o_t_o_._i_n_i_t (menu 6)  is  only  required  when  rectifying  a
+       tilted or oblique aerial photo.
+
+
+       _p_h_o_t_o_._i_n_i_t  creates  or  modifies  entries in a camera initial exposure
+       station file for  imagery  group  referenced  by  a  sub-block.   These
+       entries include: the (XC,YC,ZC) positional (e.g. UTM) approximate coor-
+       dinates of the camera exposure station; initial roll,  pitch,  and  yaw
+       angles  (in degrees) of the cameras attitude; and the _a _p_r_i_o_r_i standard
+       deviations  for  these  parameters.   During   the   imagery   program,
+       photo.rectify,  the  initial  camera  exposure station file is used for
+       computation of the ortho-rectification parameters.  If no initial  cam-
+       era  exposure  station file exist, the default values are computed from
+       the control points file created in _p_h_o_t_o_._2_t_a_r_g_e_t .
+
+
+       The following menu is displayed:
+               Please provide the following information
+
+            INITIAL XC: Meters                __________
+            INITIAL YC: Meters                __________
+            INITIAL ZC: Meters                __________
+            INITIAL omega (roll) degrees:     __________
+            INITIAL phi  (pitch) degrees:     __________
+            INITIAL kappa  (yaw) degrees:     __________
+
+            Standard Deviation XC: Meters     __________
+            Standard Deviation YC: Meters     __________
+            Standard Deviation ZC: Meters     __________
+            Std. Dev. omega (roll) degrees:   __________
+            Std. Dev. phi  (pitch) degrees:   __________
+            Std. Dev. kappa  (yaw) degrees:   __________
+
+            AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                         (OR <Ctrl-C> TO CANCEL)
+
+
+
+       The INITIAL values for (XC,YC,ZC) are expressed in standard (e.g.  UTM)
+       coordinates,  and  represent  an  approximation for the location of the
+       camera at the time of exposure.
+
+                      X: East aircraft position;
+
+                      Y: North aircraft position;
+
+                      Z: Flight altitude above sea level
+
+
+       The INITIAL values for (omega,phi,kappa) are expressed in degrees,  and
+       represent  an  approximation  for  the cameras attitude  at the time of
+       exposure.
+
+                      Omega (roll): Raising or lowering of the wings  (turning
+                     around the aircraft's axis);
+
+                      Phi (pitch): Raising or lowering of the aircraft's front
+                     (turning around the wings' axis);
+
+                      Kappa (yaw): Rotation needed to align the  aerial  photo
+                     to  true  north:  needs  to  be denoted as +90 degree for
+                     clockwise turn and  -90  degree  for  a  counterclockwise
+                     turn.
+
+
+       The standard deviations for (XC,YC,ZC) are expressed in meters, and are
+       used as _a _p_r_i_o_r_i values for the standard deviations used in computation
+       of the ortho rectification parameters.
+
+
+       The standard deviations for (omega,phi,kappa) are expressed in degrees,
+       and are used as _a _p_r_i_o_r_i values for the  standard  deviations  used  in
+       computation of the ortho rectification parameters.
+
+
+       If  _U_s_e _t_h_e_s_e _v_a_l_u_e_s _a_t _r_u_n _t_i_m_e_? _(_1_=_y_e_s_, _0_=_n_o_) is set to 0, the values
+       in this menu are not used.
+
+SSEEEE AALLSSOO
+        _i_._o_r_t_h_o_._p_h_o_t_o
+
+        _p_h_o_t_o_._c_a_m_e_r_a
+
+        _p_h_o_t_o_._2_i_m_a_g_e
+
+        _p_h_o_t_o_._2_t_a_r_g_e_t
+
+        _p_h_o_t_o_._r_e_c_t_i_f_y
+
+
+
+AAUUTTHHOORR
+       Mike Baba,  DBA Systems, Inc.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_9_/_0_9 _1_3_:_1_0_:_1_8 _$
+
+
+
+GRASS 5.0                                                        photo.init(1)

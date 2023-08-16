@@ -1,0 +1,38 @@
+rgb.hsv.sh(1)                 Grass User's Manual                rgb.hsv.sh(1)
+
+
+
+NNAAMMEE
+       rrggbb..hhssvv..sshh  -  Converts  RGB  (red, green, and blue) cell values to HSV
+       (hue, saturation, value) values.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)_"
+
+SSYYNNOOPPSSIISS
+       rrggbb..hhssvv..sshh _f_i_l_e_1 _f_i_l_e_2 _f_i_l_e_3
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_g_b_._h_s_v_._s_h is a Bourne shell (sh(1)) program which converts RGB  values
+       to  HSV  using _r_._m_a_p_c_a_l_c.  The Foley and Van Dam algorithm is the basis
+       for the program.  Input must be three raster files - each file  supply-
+       ing  the  RGB  values.  Three new raster files are created representing
+       HSV.
+
+NNOOTTEESS
+       Do not use the same names for input and output.
+
+FFIILLEESS
+       This program is simply a shell script stored under the $GISBASE/scripts
+       directory.  The user is encouraged to examine the shell script programs
+       stored here and to produce other such programs.
+
+SSEEEE AALLSSOO
+       _h_s_v_._r_g_b_._s_h
+
+AAUUTTHHOORR
+       James Westervelt, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                        rgb.hsv.sh(1)

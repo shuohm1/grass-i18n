@@ -1,0 +1,219 @@
+v.in.dxf(1)                   Grass User's Manual                  v.in.dxf(1)
+
+
+
+NNAAMMEE
+       vv..iinn..ddxxff   - Converts files in DXF format to ASCII or binary GRASS vec-
+       tor file format.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ddxxff
+       vv..iinn..ddxxff hheellpp
+       vv..iinn..ddxxff       [       --aa]       ddxxff==_n_a_m_e       [lliinneess==_n_a_m_e[,_n_a_m_e,...]]
+       [llaabbeellss==_n_a_m_e[,_n_a_m_e,...]] [pprreeffiixx==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _v_._i_n_._d_x_f  data  conversion program generates GRASS _d_i_g, _d_i_g___a_s_c_i_i,
+       and _d_i_g___a_t_t files from a file in DXF format.  Each  layer  in  the  DXF
+       input  file  is  converted to a separate _d_i_g (or _d_i_g___a_s_c_i_i) layer.  For
+       each DXF layer containing text, a _d_i_g___a_t_t file is also created.   These
+       output  files are placed in the _d_i_g, _d_i_g___a_s_c_i_i, and _d_i_g___a_t_t directories
+       under the user's current GRASS mapset.
+
+
+       Output from this program is designed to be used as input to the program
+       _v_._c_a_d_l_a_b_e_l.
+
+
+       The  _v_._i_n_._d_x_f program will only recognize points, lines, polylines, and
+       text in the DXF format, and will translate these to GRASS  vector  for-
+       mat;  other types of data are ignored.
+
+
+
+
+
+   FFllaaggss::
+       --aa     Output  an  ASCII  GRASS  vector  (_d_i_g___a_s_c_i_i) file rather than a
+              binary GRASS vector (_d_i_g) file.
+
+
+
+
+
+
+   PPaarraammeetteerrss::
+       ddxxff==_n_a_m_e
+              Name of the DXF input design file to be converted to GRASS  vec-
+              tor format.
+
+              Name(s)  of layer(s) in the DXF input file containing line data,
+              and (optionally) the name(s) to be assigned to the GRASS  vector
+              data (_d_i_g or _d_i_g___a_s_c_i_i) files output.
+              Default:  Convert each layer containing data in the Idxf file to
+              a GRASS vector data (_d_i_g or _d_i_g___a_s_c_i_i) file.
+
+              Name(s) of layer(s)  in  the  DXF  input  file  containing  text
+              labels, and (optionally) the name(s) to be assigned to the GRASS
+              vector attribute (_d_i_g___a_t_t) files output.
+              Default:  Convert each layer containing text labels in  the  _d_x_f
+              map to a GRASS vector attribute (_d_i_g___a_t_t) file.
+
+       pprreeffiixx==_n_a_m_e
+              Prefix  assigned to the _d_i_g or _d_i_g___a_s_c_i_i and _d_i_g___a_t_t output file
+              names.
+
+
+       The names of the GRASS vector (_d_i_g, _d_i_g___a_s_c_i_i, and _d_i_g___a_t_t) files  out-
+       put  are  constructed  as  _p_r_e_f_i_x_._e_x_t_e_n_s_i_o_n, where _p_r_e_f_i_x is the _p_r_e_f_i_x
+       name specified by the user and _e_x_t_e_n_s_i_o_n is the number of the DXF layer
+       from which the data were obtained.  If the user does not specify a _p_r_e_-
+       _f_i_x name, the output files take their prefix from  the  prefix  of  the
+       input  DXF  map layer.  For example, for the DXF file named _s_t_r_e_a_m_s_._d_x_f
+       containing line data on layer , the GRASS vector map layer output would
+       be named _s_t_r_e_a_m_s_..
+
+
+EEXXAAMMPPLLEESS
+       lliinneess==1155
+              Outputs line data in DXF layer 15.
+
+       lliinneess==1155,,1166
+              Outputs line data in DXF layers 15 and 16.
+
+       lliinneess==RROOAADDSS,,WWAATTEERR
+              Converts line data in DXF layers ROADS and WATER.
+
+       lliinneess==1155::1166
+              Outputs  line data in DXF layer 15, and places it in the _d_i_g (or
+              _d_i_g___a_s_c_i_i) file for DXF layer 16.
+
+
+
+
+
+
+       The below examples are given for a DXF design file named _c_o_n_t_._d_x_f  con-
+       taining contour lines and contour line labels, in which:
+
+
+       index contour lines are in DXF layer 9,
+       intermediate contour lines are in DXF layer 11, and
+       index labels and some intermediate contour lines are in DXF layer 12.
+
+
+
+
+
+
+
+       _v_._i_n_._d_x_f can be run with default values, as shown below:
+
+
+       vv..iinn..ddxxff  ddxxff==cont.dxf
+
+
+
+
+
+       Here, this is equivalent to running the following command:
+
+
+       vv..iinn..ddxxff  ddxxff=cont.dxf  lliinneess==9,11,12  llaabbeellss==12
+
+
+
+
+
+       Either  of the above commands will produce three GRASS _d_i_g files (named
+       _c_o_n_t_._9_, _c_o_n_t_._1_1, and _c_o_n_t_._1_2) and one _d_i_g___a_t_t file (named _c_o_n_t_._1_2).
+
+
+       In our example, however, the _c_o_n_t_._1_2 file contains intermediate contour
+       lines  that  the  user  would like to add to the _d_i_g file _c_o_n_t_._1_1.  Our
+       user also wishes to use a different file prefix than the default prefix
+       _c_o_n_t.  The user therefore types the following command:
+
+
+       vv..iinn..ddxxff  ddxxff==cont.dxf  lliinneess==9,11,12:11  llaabbeellss==12  pprreeffiixx==contour
+
+
+
+
+
+       The  above command will generate three _d_i_g files (named _c_o_n_t_o_u_r_._9_, _c_o_n_-
+       _t_o_u_r_._1_1_, _c_o_n_t_o_u_r_._1_2), and will create one _d_i_g___a_t_t file containing  text
+       labels  (called  _c_o_n_t_o_u_r_._1_2).   No  contour  lines  will  appear in the
+       _d_i_g___a_t_t file.
+
+NNOOTTEESS
+       OOuuttppuutt FFiilleennaammeess::
+       The output filename, _p_r_e_f_i_x_._e_x_t_e_n_s_i_o_n, conforms with the GRASS limit of
+       14  characters.  The entire prefix name is used, a '.' inserted, and as
+       much of the extension name is used as the 14 character limit will  per-
+       mit.   Excess characters are truncated.  To minimize the possibility of
+       creating output files with the same names (resulting in  loss  of  data
+       from  the  DXF  file), use the prefix option to abbreviate the DXF file
+       name.  This will leave the majority of characters available for differ-
+       entiating between layer names.
+
+
+       TTrraannssllaattiioonn::
+       This  data translation program does not contain any of the quality con-
+       trol functions available in  _v_._d_i_g_i_t  that  will  prevent  data  in  an
+       improper format from being input to a GRASS data base.  If present, DXF
+       entities are placed in output file(s) corresponding to  the  layers  on
+       which they occurred in the DXF design file input.
+
+
+       EEddiittiinngg::
+       If  the  user  asks  _v_._i_n_._d_x_f to output ASCII vector (_d_i_g___a_s_c_i_i) files,
+       they must be converted to binary vector format before they  are  usable
+       by most GRASS vector commands.  The user can convert GRASS vector files
+       from ASCII to binary format by running such programs  as  _v_._s_u_p_p_o_r_t  or
+       _v_._i_n_._a_s_c_i_i.   After conversion to binary format the vector files can be
+       displayed (e.g., with _d_._v_e_c_t);  however, the user must run _v_._s_u_p_p_o_r_t on
+       the  binary  vector  files  before  they can be edited in _v_._d_i_g_i_t.  The
+       files output by _v_._i_n_._d_x_f will preserve the data in whatever  form  they
+       exist  in  the  DXF  file.   This  means  that output files may contain
+       unsnapped nodes, overshoots, gaps, and replicated lines.  The data, and
+       the  file  header  information (including the owner's name, map's name,
+       date, and scale, and UTM zone) for the GRASS vector  files  output  may
+       require editing by the user in _v_._d_i_g_i_t.
+
+
+       AAttttrriibbuutteess::
+       The _v_._i_n_._d_x_f program attaches attributes only to DXF text data that are
+       converted  to  GRASS  vector  data  (such  as  contour  line   labels).
+       Attributes are not attached to converted DXF line data.  For each layer
+       of text data in the DXF design file, _v_._i_n_._d_x_f generates a  vector  file
+       consisting  of  rectangular boxes (lines) that are drawn around the DXF
+       text data, and uses the text values to create a  GRASS  attribute  file
+       for  the  boxes.   The  vector  and attribute files can then be used to
+       label contour lines with the _v_._c_a_d_l_a_b_e_l program.
+
+SSEEEE AALLSSOO
+       _v_._c_a_d_l_a_b_e_l, _v_._d_i_g_i_t, _v_._i_n_._a_s_c_i_i, _v_._o_u_t_._d_x_f, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORRSS
+       Original _d_x_f_2_d_i_g program written by Jan Moorman, U.S. Army Construction
+       Engineering Research Laboratory (6/89)
+
+
+       Revised by Dave Gerdes, U.S. Army Construction Engineering Reseach Lab-
+       oratory (12/89)
+
+
+       Revised and appended by Jan Moorman, U.S. Army Construction Engineering
+       Research Laboratory (7/90)
+
+
+       Code for arcs and circles from National Park Service GIS Division writ-
+       ten by Tom Howard.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                          v.in.dxf(1)

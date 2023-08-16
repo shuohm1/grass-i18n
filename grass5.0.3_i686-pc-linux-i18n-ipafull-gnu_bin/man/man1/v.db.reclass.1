@@ -1,0 +1,105 @@
+v.db.reclass(1)               Grass User's Manual              v.db.reclass(1)
+
+
+
+NNAAMMEE
+       vv..ddbb..rreeccllaassss   -  Changes vector category values for an existing vector
+       map according to results of SQL queries.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ddbb..rreeccllaassss
+       vv..ddbb..rreeccllaassss hheellpp
+       vv..ddbb..rreeccllaassss  [  --dd]  ttyyppee==_n_a_m_e  iinnppuutt==_n_a_m_e   oouuttppuutt==_n_a_m_e    ttaabbllee==_n_a_m_e
+       [kkeeyy==_n_a_m_e] rruulleess==_n_a_m_e [TTIITTLLEE==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._d_b_._r_e_c_l_a_s_s  allows  a  user  to  create a new vector map based on the
+       reclassification of an existing vector map.  The user provides the pro-
+       gram  with  a  rules  file, input vector map name, an output vector map
+       name, and the type of input map, table, key.  There is an option (d) to
+       dissolve  common boundaries between adjoining map areas of the same re-
+       classed category value.
+
+
+       NNoottee:: The dissolve option will work on only those areas  which  are  of
+       the same conversion category value.  If a map area is inside (island) a
+       converted area and is NOT converted to the same value,  its  boundaries
+       are output to the resultant map.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --dd     Dissolve common boundaries (default is no) .
+
+
+
+
+
+
+   PPaarraammeetteerrss::
+       ttyyppee==_n_a_m_e
+              Select area, line, or site.
+              Options:  area, line, site (multiple allowed)
+
+       iinnppuutt==_n_a_m_e
+              Vector input map name.
+
+       oouuttppuutt==_n_a_m_e
+              Vector output map name.
+
+       ttaabbllee==_n_a_m_e
+              Database table.
+
+       kkeeyy==_n_a_m_e
+              Column corresponding to cats in vector map.
+
+       rruulleess==_n_a_m_e
+              Name  of text file containing reclassification rules. Rules file
+              may contain on each row either pair:
+
+              _k_e_y_w_o_r_d _v_a_l_u_e
+
+              (separated by space) or comment beginning by  #(hash).   Defini-
+              tion  of  new  category  begins with kyeword _c_a_t followed by new
+              category value.  Keyword _w_h_e_r_e specifies SQL where condition and
+              optionaly _l_a_b_e_l keyword specifies category label.
+
+       TTIITTLLEE==_n_a_m_e
+              Title for the resulting vector map.
+
+
+EEXXAAMMPPLLEE
+       vv..ddbb..rreeccllaassss --dd iinnppuutt==_l_a_n_d oouuttppuutt==_l_a_n_d___u ttyyppee==_a_r_e_a
+              ttaabbllee==_t_l_a_n_d kkeeyy==_i_d rruulleess==_l_a_n_d_._r_c_l
+
+
+       the rules file contains :
+       # land reclass file
+       cat 1
+       where use = 'E13' and owner = 'Jara Cimrman'
+       cat 2
+       where use = 'E14'
+       label Use type E14
+
+       Produces  a  new  vector  area file _l_a_n_d___u containing 'area' boundaries
+       from _l_a_n_d with area category  values  selected  from  database  by  SQL
+       select  statement:  _s_e_l_e_c_t  _i_d _f_r_o_m _t_l_a_n_d _w_h_e_r_e _u_s_e _= _'_E_1_3_' _a_n_d _o_w_n_e_r _=
+       _'_J_a_r_a _C_i_m_r_m_a_n_'  changed to category 1; values selected from database by
+       SQL  select  statement: _s_e_l_e_c_t _i_d _f_r_o_m _t_l_a_n_d _w_h_e_r_e _u_s_e _= _'_E_1_4_'  changed
+       to category 2.  Any common boundaries are dissolved.
+
+
+
+SSEEEE AALLSSOO
+       _v_._e_x_t_r_a_c_t
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+       from v.reclass to v.db.reclass rewritten by Radim Blazek
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                      v.db.reclass(1)

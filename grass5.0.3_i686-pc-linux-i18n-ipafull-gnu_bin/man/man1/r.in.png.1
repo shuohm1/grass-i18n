@@ -1,0 +1,100 @@
+r.in.png(1)                   Grass User's Manual                  r.in.png(1)
+
+
+
+NNAAMMEE
+       rr..iinn..ppnngg - Converts a PNG image file to a GRASS raster file.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..ppnngg  [--hhvv]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  [ttiittllee==_s_t_r_i_n_g]  [ggaammmmaa==_v_a_l_u_e]
+       [aallpphhaa==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program converts a PNG raster file to a GRASS raster file.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ff     Create floating-point maps (range 0.0 - 1.0).
+
+       --hh     Output image file header only; don't create map(s).
+
+       --vv     Verbose mode.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing PNG raster file to be imported.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to resultant raster map layer(s).
+
+       ttiittllee==_s_t_r_i_n_g
+              Title to be assigned to resultant raster map layer(s).
+
+       ggaammmmaa==_v_a_l_u_e
+              Perform gamma correction using this value for the display gamma.
+
+       aallpphhaa==_v_a_l_u_e
+              Pixels  with an alpha (transparency) value less than or equal to
+              this value are imported as no-data cells.
+
+
+NNOOTTEESS
+       The output depends upon the format of the  PNG  image.  Gray-scale  and
+       paletted  (indexed, color-mapped) images will result in a single output
+       map, with the name specified by the oouuttppuutt option.
+
+
+       True-color (RGB) images will result in three output maps,  whose  names
+       are  formed  by  appending ".r", ".g" and ".b" to the name specified by
+       the oouuttppuutt option.
+
+
+       For both gray-scale and true-color images, if transparency  information
+       is  present,  an additional map will be created whose name is formed by
+       appending ".a" to the name specified by the oouuttppuutt option.
+
+
+       For paletted images, the  resulting  cell  values  will  be  the  color
+       indices  from  the image, with the map's color table generated from the
+       image's palette. For gray-scale and true-color images, the cell  values
+       will be the intensity values from the image. The map's color table will
+       map these values to the normalized intensity levels, incorporating  any
+       gamma correction.
+
+
+       However,  when  the --ff flag is used, any scaling or gamma correction is
+       performed on the actual cell values. The map's color table  will  be  a
+       linear  gray  scale.  Also,  paletted  images will first be expanded to
+       true-color.
+
+
+       The user should adjust boundary coordinates stored in the  cell  header
+       after import using _r_._s_u_p_p_o_r_t or _r_._r_e_g_i_o_n.
+
+
+       The  ggaammmmaa option is only used if the image contains a gamma specifica-
+       tion.
+
+
+       The aallpphhaa option is only relevant if the  image  contains  transparency
+       information.
+
+SSEEEE AALLSSOO
+       _r_._c_o_m_p_o_s_i_t_e
+
+       _r_._s_u_p_p_o_r_t
+
+       _r_._r_e_g_i_o_n
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Glynn Clements
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_5_/_1_0 _0_8_:_2_0_:_2_2 _$
+
+
+
+GRASS 5.0                                                          r.in.png(1)

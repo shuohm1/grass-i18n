@@ -1,0 +1,80 @@
+r.null(1)                     Grass User's Manual                    r.null(1)
+
+
+
+NNAAMMEE
+       rr..nnuullll  - The function of r.null is to explicitly create the NULL-value
+       bitmap file.
+       _(_G_R_A_S_S _5 _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..nnuullll
+
+       rr..nnuullll    --ffiinnccrr    mmaapp==_n_a_m_e    [sseettnnuullll==_v_a_l    [_-_v_a_l][,_v_a_l[_-_v_a_l],...]]
+       [nnuullll==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  function  of  _r_._n_u_l_l is to explicitly create the NULL-value bitmap
+       file. The intended usage is to fix "old" maps that don't have  a  NULL-
+       value  bitmap file (i.e. to indicate if zero is valid value or is to be
+       converted to NULL). The module does not work with reclassified maps.
+
+
+       The design is flexible. Ranges of values can be set to NULL and/or  the
+       NULL value can be eliminated and replace with a specified value.
+
+   FFllaaggss::
+       _-_f     Only do the work if the map is floating-point.
+
+       _-_i     Only do the work if the map is integer.
+
+       _-_n     Only  do  the  work  if the map doesn't have a NULL-value bitmap
+              file.
+
+       _-_c     Create NULL-value bitmap file which validates all data cells.
+
+       _-_r     Remove NULL-value bitmap file.
+
+
+   PPaarraammeetteerrss::
+       mmaapp    raster map for which to edit null file
+
+       sseettnnuullll==_r_a_n_g_e_[_,_r_a_n_g_e_._._._]
+              The values specified in the ranges are to be  set  to  NULL.   A
+              range  is either a single value (e.g., 5.3), or a pair of values
+              (e.g., 4.76-34.56).  Existing NULL-values are left NULL,  unless
+              the null argument is requested.
+
+       nnuullll==_v_a_l_u_e
+              Eliminate  the NULL value and replace it with value.  This argu-
+              ment is applied only to existing NULL values,  and  not  to  the
+              NULLs created by the setnull argument.
+
+
+NNOOTTEESS
+       Note  that value is restricted to integer if the map is an integer map.
+
+
+       r.null and reclassified maps:
+
+       The problem is, if r.null was run on the reclass raster it would  alter
+       the  original and any other reclass rasters of the original.  Therefore
+       r.null  doesn't  allow  to  recode  reclassified  maps   (products   of
+       r.reclass).   So,  the  way  to  recode such a map is: The user makes a
+       raster out of the reclass that isn't a reclass by copying it:
+
+       r.mapcalc newmap = reclass
+
+       Then he/she recodes this copy.
+
+SSEEEE AALLSSOO
+        _r_._s_u_p_p_o_r_t and _r_._q_u_a_n_t
+
+AAUUTTHHOORR
+       U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            r.null(1)

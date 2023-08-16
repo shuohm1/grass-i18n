@@ -1,0 +1,93 @@
+v.trim(1)                     Grass User's Manual                    v.trim(1)
+
+
+
+NNAAMMEE
+       vv..ttrriimm   - Trims small spurs, and removes excessive nodes from a binary
+       GRASS vector (_d_i_g) file.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ttrriimm
+       vv..ttrriimm hheellpp
+       vv..ttrriimm iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ttrriimm==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._t_r_i_m scans the user-specified GRASS vector  iinnppuutt  file  and  removes
+       from  it  all lines having a length less than a user-specified trimming
+       factor.  Excess  nodes  (those  unnecessary  to  a  line's  definition)
+       between  line  junctions are also removed.  The resulting vector output
+       is sent to a user-named oouuttppuutt file; the original vector iinnppuutt file  is
+       not modified by _v_._t_r_i_m.
+
+
+       The  trimming factor parameter (ttrriimm==_v_a_l_u_e) gives the user control over
+       the size of small spurs or "dangling lines" to be removed. The trimming
+       factor  is  expressed in the same units (map coordinates) as the vector
+       (_d_i_g) data within the user's current GRASS data base LOCATION (e.g.: in
+       meters  for  UTM  locations; in pixels or cells for locations in an x,y
+       coordinate system; etc.).
+
+OOPPTTIIOONNSS
+       The user can run this  program  either  non-interactively  or  interac-
+       tively.   The  program will be run non-interactively if the user speci-
+       fies program arguments on the command  line,  using  the  form:  vv..ttrriimm
+       iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ttrriimm==_v_a_l_u_e]
+
+       If vector map iinnppuutt and oouuttppuutt names are given on the command line, any
+       other parameter values left unspecified on the command line will be set
+       to  their default values (see below).  Alternately, the user can simply
+       type vv..ttrriimm on the command line, without  program  arguments.  In  this
+       case,  the  user will be prompted for needed parameter values using the
+       standard GRASS _p_a_r_s_e_r interface.
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing vector  map  layer  in  the  user's  current
+              mapset search path containing lines to be "trimmed".
+
+       oouuttppuutt==_n_a_m_e
+              Name of a new vector file to contained the "trimmed" output.
+
+       ttrriimm==_v_a_l_u_e
+              A user-specified trimming factor, denoting the length of trimmed
+              lines in map units.  All lines having a length  less  than  this
+              trimming factor will be "trimmed" (i.e., removed) from the named
+              vector input file.
+              Default: 10 (in units of meters or cells)
+
+
+NNOOTTEESS
+       _v_._s_u_p_p_o_r_t must be run on the vector iinnppuutt file prior to running _v_._t_r_i_m.
+
+
+       _v_._s_u_p_p_o_r_t must also be run on the resultant vector oouuttppuutt file to build
+       the needed topology information stored under the user's _d_i_g___p_l_u_s direc-
+       tory.
+
+
+       _r_._l_i_n_e  maintains  the same format (binary or ASCII) and attribute type
+       (linear or area edge) as those of the original vector (_d_i_g) iinnppuutt file.
+
+
+       A trimming factor of zero (0) will not remove any small spurs, but will
+       remove all excess nodes.
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t
+
+       _v_._i_m_p_o_r_t
+
+       _v_._s_u_p_p_o_r_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Mike Baba
+       DBA Systems, Inc.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                            v.trim(1)

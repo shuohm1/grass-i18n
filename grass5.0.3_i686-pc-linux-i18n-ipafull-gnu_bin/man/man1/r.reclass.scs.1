@@ -1,0 +1,48 @@
+r.reclass.scs(1)              Grass User's Manual             r.reclass.scs(1)
+
+
+
+NNAAMMEE
+       rr..rreeccllaassss..ssccss   -  Create  a  new raster map layer based on an existing
+       raster map.
+       _(_S_C_S _G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..rreeccllaassss..ssccss
+       rr..rreeccllaassss..ssccss hheellpp
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._r_e_c_l_a_s_s_._s_c_s is an interface to the GRASS _r_._r_e_c_l_a_s_s program.  The pro-
+       gram will reclassify the category values in a raster map layer based on
+       reclass instructions entered by the  user.   The  user  can  enter  map
+       reclassification  rules  to _r_._r_e_c_l_a_s_s_._s_c_s either from standard input or
+       from a file.  The program then issues _r_._r_e_c_l_a_s_s commands to produce the
+       new reclassified raster map layer.
+
+
+       Input to _r_._r_e_c_l_a_s_s_._s_c_s consists of a list of category names or category
+       values that will be grouped  into  the  same  category  in  the  output
+       (reclassified)  map.  Only one category name should appear on each line
+       of input.  Input can be entered either interactively, or from a file.
+
+
+       A file containing these reclass rules can be created using a text  edi-
+       tor,  word-processor, DBMS, etc.  It is no more than a list of category
+       names which will have the same category value after  the  reclassifica-
+       tion.
+
+SSEEEE AALLSSOO
+       _r_._r_e_c_l_a_s_s
+
+       _r_._r_e_s_a_m_p_l_e
+
+       _r_._r_e_s_c_a_l_e
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                     r.reclass.scs(1)

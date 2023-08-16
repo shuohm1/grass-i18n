@@ -1,0 +1,140 @@
+g.gisenv(1)                   Grass User's Manual                  g.gisenv(1)
+
+
+
+NNAAMMEE
+       gg..ggiisseennvv  - Outputs the user's current GRASS variable settings.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..ggiisseennvv
+       gg..ggiisseennvv [_v_a_r_i_a_b_l_e___n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       When  a user runs GRASS, certain variables are set specifying the GRASS
+       data base, location, mapset, peripheral  device  drivers,  etc.,  being
+       used  in  the  current GRASS session.  These variable name settings are
+       recognized as long as the user is running a GRASS session.
+
+OOPPTTIIOONNSS
+       No prompts are given to the user when running _g_._g_i_s_e_n_v.  If run without
+       arguments, _g_._g_i_s_e_n_v lists all of the user's current GRASS variable set-
+       tings.  Results are sent to standard output, and may  look  like  this:
+       GISDBASE=/usr/grass5/data
+
+       LOCATION_NAME=spearfish
+
+       MAPSET=PERMANENT
+
+       In  this  example,  the  full  path name of the user's current location
+       (i.e., $LOCATION_NAME) is /usr/grass5/data/spearfish, and the full path
+       name    of    the    user's   current   mapset   (i.e.,   $MAPSET)   is
+       /usr/grass5/data/spearfish/PERMANENT.
+
+
+       If the user specifies  a  _v_a_r_i_a_b_l_e___n_a_m_e  on  the  command  line  (e.g.,
+       gg..ggiisseennvv  MMAAPPSSEETT), only the value for that particular GRASS variable is
+       output to standard output.   Possible  variable  names  depend  on  the
+       user's system.
+
+
+       While  other variables may be associated with each GRASS session (e.g.,
+       DIGITIZER, PAINTER, DISPLAY, and other variables), those  stated  below
+       are essential.
+
+       _G_I_S_D_B_A_S_E
+              The  $GISDBASE is a directory in which all users' GRASS data are
+              stored.  Within the $GISDBASE, data are segregated  into  subdi-
+              rectories  (called "locations") based on the map coordinate sys-
+              tem used and the geographic extent of the data.  Each "location"
+              directory  itself contains subdirectories called "mapsets"; each
+              "mapset" stores "data base elements" -- the  directories  (e.g.,
+              the  cell,  cellhd,  dig, etc., directories) in which GRASS data
+              files are actually stored.
+
+       _L_O_C_A_T_I_O_N___N_A_M_E
+              The user must choose to work with the data under a single  GRASS
+              location  within  any given GRASS session; this location is then
+              called the _c_u_r_r_e_n_t _G_R_A_S_S _l_o_c_a_t_i_o_n, and is specified by the vari-
+              able  $LOCATION_NAME.  The $LOCATION_NAME is the GRASS data base
+              location whose data will  be  affected  by  any  GRASS  commands
+              issued  during the user's current GRASS session, and is a subdi-
+              rectory of the current $GISDBASE.  Each "location" directory can
+              contain  multiple  "mapset"  directories  (including the special
+              mapset PERMANENT).  Maps  stored  under  the  same  GRASS  LOCA-
+              TION_NAME  (and/or  within  the  same  MAPSET) must use the same
+              coordinate system and typically fall within  the  boundaries  of
+              the same geographic region (aka, "location").
+
+       _M_A_P_S_E_T Each  "mapset"  contains  a  set  of  maps relevant to the LOCA-
+              TION_NAME directory in which it appears.  Each LOCATION_NAME can
+              contain  multiple  mapsets.   (Mapsets which fall under the same
+              LOCATION_NAME all contain data geographically  relevant  to  the
+              LOCATION_NAME,  and  all  store  data in the same map coordinate
+              system.  Frequently, maps are placed into different  mapsets  to
+              distinguish file ownership -- e.g., each user might have his own
+              mapset, storing any maps that he has created and/or are relevant
+              to  his  work.)  During each GRASS session, the user must choose
+              one mapset to be the _c_u_r_r_e_n_t _m_a_p_s_e_t;  the current mapset setting
+              is  given  by  $MAPSET, and is a subdirectory of $LOCATION_NAME.
+              During a single GRASS session, the user can use  available  data
+              in  any  of  the  mapsets stored under the current LOCATION_NAME
+              directory that are in the user's mapset search path and accessi-
+              ble  by  the  user.  However, within a single GRASS session, the
+              user only has _w_r_i_t_e access to  data  stored  under  the  _c_u_r_r_e_n_t
+              _m_a_p_s_e_t (specified by the variable $MAPSET).
+
+
+       Each "mapset" stores GRASS data base elements (i.e., the directories in
+       which GRASS data files are stored).  Any maps created  or  modified  by
+       the  user in the current GRASS session will be stored here.  The MAPSET
+       directory PERMANENT is generally reserved for the set of maps that form
+       the base set for all users working under each LOCATION_NAME.
+
+       Once  within  a GRASS session, GRASS users have access only to the data
+       under a single GRASS data base directory (the _c_u_r_r_e_n_t _G_R_A_S_S _d_a_t_a  _b_a_s_e,
+       specified  by  the  variable $GISDBASE), and to a single GRASS location
+       directory (the _c_u_r_r_e_n_t  _l_o_c_a_t_i_o_n,  specified  by  the  variable  $LOCA-
+       TION_NAME).  Within a single session, the user may only _m_o_d_i_f_y the data
+       in the _c_u_r_r_e_n_t _m_a_p_s_e_t (specified by the variable $MAPSET), but may  _u_s_e
+       data available under other mapsets under the same LOCATION_NAME.
+
+
+       All  of  these  names must be legal names on the user's current system.
+       For UNIX users, names less than 14 characters and  containing  no  non-
+       printing or space codes are permissible.  Examples of permissible names
+       include: _o_n_e, _m_y_m_a_p, _V_e_G_e___m_a_p, and _1___f_o_r___m_e.  The underscore  character
+       can safely be used in place of a blank for multiple-word names.
+
+NNOOTTEESS
+       The  output  from  _g_._g_i_s_e_n_v  when invoked without arguments is directly
+       usable by /bin/sh.  The following command will cast each variable  into
+       the UNIX environment:
+
+
+       eevvaall ``gg..ggiisseennvv``
+
+
+
+       This works only for _/_b_i_n_/_s_h. The format of the output is not compatible
+       with other UNIX shells.
+
+SSEEEE AALLSSOO
+       _g_._a_c_c_e_s_s
+
+       _g_._a_s_k
+
+       _g_._f_i_l_e_n_a_m_e
+
+       _g_._f_i_n_d_f_i_l_e
+
+       _g_._m_a_p_s_e_t_s
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_8_/_1_2 _2_1_:_4_5_:_1_8 _$
+
+
+
+GRASS 5.0                                                          g.gisenv(1)

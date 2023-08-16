@@ -1,0 +1,139 @@
+r.describe(1)                 Grass User's Manual                r.describe(1)
+
+
+
+NNAAMMEE
+       rr..ddeessccrriibbee   -  Prints  terse list of category values found in a raster
+       map layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ddeessccrriibbee
+       rr..ddeessccrriibbee hheellpp
+       rr..ddeessccrriibbee [--11rrqqdd] mmaapp==_n_a_m_e[nnvv==_s_t_r_i_n_g][nnsstteeppss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._d_e_s_c_r_i_b_e prints a terse listing of category values found in  a  user-
+       specified raster map layer.
+
+OOPPTTIIOONNSS
+       The  program  will  be run non-interactively, if the user specifies the
+       name of a raster map layer and any desired flags on the  command  line,
+       using the form rr..ddeessccrriibbee [--11rrqqdd] mmaapp==_n_a_m_e
+
+       where  the  map _n_a_m_e is the name of a raster map layer whose categories
+       are to be described, and the (optional) flags --11, --rr, --qq, and  --dd  have
+       the meanings described below.
+
+
+       Alternately,  the  user can simply type rr..ddeessccrriibbee on the command line,
+       without program arguments.  In this case, the user will be prompted for
+       needed  flag  settings and the parameter value using the standard GRASS
+       _p_a_r_s_e_r.
+
+   PPRROOGGRRAAMM UUSSEE
+       The user can select one  of  the  following  two  output  reports  from
+       _r_._d_e_s_c_r_i_b_e:
+
+       (1) RANGE.
+              A range of category values found in the raster map layer will be
+              printed.  The range is divided  into  three  groups:   negative,
+              positive,  and  zero.  If negative values occur, the minimum and
+              maximum negative values will be  printed.   If  positive  values
+              occur,  the minimum and maximum positive values will be printed.
+              If zero occurs, this will be indicated.
+
+       (2) FULL LIST.
+              A list of all category values that were found in the raster  map
+              layer will be printed.
+
+
+       The following sample output from _r_._d_e_s_c_r_i_b_e: 0 2-4 10-13
+
+       means  that  category  data  values  0,  2 through 4, and 10 through 13
+       occurred in the named map layer.
+
+       The user must choose to read the map layer in one of two ways:
+
+       (1) DIRECTLY.
+              The current geographic region and mask are ignored and the  full
+              raster  map  layer  is  read.  This method is useful if the user
+              intends to _r_e_c_l_a_s_s_i_f_y or _r_e_s_c_a_l_e the data, since these functions
+              (_r_._r_e_c_l_a_s_s  and  _r_._r_e_s_c_a_l_e)  also  ignore the current _g_e_o_g_r_a_p_h_i_c
+              _r_e_g_i_o_n and _m_a_s_k.
+
+       (2) REGIONED and MASKED.
+              The map layer is read  within  the  current  geographic  region,
+              masked by the current mask.
+
+
+   NNOONN--IINNTTEERRAACCTTIIVVEE PPRROOGGRRAAMM UUSSEE
+       _r_._d_e_s_c_r_i_b_e  examines a user-chosen raster map layer.  If run non-inter-
+       actively, the layer name must be supplied on the command line.
+
+
+       A compact list of category values that were found  in  the  data  layer
+       will be printed.
+
+
+       Following is a sample output: 0 2-4 10-13
+
+
+   FFllaaggss::
+       --ll     Print  the  output  one  value  per line, instead of the default
+              short form.  In the above example, the --11 option would output:
+              0
+              2
+              3
+              4
+              10
+              11
+              12
+              13
+
+
+       --rr     Only print the range of the data.  The highest and lowest  posi-
+              tive  values,  and  the  highest and lowest negative values, are
+              output. In the above example, the --rr option would output: 0 2 13
+
+
+
+       If  the  --11 option is also specified, the output appears with one cate-
+       gory value per line.
+
+       --qq     Quiet. The --qq option will tell r.describe  to  be  silent  while
+              reading  the raster file.  If not specified, program percentage-
+              completed messages are printed.
+
+       --dd     Use  the  current   geographic   region   settings.    Normally,
+              _r_._d_e_s_c_r_i_b_e  will read the data layer directly, ignoring both the
+              current  region  settings  and  mask.   The  --dd   option   tells
+              _r_._d_e_s_c_r_i_b_e to read the map layer in the current region masked by
+              the current mask (if any).
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of raster map.
+
+       nnvv==_s_t_r_i_n_g
+              String representing no data cell value.
+
+       nnsstteeppss==_v_a_l_u_e
+              Number of quantization steps.
+
+
+NNOOTTEESS
+       The range report will generally run faster than the full list.
+
+SSEEEE AALLSSOO
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.describe(1)

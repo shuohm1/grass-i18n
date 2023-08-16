@@ -1,0 +1,90 @@
+split.sh(1)                   Grass User's Manual                  split.sh(1)
+
+
+
+NNAAMMEE
+       sspplliitt..sshh   - Divides the graphics monitor into two frames and then dis-
+       plays two maps in these frames.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       sspplliitt..sshh  mmaappnnaammee  mmaappnnaammee   [ccmmdd==_G_R_A_S_S___c_o_m_m_a_n_d]   [ccmmdd22==_G_R_A_S_S___c_o_m_m_a_n_d]
+       [vviieeww==hhoorriizz]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_p_l_i_t_._s_h  is a Bourne shell (_s_h) script that clears the entire graphics
+       screen and divides it into two display frames.   Map  layers  are  then
+       displayed  in  each of the two frames.  This command is very useful for
+       visually comparing maps (raster, vector, and 3-d views) and can be used
+       by  other  GRASS  shell  macros.  It is also useful for creating demos.
+       Program parameters are given below.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       vviieeww==hhoorriizz
+              The graphics screen can be split either horizontally  or  verti-
+              cally.   The default view splits the screen into two frames, one
+              on the left and one on the right (a vertical split).  Some  maps
+              (3-d  views)  are better represented with more width then height
+              (horizontal split).  The first map name listed  on  the  command
+              line  will  be displayed in the top or left window (depending on
+              whether the screen was split horizontally  or  vertically),  and
+              The  second map will be displayed in the bottom or right window.
+
+       ccmmdd==_G_R_A_S_S___c_o_m_m_a_n_d
+              The GRASS command used to display the  named  _m_a_p_n_a_m_es.   If  no
+              command  is  specified  by  the user, _d_._r_a_s_t is used by default.
+              However, any GRASS display command (e.g., _d_._3_d_, _d_._v_e_c_t,  etc...)
+              can be entered.
+
+       ccmmdd22==_G_R_A_S_S___c_o_m_m_a_n_d
+              This  command  will  be  used  to display map data in the second
+              frame only.
+              If the user fails to specify the values of both  _c_m_d  and  _c_m_d_2,
+              _s_p_l_i_t_._s_h  will use the default command (_d_._r_a_s_t) to display user-
+              specified map layer names in both frames.  If the user specifies
+              only  the  value  of  _c_m_d on the command line, then that command
+              will be executed for both frames.  If  the  user  specifies  the
+              values of both _c_m_d and _c_m_d_2 on the command line, the _c_m_d command
+              will be executed in frame 1 and the _c_m_d_2 command  will  be  exe-
+              cuted in frame 2.
+
+
+EEXXAAMMPPLLEESS
+       sspplliitt..sshh  soils  vegcover
+
+       sspplliitt..sshh  soils  ccmmdd22==dd..lleeggeenndd "soils color=red"
+
+       sspplliitt..sshh elevation vegcover ccmmdd==d.3d vviieeww==horiz
+
+
+NNOOTTEESS
+       _s_p_l_i_t_._s_h  leaves the frame that the last map was drawn in as the active
+       frame.  The order in which the options (_c_m_d, _c_m_d_2, _v_i_e_w) are placed  on
+       the command line doesn't matter, but the order is important for the map
+       names.
+
+FFIILLEESS
+       This program is simply a shell script.  Users are  encouraged  to  make
+       their   own   shell   scripts  using  similar  techniques.   See  $GIS-
+       BASE/scripts/split.sh.
+
+SSEEEE AALLSSOO
+       _d_._3_d
+
+       _d_._f_r_a_m_e
+
+       _d_._r_a_s_t
+
+       _d_._s_i_t_e_s
+
+       _d_._v_e_c_t
+
+AAUUTTHHOORR
+       Michael Higgins, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                          split.sh(1)

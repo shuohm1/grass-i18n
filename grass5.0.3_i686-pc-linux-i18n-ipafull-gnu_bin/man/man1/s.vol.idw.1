@@ -1,0 +1,52 @@
+s.vol.idw(1)                  Grass User's Manual                 s.vol.idw(1)
+
+
+
+NNAAMMEE
+       ss..vvooll..iiddww  - Interpolates point data to a 3D grid.
+       _(_G_R_A_S_S _3_D _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..vvooll..iiddww
+
+       ss..vvooll..iiddww hheellpp
+
+       ss..vvooll..iiddww iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [[nnppooiinnttss==_c_o_u_n_t]] [[ffiieelldd==_v_a_l_u_e]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._v_o_l_._i_d_w  fills a GRID3D raster volume matrix with interpolated values
+       generated from a set of irregularly spaced data points using  numerical
+       approximation  (weighted  averaging) techniques. The interpolated value
+       of a tile is determined by values of nearby data points  and  the  dis-
+       tance  of  the  cell from those input points.  In comparison with other
+       methods, numerical approximation allows representation of more  complex
+       volumes  (particularly  those  with  anomalous features), restricts the
+       spatial influence of any errors, and generates the interpolated  volume
+       from the data points.
+
+   PPaarraammeetteerrss::
+       iinnppuutt  Name of input 3D sites file
+
+       oouuttppuutt Name of output 3D - G3D raster file
+
+       nnppooiinnttss
+              Number of interpolation points Default: 12
+
+       ffiieelldd  Number of z-field attribute to use for calculation default: 1
+
+
+NNOOTTEESS
+       If  two  or  more  sites  fall into one voxel, the last site value will
+       determine the 3dcell value (no warning yet).
+
+SSEEEE AALLSSOO
+       _s_._v_o_l_._r_s_t_, _s_._t_o_._r_a_s_t_3
+
+AAUUTTHHOORR
+       Jaro Hofierka hofierka@geomodel.sk
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         s.vol.idw(1)

@@ -1,0 +1,123 @@
+s.sample(1)                   Grass User's Manual                  s.sample(1)
+
+
+
+NNAAMMEE
+       ss..ssaammppllee - Sample a raster file at site locations.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..ssaammppllee
+       ss..ssaammppllee hheellpp
+       ss..ssaammppllee  [--BBCCllqq]  iinnppuutt==_n_a_m_e  [aattttrr==_t_y_p_e]  [ffiieelldd==_v_a_l_u_e] [oouuttppuutt==_n_a_m_e]
+       rraasstt==_n_a_m_e [zz==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._s_a_m_p_l_e samples a GRASS raster map at the site locations in the  input
+       file by either cubic convolution interpolation, bilinear interpolation,
+       or nearest neighbor sampling (default).  Category label values may sam-
+       pled.
+
+
+       This  program  may be especially useful when sampling for cross valida-
+       tion of interpolations whose output is a raster map.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --BB     Use bilinear interpolation.
+
+       --CC     Use cubic convolution interpolation.
+
+       --ll     Use raster category label values instead of cell values.  Labels
+              must be numeric.
+
+       --qq     Quiet. Cut out the chatter.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of sites list defining sample points.
+
+       aattttrr==_t_y_p_e
+              Site attribute type to use for comparison.
+
+              OOppttiioonnss:: _n_o_n_e_, _d_i_m_, _c_a_t_, _d_e_c_i_m_a_l
+
+              If _n_o_n_e is chosen no comparison will be done.
+
+       ffiieelldd==_v_a_l_u_e
+              Site attribute field to use for comparison.
+
+              Ignored when the attribute is _n_o_n_e or _c_a_t.
+
+       oouuttppuutt==_n_a_m_e
+              Optional  name  of  sites  list  in which output will be stored.
+              Standard output is used if this is missing.
+
+       rraasstt==_n_a_m_e
+              Name of raster map to be sampled.
+
+       zz==_v_a_l_u_e
+              Option scaling factor for values read from raster map.   Sampled
+              values  will  be  multiplied by this factor. If omitted, this is
+              set to 1.0.
+
+
+NNOOTTEESS
+       The output site list will have the easting and northing  of  the  input
+       site  list.  The category value will either be the same as the value in
+       the input site list or a unique value if there were  no  categories  in
+       the  input  site list.  One decimal attribute will be output containing
+       either, the cell value of the raster if no comparison  was  done  (i.e.
+       aattttrr==nnoonnee)  or it will be the difference between the cell value and the
+       site list attribute value.
+
+
+       If --ll is specified, it is important that the raster category  label  is
+       numeric.  No  error  checking  is  done  except for "no data" values as
+       raster category labels. In this instance, a warning  is  issued  and  a
+       zero value is assumed.
+
+
+       When  NULL  values  are  encountered  for  a  cell,  zero value is used
+       instead.  In these cases, more acurrate  results  may  be  obtained  by
+       using the default nearest neighbor comparisons.
+
+
+       This  program  may  not  work  properly with lat-long data when the --BBCC
+       flags are used.
+
+
+       When interpolation is done (i.e., the --BBCC flags are used),  values  are
+       assumed  to  be located at the centroid of grid cells.  Therefore, cur-
+       rent resolution settings are important.
+
+SSEEEE AALLSSOO
+       _s_._r_a_n_d_o_m
+
+       _s_._k_c_v
+
+       _g_._r_e_g_i_o_n
+
+       _I_m_a_g_e _S_a_m_p_l_i_n_g _M_e_t_h_o_d_s -  GRASS  Tutorial  on  _s_._s_a_m_p_l_e  (available  as
+       s.sample-tutorial.ps.gz)
+
+BBUUGGSS
+       Please  send  all  bug  fixes  and  comments to the author or the grass
+       development team.
+
+       http://www.geog.uni-hannover/grass/
+
+AAUUTTHHOORR
+       James Darrell McCauley ,
+
+       when he was at: Agricultural Engineering Purdue University
+
+
+       Updated for GRASS 5.0 by Eric G. Miller
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                          s.sample(1)

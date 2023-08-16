@@ -1,0 +1,120 @@
+d.text(1)                     Grass User's Manual                    d.text(1)
+
+
+
+NNAAMMEE
+       dd..tteexxtt  -  Draws text in the active display frame on the graphics moni-
+       tor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..tteexxtt
+       dd..tteexxtt hheellpp
+       dd..tteexxtt [ssiizzee==_v_a_l_u_e] [ccoolloorr==_n_a_m_e] [lliinnee==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._t_e_x_t draws text in the active display frame on the graphics  monitor.
+       Text  can  be provided through standard input or redirected from a file
+       (using the UNIX redirection mechanism).
+
+   PPaarraammeetteerrss::
+       ssiizzee==_v_a_l_u_e
+              Height of letters, stated as a percent of the available  display
+              frame height.
+
+              Options: 0 - 100
+
+              Default: 5
+
+       ccoolloorr==_n_a_m_e
+              Sets display text color to _n_a_m_e.
+
+              Options: red, orange, yellow, green, blue, indigo, violet, gray,
+              white, and black
+
+              Default: _g_r_a_y
+
+       lliinnee==_v_a_l_u_e
+              The screen line number on which the first line of text  will  be
+              drawn.
+
+              (Line 1 is at the top of the active display frame.)
+
+              Options: 1 - 1000
+
+              Default: 1
+
+       In  addition  to the options provided on the command line, colors, text
+       size, font type, and boldness, can be adjusted  with  commands  in  the
+       standard input (i.e., if the user invokes _d_._t_e_x_t without options on the
+       command line, and then assigns values to these options on lines  within
+       the  standard  input).   In  this case, the user also sees the standard
+       GRASS parser interface.
+
+   CCoommmmaannddss::
+       .C _c_o_l_o_r
+              (where _c_o_l_o_r is one of the available colors) causes text appear-
+              ing on subsequent lines to be drawn in that color.
+
+       ..SS  _s_i_z_e
+              (where  _s_i_z_e  is a percentage within the range 0 to 100) adjusts
+              text size.  Note that a size of 10 would allow 10  lines  to  be
+              drawn  in the active display frame, 5 would allow the drawing of
+              20 lines, and 50 would allow the drawing of 2 lines.
+
+
+
+       ..FF _f_o_n_t
+              (where _f_o_n_t is one of the  fonts  known  by  the  GRASS  program
+              _d_._f_o_n_t) manipulates the font type. Available fonts are listed in
+              the GRASS manual entry for _d_._f_o_n_t.  The default font  type  used
+              (if  unspecified  by  the  user) is _r_o_m_a_n_s.  Run the GRASS macro
+              _s_h_o_w_._f_o_n_t_s_._s_h to see what these fonts look like.
+
+       ..BB 11   stipulates that following text be printed in bboolldd.  This command
+              means _b_o_l_d _o_n.
+
+       ..BB 00   turns  _b_o_l_d _o_f_f of all text appearing on lines beneath it. (_B_o_l_d
+              _o_f_f is used by default, if unspecified by the user.)
+
+
+EEXXAAMMPPLLEE
+       The following command will print the short phrase "This is  a  test  of
+       d.text"  in  the  active display frame using the color yellow, in bold,
+       and using 4/100'ths (4%) of the active frame's vertical space per line:
+
+
+
+       dd..tteexxtt 11 This is a test of d.text
+
+       The  user  presses  _c_o_n_t_r_o_l_-_d (the "ctrl" and "d" keys) to end input to
+       _d_._t_e_x_t (equal to EOF).
+
+NNOOTTEESS
+       Note that the GRASS command _d_._t_i_t_l_e creates  map  TITLEs  in  a  format
+       suitable for input to _d_._t_e_x_t.
+
+
+       _d_._t_e_x_t  needs  escape sequences that can be used within lines to change
+       colors, boldness, and perhaps size.
+
+SSEEEE AALLSSOO
+       _d_._f_o_n_t
+
+       _d_._t_i_t_l_e
+
+       _s_h_o_w_._f_o_n_t_s_._s_h
+
+       _d_._t_e_x_t_._f_r_e_e_t_y_p_e
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_5_/_1_3 _0_7_:_4_1_:_5_9 _$
+
+
+
+GRASS 5.0                                                            d.text(1)

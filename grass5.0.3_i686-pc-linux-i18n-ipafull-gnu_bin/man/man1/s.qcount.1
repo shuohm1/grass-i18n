@@ -1,0 +1,99 @@
+s.qcount(1)                   Grass User's Manual                  s.qcount(1)
+
+
+
+NNAAMMEE
+       ss..qqccoouunntt  - indices for quadrat counts of sites lists
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..qqccoouunntt
+       ss..qqccoouunntt hheellpp
+       ss..qqccoouunntt [--cciiqq] ssiitteess==_n_a_m_e nn==_v_a_l_u_e rr==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._q_c_o_u_n_t  chooses  nn  circular  quadrats of radius rr such that they are
+       completely within the bounds of the current region and no two  quadrats
+       overlap.   The  number of sites falling within each quadrat are counted
+       and indices are calculated to estimate the departure of site  locations
+       from complete spatial randomness.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --cc     Print  count  data  for each quadrat in the form of a sites list
+              (E|N|#n %count, where E is the easting and N is the northing  of
+              the  quadrat  center,  n is the quadrat number, and count is the
+              number of sites contained within the quadrat).
+
+       --ii     Suppress printing table of indices (default is to print  indices
+              and not the count data).
+
+       --qq     Quiet. Cut out the chatter.
+
+
+   PPaarraammeetteerrss::
+       ssiitteess==_n_a_m_e
+              Name of sites list defining qcount points.
+
+       nn==_v_a_l_u_e
+              Number of quadrats (integer).
+
+       rr==_v_a_l_u_e
+              Radius of quadrats (floating point).
+
+
+NNOOTTEESS
+       This  program may not work properly with lat-long data. It uses _h_y_p_o_t_(_)
+       in two files: _c_o_u_n_t_._c and _f_i_n_d_q_u_a_d_s_._c.
+
+SSEEEE AALLSSOO
+       _s_._r_a_n_d_o_m
+
+
+       _C_o_m_p_l_e_t_e _S_p_a_t_i_a_l _R_a_n_d_o_m_n_e_s_s _a_n_d _Q_u_a_d_r_a_t _M_e_t_h_o_d_s  -  GRASS  Tutorial  on
+       _s_._q_c_o_u_n_t (available as s.qcount-tutorial.ps),
+
+
+       General references include:
+       Noel  A.  C.  Cressie.   _S_t_a_t_i_s_t_i_c_s  _f_o_r _S_p_a_t_i_a_l _D_a_t_a.  Wiley Series in
+       Probability and Mathematical Statistics. John Wiley & Sons,  New  York,
+       NY, 1st edition, 1991.
+       Brian  D. Ripley.  _S_p_a_t_i_a_l _S_t_a_t_i_s_t_i_c_s.  John Wiley  Sons, New York, NY,
+       1981.
+
+
+       References to the indices include:
+       F. N. David and P. G. Moore.   Notes  on  contagious  distributions  in
+       plant populations.  _A_n_n_a_l_s _o_f _B_o_t_a_n_y, 18:47-53, 1954.
+       J.  B.  Douglas.   Clustering  and aggregation.  _S_a_n_k_h_y_a _B, 37:398-417,
+       1975.
+       R. A. Fisher, H. G. Thornton, and W. A. Mackenzie.  The accuracy of the
+       plating  method  of  estimating  the  density of bacterial populations.
+       _A_n_n_a_l_s _o_f _A_p_p_l_i_e_d _B_i_o_l_o_g_y, 9:325-359, 1922.
+       M. Lloyd.  Mean crowding.  _J_o_u_r_n_a_l _o_f _A_n_i_m_a_l _E_c_o_l_o_g_y, 36:1-30, 1967.
+       M. Morista.  Measuring the dispersion and analysis of distribution pat-
+       terns.   _M_e_m_o_i_r_e_s  _o_f _t_h_e _F_a_c_u_l_t_y _o_f _S_c_i_e_n_c_e_, _K_y_u_s_h_u _U_n_i_v_e_r_s_i_t_y_, _S_e_r_i_e_s
+       _E_.  _B_i_o_l_o_g_y, 2:215-235, 1959.
+
+BBUUGGSS
+       Timestamp not working for header part of counts output. (2000-10-28)
+
+
+       Please send all bug fixes and comments  to  the  author  or  the  grass
+       development team.
+
+       http://www.geog.uni-hannover.
+
+AAUUTTHHOORR
+       James Darrell McCauley ,
+
+       when he was at: Agricultural Engineering Purdue University
+
+
+       Modified for GRASS 5.0 by Eric G. Miller (2000-10-28)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                          s.qcount(1)

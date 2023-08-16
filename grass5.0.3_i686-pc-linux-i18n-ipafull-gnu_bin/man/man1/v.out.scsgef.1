@@ -1,0 +1,93 @@
+v.out.scsgef(1)               Grass User's Manual              v.out.scsgef(1)
+
+
+
+NNAAMMEE
+       vv..oouutt..ssccssggeeff  - Converts binary GRASS vector data to ASCII SCS-GEF vec-
+       tor data format.
+       _"_(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..ssccssggeeff
+       vv..oouutt..ssccssggeeff hheellpp
+       vv..oouutt..ssccssggeeff iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS program _v_._o_u_t_._s_c_s_g_e_f allows the user to convert GRASS  vector
+       data to SCS-GEF format, for export to other systems.
+
+
+       _v_._o_u_t_._s_c_s_g_e_f  creates  the  SCS-GEF  header,  lines,  text, and feature
+       files. All files are created and placed in a _$_L_O_C_A_T_I_O_N_/_g_e_f directory as
+       a single UNIX file under the output name.
+
+
+       The following is the SCS-GEF file structure:
+                 header record 1
+                    |     |
+                 header record n
+                 -head
+                 line record 1
+                    |     |
+                 line record n
+                 -line
+                 text record 1
+                    |     |
+                 text record n
+                 -text
+                 feature record 1
+                    |     |
+                 feature record n
+                 -feat
+
+       The  user  will  be  required to use standard UNIX commands to separate
+       this file into individual files as required by SCS-GEF  specifications.
+
+
+
+
+       The  user  can run the program non-interactively by specifying all pro-
+       gram arguments on the command line, in the form:
+
+
+       vv..oouutt..ssccssggeeff iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of the binary GRASS vector data file  to  be  converted  to
+              SCS-GEF format.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the SCS-GEF output file created.
+
+
+
+       If  the user does not give the names of an input and output file on the
+       command line, the program will prompt the user to enter these names.
+
+NNOOTTEESS
+       The _v_._o_u_t_._s_c_s_g_e_f program requires that the _i_n_p_u_t vector map layer  have
+       full  topological  information associated with it.  This means that the
+       GRASS program _v_._s_u_p_p_o_r_t should have  been  the  last  program  to  have
+       effected any changes upon the vector map layer before it is run through
+       _v_._o_u_t_._s_c_s_g_e_f.  If this is not the  case,  _v_._o_u_t_._s_c_s_g_e_f  will  terminate
+       with a message that _v_._s_u_p_p_o_r_t needs to be run.
+
+SSEEEE AALLSSOO
+       _v_._e_x_p_o_r_t_, _v_._i_m_p_o_r_t_, _v_._o_u_t_._a_s_c_i_i_, _v_._o_u_t_._d_l_g_, _v_._o_u_t_._d_l_g_._s_c_s_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       R.L.Glenn, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                      v.out.scsgef(1)

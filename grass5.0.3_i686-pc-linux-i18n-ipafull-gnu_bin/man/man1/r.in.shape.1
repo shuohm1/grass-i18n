@@ -1,0 +1,49 @@
+r.in.shape(1)                 Grass User's Manual                r.in.shape(1)
+
+
+
+NNAAMMEE
+       rr..iinn..sshhaappee - Read an ArcView Shapefile (polygons and lines)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..sshhaappee  iinn==_n_a_m_e  oouutt==_n_a_m_e [ccaatt==_c_a_t_e_g_o_r_y _c_o_l_u_m_n] [llaabb==_c_a_t_e_g_o_r_y _l_a_b_e_l
+       _c_o_l_u_m_n]
+
+DDEESSCCRRIIPPTTIIOONN
+       The _r_._i_n_._s_h_a_p_e program is designed to import ArcView Shapefiles  (poly-
+       gons and lines) into GRASS binary raster maps.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinn==_n_a_m_e
+              Name  of  input shape file. Provide a full path name or the name
+              of a file in  the  current  directory.  The  _._s_h_p  extension  is
+              required.
+
+       oouutt==_n_a_m_e
+              Raster output file.
+
+       ccaatt==_c_a_t_e_g_o_r_y___c_o_l_u_m_n
+              Name  of the attribute to use as the category number in dig_att.
+              Category column must be iinntteeggeerr.
+
+       llaabb==_l_a_b_e_l___c_o_l_u_m_n
+              Name of the attribute to use as the category label in  dig_cats.
+
+
+NNOOTTEE
+       r.in.shape creates ASCII file first and then run r.in.poly.
+
+SSEEEE AALLSSOO
+       v.in.shape, v.to.rast.
+
+AAUUTTHHOORRSS
+       Radim Blazek (Radim.Blazek@dhv.cz)
+
+       Based on Shapelib (http://gdal.velocet.ca/projects/shapelib/)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.in.shape(1)

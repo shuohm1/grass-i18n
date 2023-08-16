@@ -1,0 +1,77 @@
+i.quantize(1)                 Grass User's Manual                i.quantize(1)
+
+
+
+NNAAMMEE
+       ii..qquuaannttiizzee  - An interactive imagery function that creates a raster map
+       layer whose color table is based on the red, green, and blue color val-
+       ues present in existing, user-specified imagery group files.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..qquuaannttiizzee
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._q_u_a_n_t_i_z_e  is  an interactive imagery function that allows the user to
+       create a new raster map layer whose color table values are based on the
+       red,  green, and blue color values present in (as many as) three raster
+       map layers in an imagery group.
+
+
+       The user is first asked to enter the name of  the  imagery  group  from
+       whose map layers red, green, and blue color values are to be extracted.
+       The user is then shown a listing of  imagery  files  in  the  specified
+       group, and is asked to indicate which files in the group are to be used
+       for red, green, and blue colors in the new map layer.  Each color (red,
+       green, and blue) must be specified once and only once.
+
+
+       The  user  is  also  asked to assign a name to the new raster map layer
+       output.
+
+NNOOTTEESS
+       This program is interactive and requires no command line arguments.
+       The input files must ALL be within the range of 0-255.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o _c_e_s_s_i_n_g
+
+
+       _d_._c_o_l_o_r_m_o_d_e
+
+       _d_._c_o_l_o_r_s
+
+       _d_._c_o_l_o_r_t_a_b_l_e
+
+       _h_s_v_._r_g_b_._s_h
+
+       _i_._c_o_l_o_r_s
+
+       _i_._c_o_m_p_o_s_i_t_e
+
+       _i_._g_r_o_u_p
+
+       _i_._h_i_s_._r_g_b
+
+       _i_._r_g_b_._h_i_s
+
+       _r_._c_o_l_o_r_s
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_g_b_._h_s_v_._s_h
+
+       _r_._c_o_l_o_r_s
+
+RREEFFEERREENNCCEESS
+       Paul Heckbert, 1982.  _C_o_l_o_r _I_m_a_g_e _Q_u_a_n_t_i_z_a_t_i_o_n _f_o_r  _F_r_a_m_e  _B_u_f_f_e_r  _D_i_s_-
+       _p_l_a_y, SIGGRAPH '82 Proceedings, page 297.
+
+AAUUTTHHOORR
+       David Gerdes, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                        i.quantize(1)

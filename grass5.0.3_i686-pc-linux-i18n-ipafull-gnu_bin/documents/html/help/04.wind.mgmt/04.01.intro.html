@@ -1,0 +1,82 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      04.01.intro
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      INTRODUCTION:  DISPLAY FRAMES VS. GEOGRAPHIC REGIONS
+    </H2>
+  </CENTER>
+    <P>Several GRASS commands exist to manage the two types of 'windows'
+available in GRASS: graphics display frames and geographic regions.
+Although both are sometimes referred to as 'windows', the user should
+be careful to distinguish between the two.
+    <P>
+  <CENTER>
+    What is a Graphics Display Frame?
+  </CENTER>
+    <P>GRASS supports the use of multiple graphics display monitors during a
+GRASS session.  The <A HREF="./../../../../documents/html/d.mon.html">d.mon</A> command is used to start, select, stop, and
+unlock graphics monitors for GRASS display output.
+    <P>After the user has started and selected a <A HREF="./../../../../documents/html/help/16.glossary/graphmon.def.html">graphics monitor</A> for output,
+the user can subdivide the monitor into different &quot;frames&quot;, and display
+different GRASS outputs in each frame.  For example, the GRASS program
+<A HREF="./../../../../documents/html/i.points.html">i.points</A> divides the monitor into multiple frames to allow the user to
+target rectification points on an <A HREF="./../../../../documents/html/help/16.glossary/img.def.html">image</A> to (user-known) points on
+another map layer.  Similarly, the GRASS macro <A HREF="./../../../../documents/html/3d.view.sh.html">3d.view.sh</A> divides the
+monitor into nine frames to demonstrate the 3-d viewing function of
+GRASS.  These commands affect only the display of graphics, and do not
+alter the user's data. 
+    <P>In past GRASS releases, &quot;graphics frames&quot; were referred to as &quot;graphics
+windows&quot;;  the latter term is now obsolete.
+    <P>    <P>
+  <CENTER>
+    What is a Geographic Region?
+  </CENTER>
+    <P>Other GRASS commands can be used to modify the settings of the user's
+geographic region.  The settings define the geographic boundaries, map
+projection, coordinate system, and resolution of data sets.  GRASS
+commands commonly ignore data falling outside of this region.  For
+example, when the user digitizes with <A HREF="./../../../../documents/html/v.digit.html">v.digit</A>, only those areas of
+the map that fall inside the user's current geographic region will be
+saved to the vector file produced by &quot;v.digit&quot;. When the user prints map
+output, current geographic settings are also used.  Current geographic
+region settings are stored in the &quot;WIND&quot; file under the user's current
+mapset.
+    <P>In previous GRASS releases, the &quot;geographic region&quot; was referred to as
+the &quot;geographic window&quot;; the latter term is now obsolete.
+    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

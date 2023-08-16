@@ -1,0 +1,196 @@
+sites.S(1)                    Grass User's Manual                   sites.S(1)
+
+
+
+NNAAMMEE
+       ssiitteess..SS  - Description of the GRASS _s_._m_e_n_u "S" interface option.
+
+DDEESSCCRRIIPPTTIIOONN
+       This  describes  the  GRASS  _s_._m_e_n_u  "S"  statistical package interface
+       option.  See also the manual entry for _s_._m_e_n_u.
+
+SSPPEECCIIAALL AADDJJUUSSTTMMEENNTT
+       Due to the fact that "S" references all subscripts  beginning  with  1,
+       and  the GIS data begins with 0, it was necessary to add 1 to the cate-
+       gory numbers.  Therefore, category value 0 ("no data") becomes category
+       value 1, category 1 becomes category 2, etc.
+
+SS DDAATTAA SSTTRRUUCCTTUURREESS
+       Below are descriptions of the data structures created by the interface.
+       As a general comment, within "S", simply typing the data structure name
+       will  display the values contained in the structure.  You may also find
+       it interesting to display the data structures using  the  "S"  function
+       _d_p_u_t_(_).
+
+       ccaatt..hhiissttoo,, ((ccaatt..##..hhiissttoo))
+
+       This structure contains the histogram for the
+              categories in each map layer.  The histogram contains the number
+              of cells of each category which occur in the  user's  geographic
+              region (see wind.n, et al., below).  It is a 2-dimensional inte-
+              ger array (matrix).  The  first  subscript  references  the  map
+              layer.  The second subscript references the category value.
+
+       Examples:
+              cat.histo[2,5]  is  the  cell  count  for  layer  2, category 5.
+              cat.histo[2,]  is the full histogram for layer 2.
+
+       Note:  since more than one layer may occur in the data, and the  number
+       of  categories  in  each  layer varies, it was necessary to create this
+       structure with sufficient dimension to hold the largest category  value
+       for  all  layers.  Histogram data for categories which do not occur are
+       set to NA ("S" notation for "no data").   However,  there  is  also  an
+       individual   histogram   structure   for   each   layer:   cat.1.histo,
+       cat.2.histo, etc.  These are simple vectors.
+
+       ccaatt..nnaammee
+              This structure contains the names for the categories in each map
+              layer.   It  is  a  2-dimensional character array (matrix).  The
+              first subscript references the map layer.  The second  subscript
+              references the category.
+
+       Examples:
+              cat.name[2,5]   is   the   name  of  category  5  for  layer  2.
+              cat.name[2,]  are all category names for layer 2.
+
+       Note:  since more than one layer may occur in the data, and the  number
+       of  categories  in  each  layer varies, it was necessary to create this
+       structure with sufficient dimension to hold the largest category  value
+       for all layers.  Names for categories which do not occur are set to ''.
+       However, there is also an individual category name structure  for  each
+       layer:  cat.1.name, cat.2.name, etc.  These are simple vectors.
+
+       ssiittee..ddaattaa
+              This  structure  contains  the  data  for  each  site.   It is a
+              3-dimensional integer array.  The first subscript references the
+              categories  which  occurred  at  the site.  The second subscript
+              references the site.  The third subscript references the  layer.
+
+       Examples:
+              site.data[,5,3]   is   the   data   for   site  5  in  layer  3.
+              site.data[,2,]   is  the  data  for  site  2  in   all   layers.
+              site.data[,,1]  is all site data for layer 1.
+
+       Note:  the size of the first dimension will be the number of cells in a
+       site, the size of the second dimension will be the number of sites, the
+       size of the third dimension will be the number of layers.
+
+       ssiittee..mmooddee
+              Since  "S"  does  not  provide a statistical mode function, this
+              structure contains the most frequently  occurring  category  for
+              each  site  in  each layer.  It is a 2-dimensional integer array
+              (matrix).  The first subscript references the site.  The  second
+              subscript references the layer.
+
+       Examples:
+              site.mode[5,3] is the mode for site 5 in layer 3.  site.mode[2,]
+              are the modes for site 2 in all layers.  site.mode[,1]  are  all
+              site modes for layer 1.
+
+       Note:   this  'mode'  is  not the strict definition of the mode.  Since
+       category 0 (which in "S" is category 1) represents "no data" in the GIS
+       databases,  it  was excluded from the mode calculations (essentially as
+       if it had been NA).  For example, if the data for a site are 1 1 1 1  2
+       2 3 2 3 1 1, the mode will be 2.
+
+       llaayyeerr..nnaammee
+              This  structure  contains  the  raster map layer names.  It is a
+              2-dimensional array (i.e., a matrix).  The first subscript  ref-
+              erences  the map layer.  The second subscript selects either the
+              map layer name, or the map layer TITLE.
+
+       Examples:
+              layer.name[3,1] is the name of layer 3.  layer.name[3]   is also
+              the  name  of  layer 3.  layer.name[2]   is the name of layer 2.
+              layer.name[3,2] is the TITLE for layer 3.
+
+
+       llooccaattiioonn
+              This is a simple character vector giving the GRASS location from
+              which the data was extracted.
+
+       mmaappsseett This is a simple character vector giving the GRASS mapset.
+
+       nnllaayyeerrss
+              This is a simple integer giving the number of map layers.
+
+       nnssiitteess This is a simple integer giving the number of sites.
+
+       ssiittee..ee This  is  a  simple integer vector giving the geographic easting
+              for each site.
+
+       ssiittee..nn This is a simple integer vector giving the  geographic  northing
+              for each site.
+
+       ssiittee..nnaammee
+              This  is  a  simple  character vector giving the description for
+              each site.
+
+       ssiitteelliisstt
+              This is a simple character vector giving the name  and  descrip-
+              tion of the site lists file from which the sites were taken.
+
+       wwiinndd..nn,, wwiinndd..ss,, wwiinndd..ww,, wwiinndd..ee
+              These  are  simple  real  numbers giving the north, south, west,
+              east of the mapset's current geographic region.
+
+       wwiinndd..rreess
+              This is a simple real number giving the GRASS  database  resolu-
+              tion (in meters).
+
+
+SS MMAACCRROOSS
+       You  may  find  the  following  "S" macros helpful when referencing the
+       'site.data' and 'site.mode' structures, since they allow you to specify
+       parameters:
+       MACRO site.data(site, layer)
+       ({
+            site.data[ , site, layer]
+       })
+       END
+
+
+       MACRO site.mode(site, layer)
+       ({
+            site.mode[site, layer]
+       })
+       END
+
+
+MMAACCRROO UUSSAAGGEE
+       To select the site.data for all sites for layer 2: ??ssiittee..ddaattaa((llaayyeerr==22))
+
+       To select the site.data for site 4 in all layers: ??ssiittee..ddaattaa((ssiittee==44))
+
+       To    select    the    site.mode    for    site    10   in   layer   1:
+       ??ssiittee..mmooddee((llaayyeerr==11,,ssiittee==1100))
+
+
+SSOORRRRYY,, BBUUTT ......
+       These macros are not provided by the interface.  To use  these  macros,
+       you  will  have to type them into a text file and then, from "S", issue
+       the command: ddeeffiinnee((""""))
+
+
+SSEEEE AALLSSOO
+       _s_._d_b_._r_i_m
+
+       _s_._i_n_._a_s_c_i_i
+
+       _s_._m_e_n_u
+
+       _s_._o_u_t_._a_s_c_i_i
+
+       _s_._s_u_r_f_._i_d_w
+
+       _s_i_t_e_s_._f_o_r_m_a_t
+
+       _s_i_t_e_s_._o_c_c_u_r
+
+       _s_i_t_e_s_._r_e_p_o_r_t
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           sites.S(1)

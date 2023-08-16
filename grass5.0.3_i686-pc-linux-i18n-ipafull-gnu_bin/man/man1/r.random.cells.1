@@ -1,0 +1,85 @@
+r.random.cells(1)             Grass User's Manual            r.random.cells(1)
+
+
+
+       r.random.cells - generates random sampling of cells.
+
+       (GRASS Raster Program)
+
+   SSYYNNOOPPSSIISS
+       rr..rraannddoomm..cceellllss  rr..rraannddoomm..cceellllss  hheellpp  rr..rraannddoomm..cceellllss  [[--qq]]  oouuttppuutt=name
+       [[ddiissttaannccee=value]] [[sseeeedd=value]]
+
+   DDEESSCCRRIIPPTTIIOONN
+       r.random.cells generates a random sets of cells that are at least  dis-
+       tance apart. The cells are numbered from 1 to the numbers of cells gen-
+       erated. Random cells will not be generated in areas masked off.
+
+   OOPPTTIIOONNSS
+       -q This flag prevents the program from sending a verbose description to
+       standard output of what the program is doing.
+
+       output Output map: Random cells. Each random cell has a unique non-zero
+       cell value ranging from 1 to the number of cells generated. The heuris-
+       tic  for  this  algorithm  is to randomly pick cells until there are no
+       cells outside of the chosen cell's buffer of radius distance.
+
+       distance Input value(s) [default 0.0]: distance determines the  minimum
+       distance the centers of the random cells will be apart.
+
+       seed  Input  value  [default:  random]:  Specifies the random seed that
+       r.random.cells will use to generate the cells. If the  random  seed  is
+       not given, r.random.cells will get a seed from the process ID number.
+
+   NNOOTTEESS
+       The  original purpose for this program was to generate independent ran-
+       dom samples of cells in a study area. The distance value is the  amount
+       of  spatial  autocorrelation  for  the map being studied. The amount of
+       spatial autocorrelation can be determined by using r.2Dcorrelogram with
+       r.2Dto1D, or r.1Dcorrelogram. With distance set to zero, the output map
+       will number each non-masked cell from 1 to  the  number  of  non-masked
+       cells in the study region.
+
+RREEFFEERREENNCCEESS
+       Random Field Software for GRASS by Chuck Ehlschlaeger
+
+
+
+       As  part  of my dissertation, I put together several programs that help
+       GRASS (4.1 and beyond) develop uncertainty models of  spatial  data.  I
+       hope  you  find  it  useful  and dependable. The following papers might
+       clarify their use:
+
+       "Visualizing Spatial Data Uncertainty Using Animation  (final  draft),"
+       by Charles R.  Ehlschlaeger, Ashton M. Shortridge, and Michael F. Good-
+       child. Submitted  to  Computers  in  GeoSciences  in  September,  1996,
+       accepted October, 1996 for publication in June, 1997.
+
+       "Modeling  Uncertainty in Elevation Data for Geographical Analysis", by
+       Charles R. Ehlschlaeger, and Ashton M.  Shortridge. Proceedings of  the
+       7th  International  Symposium  on Spatial Data Handling, Delft, Nether-
+       lands, August 1996.
+
+       "Dealing with Uncertainty in Categorical Coverage Maps: Defining, Visu-
+       alizing, and Managing Data Errors", by Charles Ehlschlaeger and Michael
+       Goodchild.  Proceedings, Workshop on Geographic Information Systems  at
+       the  Conference  on  Information and Knowledge Management, Gaithersburg
+       MD, 1994.
+
+       "Uncertainty in Spatial Data: Defining, Visualizing, and Managing  Data
+       Errors",  by  Charles  Ehlschlaeger and Michael Goodchild. Proceedings,
+       GIS/LIS'94, pp. 246-253, Phoenix AZ, 1994.
+
+   SSEEEE AALLSSOO
+       r.mask, r.1Dcorrelogram, r.2Dcorrelogram,  r.2Dto1D,  r.random.surface,
+       r.random.model, r.random
+
+   AAUUTTHHOORR
+       Charles  Ehlschlaeger;  National  Center for Geographic Information and
+       Analysis, University of California, Santa Barbara.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_2_/_0_9 _1_2_:_0_7_:_2_3 _$
+
+
+
+GRASS 5.0                                                    r.random.cells(1)

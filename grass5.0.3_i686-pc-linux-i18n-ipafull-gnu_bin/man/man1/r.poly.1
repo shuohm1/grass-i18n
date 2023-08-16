@@ -1,0 +1,96 @@
+r.poly(1)                     Grass User's Manual                    r.poly(1)
+
+
+
+NNAAMMEE
+       rr..ppoollyy  - Extracts area edges from a raster map layer and converts data
+       to GRASS vector format.
+       _(_G_R_A_S_S Raster Program)
+
+SSYYNNOOPPSSIISS
+       rr..ppoollyy
+       rr..ppoollyy hheellpp
+       rr..ppoollyy [--llccbb] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._p_o_l_y scans the named iinnppuutt raster map layer, extracts area edge  fea-
+       tures  from it, converts data to GRASS vector format, and smoothes vec-
+       tors.
+
+
+       _r_._p_o_l_y first traces the perimeter of each unique area in the raster map
+       layer  and creates vector data to represent it.  The cell category val-
+       ues for the raster map layer will be used to create attribute  informa-
+       tion for the resultant vector area edge data.
+
+
+       A  true vector tracing of the area edges might appear blocky, since the
+       vectors outline the edges of raster data that are stored in rectangular
+       cells.   To  produce  a  better-looking vector map, _r_._p_o_l_y smoothes the
+       corners of the vector data as they are being extracted. At each  change
+       in  direction (i.e., each corner), the two midpoints of the corner cell
+       (half the cell's height and width) are taken, and the line segment con-
+       necting  them  is  used  to outline this corner in the resultant vector
+       file.  (The cell's cornermost node is  ignored.)  Because  vectors  are
+       smoothed  by  this program, the resulting vector map will not be "true"
+       to the raster map from which it was created.  The user should check the
+       resolution of the geographic region (and the original data) to estimate
+       the possible error introduced by smoothing.
+
+OOPPTTIIOONNSS
+       The user can run this  program  either  non-interactively  or  interac-
+       tively.   The  program will be run non-interactively if the user speci-
+       fies program arguments and flag settings on the command line using  the
+       form: rr..ppoollyy [--llccbb] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+       Alternately,  the user can simply type rr..ppoollyy on the command line with-
+       out program arguments. In this case, the  user  will  be  prompted  for
+       parameter  values  and  flag  settings  using the standard GRASS _p_a_r_s_e_r
+       interface.
+
+   FFllaaggss::
+       --ll     Smooth corners.
+
+       --cc     Output values as category labels
+
+       --bb     Output only area borders as vector lines
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Use the existing raster map _n_a_m_e as input.
+
+       oouuttppuutt==_n_a_m_e
+              Set the new vector output file name to _n_a_m_e.
+
+
+NNOOTTEESS
+       _r_._p_o_l_y extracts only area edges from the named raster input  file.   If
+       the  raster  file contains other data (i.e., line edges, or point data)
+       the output may be wrong. Using _-_b the area borders (vector  line  type)
+       are written instead of the areas (vector area type). This may be useful
+       for buffering of area borders and other analysis.
+
+
+       The user must run _v_._s_u_p_p_o_r_t on the resultant file to build  the  needed
+       topology information stored in the _d_i_g___p_l_u_s file.
+
+SSEEEE AALLSSOO
+       _v_._s_u_p_p_o_r_t
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       _O_r_i_g_i_n_a_l version of _r_._p_o_l_y:
+       Jean Ezell and Andrew Heekin,
+       U.S. Army Construction Engineering Research Laboratory
+
+
+       _M_o_d_i_f_i_e_d program for smoothed lines:
+       David Satnik, Central Washington University
+       Updated 2001 by Andrea Aime, Modena, Italy
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            r.poly(1)

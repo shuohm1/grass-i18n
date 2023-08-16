@@ -1,0 +1,226 @@
+r.proj(1)                     Grass User's Manual                    r.proj(1)
+
+
+
+NNAAMMEE
+       rr..pprroojj   - Allows the user to re-project a raster map from one location
+       to the current location.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+        rr..pprroojj  [[--ll]]  iinnppuutt==nnaammee  llooccaattiioonn==nnaammee  [[oouuttppuutt==nnaammee]]   [[mmaappsseett==nnaammee]]
+       [[ddbbaassee==nnaammee]] [[mmeetthhoodd==nnaammee]] [[rreessoolluuttiioonn==vvaalluuee]]
+
+
+
+   FFllaaggss::
+       --ll     List raster files in input location and exit
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  input raster map from source location
+
+       llooccaattiioonn
+              source location of input map
+
+       oouuttppuutt output raster map for current location
+
+       mmaappsseett mapset of input map
+
+       ddbbaassee  path to GRASS database of input location
+
+       mmeetthhoodd interpolation method to use
+
+              options: nearest,bilinear,cubic
+
+              default: nearest
+
+       rreessoolluuttiioonn
+              resolution of output map
+
+
+NNOOTTEESS
+       If  oouuttppuutt is not specified it is set to be the same as input map name.
+       If ddbbaassee is not specified it is assumed to be the current database.
+       If mmaappsseett is not specified, its name is assumed to be the same  as  the
+       current  mapset's name.
+
+
+       r.proj  supports  transformations between nad27 and nad83.  It performs
+       the transformation automatically based on the datum  specified  in  the
+       mapset region.  See BUGS section.
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._p_r_o_j projects a raster map in a specified mapset of a specified loca-
+       tion from the projection of the input location to a raster map  in  the
+       current  location.  The projection information is taken from the momen-
+       tary PROJ_INFO files.
+
+       IInnttrroodduuccttiioonn
+
+       _M_a_p _p_r_o_j_e_c_t_i_o_n_s
+
+       Map projections are a method of representing information from a  curved
+       surface  (usually  a  spheroid)  in  two dimensions, typically to allow
+       indexing through cartesian coordinates.  There are a  wide  variety  of
+       projections, with common ones divided into a number of classes, includ-
+       ing cylindrical and pseudo-cylindrical,  conic  and  pseudo-conic,  and
+       azimuthal  methods, each of which may be conformal, equal-area, or nei-
+       ther.
+
+       The particular projection chosen depends on the purpose of the project,
+       and the size, shape and location of the area of interest.  For example,
+       normal cylindrical projections are good for maps which are  of  greater
+       extent  east-west  than  north-south  and  in equatorial regions, while
+       conic projections are better in mid-latitudes;  transverse  cylindrical
+       projections  are  used for maps which are of greater extent north-south
+       than east-west; azimuthal  projections  are  used  for  polar  regions.
+       Oblique  versions  of any of these may also be used.  Conformal projec-
+       tions preserve angular relationships, and better  preserve  arc-length,
+       while equal-area projections are more appropriate for statistical stud-
+       ies and work in which the amount of material is important.
+
+       Projections are defined  by  precise  mathematical  relations,  so  the
+       method  of  projecting  coordinates  from  a geographic reference frame
+       (latitude-longitude) into a projected  cartesian  reference  frame  (eg
+       metres)  is  governed by these equations.  Inverse projections can also
+       be achieved.  The public-domain Unix software package _p_r_o_j [1] has been
+       designed  to  perform these transformations, and the user's manual con-
+       tains a detailed description of over 100 useful projections.  This also
+       includes  a  programmers  library  of the projection methods to support
+       other software development.
+
+       Thus, converting a "vector" map - in which  objects  are  located  with
+       arbitrary  spatial precision - from one projection into another is usu-
+       ally accomplished by a simple two-step process:  first the location  of
+       all  the  points  in  the  map are converted from the source through an
+       inverse projection into latitude-longitude, and then through a  forward
+       projection  into the target.  (Of course the procedure will be one-step
+       if either the source or target is in geographic coordinates.)
+
+
+       Converting a "raster map", or  image,  between  different  projections,
+       however,  involves  additional considerations.  A raster may be consid-
+       ered to represent a sampling of a process at a regular, ordered set  of
+       locations.   The  set  of  locations that lie at the intersections of a
+       cartesian grid in one projection will not, in  general,  coincide  with
+       the  sample  points  in  another  projection.   Thus, the conversion of
+       raster maps involves an interpolation  step  in  which  the  values  of
+       points  at intermediate locations relative to the source grid are esti-
+       mated.
+
+
+
+       _P_r_o_j_e_c_t_i_n_g _m_a_p_s _w_i_t_h_i_n _t_h_e _G_R_A_S_S _G_I_S
+
+
+       GIS data capture, import and transfer often requires a projection step,
+       since the source or client will frequently be in a different projection
+       to the working projection.
+
+       In some cases it is convenient to do the conversion outside  the  pack-
+       age,  prior to import or after export, using software such as _p_r_o_j [1].
+       This is certainly the easiest method for ssiittee--lliissttss,, since there is  no
+       topology  to be preserved, and _p_r_o_j can be used to process simple lists
+       with a one-line command.
+
+       The format of files describing maps containing lliinneess and aarrccss is gener-
+       ally  more  complex,  as even in ascii parts of the files will describe
+       topology, and not just locations.  In the GRASS GIS package  a  program
+       _v_._p_r_o_j  is provided to convert "vector" maps, transferring topology and
+       attributes as well as node locations.  This program uses the projection
+       definition  and  parameters  which  are  stored  in  the  PROJ_INFO and
+       PROJ_UNITS files in the PERMANENT  mapset  directory  for  every  GRASS
+       location.
+
+       However,  although  it  is oriented mainly towards operations on rraasstteerr
+       mmaappss, the standard GRASS distribution includes this  _r_._p_r_o_j  module  to
+       convert  raster  maps.   That  is  the purpose of the program described
+       here.
+
+       DDeessiiggnn ooff rr..pprroojj
+
+       As discussed briefly above, the fundamental  step  in  re-projecting  a
+       raster  is resampling the source grid at locations corresponding to the
+       intersections of a grid in the target projection.  The basic  procedure
+       for accomplishing this, therefore, is as follows:
+
+
+       _r_._p_r_o_j  converts  a  map to a new geographic projection. It reads a map
+       from a different location, projects it and write it out to the  current
+       location.
+       The  projected  data  is resampled with one of three different methods:
+       nearest neighbor, bilinear and cubic convolution.
+
+
+       The nearest option, which performs a nearest neighbor assignment is the
+       fastest of the three resampling methods. It is primarily used for cate-
+       gorical data such as a land  use  classification,  since  it  will  not
+       change the values of the data cells. The bilinear option determines the
+       new value of the cell based on a weighted distance  average  of  the  4
+       surrounding cells in the input map. The cubic option determines the new
+       value of the cell based on a weighted distance average of the  16  sur-
+       rounding cells in the input map.
+
+
+       The  bilinear  and cubic interpolation methods are most appropriate for
+       continuous data and cause some smoothing.  Both  options  shouldn't  be
+       used  with categorical data, since the cell values will be altered.  If
+       nearest neighbor assignment is used, the output map has the same raster
+       format as the input map. If any of the both interpolations is used, the
+       output map is written as floating point.
+
+       Note that, following normal GRASS conventions, the coverage and resolu-
+       tion of the resulting grid is set by the current region settings, which
+       may be adjusted using _g_._r_e_g_i_o_n.  The target raster will  be  relatively
+       unbiased  for  all  cases  if  its grid has a similar resolution to the
+       source, so that the resampling/interpolation step is only a local oper-
+       ation.   If the resolution is changed significantly, then the behaviour
+       of the generalisation or refinement will depend on  the  model  of  the
+       process being represented.  This will be very different for categorical
+       versus numerical data.  Note that three methods for the local  interpo-
+       lation step are provided.
+
+BBUUGGSS
+       Currently  r.proj  does not support general datum conversions.  It only
+       supports conversion between nad27 and nad83, and only within the  CONUS
+       conversion grid; 20 degrees to 50 degrees north latitude, 63 degrees to
+       131 degrees west longitude.  That covers all of  the  conterminous  USA
+       plus  Mexico north of Mexico City and most of Canada farther south than
+       Winnipeg, Manitoba.
+
+
+       The entire input map is read into memory  even  if  portions  only  are
+       transformed.  This  requires  a  large amount of memory if large raster
+       layers where projected.
+
+RReeffeerreenncceess::
+       [1]Evenden, G.I.  (1990) Cartographic  projection  procedures  for  the
+       UNIX environment - a user's manual.  USGS Open-File Report 90-284 (Also
+       see Interim Report and 2nd Interim Report on Release 4, Evenden  1994).
+
+
+       Richards,  John  A.  (1993),  Remote  Sensing  Digital  Image Analysis,
+       Springer-Verlag, Berlin, 2nd edition.
+
+SSEEEE AALLSSOO
+        _m_._p_r_o_j_, _s_._p_r_o_j_, _v_._p_r_o_j_, _g_._s_e_t_p_r_o_j_, _i_._r_e_c_t_i_f_y_,  _i_._r_e_c_t_i_f_y_3_,  _r_._s_u_p_p_o_r_t_,
+       _r_._s_t_a_t_s_, _s_._s_a_m_p_l_e_, _s_._s_u_r_f_._i_d_w_, _s_._s_u_r_f_._r_s_t
+
+AAUUTTHHOORR
+       Martin Schroeder, University of Heidelberg, Germany
+
+
+       Man  page text from S.J.D. Cox, AGCRC, CSIRO Exploration & Mining, Ned-
+       lands, WA
+
+
+       Updated by Morten Hulden
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_2_2 _1_6_:_0_7_:_4_9 _$
+
+
+
+GRASS 5.0                                                            r.proj(1)

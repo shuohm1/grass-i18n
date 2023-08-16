@@ -1,0 +1,668 @@
+r.answers(1)                  Grass User's Manual                 r.answers(1)
+
+
+
+NNAAMMEE
+       _r_._a_n_s_w_e_r_s  - Menu-driven interface from GRASS to ANSWERS
+
+SSYYNNOOPPSSIISS
+       rr..aannsswweerrss
+
+DDEESSCCRRIIPPTTIIOONN
+       rr..aannsswweerrss  integrates  ANSWERS  (1991) with GRASS.  ANSWERS (Areal Non-
+       point Source Watershed Environmental Response Simulation) is  an  event
+       oriented,  distributed  parameter  model that was developed to simulate
+       the behavior of watersheds having agriculture  as  their  primary  land
+       use.   Its  primary applications are watershed planning for erosion and
+       sediment control on complex  watersheds,  and  water  quality  analysis
+       associated with sediment associated chemicals.
+
+
+       rr..aannsswweerrss  provides  a  menu of steps to complete the input required to
+       run an ANSWERS simulation. Each simulation is treated as  "project"  by
+       rr..aannsswweerrss.  The  inputs  collected for the steps completed are recorded
+       under a project name, so that they may be copied or recalled  for  fur-
+       ther  completion  or  modification.  The first menu one encounters when
+       running rr..aannsswweerrss includes functions to create a new project,  work  on
+       existing  projects,  copy  an  existing  project,  and  remove existing
+       projects. The main menu (shown below) lists steps to  be  completed  to
+       prepare  ANSWERS  input, to run ANSWERS, plus other miscellaneous func-
+       tions.
+          ANSWERS on GRASS Project Manager Main Menu Project Name:
+          <_s_a_m_p_l_e>
+
+        Status Option Description
+       ---------------------------------------------------------
+                 0    Quit
+                 1    Set mask, region, and resolution
+                 2    Catalogue soils parameters
+                 3    Catalogue land use and surface parameters
+                 4    Identify elevation-based input layers
+                 5    Prepare rain gauge data
+                 6    Identify outlet cell
+                 7    Specify areas with subsurface drainage
+                 8    Catalogue channel parameters
+                 9    Define channel slopes
+                10    Specify BMP's in watershed
+                11    Prepare ANSWERS input and run simulation
+                12    Miscellaneous Command Menu
+
+        Option: 0__
+
+       Steps 1-11 record and display their status to the left of the step num-
+       ber.  If  a  step  has  not  been  run, no status is displayed (as seen
+       above). If the step has been successfully completed, the status will be
+       listed  as  "done".  In some cases, a change in one step will cause the
+       need to run another step again, in which  case  the  status  will  read
+       "rerun".  If  a  step  has  a status of "done" or "rerun", if it is run
+       again it will attempt to offer previous inputs as defaults.
+
+
+       IInntteerrffaaccee OOppeerraattiioonn NNootteess Throughout rr..aannsswweerrss  two  primary  types  of
+       interface/input are used:
+
+
+
+       1) Text input that can be completed by hitting the RETURN key.
+              In  most  cases,  if  no text was entered, the given question or
+              operation is canceled. Often times text input  will  consist  of
+              the name of a new or existing map or project name, in which case
+              entering the word "list" will provide a list of  currently  used
+              names.
+
+
+       2)  Text  or  menu  options  that  can  be completed by hitting the ESC
+       (escape) key. This type of interface is used for menus or for  entering
+       tables  of  parameters. All menus have a default answer of Exit (0), so
+       that by simply hitting ESC one may leave the program's menus. The  fol-
+       lowing  keystroke  guide  is  helpful  to know when using the parameter
+       entry worksheets that use this interface:
+       <RETURN> moves the cursor to next prompt field
+       <CTRL-K> moves the cursor to previous prompt field
+       <CTRL-H> moves the cursor backward non-destructively within the field
+       <CTRL-L> moves the cursor forward non-destructively within the field
+       <CTRL-A> writes a copy of the screen to a file  named  "visual_ask"  in
+       your home directory
+       <CTRL-C> where indicated (on bottom line of screen) can be used to can-
+       cel operation
+
+
+DDeessccrriippttiioonn ooff MMaaiinn MMeennuu SStteeppss
+       The following section describes each option  of  the  main  menu.   All
+       steps  are verbose to provide as much immediate information as is prac-
+       tical, however it is necessary that the user also be familiar with  the
+       operation  of  ANSWERS.  (Obtain  a  copy  of the _A_N_S_W_E_R_S _U_s_e_r_'_s _M_a_n_u_a_l
+       (1991) by David Beasley  and  Larry  Huggins.  Available  from  Bernard
+       Engel, Agricultural Engineering, Purdue University, W. Lafayette, Indi-
+       ana, 47907).
+
+
+       Steps 1 through 10 collect  inputs  (either  maps  from  the  currently
+       available mapsets or other text/numerical inputs) in order to create or
+       extract the necessary portions of ANSWERS inputs for that  step.  After
+       steps  1 through 10 are done, step 11 can be run to assemble an ANSWERS
+       input file. ANSWERS can then be run using the inputs,  and  the  output
+       from  the simulation is captured and processed, as described under step
+       11.
+
+
+
+       SStteepp 11 SSeett mmaasskk,, rreeggiioonn,, aanndd rreessoolluuttiioonn
+
+
+       _M_a_p _i_n_p_u_t_: Watershed mask
+       _O_t_h_e_r _i_n_p_u_t_s_: Project resolution, project region (optional)
+       _D_e_s_c_r_i_p_t_i_o_n_: All raster values in the input mask map greater than  zero
+       will  be  used  to  create reclass rules to set the project MASK to the
+       watershed area. Each time the project is called, the MASK will be auto-
+       matically set. Project resolution is input in meters and it used to set
+       the size of the watershed elements to be used in  the  simulation.  The
+       part of this step attempts to find the minimal region needed to contain
+       the watershed mask at the given resolution.  A region  will  be  calcu-
+       lated  to  allow  at least a one-cell border around the watershed area.
+       This region is then presented in an input screen  (much  like  that  of
+       rr..rreeggiioonn)  for  editing or approval. After the project mask, region and
+       resolution are set, the information is recorded and will be reset auto-
+       matically each time the project is called.  This step will create a new
+       raster map in the user's current mapset enTITLEd _p_r_o_j_e_c_t _n_a_m_e>.ELEMENT.
+       This  map  will  act  as a reference to ANSWERS' methods of refering to
+       raster cells. Raster values of the map will  indicate  element  number,
+       with the category description giving row and column numbers.  If any of
+       the inputs in this step are subsequently reset, all  other  steps  that
+       may  have been completed will be marked with a status of "rerun", since
+       changing mask, resolution or region will require that inputs will  have
+       to be resampled.
+
+
+
+       SStteepp 22 CCaattaalloogguuee ssooiillss ppaarraammeetteerrss
+
+
+       _M_a_p _i_n_p_u_t_: Soils
+       _O_t_h_e_r  _i_n_p_u_t_:  Soils parameters, tile drainage coefficient, groundwater
+       release fraction.
+       _D_e_s_c_r_i_p_t_i_o_n_: This step prompts for the name of a soil map,  then  reads
+       the  map and lists all soil categories found in the watershed mask. For
+       each soil found in the  watershed,  ANSWERS  requires  values  for  the
+       parameters  listed  below.  The Project Manager facilitates preparation
+       parameters by input into a table.
+
+
+
+       +------------------------------------------------------------------------+
+       |Soil  Parameters  for  ANSWERS  (see  ANSWERS  Users  Manual  for more
+       details) |
+       +------------------------------------------------------------------------+
+       |1        total   porosity   (percent   pore   space  volume  of  soil)
+       |
+       |2             field        capacity        (percent        saturation)
+       |
+       |3           steady      state      infiltration     rate     (mm/hour)
+       |
+       |4       difference  between  steady  state  and  maximum  infiltration
+       |
+       |                                rate                         (mm/hour)
+       |
+       |5             exponent        in         infiltration         equation
+       |
+       |6            infiltration       control      zone      depth      (mm)
+       |
+       |7         antecedent    soil     moisture     (percent     saturation)
+       |
+       |8                                  USLE                            'K'
+       |
+       +------------------------------------------------------------------------+
+
+
+
+       After the soil parameters are input, a screen will prompt for groundwa-
+       ter release fraction and tile drainage coefficient, which will apply to
+       the  entire  watershed.   The  tile  drainage coefficient indicates the
+       design coefficient (mm/day) of tile drains in those areas designated as
+       having  tile  drainage.  The groundwater release fraction is measure of
+       the contribution of lateral groundwater movement or interflow to  total
+       runoff.
+
+
+       After  this  step  is  completed, it will provide an option to save the
+       entered parameters to a file or printer for reference.   ANSWERS  soils
+       inputs  will  then  be extracted and stored.  This step may be rerun to
+       change any of the information.  Previously entered information will  be
+       recalled and may be modified.
+
+
+
+       SStteepp 33 CCaattaalloogguuee llaanndd uussee aanndd ssuurrffaaccee ppaarraammeetteerrss
+
+
+       _M_a_p _i_n_p_u_t_: Land cover/use.
+       _O_t_h_e_r _i_n_p_u_t_: Land cover parameters
+       _D_e_s_c_r_i_p_t_i_o_n_:  For each category in the land use map found in the water-
+       shed, ANSWERS requires values for  the  parameters  listed  below.  The
+       Project  Manager facilitates preparation parameters by input into a ta-
+       ble.
+
+
+
+       +-------------------------------------------------------------------------+
+       |Land  Cover  Parameters  for  ANSWERS  (see  ANSWERS  Users Manual for
+       details) |
+       +-------------------------------------------------------------------------+
+       |1       short  (8  characters)  description of land use and management
+       |
+       |       (program will attempt to use map category description, if  any)
+       |
+       |2        mm   of   potential   rainfall  interception  by  land  cover
+       |
+       |3       percentage  of  surface  covered   by   specified   land   use
+       |
+       |4        oughness   coefficient   of  the  surface  (a  shape  factor)
+       |
+       |5       m  of  maximum  roughness  height  of  the   surface   profile
+       |
+       |6       Manning's  n  (a  measure  of  flow retardance of the surface)
+       |
+       |7      relative erosiveness (function of time and USLE  'C'  and  'P')
+       |
+       +-------------------------------------------------------------------------+
+
+
+
+       After this step is completed, it will provide an  option  to  save  the
+       entered  parameters  to a file or printer for reference.  ANSWERS cover
+       inputs will then be extracted and stored.  This step may  be  rerun  to
+       change  any of the information.  Previously entered information will be
+       recalled and may be modified.
+
+
+
+       SStteepp 44 IIddeennttiiffyy eelleevvaattiioonn--bbaasseedd iinnppuutt llaayyeerrss
+
+
+       _M_a_p _i_n_p_u_t_: Slope and aspect.
+       _D_e_s_c_r_i_p_t_i_o_n_: This step prompts for the  names  of  previously  prepared
+       maps  of slope and aspect for the project watershed. It is important to
+       note that the required format of slope and aspect maps vary  from  that
+       created  by the rr..ssllooppee..aassppeecctt program. Programs have been developed to
+       process an elevation surface map and create ANSWERS  slope  and  aspect
+       map.  The elevation map should be true elevations in meters. The eleva-
+       tion map can be "filtered" to remove "pits" and other  potential  prob-
+       lems  to ANSWERS with the rr..ffiillll..ddiirr program.  The rr..ddiirreecctt program can
+       be used to prepare an ANSWERS aspect map from the elevation layer  cre-
+       ated  by rr..ffiillll..ddiirr.  The rr..ssllooppee..aassppeecctt program can be used to prepare
+       an ANSWERS slope map from the elevation layer  created  by  rr..ffiillll..ddiirr.
+       ANSWERS  requires slope values which are percent multiplied by 10 (so a
+       slope map value of 35 indicated a slope of 3.5%).  The aspect map is  a
+       critical  input  to  ANSWERS,  since  it  defines the routing of runoff
+       through the watershed, and should  be  carefully  examined,  since  the
+       rr..ddiirreecctt  program  is unable to create flawless output. The dd..rraasstt..eeddiitt
+       programs have been developed to assist this manual inspection and edit-
+       ing  process.   When editing the flow direction map, pay careful atten-
+       tion to 1) cells on the watershed border, which all must flow into  the
+       watershed.  2)  cells  that  will  be  declared as "channels" must flow
+       directly from one to another (therefore it is suggested  that  channels
+       should  be  identified in conjunction with this step). 3) flow from two
+       cells must not point directly to each other (-><-)  or  otherwise  form
+       circuitous  routes.  In the final flow map, one should be able to start
+       at any cell in the watershed and follow the flow directions  from  cell
+       to cell until arriving at the outlet cell.
+
+
+
+       SStteepp 55 PPrreeppaarree rraaiinn ggaauuggee ddaattaa
+
+
+       _M_a_p _i_n_p_u_t_: Rain gauge areas (for multiple gauges)
+       _O_t_h_e_r _i_n_p_u_t_: Rain gauge data
+       _D_e_s_c_r_i_p_t_i_o_n_:  This  step  is designed to organize data used to describe
+       the precipitation event to be simulated. ANSWERS  permits  up  to  four
+       rain  gauges to be used, each of which will require a table of rainfall
+       data (time in minutes and rainfall intensity in millimeters per  hour).
+       Data  from at least one rain gauge are required. If more than one gauge
+       is used, you will need to prepare a raster map of the watershed area to
+       indicate which cells are to represented by a given gauge's data.
+
+
+       To  facilitate the modeling of a number of storms this step will prompt
+       for a rainfall event name. The data tables entered will  be  stored  in
+       the ANSWERS database under the event name.
+
+
+       Rain gauge data for ANSWERS consists two columns of numbers.  The first
+       is Time (in minutes) and the second is Rainfall Intensity (in mm/hour).
+       Decimal  values  will be rounded to the closest whole number.  To input
+       rain gauge data to the Project Manager, a file must first  be  prepared
+       with  rain  gauge  data.   If multiple gauges are to be used, one input
+       file is still used, data for each gauge are separated by  should  occur
+       sequentially  by  gauge; so that data for gauge 1 is first in the file,
+       data for gauge two is the second group of data, and so on.
+
+
+       Example rain gauge data input files:
+
+
+
+               +----------+------------------------------------------+
+               |one gauge |    two gauges                            |
+               +----------+------------------------------------------+
+               |  0    0  |  0          0                            |
+               | 10    3  | 11          1          data for gauge 1  |
+               | 20   10  | 25          7                            |
+               | 35   22  | -1 <----- delimiter                      |
+               | 55    9  |  0          0                            |
+               | 67    4  | 15          6          data for gauge 2  |
+               |100    0  | 10          4                            |
+               +----------+------------------------------------------+
+
+
+
+       This step will prompt to determine if multiple rain gauges  are  to  be
+       used. If so, it will prompt for the name of a map that represents areas
+       to be assigned to the given gauges. The number of categories and  their
+       value should match the number of rain gauges.  Next the program prompts
+       for the name of the rain gauge data file.  The program reads  the  file
+       and  displays what it found to the screen for approval. Having this, it
+       will create the appropriate ANSWERS input files.
+
+
+
+       SStteepp 66 IIddeennttiiffyy oouuttlleett cceellll
+
+
+       _M_a_p _i_n_p_u_t_: none
+       _O_t_h_e_r _i_n_p_u_t_: row and column number of watershed outlet element
+       _D_e_s_c_r_i_p_t_i_o_n_: ANSWERS needs to know the row and  column  number  of  the
+       element at the watershed outlet. To facilitate your finding this infor-
+       mation, The raster map .ELEMENT has been created.  The category  values
+       of  this  map are the sequentially numbered cells of the watershed. The
+       category descriptions are the cell's row and  column  number.  Using  a
+       tool  such as dd..wwhhaatt..rraasstt, the row and column number of the outlet cell
+       can be queried from the displayed element map.
+
+
+
+       SStteepp 77 SSppeecciiffyy aarreeaass wwiitthh ssuubbssuurrffaaccee ddrraaiinnaaggee
+
+
+       _M_a_p _i_n_p_u_t_: _A_r_e_a_s _w_i_t_h _s_u_b_s_u_r_f_a_c_e _d_r_a_i_n_a_g_e _(_o_p_t_i_o_n_a_l_)
+       _D_e_s_c_r_i_p_t_i_o_n_: This step offers a menu which allows the delineation of 1)
+       all  the  watershed  with subsurface drainage, 2) none of the watershed
+       with subsurface drainage, or 3) areas with subsurface  drainage  speci-
+       fied  with  a  raster  map (all elements with a value greater than zero
+       will be input to ANSWERS as  having  subsurface  drainage.   Note:  the
+       drainage  coefficient  for  areas with subsurface is set with the other
+       soils parameters in step 2. If "all" or "none" of the watershed is sim-
+       ulated  as having subsurface drainage, no input map is required; other-
+       wise a raster map is used to specify areas with subsurface drainage.
+
+
+
+       SStteepp 88 CCaattaalloogguuee cchhaannnneell ppaarraammeetteerrss
+
+
+       _M_a_p _i_n_p_u_t_: Channels
+       _O_t_h_e_r _i_n_p_u_t_: Channel width and roughness coefficient for each  category
+       of channel
+       _D_e_s_c_r_i_p_t_i_o_n_:  Watershed  cells  with  a  well-defined channel should be
+       defined to ANSWERS. ANSWERS  assumes  the  channel  is  rectangular  in
+       cross-section and is sufficiently deep to handle runoff.
+
+
+       To  prepare channel data for use with ANSWERS, the following is needed:
+       a raster map layer of the channels in the watershed and  a  description
+       of  width (meters) and roughness (Manning's "n") for each channel cate-
+       gory found in the layer.
+
+
+       It is suggested that the aspect map from Step 4 be created in  conjunc-
+       tion  with the channel map, since ANSWERS will abort operation if a one
+       channel element does not flow directly into  another  adjacent  channel
+       element.
+
+
+
+       SStteepp 99 DDeeffiinnee cchhaannnneell ssllooppeess
+
+
+       _M_a_p _i_n_p_u_t_: Channel slope
+       _D_e_s_c_r_i_p_t_i_o_n_: An optional input to ANSWERS is the slope of channels.  If
+       a channel slope input is not given, ANSWERS assumes the slope  for  the
+       channel is the same as the overland slope for the element.
+
+
+       If  desired,  a  raster map may be used to define channel slope values.
+       To do so, a raster map should be  prepared  with  category  values  for
+       channel  slopes  in  tenths  of  a percent (i.e. a category value of 31
+       would indicate a channel slope of 3.1 percent).
+
+
+       Note: Even though channel slopes are an optional input to ANSWERS, this
+       step must be run if only to say no map will be used.
+
+
+
+       SStteepp 1100 SSppeecciiffyy BBMMPP''ss iinn wwaatteerrsshheedd
+
+
+       _M_a_p  _i_n_p_u_t_:  Tile Outlet Terrace, Sedimentation Pond, Grassed Waterway,
+       and/or Field Borders.
+       _O_t_h_e_r _i_n_p_u_t_: Grassed waterway or field border width (meters)
+       _D_e_s_c_r_i_p_t_i_o_n_: This step provides a menu to prepare any or  none  of  the
+       four  structural  Best  Management Practices (BMPs) that ANSWERS recog-
+       nizes.  Many BMPs can be described to  ANSWERS  by  changing  variables
+       describing  the  surface  condition  of  the  soil. Practices which are
+       tillage-oriented, for example, are described in the soils and land  use
+       sections.  Gully structures such as a drop spillway may be simulated by
+       reducing channel slope. On the other hand, BMPs which are structural in
+       nature  require  a change in land use (row crop to grass for waterways,
+       for example).  ANSWERS recognizes four optional  BMP  structures.  Even
+       though  the  use of BMP structures is optional, this step still must be
+       run to verify this.  NOTE: Since ANSWERS will recognize one BMP  for  a
+       given  watershed  element,  the most effective BMP should be used.  The
+       following is a brief discussion of the BMPs:
+
+
+       1. ANSWERS Tile Outlet Terrace Assumptions:
+
+
+       - Trap efficiency of 90%
+       - Only lowermost terraces are described
+
+
+       Also, if a terrace exists only in a portion of an element, the  assump-
+       tion  is  made  that  all incoming flow is influenced by the BMP. Thus,
+       elements which have only a small portion of the practice  within  their
+       boundaries should not be given credit for the practice.
+
+
+       2. ANSWERS Sedimentation Pond Assumptions:
+
+
+       - Trap efficeincy of 95%
+       -  Only  ponds  in upland areas should be defined. In stream structures
+       are treated differently.
+
+
+       Also, if a pond exists only in a portion of an element, the  assumption
+       is made that all incoming flow is influenced by the BMP. Thus, elements
+       which have only a small portion of the practice within their boundaries
+       should not be given credit for the practice.
+
+
+       3. ANSWERS Grassed Waterway Assumptions:
+
+
+       -  The vegetated area with in the affected element is no longer subject
+       to any sediment detachment.
+       - The model deliberately prohibits deposition within the vegetation  of
+       a  grass  waterway,  since any waterway that effectively traps sediment
+       would soon fill and become ineffective.
+
+
+       For each category found in the layer, you will be prompted for width of
+       the waterway
+
+
+       4. ANSWERS Field Border Assumptions
+
+
+       -  The vegetated area with in the affected element is no longer subject
+       to any sediment detachment.
+
+
+       For each category found in the layer, you will be prompted for width of
+       the field border.
+
+
+
+       SStteepp 1111 PPrreeppaarree AANNSSWWEERRSS iinnppuutt aanndd rruunn ssiimmuullaattiioonn
+
+
+       _D_e_s_c_r_i_p_t_i_o_n_:  Steps  1-10 must have a status of "done" before this step
+       can be run. (Even steps for optional  inputs  must  be  run  before  an
+       ANSWERS input file can be completed.) Each of the prior steps will have
+       prepared their part of the ANSWERS input. The first  function  of  this
+       step is to compile all the parts together.  Once the input file is com-
+       plete, the simulation can be  run.   (NOTE:  r.answers  will  call  the
+       ANSWERS  program,  which  must  be  compiled as a part of the r.answers
+       installation. The source code for ANSWERS should be part of  the  soft-
+       ware  distributed with r.answers.)  The error messages that ANSWERS may
+       send to "standard output" are captured  to  a  file  by  r.answers  and
+       displayed.   If  none,  a message to that effect will be printed to the
+       screen (although this doesn't mean that  the  simulation  ran  entirely
+       error-free).  The  primary  output  of  the  simulation  is captured to
+       another file, then processed to separate it into component parts of
+
+
+
+       1) _t_e_x_t - the verbose reiteration
+              of the inputs and summary of watershed characteristics. This  is
+              useful  for  checking  to  insure  that  inputs  were read in by
+              ANSWERS properly; 2) _o_u_t_l_e_t _h_y_d_r_o_g_r_a_p_h _d_a_t_a of rainfall,  runoff
+              and  sediment  yield  and  concentration.  If  these data are in
+              order, they will be processed into  a  format  readable  by  the
+              dd..lliinneeggrraapphh program for display; 3) _i_n_d_i_v_i_d_u_a_l _e_l_e_m_e_n_t _n_e_t _s_e_d_i_-
+              _m_e_n_t_a_t_i_o_n showing sediment loss or deposition, if any, for  each
+              raster element in the watershed.
+
+
+       Also,  _s_e_d_i_m_e_n_t  _d_e_p_o_s_i_t_i_o_n _i_n _c_h_a_n_n_e_l _e_l_e_m_e_n_t_s.  This step will prompt
+       for names to use for new watershed maps it will  create  by  extracting
+       these data from the output. If the simulation event did not create sed-
+       iment loss or deposition, or channel deposition for the  scenario,  the
+       given  map  will  not be created.  To find out how to access the output
+       files, see the description of step 12, below.
+
+
+
+       SStteepp 1122 MMiisscceellllaanneeoouuss CCoommmmaanndd MMeennuu
+
+
+       This step calls a menu that
+
+
+
+       1) allows access to the project files in the
+              project database and to 2) a function that prepares a summary of
+              the project's current status.
+
+
+       The  project database is where rr..aannsswweerrss stores all the inputs, output,
+       and other non-map data associated with the  project.  See  the  "FILES"
+       section  (below)  for  more  information. There are two sections to the
+       project data, since rainfall data are kept  in  a  separate  directory.
+       When  using  this  step to access database files, the program will list
+       both the project data and the rain data files, and  ask  which  section
+       you  wish to access. Next you will be prompted for the name of the file
+       to access. This request will be turned over to the "file  handler  pro-
+       gram"  which  facilitates  sending  a  file  to  the screen, copying to
+       another file, or printing.
+
+
+       The project status function available under step 12 creates  a  helpful
+       summary  of  the  project, and then passes control to the "file handler
+       program" for display, copying to a file, or printing.
+
+
+
+FFIILLEESS
+       Index of ANSWERS on GRASS database files
+
+
+       Each project  will  create  and  use  the  following  files  in  $LOCA-
+       TION/answers//data.  For the most part, there isn't much to see, unless
+       something is not working right. If that is the case, The first thing to
+       check  would  be  files  listed  here under the Output section or Input
+       file. Furthermore, attempting to fix a problem by editing any of  these
+       files  could  prove  to  have  unpredictable results. Once a problem is
+       identified (with the input maps or parameters,  most  likely)  fix  the
+       input  maps if need be, run r.answers again to make any changes, such a
+       using a different map or correcting parameters. Remember that if a  map
+       is changed the menu step that uses it must be run again to resample the
+       inputs. Run step 11 again  to  create  a  new  input  file  and  re-run
+       ANSWERS.
+
+
+
+
+       General project data
+       reclass        reclass rules to create project MASK
+       region          project region coordinates
+
+       AANNSSWWEERRSS IInnppuutt ffiillee
+
+
+       answers_input   file created to use as input to ANSWERS
+
+
+       AANNSSWWEERRSS OOuuttppuutt
+
+
+       When  ANSWERS  is run, output from stdout is sent to answers_output and
+       anything that may go to stderr is captured in answers_error. After that
+       the  output  is cut into sections. (if something unpredictable happened
+       when ANSWERS ran, then the output and the files extracted from  it  may
+       be  garbled;  reading  answers_output  and  answers_error  may  provide
+       clues).
+       answers_output  complete output from running answers
+       answers_error   errors captured when answers is run
+       out_chnl        channel deposition data
+       out_sediment    element sediment deposition/loss data
+       out_text        verbose input reiteration
+       out_hydro       outlet hydrograph data
+
+       The outlet hydrograph data is broken into 5 files to use  as  input  to
+       dd..lliinneeggrraapphh
+       hydro_time      time increments of simulation (minutes)
+       hydro_rain      rainfall (mm/h)
+       hydro_runoff    runoff at outlet (mm/h)
+       hydro_sed1      cumulative sediment at outlet (kg)
+       hydro_sed2      sediment concentration in runoff (mg/l)
+
+       AANNSSWWEERRSS EElleemmeenntt ddaattaa
+
+
+       Element  data  files  are extracted from input maps.  Each line is data
+       for a watershed cell element.  When answers  input  is  created,  these
+       files are used to create the element data section.
+       in_row_col      watershed row and column number
+       in_soil         soil type
+       in_cover        land use
+       in_elev         slope and aspect
+       in_chnl         channel element data
+       in_rain         rain gauge number
+       in_tile         subsurface drainage flag
+
+       AANNSSWWEERRSS PPrreeddaattaa
+
+
+       The  following  files  are  used  to  form the "predata" section of the
+       answers input file.
+       chnl_predata    description of channel types
+       cover_predata   description of cover parameters
+       soil_predata    description of soil parameters
+       rain_predata    rain gauge data
+
+        PPaarraammeetteerr ddaattaa
+
+
+       These files are used by the project manager  to  "remember"  parameters
+       used to create the respective predata files, allowing the parameters to
+       be read back by the program for editing.
+       chnl_data       channel parameters
+       cover_data      cover parameters
+       soil_data       soil parameters
+
+
+SSEEEE AALLSSOO
+       Answers Manual
+
+       Answers Exercises
+
+       Demonstartion scripts in the answer source tree
+
+
+       _d_._I_N_T_R_O
+
+       _d_._r_a_s_t_._e_d_i_t
+
+       _d_._r_a_s_t_._n_u_m
+
+       _d_._w_h_a_t_._r_a_s_t
+
+       _r_._s_l_o_p_e
+
+       _r_._f_i_l_l_._d_i_r
+
+       _r_._d_i_r_e_c_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Chris Rewerts, Agricultural Engineering, Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.answers(1)

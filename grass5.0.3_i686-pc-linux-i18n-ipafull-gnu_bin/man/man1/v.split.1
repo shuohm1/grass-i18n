@@ -1,0 +1,46 @@
+v.split(1)                    Grass User's Manual                   v.split(1)
+
+
+
+NNAAMMEE
+       vv..sspplliitt  - Split lines to line segments.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..sspplliitt
+       vv..sspplliitt hheellpp
+       vv..sspplliitt iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ttyyppee==_t_y_p_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._s_p_l_i_t  splits  lines to line segments. Attributes are not written for
+       each new segment (dig_att file is only copy of the input dig_att file).
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing vector map.
+
+       oouuttppuutt==_n_a_m_e
+              Name of a new vector file.
+
+       ttyyppee==_t_y_p_e
+              Select line or area boundary.
+              Options:  line, boundary (multiple allowed)
+              Default: line
+
+
+NNOOTTEESS
+       _v_._s_u_p_p_o_r_t must also be run on the resultant vector oouuttppuutt file to build
+       the needed topology information stored under the user's _d_i_g___p_l_u_s direc-
+       tory.
+
+SSEEEE AALLSSOO
+       _v_._s_u_p_p_o_r_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Radim Blazek
+
+
+
+GRASS 5.0                                                           v.split(1)

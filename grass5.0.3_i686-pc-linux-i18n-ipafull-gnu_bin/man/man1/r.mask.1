@@ -1,0 +1,98 @@
+r.mask(1)                     Grass User's Manual                    r.mask(1)
+
+
+
+NNAAMMEE
+       rr..mmaasskk  - Establishes or removes the current working mask.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..mmaasskk
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _r_._m_a_s_k program allows the user to block out certain areas of a map
+       from analysis, by "hiding" them from sight  of  other  GRASS  programs.
+       This  is  done by establishing a mask.  While a mask exists, most GRASS
+       programs will operate only on data falling inside the masked area,  and
+       ignore any data falling outside of the mask.
+
+
+       Because  the mask is actually only a reclass file called "MASK" that is
+       created when the user identifies a mask using _r_._m_a_s_k, it can be copied,
+       renamed,  removed,  and  used in analyses, just like other GRASS raster
+       map layers.  The user should be aware that  a  mask  remains  in  place
+       until  a  user renames it to something other than "MASK", or removes it
+       using _r_._m_a_s_k or _g_._r_e_m_o_v_e.
+
+
+       _r_._m_a_s_k provides the following options:
+             1 Remove the current mask
+             2 Identify a new mask
+            RETURN Exit from program
+
+       The user establishes a new mask by choosing option (2).  The user  will
+       be  asked  to name an existing raster map layer from among those avail-
+       able in the current mapset search path.  Once done, the user is shown a
+       listing of this map's categories, and is asked to assign a value of "1"
+       or "0" to each map category.  Areas assigned category  value  "1"  will
+       become  part of the mask's surface, while areas assigned category value
+       "0" will become "no data" areas in the MASK file.
+
+
+       If a category is not assigned category value "1" it will  automatically
+       be  assigned  the  category  value "0" in the resulting MASK file.  Any
+       cells falling in category "0" will fall outside the newly formed  mask,
+       and  their  presence will be ignored by GRASS programs run later on, as
+       long as the MASK file remains in place.
+
+NNOOTTEESS
+       The above method for specifying a  "mask"  may  seem  counterintuitive.
+       Areas  inside  the  mask are not hidden; areas outside the mask will be
+       ignored until the MASK file is removed.
+
+
+       This program actually creates a raster map layer (reclass type)  called
+       _M_A_S_K,  which  can  be manipulated (renamed, removed, copied, etc.) like
+       any other raster map layer.
+
+
+       Somewhat similar program functions to those performed by _r_._m_a_s_k can  be
+       done using _r_._m_a_p_c_a_l_c, _g_._r_e_g_i_o_n, and other programs.
+
+
+       This program can only be run interactively.
+
+
+       Note that some programs, like _r_._s_t_a_t_s, have options that allow the user
+       to see the effects of the current mask  without  removing  the  current
+       mask. See, for example, use of the --mm option for _r_._s_t_a_t_s.
+
+SSEEEE AALLSSOO
+       _g_._c_o_p_y
+
+       _g_._r_e_g_i_o_n
+
+       _g_._r_e_m_o_v_e
+
+       _g_._r_e_n_a_m_e
+
+       _r_._c_o_m_b_i_n_e
+
+       _r_._i_n_f_e_r
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._r_e_c_l_a_s_s
+
+       _r_._s_t_a_t_s
+
+       _r_._w_e_i_g_h_t
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            r.mask(1)

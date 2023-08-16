@@ -1,0 +1,81 @@
+r.to.pg(1)                    Grass User's Manual                   r.to.pg(1)
+
+
+
+NNAAMMEE
+       _r_._t_o_._p_g  - exports GRASS raster map to PostgreSQL database into a three
+       column table.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _S_c_r_i_p_t_)
+
+
+
+SSYYNNOOPPSSIISS
+       rr..ttoo..ppgg
+
+       rr..ttoo..ppgg hheellpp
+
+       rr..ttoo..ppgg _r_a_s_t_e_r_m_a_p [_t_a_b_l_e___n_a_m_e]
+
+
+
+   DDEESSCCRRIIPPTTIIOONN
+       The _r_._t_o_._p_g program exports GRASS raster  map  to  PostgreSQL  database
+       into  a  three  column  table.   A connection to PostgreSQL database is
+       needed. The new table  will  be  created  in  the  currently  connected
+       database, if the table name does not exist - please check first.
+
+
+
+PPaarraammeetteerrss::
+       rraasstteerrmmaapp
+              Name of an existing raster map to be exported to PostgreSQL.
+
+       ttaabbllee__nnaammee
+              Name  of  new  table to create in currently connected PostgreSQL
+              database _(_D_e_f_a_u_l_t _i_s _r_a_s_t_e_r_m_a_p _n_a_m_e_)
+
+
+
+
+EEXXAAMMPPLLEE
+       A PostgreSQl table with three columns will be created:
+
+       ID   |  column_name |    label
+       -------------------------------------
+       1    |   45.2525    |    text
+       2    |   45.5       |  label text
+       3    |   44.124         |    text
+       4    |   46         |     text
+
+       _w_i_t_h_:
+
+       id:       Cell ID                  (int8)
+       column_name:   Value of rastermap cells (float)
+       label:         Category label           (text)
+
+
+
+
+
+KKNNOOWWNN BBUUGGSS
+       The number check of imported values sometimes does  not  work  properly
+       because of some shell problems with 'asterix'(*).
+
+
+
+SSEEEE AALLSSOO
+       _d_b_._c_o_n_n_e_c_t
+
+
+
+AAUUTTHHOORR
+       Markus Neteler
+
+       category and ID  support by Otto Dassau
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_7_/_2_7
+
+
+
+GRASS 5.0                                                           r.to.pg(1)

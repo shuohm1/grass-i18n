@@ -1,0 +1,68 @@
+d.pan(1)                      Grass User's Manual                     d.pan(1)
+
+
+
+NNAAMMEE
+       dd..ppaann   -  Allows the user to change the current geographic region set-
+       tings interactively, with a mouse.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ppaann
+       dd..ppaann hheellpp
+       dd..ppaann     [--jj]     [rraasstt==_n_a_m_e[,_n_a_m_e,...]]      [vveeccttoorr==_n_a_m_e[,_n_a_m_e,...]]
+       [ssiittee==_n_a_m_e[,_n_a_m_e,...]]  [zzoooomm==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._p_a_n  allows  the  user to interactively adjust the settings (zoom and
+       pan) of the current geographic region using a pointing device such as a
+       mouse.   Like _g_._r_e_g_i_o_n, _d_._p_a_n re-defines the settings of the geographic
+       region.  However, _d_._p_a_n allows the user to change  the  current  region
+       settings interactively, by re-centering/zooming the current map(s). The
+       graphics display is updated automatically.
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --jj     Just redraw given maps using default colors.
+
+
+   PPaarraammeetteerr::
+       rraasstt==_n_a_m_e[,_n_a_m_e,...]
+              Name of raster map(s)
+
+       vveeccttoorr==_n_a_m_e[,_n_a_m_e,...]
+              Name of vector map(s)
+
+       ssiittee==_n_a_m_e[,_n_a_m_e,...]
+              Name of site map(s)
+
+       zzoooomm==_v_a_l_u_e
+              magnification: >1.0 zooms in, <1.0 zooms out
+
+              options: 0.001-1000.0
+
+              default: 1.0
+
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._e_r_a_s_e
+
+       _d_._r_a_s_t
+
+       _d_._v_e_c_t
+
+       _g_._r_e_g_i_o_n
+
+AAUUTTHHOORR
+       Unkown.
+
+       Improvements to auto-redraw maps displayed in GRASS monitor  by  Huidae
+       Cho and Markus Neteler
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                             d.pan(1)

@@ -1,0 +1,208 @@
+imagery(1)                    Grass User's Manual                   imagery(1)
+
+
+
+NNAAMMEE
+       iimmaaggeerryy - Description of GRASS image processing functions.
+
+IIMMAAGGEE PPRROOCCEESSSSIINNGG IINN GGRRAASSSS
+       The  following  discussion  is  intended to provide a quick overview of
+       image processing in GRASS.  Some concepts and some hints are  provided.
+       For  a  more complete discussion and description of image processing in
+       GRASS see _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g.
+
+EEXXTTRRAACCTTIINNGG IIMMAAGGEERRYY DDAATTAA IINNTTOO AA GGRRAASSSS DDAATTAABBAASSEE
+       Remotely sensed images are captured for computer processing by  filter-
+       ing  radiation  emanating  from  the image into various electromagnetic
+       wavelength bands, converting the overall intensity  for  each  band  to
+       digital  format,  and  storing  the values on computer compatible media
+       such as magnetic tape.
+
+
+       The GRASS programs which extract image data from magnetic tape can read
+       LANDSAT  multi-spectral  scanner  (MSS) data (_i_._t_a_p_e_._m_s_s), LANDSAT the-
+       matic mapper (TM) data, (_i_._t_a_p_e_._t_m), and other formats, such as scanned
+       aerial photography or SPOT satellite data (_i_._t_a_p_e_._o_t_h_e_r).  They extract
+       the band data into raster files in a GRASS database.  Each band becomes
+       a  separate raster file, with standard GRASS map layer support, and can
+       be displayed and analyzed just like any other raster file.
+
+UUNNRREEGGIISSTTEERREEDD DDAATTAA
+       The band data extracted from tapes are assumed to be unregistered data.
+       This  means that the GRASS software does not know the earth coordinates
+       for pixels in the image.  The only coordinates known  at  the  time  of
+       extraction  are  the  columns and the rows relative to the way the data
+       was stored on the tape.
+
+
+       Data can only be extracted into a database which has an x,y  coordinate
+       system, and not into a projected database (e.g., a UTM database).  This
+       is to prevent users from mixing the unregistered data  with  registered
+       data  in  the  same database.  The GRASS system comes with the database
+       _i_m_a_g_e_r_y which is an x,y database.  New  databases  can  be  created  by
+       users  during  GRASS  startup.  See the _g_._h_e_l_p section on "Setting Up a
+       GRASS Database" for instructions on creating a new database.
+
+CCEELLLL HHEEAADDEERRSS
+       The cell headers for the band files in these x,y databases are  set  to
+       reflect  the  rows  and columns of the extracted data.  The north-south
+       values represent the rows,  and  the  east-west  values  represent  the
+       columns.  The resolution of the unregistered data is set to 1.
+
+
+       Note,  however,  that  while  the row numbers increase from 1 to n from
+       north to south, GRASS requires that the values of  the  user's  current
+       geographic  region  decrease from north to south.  The solution adopted
+       was to represent the rows with negative values (i.e., -1 to -n).   This
+       allows  them  to decrease from north to south and, if the minus sign is
+       ignored, to reflect the row numbers.
+
+
+       The cell headers for the layers in x,y databases are set  so  that  the
+       coordinates  at  the  center  of each pixel exactly reflect the row and
+       column for that pixel.  The northern edge is set to 0.5 less  than  the
+       first  row, the southern edge 0.5 larger than the last row, the west to
+       0.5 less than the first column, and the east to  0.5  larger  than  the
+       last  column.  When the image is displayed on the graphics monitor, the
+       _d_._w_h_e_r_e command can be used to report row and column values.
+
+
+       For example, suppose rows 100-500 and columns  200-800  are  extracted.
+       Then  the cell headers for the extracted data will be given the follow-
+       ing values:
+       north:    -99.5
+       south:    -500.5
+       west:     199.5
+       east:     800.5
+       ns res:   1.0
+       ew res:   1.0
+
+
+
+RREEGGIIOONN AANNDD MMAASSKK
+       Since the data layers are given  essentially  contrived  cell  headers,
+       users  must  exercise  extra care when analyzing or displaying unregis-
+       tered images.  It is very easy for the  user's  GRASS  region  to  have
+       absolutely  no  relationship to the data he is trying to display.  This
+       could happen when the region is set for data extracted from  one  tape,
+       but  the  analysis is attempted on data extracted from another tape.  A
+       good habit to develop is to set the region to exactly match one of  the
+       band files.  This can be done using the GRASS _g_._r_e_g_i_o_n command.
+
+
+       Another  pitfall is to have a mask set to a band file from one data set
+       while trying to read another.  Even if the region is set properly,  the
+       data  will  appear  to  be  all no-data since the mask will effectively
+       knock out any data.  Be sure that the mask is either set to  a  related
+       data  layer  or  not set at all.  See _r_._m_a_s_k for information on setting
+       and unsetting the mask.
+
+
+       Please note that the tape extraction routines set your database  region
+       to match the rows and columns of the data that is extracted.
+
+GGRROOUUPPSS
+       Since  the  band  files are individual raster files, it is necessary to
+       have a mechanism to maintain a relationship between band files from the
+       same  image  as  well as raster files derived from the band files.  The
+       GRASS _g_r_o_u_p data structure accomplishes this goal.  The group is essen-
+       tially  a  list of names of raster files that belong in the group.  For
+       user convenience, groups are also created (and  updated)  by  the  tape
+       extraction routines.  The tape extraction programs ask the user to sup-
+       ply a group name as well as to specify the bands to be extracted.  Sup-
+       pose that the user extracts bands 1, 2, and 3 into a group called _n_h_a_p.
+       Then the band files will become the raster files  _n_h_a_p_._1,  _n_h_a_p_._2,  and
+       _n_h_a_p_._3  and the group _n_h_a_p will list these 3 raster files as members of
+       the group.
+
+
+       Groups can also be created and modified by the  user  using  the  GRASS
+       command _i_._g_r_o_u_p_.
+
+IIMMAAGGEE RREEGGIISSTTRRAATTIIOONN AANNDD RREECCTTIIFFIICCAATTIIOONN
+       Image  registration and image rectification is the process of associat-
+       ing earth coordinates with pixels on the image and then converting  the
+       unregistered raster files to raster files in a projected database.
+
+
+       Image  registration  (_i_._p_o_i_n_t_s)  is  applied to a group, rather than to
+       individual raster files.  The control points are stored in  the  group,
+       allowing  all  related  band  files to be registered in one step rather
+       than individually.
+
+
+       Image rectification (_i_._r_e_c_t_i_f_y) is applied to individual raster  files,
+       with the control points for the group used to control the rectification
+       and the group target (_i_._t_a_r_g_e_t) used to specify the database where  the
+       rectified layer will live.
+
+IIMMAAGGEE CCLLAASSSSIIFFIICCAATTIIOONN
+       Image  classification methods process all or a subset of the band files
+       as a unit.  Spectral signatures for the image are generated (_i_._c_l_u_s_t_e_r)
+       and then used to produce a landcover map (_i_._m_a_x_l_i_k).
+
+
+       The  signatures  must be associated only with the raster files actually
+       used in the analysis. This means that with a group  _s_u_b_g_r_o_u_p_s  must  be
+       created (_i_._g_r_o_u_p) which list the band files to be grouped for classifi-
+       cation purposes.  The signatures are stored with the subgroup.
+
+
+       Note that multiple subroups can be created within a group.  This allows
+       different classifications to be run with different combinations of band
+       files.
+
+
+       Also note that raster files  produced  by  the  classification  process
+       (_i_._m_a_x_l_i_k) are automatically listed as part of the group.
+
+RREECCTTIIFFIIEEDD VVSS.. UUNNRREECCTTIIFFIIEEDD AANNAALLYYSSIISS
+       There  are two possible routes for processing image data.  The first is
+       to register the group (_i_._p_o_i_n_t_s), perform the analyses on the  unrecti-
+       fied  band  data  (_i_._m_a_x_l_i_k), and then rectify the results (_i_._r_e_c_t_i_f_y).
+       The second is to register the group (_i_._p_o_i_n_t_s), rectify the  band  data
+       (_i_._r_e_c_t_i_f_y), then run analyses on the rectified band data in the target
+       location (_i_._r_e_c_t_i_f_y).  Both routes are  permissible  in  GRASS.   Users
+       will  most  likely prefer the first.  The second route requires leaving
+       GRASS and re-running GRASS under the target  location.   It  also  will
+       require  that a group be created to hold the rectified band files since
+       _i_._r_e_c_t_i_f_y does not create or modify groups.   Also,  spatial  filtering
+       may  not  be  as effective on rectified data since the rectification of
+       the data requires resampling the original data.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g
+
+
+       _d_._w_h_e_r_e
+
+       _g_._r_e_g_i_o_n
+
+       _i_._c_l_u_s_t_e_r
+
+       _i_._g_r_o_u_p
+
+       _i_._m_a_x_l_i_k
+
+       _i_._p_o_i_n_t_s
+
+       _i_._r_e_c_t_i_f_y
+
+       _i_._t_a_p_e_._o_t_h_e_r
+
+       _i_._t_a_p_e_._m_s_s
+
+       _i_._t_a_p_e_._t_m
+
+       _i_._t_a_r_g_e_t
+
+       _r_._m_a_s_k
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           imagery(1)

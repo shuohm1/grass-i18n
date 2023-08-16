@@ -1,0 +1,153 @@
+v.build.polylines(1)          Grass User's Manual         v.build.polylines(1)
+
+
+
+NNAAMMEE
+       _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s  - Build polylines from lines.
+
+       _(_G_R_A_S_S Vector Program)
+
+SSYYNNOOPPSSIISS
+       vv..bbuuiilldd..ppoollyylliinneess
+
+       vv..bbuuiilldd..ppoollyylliinneess hheellpp
+
+       vv..bbuuiilldd..ppoollyylliinneess  [--aaccooqq] iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  [ttyyppee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s   builds  polylines from the lines in a binary vector
+       file.  It outputs the polylines in either binary or ASCII  vector  for-
+       mat, and if requested, copies the attribute and category files from the
+       original file.
+
+
+       A line is a single straight line segment defined by one start node, one
+       end  node  and no other nodes.  A polyline is also defined by one start
+       node, one end node and no other nodes, but is made of two or more  con-
+       secutive  straight  line  segments.   The  connections between the con-
+       stituent line segments of a polyline do not appear as nodes in the vec-
+       tor map.
+
+
+       Polylines  provide  the most appropriate representation of curved lines
+       when it is important that nodes serve to define  topology  rather  than
+       geometry.   Curved  lines are usually digitized as polylines, but these
+       are sometimes broken into their constituent straight line segments dur-
+       ing  conversion from one data format to another.  _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s
+        can  be used to rebuild such broken polylines.
+
+
+
+OOPPTTIIOONNSS
+       The  program  can  be run either non-interactively or interactively. To
+       run _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s
+        non-interactively, the user must specify _i_n_p_u_t  and _o_u_t_p_u_t  file names
+       on the command line.  The line  _t_y_p_e  and flags are optional.
+
+
+       To  run  _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s   interactively  the user should simply type
+       vv..bbuuiilldd..ppoollyylliinneess
+        on the command line, in which case the program will prompt for parame-
+       ter  values  using the standard GRASS interface described in the manual
+       entry for _p_a_r_s_e_r .
+
+
+
+
+       FFllaaggss::
+
+       --aa  Make the _o_u_t_p_u_t  file an ASCII vector map instead of a binary  vec-
+           tor map.
+
+       --cc  Copy  the  attribute  (`dig_att')  and  category (`dig_cats') files
+           associated with the _i_n_p_u_t  file to new files with the _o_u_t_p_u_t   file
+           name.   You  should  set  this  flag if you wish to retain category
+           information in the new binary file.
+
+       --oo  Silently overwrite the _o_u_t_p_u_t  file if it  exists  in  the  current
+           mapset. When this flag is not set _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s  will refuse to
+           create the  _o_u_t_p_u_t  file if a file  of  the  same  name  exists  in
+           either the `dig' or the `dig_ascii' mapset elements.
+
+       --qq  Run (relatively) quietly.  Specifically, do not provide information
+           (including warnings) about each polyline.
+
+
+
+       PPaarraammeetteerrss::
+
+       iinnppuutt==_n_a_m_e
+           The name of a binary vector map layer containing lines (and  possi-
+           bly some polylines).
+
+       oouuttppuutt==_n_a_m_e
+           The  name  of  the  ASCII vector map to be created in the dig_ascii
+           mapset  element.
+
+       ttyyppee==_n_a_m_e
+           The type of each new polyline can be set from the  _i_n_p_u_t   map,  or
+           alternatively  all  new  polylines  can  be  bulk labeled as either
+           lines, area edges, or points.
+
+           Options: source, line, area, point.
+
+
+NNOOTTEESS
+       For  full  functionality  _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s   requires  _v_._s_u_p_p_o_r_t   and
+       _v_._i_n_._a_s_c_i_i .
+
+
+       If  the  lines  that  make  up  a polyline are of different types, then
+       _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s
+        will set the type from the first constituent line.   _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s
+       will issue a warning unless the flag _-_q  has  been set.  It is possible
+       to keep a list of all such warnings by redirecting  standard output  to
+       a file.
+
+
+       If  the  lines  that make up a polyline have different attribute values
+       then _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s  will set the attribute value of the polyline to
+       that  of  the last line (this is the behaviour of  _v_._s_u_p_p_o_r_t , which is
+       used to assign the attribute values).  Any warnings issued by _v_._s_u_p_p_o_r_t
+       will be visible unless the flag _-_q  has been set.
+
+
+       _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s  correctly handles _i_n_p_u_t  maps containing lines, area
+       edges and points.  Lines and area edges will be converted to  polylines
+       of  the desired type.  Areas are only guaranteed to be preserved if the
+       constituent lines of the polylines that define them are all area  edges
+       in   the  input  map. Points will remain points provided that _t_y_p_e  has
+       been set to `source'.  It is possible to convert lines and  area  edges
+       to points or vice versa, but this is rarely useful.
+
+
+       Use _v_._i_m_p_o_r_t  to convert an ASCII _o_u_t_p_u_t  map to a binary vector map.
+
+
+
+SSEEEE AALLSSOO
+       _v_._i_m_p_o_r_t, _v_._s_u_p_p_o_r_t, _v_._i_n_._a_s_c_i_i, _p_a_r_s_e_r
+
+
+
+AACCKKNNOOWWLLEEDDGGEEMMEENNTTSS
+       This  program  was  written  during the author's tenure of a Leverhulme
+       Special Research Fellowship at University College London.
+
+
+
+AAUUTTHHOORR
+       Mark Lake, Institute of Archaeology, University College London.
+
+
+
+BBUUGGSS
+       Please email mark.lake@ucl.ac.uk if you find any bugs.
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                 v.build.polylines(1)

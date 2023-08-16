@@ -1,0 +1,121 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      02.02.bkup
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    Setting up a GRASS Database: LOCATIONs and MAPSETs
+  </CENTER>
+    <P>Each time you enter GRASS, you will be asked to select
+a &quot;current <A HREF="./../../../../documents/html/help/16.glossary/loc.def.html">location</A>&quot; and &quot;current <A HREF="./../../../../documents/html/help/16.glossary/mapset.def.html">mapset</A>&quot; with which to work,
+and to name the &quot;<A HREF="./../../../../documents/html/help/16.glossary/database.def.html">database</A>&quot; directory in which this location
+and mapset are stored.  To see a sample of the initial entry screen in
+GRASS, select <A HREF="./../../../../documents/html/help/02.db.setup/02.02.1.grmenu.html">GRASS Entry Screen</A>.
+    <P>While in GRASS, any data that the user creates are stored under the
+user's &quot;current mapset&quot;.  However, the user may copy, and otherwise use,
+data stored under any of the &quot;mapset&quot; subdirectories of the user's
+&quot;current location&quot;.  The user may not destroy or alter data stored under
+mapsets other than the &quot;current mapset&quot;.
+    <P>If you wish to create a new GRASS database location, simply assign names
+to the LOCATION and MAPSET, and enter the full pathname of the main
+database directory in which your data will be stored, on the GRASS Entry
+Screen.  Because the &quot;LOCATION&quot; and &quot;MAPSET&quot; will become the names of the
+<A HREF="./../../../../documents/html/help/16.glossary/unix.def.html">UNIX</A> directories in which your data are stored, you must assign them
+valid UNIX file names.
+    <P>If we choose a &quot;location&quot; called &quot;ft.hood&quot; that did not previously exist,
+GRASS will show us a screen that lists already existing locations, and then
+asks us to supply information for the new location &quot;ft.hood&quot;:
+    <P>**************************************************************************
+To create a new LOCATION, you will need the following information:
+    <P>1. The coordinate system for the database
+
+  <CENTER>
+    x,y (for imagery and other unreferenced data)
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      UTM
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    State Plane
+  </CENTER>
+
+  <CENTER>
+    Latitude-Longitude
+  </CENTER>
+2. The zone for the database
+
+  <CENTER>
+    (except for x,y and Latitude-Longitude databases)
+  </CENTER>
+3. The coordinates of the area to become the default region
+
+  <CENTER>
+    and the grid resolution of this region
+  </CENTER>
+4. A short, one-line description or title for the location
+    <P>Do you have all this information for location &lt;ft.hood&gt; ? (y/n)
+**************************************************************************
+    <P>After gathering this information together, we enter &quot;y&quot; at the prompt.
+GRASS then asks us to enter the coordinate system to be used for the new
+location, from the choices shown above.  If appropriate, GRASS will next
+prompt the user to enter the zone in which data under his mapset will lie.
+    <P>The user will also be prompted to enter a one-line description of the
+location (e.g., &quot;Fort Hood, Texas&quot;).  This description will be saved in
+the special file named &quot;MYNAME&quot; and stored under the &quot;PERMANENT&quot; mapset
+under the new location &quot;ft.hood&quot;.  It will be assumed to pertain
+to all mapsets under the &quot;ft.hood&quot; location directory.
+    <P>After this, the user is asked to define default geographic region settings.
+This information will be saved in the special file named &quot;DEFAULT_WIND&quot;
+and stored under the &quot;PERMANENT&quot; mapset under the new location &quot;ft.hood&quot;.
+Any mapset stored under this location (&quot;ft.hood&quot;) will default to use
+of the geographic boundaries and cell resolutions shown in the
+&quot;DEFAULT_WIND&quot; file IF the mapset does not contain a file called &quot;WIND&quot;
+with these settings.  These geographic boundaries should be large enough
+to encompass all of the user's Ft. Hood data.
+The user can modify the WIND file containing these settings under his own
+mapset later, in GRASS, as necessary.  For further information on the
+default geographic region, see <A HREF="./../../../../documents/html/help/02.db.setup/02.04.region.html">Defining the Geographic Region</A>.
+    <P>After entering the geographic boundaries and cell resolutions of our data
+set, we press the &quot;ESC&quot; (escape) key to save this information and continue.
+    <P>GRASS then asks the user about the mapset he wishes to create.  After the
+user enters this information, the &quot;GRASS&quot; prompt will appear, signalling
+that the user's new GRASS location and mapset directories are set up
+and GRASS is ready to go.
+    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

@@ -1,0 +1,66 @@
+s.univar(1)                   Grass User's Manual                  s.univar(1)
+
+
+
+NNAAMMEE
+       ss..uunniivvaarr  - Univariate statistics for a GRASS sites list.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..uunniivvaarr
+       ss..uunniivvaarr hheellpp
+       ss..uunniivvaarr [--aaggllqq] ssiitteess==_n_a_m_e [[ffiieelldd==_v_a_l_u_e]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._u_n_i_v_a_r   calculates  univariate  statistics  of  sites  lists.   This
+       includes the number of sites, mean, standard deviation, coefficient  of
+       variation,  mininum,  first quartile, median, third quartile, and maxi-
+       mum.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --aa     Use all sites found in the named _s_i_t_e_s file, rather than  limit-
+              ing  output  to  sites  falling  within  the  current geographic
+              region.
+
+       --gg     Print  the  statistics  in  shell  script  style   (similar   to
+              _g_._r_e_g_i_o_n).
+
+       --ll     Use  site  descriptions  (category  labels) for z values.  Sites
+              must be in the (E|N|#n desc) format for this to  work.   Default
+              format  is  just  three  pipe-separated  floating  point numbers
+              (E|N|desc).
+
+       --qq     Quiet. Cut out the chatter.
+
+
+   PPaarraammeetteerrss::
+       ssiitteess==_n_a_m_e
+              Name of an existing sites file.
+
+       ffiieelldd  Number of z-field attribute to use for calculation default: 1
+
+
+SSEEEE AALLSSOO
+       _s_._n_o_r_m_a_l, _r_._u_n_i_v_a_r,
+
+BBUUGGSS
+       Needs to do as many calculations as possible without storing individual
+       site records (requires a lot of memory).
+
+BBUUGGSS
+       Please  send  all  bug  fixes  and  comments to the author or the grass
+       development team.
+
+       http://www.geog.uni-hannover.
+
+AAUUTTHHOORR
+       James Darrell McCauley ,
+
+       when he was at: Agricultural Engineering Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                          s.univar(1)

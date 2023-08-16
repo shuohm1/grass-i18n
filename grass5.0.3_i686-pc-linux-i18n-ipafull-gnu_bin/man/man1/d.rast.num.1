@@ -1,0 +1,70 @@
+d.rast.num(1)                 Grass User's Manual                d.rast.num(1)
+
+
+
+NNAAMMEE
+       dd..rraasstt..nnuumm   - Overlays cell category values on a raster map layer dis-
+       played to the graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..rraasstt..nnuumm
+       dd..rraasstt..nnuumm hheellpp
+       dd..rraasstt..nnuumm [mmaapp==_n_a_m_e] [ggrriidd__ccoolloorr==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._r_a_s_t_._n_u_m overlays cell category values onto a raster map  layer  dis-
+       played  to  the  user's graphics monitor.  Category values will be dis-
+       played in white and/or black, based on the colors in  which  underlying
+       cells are displayed.  A grid outlining each map cell will also be over-
+       lain in a user-specified color.
+
+
+       The user should run  _d_._r_a_s_t  to display the desired map  layer  on  the
+       graphics monitor before running this program.
+
+
+       _d_._r_a_s_t_._n_u_m  can be run non-interactively or interactively.  If the user
+       specifies the map whose category values are to be displayed and/or  the
+       grid color on the command line, the program will run non-interactively.
+       Alternately, the user may simply type dd..rraasstt..nnuumm on the  command  line;
+       in  this  case,  the  program will prompt the user for parameter values
+       using the standard GRASS user interface described in the  manual  entry
+       for  _p_a_r_s_e_r  .  If no grid color is given the default will be used.  If
+       no map layer is specified, the program will  use  whatever  raster  map
+       layer  is currently displayed in the active frame on the graphics moni-
+       tor.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of existing raster map layer whose category values will  be
+              displayed.
+              Default:  (whatever raster map layer is currently displayed)
+
+       ggrriidd__ccoolloorr==_n_a_m_e
+              Color in which an overlain grid will be displayed.
+              Options:   white, red, orange, yellow, green, blue, indigo, vio-
+              let, magenta, brown, gray, black
+              Default:  gray
+
+
+NNOOTTEESS
+       The user is advised to set the current region  to  a  relatively  small
+       area (i.e., less than 100 rows by 100 columns); otherwise, the individ-
+       ual cells being displayed will be small and the category value  associ-
+       ated with each will be difficult to see.
+
+SSEEEE AALLSSOO
+       _d_._e_r_a_s_e   _d_._f_r_a_m_e   _d_._g_r_i_d   _d_._m_o_n   _d_._r_a_s_t   _d_._r_a_s_t_._a_r_r_o_w  _d_._r_a_s_t_._e_d_i_t
+       _d_._r_a_s_t_._z_o_o_m _d_._z_o_o_m _g_._r_e_g_i_o_n _r_._m_a_s_k _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+AAUUTTHHOORRSS
+       Raghavan Srinivasan, and Chris Rewerts, Agricultural Engineering,  Pur-
+       due University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                        d.rast.num(1)

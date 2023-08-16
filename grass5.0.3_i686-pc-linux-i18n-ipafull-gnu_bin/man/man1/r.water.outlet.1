@@ -1,0 +1,59 @@
+r.water.outlet(1)             Grass User's Manual            r.water.outlet(1)
+
+
+
+NNAAMMEE
+       rr..wwaatteerr..oouuttlleett  - Watershed basin creation program.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..wwaatteerr..oouuttlleett
+       rr..wwaatteerr..oouuttlleett hheellpp
+       rr..wwaatteerr..oouuttlleett ddrraaiinnaaggee==_n_a_m_e bbaassiinn==_n_a_m_e eeaassttiinngg==_v_a_l_u_e nnoorrtthhiinngg==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._w_a_t_e_r_._o_u_t_l_e_t  generates  a  watershed basin from a drainage direction
+       map (from _r_._w_a_t_e_r_s_h_e_d) and a set of coordinates representing the outlet
+       point of watershed.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss
+       ddrraaiinnaaggee==_n_a_m_e
+              Input  map:  drainage direction. Indicates the "aspect" for each
+              cell. Multiplying positive values by 45 will give the  direction
+              in  degrees  that the surface runoff will travel from that cell.
+              The value -1 indicates that  the  cell  is  a  depression  area.
+              Other  negative  values  indicate that surface runoff is leaving
+              the boundaries of the current geographic  region.  The  absolute
+              value  of  these negative cells indicates the direction of flow.
+              This map is generated from _r_._w_a_t_e_r_s_h_e_d.
+
+       bbaassiinn==_n_a_m_e
+              Output map: Values of one (1) indicate the watershed basin. Val-
+              ues of zero are not in the watershed basin.
+
+       eeaassttiinngg==_v_a_l_u_e
+              Input value: Easting value of outlet point.
+
+       nnoorrtthhiinngg==_v_a_l_u_e
+              Input value: Northing value of outlet point.
+
+
+NNOOTTEESS
+       In  the  context  of  this  program,  a  watershed  basin is the region
+       upstream of an outlet point. Thus, if the user chooses an outlet  point
+       on a hill slope, the resulting map will be a thin silver of land repre-
+       senting the overland slope uphill of the point.
+
+SSEEEE AALLSSOO
+        _d_._w_h_e_r_e_, _r_._w_a_t_e_r_s_h_e_d_, _r_._t_o_p_i_d_x
+
+AAUUTTHHOORR
+       Charles Ehlschlaeger, U.S. Army Construction Engineering Research Labo-
+       ratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                    r.water.outlet(1)

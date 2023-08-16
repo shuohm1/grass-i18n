@@ -1,0 +1,62 @@
+dcorrelate.sh(1)              Grass User's Manual             dcorrelate.sh(1)
+
+
+
+NNAAMMEE
+       _d_c_o_r_r_e_l_a_t_e_._s_h  - Graphically displays the correlation among from two to
+       four raster map layers in the active frame on the graphics monitor.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       ddccoorrrreellaattee..sshh _l_a_y_e_r_1 _l_a_y_e_r_2 [_l_a_y_e_r_3 [_l_a_y_e_r_4]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_c_o_r_r_e_l_a_t_e_._s_h is a C-shell (csh(1)) script  that  graphically  displays
+       the  results  of  an  _r_._s_t_a_t_s run on two raster map layers.  This shell
+       script is useful for highlighting the correlation (or lack of it) among
+       data layers (scattergram).
+
+
+       The  results  are  displayed  in the active display frame on the user's
+       graphics monitor.  _d_c_o_r_r_e_l_a_t_e_._s_h erases the active  frame  before  dis-
+       playing results.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       _l_a_y_e_r_1 _l_a_y_e_r_2 [_l_a_y_e_r_3 [_l_a_y_e_r_4]]
+              The  names  of from two to four existing raster map layers to be
+              included in the correlation.
+
+
+NNOOTTEESS
+       This is a shell script that uses _r_._s_t_a_t_s and the UNIX  _a_w_k  command  to
+       calculate  the  correlation  among  data  layers,  and  uses _d_._t_e_x_t and
+       _d_._g_r_a_p_h to display the results.
+
+
+       If three or four map layers are specified, the correlation  among  each
+       combination of two data layers is displayed.
+
+
+       This  command  is written for _/_b_i_n_/_c_s_h.  If your system doesn't support
+       this shell, don't install this script.
+
+FFIILLEESS
+       This program is simply a shell script.  Users are  encouraged  to  make
+       their  own  shell  script programs using similar techniques.  See $GIS-
+       BASE/scripts/dcorrelate.sh.
+
+SSEEEE AALLSSOO
+       The UNIX _a_w_k command
+
+
+       _d_._t_e_x_t, _d_._g_r_a_p_h, _r_._c_o_i_n, _r_._s_t_a_t_s
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_6_/_1_6 _1_5_:_2_9_:_1_8 _$
+
+
+
+GRASS 5.0                                                     dcorrelate.sh(1)

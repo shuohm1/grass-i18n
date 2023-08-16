@@ -1,0 +1,14 @@
+interface_build {
+    m.datum.shift 0
+    {Datum shift program.}
+    {entry lat {Latitude (dd:mm:ss{N|S}):} 0 ""}
+    {entry lon {Longitude (ddd:mm:ss{E|W}):} 0 ""}
+    {checkbox -b {use block shift transformation (default)} "" -b}
+    {checkbox -m {use molodensky transformation} "" -m}
+    {checkbox -w {use bursa-wolf 3d similarity transformation (not implemented)} "" -w}	
+    {entry is {Input spheroid:} 0 spheroid}
+    {entry os {Output spheroid:} 0 spheroid}
+    {entry dx {X shift:} 0 ""}
+    {entry dy {Y shift:} 0 ""}
+    {entry dz {Z shift:} 0 ""}
+}

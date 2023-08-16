@@ -1,0 +1,136 @@
+d.what.v.pg(1)                Grass User's Manual               d.what.v.pg(1)
+
+
+
+NNAAMMEE
+       _d_._w_h_a_t_._v_._p_g  -  Report  database attributes associated with vector fea-
+       tures.
+
+
+
+SSYYNNOOPPSSIISS::
+       dd..wwhhaatt..vv..ppgg [[--ff]] mmaapp==name ttaabb==name ccooll==name [[ccoolloorr==name]]
+
+          [[ffiillllccoolloorr==name]] [[hhvv==name]]
+
+       dd..wwhhaatt..vv..ppgg [[--ssff]] ssqqll==file mmaapp==name [[ccoolloorr==name]] [[ffiillllccoolloorr==name]]
+
+          [[hhvv==nnaammee]]
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       FFllaaggss::
+
+       -s   Use [-s] for SQL command file input.
+
+       -f   Fill polygons?
+
+       PPaarraammeetteerrss::
+
+       ssqqll Name of the SQL command file
+
+       mmaapp Vector map to run query on
+
+       ttaabb Postgres table with categories
+
+       ccooll Column with categories from this table
+
+       ccoolloorr Selected lines color default: yellow
+
+       ffiillllccoolloorr Selected areas  color  (for  fill)  options:  red,orange,yel-
+       low,green,blue,indigo,white,black,brown,         magenta,aqua,gray,grey
+       default: gray
+
+       hhvv Type of database output - [h/v] default: v
+
+
+
+
+
+
+
+
+
+       ttaabb is Postgres table containing column linked to vector attribute val-
+       ues,  ccooll - column associated with vector attribute values, mmaapp is name
+       of an existing vector map with attribute values linked to the currently
+       selected database.
+
+       Reports  database attributes from the currently selected database which
+       are associated with  specific  vector  features  identified  using  the
+       mouse.   The  currently  selected  database  is identified by the GRASS
+       environment variable $PG_DBASE  which  is  set  using  the  _g_._s_e_l_e_c_t_._p_g
+       GRASS-RDBMS interface tool. If this environment variable is not set the
+       program terminates with a message to the user. If the alternate form of
+       this  command is selected with the _-_s flag the user has greater control
+       over the manner in which the attribute information is displayed.
+
+       _d_._w_h_a_t_._v_._p_g is used to query lines/areas with mouse. Like  _d_._w_h_a_t_._v_e_c_t,
+       it  lists  attributes and optionally fills queried areas (like v.area).
+       It may be used for the UPDATE command in Postgres through the input SQL
+       file  (see  Example  2). The idea is to prepare an arbitrary algorithm,
+       code it in SQL, and then update DB with clicking on chosen polys/lines.
+       You  may  consider this as piping  through various filters anything you
+       select on screen.
+
+       The database information can be optionally  output  as  comma-separated
+       list  (horizontal) which is convenient for feeding it to other programs
+       like table editors.
+
+
+
+       EEXXAAMMPPLLEE::
+
+       11.. _d_._w_h_a_t_._v_._p_g _-_s _s_q_l_=_c_e_n_s_u_s_._s_q_l _m_a_p_=_c_e_n_s_u_s
+
+       and census.sql is:
+
+       _s_e_l_e_c_t _s_l_o_p_e_, _t_y_p_e___i_d _f_r_o_m _i_n_f_o___k_u_r_u_m_a _w_h_e_r_e _r_e_c___i_d _= _?
+
+       RReessuulltt:: only two fields information is displayed  on  screen  when  the
+       mouse is clicked upon the vector object.
+
+       22.. _d_._w_h_a_t_._v_._p_g _-_s _s_q_l_=_p_r_o_c_e_s_s_._s_q_l _m_a_p_=_c_e_n_s_u_s
+
+       process.sql is:
+
+       _u_p_d_a_t_e   _c_e_n_s_u_s___i_n_f_o   _s_e_t  _t_y_p_e___g_o_o_d  _=  _'_1_'  _w_h_e_r_e  _r_e_c___i_d  _=  _?  _a_n_d
+       _i_n_f_o___k_u_r_u_m_a_._t_y_p_e___i_d _= _3_5 _a_n_d _i_n_f_o___k_u_r_u_m_a_._r_e_c___i_d _= _r_e_c___i_d_;
+
+       RReessuulltt:: this would only change field of the _c_e_n_s_u_s___i_n_f_o table  for  the
+       clicked polygon or line,
+
+       if  the  corresponding type taken from _i_n_f_o___k_u_r_u_m_a table is equal to 35
+       (the last limitation is a filter for any polygon/line picked  from  the
+       map with mouse) .
+
+       FFllaaggss:: SQL select statements are input from a prepared file.
+
+       PPaarraammeetteerrss::  SQL  statements specifying well formed selection criteria.
+       Name of an existing vector map.
+
+BBUUGGSS
+       1.  Tcl-Tk modules require input "where" clause restricted to one  rule
+       typed without "whitespaces",
+
+       (unlike terminal input where number of subclause is not limited).
+
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_,  _g_._s_t_a_t_s_._p_g_,  _g_._t_a_b_l_e_._p_g_, _d_._r_a_s_t_._p_g_, _d_._s_i_t_e_._p_g_, _d_._v_e_c_t_._p_g_,
+       _d_._w_h_a_t_._r_._p_g_, _d_._w_h_a_t_._s_._p_g_, _r_._r_e_c_l_a_s_s_._p_g_, _r_._r_e_s_c_a_l_e_._p_g_, _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and  W.
+       Fredrick Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                       d.what.v.pg(1)

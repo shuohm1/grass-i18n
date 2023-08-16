@@ -1,0 +1,207 @@
+d.legend(1)                   Grass User's Manual                  d.legend(1)
+
+
+
+NNAAMMEE
+       dd..lleeggeenndd - Displays a legend for a raster map layer in the active frame
+       on the graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..lleeggeenndd
+       dd..lleeggeenndd hheellpp
+       dd..lleeggeenndd [--vvccnnssmmff]  mmaapp==_n_a_m_e  [ccoolloorr==_n_a_m_e]  [lliinneess==_v_a_l_u_e]  [tthhiinn==_v_a_l_u_e]
+       [llaabbeellnnuumm==_v_a_l_u_e] [aatt==_b_o_t_t_o_m_,_t_o_p_,_l_e_f_t_,_r_i_g_h_t] [rraannggee==_m_i_n_,_m_a_x]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._l_e_g_e_n_d displays a legend for a user-specified raster map layer in the
+       active frame on the graphics monitor.
+
+
+       The user can run _d_._l_e_g_e_n_d either  non-interactively  or  interactively.
+       If  the  user  specifies  the name of a raster mmaapp layer on the command
+       line, the program will  run  non-interactively.   Default  legend  text
+       ccoolloorr  and position will be used unless the user specifies other values
+       on the command line.
+
+
+       Alternately, the user can simply type dd..lleeggeenndd on the command line;  in
+       this  case, the program will prompt the user for parameter values using
+       the standard GRASS parser interface.
+
+
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --vv     Do not show category labels
+
+       --cc     Do not show category numbers
+
+       --nn     Skip categories with no label (ignored for floating point maps)
+
+       --ss     Draw smooth gradient (forced automatically  for  floating  point
+              rasters)
+
+       --mm     Use mouse to size & place legend
+
+       --ff     Flip legend vertically or horizontally
+
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of raster map.
+
+       ccoolloorr==_n_a_m_e
+              Sets the legend's text color.
+              Options: red, orange, yellow, green, blue, indigo, white, black,
+              brown, magenta, aqua, gray, grey
+              Default: white
+
+       lliinneess==_v_a_l_u_e
+              Number of lines in the legend (useful for truncating  long  leg-
+              ends)
+              Options: 0-1000
+              Default: all
+
+       tthhiinn==_v_a_l_u_e
+              Thinning factor (thin=10 gives cats 0,10,20...)
+              Options: 0-1000
+              Default: 1
+
+       llaabbeellnnuumm==_v_a_l_u_e
+              Number of text labels for smooth gradient legend
+              Options: 2-100
+              Default: 5
+
+       aatt==_b_o_t_t_o_m_,_t_o_p_,_l_e_f_t_,_r_i_g_h_t
+              Placement coordinates, as 0-100% of graphics frame height/width.
+              0,0 is lower left.
+              Options: 0-100
+              Default: automatically placed and scaled
+
+       rraannggee==_m_i_n_,_m_a_x
+              Category range
+              Default: all
+
+
+NNOOTTEESS
+       The legend's default size is based on  the  dimensions  of  the  active
+       frame,  specifically its height.  _d_._l_e_g_e_n_d will only obscure those por-
+       tions of the active frame that directly underlie the legend.
+
+
+       When using the mouse or aatt to size & place  the  legend,  if  the  user
+       makes  a  horizontal box the values run from left to right and no cate-
+       gory values are printed (you may want to use _d_._l_a_b_e_l
+        for that). A horizontal legend is created if the box is wider than  it
+       is tall.
+
+
+       Raster  maps based on floating point values will display smoothed, from
+       greatest to smallest value, while categorial raster maps  will  display
+       in  order,  from  top to bottom. If the box is defined with inverted y-
+       values or an inverted rraannggee, the legend  will  automatically  flip.  If
+       this  is  not  the  desired  result, the --ff flag may be used to flip it
+       back.
+
+
+       If the user attempts to display a very  long  legend  in  a  relatively
+       short display frame, the legend may appear in unreadably small text, or
+       even revert to a smooth gradient legend. Use the  lliinneess,  tthhiinn,  rraannggee,
+       and/or  --nn  options to reduce the number of categories to be displayed,
+       or the --ss flag to force a smooth gradient legend.
+
+
+       The lliinneess option will  display  the  first  number  of  categories,  as
+       defined  by  _v_a_l_u_e,  contained in the raster map. When used with the --nn
+       flag, it takes on a new meaning: "up to category  #".  When  used  with
+       both tthhiinn and the --nn flag, its meaning becomes more obscure. When using
+       lliinneess, auto-scaled text similar to "4 of 16 categories" will be  placed
+       at the bottom of the legend.
+
+
+       The  tthhiinn  option  sets the thinning factor. For raster maps with a 0th
+       category, tthhiinn==_1_0 gives cats [0,10,20,...]. For raster maps starting at
+       category 1, tthhiinn==_1_0 gives cats [1,11,21,...].
+
+
+       The  rraannggee  option  lets  the user define the minimum and maximum cate-
+       gories to be used in the legend. It may also be used to define the lim-
+       its  of  a  smooth  gradient  legend  created  from a raster containing
+       floating point values. Note the color scale will remain faithful to the
+       category values as defined with _r_._c_o_l_o_r_s.
+
+
+       The flag --nn is useful for categorial maps, as it suppresses the drawing
+       of non-existing categories (otherwise the full range is shown).
+
+
+       Vertical legends produced with _d_._l_e_g_e_n_d will produce text labels to the
+       right  of  the  legend box. This text will be auto-scaled to fit within
+       the frame, reducing the size of the legend if necessary. Legends  posi-
+       tioned  with  the mouse or with the aatt option will not auto-scale text,
+       in order to provide more control to  the  user.  Smaller  text  may  be
+       obtained  in this case by reducing the height of the box. The --cc and --vv
+       flags may be used to suppress  the  display  of  category  numbers  and
+       labels  respectively,  or used together to suppress all text of catego-
+       rial raster maps.
+
+
+       The text produced from floating-point raster  maps  will  automatically
+       create  output with a meaningful number of significant digits. For very
+       small values, numbers will be expressed in  scientific  notation,  e.g.
+       "1.7e-9".
+
+
+       Note  that  old  scripts which relied on setting lliinneess greater than the
+       number of categories to scale the legend  may  no  longer  produce  the
+       desired  output,  although  the auto-scaling should still produce some-
+       thing that looks good in this case.
+
+TTOODDOO
+       - Add uussee option for legends of discrete category numbers/values  only.
+
+       - Text labels for horizontal legends.
+
+
+SSEEEE AALLSSOO
+       _d_._c_o_l_o_r_m_o_d_e
+
+       _d_._c_o_l_o_r_s
+
+       _d_._c_o_l_o_r_t_a_b_l_e
+
+       _d_._d_i_s_p_l_a_y
+
+       _d_._e_r_a_s_e
+
+       _d_._g_r_i_d
+
+       _d_._r_a_s_t
+
+       _d_._r_a_s_t_._l_a_b_e_l_s
+
+       _d_._r_a_s_t_._l_e_g
+
+       _d_._v_e_c_t
+
+       _d_._w_h_a_t_._r_a_s_t
+
+       _r_._r_e_c_l_a_s_s
+       _p_a_r_s_e_r
+
+AAUUTTHHOORRSS
+       Bill Brown, U.S. Army Construction Engineering Research Laboratories
+
+       Late   2002:  Rewrite  of  much  of  the  code.  Hamish  Bowman,  Otago
+       University, New Zealand
+
+       Additional improvements from various authors
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                          d.legend(1)

@@ -1,0 +1,79 @@
+GRASS i18n new fcunction
+
+Internationalized(i18n) functions:
+
+(1)the menu of tcltkgrass(tcltkgrass-i18n)
+The menu of tcltkgrass which is the GUI of GRASS was internationalized.
+Tcltkgrass of the i18n version consists of "tcltkgrass-i18n" new
+command and modules include message catalogue(ja.msg, en.msg).
+Depending on the locale (LANG) environment, tcltkgras can be displayed 
+in both Japanese(EUC-JP, SJIS,UTF-8) and English (LANG=C).
+
+Usage:
+
+1.start GRASS
+ $ grass5
+
+2.start tcltkgrass-i18n
+ GRASS:~>tcltkgrass-i18n&
+
+note)
+tcltkgrass-i18n needs mlterm. You must install mlterm before GRASS
+installation.
+
+(2)command help
+"command help" which is main help for the commands of GRASS was 
+internationalized. The command help dialog box can be displayed in
+tcltkgrass by clicking the right button of the mouse over a menu item
+or on a "RUN" (execute) button of a comman dialog.
+Command help can be invoked also in a shell by typing the following:
+
+ GRASS~>command help
+
+(3)the text on the GRASS monitor
+The text (character strings)displayed on the GRASS monitor was 
+internatinalized. Internationalization does not use vector fonts
+simillar to the original version, but instead uses TrueType fonts which
+enables the display of Double Byte characters such as Japanese character 
+set. To set up TrueType fonts a new command "d.font.freetype"
+has been added to perform font and character encodings.
+This internationalization can now display Japanese and other language 
+text from site labels, legends, etc.
+
+Usage:
+
+1.to enable to display a TrueType font on the monitor
+ GRASS:~>d.mon start x0
+ GRASS:~>d.font.freetype [font=TrueTypefontname] [charset=encoding]
+ 
+ [font]:TrueType font path(full path include font file name)
+ [charset]:character encoding(EUC-JP,UTF-8,SJIS)
+ ex.)Redhat Linux9
+ GRASS:~>d.font.freetype font=/usr/share/fonts/ja/TrueType/kochi-gothic.ttf charset=EUC-JP
+ 
+2.to disable to display a TrueType font on the monitor
+ GRASS:~>d.font.freetype font=
+
+note)
+Font option such as d.site.labels command are ignored 
+if you select a TrueType font.
+
+License:
+
+This program is free software. The license below follows the original 
+license version of GRASS. 
+
+You can redistribute it and/or modify it under the terms of thr GNU General Public
+License as published by the Free Software Foundation; either version 2 of the Licnese.
+or ( at your option) any later version.
+
+Please refer to COPYING of package appending, and GPL.TXT for details.
+
+GRASS i18n project members:
+
+Masumoto Shinji, Venkatesh Raghavan, Nonogaki Susumu, 
+Nemoto Tatsuya, Hirai Naoki (Osaka City University, Japan), 
+Hagiwara Akira, Niwa Makoto, Mori Toru (Orkney Inc., Tokyo), 
+Hattori Norihiro (E-Solution Service, Inc., Osaka)
+
+Project sponsored by IPA (Information-technology Promotion Agency, Japan)

@@ -1,0 +1,81 @@
+g.rename(1)                   Grass User's Manual                  g.rename(1)
+
+
+
+NNAAMMEE
+       gg..rreennaammee   -  To  rename  data base element files in the user's current
+       mapset.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..rreennaammee
+       gg..rreennaammee hheellpp
+       gg..rreennaammee    [--oo]    [rraasstt==_o_l_d_,_n_e_w]    [vveecctt==_o_l_d_,_n_e_w]     [iiccoonn==_o_l_d_,_n_e_w]
+       [llaabbeellss==_o_l_d_,_n_e_w] [ssiitteess==_o_l_d_,_n_e_w] [rreeggiioonn==_o_l_d_,_n_e_w] [ggrroouupp==_o_l_d_,_n_e_w]
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._r_e_n_a_m_e  allows  the  user  to  rename  data base element files in the
+       user's current mapset.  The user can specify all necessary  information
+       to  _g_._r_e_n_a_m_e on the command line, by specifying:  the type of data base
+       element to be renamed (one or  more  of:   rraasstt,  vveecctt,  iiccoonn,  llaabbeellss,
+       ssiitteess,  rreeggiioonn,  and  ggrroouupp);  the specific file element in the current
+       mapset to be renamed (_o_l_d); and the new name to  be  assigned  to  this
+       file element (_n_e_w) in the current mapset.  The file element _o_l_d is then
+       renamed to _n_e_w.
+
+
+       Users can also simply type gg..rreennaammee without arguments  on  the  command
+       line,  to  receive a menu of existing data base element types and files
+       from which to choose for possible renaming:
+
+
+
+              raster maps
+
+              binary vector maps
+
+              paint icon files
+
+              paint label files
+
+              site list files
+
+              region definition files
+
+              imagery group files
+
+
+       RETURN to exit
+
+
+   FFllaaggss::
+       --oo     Overwrite  file(s)
+
+
+NNOOTTEE
+       If a data base element has support files (e.g., as is commonly the case
+       with raster files), these support files also are renamed.
+
+
+       If the user attempts to rename a file to itself by setting the _n_e_w file
+       name equal to the _o_l_d  file  name  (e.g.,  gg..rreennaammee  rraasstt==ssooiillss,,ssooiillss),
+       _g_._r_e_n_a_m_e  will not execute the rename, but instead state that no rename
+       is needed.  However, _g_._r_e_n_a_m_e will allow the user  to  overwrite  other
+       existing  files  in the current mapset by making the _n_e_w file name that
+       of an already existing file.
+
+SSEEEE AALLSSOO
+       _g_._c_o_p_y
+
+       _g_._l_i_s_t
+
+       _g_._r_e_m_o_v_e
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_1_1_/_1_2 _1_0_:_4_6_:_2_6 _$
+
+
+
+GRASS 5.0                                                          g.rename(1)

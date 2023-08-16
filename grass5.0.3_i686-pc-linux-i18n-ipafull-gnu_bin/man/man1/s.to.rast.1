@@ -1,0 +1,100 @@
+s.to.rast(1)                  Grass User's Manual                 s.to.rast(1)
+
+
+
+NNAAMMEE
+       ss..ttoo..rraasstt  - Converts a site file to a raster map
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..ttoo..rraasstt
+       ss..ttoo..rraasstt hheellpp
+       ss..ttoo..rraasstt   [--qqss]   iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  ssiizzee==_v_a_l_u_e  ttiittllee==_"_p_h_r_a_s_e_"
+       ffiieelldd==_v_a_l_u_e ffiinnddeexx==_v_a_l_u_e ssttrriinngg==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._t_o_._r_a_s_t converts a GRASS site file to a GRASS raster file.
+
+
+       The quad size (ie the number of cells used to represent  one  site)  is
+       fixed  to  0 (ie one cell/site). If the output file already exists, the
+       program exits gracefully.
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --qq     Run the module quietly.
+
+       --ss     Create a single-valued (0/1, binary) raster map
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of input site list
+
+       oouuttppuutt==_n_a_m_e
+              Name of output cell file
+
+       ssiizzee==_v_a_l_u_e
+              Number of cells to surround site cell
+
+       ttiittllee== Title for the resulting raster map
+
+       ffiieelldd==_v_a_l_u_e
+              Attribute field type to use for operation
+
+              options: dim,decimal,cat
+
+              default: decimal
+
+       ffiinnddeexx==_v_a_l_u_e
+              Attribute field number to use for operation
+
+              default: 1
+
+       ssttrriinngg==_v_a_l_u_e
+              String attribute number to use for description
+
+              default: 1
+
+
+NNOOTTEESS
+       When converting from a sites layer to a raster layer with  size=0,  the
+       site  is  converted into a single cell representing the location of the
+       site, which can be hard to see (depending on the raster resolution).
+
+       size=2 (or higher) makes the sites show up  as  fatter  in  the  raster
+       layer.
+
+
+       Alternaticely  the  user can convert the sites to vector format and use
+       v.bubble or v.circle to represent the location.
+
+
+       As site files can consist of  several  attribute  fields  (decimals  or
+       string categories), the user can select the column of interest for con-
+       version using the filed  selection  parameters  (findex,  string).  The
+       attribute  field  type  to  use  for operation is selected by parameter
+       _f_i_e_l_d.
+
+
+       The user will be warned if two or more sites fall into one raster cell.
+       However,  the  module will continue to import (the last site value will
+       determine the cell value). If such overwriting is not wanted, the  cell
+       resolution has to be changed using g.region.
+
+
+       The user will be warned if sites fall out of the current region.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n, _s_._m_e_n_u, _s_._t_o_._v_e_c_t, _v_._b_u_b_b_l_e, _v_._c_i_r_c_l_e,
+
+AAUUTTHHOORRSS
+       Katarina Johnsson, CCRS
+
+       GRASS 5 improvements: Eric G. Miller
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         s.to.rast(1)

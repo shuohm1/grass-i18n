@@ -1,0 +1,75 @@
+v.scale.random(1)             Grass User's Manual            v.scale.random(1)
+
+
+
+NNAAMMEE
+       vv..ssccaallee..rraannddoomm   - Creates a site_lists file of randomly placed symbols
+       within a GRASS vector area.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ssccaallee..rraannddoomm
+       vv..ssccaallee..rraannddoomm hheellpp
+       vv..ssccaallee..rraannddoomm  [  --nn]  mmaapp==_n_a_m_e   ssiittee==_n_a_m_e   ddoott==_n_a_m_e   [oouuttddoott==_n_a_m_e]
+       ssccaallee==_v_a_l_u_e [ccoovveerr==_v_a_l_u_e] [ssiizzee==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._s_c_a_l_e_._r_a_n_d_o_m allows a user to create a GRASS site_lists file contain-
+       ing sites randomly placed within an area.  This program is designed  as
+       an  interface  to _v_._r_a_n_d_o_m to aid the user in determining the number of
+       dots to locate.  This progam uses the same type  of  file  listing  the
+       category  and  counts.   This file is then modified to try to produce a
+       pleasing dot count for a map of a specified scale.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --nn     Use category values, NOT category names.
+
+
+
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Input vector file name.
+
+       ssiittee==_n_a_m_e
+              Output site_lists file name.
+
+       ddoott==_n_a_m_e
+              Name of file containing labels and counts.
+
+       oouuttddoott==_n_a_m_e
+              Name of new file to contain scaled counts.
+
+       ssccaallee==_v_a_l_u_e
+              The denominator of the map scale.
+              Options:  1 - 999999999999
+
+       ccoovveerr==_v_a_l_u_e
+              The fraction of the most dense area to cover with dots.
+              Options:  0 - 1
+
+       ssiizzee==_v_a_l_u_e
+              The size of each dot, in centimeters.
+              Options:  0 - 100
+
+
+SSEEEE AALLSSOO
+       _s_._m_e_n_u
+
+       _s_._r_a_n_d_o_m
+
+       _v_._r_a_n_d_o_m
+
+AAUUTTHHOORR
+       M.L. Holko, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                    v.scale.random(1)

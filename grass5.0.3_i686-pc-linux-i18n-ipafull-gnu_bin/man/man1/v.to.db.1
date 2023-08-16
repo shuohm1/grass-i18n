@@ -1,0 +1,58 @@
+v.to.db(1)                    Grass User's Manual                   v.to.db(1)
+
+
+
+NNAAMMEE
+       _v_._t_o_._d_b - load values from vector to database
+
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ttoo..ddbb   [[--ppss]]  mmaapp_=_n_a_m_e  ttyyppee_=_n_a_m_e_[_,_n_a_m_e_,_._._._]  ooppttiioonn_=_n_a_m_e_[_,_n_a_m_e_,_._._._]
+       [uunniittss_=_n_a_m_e] ttaabbllee_=_n_a_m_e [kkeeyy_=_n_a_m_e] [ccooll11_=_n_a_m_e] [ccooll22_=_n_a_m_e]
+
+   FFllaaggss::
+       --pp     Print only
+
+       --ss     Print only sql statements
+
+
+   PPaarraammeetteerrss::
+       mmaapp    Vector map
+
+       ttyyppee   Type of elements Options: area, line, site
+
+       ooppttiioonn What load Options: cat, label, area, length, count, coor
+
+       uunniittss  Units data are in.  Either: mi(les), f(eet), me(ters),  k(ilome-
+              ters),  a(cres),  h(ectacres)  Options: mi (miles), f (feet), me
+              (meters), k (kilometers), a (acres), h (hectacres)
+
+       ttaabbllee  DB table
+
+       kkeeyy    Key column
+
+       ccooll11   Column 1
+
+       ccooll22   Column 2
+
+
+EEXXAAMMPPLLEE
+       Uploading of the attributes of a vector map to the DBMS has to be  done
+       column-wise:
+
+
+       v.to.db map=soils type=area option=cat table=soils key=cat
+
+
+       v.to.db    map=soils   type=area   option=label   table=soils   key=cat
+       col1=soiltype
+
+AAUUTTHHOORR
+       Radim Blazek
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.to.db(1)

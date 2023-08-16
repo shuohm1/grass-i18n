@@ -1,0 +1,90 @@
+m.in.ntf(1)                   Grass User's Manual                  m.in.ntf(1)
+
+
+
+NNAAMMEE
+       _m_._i_n_._n_t_f - Read an Ordnance Survey NTF file
+
+       _(_G_R_A_S_S _M_i_s_c _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+
+       Program  to  read an Ordnance Survey NTF file. Can read most raster and
+       vector formats. (NTF 1 and 2).
+       Included here is a list of supported and unsupported
+       rocord types.
+
+       --------------------------------------------
+       The following NTF record types are supported
+
+       00 Continuation record
+       01 Volume header record
+       02 Database header record
+       03 Data description record
+       04 Data format record
+       05 Feature classification record
+       07 Section header record
+       11 Name record
+       12 Name position record
+       14 Attribute record
+       15 Point record
+       16 Node record
+       21 Geometry record
+       22 3D Geometry record
+       23 Line record
+       40 Attribute description record
+       43 Text record
+       44 Text position record
+       45 Text representation record
+       50 Grid header record
+       51 Grid data record
+       99 Volume termination record
+
+
+       -----------------------------------
+       The following are not yet supported
+
+       24 Chain record
+       31 Polygon record
+       33 Complex polygon
+       34 Collection of features
+
+
+       ---------------------------------------------------------
+       Coding history:
+
+       Jo Wood, Department of Geography, V1.0
+       29th May 1993
+
+       Modified, 10th February, 1995
+
+       Modified 18th October, 1995 - Incorporates 'STRATEGI' vector files.
+            Minor bug modifications, 19th October, 1995.
+                            23rd October, 1995.
+       Last modified 24th October, 1995 - Fixed attribute labelling problem.
+
+       ------------
+
+       Usage:
+        m.in.ntf [-l] ntf=name [out=name]
+
+       Flags:
+         -l   Sends an NTF conversion log to standard output
+
+       Parameters:
+         ntf   NTF file to read
+         out   Output file
+               default: No output file
+
+
+
+
+
+       Last modified, 3rd August, 1997
+
+       jwo@le.ac.uk
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                          m.in.ntf(1)

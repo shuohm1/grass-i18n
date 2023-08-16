@@ -1,0 +1,206 @@
+sites.report(1)               Grass User's Manual              sites.report(1)
+
+
+
+NNAAMMEE
+       ssiitteess..rreeppoorrtt   -  Description  of the machine readable report output by
+       _s_._m_e_n_u.
+
+DDEESSCCRRIIPPTTIIOONN
+       This is a description of the machine readable report  produced  by  the
+       _s_._m_e_n_u program.
+
+SSAAMMPPLLEE RREEPPOORRTT
+
+       location|yakima|Yakima Firing Center, Washington
+       mapset|sample
+       region north|5199975.000000
+       region south|5154975.000000
+       region west|692975.000000
+       region east|737975.000000
+       resolution|50.000000
+       site list|sample|sample site list
+
+       point|1|728220|5182440|27
+       point|2|727060|5181710|28
+       point|3|725500|5184000|29
+       point|4|719800|5187200|30
+
+       layer|1|arch_survey|Archeologic Survey Areas (arch_survey)
+       layer|2|vegetation|Vegetation Study Plots
+
+       cat|1|0|764310|No data
+       cat|1|1|25821|Hartmann,phase 1
+       cat|1|2|11032|Hartmann,phase 2
+       cat|1|3|8837|Wapora,phase 3
+       cat|2|0|774333|no data
+       cat|2|1|9299|stiff sagebrush/sandberg bluegrass type (S-1)
+       cat|2|2|732|big sagebrush/sandberg bluegrass type (S-2)
+       cat|2|3|397|buckwheat/sandberg bluegrass type (S-3)
+       cat|2|4|2526|bluebunch wheatgrass/sandberg wheatgrass type (S-4)
+       cat|2|5|20184|big sagebrush/bluebunch wheatgrass type (L-1)
+       cat|2|6|82|big sagebrush/needle-and-thread type (L-2)
+
+       matrix size|9
+
+       matrix|-1|-1|0|-1|1|-1
+       matrix|-1|0|0|0|1|0
+       matrix|-1|1|0|1|1|1
+
+       data|1|1|0|0|0|0|0|0|0|0|0
+       data|1|2|1|1|1|1|1|1|1|1|1
+       data|1|3|1|1|1|1|1|1|1|1|1
+       data|1|4|1|1|1|1|1|1|1|1|1
+       data|2|1|0|0|0|0|0|0|0|0|0
+       data|2|2|0|0|0|0|0|0|0|0|0
+       data|2|3|4|4|4|0|0|0|0|0|0
+       data|2|4|1|5|5|5|5|5|5|5|5
+
+
+EEXXPPLLAANNAATTIIOONN
+       The  machine readable report file consist of lines of text, with fields
+       that are separated by the pipe character |.  The first field on a  line
+       defines the record type, and the remaining fields are defined according
+       to the record type.
+
+       llooccaattiioonn
+              This record gives the GRASS database location.
+              location
+
+              database location
+
+              long name for the location
+
+
+       mmaappsseett This record gives the GRASS mapset.
+              mapset
+
+              mapset under which the report was run
+
+
+       rreeggiioonn The region records give the mapset region coordinates.
+
+
+       region north
+
+       region south
+
+       region west
+
+       region east
+
+
+             north for current region (float)
+
+             south for current region (float)
+
+             west for current region (float)
+
+             east for current region (float)
+
+
+       rreessoolluuttiioonn
+              This record gives the GRASS database resolution in meters.
+              resolution
+
+            resolution of the database, in meters (float)
+
+
+       ppooiinntt  These records describe the sites that were used in  the  report.
+              There is one 'point' record for each site.
+              point   <;N>; <;desc>;
+
+            a reference number, used by other lines
+              in the report to reference this site
+
+                   site easting
+
+                   site northing
+
+                a description of the site (usually an site number)
+
+
+       llaayyeerr  These  records  describe  the  map  layers that were used in the
+              report.  There is one 'layer' record for each layer.
+              layer   <;full_name>;
+
+           a reference number, used by other lines
+              in the report to reference this layer
+
+                name of the map layer (raster file name)
+
+           full name (TITLE of raster file)
+
+
+       ccaatt    These records give  information  about  each  category  in  each
+              layer.
+              cat   <;count>; <;name>;
+
+           reference number of the layer
+
+                 category number
+
+               number of times this category occurred
+
+                full name of the category
+
+
+       mmaattrriixx ssiizzee
+              This record gives the number of cells in each site.
+              matrix size
+
+         number of cells per site.
+
+
+       mmaattrriixx These  records  describe  the locations of each cell in the site
+              relative to the center of the site.
+              matrix   ...
+
+             east-west displacement from the site
+
+             north-south displacement from the site
+
+       The displacements are in units of 1 cell, which is equal to the resolu-
+       tion  of  the database.  They are paired, and there will be  pairs.  To
+       compute the coordinates for the cell:
+
+
+       north = site_north -  * resolution
+
+       east  = site_east  +  * resolution
+
+
+       ddaattaa   This is the site data. There is one 'data' record for each  site
+              for each layer.  The  field is repeated  times.
+              data   <;cat>; ...
+
+            reference number of the layer
+
+             reference number of the site
+
+                  category which occurred
+
+
+
+SSEEEE AALLSSOO
+       _s_._d_b_._r_i_m
+
+       _s_._i_n_._a_s_c_i_i
+
+       _s_._m_e_n_u
+
+       _s_._o_u_t_._a_s_c_i_i
+
+       _s_._s_u_r_f_._i_d_w
+
+       _s_i_t_e_s_._S
+
+       _s_i_t_e_s_._f_o_r_m_a_t
+
+       _s_i_t_e_s_._o_c_c_u_r
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                      sites.report(1)

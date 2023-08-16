@@ -1,0 +1,91 @@
+r.profile(1)                  Grass User's Manual                 r.profile(1)
+
+
+
+NNAAMMEE
+       rr..pprrooffiillee   - Outputs the raster map layer values lying on user-defined
+       line(s).
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..pprrooffiillee
+       rr..pprrooffiillee hheellpp
+       rr..pprrooffiillee     [[--gg]]     [[--ii]]       iinnppuutt=_n_a_m_e      oouuttppuutt=_n_a_m_e      pprroo--
+       ffiillee=_e_a_s_t,_n_o_r_t_h[,_e_a_s_t,_n_o_r_t_h,_e_a_s_t,_n_o_r_t_h,...]  rreess=_r_e_s_o_l_u_t_i_o_n
+
+DDEESSCCRRIIPPTTIIOONN
+       This program outputs a two or four column (with -g) ASCII file (or std-
+       out). The default two column  output  consists  of  cumulative  profile
+       length in meters and raster value. The optional four column output con-
+       sists of an easting, northing, cumlative profile length (m), and raster
+       value.   Profile  end  or "turning" points can be set manually with the
+       _p_r_o_f_i_l_e argument or selected interactively from the  GRASS  monitor  by
+       setting  the  _-_i flag. The profile resolution, or distance between pro-
+       file points, is obatined from the current region resolution, or can  be
+       manually set with the _r_e_s argument.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --gg     Output  easting and northing in first two columns of four column
+              output
+
+       --ii     Intercative mode The user selects the  profile  from  the  GRASS
+              monitor  by  clicking  the  left mouse button along the profile,
+              clicking the right mouse button ends the profile
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  The name of the GRASS raster file from  which  to  generate  the
+              profile info
+
+       oouuttppuutt The name of the 2 or 4 column ASCII file to send profile results
+              to Use "_-" to send output to standard output (stdout)
+
+       pprrooffiillee
+              The comma seperated geographic coordinates for profile line end-
+              points The interactive flag (_-_i) overrides this option
+
+       rreess    This  sets  the distance between each profile point (resolution)
+              The resolution must be provided in GRASS  database  units  (i.e.
+              decimal  degrees  for  Lat  Long database and meters for UTM) By
+              default _r_._p_r_o_f_i_l_e uses  the  resolution  of  the  current  GRASS
+              region
+
+
+OOUUTTPPUUTT FFOORRMMAATT
+       The  2  or  4  column  output from _r_._p_r_o_f_i_l_e is intened for easy use in
+       other programs.  The output can be piped (|) directly into  other  pro-
+       grams  or saved to file for later use.  The 4 column output is compati-
+       ble with _s_._i_n_._a_s_c_i_i and can be piped  direcly  into  this  program  for
+       later plotting.
+       r.profile -ig input=elev.rast output=- | s.in.ascii sites=elev.profile
+
+       The 2 column output is compatible with most plotting programs.
+
+NNOOTTEESS
+       The  profile  resolution  is  measured exactly from the supplied end or
+       "turning" point along the profile.  The end of a profile  segment  will
+       be  an  exact multiple of the profile resolution and will therefore not
+       always match the end point coordinates entered for the segmanet.
+
+
+       To extract the numbers in scripts, following parameters can be used:
+                  r.profile dgm12.5 prof=3570631,5763556 out=- 2>/dev/null
+
+       This filters out the everything except the numbers.
+
+SSEEEE AALLSSOO
+       _d_._p_r_o_f_i_l_e
+
+       _r_._w_h_a_t
+
+       _r_._t_r_a_n_s_e_c_t
+
+AAUUTTHHOORR
+       Bob Covill
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.profile(1)

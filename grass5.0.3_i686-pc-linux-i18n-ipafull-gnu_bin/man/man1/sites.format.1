@@ -1,0 +1,111 @@
+sites.format(1)               Grass User's Manual              sites.format(1)
+
+
+
+GRASS  5.0  Site  Record  Format  Specification  (DRAFT!)   Site files contain
+records describing punctual information.  Records are limited  to  files  con-
+taining  only  characters  from the US-ASCII character set.  Records are sepa-
+rated by a newline character (ASCII 0x0a). There are three types  of  records:
+comment  records, header records, and data records.  The formats of each these
+types of records are described in the following sections.
+
+SSiittee DDaattaa RReeccoorrdd DDeessccrriippttiioonn
+       A site record in the GRASS Sites Format is divided into two parts, each
+       with a different field separator. Part 1 contains location in 2 or more
+       dimensions and part 2 optionally  contains  attribute  information  for
+       this  location.  Both types of fields (and thus site records) are vari-
+       able length.
+
+   PPaarrtt 11 ooff aa SSiittee RReeccoorrdd:: LLooccaattiioonn
+       Part 1 of a site record gives information about  location.   The  field
+       separator in part 1 of the site record is a "pipe" (ASCII 0x7c) charac-
+       ter.  The last (non-escaped) pipe signifies  the  end  of  part  1  (an
+       escaped  character  is  defined as one prefixed by a "backslash" (ASCII
+       0x5c)). Any additional fields are considered attribute information.
+
+
+       Each field in part 1 indicates a coordinate in some space.  There  must
+       be  at  least  two  fields in part 1: the first describing a geographic
+       easting and the second describing a geographic northing. These  may  be
+       in either decimal or degrees-minutes-second format.
+
+
+       Additional  fields in part 1 are optional but must be stored in decimal
+       format. They should only be used to  represent  coordinate  information
+       about  some space (e.g., elevation, time; depending upon how a space is
+       defined).
+
+   PPaarrtt 22 ooff aa SSiittee RReeccoorrdd:: AAttttrriibbuutteess
+       Part 2 contains attribute information for the location given in part 1.
+       The field separator in part 2 of the site record is a "space" character
+       (ASCII 0x20), except when the space character is  contained  in  double
+       quotes (ASCII 0x22).  The three types of attributes are: category, dec-
+       imal, and string. These attributes may be in any order.  Each of  these
+       attributes  have  an  associated  identifier  tag  defining the type of
+       attribute in a field:  # (ASCII 0x23), % (ASCII  0x25),  and  @  (ASCII
+       0x40), for category, decimal, and string, respectively.  No space char-
+       acter may immediately follow an identifier  tag.   Category  Attributes
+       Categories  are a special kind of attribute. They are used to represent
+       vector or raster categories when sites are transformed into these  dif-
+       ferent  data  formats.  There may be only one category field per record
+       and it must be prefixed with a "pound" or "number" symbol  (#).   Cate-
+       gories must be integers.  Decimal Attributes Decimal attributes include
+       both integers and floating-point numbers.  They  are  prefixed  with  a
+       "percent"  symbol  (%).   There  may  be  be zero, one, or more decimal
+       attributes in a site record.  String Attributes String  attributes  are
+       fields  that  contain possibly non-numeric information and are prefixed
+       with the "at" or "each" symbol (@). There may be be zero, one, or  more
+       string attributes in a site record. String attributes may contain space
+       (ASCII 0x20) characters if the  entire  attribute,  not  including  the
+       attribute  tag  (@),  is contained within pairs of "double quotes" (").
+       String attributes may also contain double quotes if they are escaped by
+       prefixing  a  "backslash"  (.  Default If no identifier tag is prefixed
+       (i.e., none of #, %, or @), the type of attribute defaults to string.
+
+HHeeaaddeerr aanndd CCoommmmeenntt RReeccoorrdd FFoorrmmaatt
+       In addition to the data record format, the site file may  contain  com-
+       ment  lines  (records  containing  a  pound  symbol, 0x23, in the first
+       column) and header lines, both of which are optional.   Header  records
+       must  precede all data records while comment records may occur anywhere
+       within a sites data file.
+
+
+       There are five types of header records: (1) name, (2) description,  (3)
+       timestamp, (4) label, and (5) format.
+
+       name   A  name record contains the string "name|" beginning in column 1
+              and optionally specifies the name of the database file.
+
+       description
+              A description record contains the string  "desc|"  beginning  in
+              column  1 and optionally describes the database file (metadata).
+
+       timestamp
+              A timestamp record is special type of metadata that contains the
+              string "time|" beginning in column 1 and optionally gives a time
+              and date associated with the entire sites file.  Valid time data
+              strings  are  described  in  the  documentation for the DateTime
+              library (URL?).
+
+       label  A label record describes what each dimension and attribute field
+              in site data records represent. It contains the string "labels|"
+              beginning in column 1 and  optionally  contains  field  descrip-
+              tions.  No  special  formatting is required since this record is
+              for user convenience only.
+
+       format A format record describes the format of site data  records.   It
+              contains  the string "form|" beginning in column 1 and a special
+              sample data record beginning in column 6.   The  special  sample
+              data record is a site data record (as describe above) containing
+              only field  separators  and  identifier  tags  (i.e.,  all  data
+              removed).
+
+       All  header  records  are  optional.   If present in a sites data file,
+       header records must occur in the before any  data  records  in  a  site
+       file.  Darrell McCauley Last modified on Friday, 25-Oct-96 15:55:23 CDT
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                      sites.format(1)

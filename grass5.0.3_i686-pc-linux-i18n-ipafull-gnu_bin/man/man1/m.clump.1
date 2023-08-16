@@ -1,0 +1,311 @@
+m.clump(1)                    Grass User's Manual                   m.clump(1)
+
+
+
+NNAAMMEE
+       _m_._c_l_u_m_p  -  Aggregates  point  data  into clusters of like data using a
+       Voronoi tesselation.
+
+SSYYNNOOPPSSIISS
+       mm..cclluummpp
+
+       mm..cclluummpp hheellpp
+
+       mm..cclluummpp       [[--rrqq]]       iinnppuutt_=_n_a_m_e       oouuttppuutt_=_n_a_m_e        [ffss_=_c_h_a_r]
+       [aattttrriibbuutteess_=_f_i_e_l_d_#_[_,_f_i_e_l_d_#_,_._._._]]     [bbaarrrriieerrss_=_v_e_c_t_o_r     _f_i_l_e_[_,_v_e_c_t_o_r_-
+       _f_i_l_e_,_._._._]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._c_l_u_m_p clusters points together  based  on  points'  proximity,  point
+       attributes,  and the presence of physical constraints (vector barriers)
+       dividing such clusters.  It  first  triangulates  the  points  using  a
+       Voronoi  tesselation  to  determine  the  proximity  of  points  to one
+       another.  Connections among points are maintained where adjacent points
+       have  same  attribute  values;  connections  are  broken where adjacent
+       points have different values for a given  attribute  (field).   Connec-
+       tions  between adjacent points will also be broken where points fall on
+       different sides of arcs in user-specified vector maps.
+
+OOPPTTIIOONNSS
+       The user can run the program by specifying input and output file  names
+       and any desired options on the command line, using the form:
+
+
+       _m_._c_l_u_m_p        _[_-_r_q_]       _i_n_p_u_t_=_n_a_m_e       _o_u_t_p_u_t_=_n_a_m_e       _[_f_s_=_c_h_a_r_]
+       _[_a_t_t_r_i_b_u_t_e_s_=_f_i_e_l_d_#_[_,_f_i_e_l_d_#_,_._._._]_] _[_b_a_r_r_i_e_r_s_=_v_e_c_t_o_r_f_i_l_e_[_,_v_e_c_t_o_r_f_i_l_e_,_._._._]_]
+
+
+       where parameters and flags have the meanings given below.
+
+   FFllaaggss::
+       --rr     Only  process  points  in  the  input  file that fall within the
+              user's current geographic region.
+
+       --qq     Run quietly (without sending comments  on  program  progress  to
+              stdout).
+
+
+   PPaarraammeetteerrss::
+       iinnppuuttnnaammee
+              Name  of an existing file containing, minimally, the easting and
+              northing of the points to be formed into  clusters,  and  having
+              the format given in section "INPUT FILE FORMAT".
+
+       oouuttppuuttnnaammee
+              Name  to be assigned the file to contain program output.  Output
+              will have the format specified in section "OUTPUT FILE  FORMAT".
+
+       ffsscchhaarraacctteerr
+              A  single  character, specifying the field separator used in the
+              input file (also used in the output file).  The  default  delim-
+              iter used, if unspecified, is any white space.
+
+       aattttrriibbuutteessffiieelldd##[[,,ffiieelldd##,,......]]
+              One  or  more  attributes  to  be compared in the input file, to
+              determine which data points are to be grouped.  This is  a  list
+              of  field  numbers  (columns)  in the input file which are to be
+              used when forming clumps.  Different points which  do  not  have
+              the  same  attributes  in all fields specified will be placed in
+              distinct clumps.  Fields are numbered  starting  with  1.   (For
+              example,  the  x,y  coordinates  are  in  fields 1 and 2 respec-
+              tively.)
+
+       bbaarrrriieerrssvveeccttoorrffiillee[[,,vveeccttoorrffiillee,,......]]
+              One or more vector files to constrain points  from  joining  the
+              same  clump.  Points which appear on different sides of any line
+              or area edges in a user-specified vectorfile will be  placed  in
+              distinct clumps in the output file.
+
+
+IINNPPUUTT FFIILLEE FFOORRMMAATT
+       Each line of the input file minimally should have the format:
+
+
+       _x_,_y_[_,_t_e_x_t_,_t_e_x_t_,_._._._]
+
+
+       The input file is required only to contain the easting (x) and northing
+       (y) values for each point, unless the user has  specified  use  of  the
+       attributes  parameter.  The field delimiter (indicated here by a comma)
+       between x and y and between y and text can be any single  character  as
+       specified  by the 'fs' parameter.  The default delimiter is white space
+       if 'fs' is not specified.  Additional data fields (columns) may also be
+       present in the input file, and will be preserved in the output.
+
+
+       Leading  spaces  in  the input are automatically removed.  Blanks lines
+       and lines starting with # are treated as comment and ignored.
+
+OOUUTTPPUUTT FFIILLEE FFOORRMMAATT
+       The output file has the general format:
+
+
+
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+                      x,y[,text,text,...]
+
+                      x,y[,text,text,...]
+
+       The comma here represents the field delimiter  and  will  be  the  same
+       character as the delimiter specified to be used in the input file.
+
+
+       The output format is structured.  Lines with the 'x' at the left margin
+       are the original input points.  Lines with the 'x' indented  one  space
+       are  the  points that are 'neighbors' of the non-indented point.  Empty
+       lines indicate the end of a clump.
+
+
+       Clumps are groups of  points  either  or  both:  (1)  having  the  same
+       attribute(s) values in the data field(s) specified by the user with the
+       attributes parameter, and/or (2) falling within polygons formed by  the
+       vector barriers specified by the user with the barriers parameter.
+
+EEXXAAMMPPLLEESS
+       In  the  following example the comma-delimited input file treepecker is
+       of the form:
+                     # x,y,treeid,treespp,woodpeckersuit,woodpeckeruse
+                     432222.22,4651095.23,8074,loblolly pine,high,0
+                     432618.65,4651156.30,8075,loblolly pine,medium,0
+                     432702.67,4651169.82,8076,sugar maple,low,0
+                     432702.63,4651165.72,8077,loblolly pine,high,1
+                     432702.57,4651159.61,8078,loblolly pine,high,1
+                     432702.79,4651173.82,8079,loblolly pine,high,1
+                     432177.53,4651072.01,8080,peach,low,0
+                     432181.50,4650466.25,8081,loblolly pine,high,0
+                     432169.82,4650466.03,8082,loblolly pine,low,0
+                     432235.76,4650467.18,8083,loblolly pine,high,1
+                     432274.53,4650467.81,8084,loblolly pine,medium,1
+                     432216.47,4650225.19,8085,loblolly pine,medium,0
+                     432381.46,4651077.28,8086,loblolly pine,low,1
+                     432640.08,4651005.86,8087,loblolly pine,low,0
+                     432972.11,4651095.98,8088,loblolly pine,high,1
+
+       where:
+                     field 1 = x (easting)
+                     field 2 = y (northing)
+                     field 3 = tree identification number
+                     field 4 = tree species
+                     field 5 = suitability for use as red-cockaded  woodpecker
+       habitat
+                     field 6 = current red-cockaded woodpecker nesting site
+
+       Assume  constraints imposed on clustering include a vector map of road-
+       ways and a vector map of waterways.  The following command will produce
+       an  output file in which all trees having both the same suitability for
+       use as wookpecker habitat and the same nesting use status,  bounded  by
+       roads and waterways, will appear as clusters of points in the output.
+
+
+       _m_._c_l_u_m_p  _i_n_p_u_t_=_t_r_e_e_p_e_c_k_e_r  _o_u_t_p_u_t_=_t_r_e_e_p_e_c_k_e_r_._c_l_u_m_p_s _f_s_=_, _a_t_t_r_i_b_u_t_e_s_=_5_,_6
+       _b_a_r_r_i_e_r_s_=_r_o_a_d_s_,_w_a_t_e_r_s
+
+
+       In this case, program output might look like:
+                     432222.22,4651095.23,8074,loblolly pine,high,0
+
+                     432618.65,4651156.30,8075,loblolly pine,medium,0
+
+                     432702.67,4651169.82,8076,sugar maple,low,0
+
+                     432702.63,4651165.72,8077,loblolly pine,high,1
+                      432972.11,4651095.98,8088,loblolly pine,high,1
+                      432702.57,4651159.61,8078,loblolly pine,high,1
+                     432972.11,4651095.98,8088,loblolly pine,high,1
+                      432702.79,4651173.82,8079,loblolly pine,high,1
+                      432702.63,4651165.72,8077,loblolly pine,high,1
+                      432702.57,4651159.61,8078,loblolly pine,high,1
+                     432702.79,4651173.82,8079,loblolly pine,high,1
+                      432972.11,4651095.98,8088,loblolly pine,high,1
+                     432702.57,4651159.61,8078,loblolly pine,high,1
+                      432972.11,4651095.98,8088,loblolly pine,high,1
+                      432702.63,4651165.72,8077,loblolly pine,high,1
+
+                     432177.53,4651072.01,8080,peach,low,0
+                      432169.82,4650466.03,8082,loblolly pine,low,0
+                     432169.82,4650466.03,8082,loblolly pine,low,0
+                      432177.53,4651072.01,8080,peach,low,0
+
+                     432181.50,4650466.25,8081,loblolly pine,high,0
+
+                     432235.76,4650467.18,8083,loblolly pine,high,1
+
+                     432274.53,4650467.81,8084,loblolly pine,medium,1
+
+                     432216.47,4650225.19,8085,loblolly pine,medium,0
+
+                     432381.46,4651077.28,8086,loblolly pine,low,1
+
+                     432640.08,4651005.86,8087,loblolly pine,low,0
+
+
+UUTTIILLIITTIIEESS
+       The user can display program output using GRASS display functions  like
+       _d_._m_a_p_g_r_a_p_h  and _d_._p_o_i_n_t_s.  The following Bourne shell script allows the
+       user to graph the clustering of points output by _m_._c_l_u_m_p.
+                          : ${GISRC?}
+                          file=
+                          label=0
+                          for arg
+                          do
+                              case "$arg" in
+                                   fs=*) F=-F"`echo $arg|sed s/fs=//`";;
+                                 label=*) eval $arg ;;
+                                 file=*) eval $arg;;
+                                 *)
+                                  echo   "Usage:   $0   [fs=c]   file=filename
+       [label=#]" >& 2
+                                  exit 1
+                                  ;;
+                              esac
+                          done
+                          if [ "$file" = "" ]
+                          then
+                              echo  "Usage: $0 [fs=c] file=filename [label=#]"
+       >& 2
+                              exit 1
+                          fi
+
+                          awk "$F" "BEGIN {label=$label}"'
+                          NF == 0 {next}
+                          /^ / {next}
+                               {if (label!=0) print $1,$2,$label
+                                else print $1,$2}
+                          ' $file | d.points size=10
+
+                          awk "$F" '
+                          NF == 0 {next}
+                          /^ /{ print "move",east,north;  print  "draw",$1,$2;
+       next}
+                              { east=$1; north=$2}
+                          ' $file | d.mapgraph color=red
+
+
+NNOOTTEESS
+       If  the  user specifies neither 'attributes' nor 'barriers' parameters,
+       the resultant output file will have only one clump (because there  will
+       be no basis for breaking any proximity connections among points).
+
+
+       Input  lines  that  _m_._c_l_u_m_p doesn't understand are ignored.  This means
+       that if a line in the input file is not a comment but doesn't have  (or
+       doesn't appear to have) an x,y coordinate-pair as its first two fields,
+       the line will be ignored.  The most common cause of ignored lines  will
+       be user error (e.g., the user's failure to specify the input file field
+       separator).  If unrecognized lines in the  input  file  exist,  _m_._c_l_u_m_p
+       will  print one message (to stderr) noting that some unrecognized lines
+       were found.
+
+BBUUGGSS
+       Input lines which are longer that  4095  characters  will  be  silently
+       truncated.   Fields which are longer than 1023 characters will probably
+       cause _m_._c_l_u_m_p to core dump (at best) or to produce invalid results (not
+       so great).
+
+SSEEEE AALLSSOO
+       UNIX Manual entries for awk and sed.
+
+
+       _p_a_r_s_e_r
+
+
+       Example  Bourne-shell scripts which process the output from _m_._c_l_u_m_p can
+       be found with the source code for _m_._c_l_u_m_p:
+
+
+
+       mapgraph.sh:
+              Tool to  graph  the  connections  among  data  points  found  by
+              _m_._c_l_u_m_p.
+
+       points.sh:
+              Tool to display the centroids of clumps created by _m_._c_l_u_m_p.
+
+       area.sh:
+              Tool  to  sum the area of points associated with each clump cre-
+              ated by _m_._c_l_u_m_p, using data stored in a user-specified field  of
+              the input data file.
+
+
+AAUUTTHHOORR
+       Michael  Shapiro, U.S. Army Construction Engineering Research Laborato-
+       ries
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           m.clump(1)
