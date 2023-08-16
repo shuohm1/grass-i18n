@@ -1,0 +1,121 @@
+v.in.poly(1)                  Grass User's Manual                 v.in.poly(1)
+
+
+
+NNAAMMEE
+       vv..iinn..ppoollyy   -  Create a vector file of polygons centered on given loca-
+       tions
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ppoollyy
+       vv..iinn..ppoollyy hheellpp
+       vv..iinn..ppoollyy [ --tt] [iinnppuutt==_n_a_m_e] vveecctt==_n_a_m_e rraaddiiuuss==_v_a_l_u_e [sseeggmmeennttss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program creates a vector  map  of  polygons  of  specified  radius
+       around center points which may be input as coordinate pairs from a file
+       or from stdin.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+       FFllaaggss
+
+
+
+       --tt     Do not automatically build topology for the new map
+
+
+       PPaarraammeetteerrss
+
+
+
+       iinnppuutt==_n_a_m_e
+              Name of input file (omit or use - for input from stdin)
+              default: - (stdin)
+
+       vveecctt==_n_a_m_e
+              Name of new vector map to create
+
+       rraaddiiuuss==_v_a_l_u_e
+              Radius of polygon's circumscribed circle
+              default: none
+
+       sseeggmmeennttss==_v_a_l_u_e
+              Number of straight line segments bounding the polygon
+              default: set to give perimeter point spacing  of  0.02%  of  the
+              width  of  the  current  region  based on the radius given.  The
+              smallest number of segments that will be automatically  used  is
+              six(6).  Values down to 3 may be explicitly selected on the com-
+              mand line or in input lines (see below).  A value of  3  results
+              in an equilateral triangle, 4 a square, etc.
+
+
+
+DDIISSCCUUSSSSIIOONN AANNDD AADDDDIITTIIOONNAALL IINNPPUUTT LLIINNEE PPAARRAAMMEETTEERRSS
+       If  input  is  from  a  keyboard, a prompt will be given for each input
+       line.  The input lines from the file or stdin should look like this:
+
+         easting northing [label] [category desc]
+                     or
+         easting northing [#label] [category desc]
+
+
+       The "#label" for is for center  points  piped  from  s.out.ascii,  like
+       this:
+         ss..oouutt..aasscciiii --dd  sitefile | vv..iinn..ppoollyy vveecctt==newvect rraaddiiuuss==500
+
+       The  polygon  (area)  label  and  category  description  are  optional.
+       "label" is an integer and the "category desc" is any text  string.   If
+       the  label  value  is missing, the label value used is one greater than
+       the last and the description is "n-sided polygon," where n is the  num-
+       ber  of  bounding  segments.  In this way a series of sequentially num-
+       bered polygons may be created by just giving the easting  and  northing
+       center coordinates.
+
+
+       Two  optional  command  lines  may be interspersed with the input lines
+       containing the coordinate and optional label and category descriptions.
+       These  lines  begin with ".S" or ".R".  Note the restrictions on values
+       of radius and segments parameters below.
+
+        .S 500
+
+
+       Changes the number of straight line segments which bound the polygon to
+       a  new  value.   With  large values (greater than 20) the polygons will
+       approximate circles.  The minimum value of 3 will create an equilateral
+       triangle.   Very  large values are allowed, but the resulting "circles"
+       may have more definition than is needed and will take lots  of  storage
+       space for the vector map.
+
+        .R 100
+
+
+       Changes  the  radius  of  the  circle  to  a new value.  Radius must be
+       greater than 0.0; however, very small values may give meaningless  cir-
+       cles  and  v.support  may  not be able to construct the topology if the
+       points on the perimeter are too closely spaced.
+
+
+
+BBUUGGSS
+       Circles in Lat-Long locations are not really round.  Really large  Lat-
+       Long circles or polygons may look oddly misshappen when displayed.
+
+
+
+SSEEEE AALLSSOO
+       _v_._t_o_._r_a_s_t  can be used to convert the polygons to raster maps for mask-
+       ing, etc.
+
+
+
+AAUUTTHHOORR
+       Dr. James R. Hinthorne, GIS Laboratory, Central Washington  University.
+       April 1992.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         v.in.poly(1)

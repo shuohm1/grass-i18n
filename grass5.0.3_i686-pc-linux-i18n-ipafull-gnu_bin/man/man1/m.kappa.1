@@ -1,0 +1,89 @@
+m.kappa(1)                    Grass User's Manual                   m.kappa(1)
+
+
+
+NNAAMMEE
+       _m_._k_a_p_p_a  -  Calculate  error  matrix  and  kappa parameter for accuracy
+       assessment of classification result.
+
+       _(_G_R_A_S_S _S_u_p_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..kkaappppaa
+
+       mm..kkaappppaa hheellpp
+
+       mm..kkaappppaa [--hh] [iinnppuuttnnaammee] [oouuttppuuttnnaammee] [ttiittllee""nnaammee""]
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._k_a_p_p_a tabulates the error matrix of classification result by  reading
+       error  matrix.   Both  overall  kappa (accompanied by its variance) and
+       conditional kappa values are calculated.
+
+
+       The user can run the program non-interactively by specifying all needed
+       flag settings and parameter values on the command line, in the form:
+
+
+       _m_._k_a_p_p_a _[_-_h_] _[_i_n_p_u_t_n_a_m_e_] _[_o_u_t_p_u_t_n_a_m_e_] _[_t_i_t_l_e_"_n_a_m_e_"_]
+
+
+
+   FFllaagg::
+       --hh     Report without header
+
+
+   PPaarraammeetteerrss::
+       iinnppuuttnnaammee
+              Name  of  error matrix file.  If file name is not specified, the
+              program will obtain error matrix from standard input.   If  file
+              name  is  provided, it must have the following format: the first
+              line is an integer N which is the number of rows/columns of  the
+              matrix;  the  remainder  of  the  file is the error matrix, or N
+              lines, each containing N integers. For example:
+                                         tab(  ); lnnnnnn nnnnnnn.  6 28010  0
+              0
+                                         0  5235  0 17797 0 0 0  3368  744  56
+              0
+                                         69340 0 437 0 0 0 0  0  0  2118  0  0
+              15762
+                                         0 40759 0 0 0 1766 0 0 8126
+
+
+       oouuttppuuttnnaammee
+              Name  of ascii file in which to report results.  If no file name
+              is provided, the report will go to standard output.
+
+       ttiittlleennaammee
+              Title of the report file which is the first line in output file.
+              Default: Error matrix and Kappa
+
+
+
+       Alternately,  the  user  can run _m_._k_a_p_p_a interactively by simply typing
+       _m_._k_a_p_p_a without command line arguments; in this case, the user will  be
+       prompted  for the names of input error matrix.  _m_._k_a_p_p_a then calculates
+       the kappa  values  for  overall  and  each  classes  along  with  their
+       variances.   Also  percentage  of commission and ommission error, total
+       correct in counts, total area in counts and percentage of overall  cor-
+       rect counts are tabulated.
+
+
+       The  report  will  be displayed on screen, or written to an output file
+       which is in plain text format and named by user at  prompt  of  running
+       the program.
+
+NNOOTTEESS
+       NA's in report mean non-applicable.
+
+SSEEEE AALLSSOO
+       _r_._k_a_p_p_a
+
+AAUUTTHHOORR
+       Tao Wen, University of Illinois at Urbana-Champaign, Illinois.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           m.kappa(1)

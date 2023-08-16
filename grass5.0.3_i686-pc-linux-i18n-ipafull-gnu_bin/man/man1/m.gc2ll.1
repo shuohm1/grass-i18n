@@ -1,0 +1,84 @@
+m.gc2ll(1)                    Grass User's Manual                   m.gc2ll(1)
+
+
+
+NNAAMMEE
+       mm..ggcc22llll  - Converts geocentric to geographic coordinates.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..ggcc22llll xx==_# yy==_# zz==_# ss==_s_p_h_e_r_o_i_d
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._g_c_2_l_l  returns geographic coordinates for geocentric ones supplied by
+       the user.  It performs the  reverse  operation  of  the  GRASS  program
+       _m_._l_l_2_g_c.   The  xx,  yy  and  zz values are the three dimensions needed to
+       locate a point in three-dimensional space.  The values that are printed
+       include  the  latitude, the longitude and the height above (or distance
+       below) the spheroid.
+
+
+       The list of spheroids available is somewhat dynamic.  It may  not  con-
+       tain  exactly  the ones listed below.  To determine the current list of
+       possible spheroids, simply type in: mm..ggcc22llll xx==_0 yy==_0 zz==_0 ss==_h_e_l_p
+
+       A list of available spheroids will be printed on the  screen.   If  the
+       spheroid desired is not on the list, the values for the semi-major axis
+       and the eccentricity squared for the spheroid may be entered  in  place
+       of    a    spheroid   name   in   the   following   format:   ss==aa==_s_e_m_i_-
+       _m_a_j_o_r___a_x_i_s,ee==_e_c_c_e_n_t_r_i_c_i_t_y___s_q_u_a_r_e_d
+
+
+
+
+   SSOOMMEE PPOOSSSSIIBBLLEE SSPPHHEERROOIIDDSS
+       (_T_h_e _o_n_-_l_i_n_e _l_i_s_t_i_n_g _i_n_c_l_u_d_e_s _o_n_l_y _t_h_e _s_p_h_e_r_o_i_d _n_a_m_e_s)
+       Spheroid  Commonly used for:  Semi-major axis     Eccentricity sqrd
+       australian     Australia      6378160.0 0.0066945419
+       bessel         Japan               6377739.155    0.0066743722
+       clark66        N. America          6378206.4 0.006768658
+       clark80        France, Africa      6378249.145    0.0068035113
+       everest        India, Burma        6377276.345    0.0066378466
+       international  Europe              6378388.0 0.00672267
+       wgs72          worldwide coverage  6378135.0 0.006694317778
+
+
+EEXXAAMMPPLLEE
+       The command:
+              mm..ggcc22llll xx==_0_._0 yy==_0_._0 zz==_6_3_5_6_7_5_0_._5_2_0_0_1_7 ss==_w_g_s_7_2
+
+       Results:
+              lat=90N
+
+              lon=90W
+
+              h=0.0000
+
+
+NNOOTTEESS
+       For a brief discussion of spheroids see _m_._l_l_2_u.
+
+
+       For a brief discussion of geocentric coordinates see _m_._l_l_2_g_c.
+
+
+       This is an experimental program.  It is part of an  initial  effort  to
+       incorporate geographic coordinates into GRASS.
+
+SSEEEE AALLSSOO
+       _m_._d_a_t_u_m_._s_h_i_f_t
+
+       _m_._l_l_2_g_c
+
+       _m_._l_l_2_u
+
+       _m_._u_2_l_l
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           m.gc2ll(1)

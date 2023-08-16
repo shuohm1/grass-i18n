@@ -1,0 +1,80 @@
+ps.select(1)                  Grass User's Manual                 ps.select(1)
+
+
+
+NNAAMMEE
+       ppss..sseelleecctt  - Selects a PostScript device for GRASS hardcopy output.
+       _(_G_R_A_S_S _H_a_r_d_c_o_p_y _P_o_s_t_S_c_r_i_p_t _O_u_t_p_u_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ppss..sseelleecctt
+       ppss..sseelleecctt hheellpp
+       ppss..sseelleecctt [ --llppqq] [ppaaiinntteerr=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       ppss..sseelleecctt  allows  the  user  to select the PostScript device for GRASS
+       hardcopy output.  If the user has not selected a device _b_e_f_o_r_e  running
+       _p_s_._m_a_p  ,  the  default  device configuration (shown under NNOOTTEESS below,
+       will be used.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ll     List all available PostScript painters.
+
+       --pp     Print name of currently selected PostScript painter.
+
+       --qq     Quietly select PostScript painter.
+
+
+
+
+   PPaarraammeetteerrss::
+       ppaaiinntteerr==_n_a_m_e
+              Name of PostScript painter to select.
+              Options:  (this will be a  list  of  available  hardcopy  output
+              PostScript devices)
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       If  the user runs _p_s_._s_e_l_e_c_t without specifying program arguments on the
+       command line, the program will prompt the user for the name of a  hard-
+       copy output PostScript device to select.
+
+NNOOTTEESS
+       Each PostScript device must have a device description file in the $GIS-
+       BASE/etc/paint/psdevices directory.  The name of the device description
+       file  is used as the name of the PostScript painter.  A device descrip-
+       tion file  contains  the  following  information  (default  values  are
+       shown):
+
+
+
+            level: 2
+            page width: 8.5
+            page height: 11.0
+            top margin: 0.5
+            bottom margin: 0.5
+            left margin: 0.25
+            right margin: 0.25
+            resolution: 75
+
+
+
+
+       where  _l_e_v_e_l  is the PostScript level supported by the device (1 or 2);
+       _p_a_g_e _w_i_d_t_h and _p_a_g_e _h_e_i_g_h_t are the paper dimensions  (in  inches);  _t_o_p
+       _m_a_r_g_i_n, _b_o_t_t_o_m _m_a_r_g_i_n, _l_e_f_t _m_a_r_g_i_n and _r_i_g_h_t _m_a_r_g_i_n are the unprintable
+       edges of the page (in inches); and _r_e_s_o_l_u_t_i_o_n is the effective  resolu-
+       tion (in pixels per inch).
+
+SSEEEE AALLSSOO
+        _p_s_._m_a_p
+
+AAUUTTHHOORR
+       Paul Carlson, USDA, SCS, NHQ-CGIS
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         ps.select(1)

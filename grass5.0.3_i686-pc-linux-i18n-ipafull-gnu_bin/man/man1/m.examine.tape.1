@@ -1,0 +1,70 @@
+m.examine.tape(1)             Grass User's Manual            m.examine.tape(1)
+
+
+
+NNAAMMEE
+       mm..eexxaammiinnee..ttaappee   -  Provides  a  description of the files on a 1/2-inch
+       magnetic tape.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _T_o_o_l_)
+
+SSYYNNOOPPSSIISS
+       mm..eexxaammiinnee..ttaappee
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._e_x_a_m_i_n_e_._t_a_p_e is a convenient tool for previewing a tape and obtaining
+       block size values.  After the user enters the command mm..eexxaammiinnee..ttaappee
+
+       the  program  will  prompt  the user for the full path name of the tape
+       device on which the tape is mounted.   In  most  cases,  this  will  be
+       /dev/rmt0.   However,  the user must enter this, as there is no default
+       value for the tape device name.  The user is then prompted to enter the
+       buffer  size  to be used when reading the tape.  The buffer size is the
+       amount of memory allocated to read one physical record of the tape.  If
+       the  user hits RETURN, the program will assume a default buffer size of
+       32767 bytes.
+
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e reads the tape specified by the user  and  reports  back
+       the  block  size (record length) and the number of blocks for each file
+       contained on the tape.  _m_._e_x_a_m_i_n_e_._t_a_p_e can be used on any 1/2-inch mag-
+       netic  tape.  The user has the option of sending the output into a file
+       or viewing the output on the terminal screen.
+
+NNOOTTEESS
+       The buffer size is the amount of memory allocated to read one  physical
+       record  on  the  tape.   Magnetic tape devices will accept a request to
+       read more bytes than actually exist in any  given  record  on  a  tape.
+       However, _m_._e_x_a_m_i_n_e_._t_a_p_e reads only as many bytes as physically exist on
+       the tape and returns the number of bytes actually read.   The  user  is
+       allowed  to alter the buffer size in order to request smaller reads for
+       tape devices unable to handle requests this large (32767 bytes), or  to
+       request  larger reads for tapes with larger record sizes read on drives
+       able to handle larger record sizes.
+
+
+       Note that _m_._e_x_a_m_i_n_e_._t_a_p_e cannot be  used  to  examine  the  content  of
+       either ordinary files or 1/4-inch tape cartridges.
+
+SSEEEE AALLSSOO
+       _m_._d_e_m_._e_x_a_m_i_n_e
+
+       _m_._d_e_m_._e_x_t_r_a_c_t
+
+       _m_._d_m_a_U_S_G_S_r_e_a_d
+
+       _m_._d_t_e_d_._e_x_a_m_i_n_e
+
+       _m_._d_t_e_d_._e_x_t_r_a_c_t
+
+       _m_._l_u_l_c_._U_S_G_S
+
+       _m_._l_u_l_c_._r_e_a_d
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                    m.examine.tape(1)

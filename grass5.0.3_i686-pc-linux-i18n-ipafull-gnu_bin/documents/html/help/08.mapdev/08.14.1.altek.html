@@ -1,0 +1,366 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      08.14.1.altek
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    Installing an Altek Digitizer
+  </CENTER>
+    <P>This file covers how to set up the hardware for an Altek digitizer with an
+AC-30 controller. It includes set up instructions for the AC-30 controller,
+the cabling to the digitizer and a help section for problems. At the bottom
+of this file there is a description of the AC-40 controller switch
+settings;  but beware -- these are untested.
+    <P>On CERL's AC-30 controller the switches are inside the controller itself.
+It is necessary to remove 4 screws and the cover to reach the switches.
+There are two banks of eight switches.  
+Switch settings are:
+    <P>
+  <CENTER>
+    Left Bank       Right Bank
+  </CENTER>
+
+  <CENTER>
+    1  --&gt;          1  &lt;--
+  </CENTER>
+
+  <CENTER>
+    2  --&gt;          2  &lt;--
+  </CENTER>
+
+  <CENTER>
+    3  &lt;--          3  &lt;--
+  </CENTER>
+
+  <CENTER>
+    4  --&gt;          4  &lt;--
+  </CENTER>
+
+  <CENTER>
+    5  --&gt;          5  --&gt;
+  </CENTER>
+
+  <CENTER>
+    6  --&gt;          6  &lt;--
+  </CENTER>
+
+  <CENTER>
+    7  &lt;--          7  &lt;--
+  </CENTER>
+
+  <CENTER>
+    8  &lt;--          8  &lt;--
+  </CENTER>
+    <P>
+  <CENTER>
+    ON --&gt;
+  </CENTER>
+    <P>What these switch settings give us is: 
+
+  <CENTER>
+    Resolution at .001 inches, format 8 (standard packed binary), 9600 baud,
+  </CENTER>
+
+  <CENTER>
+    and point mode.
+  </CENTER>
+    <P>    <P>The cabling between the digitizer and the computer differ for different
+computers.  Some known cable configurations are given below:
+    <P>
+  <CENTER>
+    AT&amp;T 3B2:  Cable was straight thru (ribbon cable).
+  </CENTER>
+    <P>
+  <CENTER>
+    <H2>
+      SUN 3/110:
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    Sun     Altek
+  </CENTER>
+  <PRE>	 2  ----  3
+</PRE>
+  <PRE>	 3  ----  2
+</PRE>
+  <PRE>	 4  ----  5
+</PRE>
+  <PRE>	 5  ----  4
+</PRE>
+  <PRE>	 7  ----  7
+</PRE>
+    <P>    <P>
+  <CENTER>
+    SUN SPARC Plus
+  </CENTER>
+
+  <CENTER>
+    While the above configuration has been known to work for Sparcstations,
+  </CENTER>
+
+  <CENTER>
+    it is reported that this below works where the other sometimes does not:
+  </CENTER>
+    <P>
+  <CENTER>
+    Sun4     Altek
+  </CENTER>
+  <PRE>	 2  ----  3
+</PRE>
+  <PRE>	 3  ----  2
+</PRE>
+  <PRE>	 4  ----  5
+</PRE>
+  <PRE>	 5  ----  4
+</PRE>
+  <PRE>	 7  ----  7
+</PRE>
+
+  <CENTER>
+    <H2>
+      +-6        6--+
+    </H2>
+  </CENTER>
+  <PRE>       |	     |
+</PRE>
+  <PRE>       +-8  ----  20 |
+</PRE>
+  <PRE>        	     |
+</PRE>
+  <PRE>         20 ----  8--+
+</PRE>
+    <P>    <P>
+  <CENTER>
+    <H2>
+      MASSCOMP :
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    Mass    Altek
+  </CENTER>
+  <PRE>	 2  ----  3
+</PRE>
+  <PRE>	 3  ----  2
+</PRE>
+  <PRE>	 4  ----  5
+</PRE>
+  <PRE>	 5  ----  4
+</PRE>
+  <PRE>	 7  ----  7
+</PRE>
+
+  <CENTER>
+    <H2>
+      6  -
+    </H2>
+  </CENTER>
+  <PRE>	 8   |
+</PRE>
+  <PRE>	 20 _|
+</PRE>
+    <P>Masscomp cable has 2 and 3 switched, 4 and 5 switched, 7 straight thru,
+and on the computer side 6, 8, and 20 are looped together.
+    <P>If the <A HREF="./../../../../documents/html/v.digit.html">v.digit</A> program isn't working make sure that the tty the digitizer
+is on has the getty off, the tty permissions set to 'crw-rw-rw', the
+'digitcap' file is correct for your system configuration, and the switch
+settings on the digitizer are correct.  There are some diagnostic programs
+under $GISBASE/src/mapdev/digitizers/altek/Diagnostics.  Read the README
+file in the Diagnostics directory for specific information on the programs.
+If none of the programs work, there is something wrong with either the
+cabling or the digitizer.
+    <P>  <PRE> ---------------------------------------------------------------------
+</PRE>
+    <P>I have two differents sets of digitizers switch setting for the AC-40
+controller.  If one set doesn't work, try the other.
+    <P>
+  <CENTER>
+    AC-40 Switch Settings:
+  </CENTER>
+
+  <CENTER>
+    1 bank of 9 switches
+  </CENTER>
+
+  <CENTER>
+    4 banks of 8 switches
+  </CENTER>
+    <P>  <PRE> ---------------------------------------------------------------------
+</PRE>
+
+  <CENTER>
+    First set of switch settings to try:
+  </CENTER>
+    <P>
+  <CENTER>
+    One bank of 9 switches all switches are on.
+  </CENTER>
+
+  <CENTER>
+    4 banks of 8 switches:
+  </CENTER>
+    <P>
+  <CENTER>
+    1st                         2nd
+  </CENTER>
+  <PRE>         ---                  |      ---
+</PRE>
+  <PRE>  8       0      - 9600       |       0     -    Mode
+</PRE>
+  <PRE>  7       0      -  |         |       0     -     |
+</PRE>
+  <PRE>  6       1      -  |         |       0     -    Stream
+</PRE>
+  <PRE>  5       1      -  |         |       0     -     |
+</PRE>
+  <PRE>  4       1      -  2 stop    |       0     -    Strm. Value
+</PRE>
+  <PRE>  3       0      -  Dis par   |       0     -     |
+</PRE>
+  <PRE>  2       1      -  Even      |       1     -     |
+</PRE>
+  <PRE>  1       1      -  8 bits    |       0     -     |
+</PRE>
+    <P>
+  <CENTER>
+    1 is on, 0 is off
+  </CENTER>
+    <P>
+  <CENTER>
+    3rd                         4th
+  </CENTER>
+  <PRE>         ---                  |      ---
+</PRE>
+  <PRE>  8       1      - Output     |       1     -    Binary 2
+</PRE>
+  <PRE>  7       1      -  |         |       0     -    Standard
+</PRE>
+  <PRE>  6       1      -  |         |       0     -    Run Type
+</PRE>
+  <PRE>  5       0      - English    |       1     -     |
+</PRE>
+  <PRE>  4       0      - No LF      |       0     -    Serial
+</PRE>
+  <PRE>  3       0      - Dis sign   |       0     -    DTR1 off
+</PRE>
+  <PRE>  2       1      - X on       |       0     -    DTR2 off
+</PRE>
+  <PRE>  1       1      - En Host    |       1     -    Reserved
+</PRE>
+    <P>
+  <CENTER>
+    1 is on, 0 is off
+  </CENTER>
+    <P>    <P>  <PRE> ---------------------------------------------------------------------
+</PRE>
+    <P>
+  <CENTER>
+    If the first set of switch settings fail you may want to try these
+  </CENTER>
+
+  <CENTER>
+    settings.
+  </CENTER>
+    <P>
+  <CENTER>
+    One bank of 9 switches all switches are on.
+  </CENTER>
+
+  <CENTER>
+    4 banks of 8 switches:
+  </CENTER>
+    <P>
+  <CENTER>
+    1st       2nd      3rd       4th
+  </CENTER>
+  <PRE>       ---       ---      ---       ---
+</PRE>
+
+  <CENTER>
+    <H2>
+      8     0         1        0         1      8
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      7     0         0        0         1      7
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      6     0         1        1         1      6
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      5     0         0        1         0      5
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      4     0         0        1         0      4
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      3     1         0        0         0      3
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      2     0         0        1         1      2
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      1     0         1        1         1      1
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    1 is on, 0 is off
+  </CENTER>
+    <P>  <PRE> ---------------------------------------------------------------------
+</PRE>
+    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

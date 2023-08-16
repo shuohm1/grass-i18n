@@ -1,0 +1,114 @@
+r.surf.idw2(1)                Grass User's Manual               r.surf.idw2(1)
+
+
+
+NNAAMMEE
+       rr..ssuurrff..iiddww22  - Surface generation program.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ssuurrff..iiddww22 iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [nnppooiinnttss==_c_o_u_n_t]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._s_u_r_f_._i_d_w_2  fills  a  raster matrix with interpolated values generated
+       from a set of irregularly spaced data points using numerical approxima-
+       tion (weighted averaging) techniques.  The interpolated value of a cell
+       is determined by values of nearby data points and the distance  of  the
+       cell from those input points.  In comparison with other methods, numer-
+       ical approximation allows representation of more complex surfaces (par-
+       ticularly  those with anomalous features), restricts the spatial influ-
+       ence of any errors, and generates the  interpolated  surface  from  the
+       data  points.   It is the most appropriate method to apply to most spa-
+       tial data.
+
+
+       The program will be run non-interactively if  the  user  specifies  the
+       values  of needed program parameters and any desired optional parameter
+       values on the command line, using the form: rr..ssuurrff..iiddww22 iinnppuutt==_n_a_m_e oouutt--
+       ppuutt==_n_a_m_e [nnppooiinnttss==_c_o_u_n_t]
+
+
+
+       Alternately,  the user can simply type rr..ssuurrff..iiddww22 on the command line,
+       without program arguments.  In this case, the user will be prompted for
+       parameter  values  using the standard GRASS user interface described in
+       the manual entry for _p_a_r_s_e_r.
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an input raster map layer that contains a set of irregu-
+              larly  spaced  data  values; i.e., some cells contain known data
+              values while the rest contain zero (0).
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the new output raster map layer  contain-
+              ing a smooth surface generated from the known data values in the
+              input map layer.
+
+       nnppooiinnttss==_c_o_u_n_t
+              The number of points to use for interpolation.  The  default  is
+              to  use the 12 nearest points when interpolating the value for a
+              particular cell.
+              Default:  12
+
+
+NNOOTTEESS
+       The amount of memory used by this program is related to the  number  of
+       non-zero  data  values in the input map layer.  If the input raster map
+       layer is very dense (i.e., contains many  non-zero  data  points),  the
+       program may not be able to get all the memory it needs from the system.
+       The time required to execute increases with the number  of  input  data
+       points.
+
+
+       If  the  user has a mask set, then interpolation is only done for those
+       cells that fall within the mask.  However, all non-zero data points  in
+       the input layer are used even if they fall outside the mask.
+
+
+       This program does not work with latitude/longitude data bases.  Another
+       surface generation program, named _r_._s_u_r_f_._i_d_w, should be used with lati-
+       tude/longitude data bases.
+
+
+       The user should refer to the manual entries for
+
+       _r_._s_u_r_f_._i_d_w
+
+       _r_._s_u_r_f_._c_o_n_t_o_u_r
+
+       _s_._s_u_r_f_._i_d_w
+
+       _s_._s_u_r_f_._r_s_t
+       to  compare  this  surface  generation program with others available in
+       GRASS.
+
+SSEEEE AALLSSOO
+       _r_._m_a_s_k
+
+       _r_._s_u_r_f_._c_o_n_t_o_u_r
+
+       _r_._s_u_r_f_._i_d_w
+
+       _s_._s_u_r_f_._i_d_w
+
+       _s_._s_u_r_f_._r_s_t
+
+       _r_._s_u_r_f_._g_a_u_s_s
+
+       _r_._s_u_r_f_._f_r_a_c_t_a_l
+
+       _r_._s_u_r_f_._r_a_n_d_o_m
+
+       _r_._s_u_r_f_._i_d_w_2
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                       r.surf.idw2(1)

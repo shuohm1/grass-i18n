@@ -1,0 +1,156 @@
+s.label(1)                    Grass User's Manual                   s.label(1)
+
+
+
+NNAAMMEE
+       ss..llaabbeell  - makes a label-file from a GRASS sites list.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..llaabbeell
+       ss..llaabbeell hheellpp
+       ss..llaabbeell  [-r]  sites=name  label=name  [xoffset=value]  [yoffset=value]
+       [reference=name] [font=name] [ps_font=name]  [size=value]  [color=name]
+       [width=value]   [hcolor=name]  [hwidth=value]  [background=name]  [bor-
+       der=name] [opaque=name]
+
+FFLLAAGG
+       -r make sites from label file
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._l_a_b_e_l makes a label-file from a GRASS sites list.
+
+
+
+PPAARRAAMMEETTEERRSS
+       sites   Name of a site list
+
+
+       label   Name of a paint-label file
+
+
+       xoffset   Offset label in x-direction
+
+       default: 0
+
+
+       yoffset   Offset label in y-direction
+
+       default: 0
+
+
+       reference   Reference position
+
+       options: center,left,right,upper,lower
+
+       default: center
+
+
+       font   Font
+
+       options:    standard,cyrilc,gothgbt,gothgrt,gothitt,greekc,    greekcs,
+       grrekp,greeks,italicc,italiccs,italict,
+       romanc,romancs,romand,romanp,romans, scriptc,scripts
+
+       default: standard
+
+
+       ps_font   PostScript font (for use with ps.map);  N.B.  screen  display
+       will be in standard font!
+
+       options:     Helvetica,Helvetica-Bold,Helvetica-Oblique,     Helvetica-
+       BoldOblique,Times-Roman,Times-Bold,                 Times-Italic,Times-
+       BoldItalic,Courier,Courier-Bold, Courier-BoldOblique,Symbol,AvantGarde-
+       Book,        AvantGarde-BookOblique,AvantGarde-Demi,        AvantGarde-
+       DemiOblique,Bookman-Demi,   Bookman-DemiItalic,  Bookman-Light,Bookman-
+       LightItalic, Helvetica-Narrow,Helvetica-Narrow-Bold,  Helvetica-Narrow-
+       Oblique, Helvetica-Narrow-BoldOblique,NewCenturySchlbk-Roman, NewCentu-
+       rySchlbk-Italic,NewCenturySchlbk-Bold,                NewCenturySchlbk-
+       BoldItalic,Palatino-Roman,         Palatino-Italic,Palatino-BoldItalic,
+       ZapfChancery-MediumItalic
+
+
+       size   Label size (in map-units)
+
+       options: 1-1000
+
+       default: 100
+
+
+       color   Text color
+
+       options:  aqua,black,blue,brown,cyan,gray,green,grey,indigo,   magenta,
+       orange,purple,red,violet,white,yellow
+
+       default: black
+
+
+       width   Line width of text (only for p.map output)
+
+       options: 1-100
+
+       default: 1
+
+
+       hcolor   Highlight color for text (only for p.map output)
+
+       options:               none,aqua,black,blue,brown,cyan,gray,green,grey,
+       indigo,magenta, orange,purple,red,violet,white,yellow
+
+       default: none
+
+
+       hwidth   Line width of highlight color (only for p.map output)
+
+       options: 0-100
+
+       default: 0
+
+
+       background   Background color
+
+       options:               none,aqua,black,blue,brown,cyan,gray,green,grey,
+       indigo,magenta, orange,purple,red,violet,white,yellow
+
+       default: none
+
+
+       border   Border color
+
+       options:               none,aqua,black,blue,brown,cyan,gray,green,grey,
+       indigo,magenta, orange,purple,red,violet,white,yellow
+
+       default: none
+
+
+       opaque   Opaque  to  vector  (only  relevant  if  background  color  is
+       selected)
+
+       options: yes,no
+
+       default: yes
+
+
+
+AAUUTTHHOORR
+       Philip Verhagen
+
+       S t i c h t i n g  R A A P
+
+       Regionaal Archeologisch Archiverings Projekt
+
+       adress:         Plantage Muidergracht 14
+
+       1018 TV Amsterdam
+
+       THE NETHERLANDS
+
+       e-mail:         motte@xs4all.nl
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           s.label(1)

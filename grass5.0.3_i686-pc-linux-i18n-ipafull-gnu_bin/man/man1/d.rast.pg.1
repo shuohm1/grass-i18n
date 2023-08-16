@@ -1,0 +1,134 @@
+d.rast.pg(1)                  Grass User's Manual                 d.rast.pg(1)
+
+
+
+NNAAMMEE
+       _d_._r_a_s_t_._p_g  - Generate or display a reclass map based on the unique val-
+       ues in a database column. (GRASS-RDBMS Interface Display Program)
+
+SSYYNNOOPPSSIISS
+       dd..rraasstt..ppgg
+
+       dd..rraasstt..ppgg hheellpp
+
+       dd..rraasstt..ppgg kkeeyy=name ttaabb=name ccooll=name [llaabb=name] [wwhheerree=name] iinnppuutt=name
+       [oouuttppuutt=name]
+
+AALLTTEERRNNAATTEE
+       dd..rraasstt..ppgg --ss hheellpp
+
+       dd..rraasstt..ppgg --ss ssqqll_=_f_i_l_e_n_a_m_e iinnppuutt_=_n_a_m_e [oouuttppuutt_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._r_a_s_t_._p_g  displays  a raster image in which each category represents a
+       unique value in a database column. Values are retrieved from  the  cur-
+       rent database based on a user defined SQL SELECT statement. The current
+       database is identified by  the  GRASS  environment  variable  $PG_DBASE
+       which is set using the _g_._s_e_l_e_c_t_._p_g GRASS-RDBMS interface tool. The out-
+       put from this program is a set of GRASS reclass rules which are used to
+       create  or  display  a reclassed raster surface based on the attributes
+       returned from the database and the raster data layer specified  as  the
+       input map.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       kkeeyy==ddaattaabbaasseeccoolluummnnnnaammee
+           Column corresponding to category values in raster map [input]
+
+       ttaabb==ddaattaabbaasseettaabblleennaammee
+           Table containing [col]
+
+       ccooll==ddaattaabbaasseeccoolluummnnnnaammee
+           Column to base reclass on
+
+           wwhheerree==ccllaauussee Where clause for query (ie. where col='paved')
+
+           llaabb==nnaammee Column to use as labels (optional)
+
+       iinnppuutt==mmaapp
+           Name of existing raster file
+
+       oouuttppuutt==mmaapp
+           Name of new reclass map
+
+
+AALLTTEERRNNAATTEE CCOOMMMMAANNDD LLIINNEE UUSSAAGGEE
+       The  alternate  command  line  structure is selected using the the _[_-_s_]
+       flag on the command line. When using this flag the  user  must  include
+       the  name  of  a  text file on the command line as well. This file must
+       include a complete, well formed SQL SELECT statement.
+
+
+
+   FFllaagg::
+       --ss  SQL  statement is input from a prepared file
+
+
+   PPaarraammeetteerrss::
+       ssqqll==ffiilleennaammee
+           SQL statement specifying well formed selection criteria.
+
+       iinnppuutt==mmaapp
+           Name of an existing raster map
+
+       oouuttppuutt==mmaapp
+           Name of a new reclass file
+
+       EEXXAAMMPPLLEE 11::
+
+       _d_._r_a_s_t_._p_g _i_n_p_u_t_=_k_u_r___r_a_s_t___i_d  _o_u_t_p_u_t_=_s_o_i_l_s_2  _t_a_b_=_i_n_f_o___k_u_r_u_m_a  _k_e_y_=_r_e_c___i_d
+       _c_o_l_=_s_o_i_l_s___i_d _l_a_b_=_s_o_i_l_s___i_n_f_o_._n_a_m_e _w_h_e_r_e_=_"_s_o_i_l_s___i_n_f_o_._t_y_p_e___i_d _= _s_o_i_l_s___i_d_"
+
+       RREESSUULLTT::
+
+       This  example  will create a raster map _s_o_i_l_s_2 with a category for each
+       unique value taken from the field "soils_id"  from  table  _i_n_f_o___k_u_r_u_m_a,
+       with  label  of  value  of the column "name" from the table _s_o_i_l_s___i_n_f_o.
+       The raster map will be a reclassed data layer based on the input raster
+       map _k_u_r___r_a_s_t___i_d.
+
+       EEXXAAMMPPLLEE 22::
+
+       _d_._r_a_s_t_._p_g _-_s _s_q_l_=_r_a_s_t_e_r_._s_q_l _i_n_p_u_t_=_k_u_r___r_a_s_t___i_d _o_u_t_p_u_t_=_s_o_i_l_s_3
+
+       raster.sql:
+
+       _s_e_l_e_c_t    _r_e_c___i_d_,    _s_o_i_l_s___i_n_f_o_._t_y_p_e___i_d    _f_r_o_m    _i_n_f_o___k_u_r_u_m_a    _w_h_e_r_e
+       _s_o_i_l_s___i_n_f_o_._n_a_m_e _~ _'_b_a_r_r_e_n_' _a_n_d _s_o_i_l_s___i_n_f_o_._t_y_p_e___i_d _= _s_o_i_l_s___i_d
+
+       RREESSUULLTT::
+
+       This example will create a raster map _s_o_i_l_s_3 with a category  for  each
+       unique value taken from the column "type_id" from the table _s_o_i_l_s___i_n_f_o_,
+       with only '_b_a_r_r_e_n' type_. The raster map will be a reclassed data  layer
+       based  on the input raster map _k_u_r___r_a_s_t___i_d. Note that there must be two
+       fields in the SELECT statement (these for the old and new values).
+
+       In this example, the input map _k_u_r___r_a_s_t___i_d was  prepared  by  vv..ttoo..rraasstt
+       from  the  vector are map _k_u_r_u_m_a___i_d, which is approximately 7,000 poly-
+       gons with unique ids  (corresponding  to  _r_e_c___i_d  field  in  the  table
+       _i_n_f_o___k_u_r_u_m_a).
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software. It uses the GRASS
+       module r.reclass started from inside it.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_, _g_._s_t_a_t_s_._p_g_, _g_._t_a_b_l_e_._p_g_, _d_._s_i_t_e_._p_g_, _d_._v_e_c_t_._p_g_, _d_._w_h_a_t_._r_._p_g_,
+       _d_._w_h_a_t_._s_._p_g_, _d_._w_h_a_t_._v_._p_g_, _r_._r_e_c_l_a_s_s_._p_g_, _r_._r_e_s_c_a_l_e_._p_g_, _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original  Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and W.
+       Fredrick Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                         d.rast.pg(1)

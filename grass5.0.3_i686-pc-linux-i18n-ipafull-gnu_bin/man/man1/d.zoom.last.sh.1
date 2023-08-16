@@ -1,0 +1,49 @@
+d.zoom.last.sh(1)             Grass User's Manual            d.zoom.last.sh(1)
+
+
+
+NNAAMMEE
+       dd..zzoooomm..llaasstt..sshh   -  Allows  the  user  to change the current geographic
+       region settings interactively and tracks the last region settings.  (An
+       addition to the GRASS display program _d_._z_o_o_m).
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       dd..zzoooomm..llaasstt..sshh
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._z_o_o_m_._l_a_s_t_._s_h  is  a  UNIX Bourne shell macro which allows the user to
+       interactively adjust the settings  of  the  current  geographic  region
+       using  a  pointing  device such as a mouse, and automatically saves the
+       last region settings.  The last region can be restored by a GRASS  com-
+       mand: gg..rreeggiioonn rreeggiioonn==last
+
+       or     gg..rreeggiioonn last
+
+       This  script  and  the above restoring command function as an 'undo' in
+       editing.
+
+NNOOTTEESS
+       Only the last region is saved. When  zooming  multiple  times,  regions
+       before the last are NOT available. Region-file
+
+FFIILLEESS
+       See the file $GISBASE/scripts/d.zoom.last.sh.
+
+SSEEEE AALLSSOO
+       _d_._z_o_o_m
+
+       _g_._r_e_g_i_o_n_.
+
+AAUUTTHHOORR
+       Jianping Xu,
+
+       John Bognar,
+
+       Rutgers University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                    d.zoom.last.sh(1)

@@ -1,0 +1,126 @@
+g.mapsets(1)                  Grass User's Manual                 g.mapsets(1)
+
+
+
+NNAAMMEE
+       gg..mmaappsseettss   - Modifies the user's current mapset search path, affecting
+       the user's access to data existing under the other GRASS mapsets in the
+       current location.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..mmaappsseettss
+       gg..mmaappsseettss hheellpp
+       gg..mmaappsseettss [--llpp] [mmaappsseett==_n_a_m_e[,_n_a_m_e,...]]  [aaddddmmaappsseett==_n_a_m_e[,_n_a_m_e,...]]
+
+DDEESSCCRRIIPPTTIIOONN
+       A _m_a_p_s_e_t holds a distinct set of data layers, each relevant to the same
+       (or a subset of the same) geographic region, and each drawn in the same
+       map  coordinate system.  At the outset of every GRASS session, the user
+       identifies a GRASS data base, location, and mapset that are to  be  the
+       user's  _c_u_r_r_e_n_t _d_a_t_a _b_a_s_e, _c_u_r_r_e_n_t _l_o_c_a_t_i_o_n, and _c_u_r_r_e_n_t _m_a_p_s_e_t for the
+       duration of the session; any maps created by the user during  the  ses-
+       sion  will be stored under the _c_u_r_r_e_n_t _m_a_p_s_e_t ($MAPSET) set at the ses-
+       sion's outset.
+
+
+       The user can add, modify, and delete data layers that exist  under  his
+       _c_u_r_r_e_n_t  _m_a_p_s_e_t.   Although  the  user can also _a_c_c_e_s_s (i.e., use) data
+       that are stored under _o_t_h_e_r mapsets in the  same  GRASS  location,  the
+       user can only make permanent changes (create or modify data) located in
+       the _c_u_r_r_e_n_t _m_a_p_s_e_t.  The user's _m_a_p_s_e_t _s_e_a_r_c_h _p_a_t_h lists the  order  in
+       which  other  mapsets  in  the  same GRASS location can be searched and
+       their data accessed by the user.  The user can modify the  listing  and
+       order  in  which  these  mapsets  are  accessed by modifying the mapset
+       search path; this can be done using the _g_._m_a_p_s_e_t_s command.   This  pro-
+       gram  allows the user to use other's relevant map data without altering
+       the original data layer, and without taking up disk space with  a  copy
+       of the original map.
+
+
+       _g_._m_a_p_s_e_t_s  shows  the  user  available  mapsets under the current GRASS
+       location, lists mapsets to which the user  currently  has  access,  and
+       lists  the  order in which accessible mapsets will be accessed by GRASS
+       programs searching for data files.  The user is then given the opportu-
+       nity  to add or delete mapset names from his search path, or modify the
+       order in which mapsets will be accessed.
+
+
+       When the user specifies the name of a data base element file  (e.g.,  a
+       particular  vector  file,  raster file, imagery group file, etc.)  to a
+       GRASS program, the program searches for the named file  under  each  of
+       the mapsets listed in the user's mapset search path in the order listed
+       there until the program finds a file of the  given  name.   (Users  can
+       also  specify  a  file  by its mapset, to make explicit the mapset from
+       which  the  file  is  to  be  drawn;    e.g.,   the   command:   gg..ccooppyy
+       rraasstt==_'_s_o_i_l_s_._f_i_l_e_@_P_E_R_M_A_N_E_N_T_'_,_m_y_._s_o_i_l_s
+
+       ensures  that  a  new  file  named _m_y_._s_o_i_l_s is to be a copy of the file
+       _s_o_i_l_s_._f_i_l_e from the mapset PERMANENT.)
+
+
+       It is common for a user to have the special mapset  PPEERRMMAANNEENNTT  included
+       in  his  mapset search path, as this mapset typically contains finished
+       base maps relevant to many applications.  Often,  other  mapsets  which
+       contain sets of interpreted map layers will be likewise included in the
+       user's mapset search path.   Suppose,  for  example,  that  the  mapset
+       _S_o_i_l___M_a_p_s contains interpreted soils map layers to which the user wants
+       access.  The mapset _S_o_i_l___M_a_p_s should then be  included  in  the  user's
+       _s_e_a_r_c_h _p_a_t_h variable.
+
+
+       The  _m_a_p_s_e_t  _s_e_a_r_c_h  _p_a_t_h is saved as part of the current mapset.  When
+       the user works with that mapset in subsequent GRASS sessions, the  pre-
+       viously  saved mapset search path will be used (and will continue to be
+       used until it is modified by the user with _g_._m_a_p_s_e_t_s).
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ll     List all available mapsets under the user's current location.
+
+       --pp     Print the user's current mapset search path to standard  output.
+
+
+   PPaarraammeetteerrss::
+       mmaappsseett==_n_a_m_e[,_n_a_m_e,...]
+              Name(s)  of existing GRASS mapset(s) under the current location.
+
+       aaddddmmaappsseett==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of existing mapset(s) to add to search list
+
+       _g_._m_a_p_s_e_t_s sets the current _m_a_p_s_e_t _s_e_a_r_c_h _p_a_t_h to the _m_a_p_s_e_t_s  named  on
+       the command line.  If gg..mmaappsseettss is typed but no _m_a_p_s_e_t names are speci-
+       fied by the user on the command line, the program will print the user's
+       current mapset search path, list available mapsets, and prompt the user
+       for a new mapset search path listing.
+
+
+       The _a_d_d_m_a_p_s_e_t parameter allows for extending an existing _m_a_p_s_e_t  _s_e_a_r_c_h
+       _p_a_t_h.
+
+NNOOTTEESS
+       Users  can restrict others' access to their mapset files through use of
+       the GRASS program _g_._a_c_c_e_s_s.  Mapsets to which access is restricted  can
+       still  be  listed  in  another's mapset search path; however, access to
+       these mapsets will remain restricted.
+
+SSEEEE AALLSSOO
+       _g_._a_c_c_e_s_s
+
+       _g_._c_o_p_y
+
+       _g_._g_i_s_e_n_v
+
+       _g_._l_i_s_t
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+
+       Greg Koerper, ManTech Environmental Technology, Inc.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_2_/_0_9 _1_2_:_0_7_:_2_3 _$
+
+
+
+GRASS 5.0                                                         g.mapsets(1)

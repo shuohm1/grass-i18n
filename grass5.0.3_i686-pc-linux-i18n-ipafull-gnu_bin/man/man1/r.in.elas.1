@@ -1,0 +1,101 @@
+r.in.elas(1)                  Grass User's Manual                 r.in.elas(1)
+
+
+
+NNAAMMEE
+       rr..iinn..eellaass   - Import an ELAS raster file into a GRASS raster map layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..eellaass
+       rr..iinn..eellaass hheellpp
+       rr..iinn..eellaass [[--hh]] cchhaannnneell==_v_a_l_u_e zzoonnee==_v_a_l_u_e pprroojj==_v_a_l_u_e  nnbbppee==_v_a_l_u_e  xx--ssppoott--
+       ssiizzee==_v_a_l_u_e yy--ssppoott--ssiizzee==_v_a_l_u_e iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       r.in.elas" imports ELAS raster files to GRASS cell files.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+        --hh    Create GRASS histogram file.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing binary ELAS raster file to be imported.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to resultant GRASS raster map layer.
+
+       cchhaannnneell==_v_a_l_u_e
+              ELAS channel number.
+
+              default: 1
+
+       zzoonnee==_v_a_l_u_e
+              UTM zone number. (1-60)
+
+              default: 0
+
+       pprroojj==_v_a_l_u_e
+              GRASS "proj" value. (0 for XY and 1 for UTM)
+
+              default: 1
+
+       nnbbppee==_v_a_l_u_e
+              (number  of  bytes  per  element)  for  ELAS file.  "nbpe" is an
+              OPTIONAL value, only to be inputted to override the ELAS  header
+              value.
+
+              default: 0
+
+       xx--ssppoott--ssiizzee==_v_a_l_u_e
+              ELAS  X  Spot  size number.  "x-spot-size" is an OPTIONAL value,
+              only to be inputted to override the ELAS header value.
+
+              default: 0
+
+       yy--ssppoott--ssiizzee==_v_a_l_u_e
+              ELAS Y Spot size number.  "y-spot-size" is  an  OPTIONAL  value,
+              only to be inputted to override the ELAS header value.
+
+              default: 0
+
+       This program  "r.in.elas"  copies  and  converts  an  ELAS raster  file
+       to  a GRASS cell file.  The ELAS raster file must be  a  1  to  4  byte
+       integer  per  element  file.  The GRASS file created from the ELAS file
+       will be either an unrefer enced XY or a UTM projection.  The ELAS color
+       values  will be  transferred to GRASS only if there are color values in
+       the ELAS header.  If no color values are transferred  from  ELAS   then
+       a   GRASS  color  file will automatically be cre ated.  This color file
+       will be a RGB color ramp.  The area to  be  transferred  from  ELAS  to
+       GRASS will be determined by the ELAS values "il" (initial  line),  "ll"
+       (last   line),  "ie"   (initial   element),   and  "le"(last  element).
+       Multi- channel ELAS raster files may be transferred to GRASS  one chan-
+       nel  at  a  time.  Input variables: nbpe, x-spot-size, and  y-spot-size
+       are OPTIONAL variables  and  can  only  be inputted  non-interactively,
+       since these values will usu ally already be stored in the ELAS  header.
+       But   if   these  values  are not in the ELAS header, then the user may
+       pro vide those values by entering the  non-interactive  command.   This
+       program   will   produce  a  GRASS  range  file and if the flag "-h" is
+       passed to the program then a  histogram  file will  be created as well.
+       Using the "-h" flag with larger files is not recommended since creating
+       a  histogram  file will increase processing time.   You  can  create  a
+       histogram  file  after  this program is finished executing  by  running
+       "r.support".   This  program  will  produce   a   new  "WIND"  (region)
+       that will correspond to  the  new  "cellhd"  file that  has  been  cre-
+       ated.  If  the  user  should  want  to  save  their   original   "WIND"
+       (region)   then   they   should  run "g.region" prior to executing this
+       program.
+
+SSEEEE AALLSSOO
+        _r_._o_u_t_._b_i_n_, _r_._i_n_._a_s_c_i_i_, _r_._o_u_t_._a_s_c_i_i_, _r_._i_n_._a_r_c_, _r_._o_u_t_._a_r_c_, _r_._i_n_._g_d_a_l
+
+AAUUTTHHOORR
+       Bruce Powell, National Park Service
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.in.elas(1)

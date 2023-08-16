@@ -1,0 +1,111 @@
+d.label(1)                    Grass User's Manual                   d.label(1)
+
+
+
+NNAAMMEE
+       dd..llaabbeell  - Creates and displays text labels in the active display frame
+       on the graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..llaabbeell
+       dd..llaabbeell hheellpp
+       dd..llaabbeell [ssiizzee==_v_a_l_u_e] [bbaacckkccoolloorr==_n_a_m_e] [tteexxttccoolloorr==_n_a_m_e] [ffoonntt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._l_a_b_e_l allows the user to create and display text labels in the active
+       frame on the graphics monitor.  It interactively requests that the user
+       type in text and use the pointing device (mouse) to identify where this
+       text is to be placed within the active graphics frame. The program will
+       prompt the user for label size, background color, text color, and  text
+       font  type,  if  the  user fails to specify these values on the command
+       line.  Program prompts use the standard GRASS parser interface.
+
+   PPaarraammeetteerrss::
+       ssiizzee==_v_a_l_u_e
+              Sets the label text size to the specified  number.   Values  are
+              stated  as  a percentage of the frame height; e.g., a size of 10
+              will make each line of text equal to one-tenth the height of the
+              display frame.
+              Options: 0-1000
+              Default: 10
+
+       bbaacckkccoolloorr==_n_a_m_e
+              Sets the color of the label background to the _n_a_m_e stated.
+              Options: red, orange, yellow, green, blue, indigo, violet, gray,
+              white, and black.
+              Default: _b_l_a_c_k
+
+       tteexxttccoolloorr==_n_a_m_e
+              Sets the color of the label text to the _n_a_m_e stated.
+              Options: same as for _b_a_c_k_c_o_l_o_r.
+              Default: _w_h_i_t_e
+
+       ffoonntt==_n_a_m_e
+              Sets the font type used for the label's text to _n_a_m_e.
+
+              Options:  romand,  romanp,  romant,  romans,  scriptc,  scripts,
+              romancs,  italicc, italiccs, gothitt, gothgrt, and gothgbt.  The
+              user can view these available fonts by running _s_h_o_w_._f_o_n_t_s_._s_h.
+              Default: _r_o_m_a_n_s (Roman simplex font type), or whatever font  the
+              user has set the font type to before entering _d_._l_a_b_e_l.
+
+
+NNOOTTEESS
+       This  program  will  allow  the  user to display labels anywhere in the
+       active display frame, even in areas lying outside of the  current  geo-
+       graphic region.
+
+
+       _d_._l_a_b_e_l  will  only  allow  the  user to type in one line of text.  The
+       fully interactive program _d_._l_a_b_e_l_s can be used to  create  text  labels
+       having as many as four lines.
+
+
+       _d_._l_a_b_e_l   does   not   create   paint   labels   files  displayable  by
+       _d_._p_a_i_n_t_._l_a_b_e_l_s -- _d_._l_a_b_e_l_s does.  These programs should  be  integrated
+       in future GRASS releases.
+
+BBUUGGSS
+       If  the  user  is  running GRASS under X Windows, and the user enters a
+       text label longer than 80 characters (i.e., allows text to wrap onto  a
+       second  line),  X  Windows  will stop the user's GRASS graphics monitor
+       without throwing the user out of GRASS.   If  this  happens,  the  user
+       should simply restart a graphics monitor, using _d_._m_o_n.
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._f_o_n_t
+
+       _d_._l_a_b_e_l_s
+
+       _d_._l_e_g_e_n_d
+
+       _d_._m_o_n
+
+       _d_._p_a_i_n_t_._l_a_b_e_l_s
+
+       _d_._r_a_s_t
+
+       _d_._s_c_a_l_e
+
+       _d_._t_e_x_t
+
+       _d_._t_i_t_l_e
+
+       _d_._w_h_e_r_e
+
+       _s_h_o_w_._f_o_n_t_s_._s_h
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James  Westervelt,  U.S. Army Construction Engineering Research Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           d.label(1)

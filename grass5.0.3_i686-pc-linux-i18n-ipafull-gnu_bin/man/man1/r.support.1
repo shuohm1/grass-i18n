@@ -1,0 +1,160 @@
+r.support(1)                  Grass User's Manual                 r.support(1)
+
+
+
+NNAAMMEE
+       rr..ssuuppppoorrtt   -  Allows the user to create and/or modify raster map layer
+       support files.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ssuuppppoorrtt [--rr] mmaapp==_n_a_m_e
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --rr Update the stats (histogram, range)
+
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS program _r_._s_u_p_p_o_r_t allows the user  to  create  and/or  modify
+       raster  map layer support files.  It may be run only on raster map lay-
+       ers in the user's current mapset.
+
+        Most options have to be used interactively, so the user runs the  pro-
+       gram by typing rr..ssuuppppoorrtt, and will be queried for inputs.
+
+
+       Various  GRASS  programs  depend  on one or more of the following GRASS
+       _s_u_p_p_o_r_t files:
+
+       cceellllhhdd The cell header file contains information on a map's projection,
+              zone,  regional  boundaries, row and column totals, cell resolu-
+              tion, storage format, and compression.  It describes  where  and
+              how  this  map's  raster  (cell)  data fits in with reference to
+              other raster map layers' data.  Without it, the raster map layer
+              could  not  be displayed or analyzed properly.  Using _r_._s_u_p_p_o_r_t,
+              the user can change the # of columns, # of bytes per  cell,  and
+              default  geographic region settings.  Generally, users would not
+              change this information.  Cell header files are stored under the
+              _c_e_l_l_h_d directory under the user's current mapset.
+
+       ssttaattss  Raster map layer statistics are saved in the form of a histogram
+              and range of the category values which occur in the  map  layer.
+              Statistics  files  are stored in subdirectories of the _c_e_l_l___m_i_s_c
+              directory under the user's current mapset.  This option is (cur-
+              rently)  the  only  option which can be used on command line (-r
+              flag).
+
+       ccaattss   A category file associates each category value in the raster map
+              layer  with a category description (label).  The user may add or
+              edit the category descriptions, alter the number of  categories,
+              and  add  or  alter  the map's TITLE.  Category files associated
+              with raster map layers are stored under the  _c_a_t_s  directory  in
+              the user's current mapset.
+
+       ccoollrr   A  color  file  associates each category value in the raster map
+              layer with a color.  Using _r_._s_u_p_p_o_r_t, the user may assign one of
+              eight  color table types to the raster map layer.  Map color ta-
+              ble files are stored under the _c_o_l_r and _c_o_l_r_2 directories  under
+              the user's current mapset.
+
+       hhiisstt   Historical information about the raster map layer is stored in a
+              history file.  The user may add or edit the raster map's  TITLE,
+              data  type, data source, data description, and include comments.
+              (Note that the specification of map data type here  is  somewhat
+              archaic, and should always be set to _r_a_s_t_e_r.)  Map history files
+              are stored under the _h_i_s_t directory  under  the  user's  current
+              mapset.
+
+
+NNOOTTEESS
+       The  _r_._s_u_p_p_o_r_t  program  attempts to verify that the information in the
+       cell header is reasonable. The data format specified in the  header  is
+       verified  against  the  raster map layer itself. This includes checking
+       that files which the header indicates are _c_o_m_p_r_e_s_s_e_d  are  really  com-
+       pressed,  and  that  the  number  of  rows and columns specified in the
+       header correspond to the actual file size.
+
+
+       The _r_._s_u_p_p_o_r_t program can also be  used  to  determine  the  number  of
+       columns  and  rows  of data in a raster map layer, in the event that no
+       cell header is available.  This is useful, for example,  for  importing
+       raster map layers created by software other than GRASS.
+
+
+       If  the  file is not compressed, the file size should be the product of
+       the number of rows and columns.  If the file is compressed,  this  test
+       cannot  be  performed  since the file size will bear no relation to the
+       product. The number of rows can still be verified, but  the  number  of
+       columns cannot.
+
+
+       To compute or correct the _s_t_a_t_s, the cell header must be correct, since
+       the raster map layer is read to determine the stats.
+
+
+       If a new _c_a_t_s or _c_o_l_r (or _c_o_l_r_2) file is required, the  _s_t_a_t_s  must  be
+       correct.
+
+
+       The user is allowed to change the number of categories specified in the
+       category file. This should oonnllyy be done if the user knows that the max-
+       imum  category  value  in  the  raster map layer is different than that
+       which is recorded in the category file.  Changing the category value in
+       the _c_a_t_s file allows the user to add more category labels, or to remove
+       labels. It does NOT change the category values in the raster map  layer
+       itself.
+
+
+       The color file is unique among GRASS support files.  While it is neces-
+       sary to protect a user's original data from  being  modified  by  users
+       working  under  other  mapsets,  these  users need to be able to create
+       color tables for maps that are stored under mapsets  other  than  their
+       own.  Color table files meet both these objectives.
+
+
+       Color  table files get stored in one of two directories, both under the
+       user's current mapset. The color files created by  a  user  for  raster
+       maps  stored  under that user's current mapset get stored in the direc-
+       tory _$_L_O_C_A_T_I_O_N_/_c_o_l_r and cannot be modified or removed by  other  users.
+       The  color  table  files  that the user modifies/creates for raster map
+       layers _n_o_t stored under the user's current mapset get stored in a  _s_e_c_-
+       _o_n_d_a_r_y  _c_o_l_o_r file under the user's mapset.  This secondary color table
+       is stored under $LOCATION/colr2/ where  is the name of the mapset under
+       which  the  raster  map data are stored.  In versions of GRASS prior to
+       3.0, this was also the case for color tables in the user's own  mapset.
+       Now, however, if a user modifies a color table associated with a raster
+       map layer in his own current mapset, these changes will be made to  the
+       user's  original  color file (i.e., the user's color changes will over-
+       write whatever previous color table file existed for this map under the
+       user's $LOCATION/colr directory).  No secondary color files are created
+       for raster map layers stored in the user's own mapset.
+
+WWAARRNNIINNGG
+       In order to modify the _c_e_l_l _h_e_a_d_e_r, the raster (cell) map  layer  under
+       consideration  must  _n_o_t be a _r_e_c_l_a_s_s file. This is because the _r_e_c_l_a_s_s
+       file's header does not contain positional  information,  but  rather  a
+       reference  to  another  raster  map layer. Thus it shares a cell header
+       with the referenced raster map layer.  In  order  to  change  the  cell
+       header, _r_._s_u_p_p_o_r_t must be run on the true raster file referenced.
+
+SSEEEE AALLSSOO
+       For  more information regarding the location and function of GRASS sup-
+       port files, consult the GGRRAASSSS PPrrooggrraammmmeerr''ss  MMaannuuaall  chapter  on  "GRASS
+       Database Structure"
+
+
+       _d_._c_o_l_o_r_s
+
+       _r_._c_o_l_o_r_s
+
+       _r_._r_e_c_l_a_s_s
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.support(1)

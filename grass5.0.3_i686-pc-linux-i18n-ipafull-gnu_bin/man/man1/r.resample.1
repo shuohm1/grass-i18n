@@ -1,0 +1,82 @@
+r.resample(1)                 Grass User's Manual                r.resample(1)
+
+
+
+NNAAMMEE
+       rr..rreessaammppllee  - GRASS raster map layer data resampling capability.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..rreessaammppllee
+       rr..rreessaammppllee hheellpp
+       rr..rreessaammppllee [--qq] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._r_e_s_a_m_p_l_e  resamples  the data values in a user-specified raster input
+       map layer _n_a_m_e (bounded by the current geographic region and masked  by
+       the current mask), and produces a new raster output map layer _n_a_m_e con-
+       taining the results of the resampling.  The category values in the  new
+       raster  output  map  layer  will  be the same as those in the original,
+       except that the resolution and extent of  the  new  raster  output  map
+       layer  will  match those of the current geographic region settings (see
+       _g_._r_e_g_i_o_n).
+
+
+       The program will be run non-interactively if the user specifies program
+       arguments   on  the  command  line,  using  the  form  rr..rreessaammppllee  [--qq]
+       iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+       where the input _n_a_m_e is the name of the raster map layer whose data are
+       to be resampled, the output _n_a_m_e is the name of the raster map layer to
+       store program output, and the  --qq  option,  if  present,  directs  that
+       _r_._r_e_s_a_m_p_l_e  run quietly (supressing the printing of program messages to
+       standard output).
+
+
+       Alternately, the user can simply type rr..rreessaammppllee on the  command  line,
+       without program arguments.  In this case, the user will be prompted for
+       needed inputs and option choices using the standard GRASS _p_a_r_s_e_r inter-
+       face.
+
+NNOOTTEESS
+       The  method by which resampling is conducted is "nearest neighbor" (see
+       _r_._n_e_i_g_h_b_o_r_s).  The resulting raster map layer will have the same  reso-
+       lution  as  the  resolution of the current geographic region (set using
+       _g_._r_e_g_i_o_n).
+
+
+       The resulting raster map layer may be identical to the original  raster
+       map  layer.   The _r_._r_e_s_a_m_p_l_e program will copy the color table and his-
+       tory file associated with the original raster map layer for the result-
+       ing  raster  map  layer  and will create a modified category file which
+       contains description of only those categories which appear in resampled
+       file.
+
+
+       When  the  user  resamples  a GRASS _r_e_c_l_a_s_s file, a true raster file is
+       created by _r_._r_e_s_a_m_p_l_e.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._m_a_s_k
+
+       _r_._m_f_i_l_t_e_r
+
+       _r_._n_e_i_g_h_b_o_r_s
+
+       _r_._r_e_s_c_a_l_e
+
+       _p_a_r_s_e_r
+
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.resample(1)

@@ -1,0 +1,129 @@
+#!/bin/sh
+
+# $Id: r.reclass.area,v 1.7 2002/03/26 13:25:12 glynn Exp $
+# 11/2001 added mapset support markus
+# 2/2001 fixes markus
+# 2000: updated to GRASS 5
+# 1998 from NRCS, slightly modified for GRASS 4.2.1
+
+if test "$GISBASE" = ""; then
+ echo "You must be in GRASS GIS to run this program." >&2
+ exit 1
+fi   
+
+infile=$1
+
+if [ "$1" = "help"  -o "$1" = "" -o "$1" = "-help" ] ; then
+echo ""
+echo "GRASS script to reclass a raster map greater or less than "
+echo "user specified area size (in hectares)."
+echo ""
+echo "Usage: r.reclass.area [-l val] [-g val] rast_file out_file
+where 
+  -l (less) val option that sets the <= area size limit [hectares]
+  -g (greater) val option that sets the >= area size limit [hectares]
+  rast_file sets the raster file name
+  out_file sets the output raster file name
+"
+exit
+fi
+
+g.region -p |head -1 |grep 0 > /dev/null
+if [ $? -eq 0 ] ; then
+ echo ""
+ echo "Sorry: xy-locations are not supported."
+ echo "Need projected data with grids in meter."
+ exit
+fi
+
+if test "$infile" = "-l"; then
+ op=0
+ shift
+ limit=$1
+ shift
+ infile=$1
+ outfile=$2
+elif test "$infile" = "-g"; then
+ op=1
+ shift
+ limit=$1
+ shift
+ infile=$1
+ outfile=$2
+else
+ limit=""
+ outfile=$2
+fi
+ 
+file2=$infile.clump
+
+eval `g.findfile element=cell file=$infile`
+filename="${fullname}"
+BASE="${name}"
+if [ "$filename" = "" ] ; then
+  echo "ERROR: raster map [$infile] does not exist."
+  exit 1
+else
+  infile=$filename
+fi
+
+eval `g.findfile element=cell file=$file2`
+filename2="${fullname}"
+BASE="${name}"
+if test "$filename2" ; then
+  echo "ERROR: temporal raster map [$filename2] exists."
+  exit 1
+else
+ echo
+ echo "Generating a clumped raster file.............................."
+ r.clump input=$infile output=$file2
+fi
+
+## calculation in acres
+#if test "$limit" = ""; then
+#echo 
+#echo "Generating a reclass rules file by acres"
+#r.stats -az in=$file2,$file |awk '{acre=$3 * 0.0002471; printf("%d = %.0f\n",$1,acre)}' >$infile.rules
+#else
+#  if test $op = 0; then
+#echo 
+#echo "Generating a reclass rules file by acres less than or equal to $limit"
+#  r.stats -az in=$file2,$infile | awk '{limit='$limit'; acre=$3 * 0.0002471; 
+#{if (acre <= limit) printf("%d = %d\n",$1,$2)}}' >$infile.rules
+#  else
+#echo 
+#echo "Generating a reclass rules file by acres greater than or equal to $limit"
+#  r.stats -az in=$file2,$infile | awk '{limit='$limit'; acre=$3 * 0.0002471; 
+#{if (acre >= limit) printf("%d = %d\n",$1,$2)}}' >$infile.rules
+#  fi
+#fi
+
+## calculation in hectares
+if test "$limit" = ""; then
+echo 
+echo "Generating a reclass rules file categorized by hectares"
+ r.stats -an in=$file2,$infile |awk '{hectares=$3 * 0.0001; 
+ printf("%d = %d %.4f\n",$1,hectares,hectares)}' > $infile.rules
+else
+  if test $op = 0; then
+echo 
+echo "Generating a reclass rules file with area size less than or equal to $limit hectares"
+  r.stats -an in=$file2,$infile | awk '{limit='$limit'; hectares=$3 * 0.0001; 
+{if (hectares <= limit) printf("%d = %d %d\n",$1,$2,$2)}}' > $infile.rules
+  else
+echo 
+echo "Generating a reclass rules file with area size greater than or equal to $limit hectares"
+  r.stats -an in=$file2,$infile | awk '{limit='$limit'; hectares=$3 * 0.0001; 
+{if (hectares >= limit) printf("%d = %d %d\n",$1,$2,$2)}}' > $infile.rules
+  fi
+fi
+
+if test "$outfile" = ""; then
+outfile=${infile}_${limit}
+fi
+echo
+echo "Generating reclass raster map <$outfile>"
+cat $infile.rules | r.reclass i=$file2 o=$outfile
+
+#####cleanup
+rm -f $infile.rules

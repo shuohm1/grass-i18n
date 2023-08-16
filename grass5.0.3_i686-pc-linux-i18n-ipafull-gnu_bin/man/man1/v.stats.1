@@ -1,0 +1,84 @@
+v.stats(1)                    Grass User's Manual                   v.stats(1)
+
+
+
+NNAAMMEE
+       vv..ssttaattss  - Prints information about a binary GRASS vector map layer.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ssttaattss
+       vv..ssttaattss hheellpp
+       vv..ssttaattss [--hh] mmaapp==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The  program  _v_._s_t_a_t_s will print to standard output information about a
+       user-specified binary GRASS vector map layer.
+
+
+
+   FFllaagg::
+       --hh     Display header information from the vector file.
+
+
+
+
+   PPaarraammeetteerr::
+       mmaapp==_n_a_m_e
+              Name of the binary GRASS vector file to be queried.
+
+
+
+       The program will be run non-interactively if  the  user  specifies  the
+       parameter  value and (optionally) sets the --hh flag on the command line,
+       using the form:
+
+
+       vv..ssttaattss [--hh] mmaapp==_n_a_m_e
+
+
+
+       If the user instead simply types  vv..ssttaattss  without  specifying  program
+       arguments  on  the  command  line,  the program will prompt the user to
+       enter inputs through the standard user interface described in the  man-
+       ual entry for _p_a_r_s_e_r.
+
+NNOOTTEESS
+       Sample output follows: Format: Version 4.0 (Level 2 access) (Portable)
+       Number of Lines: 3
+       Number of Nodes: 2
+       Number of Areas: 2 (complete)
+       Number of Isles: 1 (complete)
+       Number of Atts : 2
+
+
+
+       The  GRASS  version  number is given. Parenthetical text following this
+       describes the read access level available and notes whether or not  the
+       file  is  in  GRASS version 4.0 portable data format.  The access level
+       indicates the types of data available for the named vector  map  layer.
+       "Level  1"  denotes  a  binary  vector  file  (without any accompanying
+       _d_i_g___p_l_u_s file), while "Level 2" denotes the  existence  of  a  _d_i_g___p_l_u_s
+       (vector  topology)  file  for the named map layer (generally created by
+       _v_._s_u_p_p_o_r_t).  If only Level 1 information is available for a vector  map
+       layer,  only  the number of lines and (optionally) the file header will
+       be printed to standard output.
+
+
+       If all areas and islands (isles) in the vector file have  been  identi-
+       fied  (usually  by  _v_._s_u_p_p_o_r_t),  their counts will be followed by "_c_o_m_-
+       _p_l_e_t_e." If not, they will be followed by  "_i_n_c_o_m_p_l_e_t_e".   The  _d_i_g___p_l_u_s
+       file,  which  is  created and updated by _v_._s_u_p_p_o_r_t, must exist for this
+       information to be output.
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t_, _v_._i_m_p_o_r_t_, _v_._s_u_p_p_o_r_t_, and _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       David Gerdes, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.stats(1)

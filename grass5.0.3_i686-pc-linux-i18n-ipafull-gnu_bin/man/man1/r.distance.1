@@ -1,0 +1,85 @@
+r.distance(1)                 Grass User's Manual                r.distance(1)
+
+
+
+NNAAMMEE
+       rr..ddiissttaannccee  -  Locates the closest points between objects in two raster
+       maps.
+
+       (GRASS Raster Program)
+
+SSYYNNOOPPSSIISS
+       rr..ddiissttaannccee
+
+       rr..ddiissttaannccee hheellpp
+
+       rr..ddiissttaannccee [[--llqq]] mmaappss_=_m_a_p_1_,_m_a_p_2 [ffss_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       Locates the closest points between "objects" in two  raster  maps.   An
+       "object"  is  defined as all the grid cells that have the same category
+       number, and closest means having the shortest "straight-line" distance.
+
+
+       The output is an ascii list, one line per pair of objects
+                  cat1:cat2:distance:east1:north1:east2:north2
+
+
+   EExxppllaannaattiioonn::
+       ccaatt11   Category number from map1
+
+       ccaatt22   Category number from map2
+
+       ddiissttaannccee
+              The distance in meters between "cat1" and "cat2"
+
+       eeaasstt11,,nnoorrtthh11
+              The  coordinates  of  the  grid  cell "cat1" which is closest to
+              "cat2"
+
+       eeaasstt22,,nnoorrtthh22
+              The coordinates of the grid cell  "cat2"  which  is  closest  to
+              "cat1"
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --ll     Include category labels in the output
+
+       --qq     Run quietly
+
+
+   PPaarraammeetteerrss::
+       mmaappss   Maps for computing inter-class distances
+
+       ffss     Output field separator Default is a colon (:)
+
+
+NNOOTTEESS
+       The  output  format  lends  itself to filtering.  For example, to "see"
+       lines connecting each of the category pairs in  two  maps,  filter  the
+       output using awk and then into _d_._m_a_p graph:
+
+
+       _r_._d_i_s_t_a_n_c_e _m_a_p_s_=_m_a_p_1_,_m_a_p_2 _| _a_w_k _-_F_: _'_{_p_r_i_n_t _"_m_o_v_e_"_,_$_4_,_$_5_,_"_d_r_a_w_"_,_$_6_,_$_7_}_'
+       _| _d_._m_a_p_g_r_a_p_h
+
+
+       To create a site list of all the "map1" coordinates, filter the  output
+       into awk and then into _s_._i_n_._a_s_c_i_i:
+
+
+       _r_._d_i_s_t_a_n_c_e  _m_a_p_s_=_m_a_p_1_,_m_a_p_2  _|  _a_w_k  _-_F_:  _'_{_p_r_i_n_t  _$_4_,_$_5_}_'  _| _s_._i_n_._a_s_c_i_i
+       _s_i_t_e_s_=_n_a_m_e
+
+SSEEEE AALLSSOO
+       _r_._d_r_a_i_n
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_1_2_/_1_1 _1_8_:_0_0_:_4_3 _$
+
+
+
+GRASS 5.0                                                        r.distance(1)

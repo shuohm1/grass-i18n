@@ -1,0 +1,83 @@
+celldriver(1)                 Grass User's Manual                celldriver(1)
+
+
+
+NNAAMMEE
+       CCEELLLL ddrriivveerr  - driver to redirect graphical output into a raster map
+
+       _(_d_r_i_v_e_r_s_)
+
+DDEESSCCRRIIPPTTIIOONN
+       The CELL driver can be used to redirect the output of the GRASS monitor
+       into a raster map. Features are:
+
+                      storing graphical output into a file with better resolu-
+                     tion than through screen grabbing.
+
+                     saving  3-dimensional  output  from d.3d or other display
+                     programs to a _D___c_e_l_l raster map.
+
+                     saving display overlays (raster/raster/vector/...)  to  a
+                     file  for high resolution export with r.out.tiff or simi-
+                     lar
+       The user will find a _D___c_e_l_l raster file in GRASS database  after start-
+       ing  the  driver and using d.rast, d.vect etc. and finally stopping the
+       driver again. The _D___c_e_l_l raster file is written during  closing  proce-
+       dure (this may require some time according to the selected resolution).
+
+       Then the user can export this file through r.out.tiff etc. for  use  in
+       external mapping software.
+
+
+       Be  aware that _D___c_e_l_l map is in a xy-projection which may differ to the
+       current location's projection.  So the _D___c_e_l_l map  cannot  be  directly
+       displayed on a GRASS monitor.
+
+UUssaaggee iinn ddeettaaiillss
+                     Set the map size for the CELL driver:
+                     export   GRASS_WIDTH=xxx      (default   is  640)  export
+                     GRASS_HEIGHT=yyy    (default is 480)
+
+                     If "export" command is not accepted by  your  shell,  use
+                     "setenv"   instead:   setenv   GRASS_WIDTH   xxx   setenv
+                     GRASS_HEIGHT yyy
+
+                     Start  the  CELL  driver:  d.mon  start=CELL    Wait  for
+                     "Ready"  message (may take some time due to the file size
+                     selected) d.mon select=CELL
+
+                     Now the user can work with the  common  display  modules:
+                     d.zzzz  (d.rast, d.vect, d.3d,...)   Note that an eventu-
+                     ally started GRASS monitor won't display anything as  the
+                     output is redirected to _D___c_e_l_l file.
+
+                     Stop  the  CELL  driver  (and  write  _D___c_e_l_l file): d.mon
+                     stop=CELL   Note that this may require some time.
+
+                     To export the_D___c_e_l_l file,  re-set  the  region:  g.region
+                     raster=D_cell Use the r.out.* export module.
+
+NNOOTTEESS
+       Note  that  the  _D___c_e_l_l  raster map is in xy-projection with simple xy-
+       coordinates.
+
+
+       The resolution of the _D___c_e_l_l raster map is defined by the map  extents.
+       Use  _g_._r_e_g_i_o_n  _-_p  to  get  the  number  of  rows  and cols and use the
+       environment variables to set the D_cell size.
+
+
+       Note that the CELL driver is limited to 8bit colors.
+
+SSEEEE AALLSSOO
+        _d_._m_o_n_, _g_._r_e_g_i_o_n_, _h_t_m_l_m_a_p_d_r_i_v_e_r_, _p_n_g_d_r_i_v_e_r_, _X_D_R_I_V_E_R_,  _t_c_l_t_k_g_r_a_s_s  _c_e_l_l_-
+       _t_i_f_f _s_c_r_i_p_t
+
+AAUUTTHHOORR
+       CERL
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                        celldriver(1)

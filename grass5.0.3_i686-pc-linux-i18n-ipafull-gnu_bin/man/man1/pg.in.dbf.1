@@ -1,0 +1,60 @@
+pg.in.dbf(1)                  Grass User's Manual                 pg.in.dbf(1)
+
+
+
+NNAAMMEE
+       _p_g_._i_n_._d_b_f  - Imports a dBase table into PostgreSQL. (GRASS-RDBMS Inter-
+       face import Program)
+
+SSYYNNOOPPSSIISS
+       ppgg..iinn..ddbbff
+
+       ppgg..iinn..ddbbff hheellpp
+
+       ppgg..iinn..ddbbff iinnppuutt_=_n_a_m_e [dduummppmmooddee_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _p_g_._i_n_._d_b_f imports a dBase database table into PostgreSQL for later  use
+       with GRASS-RDBMS modules.
+
+       You  can  also  choose  to dump data from the dbf file into text format
+       file for further use. In such case,
+
+       you should type in the full Unix path to the  new  text  file  location
+       when prompted.
+
+       The  program can run in two modes: 'admin' is when the GRASS user has a
+       superuser account in Postgres,
+
+       You should choose the mode adequately.
+
+       In the latter case, large files can take much time to import  (as  each
+       line would be inserted separately).
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==nnaammee
+           Name of .dbf file to be imported (example: 'simple.dbf'
+
+       dduummppmmooddee==nnaammee
+           Admin/normal user dump mode (Default = Postgres super-user)
+
+
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_,    _g_._t_a_b_l_e_._p_g_,   _d_._v_e_c_t_._p_g_,   _d_._w_h_a_t_._s_._p_g_,   _r_._r_e_c_l_a_s_s_._p_g_,
+       _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                         pg.in.dbf(1)

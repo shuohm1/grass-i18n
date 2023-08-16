@@ -1,0 +1,97 @@
+r.spreadpath(1)               Grass User's Manual              r.spreadpath(1)
+
+
+
+NNAAMMEE
+       rr..sspprreeaaddppaatthh  -  Recursively  traces  the  least cost path backwards to
+       cells from which the cumulative cost was determined.
+
+       (GRASS Raster Program)
+
+SSYYNNOOPPSSIISS
+       rr..sspprreeaaddppaatthh
+
+       rr..sspprreeaaddppaatthh hheellpp
+
+       rr..sspprreeaaddppaatthh     [[--vv]]     xx__iinnppuutt==_n_a_m_e      yy__oouuttppuutt==_n_a_m_e      [ccoooorrddii--
+       nnaattee==_x_,_y_[_x_,_y_,_._._._]]oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._s_p_r_e_a_d_p_a_t_h  recursively  traces  the least cost path backwards to the
+       origin, given backlink information input map layers  and  target  loca-
+       tions  from  where paths are to be traced. The backlink information map
+       layers record each cell's backlink UTM northing (the y_input) and east-
+       ing (the x_input) coordinates from which the cell's cumulative cost was
+       determined.
+
+
+       The backlink inputs can be generated from another GRASS raster  program
+       _r_._s_p_r_e_a_d.  One  of  the  major  applications of _r_._s_p_r_e_a_d_p_a_t_h along with
+       _r_._s_p_r_e_a_d is to accurately find the least cost corridors and/or paths on
+       a  raster setting. More information on _r_._s_p_r_e_a_d and _r_._s_p_r_e_a_d_p_a_t_h can be
+       found in Xu (1994).
+
+FFllaaggss::
+       --vv     Run verbosely.
+
+
+PPaarraammeetteerrss::
+       xx__iinnppuutt==_n_a_m_e
+              Name of input raster map layer containing backlink  UTM  easting
+              coordinates.
+
+       yy__iinnppuutt==_n_a_m_e
+              Name  of input raster map layer containing backlink UTM northing
+              coordinates.
+
+       ccoooorrddiinnaattee==_x_,_y_[_,_x_,_y_,_x_,_y_, _._._._]
+              Each x,y coordinate pair gives the easting and northing (respec-
+              tively)  geographic  coordinates of a target point from which to
+              backwards trace the least cost path. As many points  as  desired
+              can be entered by the user.
+
+       oouuttppuutt==_n_a_m_e
+              Name  of raster map layer to contain output. Also can be used as
+              the map layer of the input target points. If so used, the  input
+              target point map will be overwritten by the output.
+
+
+OOPPTTIIOONNSS
+       The  user  can  run  _r_._s_p_r_e_a_d_p_a_t_h either interactively or non- interac-
+       tively. The program is run interactively if the user types _r_._s_p_r_e_a_d_p_a_t_h
+       without  specifying  flag  setting  and parameter values on the command
+       line. In this case, the user will be prompted for input.
+
+
+       Alternately,  the  user  can  run  _r_._s_p_r_e_a_d_p_a_t_h  non-interactively,  by
+       specifying  the  names  of raster map layers and desired options on the
+       command line, using the form:
+
+
+       rr..sspprreeaaddppaatthh     [[--vv]]     xx__iinnppuutt==_n_a_m_e      yy__oouuttppuutt==_n_a_m_e      _[_c_o_o_r_d_i_-
+       _n_a_t_e_=_x_,_y_[_x_,_y_,_._._._]_]oouuttppuutt==_n_a_m_e
+
+
+
+SSEEEE AALLSSOO
+       _r_._r_o_s.
+
+RREEFFEERREENNCCEESS
+       Xu,  Jianping,  1994,  Simulating  the spread of wildfires using a geo-
+       graphic information system and remote  sensing,  Ph.  D.  Dissertation,
+       Rutgers University, New Brunswick, New Jersey.
+
+AAUUTTHHOORR
+       Jianping  Xu and Richard G. Lathrop, Jr., Center for Remote Sensing and
+       Spatial Analysis, Rutgers University.
+
+NNOOTTIICCEE
+       This program is part of the alpha section of  the  GRASS  distribution.
+       Unlike  the  code  in the main section of GRASS, the alpha code has not
+       yet been fully tested for one release cycle.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                      r.spreadpath(1)

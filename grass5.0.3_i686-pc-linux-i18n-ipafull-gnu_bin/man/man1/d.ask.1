@@ -1,0 +1,144 @@
+d.ask(1)                      Grass User's Manual                     d.ask(1)
+
+
+
+NNAAMMEE
+       dd..aasskk   -  Prompts the user to select a GRASS data base file from among
+       files displayed in a menu on the graphics monitor.
+       _(_G_R_A_S_S File Management Program)
+
+SSYYNNOOPPSSIISS
+       dd..aasskk hheellpp
+       dd..aasskk eelleemmeenntt==_n_a_m_e_,_d_e_s_c_r_i_p_t_i_o_n [pprroommpptt=="_m_e_s_s_a_g_e"]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._a_s_k is designed for shell scripts that need to prompt  the  user  for
+       the  name of a data base file in the user's current GRASS mapset search
+       path.  After _d_._a_s_k is invoked with needed parameters, the mouse becomes
+       active  and  a  menu  containing files of the specified _e_l_e_m_e_n_t type is
+       displayed on the user's graphics monitor.  The user is prompted by  the
+       prompt "_m_e_s_s_a_g_e" to select one of the listed file names with the mouse.
+       Specifically, the query that appears to the user takes the form:
+
+
+       DDoouubbllee click on the _p_r_o_m_p_t "message" DDoouubbllee click here to cancel
+
+
+       (A list of files of the specified _e_l_e_m_e_n_t type from each of the mapsets
+       listed in the user's mapset search path is also displayed.)
+
+
+
+       After  the  user  responds,  the mouse is deactivated and the displayed
+       menu is erased from the screen (leaving  any  underlying  materials  on
+       display  intact).   Three  lines  are  written  to standard output (the
+       user's terminal screen):
+
+
+       nnaammee==_f_i_l_e___n_a_m_e mmaappsseett==_m_a_p_s_e_t___n_a_m_e ffuullllnnaammee==_f_i_l_e___n_a_m_e_@_m_a_p_s_e_t___n_a_m_e
+
+
+
+
+   PPaarraammeetteerrss::
+       eelleemmeenntt==_n_a_m_e_,_d_e_s_c_r_i_p_t_i_o_n
+              Name of a GRASS data  base  element,  followed  by  a  one  word
+              description  of the element. GRASS data base elements are mapset
+              subdirectories; these  include:  bdlg,  cats,  cell,  cell_misc,
+              cellhd,   colr,   colr2,   dig,  dig_ascii,  dig_att,  dig_cats,
+              dig_plus, dlg, group, hist, icons, noise, paint, site_lists, and
+              windows.   The _d_e_s_c_r_i_p_t_i_o_n will be used to display an error mes-
+              sage to the screen if no files of the named element  type  exist
+              in  the  user's  mapset  search path.  The prompt "_m_e_s_s_a_g_e" will
+              appear in the pop-up menu displayed on the user's graphics moni-
+              tor.  The files listed in the menu will be of the specified _e_l_e_-
+              _m_e_n_t type, and exist in mapsets listed  in  the  user's  current
+              mapset search path.
+
+       pprroommpptt==
+              A  brief  message with which the user will be prompted.  If this
+              message contains more than  one  word,  it  should  be  enclosed
+              within  double quotes ("").  It is a non-selectable message dis-
+              played in the menu bar of a pop-up menu.   Selectable  items  in
+              the  displayed menu include a cancel option and any of the files
+              in the mapset subdirectory _n_a_m_e  in  the  user's  mapset  search
+              path.
+
+
+EEXXAAMMPPLLEE
+       Given the following input,
+
+
+       dd..aasskk eelleemmeenntt==cell,raster pprroommpptt=="raster map layer to be used"
+
+
+
+       _d_._a_s_k  will  prompt  the user to select a raster (cell) file from among
+       those listed in the "cell" directories of the  mapsets  listed  in  his
+       current  mapset  search  path.  A  pop-up menu will be displayed on the
+       user's graphics monitor, containing the prompt:
+
+
+       DDoouubbllee click on the _r_a_s_t_e_r map layer to be used DDoouubbllee  click  here  to
+       cancel
+
+
+OOUUTTPPUUTT
+       If  the  user selects a file name from the displayed menu, _d_._a_s_k writes
+       three lines to standard output:
+
+
+       nnaammee==_f_i_l_e___n_a_m_e mmaappsseett==_m_a_p_s_e_t___n_a_m_e ffuullllnnaammee==_f_i_l_e___n_a_m_e_@_m_a_p_s_e_t___n_a_m_e
+
+
+
+       The output is in the form of /bin/sh commands to set the variable  _n_a_m_e
+       to  the  file name specified by the user (of the _e_l_e_m_e_n_t type requested
+       by _d_._a_s_k), _m_a_p_s_e_t to the GRASS mapset in which this file  resides,  and
+       _f_u_l_l_n_a_m_e to the name of the file and its mapset.
+
+
+       If the user elects not to select a file but instead chooses the "Double
+       click here to cancel" option, the mouse  will  be  deactivated  and  no
+       variable assignments will be returned to standard output.
+
+
+       If  no files of the specified _e_l_e_m_e_n_t type are found in the user's cur-
+       rent mapset search path, the mouse is activated and the following  mes-
+       sage is displayed on the user's graphics monitor:
+
+
+       NNoo _e_l_e_m_e_n_t description files found CClliicckk hheerree ttoo ccoonnttiinnuuee
+
+
+
+
+NNOOTTEESS
+       Parameter values (the _e_l_e_m_e_n_t name and description, and _p_r_o_m_p_t message)
+       cannot be supplied to _d_._a_s_k interactively; they must be supplied on the
+       command line or from a file.
+
+SSEEEE AALLSSOO
+       _g_._a_s_k_,
+
+       _g_._f_i_l_e_n_a_m_e_,
+
+       _g_._f_i_n_d_f_i_l_e_,
+
+       _g_._g_i_s_e_n_v_,
+
+       _g_._m_a_p_s_e_t_s
+
+BBUUGGSS
+       This  program  calls  other GRASS programs which may generate confusing
+       error messages. Example: an error message from the program d.menu  will
+       appear if a nonexistent map element is chosen.
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                             d.ask(1)

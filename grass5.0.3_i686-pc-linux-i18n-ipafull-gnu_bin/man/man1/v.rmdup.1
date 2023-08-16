@@ -1,0 +1,48 @@
+v.rmdup(1)                    Grass User's Manual                   v.rmdup(1)
+
+
+
+NNAAMMEE
+       vv..rrmmdduupp  - Remove duplicate items GRASS vector file. (GRASS Vector Pro-
+       gram)
+
+SSYYNNOOPPSSIISS
+       vv..rrmmdduupp
+
+       vv..rrmmdduupp hheellpp
+
+       vv..rrmmdduupp iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [tthhrreesshhoolldd==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._r_m_d_u_p removes duplicate lines, areas, and points from a binary vector
+       file  (input).   Duplicate  may be defined as exact (less than 1.12e-16
+       for IEEE double precision), or defined with a threshold.
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of a binary vector file
+
+       oouuttppuutt==_n_a_m_e
+              Name given to binary vector output file.
+
+       tthhrreesshhoolldd==_v_a_l_u_e
+              Threshold for defining duplicate lines, areas, and points.
+
+       The search technique used by _v_._r_m_d_u_p is not extremely sophisticated and
+       may take a long time for large files.  Instead, only two sets of lines,
+       areas, or points are active at any one time (so it is conservative with
+       memory).
+
+SSEEEE AALLSSOO
+        _v_._c_l_e_a_n_, _v_._d_i_g_i_t_, _v_._p_r_u_n_e_, _v_._s_p_a_g_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       James Darrell McCauley, Purdue University
+
+       GRASS 5 fixes by Roger S. Miller
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.rmdup(1)

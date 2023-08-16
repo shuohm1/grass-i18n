@@ -1,0 +1,157 @@
+sites.occur(1)                Grass User's Manual               sites.occur(1)
+
+
+
+NNAAMMEE
+       ssiitteess..ooccccuurr   -  Description  of the site occurrence report produced by
+       _s_._m_e_n_u.
+
+DDEESSCCRRIIPPTTIIOONN
+       This is a discussion of the site occurrence report produced by  _s_._m_e_n_u_.
+
+SSAAMMPPLLEE OOUUTTPPUUTT
+
+
+                                    SITE OCCURRENCE REPORT
+                               Yakima Firing Center, Washington
+
+       Location:  yakima
+       Mapset:    sample
+       Site List: arch_erosion - archeology (34 sites)
+
+       Analysis Region:
+                           north: 5199975.00
+          west:  692975.00                       east:  737975.00
+                           south: 5154975.00
+
+       ============================================================================
+
+       Layer: arch_survey          Archeologic Survey Areas (arch_survey)
+
+       cells in analysis region:     810000
+       sites in analysis region:         34
+
+                                                                            degrees
+                                    cells       %      expected  actual    chi
+       of
+       Site Characteristics         cover    cover    sites     sites   square
+       freedom
+       --------------------         -------  -------  -------- ------ --------
+       -------
+       (  0) No data                764310                      11
+
+       (  1) Hartmann,phase 1        25821    56.5      19.2       6     9.088
+       1
+       (   2)  Hartmann,phase  2        11032    24.1      8.2     14    4.084
+       1
+       (  3) Wapora,phase 3           8837    19.3       6.6       3     1.945
+       1
+                                   -------  -------  --------  ------ --------
+       -------
+             Totals                  45690   100.0      34.0      23    15.117
+       2
+
+       ============================================================================
+
+
+EEXXPPLLAANNAATTIIOONN
+       The "Site Occurrence Report" provides aggregate site information  orga-
+       nized by raster map layers.
+
+
+       The report header contains the following information:
+
+       LLooccaattiioonn
+              GRASS database location (e.g., yakima),
+
+       MMaappsseett GRASS mapset (e.g., sample)
+
+       AAnnaallyyssiiss RReeggiioonn
+              the  rectangular  area in which the analysis was run, reflecting
+              the current geographic settings of the user's mapset.
+
+       SSiittee LLiisstt
+              name and description of the site list used for  the  report  and
+              the  number  of  sites in the list.  See manual entry for _s_._m_e_n_u
+              for more discussion about these site lists.
+
+       The rest of the report is divided into reports for each raster map lay-
+       ers  specified  by the user.  In this SAMPLE OUTPUT, only one map layer
+       (arch_survey) was specified.
+
+
+       Certain information heads up each of these reports:
+
+       llaayyeerr  identifies the raster map layer along with the map layer  TITLE.
+
+       cceellllss iinn aannaallyyssiiss rreeggiioonn
+              the size of the analysis region (in cells).
+
+       ssiitteess iinn aannaallyyssiiss rreeggiioonn
+              the number of sites in the analysis region.
+
+       For  each  map layer category which occurs in a cell falling within the
+       boundaries of the analysis region, as well as totals for the map  layer
+       as a whole, various statistics are presented:
+
+       SSiittee CChhaarraacctteerriissttiiccss
+              These  are  the numbers (i.e., values) and names (i.e., descrip-
+              tions) for each category (i.e., characteristic) which occurs  in
+              the map layer.
+
+       cceellllss ccoovveerr
+              the  number  of cells in the analysis region having the category
+              value (i.e., site characteristic).
+
+       %% ccoovveerr
+              the predominance of the category within the analysis region.
+
+       eexxppeecctteedd ssiitteess
+              the number of sites  in  the  analysis  region  which  would  be
+              expected  to  be observed having the category value if all sites
+              were evenly distributed by in the region.
+
+       aaccttuuaall ssiitteess
+              the number of sites in the analysis region which  were  occurred
+              in cells having the category value.
+
+       cchhii ssqquuaarree
+              gives  the  user  a  statistical test of the hypothesis that For
+              this hypothesis to be true, the chi-square test must fail  since
+              we  are  calculating  expected sites according to the hypothesis
+              that
+
+       ddeeggrreeeess ooff ffrreeeeddoomm
+              Number of degrees of freedom for the chi-square test.  Each cat-
+              egory  value  will  have  1 degree of freedom, and can be tested
+              alone.  The entire map layer will have 1 less degree of  freedom
+              than the number of categories.
+
+
+NNOOTTEE
+       Category zero (0) throughout GRASS represents "no data".  Therefore, it
+       is reported, but not included in the totals or in  the  computation  of
+       the chi-square statistics.
+
+SSEEEE AALLSSOO
+       _s_._d_b_._r_i_m
+
+       _s_._i_n_._a_s_c_i_i
+
+       _s_._m_e_n_u
+
+       _s_._o_u_t_._a_s_c_i_i
+
+       _s_._s_u_r_f_._i_d_w
+
+       _s_i_t_e_s_._S
+
+       _s_i_t_e_s_._f_o_r_m_a_t
+
+       _s_i_t_e_s_._r_e_p_o_r_t
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                       sites.occur(1)

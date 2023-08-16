@@ -1,0 +1,91 @@
+m.lulc.read(1)                Grass User's Manual               m.lulc.read(1)
+
+
+
+NNAAMMEE
+       mm..lluullcc..rreeaadd   -  Extracts Landuse/Landcover data in the ASCII Composite
+       Theme Grid (CTG) data format distributed by the USGS in  to  a  working
+       file for _m_._l_u_l_c_._U_S_G_S .
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dddd  [iiff==_t_a_p_e_d_e_v] iibbss==_i_n_p_u_t _b_l_o_c_k___s_i_z_e ccbbss==_8_0 ccoonnvv==_u_n_b_l_o_c_k || mm..lluullcc..rreeaadd
+       _a_r_g_1
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._l_u_l_c_._r_e_a_d extracts USGS Land Use/Land Cover data distributed  in  the
+       ASCII  CTG  format.   Extracted data is placed into a file specified by
+       _a_r_g_1.  _m_._l_u_l_c_._r_e_a_d should be used prior  to  using  the  GRASS  program
+       _m_._l_u_l_c_._U_S_G_S .
+
+
+       _m_._l_u_l_c_._r_e_a_d  reads  the  data from standard input, allowing the user to
+       pipe in the data from a file.
+
+
+       Data can also be read directly from the  1/2-inch  magnetic  tape  dis-
+       tributed by USGS, by using the UNIX command _d_d.
+
+
+
+   PPaarraammeetteerrss::
+       iiff==_t_a_p_e_d_e_v
+              The pathname of the input tape drive (usually //ddeevv//rrmmtt00).
+
+       iibbss==_i_n_p_u_t
+              The physical blocking value of the data on tape, usually written
+              on the tape spool.  If this value is unknown, run _m_._e_x_a_m_i_n_e_._t_a_p_e
+               prior to _m_._l_u_l_c_._r_e_a_d.
+
+       ccbbss    This is the conversion blocking factor for ASCII CTG file and is
+              by default set to 8800.
+
+       ccoonnvv   Set _c_o_n_v to uunnbblloocckk when extracting ASCII CTG data.
+
+       aarrgg11   The name of the output file where the data  will  be  stored  in
+              binary format.
+
+
+EEXXAAMMPPLLEESS
+       READING FROM A FILE:
+
+
+       mm..lluullcc..rreeaadd oouuttffiillee << iinnffiillee
+
+
+
+       The  above command will read the data from _i_n_f_i_l_e and place the results
+       into _o_u_t_f_i_l_e.  Note that _i_n_f_i_l_e must be extracted from the USGS CTG 1/2
+       magnetic tape using the UNIX _d_d command:
+
+
+       dddd iiff==//ddeevv//rrmmtt00 ooff==iinnffiillee iibbss==3322000000 ccbbss==8800 ccoonnvv==uunnbblloocckk
+
+
+
+       READING DIRECTLY FROM 1/2 INCH MAGNETIC TAPE:
+
+
+       dddd iiff==//ddeevv//rrmmtt00 iibbss==3322000000 ccbbss==8800 ccoonnvv==uunnbblloocckk || mm..lluullcc..rreeaadd oouuttffiillee
+
+
+
+       The  above  command  will  extract  data with a blocksize of 32000 from
+       _/_d_e_v_/_r_m_t_0, and put the results in the file _o_u_t_f_i_l_e.
+
+SSEEEE AALLSSOO
+       UNIX manual entry for _d_d
+
+
+        _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+        _m_._l_u_l_c_._U_S_G_S
+
+AAUUTTHHOORR
+       Kenneth Shepardson, Spectrum Sciences & Software, Inc. (904) 862-3031
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       m.lulc.read(1)

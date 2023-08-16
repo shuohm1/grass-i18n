@@ -1,0 +1,68 @@
+r.topidx(1)                   Grass User's Manual                  r.topidx(1)
+
+
+
+NNAAMMEE
+       rr..ttooppiiddxx  - creates topographic index, ln(a/tan(beta)), map from eleva-
+       tion map
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ttooppiiddxx [[--oovv]] iinnppuutt_=_n_a_m_e oouuttppuutt_=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._t_o_p_i_d_x creates topographic index, ln(a/tan(beta)), map from elevation
+       map.
+
+
+       where  a: the area of the hillslope per unit contour length that drains
+       through any point
+
+
+       tan(beta): the local  surface  topographic  slope  (delta  vertical)  /
+       (delta horizontal)
+
+
+       Elevation  map  need  not  to be rectangular if study basin was already
+       determined.  Non-interesting region may have NULL values.  Study  basin
+       map  can  be  taken  from  _r_._w_a_t_e_r_._o_u_t_l_e_t  then the following _r_._m_a_p_c_a_l_c
+       statements will create study basin extracted elevation map.
+
+
+       r.mapcalc "belev = if(isnull(basin), basin, elev)"
+
+
+       _r_._a_v_g_s_t_a_t_s prints out averaged statistics for topographic index.
+
+   FFllaaggss::
+       --oo     Overwrite output map
+
+       --vv     Output verbosely
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt  Elevation map
+
+       oouuttppuutt Topographic index ln(a/tanB) map
+
+
+SSEEEE AALLSSOO
+       _r_._t_o_p_m_o_d_e_l, _r_._w_a_t_e_r_._o_u_t_l_e_t, _r_._m_a_p_c_a_l_c
+
+AAUUTTHHOORRSS
+       Main algorithm sources are rewritten from GRIDATB.FOR.
+
+       GRIDATB.FOR is available from www.es.lancs.ac.uk/hfdg/topmodel.html.
+       Thanks to Keith Beven.
+
+
+       GRASS port by Huidae Cho
+
+       Hydro Laboratory, Kyungpook National University, South Korea
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.topidx(1)

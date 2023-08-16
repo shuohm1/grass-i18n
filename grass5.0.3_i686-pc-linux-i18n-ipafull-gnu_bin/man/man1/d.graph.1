@@ -1,0 +1,155 @@
+d.graph(1)                    Grass User's Manual                   d.graph(1)
+
+
+
+NNAAMMEE
+       dd..ggrraapphh  - Program for generating and displaying simple graphics to the
+       graphics display monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ggrraapphh
+       dd..ggrraapphh hheellpp
+       dd..ggrraapphh [iinnppuutt==_n_a_m_e] [ccoolloorr==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._g_r_a_p_h draws graphics that are described either  from  standard  input
+       (default), or within a file (if an input _f_i_l_e name is identified on the
+       command line). If graphics commands are entered from standard input,  a
+       _c_t_r_l_-_d is used to signal the end of input to _d_._g_r_a_p_h.
+
+
+       The  program  can  be run interactively or non-interactively.  The user
+       can run the program completely non-interactively by specifying the name
+       of  a graphics _f_i_l_e containing _d_._g_r_a_p_h graphics commands and the values
+       of all needed parameters on the command line.   The  user  can  instead
+       elect to run the program partially interactively, by specifying any/all
+       of the parameters _e_x_c_e_p_t the graphics ffiillee==_n_a_m_e parameter on  the  com-
+       mand line.  In this case, _d_._g_r_a_p_h will expect the user to input _d_._g_r_a_p_h
+       graphics commands from standard input (i.e.,  the  keyboard)  and  will
+       (silently) prompt the user for these graphics commands.
+
+
+       Alternately,  the user can simply type dd..ggrraapphh on the command line, and
+       be prompted for the values of all parameters (the user can still  input
+       graphics  commands  from  either  an input file or standard input using
+       this form). In this case, the user is presented with the standard GRASS
+       _p_a_r_s_e_r interface.
+
+
+
+   PPaarraammeetteerrss::
+       ffiillee==_n_a_m_e
+              Name  of  file containing graphics commands. This is a UNIX file
+              name; the file must be located in  the  user's  current  working
+              directory or be specified by its full path name.  If no filename
+              is specified commands are taken from the standard input.
+
+       ccoolloorr==_n_a_m_e
+              Starting color desired for graphics.
+              Options: red,  orange,  yellow,  green,  blue,  indigo,  violet,
+              magenta, brown, gray, white, and black.
+              Default: _w_h_i_t_e
+
+
+
+       The  coordinate system used is 0-100 in x and 0-100 in y, regardless of
+       the graphics monitor display frame size and aspect.  The (0,0) location
+       is  the lower left corner of the active graphics monitor display frame.
+       All values may be floating point.
+
+
+       The graphics language is simple, and uses the following commands:
+
+       ## _c_o_m_m_e_n_t
+              A line of comment which is ignored in the processing.
+
+       mmoovvee _x_p_o_s ypos
+              The current location is updated to _x_p_o_s _y_p_o_s.  Values are stated
+              as a percent of the active display frame's horizontal (_x_p_o_s) and
+              vertical (_y_p_o_s) size, and may be floating point  values.  Values
+              are between 0-100.  NNoottee.. A space must separate _x_p_o_s and _y_p_o_s.
+
+       ddrraaww _x_p_o_s ypos
+              A  line  is drawn in the current color from the current location
+              to the new location _x_p_o_s ypos, which then  becomes  the  current
+              location.   Values are stated as a percent of the active display
+              frame's horizontal (_x_p_o_s) and vertical (_y_p_o_s) size, and  may  be
+              floating  point values. Values are between 0-100.  NNoottee.. A space
+              must separate _x_p_o_s and _y_p_o_s.
+
+       ccoolloorr _c_o_l_o_r
+              Sets the current color to that stated; subsequent graphics  will
+              be  drawn in the stated color, until the current color is set to
+              a different color.  Options  are  _r_e_d,  _o_r_a_n_g_e,  _y_e_l_l_o_w,  _g_r_e_e_n,
+              _b_l_u_e, _i_n_d_i_g_o, _v_i_o_l_e_t, _b_r_o_w_n, _m_a_g_e_n_t_a, _g_r_a_y, _w_h_i_t_e, and _b_l_a_c_k.
+
+       ssiizzee _x_p_e_r yper
+              Subsequent text will be drawn such that the text is _x_p_e_r percent
+              of the graphics monitor display frame wide and _y_p_e_r  percent  of
+              the frame high. By default, the text size is set to 1 percent of
+              the active frame's width and 1 percent of the frame's height  if
+              unspecified by the user (this may be too small to be seen by the
+              user).
+              NNoottee.. A space must separate _x_p_e_r and _y_p_e_r.
+
+       tteexxtt _l_i_n_e_-_o_f_-_t_e_x_t
+              The stated text is drawn at the current location using the  cur-
+              rent  color,  and the new current location is then positioned at
+              the end of the text string.
+
+       iiccoonn _t_y_p_e _s_i_z_e _x _y
+              Draws an icon of types _o, _x, or _+ with specified _s_i_z_e  at  loca-
+              tion _x_,_y.  Note: type _o designates a square.
+
+       ppoollyyggoonn
+
+                _x_p_o_s _y_p_o_s
+
+                _x_p_o_s _y_p_o_s
+
+              The coordinates appearing beneath the word _p_o_l_y_g_o_n, one pair per
+              line, circumscribe a polygon that is to be filled with the  cur-
+              rent color.
+
+
+EEXXAAMMPPLLEE
+       For  an  example use of _d_._g_r_a_p_h, examine the contents of the macro com-
+       mand _$_G_I_S_B_A_S_E_/_b_i_n_/_g_r_a_s_s_._l_o_g_o_._s_h located in the GRASS command bin (which
+       draws  a  GRASS  logo  by  inputting _d_._g_r_a_p_h graphics commands that are
+       stored  in  a  shell  file).   Note  that  the   coordinates   in   the
+       _g_r_a_s_s_._l_o_g_o_._s_h  macro  were taken directly off an image drawn by hand on
+       graph paper.
+
+NNOOTTEESS
+       _d_._g_r_a_p_h remembers the last screen location (xpos  ypos)  to  which  the
+       user  moved, even after the user erases the display frame.  If the user
+       runs _d_._g_r_a_p_h repeatedly, and wishes to  start  anew  with  the  default
+       (xpos  ypos)  screen  location, the user should _c_l_e_a_r the display frame
+       between runs of _d_._g_r_a_p_h.
+
+LLIIMMIITTAATTIIOONNSS
+       There are no automated ways of generating graphic images. It is antici-
+       pated  that GRASS user sites will write programs to convert output from
+       a resident graphics editor into GRASS _d_._g_r_a_p_h format.
+
+SSEEEE AALLSSOO
+       _d_._f_o_n_t
+
+       _d_._m_a_p_g_r_a_p_h
+
+       _d_._t_e_x_t
+
+       _g_r_a_s_s_._l_o_g_o_._s_h
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                           d.graph(1)

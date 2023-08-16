@@ -1,0 +1,97 @@
+r.le.patch(1)                 Grass User's Manual                r.le.patch(1)
+
+
+
+NNAAMMEE
+       _r_._l_e_._p_a_t_c_h  -  This  program  can be used to calculate attribute, patch
+       size, core (interior) size, shape,  fractal  dimension,  and  perimeter
+       measures for sets of patches in a landscape
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..llee..ppaattcchh
+
+       rr..llee..ppaattcchh hheellpp
+
+       rr..llee..ppaattcchh      [--bbccnnppttuu]      mmaapp==_n_a_m_e      [ssaamm==_n_a_m_e]      [rreegg==_n_a_m_e]
+       [aatttt==_n_a_m_e_[_,_n_a_m_e_,_._._._]]         [ssiizz==_n_a_m_e_[_,_n_a_m_e_,_._._._]]         [ccoo11==_v_a_l_u_e]
+       [ccoo22==_n_a_m_e_[_,_n_a_m_e_,_._._._]]   [sshh11==_n_a_m_e]   [sshh22==_n_a_m_e_[_,_n_a_m_e_,_._._._]]   [ffrraa==_n_a_m_e]
+       [ppeerr==_n_a_m_e_[_,_n_a_m_e_,_._._._]]  [oouutt==_n_a_m_e]
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --bb     Run in background.
+
+       --cc     Output map 'interior' with patch cores.
+
+       --nn     Output map 'num' with patch numbers.
+
+       --pp     Include sampling area boundary as perimeter.
+
+       --tt     Use 4 neighbor tracing instead of 8 neighbor.
+
+       --uu     Output maps 'units_x' with sampling units for each scale x.
+
+
+   PPaarraammeetteerrss::
+       mmaapp    Raster map to be analyzed.
+
+       ssaamm    Sampling method (choose only 1 method):  w=whole  map,  u=units,
+              m=moving window, r=regions Default: w
+
+       rreegg    Name of regions map, only when sam = r; omit otherwise.
+
+       aatttt    Attribute  measures:  Options:  a1,  a2, a3, a4, a5, a6, a7 a1 =
+              mean pixel attribute a2 = st. dev. pixel  attribute  a3  =  mean
+              patch  attribute  a4 = st. dev. patch attribute a5 = cover by gp
+              a6 = density by gp a7 = total density
+
+       ssiizz    Patch size measures: Options: s1, s2, s3, s4, s5, s6 s1  =  mean
+              patch  size  s2 = st. dev. patch size s3 = mean patch size by gp
+              s4 = st. dev. patch size by gp s5 = no. by size class s6  =  no.
+              by size class by gp
+
+       ccoo11    Edge width in pixels (integer) for use with co2
+
+       ccoo22    Core size measures (required if co1 was specified): Options: c1,
+              c2, c3, c4, c5, c6, c7, c8, c9, c10 c1 = mean core size c2 = st.
+              dev.  core size c3 = mean edge size c4 = st. dev. edge size c5 =
+              mean core size by gp c6 = st. dev. core size by  gp  c7  =  mean
+              edge  size  by gp c8 = st. dev. edge size by gp c9 = no. by size
+              class c10 = no. by size class by gp
+
+       sshh11    Shape method (choose only 1 method): m1 = perim./area m2 = corr.
+              perim./area m3 = rel. circum. circle
+
+       sshh22    Shape measures (required if sh1 was specified): Options: h1, h2,
+              h3, h4, h5, h6 h1 = mean patch shape h2 = st. dev.  patch  shape
+              h3 = mean patch shape by gp h4 = st. dev. patch shape by gp h5 =
+              no. by shape class h6 = no. by shape class by gp
+
+       ffrraa    Fractal dimension measures: Options: f1 f1 = perim.-area fractal
+              dim.
+
+       ppeerr    Perimeter measures (required if pe1 was specified): Options: p1,
+              p2, p3, p4, p5, p6 p1 = sum of perims.  p2 = mean perim.   p3  =
+              st.  dev.  perim.  p4 = sum of perims. by gp p5 = mean perim. by
+              gp p6 = st. dev. perim. by gp
+
+       oouutt    Name of output file for individual patch measures,  when  sam=w,
+              u, r; if out=head, then column headings will be printed
+
+
+SSEEEE AALLSSOO
+       The _r_._l_e Programs Users Guide
+
+       _r_._l_e_._t_r_a_c_e
+
+AAUUTTHHOORR
+       William L. Baker, Department of Geography and Recreation, University of
+       Wyoming
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_2_2 _1_7_:_3_6_:_2_7 _$
+
+
+
+GRASS 5.0                                                        r.le.patch(1)

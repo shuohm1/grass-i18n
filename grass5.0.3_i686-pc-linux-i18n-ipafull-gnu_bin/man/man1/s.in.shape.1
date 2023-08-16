@@ -1,0 +1,99 @@
+s.in.shape(1)                 Grass User's Manual                s.in.shape(1)
+
+
+
+NNAAMMEE
+       _s_._i_n_._s_h_a_p_e - Read an ArcView Shapefile with points or multipoint shapes
+
+SSYYNNOOPPSSIISS
+       ss..iinn..sshhaappee [ --ll ] [ --zz ] [ --mm ] iinn==_n_a_m_e [aattttrriibbuuttee==_a_t_t_r_i_b_u_t_e  _c_a_t_e_g_o_r_y]
+       [hheeiigghhtt==_c_o_n_s_t_a_n_t _h_e_i_g_h_t _v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _s_._i_n_._s_h_a_p_e  module imports point and multipoint themed ESRI shape-
+       files into a GRASS site_lists.
+
+       _s_._i_n_._s_h_a_p_e can be run with command line options as follows:
+
+       ss..iinn..sshhaappee [ --ll ] [ --zz ] [ --mm ] iinn==_n_a_m_e [aattttrriibbuuttee==_a_t_t_r_i_b_u_t_e  _c_a_t_e_g_o_r_y]
+       [hheeiigghhtt==_c_o_n_s_t_a_n_t _h_e_i_g_h_t _v_a_l_u_e]
+
+       Alternatively, an interactive interface can be started:
+
+       ss..iinn..sshhaappee
+
+       In  this case, the user will be prompted for parameter values using the
+       standard GRASS user interface described in the manual entry for _p_a_r_s_e_r.
+
+FFEEAATTUURREESS
+       Grass  files  created  have the name extracted from the basename of the
+       shapefile.
+
+       All the fields in the associated dbf file are imported, but  those  not
+       recognised  as INTEGER, DOUBLE OR STRING are simply recorded as INTEGER
+       with a common value of  zero.  This  is  a  place-holder  for  possibly
+       improved type support in the future.
+
+       A  field  may be chosen as the attribute field, or if not, a sequential
+       ID field is created.
+
+       Multipoint themes are imported with individual points being each  given
+       a  separate  record,  but  the original record number is preserved in a
+       special field. It is always the first (after the attribute).
+
+       If a measure field is defined in the input theme, this is recorded in a
+       special  field.  It  will  be the second if present. A module or script
+       using these sites lists is expected to know if this field  is  present.
+       This fact is not recorded.
+
+       An  optional  height record for 3d points can be stored if present as a
+       third dimension.
+
+FFLLAAGGSS
+       --ll
+
+       --zz List the fields contained in the DBF file associated with the  input
+       shapefile, then exit.
+
+       Include  a height with each record. The height will only be recorded if
+       this flag is set, and then will always be given. If the input data does
+       not  contain a height field, a constant value is set, which defaults to
+       0. The default can be over-ridden with the _h_e_i_g_h_t option -  see  below.
+       --mm  Include  a  field in the sites file with the measure field from the
+       input theme. This is only used if the input theme defines  this  field,
+       aanndd  the user specifies this flag. Otherwise it is ignored. If present,
+       the measure field will be the second field.
+
+
+
+OOPPTTIIOONNSS
+       iinn==_n_a_m_e Name of input shape file. Provide a full path name or the  name
+       of  a  file  in the current directory.  Any of the full pathname, base-
+       name, or prefix only will suffice.  hheeiigghhtt==_z_-_v_a_l_u_e  In  the  event  you
+       select  the  --zz option, aanndd there is no in-built height field (zval) in
+       the input file, this can provide a constant height value. Otherwise  it
+       is  ignored  if  given.   aattttrriibbuuttee==_a___n_a_m_e Name of the field in the dbf
+       file to use as the attribute in the sites list. Defaults to  a  sequen-
+       tial  index  if  no  attribute  field is given, or the given field is a
+       string field.
+
+
+
+BBUUGGSS AANNDD CCAAVVEEAATT
+       The projection must be set in the mapset before input.
+
+       Some site maps do not display all markers.
+
+       The time stamp facility does not appear to work at present.
+
+SSEEEE AALLSSOO
+       _g_._m_a_p_s_e_t_, _g_._r_e_g_i_o_n_, _g_._p_r_o_j_, _v_._i_n_._s_h_a_p_e_.
+
+AAUUTTHHOORRSS
+       David D. Gray
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                        s.in.shape(1)

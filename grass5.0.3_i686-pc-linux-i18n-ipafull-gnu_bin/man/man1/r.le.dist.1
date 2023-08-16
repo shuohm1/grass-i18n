@@ -1,0 +1,80 @@
+r.le.dist(1)                  Grass User's Manual                 r.le.dist(1)
+
+
+
+NNAAMMEE
+       rr..llee..ddiisstt  -  The  _r_._l_e_._d_i_s_t  program  can be used to measure distances
+       between patches and report those distances using several methods.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+GGRRAASSSS VVEERRSSIIOONN
+       4.x
+
+SSYYNNOOPPSSIISS
+       rr..llee..ddiisstt
+
+       rr..llee..ddiisstt hheellpp
+
+       rr..llee..ddiisstt   [--bbnnttuu]   mmaapp==_n_a_m_e   [ssaamm==_n_a_m_e]   [rreegg==_n_a_m_e]    [sskkii==_v_a_l_u_e]
+       [ccaann==_v_a_l_u_e] [ddii11==_n_a_m_e_[_,_n_a_m_e_,_._._._]] [ddii22==_n_a_m_e_[_,_n_a_m_e_,_._._._]] [oouutt==_n_a_m_e]
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --bb     Run in background
+
+       --nn     Output map 'num' with patch numbers.
+
+       --tt     Use 4 neighbor tracing instead of 8 neighbor.
+
+       --uu     Output maps 'units_x' with sampling units for each scale x.
+
+
+   PPaarraammeetteerrss::
+       mmaapp    Raster map to be analyzed.
+
+       ssaamm    Sampling  method  (choose  only 1 method): w=whole map, u=units,
+              m=moving window, r=regions Options: w, u, m, r Default: w
+
+       rreegg    Name of regions map, only when sam = r; omit otherwise.
+
+       sskkii    Skip m boundary cells  to  speed  up  nearest  neighbor  search.
+              Options: 0-10 Default: 0
+
+       ccaann    Use  only  'can'  candidate  patches for faster nearest neighbor
+              search.  Options: 1-30 Default: 30
+
+       ddii11    Distance methods (Choose only 1 method): Options:  m0,  m1,  m2,
+              m3,  m4,  m5,  m6,  m7,  m8, m9 (CC=Center-Center, EE=Edge-Edge,
+              CE=Center-Edge): m0 = each patch to all adjacent neighbors CC m1
+              =  each  patch  to  all adjacent neighbors CE m2 = each patch to
+              nearest patch of same gp CC m3 = each patch to nearest patch  of
+              same  gp  CE m4 = each patch to nearest patch of same gp EE m5 =
+              each patch to nearest patch of any diff. gp CC m6 =  each  patch
+              to  nearest  patch  of  any  diff. gp CE m7 = patches of 1 gp to
+              nearest of specific gp CC m8 = patches of 1  gp  to  nearest  of
+              specific gp CE m9 = patches of 1 gp to nearest of specific gp EE
+
+       ddii22    Distance measures: Options: n1, n2, n3, n4, n5,  n6  n1  =  mean
+              dist.   n2 = st. dev. dist.  n3 = mean dist. by gp n4 = st. dev.
+              dist. by gp n5 = no. of dist. by dist. class n6 = no.  of  dist.
+              by dist. class by gp
+
+       oouutt    Name  of  output file for individual patch measures, when sam=w,
+              u, r;  if out=head, then column headings will be printed
+
+
+SSEEEE AALLSSOO
+       The _r_._l_e Programs Users Guide
+
+       _r_._l_e_._t_r_a_c_e
+
+AAUUTTHHOORR
+       William L. Baker, Department of Geography and Recreation, University of
+       Wyoming
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.le.dist(1)

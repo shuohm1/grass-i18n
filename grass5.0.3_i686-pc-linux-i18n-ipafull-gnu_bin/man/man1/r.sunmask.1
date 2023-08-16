@@ -1,0 +1,113 @@
+r.sunmask(1)                  Grass User's Manual                 r.sunmask(1)
+
+
+
+NNAAMMEE
+       _r_._s_u_n_m_a_s_k  -  calculate  cast  shadow  areas from sun position and DEM.
+       Either A: exact sun position is specified, or B: date/time to calculate
+       the sun position by r.sunmask itself.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ssuunnmmaasskk [--zzvvss] eelleevv_=_n_a_m_e oouuttppuutt_=_n_a_m_e [aallttiittuuddee_=_v_a_l_u_e] [aazziimmuutthh_=_v_a_l_u_e]
+       [yyeeaarr_=_v_a_l_u_e]  [mmoonntthh_=_v_a_l_u_e]  [ddaayy_=_v_a_l_u_e]  [hhoouurr_=_v_a_l_u_e]   [mmiinnuuttee_=_v_a_l_u_e]
+       [sseeccoonndd_=_v_a_l_u_e] [ttiimmeezzoonnee_=_v_a_l_u_e] [eeaasstt_=_v_a_l_u_e] [nnoorrtthh_=_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._s_u_n_m_a_s_k  creates  an  output  map  layer  based on an input elevation
+       raster map layer and the sun position. The output  map  layer  contains
+       the  cast  shadow areas arising from sun shine and elevations. The user
+       can define the sun position either directly or the module calculates it
+       from  given  location and date/time parameters using the NREL sun posi-
+       tion algorithm. So either "A:"-parameters to specify  the  exact  known
+       sun  position  or "B:-parameters" to specify date/time for sun position
+       calculation by r.sunmask itself have to be used.
+
+   FFllaagg::
+       --zz     Zero is a real elevation
+
+       --vv     verbose output
+
+              displays sun related information like sunset/sunrise etc.
+
+       --ss     calculate sun position only and exit
+
+
+   PPaarraammeetteerrss::
+       eelleevv   Elevation raster map to be used for shadow calculation
+
+       oouuttppuutt Name for the resulting binary cast shadow raster map (1=shadow)
+
+       AA:: aallttiittuuddee
+              altitude of the sun above horizon, degrees (options: 0-89.999)
+
+       AA:: aazziimmuutthh
+              azimuth of the sun from the north, degrees (options: 0-360)
+
+       BB:: yyeeaarr
+              year (1950..2050) for sun position calculation
+
+       BB:: mmoonntthh
+              month (0..12) for sun position calculation
+
+       BB:: ddaayy day (0..31) for sun position calculation
+
+       BB:: hhoouurr
+              hour (0..12) for sun position calculation
+
+       BB:: mmiinnuuttee
+              minutes (0..60) for sun position calculation
+
+       BB:: sseeccoonndd
+              seconds (0..60) for sun position calculation
+
+       BB:: ttiimmeezzoonnee
+              timezone (east positive, offset from GMT,  also  use  to  adjust
+              daylight savings)
+
+       eeaasstt   east coordinate (point of interest, default: map center)
+
+       nnoorrtthh  north coordinate (point of interest, default: map center)
+
+       The module performs sunset/sunrise checks and refraction correction for
+       sun position  calculation.  Local  coordinate  systems  are  internally
+       transformed  to latitude/longitude for the SOLPOS algorithm. The eleva-
+       tion is not considered in the sunset/sunrise calculations.
+
+NNootteess
+       r.sunmask and daylight savings: Rather than convert time  to  GMT,  the
+       solpos algorithm uses what is called Local Standard Time, which is gen-
+       erally defined politically as an offset from GMT.  So the  key  is  the
+       offset  from  GMT,  which  the solpos Time Zone parameter.  If the user
+       specifies clock time (different for winter and  summer),  he/she  would
+       have  to  change the Time Zone parameter seasonally in r.sunmask (time-
+       zone parameter).
+
+
+       Note: In latitude/longitude locations  the  position  coordinates  pair
+       (east/west)  has  to be specified in decimal degree (not D:M:S). If not
+       specified, the map center's coordinates will be used.  Also _g_._r_e_g_i_o_n _-_l
+       displays the map center's coordinates.
+
+AAcckknnoowwlleeddggeemmeennttss
+       Acknowledgements: National Renewable Energy Laboratory for their SOLPOS
+       2.0 sun position algorithm.
+
+SSEEEE AALLSSOO
+        _g_._r_e_g_i_o_n_, _r_._s_u_n_, _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+AAUUTTHHOORR
+       Janne Soimasuo, Finland 1994
+
+       update to FP by Huidae Cho 2001
+
+       added solpos algorithm feature by Markus Neteler 2001
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_2_8 _1_7_:_3_3_:_5_5 _$
+
+
+
+GRASS 5.0                                                         r.sunmask(1)

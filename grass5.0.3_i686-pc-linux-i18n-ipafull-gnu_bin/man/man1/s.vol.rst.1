@@ -1,0 +1,301 @@
+s.vol.rst(1)                  Grass User's Manual                 s.vol.rst(1)
+
+
+
+NNAAMMEE
+       _s_._v_o_l_._r_s_t - Interpolates point data to a G3D grid volume using regular-
+       ized spline with tension (RST) algorithm
+
+       _(_G_R_A_S_S _3_D _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..vvooll..rrsstt  iinnppuutt==_n_a_m_e  [[cceelllliinnpp==_n_a_m_e]]   [[ffiieelldd==_v_a_l_u_e]]   [[tteennssiioonn==_v_a_l_u_e]]
+       [[ssmmooootthh==_v_a_l_u_e]]  [[ddeevvii=_n_a_m_e]] [[mmaasskkmmaapp== _n_a_m_e]] [[sseeggmmaaxx==_v_a_l_u_e]] [[ddmmiinn==_v_a_l_u_e]]
+       [[nnppmmiinn==_v_a_l_u_e]] [[wwmmuulltt==_v_a_l_u_e]]  [[zzmmuulltt==_v_a_l_u_e]]  [[cceelllloouutt==_n_a_m_e]]  [[eelleevv==_n_a_m_e]]
+       [[ggrraaddiieenntt==_n_a_m_e]] [[aassppeecctt11==_n_a_m_e]] [[aassppeecctt22==_n_a_m_e]] [[nnccuurrvv==_n_a_m_e]] [[ggccuurrvv==_n_a_m_e]]
+       [[mmccuurrvv==_n_a_m_e]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._v_o_l_._r_s_t interpolates the values to 3-dimensional grid from point data
+       (climatic  stations,  drill  holes etc.) given in a 3D sites file named
+       _i_n_p_u_t.  Output g3d file is _e_l_e_v. The 3-dimensional grid is given by the
+       current  3D  region.  If  the options _c_e_l_l_i_n_p and _c_e_l_l_o_u_t are specified
+       then the output raster file _c_e_l_l_o_u_t contains  crossection  of  interpo-
+       lated  volume  with surface defined by input cell file .  As an option,
+       simultaneously with interpolation, geometric  parameters  magnitude  of
+       gradient,  both aspects, change of gradient, Gauss-Kronecker curvature,
+       or mean curvature are computed and saved as g3d file  as  specified  by
+       the  options  _g_r_a_d_i_e_n_t_,  _a_s_p_e_c_t_1_,  _a_s_p_e_c_t_2_, _n_c_u_r_v_, _g_c_u_r_v_, _m_c_u_r_v respec-
+       tively.
+
+       At first, data points are checked for identical points and points  that
+       are  closer to each other than given _d_m_i_n are removed. Parameters _w_m_u_l_t
+       and _z_m_u_l_t allow user to re-scale the w-values and  z-values  for  sites
+       (useful  e.g. for transformation of elevations given in feet to meters,
+       so  that the proper values of gradient and curvatures can be computed).
+
+       Regularized spline with tension is used for the interpolation. The _t_e_n_-
+       _s_i_o_n parameter tunes the character of the resulting  volume  from  thin
+       plate  to membrane. Higher values of tension parameter reduce the over-
+       shoots that can  appear in volumes with rapid change of  gradient.  For
+       noisy  data,  it  is possible  to define a smoothing parameter, _s_m_o_o_t_h.
+       With the smoothing parameter  set to zero (_s_m_o_o_t_h_=_0) the resulting vol-
+       ume passes exactly through  the data points. When smoothing is used, it
+       is  possible to output site file  _d_e_v_i  containing  deviations  of  the
+       resulting volume from the given data.
+
+       User can define a 2D raster file named _m_a_s_k_m_a_p, which will be used as a
+       mask. The  interpolation  is  skipped  for  3-dimensional  cells  whose
+       2-dimensional  projection  has  zero value in mask. Zero values will be
+       assigned to these cells in all output g3d files.
+
+       If the number of given points is greater than 700, segmented processing
+       is  used.  The  region is split into 3-dimensional "box" segments, each
+       having less than _s_e_g_m_a_x points and interpolation is performed  on  each
+       segment  of the region. To ensure the smooth connection of segments the
+       interpolation function for each segment is computed using the points in
+       given  segment  and  the points in its neighborhood. The minimum number
+       of points taken for interpolation  is controlled by _n_p_m_i_n ,  the  value
+       of  which  must be larger than _s_e_g_m_a_x  and less than 700. This limit of
+       700 was selected to ensure the numerical  stability and  efficiency  of
+       the algorithm.
+
+       _s_._v_o_l_._r_s_t  uses  regularized spline with tension for interpolation from
+       point data (as described in Mitasova and Mitas, 1993). The  implementa-
+       tion  has  an  improved segmentation procedure based on Oct-trees which
+       enhances the efficiency for large data sets.
+
+       Geometric parameters - magnitude  of  gradient  (_g_r_a_d_i_e_n_t),  horizontal
+       (_a_s_p_e_c_t_1)  and  vertical (_a_s_p_e_c_t_2_) aspects, change of gradient (_n_c_u_r_v),
+       Gauss-Kronecker  (_g_c_u_r_v)  and  mean  curvatures  (_m_c_u_r_v)  are  computed
+       directly  from  the  interpolation function so that the important rela-
+       tionships between these parameters are preserved. More  information  on
+       these parameters can be found in Mitasova et al., 1995 or Thorpe, 1979.
+
+       The program gives warning when significant overshoots appear and higher
+       tension  should  be  used. However, with tension too high the resulting
+       volume changes its behavior to membrane( rubber  sheet  stretched  over
+       the  data points resulting in a peak in each given point and everywhere
+       else the volume  goes  rapidly  to  trend).  With  smoothing  parameter
+       greater  than zero the volume will not pass through the data points and
+       the higher the parameter the closer the volume will be  to  the  trend.
+       For  theory  on  smoothing  with  splines  see Talmi and Gilat, 1977 or
+       Wahba, 1990.
+
+       If a visible connection of segments  appears,  the  program  should  be
+       rerun  with  higher  _n_p_m_i_n  to get more points from the neighborhood of
+       given segment.
+
+       If the number of points in a site file is less then 400, _s_e_g_m_a_x  should
+       be set to 400 so that segmentation is not performed when it is not nec-
+       essary.
+
+       The program gives warning when user wants to  interpolate  outside  the
+       "box"  given by minimum and maximum coordinates in site file, zoom into
+       the area where the points are is suggested in this case.
+
+       For large data sets (thousands of data points) it is suggested to  zoom
+       into a smaller representative area and test whether the parameters cho-
+       sen (e.g. defaults) are appropriate.
+
+       The user must run _g_3_._r_e_g_i_o_n before the program to set  the  region  for
+       interpolation.
+
+   PPaarraammeetteerrss::
+       iinnppuutt
+           Name of the site file (format see NOTES below)
+
+       field
+           decimal  attribute  to  use  for value w (1=first) options (1-100),
+           default is 1.
+
+       cceelllliinnpp
+           Name of the surface cell file to use for crossection
+
+       tteennssiioonn
+           Tension Default: 40
+
+       ssmmooootthh
+           Smoothing parameter Default: 0.1
+
+       ddeevvii
+           Output deviations to a site file
+
+       mmaasskkmmaapp
+           Name of the raster file used as mask
+
+       sseeggmmaaxx
+           Max number of points in segment (=700) Default: 50
+
+       ddmmiinn
+           Min distance between points (extra points ignored) Default: Default
+           value is set to 0.5 cell size.
+
+       nnppmmiinn
+           Min number of points for interpolation Default: 200
+
+       wwmmuulltt
+           Conversion factor for w-values Default: 1.0
+
+       zzmmuulltt
+           Conversion factor for z-values Default: 1.0
+
+       cceelllloouutt
+           Name of the crossection cell file
+
+       eelleevv
+           Elevation g3d-file
+
+       ggrraaddiieenntt
+           Gradient g3d-file
+
+       aassppeecctt11
+           Aspect1 g3d-file
+
+       aassppeecctt22
+           Aspect2 g3d-file
+
+       nnccuurrvv
+           Change of gradient g3d-file
+
+       ggccuurrvv
+           Gauss-Kronecker curvature g3d-file
+
+       mmccuurrvv
+           Mean curvature g3d-file
+
+
+NNOOTTEESS
+       The sites volume format is as follows:
+
+           with x,y,z (spatial coordinates), n (optional integer number) and w
+       (data
+        values).
+
+
+SSEEEE AALLSSOO
+       g3.region,
+       s.in.ascii,
+       s.vol.idw,
+       r3.mask,
+       s.surf.rst
+
+
+AAUUTTHHOORR
+       Original version of program (in FORTRAN) and GRASS enhancements:
+
+          Lubos Mitas, NCSA, University of Illinois at Urbana-Champaign, Illi-
+       nois,
+        USA,lubos_mitas@ncsu.edu
+
+          Helena  Mitasova, Department of Geography, University of Illinois at
+       Urbana-Champaign,
+        Champaign, Illinois, USA, hmitaso@unity.ncsu.edu
+
+
+       Modified program (translated to C, adapted for GRASS, new segmentation
+        procedure):
+
+          Irina Kosinovsky, US Army CERL, Champaign, Illinois, USA
+
+          Dave Gerdes, US Army CERL, Champaign, Illinois, USA
+
+
+       Modifications for g3d library, geometric parameters, deviations:
+
+          Jaro Hofierka, GeoModel s.r.o., Bratislava, Slovakia, <a
+        href="MAILTO:hofierka@geomodel.sk">hofierka@geomodel.sk, <a
+        href="http://www.geomodel.sk">http://www.geomodel.sk
+
+
+
+
+RREEFFEERREENNCCEESS
+       Hofierka J., Parajka J., Mitasova  H.,  Mitas  L.,  2002,  Multivariate
+       Interpolation
+        of  Precipitation  Using Regularized Spline with Tension. Transactions
+       in
+       GIS   6, pp. 135-150.
+
+
+       Mitas, L., Mitasova, H.,
+        1999, Spatial  Interpolation.  In:  P.Longley,  M.F.  Goodchild,  D.J.
+       Maguire,
+        D.W.Rhind  (Eds.), Geographical Information Systems: Principles, Tech-
+       niques,
+        Management and Applications, Wiley, pp.481-492
+
+
+       Mitas L., Brown W. M., Mitasova H., 1997, <a
+        href="http://skagit.meas.ncsu.edu/~helena/gmslab/lcgfin/cg-
+       mitas.html">Role of
+        dynamic  cartography  in  simulations  of landscape processes based on
+       multi-variate
+        fields. Computers  and  Geosciences,  Vol.  23,  No.  4,  pp.  437-446
+       (includes
+        CDROM and WWW: www.elsevier.nl/locate/cgvis)
+
+
+       Mitasova H., Mitas L.,  Brown W.M.,  D.P. Gerdes, I. Kosinovsky,
+        Baker,  T.1995,  Modeling spatially and temporally distributed phenom-
+       ena:
+       New  methods and tools for GRASS GIS. International Journal of  GIS,  9
+       (4),
+       special   issue on Integrating GIS and Environmental modeling, 433-446.
+
+
+        Mitasova, H., Mitas,  L.,  Brown,  B.,  Kosinovsky,  I.,  Baker,   T.,
+       Gerdes,
+       D. (1994): Multidimensional
+        interpolation and visualization in GRASS GIS
+
+
+       Mitasova
+        H.  and  Mitas  L. 1993: Interpolation by Regularized Spline with Ten-
+       sion:
+        I. Theory and Implementation, _M_a_t_h_e_m_a_t_i_c_a_l _G_e_o_l_o_g_y 25, 641-655.
+
+
+       Mitasova
+        H. and Hofierka J. 1993: Interpolation by Regularized Spline with Ten-
+       sion:
+        II.  Application  to  Terrain  Modeling and Surface Geometry Analysis,
+       _M_a_t_h_e_m_a_t_i_c_a_l
+        _G_e_o_l_o_g_y 25, 657-667.
+
+
+       Mitasova, H., 1992 : New capabilities for interpolation and topographic
+        analysis in GRASS, GRASSclippings 6, No.2 (summer), p.13.
+
+
+       Wahba,  G.,  1990  :  Spline  Models  for  Observational Data, CNMS-NSF
+       Regional
+        Conference series in  applied  mathematics,  59,  SIAM,  Philadelphia,
+       Pennsylvania.
+
+
+
+       Mitas,  L.,  Mitasova  H.,  1988  : General variational approach to the
+       interpolation
+        problem, Computers and Mathematics with Applications 16, p. 983
+
+
+       Talmi, A. and Gilat, G., 1977 :  Method  for  Smooth  Approximation  of
+       Data,
+        Journal of Computational Physics, 23, p.93-123.
+
+
+       Thorpe, J. A. (1979): Elementary Topics
+        in Differential Geometry. Springer-Verlag, New York, pp. 6-94.
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+
+
+
+
+
+GRASS 5.0                                                         s.vol.rst(1)

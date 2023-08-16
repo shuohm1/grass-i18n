@@ -1,0 +1,94 @@
+g.findfile(1)                 Grass User's Manual                g.findfile(1)
+
+
+
+NNAAMMEE
+       _g_._f_i_n_d_f_i_l_e    -  Searches  for GRASS data base files and sets variables
+       for the shell.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..ffiinnddffiillee
+       gg..ffiinnddffiillee hheellpp
+       gg..ffiinnddffiillee eelleemmeenntt==_n_a_m_e [mmaappsseett==_n_a_m_e] ffiillee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._f_i_n_d_f_i_l_e is designed for Bourne shell scripts that need to search for
+       raster  map  layer  files,  vector  files,  site list files, geographic
+       region definition (windows) files, and imagery group files in the GRASS
+       data base.
+
+OOPPTTIIOONNSS
+       If  the user runs _g_._f_i_n_d_f_i_l_e without command line arguments, he will be
+       prompted for the names of a GRASS element, file,  and  mapset,  through
+       the standard _p_a_r_s_e_r.
+
+   PPaarraammeetteerrss::
+       eelleemmeenntt==_n_a_m_e
+              The data base element (i.e., directory within a GRASS mapset) to
+              be searched.
+
+       mmaappsseett==_n_a_m_e
+              The mapset in which to search for the specified file  _n_a_m_e.   If
+              not  specified,  all mapsets in the user's GRASS search path are
+              searched.  Otherwise, the specified mapset is  searched.   As  a
+              convenience,  if  specified as a single dot (.) only the current
+              mapset is searched.
+
+       ffiillee==_n_a_m_e
+              The name of a GRASS data file (of the stated _e_l_e_m_e_n_t  type)  for
+              which to search.
+
+
+OOUUTTPPUUTT
+       _g_._f_i_n_d_f_i_l_e writes four lines to standard output: name='_f_i_l_e___n_a_m_e'
+
+       mapset='_m_a_p_s_e_t___n_a_m_e'
+
+       file='_u_n_i_x___f_i_l_e_n_a_m_e'
+
+       fullname='_g_r_a_s_s___f_u_l_l_n_a_m_e'
+
+       The  output  is  _/_b_i_n_/_s_h commands to set the variable _n_a_m_e to the GRASS
+       data base file name, _m_a_p_s_e_t to the mapset in which  the  file  resides,
+       and  _f_i_l_e  to  the full UNIX path name for the named file.  These vari-
+       ables may be set in the  _/_b_i_n_/_s_h  as  follows:  eevvaall  ``gg..ffiinnddffiillee  eellee--
+       mmeenntt==_n_a_m_e mmaappsseett==_n_a_m_e ffiillee==_n_a_m_e``
+
+
+NNOOTTEESS
+       If the specified file does not exist, the variables will be set as fol-
+       lows: name=
+
+       mapset=
+
+       fullname=
+
+       file=
+
+       The following is a way to test for this case:
+                 if [ ! "$file" ]
+                 then
+                      exit
+                 fi
+
+
+SSEEEE AALLSSOO
+       _g_._a_s_k
+
+       _g_._f_i_l_e_n_a_m_e
+
+       _g_._g_i_s_e_n_v
+
+       _g_._m_a_p_s_e_t_s
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        g.findfile(1)

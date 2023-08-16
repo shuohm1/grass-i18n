@@ -1,0 +1,103 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      02.02.setuploc
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      SETTING UP A GRASS DATABASE: LOCATIONS AND MAPSETS
+    </H2>
+  </CENTER>
+    <P>Each time you enter GRASS, you will be asked to select a &quot;current
+<A HREF="./../../../../documents/html/help/16.glossary/loc.def.html">location</A>&quot; and &quot;current <A HREF="./../../../../documents/html/help/16.glossary/mapset.def.html">mapset</A>&quot; with which to work, and to name the
+&quot;<A HREF="./../../../../documents/html/help/16.glossary/database.def.html">database</A>&quot; directory in which this location and mapset are stored. 
+To see a sample of the initial entry screen in GRASS, select
+<A HREF="./../../../../documents/html/help/02.db.setup/02.02.1.grmenu.html">GRASS Entry Screen</A>.
+    <P>While in GRASS, any data that the user creates are stored under the
+user's &quot;current mapset&quot;.  However, the user may copy, and otherwise use,
+data stored under any of the &quot;mapset&quot; subdirectories of the user's
+&quot;current location&quot;.  The user may not destroy or alter data stored under
+mapsets other than the &quot;current mapset&quot;.
+    <P>If you wish to create a new GRASS database location, simply assign names
+to the LOCATION and MAPSET, and enter the full pathname of the main
+database directory in which your data will be stored, on the GRASS Entry
+Screen.  Because the &quot;LOCATION&quot; and &quot;MAPSET&quot; will become the names of
+the <A HREF="./../../../../documents/html/help/16.glossary/unix.def.html">UNIX</A> directories in which your data are stored, you must assign
+them valid UNIX file names.
+    <P>If a &quot;location&quot; is chosen that did not previously exist, GRASS will
+display a screen that lists already existing locations, and then
+requests that the user supply information for the new location.  The
+user must supply the following information:
+    <P>
+  <CENTER>
+    1.  The coordinate system for the database
+  </CENTER>
+
+  <CENTER>
+    x,y (for imagery and other unreferenced data)
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/16.glossary/utm.def.html">UTM</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/16.glossary/stplnsys.def.html">State Plane</A>
+  </CENTER>
+
+  <CENTER>
+    Latitude-Longitude (Lat-Long)
+  </CENTER>
+
+  <CENTER>
+    2.  The zone of the database (except for x,y and lat-long databases)
+  </CENTER>
+
+  <CENTER>
+    3.  The coordinates of the area to become the default region and
+  </CENTER>
+
+  <CENTER>
+    the grid resolution of this region
+  </CENTER>
+
+  <CENTER>
+    4.  A short, one-line description or title for the location
+  </CENTER>
+    <P>The user is prompted for the above information and simply inputs the
+appropriate data.  After all data is entered, the data is saved and the
+user is now ready to continue within GRASS.
+    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

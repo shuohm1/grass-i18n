@@ -1,0 +1,51 @@
+r.moran(1)                    Grass User's Manual                   r.moran(1)
+
+
+
+NNAAMMEE
+       rr..mmoorraann  -  GRASS module that calculates Moran's I for a raster surface
+       and optionally creates a surface of local moran values.
+
+
+
+UUssaaggee::
+       rr..mmoorraann [-zb] iinn==name [oouutt==name] [ssiizzee==value]
+
+FFllaaggss::
+       -z   Exclude zeros in calculation
+
+
+       -b   Brief output only
+
+
+
+PPaarraammeetteerrss::
+       in   Raster surface layer to measure
+
+
+       out   Output raster layer containing local Moran measures
+
+
+       size   Size of processing window (odd number only)
+
+       default: 3
+
+
+
+HHIISSTTOORRYY
+
+       Jo Wood 21st October, 1994
+       -------
+       Modified to give brief version of output with increased significant
+       figures. Also reports on average local variance - roughness measure.
+       Jo Wood, 3rd April, 1995
+
+       jwo@le.ac.uk
+
+       ASSIST's home
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                           r.moran(1)

@@ -1,0 +1,67 @@
+r.lags(1)                     Grass User's Manual                    r.lags(1)
+
+
+
+NNAAMMEE
+       rr..llaaggss  - GRASS module to calculate various spatial dependence measures
+       for all possible lags within a given image. Each  measure  is  made  by
+       comparing  two  cells only for each lag azimuth and distance. The whole
+       image is read once for each cell in the image, therefore is very compu-
+       tationally  expensive.  A Sparc 2 would typically take 1 hour to calcu-
+       late a 150x150 image.
+
+
+
+UUssaaggee::
+       r.lags [-sc] _i_n_=name _o_u_t_=name [_m_e_a_s_u_r_e_=name]
+
+
+
+FFllaaggss::
+       -n   Calculate non-zero values only
+
+       -v   Calculate semi-variogram instead
+
+PPaarraammeetteerrss::
+       in=name   Raster surface layer to measure
+
+
+       out=name   Output raster containing lag map
+
+
+       measure=name   Spatial dependence measure (Moran's I or texture)
+
+       options: moran,texture
+
+       default: moran
+
+
+HHIISSTTOORRYY
+
+       V1.0 written 17.6.92 to calculate Moran autocorrelation statistic.
+
+       V2.0 written 18.7.92 to also calulate Haralick's grey-tone spatial
+       dependence textural measures.
+
+       V2.1 modified 18.9.95 to conform to standard GRASS program structure.
+
+
+       Future improvements could include (i) Option of faster,  memory  inten-
+       sive
+       option;  (ii)  Further  lag  dependent  measures; (iii) Cumulative lags
+       under
+       some distance weighting function.  (iv)  Option  of  ignoring/including
+       zero
+       values in the calculation.
+
+       Jo Wood, November, 1995
+
+       jwo@le.ac.uk
+
+       ASSIST's home
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            r.lags(1)

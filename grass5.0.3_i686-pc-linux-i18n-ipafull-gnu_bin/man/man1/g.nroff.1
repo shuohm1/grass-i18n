@@ -1,0 +1,52 @@
+g.nroff(1)                    Grass User's Manual                   g.nroff(1)
+
+
+
+NNAAMMEE
+       gg..nnrrooffff  - runs nroff on a GRASS manual page
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       gg..nnrrooffff hheellpp
+       gg..nnrrooffff _n_a_m_e [_v_a_l_u_e]
+       gg..nnrrooffff < _n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._n_r_o_f_f is a Bourne shell script that runs _n_r_o_f_f on a GRASS manual page
+       and prints the results to standard output.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       _n_a_m_e   Name of a GRASS man page (full path to roff source)
+
+       _s_e_c_t_i_o_n
+              Integer section of the manual.
+              1 for main programs
+              2 for alpha programs
+              3 for shell scripts
+              4 for contributed, untested code
+              5 file format descriptions
+              Default: 4
+
+
+NNOOTTEESS
+       _g_._n_r_o_f_f is likely to be used by programmers when  preparing  documenta-
+       tion for their code.
+
+FFIILLEESS
+       $GISBASE/scripts/g.nroff
+
+SSEEEE AALLSSOO
+       _g_._m_a_n_u_a_l
+
+AAUUTTHHOORR
+       James Darrell McCauley,
+       Agricultural Engineering
+
+       Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_1_9 _0_9_:_2_0_:_2_9 _$
+
+
+
+GRASS 5.0                                                           g.nroff(1)

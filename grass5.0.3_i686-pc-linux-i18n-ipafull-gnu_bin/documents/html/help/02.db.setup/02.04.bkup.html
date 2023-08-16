@@ -1,0 +1,138 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      02.04.bkup
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      DEFINING THE GEOGRAPHIC REGION
+    </H2>
+  </CENTER>
+    <P>To create a new GRASS location, you must supply the following information:
+    <P>1. The coordinate system for the database
+
+  <CENTER>
+    x,y (for imagery and other unreferenced data)
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      UTM
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    State Plane
+  </CENTER>
+
+  <CENTER>
+    Latitude-Longitude
+  </CENTER>
+2. The zone for the database
+
+  <CENTER>
+    (except for x,y and Latitude-Longitude databases)
+  </CENTER>
+3. The coordinates of the area to become the default region
+
+  <CENTER>
+    and the grid resolution of this region
+  </CENTER>
+4. A short, one-line description or title for the location
+    <P>The user is asked to define default geographic region settings.  This
+information will be saved in the special file named &quot;DEFAULT_WIND&quot; and
+stored under the &quot;PERMANENT&quot; mapset under the new location.  Any mapset
+stored under this location will default to use of the geographic
+boundaries and cell resolutions shown in the &quot;DEFAULT_WIND&quot; file IF the
+mapset does not contain a file called &quot;WIND&quot; with these settings.  These
+geographic boundaries should be large enough to encompass all of the
+data the user wishes to store under this location. 
+    <P>The user can modify the WIND file containing these settings under his
+own mapset later, in GRASS, as needed, using the <A HREF="./../../../../documents/html/g.region.html">g.region</A> command. 
+In the sample screen
+below, the user is asked to set default region settings for a UTM
+coordinate system database location in zone 10.
+    <P>**************************************************************************
+
+  <CENTER>
+    <H2>
+      DEFINE THE DEFAULT REGION
+    </H2>
+  </CENTER>
+    <P>    <P>  <PRE>                        ====== DEFAULT REGION =======
+</PRE>
+  <PRE>                       | NORTH EDGE:0__________     |
+</PRE>
+  <PRE>                       |                            |
+</PRE>
+  <PRE>             WEST EDGE |                            |EAST EDGE
+</PRE>
+  <PRE>            0__________|                            |0__________
+</PRE>
+  <PRE>                       |  SOUTH EDGE:0__________    |
+</PRE>
+  <PRE>                        =============================
+</PRE>
+    <P>
+  <CENTER>
+    <H2>
+      PROJECTION: 1 (UTM)                        ZONE: 10
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    <H2>
+      GRID RESOLUTION
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    East-West:     0_________
+  </CENTER>
+
+  <CENTER>
+    North-South:     0_________
+  </CENTER>
+    <P>
+  <CENTER>
+    AFTER COMPLETING ALL ANSWERS, HIT &lt;ESC&gt; TO CONTINUE
+  </CENTER>
+
+  <CENTER>
+    (OR &lt;Ctrl-C&gt; TO CANCEL)
+  </CENTER>
+**************************************************************************
+    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

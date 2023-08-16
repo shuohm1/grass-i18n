@@ -1,0 +1,124 @@
+g.copy(1)                     Grass User's Manual                    g.copy(1)
+
+
+
+NNAAMMEE
+       gg..ccooppyy   -  Copies  available  data  files in the user's current mapset
+       search path and location to the appropriate element  directories  under
+       the user's current mapset.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..ccooppyy
+       gg..ccooppyy hheellpp
+       gg..ccooppyy  [rraasstt==_f_r_o_m_,_t_o]  [vveecctt==_f_r_o_m_,_t_o]  [iiccoonn==_f_r_o_m_,_t_o] [llaabbeellss==_f_r_o_m_,_t_o]
+       [ssiitteess==_f_r_o_m_,_t_o] [rreeggiioonn==_f_r_o_m_,_t_o] [ggrroouupp==_f_r_o_m_,_t_o]
+
+DDEESSCCRRIIPPTTIIOONN
+       A user may access data stored under the other  mapsets  listed  in  his
+       mapset  search  path.   However,  the  user may only modify data stored
+       under his own current mapset.  _g_._c_o_p_y allows the user to copy  existing
+       data  files  _f_r_o_m other mapsets _t_o the user's current mapset ($MAPSET).
+       The files to be copied must exist in the user's current  mapset  search
+       path  and  location; output is sent to the relevant data element direc-
+       tory(ies) under the user's current mapset.
+
+OOPPTTIIOONNSS
+       The user specifies the type(s) of data files he wishes to copy (raster,
+       vector,  etc.),  the  name of the existing file to be copied (i.e., the
+       _f_r_o_m file name), and the name of the new file copy to be placed in  the
+       user's  current  mapset  (the  _t_o  file name).  This information can be
+       given either (non-interactively) on the command  line,  or  entered  in
+       response to program prompts given via the standard _p_a_r_s_e_r interface.
+
+
+       Information can be entered on the command line in the following format:
+       gg..ccooppyy [rraasstt==_f_r_o_m_,_t_o]  [vveecctt==_f_r_o_m_,_t_o]  [iiccoonn==_f_r_o_m_,_t_o]  [llaabbeellss==_f_r_o_m_,_t_o]
+       [ssiitteess==_f_r_o_m_,_t_o] [rreeggiioonn==_f_r_o_m_,_t_o] [ggrroouupp==_f_r_o_m_,_t_o]
+
+
+
+       For  example, if the user wished to copy the existing raster file _s_o_i_l_s
+       to a file called _s_o_i_l_s_._p_h and to copy an existing vector file _r_o_a_d_s  to
+       a  file called _r_d_s_._o_l_d, the user could type: gg..ccooppyy rraasstt==_s_o_i_l_s_,_s_o_i_l_s_._p_h
+       vveecctt==_r_o_a_d_s_,_r_d_s_._o_l_d
+
+       Data files can also be specified by their mapsets.   For  example,  the
+       below command copies the raster file named _s_o_i_l_s from the mapset _w_i_l_s_o_n
+       to a new file called _s_o_i_l_s  to  be  placed  under  the  user's  current
+       mapset: gg..ccooppyy rraasstt==_'_s_o_i_l_s_@_w_i_l_s_o_n_'_,_s_o_i_l_s
+
+       If  no mapset name is specified, _g_._c_o_p_y searches for the named _f_r_o_m map
+       in each of the mapset directories listed in the user's  current  mapset
+       search  path  in  the  order  in  which  mapsets  are listed there (see
+       _g_._m_a_p_s_e_t_s).
+
+
+       If the user does not enter parameter  values  but  instead  types  only
+       gg..ccooppyy  on the command line the program will prompt the user for a data
+       type, the name of a file of this data type to copy, and the name  of  a
+       new  file  to  hold the copy.  After both file names have been entered,
+       the copy is created and the user is again prompted for a  data  element
+       to  be  copied,  until  the  user  hits RETURN.  When prompted for file
+       names, the user may enter 'list' to see a list of  existing  files,  or
+       hit RETURN to end the file listing.
+
+   PPaarraammeetteerrss::
+       33ddvviieeww==_f_r_o_m_,_t_o
+              where  _f_r_o_m  is  an existing 3d options file, and _t_o is the name
+              given to the copy.
+
+       rraasstt==_f_r_o_m_,_t_o
+              where _f_r_o_m is an existing raster map layer to be copied, and  _t_o
+              is the name given to the copy.
+
+       vveecctt==_f_r_o_m_,_t_o
+              where  _f_r_o_m is an existing binary vector map layer to be copied,
+              and _t_o is the name given to the copy.
+
+       iiccoonn==_f_r_o_m_,_t_o
+              where _f_r_o_m is an existing paint icon file to be copied,  and  _t_o
+              is the name given to the copy.
+
+       llaabbeellss==_f_r_o_m_,_t_o
+              where  _f_r_o_m  is an existing /paint/labels file to be copied, and
+              _t_o is the name given to the copy.
+
+       ssiitteess==_f_r_o_m_,_t_o
+              where _f_r_o_m is an existing site_lists file to be copied,  and  _t_o
+              is the name given to the copy.
+
+       rreeggiioonn==_f_r_o_m_,_t_o
+              where _f_r_o_m is an existing region definition (_w_i_n_d_o_w_s) file to be
+              copied, and _t_o is the name given to the copy.
+
+       ggrroouupp==_f_r_o_m_,_t_o
+              where _f_r_o_m is an existing imagery group file to be  copied,  and
+              _t_o is the name given to the copy.
+
+
+NNOOTTEE
+       If a file has support files (e.g., as do raster data files), these sup-
+       port files will also be copied.
+
+SSEEEE AALLSSOO
+       _g_._a_c_c_e_s_s
+
+       _g_._l_i_s_t
+
+       _g_._m_a_p_s_e_t_s
+
+       _g_._r_e_m_o_v_e
+
+       _g_._r_e_n_a_m_e
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                            g.copy(1)

@@ -1,0 +1,122 @@
+r.surf.area(1)                Grass User's Manual               r.surf.area(1)
+
+
+
+NNAAMMEE
+       rr..ssuurrff..aarreeaa  - Surface area estimation for rasters.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ssuurrff..aarreeaa
+       rr..ssuurrff..aarreeaa hheellpp
+       rr..ssuurrff..aarreeaa iinnppuutt==_n_a_m_e [vvssccaallee==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._s_u_r_f_._a_r_e_a  Calculates area of regular 3D triangulated points (centers
+       of cells) in current region by adding areas of  triangles.   Therefore,
+       area  of  a  flat surface will be reported as (rows + cols -1)*(area of
+       cell) less than area of flat region due to a half row and  half  column
+       missing around the perimeter.
+
+
+       NNOOTTEE::   This calculation is heavily dependent on data resolution (think
+       of it as a fractal shoreline problem,  the  more  resolution  the  more
+       detail,  the  more  area,  etc).   This  program uses the _C_U_R_R_E_N_T _G_R_A_S_S
+       _R_E_G_I_O_N, not the resolution of the map.  This  is  especially  important
+       for  surfaces with NULL values and highly irregular edges.  The program
+       does not [currently] attempt to correct for  the  error  introduced  by
+       this _e_d_g_e _e_f_f_e_c_t.
+
+
+       This  version  actually  calculates  area twice for each triangle pair,
+       keeping a running minimum and maximum area depending on  the  direction
+       of the diagonal used.
+
+
+       Reported totals are:
+
+              "Plan" area of NULL values within the current GRASS region
+
+              "Plan"  area  within  calculation region (rows-1 * cols-1 * cel-
+              larea)
+
+              Average of the minimum and maximum calculated 3d  triangle  area
+              within this region
+
+              "Plan" area within current GRASS region (rows * cols * cellarea)
+
+              Scaling of calculated area to current GRASS region (see NOTE)
+
+
+
+       The program will be run non-interactively if  the  user  specifies  the
+       program parameter values and desired flag settings on the command line,
+       using the form:
+
+
+       rr..ssuurrff..aarreeaa iinnppuutt==_n_a_m_e [vvssccaallee==_v_a_l_u_e]
+
+
+
+       Alternately, the user can simply type rr..ssuurrff..aarreeaa on the command  line,
+       without program arguments.  In this case, the user will be prompted for
+       needed inputs and option choices using the standard GRASS  user  inter-
+       face described in the manual entry for _p_a_r_s_e_r .
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing raster map layer to use for the calculation.
+
+       vvssccaallee==_v_a_l_u_e
+              Optional vertical scaling value to use in surface area  calcula-
+              tion.
+
+
+NNOOTTEESS
+       _r_._s_u_r_f_._a_r_e_a  works best when the surface being evaluated extends to the
+       edges of the current GRASS region and the  cell  resolution  is  small.
+       Surfaces  which  are especially long and thin and have highly irregular
+       boudaries will tend to have underestimated surface  areas.   Setting  a
+       high  cell resolution (small area) will greatly reduce this impact, but
+       will cause longer processing times.
+
+
+
+
+       _r_._s_u_r_f_._a_r_e_a
+
+SSEEEE AALLSSOO
+       _r_._s_u_r_f_._i_d_w
+
+       _r_._s_u_r_f_._i_d_w_2
+
+       _s_._s_u_r_f_._i_d_w
+
+       _r_._s_u_r_f_._f_r_a_c_t_a_l
+
+       _r_._s_u_r_f_._g_a_u_s_s
+
+       _r_._v_o_l_u_m_e
+
+       _v_._t_o_._r_a_s_t
+
+       _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+       _g_._r_e_g_i_o_n
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Bill Brown, USACERL December 21, 1994
+
+
+       Modified for floating point rasters and NULL values by Eric  G.  Miller
+       (October 17, 2000)
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_1_2_/_1_1 _1_8_:_0_0_:_4_3 _$
+
+
+
+GRASS 5.0                                                       r.surf.area(1)

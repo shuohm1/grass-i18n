@@ -1,0 +1,85 @@
+d.grid(1)                     Grass User's Manual                    d.grid(1)
+
+
+
+NNAAMMEE
+       dd..ggrriidd  - Overlays a user-specified grid in the active display frame on
+       the graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ggrriidd
+       dd..ggrriidd hheellpp
+       dd..ggrriidd ssiizzee==_v_a_l_u_e [ccoolloorr=_n_a_m_e] [oorriiggiinn=_e_a_s_t_i_n_g_,_n_o_r_t_h_i_n_g]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._g_r_i_d overlays a grid of user-defined size and  color  in  the  active
+       display  frame  on  the  graphics  monitor.  The grid will overlay, not
+       overwrite, the contents of the active display frame.
+
+
+       _d_._g_r_i_d can be run non-interactively  or  interactively.   If  the  user
+       specifies  the grid _s_i_z_e and (optionally) the grid _c_o_l_o_r on the command
+       line the program will run non-interactively; if no grid _c_o_l_o_r is  given
+       the default will be used.  Alternately, the user may simply type dd..ggrriidd
+       on the command line; in this case, the program will prompt the user for
+       parameter  values  using the standard GRASS user interface described in
+       the manual entry for _p_a_r_s_e_r_.
+
+
+
+   PPaarraammeetteerrss::
+       ssiizzee==_v_a_l_u_e
+              Size of grid to be drawn in the active display frame, in current
+              map coordinate system units.  It should be noted that, depending
+              on the scale of the map layer displayed in this frame, the  grid
+              may fall outside the user's viewing range.
+              Options: 0-100000
+
+       ccoolloorr==_n_a_m_e
+              Sets the current grid color to _n_a_m_e.
+              Options:  red,  orange,  yellow,  green,  blue,  indigo, violet,
+              magenta, brown, gray, white, and black.
+              Default: _g_r_a_y
+
+       oorriiggiinn=_e_a_s_t_i_n_g_,_n_o_r_t_h_i_n_g
+              Lines of the grid pass through this coordinate.  The  coordinate
+              need not be within the current frame.
+
+
+NNOOTTEESS
+       _d_._g_r_i_d  will  not  erase grids already displayed in the active graphics
+       display frame by previous invocations of _d_._g_r_i_d;  multiple  invocations
+       of _d_._g_r_i_d will therefore result in the drawing of multiple grids inside
+       the active graphics frame.  (A command like _d_._e_r_a_s_e, which  erases  the
+       entire  contents of the active display frame, must be run to erase pre-
+       viously drawn grids from the display frame.)
+
+
+       Currently, the grid size can only be drawn in  the  units  of  the  map
+       coordinate system used by the current GRASS location.
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._e_r_a_s_e
+
+       _d_._f_r_a_m_e
+
+       _d_._l_e_g_e_n_d
+
+       _d_._r_a_s_t
+
+       _d_._s_c_a_l_e
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James  Westervelt,  U.S. Army Construction Engineering Research Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                            d.grid(1)

@@ -1,0 +1,294 @@
+i.tape.other(1)               Grass User's Manual              i.tape.other(1)
+
+
+
+NNAAMMEE
+       ii..ttaappee..ootthheerr   -  An  imagery  function  that  extracts  scanned aerial
+       imagery (NHAP, etc.) and satellite imagery (TM, SPOT, etc)  from  half-
+       inch or 8mm tape.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ttaappee..ootthheerr
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._t_a_p_e_._o_t_h_e_r is a generic program that extracts imagery from tape using
+       the tape description that is input by the user.
+
+
+       This program must be run in a LOCATION_NAME with a x,y coordinate  sys-
+       tem  (i.e., a coordinate system with projection 0).  For further infor-
+       mation regarding this LOCATION_NAME  refer  to  the  manual  entry  for
+       _i_m_a_g_e_r_y.
+
+
+       The  first  prompt  in  _i_._t_a_p_e_._o_t_h_e_r  asks the user for the tape device
+       name.  This is sometimes  /dev/rmt0 (for a density of 1600),  but  this
+       varies with each machine.
+
+
+       The next prompt is:
+       Please mount and load tape, then hit RETURN
+
+
+IIMMAAGGEE IIDDEENNTTIIFFIICCAATTIIOONN MMEENNUU
+       The  first  menu in the program asks the user for information about the
+       data.
+             please enter the following information
+
+       Tape Identification:                             __
+
+       Image Description:                               __
+
+       Title for the Extracted Raster (Cell) Files:     __
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+
+TTAAPPEE LLAAYYOOUUTT MMEENNUU
+       The next menu asks for the physical layout of the tape.
+                                  GENERIC TAPE EXTRACTION
+
+       tape layout
+           0__       number of tape files to be skipped
+           0__       number of records in the remaining files to
+                     be skipped
+       band files
+           0__       number of bands on the tape
+       data format
+           ___       band sequential (BSQ)  |  mark one with an x
+           ___       band interleaved (BIL) |
+           0__       if you select BSQ format and all the bands are
+                     in a single file, enter the total number of records
+                     in the file. Otherwise enter 0
+           0__       length (in bytes) of the longest record on the tape
+           1__       blocking factor of data in the file
+
+                    AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                                  (OR <Ctrl-C> TO CANCEL)
+
+
+       _n_u_m_b_e_r _o_f _t_a_p_e _f_i_l_e_s _t_o _b_e _s_k_i_p_p_e_d
+              If there are files at the beginning of the tape  which  are  not
+              image  data,  they  can  be  skipped. Sometimes information that
+              comes with a tape will indicate the number of  header  files  or
+              records on the tape.  The GRASS utility _m_._e_x_a_m_i_n_e_._t_a_p_e will also
+              provide this information.  The _r_e_c_o_r_d _l_e_n_g_t_h is  the  number  of
+              columns  in the image, while the _n_u_m_b_e_r _o_f _r_e_c_o_r_d_s is the number
+              of rows in the image (not always correct, see _b_l_o_c_k_i_n_g _f_a_c_t_o_r _o_f
+              _d_a_t_a  _i_n  _t_h_e _f_i_l_e below). NHAP imagery and usually most scanned
+              aerial imagery do not have tape header files, but this should be
+              checked.   TM  imagery has one header file that contains imagery
+              format of data files and parameters of  data  aquisition.   SPOT
+              imagery  has two files that should be skipped on the first tape,
+              and one file to be skipped on the second  tape  (of  a  two-tape
+              set).
+
+       _n_u_m_b_e_r _o_f _r_e_c_o_r_d_s _i_n _t_h_e _r_e_m_a_i_n_i_n_g _f_i_l_e_s _t_o _b_e _s_k_i_p_p_e_d
+              If  the files which contain the image begin with non-image data,
+              these records can also be skipped.  This is usually 0  for  most
+              data types. SPOT imagery stored in 1600bpi has one header record
+              in the image file on each tape that should be skipped.
+
+       _n_u_m_b_e_r _o_f _b_a_n_d_s _o_n _t_h_e _t_a_p_e
+              Most aerial imagery have 3 bands, but satellite  simulator  data
+              may have more.  TM data has seven bands and SPOT has three bands
+              as a standard, respectively. The total number of  bands  on  the
+              tape  should be specified here, not just the number that will be
+              extracted.
+
+       _d_a_t_a _f_o_r_m_a_t
+              The two formats that imagery data are most  commonly  stored  in
+              are  called  _b_a_n_d  _i_n_t_e_r_l_e_a_v_e_d  format (BIL) and _b_a_n_d _s_e_q_u_e_n_t_i_a_l
+              format (BSQ).  In BIL format, each record on the  tape  contains
+              one  line  for  one  band  of  data.  If the data contains three
+              bands, then the first five records will look like this:
+              band 1, line 1
+              band 2, line 1
+              band 3, line 1
+              band 1, line 2
+              band 2, line 2
+
+              In BSQ format, all lines of one band are stored  together  on  a
+              tape,  followed  by  all  lines of another band, followed by all
+              lines of the next band, etc.  These data are stored as  if  they
+              were in a one band BIL format:
+              band 1, line 1
+              band 1, line 2
+              band 1, line 3
+                   .
+                   .
+                   .
+              band 2, line 1
+              band 2, line 2
+                   .
+                   .
+              band 2, line 156
+              band 2, line 157
+
+              Each  pixel  contains one byte and there is one line per record.
+              BSQ format is the format that  is  usually  created  by  optical
+              scanning  devices  when  they  scan  photographs,  but  not  all
+              digitized aerial imagery are stored in this format.  The  format
+              of  the  data  is  usually  written on the exterior of the tape;
+              this should be checked.
+
+       _l_e_n_g_t_h _(_i_n _b_y_t_e_s_) _o_f _t_h_e _l_o_n_g_e_s_t _r_e_c_o_r_d _o_n _t_h_e _t_a_p_e
+              This must be set to the number of  bytes  in  the  longest  data
+              record.   It  is used to determine how large a buffer to use for
+              reading the tape. This  value  can  be  obtained  using  _m_._e_x_a_m_-
+              _i_n_e_._t_a_p_e_.
+
+       _b_l_o_c_k_i_n_g _f_a_c_t_o_r _o_f _d_a_t_a _i_n _t_h_e _f_i_l_e
+              This  is  the number of lines combining into one physical record
+              on tape.  It is usually one for most  of  imageries,  i.e.,  one
+              line  per  physical  record.   However, considering on data com-
+              pressing and tape memory saving, sometimes more than  one  lines
+              are  combined into one physical record on the tape.  This number
+              may be written on the exterior of the tape, otherwise  the  user
+              need to experiment on this number by running of _i_._t_a_p_e_._o_t_h_e_r.
+
+
+BBAANNDD EEXXTTRRAACCTTIIOONN MMEENNUU
+       The  user  is then asked to mark an _x beside the bands to be extracted.
+       See the subheading in this entry enTITLEd ROW AND COLUMN EXTRACTION.
+        please mark an x by the bands you want extracted
+
+                              _____1
+                              _____2
+                              _____3
+                              _____4
+
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+
+PPRREEFFIIXX//GGRROOUUPP NNAAMMEE
+       The user is asked to enter the prefix/group for the (raster) band files
+       to  be  created.   This name will precede each band file extracted into
+       GRASS.  For example, if three bands are extracted the  following  three
+       band files will result:
+
+
+       _p_r_e_f_i_x_n_a_m_e_._1
+       _p_r_e_f_i_x_n_a_m_e_._2
+       _p_r_e_f_i_x_n_a_m_e_._3
+
+
+       The  specified  _p_r_e_f_i_x_n_a_m_e  will also automatically become the name for
+       the imagery group file being created.  Each image (i.e.,  each  run  of
+       _i_._t_a_p_e_._o_t_h_e_r) should be given a unique prefix/group name.
+
+RROOWW AANNDD CCOOLLUUMMNN MMEENNUU
+       Finally,  the starting row, ending row, starting column and ending col-
+       umn are required. This allows the user to extract  any  subset  of  the
+       image from the tape.
+                             EXTRACT
+       please select desired tape window (geographic region
+       definition) to extract
+                          start row:_0_
+                            end row:_0_
+
+                          start col:_0_
+                            end col:_0_
+
+       AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                     (OR <Ctrl-C> TO CANCEL)
+
+       The extraction process will begin by first skipping the number of spec-
+       ified files, advancing to the starting row, and then reading the  tape.
+       The percent completion of the extraction is displayed on the screen.
+
+
+       Following  the  extraction,  the extracted band files will be listed as
+       raster map layers available in the current MAPSET.   These  raster  map
+       layers  may  be  displayed individually using the GRASS commands _d_._d_i_s_-
+       _p_l_a_y, _d_._r_a_s_t or _i_._p_o_i_n_t_s.
+
+NNOOTTEESS
+       This program can be used for extraction of TM, SPOT and other types  of
+       data  from tape;  however, the user must supply information to the pro-
+       gram on how the image data is laid out on the tape.  For  example,  the
+       image  data  may  be padded with surrounding extra rows and/or columns;
+       the user may wish to skip over these rows and columns and extract  only
+       the  actual image data from the tape.  _i_._t_a_p_e_._o_t_h_e_r does not know where
+       image data actually begins on the tape;  the user must tell the program
+       what  portion  of  the tape data to extract.  Often, information on the
+       orientation and layout of the image data on tape will be included on  a
+       printout  accompanying  any  tape  data received by the user;  however,
+       this may not always be the case.  The user may need to experiment  with
+       various runs of _i_._t_a_p_e_._o_t_h_e_r before extracting the portions of an image
+       actually desired.
+
+
+       After extracting an image from tape, the geographic region in  the  x,y
+       coordinate LOCATION_NAME will be set, based upon the extracted rows and
+       columns from the tape. The relationship  between  the  image  rows  and
+       columns  and the coordiates bounding the geographic region is discussed
+       in the _i_m_a_g_e_r_y manual entry.
+
+
+       This program is interactive and requires no command line arguments.
+
+RROOWW AANNDD CCOOLLUUMMNN EEXXTTRRAACCTTIIOONN
+       The display options in GRASS allow the user to locate rows and  columns
+       on  the  digital image.  If enough disk space is available, one band of
+       an entire image, or one band of a portion of an image known to  contain
+       the area of interest, can be extracted and displayed.  The _m_e_a_s_u_r_e_m_e_n_t_s
+       option in _d_._d_i_s_p_l_a_y, or _d_._w_h_e_r_e (following a run of _d_._r_a_s_t) will echo x
+       and y coordinates to the screen.  (These coordinates will display nega-
+       tive numbers in the north-south direction  but  ignoring  the  negative
+       sign  will yield the row number.  See the _i_m_a_g_e_r_y manual entry for fur-
+       ther explanation.)
+
+
+       If a photograph of the digital image is available, the rows and columns
+       to  be  extracted  can be determined from it by associating inches with
+       the total number of known rows and columns in the scene.  For  example,
+       if the total length of the photograph is 12 inches, the total number of
+       rows on the tape is 2000, and the  northwest  corner  of  the  area  of
+       interest begins 2 inches from the top of the photo, then:
+               12" / 2000 rows = 2" / x rows
+               x = 333.333
+
+       The  northwest  corner  of the area of interest starts at row 333.  The
+       starting row, ending row, starting column, and  ending  column  can  be
+       calculated in this manner.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g
+
+
+       _d_._d_i_s_p_l_a_y
+
+       _d_._r_a_s_t
+
+       _d_._w_h_e_r_e
+
+       _i_._g_r_o_u_p
+
+       _i_._p_o_i_n_t_s
+
+       _i_._t_a_p_e_._m_s_s
+
+       _i_._t_a_p_e_._m_s_s_._h
+
+       _i_._t_a_p_e_._t_m
+
+       _i_._t_a_p_e_._t_m_._f_a_s_t
+
+       _i_m_a_g_e_r_y
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+AAUUTTHHOORRSS
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+       Tao Wen, University of Illinois at Urbana-Champaign, Illinois
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                      i.tape.other(1)

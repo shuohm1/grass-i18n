@@ -1,0 +1,92 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      02.01.dbstruc
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      GRASS DATABASE DIRECTORY STRUCTURE
+    </H2>
+  </CENTER>
+    <P>The files that GRASS uses and creates are stored in a special place
+on your system.  Exactly where GRASS programs and data are stored on
+your system will depend on where you install GRASS.  However, wherever
+GRASS is installed on your system, it will use a pre-defined directory
+structure.  To view a diagram of the GRASS directory structure, select
+<A HREF="./../../../../documents/html/help/02.db.setup/02.01.1.tree.html">directory tree</A>.
+    <P>All users' GRASS data are stored under a directory which is also known
+by the variable name $GISDBASE.  The $GISDBASE variable stands for
+&quot;GIS Data Base directory&quot;.  For example, at your site, the $GISDBASE
+directory might be /usr/grass4/data.
+    <P>Beneath this directory, there are subdirectories which are created when
+the user enters GRASS.  Each subdirectory of the $GISBASE directory is
+termed a GRASS &quot;location&quot;, and is known by the variable $LOCATION_NAME.
+Typically, each of these location directories will store data for a
+different geographic location.  However, this is up to the user.
+    <P>Beneath each location subdirectory, there will be further subdirectories
+called &quot;mapset&quot; subdirectories.  Each &quot;mapset&quot; contains a set of maps.
+All of the mapset directories stored beneath a given location should
+contain data relevant to the same general geographic region.  All of the
+mapsets stored under the same location directory MUST use the same
+<A HREF="./../../../../documents/html/help/16.glossary/mapcoord.def.html">map coordinate system</A> and map <A HREF="./../../../../documents/html/help/16.glossary/projtn.def.html">projection</A>.
+    <P>In addition to each user's individual mapset, each location directory
+must contain a special mapset directory named &quot;PERMANENT&quot;. This
+directory contains default information for all of the mapsets under
+a given location. It is made automatically by GRASS whenever the user
+establishes a new location.
+    <P>Under each mapset directory, GRASS data directories are stored.  These
+directories are created by GRASS as they become needed.  There will also
+be some files under each mapset directory.  The major data directories
+and files found under a GRASS mapset directory are listed below:
+    <P>
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/02.db.setup/02.01.3.dir.v.html">Vector Data Directories</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/02.db.setup/02.01.2.dir.r.html">Raster Data Directories</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/02.db.setup/02.01.4.dir.s.html">Site Data Directories</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/02.db.setup/02.01.5.files.html">Mapset files</A>
+  </CENTER>
+    <P>For more information on a specific directory, select a directory and
+press ESC.
+    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

@@ -1,0 +1,238 @@
+r.resamp.rst(1)               Grass User's Manual              r.resamp.rst(1)
+
+
+
+NNAAMMEE
+       _r_._r_e_s_a_m_p_._r_s_t  -  reinterpolates  and computes topographic analysis from
+       input raster file to a new raster file (possibly with different resolu-
+       tion) using regularized spline with tension and smoothing.
+
+       (_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m)
+
+
+
+SSYYNNOOPPSSIISS
+       rr..rreessaammpp..rrsstt
+
+       rr..rreessaammpp..rrsstt hheellpp
+
+       rr..rreessaammpp..rrsstt [[--rr]] [[--dd]] [[--tt]] iinnppuutt = name eeww__rreess = val nnss__rreess = val eelleevv
+       = name [ssllooppee = name] [aassppeecctt = name] [ppccuurrvv =  name]  [ttccuurrvv  =  name]
+       [mmccuurrvv  = name] [ssmmooootthh = name] [mmaasskkmmaapp = name] [oovveerrllaapp = val] [zzmmuulltt
+       = val] [tteennssiioonn = val]
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._r_e_s_a_m_p_._r_s_t
+
+       This program reinterpolates the values a from given raster  file  named
+       _i_n_p_u_t  to  a  new  raster file named _e_l_e_v. If _-_r flag is specified, all
+       zero elevations in _i_n_p_u_t file are treated as elevations, otherwise they
+       are  ignored.  Reinterpolation  (resampling) is done to higher, same or
+       lower resolution which is specified by parameters  _e_w___r_e_s  and  _n_s___r_e_s.
+       All  resulting  raster  files  are  created for the given region (which
+       might be different from the header of the input raster  file).   As  an
+       option,   simultaneously  with  interpolation,  topographic  parameters
+       slope, aspect, profile curvature (measured in the direction of steepest
+       slope), tangential curvature (measured in the direction of a tangent to
+       contour line) or mean curvature are computed and saved as raster  files
+       as  specified by the options _s_l_o_p_e_, _a_s_p_e_c_t_, _p_c_u_r_v_, _t_c_u_r_v_, _m_c_u_r_v respec-
+       tively.  If _-_d flag is set  the  program  outputs  partial  derivatives
+       fx,fy,fxx, fxy,fyy instead of slope, aspect and curvatures.
+
+       For  noisy  data, it is possible to define spatially variable smoothing
+       by prividing a raster  file  _s_m_o_o_t_h  containing  smoothing  parameters.
+       With  the  smoothing parameter set to zero (_s_m_o_o_t_h is not given or con-
+       tains zero data), the resulting surface passes exactly through the data
+       points. User can define a raster file named _m_a_s_k_m_a_p, which will be used
+       as a mask. The interpolation is skipped for cells which have zero value
+       in  mask.  Zero  values  will  be assigned to these cells in all output
+       raster files. Parameter _z_m_u_l_t allows the user to rescale  the  z-values
+       (useful,  e.g.,  for  transformation  of  elevations  given  in feet to
+       meters, so that the proper values of slopes and curvatures can be  com-
+       puted).
+
+       Regularized spline with tension is used for the interpolation. The _t_e_n_-
+       _s_i_o_n parameter tunes the character of the resulting surface  from  thin
+       plate  to membrane. Higher values of tension parameter reduce the over-
+       shoots that can appear in surfaces with rapid change of  gradient.  The
+       flag  _-_t  can be set to use "dnorm independent tension". The interpola-
+       tion is performed for overlaping rectangular  segments.  The  user  can
+       define the width of overlap (in number of cells) by option _o_v_e_r_l_a_p.
+
+
+
+OOPPTTIIOONNSS
+       The  user  can  run  this  program either interactively or non-interac-
+       tively.   The  program  will  be  run  non-interactively  if  the  user
+       specifies program arguments and flag settings on the command line using
+       the form:
+
+       rr..rreessaammpp..rrsstt [[--rr]] [[--dd]] [[--tt]] iinnppuutt = name eeww__rreess = val nnss__rreess = val eelleevv
+       =  name  [ssllooppee  =  name] [aassppeecctt = name] [ppccuurrvv = name] [ttccuurrvv = name]
+       [mmccuurrvv = name] [ssmmooootthh = name] [mmaasskkmmaapp = name] [oovveerrllaapp = val] [ zzmmuulltt
+       = val ] [tteennssiioonn = val]
+
+       Alternatively,  the  user  can simply type  rr..rreessaammpp..rrsstt on the command
+       line without program arguments. In this case, the user will be prompted
+       for  parameter values and flag settings using the standard GRASS parser
+       interface described in the manual entry for _p_a_r_s_e_r .
+
+       FFllaaggss
+
+        --rr Indicates that zeroes in input map represent elevation.
+
+       --dd Output partial derivatives instead of aspect, slope and curvatures
+
+       PPaarraammeetteerrss:
+
+        iinnppuutt =_n_a_m_e
+
+       Use the existing site file _n_a_m_e as input.
+
+        eeww__rreess = _v_a_l
+
+       Set desired east-west resolution to _v_a_l .
+
+        nnss__rreess = _v_a_l
+
+       Set desired north-south resolution to _v_a_l .
+
+       eelleevv = _n_a_m_e
+
+       Output elevation values to raster file named _n_a_m_e .
+
+       ssllooppee = _n_a_m_e
+
+       Output slope or fx values to raster file named _n_a_m_e .
+
+       aassppeecctt = _n_a_m_e
+
+       Output aspect or fy values to raster file named _n_a_m_e .
+
+       ppccuurrvv = _n_a_m_e
+
+       Output profile curvature or fxx values to raster file named _n_a_m_e
+
+       ttccuurrvv=_n_a_m_e
+
+       Output tangential curvature values or fyy to raster file named _n_a_m_e
+
+       mmccuurrvv=_n_a_m_e
+
+       Output mean curvature values or fxy to raster file named _n_a_m_e
+
+
+       ssmmooootthh=_n_a_m_e
+
+       18 Set smoothing parameter from file _n_a_m_e .
+
+       mmaasskkmmaapp=_n_a_m_e
+
+       Use the existing raster file _n_a_m_e as a mask.
+
+       oovveerrllaapp =_v_a_l
+
+       Use overlap _v_a_l cells to get additional points for interpolation for  a
+       given segment. Default value is 3.
+
+        zzmmuulltt =_v_a_l
+
+       Convert z-values using conversion factor _v_a_l . Default value is 1.
+
+        tteennssiioonn = _v_a_l
+
+       Set tension to _v_a_l .
+
+
+
+NNOOTTEESS
+       _r_._r_e_s_a_m_p_._r_s_t uses regularized spline with tension for interpolation (as
+       described in Mitasova and Mitas, 1993). Region is  temporarily  changed
+       while writing output files with desired resolution. Topographic parame-
+       ters are computed the same way as in s.surf.rst. (See also Mitasova and
+       Hofierka,  1993)  Raster  file _s_m_o_o_t_h should contain variable smoothing
+       parameters that can be derived from errors, slope, etc.  using   _r_._m_a_p_-
+       _c_a_l_c.  The program gives warning when significant overshoots appear and
+       higher tension should be used.  However,  with  tension  too  high  the
+       resulting  surface  changes  its  behavior  to  membrane  (rubber sheet
+       stretched over the data points resulting in a peak or pit in each given
+       point and everywhere else the surface goes rapidly to trend). Smoothing
+       can also be used to reduce the overshoots. When overshoots  occure  the
+       resulting  _e_l_e_v  file  will  have white color in the locations of over-
+       shoots since the color table for the output file is the  same  as  col-
+       ortable  for raster input file.The program checks the numerical stabil-
+       ity of the algorithm by computation of  values  in  given  points,  and
+       prints the maximum difference found into the history file of raster map
+       _e_l_e_v . Increase in tension is suggested if the difference is  unaccept-
+       able. For computation with smoothing set to 0 this difference should be
+       0. With smoothing parameter greater than zero the surface will not pass
+       through  the  data  points  and the higher the parameter the closer the
+       surface will be to the trend.
+
+       The program writes the values of parameters used  in  computation  into
+       the comment part of the history file _e_l_e_v as well as the following val-
+       ues which help to evaluate the results and choose the suitable  parame-
+       ters:  minimum  and  maximum  z  values  in  the  data file (zmin_data,
+       zmax_data) and in the interpolated  raster  map  (zmin_int,  zmax_int),
+       maximum  difference  between  the  given  and interpolated z value in a
+       given point (errtotal),  rescaling  parameter  used  for  normalization
+       (dnorm),  which  influences the tension. The program gives warning when
+       the user wants to interpolate outside the region given by the header of
+       the  input  raster  file, zooming into the area where the points are is
+       suggested in this case. When a mask is  used,  the  program  takes  all
+       points  in  the  given region for interpolation, including those in the
+       area which is masked out, to ensure proper interpolation along the bor-
+       der  of  the  mask.  It therefore does not mask out the data points; if
+       this is desirable, it must be done outside _r_._r_e_s_a_m_p_._r_s_t .
+
+
+
+SSEEEE AALLSSOO
+       r.resample, s.surf.rst
+
+
+
+AAUUTTHHOORRSS
+       _O_r_i_g_i_n_a_l _v_e_r_s_i_o_n _o_f _p_r_o_g_r_a_m _(_i_n _F_O_R_T_R_A_N_)_:
+
+       Lubos Mitas, NCSA, University of Illinois at Urbana Champaign, Il
+
+       Helena Mitasova, US Army CERL, Champaign, Illinois
+
+       _M_o_d_i_f_i_e_d _p_r_o_g_r_a_m _(_t_r_a_n_s_l_a_t_e_d _t_o _C_, _a_d_a_p_t_e_d  _f_o_r  _G_R_A_S_S  _,  _s_e_g_m_e_n_t_a_t_i_o_n
+       _p_r_o_c_e_d_u_r_e_)_:
+
+       Irina Kosinovsky, US Army CERL .
+
+       Dave Gerdes, US Army CERL .
+
+
+
+RREEFFEERREENNCCEESS
+       Mitas,  L.,  Mitasova,  H., 1999, Spatial Interpolation. In: P.Longley,
+       M.F.  Goodchild, D.J. Maguire, D.W.Rhind (Eds.), Geographical  Informa-
+       tion  Systems:  Principles,  Techniques,  Management  and Applications,
+       Wiley, 481-492.
+
+       Mitasova, H. and Mitas, L., 1993. Interpolation by  regularized  spline
+       with  tension: I. Theory and implementation, Mathematical Geology No.25
+       p.641-656.
+
+       Mitasova, H. and  Hofierka,  L.,  1993.  Interpolation  by  regularized
+       spline  with  tension:  II. Application to terrain modeling and surface
+       geometry analysis, Mathematical Geology No.25 p.657-667.
+
+        Talmi, A. and Gilat, G., 1977.  Method  for  smooth  approximation  of
+       data, Journal of Computational Physics , 23, pp 93-123.
+
+       Wahba,  G.,  1990.  Spline  models  for  observational  data,  CNMS-NSF
+       Regional Conference series in applied mathematics, 59, SIAM,  Philadel-
+       phia, Pennsylvania.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                      r.resamp.rst(1)

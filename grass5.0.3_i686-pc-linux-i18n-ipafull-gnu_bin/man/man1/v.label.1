@@ -1,0 +1,129 @@
+v.label(1)                    Grass User's Manual                   v.label(1)
+
+
+
+NNAAMMEE
+       vv..llaabbeell  - makes a label-file from a GRASS vector.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..llaabbeell
+       vv..llaabbeell hheellpp
+       vv..llaabbeell   map=name  [type=type]  text=name  label=name  [xoffset=value]
+       [yoffset=value] [reference=name] [font=name] [size=value]  [color=name]
+       [width=value]   [hcolor=name]  [hwidth=value]  [background=name]  [bor-
+       der=name] [opaque=name] [space=value]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._l_a_b_e_l makes a label-file from a GRASS vector file.  Labels  are  read
+       from  text file which contains category and label on each row separated
+       by space. Example of text file:
+       1 Kamenice
+       2 Cerna Desna
+       3 Bila Desna
+
+       In current version only lines are labeled and label  is  created  along
+       line.
+
+
+
+PPAARRAAMMEETTEERRSS
+       mmaapp    Name of a vector
+
+       tteexxtt   Full path to text file containing labels
+
+       llaabbeell  Name of a paint-label file
+
+       xxooffffsseett
+              Offset label in x-direction
+
+              default: 0
+
+       yyooffffsseett
+              Offset label in y-direction
+
+              default: 0
+
+       rreeffeerreennccee
+              Reference position
+
+              options: center,left,right,upper,lower
+
+              default: center
+
+       ffoonntt   Font
+
+              default: standard
+
+       ssiizzee   Label size (in map-units)
+
+              options: 1-1000
+
+              default: 100
+
+       ccoolloorr  Text color
+
+              options:      aqua,black,blue,brown,cyan,gray,green,grey,indigo,
+              magenta, orange,purple,red,violet,white,yellow
+
+              default: black
+
+       wwiiddtthh  Line width of text (only for p.map output)
+
+              options: 1-100
+
+              default: 1
+
+       hhccoolloorr Highlight color for text (only for p.map output)
+
+              options:        none,aqua,black,blue,brown,cyan,gray,green,grey,
+              indigo,magenta, orange,purple,red,violet,white,yellow
+
+              default: none
+
+       hhwwiiddtthh Line width of highlight color (only for p.map output)
+
+              options: 0-100
+
+              default: 0
+
+       bbaacckkggrroouunndd
+              Background color
+
+              options:        none,aqua,black,blue,brown,cyan,gray,green,grey,
+              indigo,magenta, orange,purple,red,violet,white,yellow
+
+              default: none
+
+       bboorrddeerr Border color
+
+              options:        none,aqua,black,blue,brown,cyan,gray,green,grey,
+              indigo,magenta, orange,purple,red,violet,white,yellow
+
+              default: none
+
+       ooppaaqquuee Opaque to vector (only relevant if background color is selected)
+
+              options: yes,no
+
+              default: yes
+
+       ssppaaccee  Space between letters (in map-units)
+
+              options: 1-100000
+
+              default: 100
+
+
+NNOOTTEE
+       Rotated labels produced by this module are supported by ps.map only.
+
+AAUUTTHHOORR
+       Philip Verhagen (original s.label)
+
+       Radim Blazek
+
+
+
+
+GRASS 5.0                                                           v.label(1)

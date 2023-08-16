@@ -1,0 +1,109 @@
+v.mkquads(1)                  Grass User's Manual                 v.mkquads(1)
+
+
+
+NNAAMMEE
+       vv..mmkkqquuaaddss   - Creates a GRASS vector map layer and/or sites list and/or
+       geographic region definition file for a USGS 7.5-minute quadrangle.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..mmkkqquuaaddss
+       vv..mmkkqquuaaddss hheellpp
+       vv..mmkkqquuaaddss [--eessrrvvxx] mmaapp==_n_a_m_e [ttyyppee==_q_u_a_d _s_i_z_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       There are three types  of  output  available  from  the  GRASS  program
+       _v_._m_k_q_u_a_d_s:
+
+              a  vector  map  of  all  the full USGS quadrangles that will fit
+              within the boundaries of the current geographic region.
+
+              a GRASS sites list containing the corner coordinates of each  of
+              these quads.
+
+              GRASS geographic region definition files associated with each of
+              the quads created.
+
+
+
+       A _q_u_a_d is defined as the area covered by a USGS  7.5-minute  (1:24,000)
+       map.   This  program  is useful for managing a GRASS data base LOCATION
+       which contains a number of quads which are to be patched together.
+
+
+
+   FFllaaggss::
+       --ee     Encompass current geographic region with quads (rather than only
+              creating  those quads that lie inside of the geographic region).
+              Use of this option will affect all output options.
+
+       --ss     Create a GRASS sites list file.  The sites list will contain all
+              the  corner  coordinates of all the full quads that can be built
+              in the current geographic region.  The sites list file can  then
+              be displayed using the _d_._s_i_t_e_s program.
+
+       --rr     Create  region file(s): quad.1 quad.2 ...  The program will gen-
+              erate a separate geographic  region  definition  file  for  each
+              quad;  each of the geographic region files created will have the
+              prefix _q_u_a_d_.  with some number attached to it.  For example,  if
+              only  one  quad  were created, the geographic region file _q_u_a_d_._1
+              would also be created in the _w_i_n_d_o_w_s directory under the  user's
+              current mapset.  To make the program-generated geographic region
+              definition file _q_u_a_d_._1 your _c_u_r_r_e_n_t geographic  region  setting,
+              run the GRASS _g_._r_e_g_i_o_n program.
+
+       --vv     Create  vector file (default).  Only full quads will be created.
+              The binary vector map layer output is placed  under  the  user's
+              _d_i_g  directory  and can be used like any other vector map layer.
+              Run _v_._s_u_p_p_o_r_t to build the topology information for  the  vector
+              map before using _v_._m_k_q_u_a_d_s map layer outputs in the _v_._d_i_g_i_t pro-
+              gram.  Since the quads are computer-generated, the corner  coor-
+              dinates  will  be  exact.   This simplifies digitizing if one or
+              more quad sheets will have to be brought  together  for  a  data
+              base, because all of the quad corner points to be joined will be
+              guaranteed to match.
+
+       --xx     Create a GRASS registration (_r_e_g) file.
+
+
+
+
+   PPaarraammeetteerr::
+       mmaapp==_n_a_m_e
+              The name of a file to contain program output.
+
+       ttyyppee==_q_u_a_d _s_i_z_e
+           options: full,third,quarter,1x1,1x2
+
+           default: full
+
+
+
+       If the user runs _v_._m_k_q_u_a_d_s without including  program  parameter  value
+       and desired flags on the command line, the program will prompt the user
+       for the above information using the standard GRASS interface  described
+       in the manual entry for _p_a_r_s_e_r.
+
+NNOOTTEESS
+       All output options can be used on the command line at the same time.  A
+       listing of all the quad  points  in  latitude/longitude  and  projected
+       coordinates will be displayed each time the program is executed.
+
+BBUUGGSS
+       There  are  no  guarantees  that  _v_._m_k_q_u_a_d_s will function properly if a
+       quadrangle crosses UTM zones.  This program has not been tested outside
+       the northwest UTM quadrant.
+
+SSEEEE AALLSSOO
+       _d_._s_i_t_e_s_, _g_._r_e_g_i_o_n_, _v_._d_i_g_i_t_, _v_._m_k_g_r_i_d_, _v_._s_u_p_p_o_r_t and _p_a_r_s_e_r
+
+AAUUTTHHOORRSS
+       Michael Higgins, U.S. Army Construction Engineering Research Laboratory
+       Marilyn Ruiz, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                         v.mkquads(1)

@@ -1,0 +1,116 @@
+d.scale(1)                    Grass User's Manual                   d.scale(1)
+
+
+
+NNAAMMEE
+       dd..ssccaallee   -  Overlays  a bar scale and north arrow for the current geo-
+       graphic region at a user-defined location in the active display  frame.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ssccaallee
+       dd..ssccaallee hheellpp
+       dd..ssccaallee [--mm] [bbccoolloorr==_n_a_m_e] [ttccoolloorr==_n_a_m_e] [aatt==_x_,_y]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._s_c_a_l_e overlays a bar scale and north arrow for the current geographic
+       region at a user-defined location in the  active  display  frame.   The
+       scale  and north arrow are proportioned to fit in the active frame when
+       placed along the frame's left edge.
+
+
+       The user can specify the location of the scale and north arrow interac-
+       tively  (using a mouse), or provide the geographic coordinates at which
+       they will be placed.  The scale and north  arrow  will  only  overwrite
+       those  portions of the graphics display that lie directly beneath them.
+
+
+       The user can also specify the colors in which the scale and north arrow
+       will  be  drawn.  By default, if unspecified by the user, a white scale
+       and north arrow will be displayed on a black background.
+
+OOPPTTIIOONNSS
+       The user can run this  program  either  non-interactively  or  interac-
+       tively.   The  program will be run non-interactively if the user speci-
+       fies program parameter values and desired flag settings on the  command
+       line, using the form:
+
+
+       dd..ssccaallee [--mm] [bbccoolloorr==_n_a_m_e] [ttccoolloorr==_n_a_m_e] [aatt==_x_,_y]
+
+
+
+       If at least one parameter value is given on the command line and the -m
+       flag is not set, the program will be run non-interactively;  any  other
+       parameter values left unspecified on the command line will be set equal
+       to their default values (see below).  Alternately, the user can  simply
+       type  dd..ssccaallee  on  the command line, without program arguments. In this
+       case, the user will be prompted for needed  parameter  values  and  the
+       flag  setting  using  the standard GRASS parser interface.  If the user
+       sets the -m flag, _d_._s_c_a_l_e will expect the user to designate the scale's
+       location interactively, using the mouse.
+
+
+
+   FFllaagg::
+       --mm     Use  the  mouse to interactively place the location of the scale
+              and north arrow.
+
+
+   PPaarraammeetteerrss::
+       bbccoolloorr==_n_a_m_e
+              Set the background color underlying the scale and north arrow to
+              _n_a_m_e.
+              Options: _r_e_d_, _o_r_a_n_g_e_, _y_e_l_l_o_w_, _g_r_e_e_n_, _b_l_u_e_, _i_n_d_i_g_o_, _v_i_o_l_e_t_, _g_r_a_y_,
+              _b_r_o_w_n_, _m_a_g_e_n_t_a_, _w_h_i_t_e, and _b_l_a_c_k
+              Default: _b_l_a_c_k
+
+       ttccoolloorr==_n_a_m_e
+              Set the foreground color in which the  text,  scale,  and  north
+              arrow are displayed to _n_a_m_e.
+              Options: Same as _b_c_o_l_o_r colors.
+              Default: _w_h_i_t_e
+
+       aatt==_x_,_y The map easting (x) and northing (y) geographic coordinates des-
+              ignating the location at which the  upper  left  corner  of  the
+              scale is to be placed. The user should choose geographic coordi-
+              nates located within the current geographic region (see  _d_._w_h_e_r_e
+              and _g_._r_e_g_i_o_n for these coordinates).
+              Default: 0.0,0.0
+
+
+NNOOTTEESS
+       _d_._s_c_a_l_e assumes that layer units are in meters.
+
+
+       The scale that _d_._s_c_a_l_e generates is probably not suitable for very tiny
+       maps (in small display frames).
+
+SSEEEE AALLSSOO
+       _d_._b_a_r_s_c_a_l_e
+
+       _d_._l_e_g_e_n_d
+
+       _d_._m_e_a_s_u_r_e
+
+       _d_._w_h_a_t_._r_a_s_t
+
+       _d_._w_h_a_t_._s_i_t_e_s
+
+       _d_._w_h_a_t_._v_e_c_t
+
+       _d_._w_h_e_r_e
+
+       _g_._r_e_g_i_o_n
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           d.scale(1)

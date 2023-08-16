@@ -1,0 +1,54 @@
+s.buffer(1)                   Grass User's Manual                  s.buffer(1)
+
+
+
+NNAAMMEE
+       ss..bbuuffffeerr   -  generates vector buffer around a site point.  The area is
+       labelled with site category.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..bbuuffffeerr
+       ss..bbuuffffeerr hheellpp
+       ss..bbuuffffeerr iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e rraaddiiuuss==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._b_u_f_f_e_r generates vector buffer around a  site  point.   The  area  is
+       labelled  with  site category. If the value is not given or its 0, then
+       the radius is taken from the attribute of the site point.
+
+
+
+PPAARRAAMMEETTEERRSS
+        iinnppuutt  site_list file to read
+
+
+        oouuttppuutt  vector (digit) file to create
+
+
+        rraaddiiuuss  radius of circle
+
+
+       Values for radius:
+
+
+       0=take category for radius,
+
+       -1=the 4th value of site list (category label),
+
+       positive value= use given value for radius. Then the buffer is the same
+       with all points.
+
+
+
+SSEEEE AALLSSOO
+       _v_._c_i_r_c_l_e, _v_._b_u_b_b_l_e
+
+AAUUTTHHOORR
+       Janne Soimasuo, Finland
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          s.buffer(1)

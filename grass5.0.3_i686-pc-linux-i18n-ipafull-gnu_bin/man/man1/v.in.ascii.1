@@ -1,0 +1,143 @@
+v.in.ascii(1)                 Grass User's Manual                v.in.ascii(1)
+
+
+
+NNAAMMEE
+       vv..iinn..aasscciiii   -  Converts ASCII vector map layers into binary vector map
+       layers.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..aasscciiii
+       vv..iinn..aasscciiii hheellpp
+       vv..iinn..aasscciiii iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._i_n_._a_s_c_i_i converts a vector map in ASCII format to  a  vector  map  in
+       binary format.
+
+OOPPTTIIOONNSS
+       The  user can run this program non-interactively by specifying all pro-
+       gram options on the command line, in the  form:  vv..iinn..aasscciiii  iinnppuutt==_n_a_m_e
+       oouuttppuutt==_n_a_m_e
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name  of  an  ASCII vector file to be converted to binary vector
+              file.
+
+       oouuttppuutt==_n_a_m_e
+              Name given to binary vector output file.
+
+       If the user runs _v_._i_n_._a_s_c_i_i without giving  program  arguments  on  the
+       command  line,  the  program  will prompt the user for _i_n_p_u_t and _o_u_t_p_u_t
+       file names.
+
+NNOOTTEESS
+       After running this program, GRASS support files must be built  for  the
+       binary  _o_u_t_p_u_t  file  before the user can use the file in _v_._d_i_g_i_t.  The
+       user can run _v_._s_u_p_p_o_r_t to create GRASS support  files  for  the  _o_u_t_p_u_t
+       file.
+
+
+       Note, that the coordinates order is NORTH EAST.
+
+
+       To  import  category labels, the dig_cats file needs to be specified in
+       OTHER INFO field.
+
+
+       Example ASCII vector file (store in dig_ascii/). Note the blank  before
+       entering vertex coordinates:
+
+
+
+              ORGANIZATION:
+              DIGIT DATE:   Oct 24 2001
+              DIGIT NAME:   nds_gem
+              MAP NAME:     nds_gem
+              MAP DATE:
+              MAP SCALE:    500000
+              OTHER      INFO:        /home/neteler/grassdata5/langeoog/PERMA-
+       NENT/dig_cats
+              ZONE:         0
+              WEST EDGE:    3399965.343
+              EAST EDGE:    3403360.343
+              SOUTH EDGE:   5957127.30045067
+              NORTH EDGE:   5960625.30045067
+              MAP THRESH:   19.05
+              VERTI:
+              A  13
+               5958812.48844435 3400828.84221011
+               5958957.29887089 3400877.11235229
+               5959021.65906046 3400930.7458436
+               5959048.47580612 3400973.65263665
+               5959069.92920264 3401032.64947709
+               5959064.56585351 3401123.82641232
+               5958994.84231481 3401188.1866019
+               5958914.39207784 3401188.1866019
+               5958823.21514261 3401107.73636493
+               5958753.49160391 3401005.83273144
+               5958753.49160391 3400941.47254186
+               5958780.30834956 3400887.83905055
+               5958812.48844435 3400828.84221011
+              A  8
+               5959010.9323622 3401338.36037757
+               5959096.7459483 3401370.54047235
+               5959091.38259917 3401450.99070932
+               5958973.38891828 3401520.71424803
+               5958882.21198305 3401467.08075671
+               5958903.66537958 3401375.90382148
+               5958941.2088235 3401332.99702844
+               5959010.9323622 3401338.36037757
+
+       The associated dig_att file needs following format (store in dig_att/):
+
+
+
+              A 3401180.463379 5959003.209139          1
+              A 3401516.741397 5958966.635071          2
+
+
+
+       The associated dig_cats file needs following format:
+
+
+
+              # 2 categories
+
+
+              0.00 0.00 0.00 0.00
+              1:forest
+              2:water
+
+
+
+       To  (re-)set  map metadata like ORGANIZATION etc. later, _v_._d_i_g_i_t can be
+       used.
+
+
+       The GRASS program _v_._o_u_t_._a_s_c_i_i performs the function  of  _v_._i_n_._a_s_c_i_i  in
+       reverse;  i.e., it converts vector files in binary format to ASCII for-
+       mat.  These two companion programs are useful both  for  importing  and
+       exporting vector files between GRASS and other software, and for trans-
+       ferring data between machines.
+
+
+       The input from _v_._i_n_._a_s_c_i_i has to  be  placed  into  $LOCATION/dig_ascii
+       (this directory must be created if not existing).
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t, _v_._i_m_p_o_r_t, _v_._o_u_t_._a_s_c_i_i, _v_._s_u_p_p_o_r_t, _G_R_A_S_S _A_S_C_I_I _f_o_r_m_a_t_s
+
+AAUUTTHHOORRSS
+       Michael Higgins, U.S.Army Construction Engineering Research Laboratory
+
+       James Westervelt, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_1_1 _1_4_:_0_4_:_0_3 _$
+
+
+
+GRASS 5.0                                                        v.in.ascii(1)

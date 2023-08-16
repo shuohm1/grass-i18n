@@ -1,0 +1,78 @@
+i.cca(1)                      Grass User's Manual                     i.cca(1)
+
+
+
+NNAAMMEE
+       ii..ccccaa  - Canonical components analysis (cca) program for image process-
+       ing.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ccccaa
+       ii..ccccaa hheellpp
+       ii..ccccaa ggrroouupp==_n_a_m_e ssuubbggrroouupp==_n_a_m_e ssiiggnnaattuurree==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       ii..ccccaa is an image processing program  that  takes  from  two  to  eight
+       (raster)  band  files and a signature file, and outputs the same number
+       of raster band files transformed to provide maximum separability of the
+       categories  indicated  by  the  signatures.  This implementation of the
+       canonical components transformation is based on the algorithm contained
+       in  the  LAS  image  processing system. CCA is also known as "Canonical
+       components transformation".
+
+
+       Typically the user will use the _i_._c_l_a_s_s program to  collect  a  set  of
+       signatures  and  then  pass those signatures along with the raster band
+       files to _i_._c_c_a.  The raster band file names are specified on  the  com-
+       mand  line  by  giving the group and subgroup that were used to collect
+       the signatures.
+
+
+       The output raster map names are built by appending a ".1",  ".2",  etc.
+       to the output raster map name specified on the command line.
+
+   PPaarraammeetteerrss::
+       ggrroouupp==_n_a_m_e
+              Name  of the imagery group to which the 2 to 8 raster band files
+              used belong.
+
+       ssuubbggrroouupp==_n_a_m_e
+              Name of the imagery subgroup to which the 2  to  8  raster  band
+              files used belong.
+
+       ssiiggnnaattuurree==_n_a_m_e
+              Name of an ASCII file containing spectral signatures.
+
+       oouuttppuutt==_n_a_m_e
+              Output  raster  file  prefix  name.  The output raster map layer
+              names are built by appending a ".1", ".2", etc. onto the  _o_u_t_p_u_t
+              name specified by the user.
+
+
+NNOOTTEESS
+       _i_._c_c_a respects the current geographic region definition and the current
+       mask setting while performing the transformation.
+
+SSEEEE AALLSSOO
+       Schowengerdt, Robert A.  TTeecchhnniiqquueess ffoorr IImmaaggee PPrroocceessssiinngg aanndd  CCllaassssiiffii--
+       ccaattiioonn iinn RReemmoottee SSeennssiinngg,  Academic Press, 1983.
+
+
+       _i_._c_l_a_s_s
+
+       _i_._p_c_a
+
+       _r_._c_o_v_a_r
+
+       _r_._m_a_p_c_a_l_c
+
+AAUUTTHHOORRSS
+       David Satnik, GIS Laboratory, Central Washington University
+       Ali R. Vali, University of Texas
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                             i.cca(1)

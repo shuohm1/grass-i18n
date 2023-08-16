@@ -1,0 +1,85 @@
+d.frame(1)                    Grass User's Manual                   d.frame(1)
+
+
+
+NNAAMMEE
+       dd..ffrraammee  - Manages display frames on the user's graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ffrraammee
+       dd..ffrraammee hheellpp
+       dd..ffrraammee [--cceeppssllDD] [ffrraammee==_n_a_m_e] [aatt==_b_o_t_t_o_m_,_t_o_p_,_l_e_f_t_,_r_i_g_h_t]
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program  manages  display  frames on the user's graphics monitor.
+       GRASS display programs at run-time connect with graphics rendering pro-
+       grams.   While  the  display  programs  are identical on every hardware
+       platform, the graphics rendering programs  are  (essentially  the  only
+       GRASS programs) designed for individual hardware devices. These render-
+       ing programs are managed with the GRASS  program  _d_._m_o_n.  Graphics  are
+       displayed  in  rectangular frames on whatever graphics monitor the user
+       is currently directing GRASS display output to.  These frames are  cre-
+       ated  and managed with this program, NNoottee that GRASS frame contents are
+       not retained when one frame covers another. You cannot  shuffle  frames
+       from top to bottom and then back again.  They simply define rectangular
+       areas on the screen where subsequent drawing will occur.
+
+
+
+   FFllaaggss::
+       --cc     Creates a new display frame on the graphics monitor.
+
+       --ee     Removes all existing display frames and reinitializes the entire
+              graphics screen (the full-screen display frame).
+
+       --pp     Prints the name of the active frame, in which GRASS display out-
+              put will appear.
+
+       --ss     Selects a frame for the display of GRASS graphics. This frame is
+              then known as the "active frame".
+
+       --ll     List map names displayed in GRASS monitor
+
+       --DD     Prints the status of the user's graphics monitor and active dis-
+              play frame to standard output. Information includes the name and
+              the  dimensions  of  the  current frame on the graphics monitor,
+              given in the form _b_o_t_t_o_m top left right. This function is useful
+              for debugging output, and for determining display screen coordi-
+              nates.
+
+
+
+
+   PPaarraammeetteerrss::
+       ffrraammee==_n_a_m_e
+              The name of the display frame to be created/selected.
+
+       aatt==_b_o_t_t_o_m_,_t_o_p_,_l_e_f_t_,_r_i_g_h_t
+              Where to place the frame (implies --cc).   Frame  coordinates  are
+              stated in the form: _b_o_t_t_o_m_,_t_o_p_,_l_e_f_t_,_r_i_g_h_t. The lower-left corner
+              of the graphics monitor always is at location 0,0 while the mon-
+              itor's  upper-right  corner is always at 100,100 (the values are
+              in percent).
+
+
+NNOOTTEESS
+       If the user has  created  multiple  display  frames  that  overlap  one
+       another,  whatever the user displays in the active frame will overwrite
+       those portions of the underlying frame where these frames overlap.
+
+SSEEEE AALLSSOO
+       _d_._e_r_a_s_e
+
+       _d_._m_o_n
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                           d.frame(1)

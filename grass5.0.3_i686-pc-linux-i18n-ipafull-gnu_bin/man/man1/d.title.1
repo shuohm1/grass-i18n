@@ -1,0 +1,87 @@
+d.title(1)                    Grass User's Manual                   d.title(1)
+
+
+
+NNAAMMEE
+       dd..ttiittllee   -  Outputs  a TITLE for a raster map layer in a form suitable
+       for display by _d_._t_e_x_t.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ttiittllee
+       dd..ttiittllee hheellpp
+       dd..ttiittllee [--ff] mmaapp==_n_a_m_e [ccoolloorr==_n_a_m_e] [ssiizzee==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._t_i_t_l_e generates to standard output a string  which  can  be  used  by
+       _d_._t_e_x_t to draw a TITLE for the raster map layer _n_a_m_e in the active dis-
+       play frame on the graphics monitor.  Output created by _d_._t_i_t_l_e  can  be
+       redirected  into  a  file, or piped directly into _d_._t_e_x_t to display the
+       map TITLE created by _d_._t_i_t_l_e.  The map TITLE created will  include  the
+       map  layer's  name,  TITLE,  MAPSET,  LOCATION_NAME,  geographic region
+       boundary coordinates, and cell resolution.
+
+
+       The user can state program arguments on the command line, or type  sim-
+       ply  dd..ttiittllee  on the command line. In the latter case, the program will
+       prompt the user for the parameter values and  flag  setting  using  the
+       standard GRASS parser interface.
+
+   FFllaagg::
+       --ff     Displays a fancier TITLE.
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of an existing raster map layer in the user's mapset search
+              path.
+
+       ccoolloorr==_n_a_m_e
+              Sets the current color to the _n_a_m_e stated.
+              Options: red, orange, green, blue, indigo, violet, black, white,
+              gray, yellow, brown, and magenta
+              Default: _w_h_i_t_e
+
+       ssiizzee==_v_a_l_u_e
+              Sets the text size as a percentage of the active display frame's
+              height, to _v_a_l_u_e. Floating point values can be used.
+              Options: 0 - 100
+              Default: 4.0
+
+
+EEXXAAMMPPLLEE
+       For example, a  user  wishing  to  create  a  suitable  TITLE  for  the
+       Spearfish,  SD  _s_o_i_l_s map layer and to display this TITLE in the active
+       display frame on the graphics monitor might type the following: dd..ttiittllee
+       mmaapp==_s_o_i_l_s ccoolloorr==_r_e_d ssiizzee==_5 >> TTIITTLLEE..ffiillee dd..tteexxtt << TTIITTLLEE..ffiillee
+
+       Alternately,  the  user might pipe _d_._t_i_t_l_e output directly into _d_._t_e_x_t:
+       dd..ttiittllee mmaapp==_s_o_i_l_s ccoolloorr==_r_e_d ssiizzee==_5 | d.text
+
+
+
+       A file created by _d_._t_i_t_l_e can be displayed  with  _d_._t_e_x_t.   Information
+       contained in this file takes precedence over the _c_o_l_o_r and _s_i_z_e parame-
+       ters for _d_._t_e_x_t.
+
+NNOOTTEESS
+       The text created with _d_._t_e_x_t will not necessarily fit within the active
+       display  frame  on  the graphics monitor; the user should choose a text
+       size appropriate to this frame.
+
+SSEEEE AALLSSOO
+       _d_._f_o_n_t
+
+       _d_._t_e_x_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_1_0_/_1_2 _0_4_:_5_5_:_2_6 _$
+
+
+
+GRASS 5.0                                                           d.title(1)

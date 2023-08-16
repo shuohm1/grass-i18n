@@ -1,0 +1,126 @@
+v.geom(1)                     Grass User's Manual                    v.geom(1)
+
+
+
+NNAAMMEE
+       _v_._g_e_o_m   - Computes constrained MinMax-Angle triangulation, constrained
+       MinMax-Slope triangulation,  constrained  MaxMin-Height  triangulation,
+       constrained  planesweep  triangulation, constrained delaunay heuristic,
+       and convex hull of sites and prescribed edges in 2  and  2  1/2  dimen-
+       sions.
+
+SSYYNNOOPPSSIISS
+       vv..ggeeoomm
+       vv..ggeeoomm hheellpp
+       vv..ggeeoomm iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [pprreecciissiioonn==_v_a_l_u_e] [ooppeerraattiioonn==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._g_e_o_m takes a vector file as input and computes various triangulations
+       respecting the input edges, or the convex hull of  the  sites.  The  z-
+       coordinate  is read from the description field if it is specified, oth-
+       erwise 0 is assumed. The z-coordinate is used for the MinMax-slope tri-
+       angulation.  For all other computations the z-coordinate is ignored.
+
+
+       The MinMax-angle triangulation is the triangulation for the sites which
+       minmizes (lexicographically) the sorted vector of  all  the  angles  of
+       triangles  in the triangulation. The constrained version also minimizes
+       this vector but under the  constrained  that  prescribed  (i.e.  input)
+       edges  are part of the final triangulation.  The MaxMin-height and Min-
+       Max-slope triangulations are similar.  The algorithms used for the com-
+       putations are not heuristics, they actually achieve the optimum.
+
+
+       We use a simple extension of the algorithm used to compute the Delaunay
+       triangulation in _s_._g_e_o_m to compute a triangulation which can be consid-
+       ered  an approximatoin of the constrained Delaunay triangulation.  How-
+       ever, this is only a (bad?) heuristic.
+
+
+       The output is saved in vector file format. Edge labels of  input  edges
+       will also be attached to the corresponding output edges.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Input vector (level 2) file.
+
+       oouuttppuutt==_n_a_m_e
+              Output vector file.
+
+       pprreecciissiioonn==_v_a_l_u_e
+              Number   of  significant  positions  after  the  decimal  point.
+              (default is 0).
+
+       ooppeerraattiioonn==_n_a_m_e
+              One of the following: _s_w_e_e_p,  _d_e_l_a_u_n_a_y,  _a_n_g_l_e,  _h_e_i_g_h_t,  _s_l_o_p_e,
+              _h_u_l_l.  These correspond to the constrained planesweep triangula-
+              tion, constrained Delaunay heuristic,  constrained  MinMax-angle
+              triangulation,  constrained  MaxMin-height  triangulation,  con-
+              strained MinMax-slope triangulation, and  convex  hull,  respec-
+              tively.  (default is constrained planesweep triangulation).
+
+
+NNOOTTEE
+       The  computation  times  for the various operations depends strongly on
+       the algorithm used.
+
+
+       The plansweep triangulation and convex hull computation require _O_(_n _l_o_g
+       _n_)  operations  in  the  worst case [Ed].  The Delaunay heuristic needs
+       _O_(_n_^_2_) time in the worst case, however it performs much faster in prac-
+       tice.  The MinMax-angle and MaxMin-height triangulations need _O_(_n_^_2 _l_o_g
+       _n_) operations [EdTa], and the MinMax-slope triangulation  needs  _O_(_n_^_3_)
+       operations [BeEd].
+
+
+       Internally,  the  coordinates of the sites are stored in fix-point for-
+       mat.  Therefore, the number of decimal digits cannot exceed 64 bit  (or
+       approx.  16 decimal digits).
+
+
+       It  is  important that the input vector file is reasonably "clean". The
+       current implementation of _v_._g_e_o_m takes care of loops (i.e. zero  length
+       edges), duplicate edges, and edges which are collinear and overlapping.
+       However, because of the internal representation of coordinates in  fix-
+       point  format it can happen that certain anomalies are introduced.  For
+       examples edges can cross although they don't in the input  data.   Cur-
+       rently,  the program does not test for such cases. If it occures one of
+       two situations will happen. Either, the planesweep algorithm terminates
+       with  a segmentation fault, or it will loop forever. For the data where
+       we had problems these problems could be eliminated  if  we  first  used
+       _v_._s_p_a_g.
+
+BBUUGGSS
+       Some fields of the header in the output file are not properly set.
+
+RREEFFEERREENNCCEESS
+       [BeEd]  M.Bern,  H.  Edelsbrunner,  D.  Eppstein, S. Mitchel, T.S. Tan.
+       Edge Insertion for Optimal Triangulations.  _I_n _P_r_o_c_. _1_s_t _L_a_t_i_n _A_m_e_r_i_c_a_n
+       _S_y_m_p_o_s_. _T_h_e_o_r_e_t_.  _I_n_f_o_r_m_a_t_i_c_s _1_9_9_2, 46--60.
+
+
+       [Ed]  H. Edelsbrunner.  _A_l_g_o_r_i_t_h_m_s _i_n _C_o_m_b_i_n_a_t_o_r_i_a_l _G_e_o_m_e_t_r_y_. Springer-
+       Verlag, Heidelberg, Germany, 1987.
+
+
+       [EdSh] H. Edelsbrunner, N. R. Shah.   Incremental  Flipping  Works  for
+       Regular  Triangulations.  _I_n _P_r_o_c_. _8_t_h _A_n_n_. _S_y_m_p_o_s_. _C_o_m_p_u_t_. _G_e_o_m_. _1_9_9_2,
+       43-52.
+
+
+       [EdTa] H. Edelsbrunner, T.S. Tan and R. Waupotitsch.  An O(n^2  log  n)
+       Time  Algorithm  for  the  MinMax  Angle  Triangulation.   _S_I_A_M _J_. _S_c_i_.
+       _S_t_a_t_i_s_t_. _C_o_m_p_u_t_. _1_3 _1_9_9_2, 994-1008.
+
+SSEEEE AALLSSOO
+       _s_._g_e_o_m
+
+AAUUTTHHOORR
+       Roman Waupotitsch
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                            v.geom(1)

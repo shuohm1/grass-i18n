@@ -1,0 +1,170 @@
+d.3d(1)                       Grass User's Manual                      d.3d(1)
+
+
+
+NNAAMMEE
+       dd..33dd - Displays three-dimensional images based on raster map layers.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..33dd
+       dd..33dd hheellpp
+       dd..33dd [--llaann] mmaapp==_n_a_m_e eelleevvaattiioonn==_n_a_m_e [ffrroomm__ccoooorrddiinnaattee==_x_,_y_,_z] [ttoo__ccoooorrddii--
+       nnaattee==_x_,_y_,_z]    [eexxaaggggeerraattiioonn==_v_a_l_u_e]     [lliinneess==_v_a_l_u_e]     [ffiieelldd==_v_a_l_u_e]
+       [ccoolloorr==_n_a_m_e] [bbooxx==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._3_d  displays  three-dimensional  graphic images based on GRASS raster
+       map layers.  The user identifies the viewing point, the line of  sight,
+       a  vertical exaggeration factor, the viewing angle (field of view), the
+       frequency and color of vector grid lines to appear in the display,  the
+       map to be displayed in 3-d, and the map whose category values are to be
+       used as elevation values in the 3-dimensional image.
+
+
+       The program will be run non-interactively if  the  user  specifies  all
+       needed  parameter  values and flag settings on the command line. Alter-
+       nately, the user can simply type dd..33dd on  the  command  line;  in  this
+       case,  the  program  will prompt the user for parameter values and flag
+       settings using the standard interface described in the manual entry for
+       _p_a_r_s_e_r.
+
+
+       Three-dimensional images can also be generated through the GRASS _d_._d_i_s_-
+       _p_l_a_y program.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ll     Display _l_i_n_e_s only, without displaying the raster base _m_a_p.
+
+       --aa     Each grid-cell is rendered using four elevation coordinates: one
+              for  each corner. By default, each corner takes the value of the
+              grid-cell to the lower right. With the -a option each corner  is
+              calculated to be an average of the four bordering cell elevation
+              values.
+
+       --nn     Show null elevations.
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              The raster map layer used to generate the color shown in the 3-d
+              output  (i.e.,  the  map whose x and y values will be displayed,
+              using the z values present in the _e_l_e_v_a_t_i_o_n map layer.)
+
+       eelleevvaattiioonn==_n_a_m_e
+              The raster map used to generate the texture  in  the  3-d  image
+              (i.e.,  the  map whose category values will become the elevation
+              values in the 3-d map displayed). This need not be an  elevation
+              map layer, although elevation is commonly used.
+              Default: elevation
+
+       ffrroomm__ccoooorrddiinnaattee==_x_,_y_,_z
+              Coordinates  of  the  viewing  point,  given  as: _n_o_r_t_h_i_n_g_,_e_a_s_t_-
+              _i_n_g_,_e_l_e_v_a_t_i_o_n.  The default _f_r_o_m___c_o_o_r_d_i_n_a_t_e value is appropriate
+              for the spearfish sample data set.
+              Default:  Calculated  at  run-time just south-west of the south-
+              west corner.
+
+       ttoo__ccoooorrddiinnaattee==_x_,_y_,_z
+              Coordinates of center of view, given as: _n_o_r_t_h_i_n_g_,_e_a_s_t_i_n_g_,_e_l_e_v_a_-
+              _t_i_o_n.   The  default  _t_o___c_o_o_r_d_i_n_a_t_e value is appropriate for the
+              spearfish sample data set.
+              Default: Calculated at run-time as the center of the image
+
+       eexxaaggggeerraattiioonn==value
+              Vertical exaggeration factor. This value is  multiplied  by  the
+              "elevation" values (category values) in the _e_l_e_v_a_t_i_o_n map layer.
+              As the vertical coordinates are exaggerated, the  elevation  (z)
+              value  of  the  center  of  view  (the  _t_o___c_o_o_r_d_i_n_a_t_e) should be
+              increased.
+              Default: 2.0
+
+       lliinneess==_v_a_l_u_e
+              North-south and east-west trending lines can be drawn on the 3-d
+              image output, to enhance the 3-d effect.  The _l_i_n_e_s value speci-
+              fies the number of rows and columns to skip  between  lines.   0
+              means  "display  no  lines".  Lines  will  be drawn in the _c_o_l_o_r
+              stated.  The user can elect to only display these lines, without
+              displaying the _m_a_p, by setting the -l flag.
+              Default: 1
+
+       ffiieelldd==_v_a_l_u_e
+              The  field  of  view  (viewing  angle)  in  the image, stated in
+              degrees.
+              Default: 30
+
+       ccoolloorr==_n_a_m_e
+              Color of vector _l_i_n_e_s drawn on the output.
+              Options: color, white, red, orange, yellow, green, blue, indigo,
+              violet, gray, black
+              Default: gray
+
+       bbooxx==_n_a_m_e
+              Color of bounding box
+              Options:             red,orange,yellow,green,blue,indigo,violet,
+              white,black,gray,brown,magenta,aqua,grey,none
+              Default: none
+
+
+
+       The resulting three-dimensional image is drawn in the active  frame  on
+       the  graphics monitor. The user should select and erase the full graph-
+       ics monitor frame before running _d_._3_d to prepare the screen for  graph-
+       ics.   Refer to the GRASS program _3_d_._v_i_e_w_._s_h for a demonstration of the
+       _d_._3_d program.
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       The interactive mode prompts for the raster map  to  be  rendered,  the
+       raster  map  to be queried for elevation information, and an optionally
+       saved set of saved viewing parameters. The user is then presented  with
+       a form in which the options can be modified.
+
+
+       It  is  suggested  that  the following procedure be used to efficiently
+       find the correct viewing  parameters.  Start  with  a  gross  grid  (by
+       default,  a  resolution is chosen which limits the total number of rows
+       and columns), display lines only, set line  colors  to  "color"  (lines
+       take  their  color  from the map), set the box color to something other
+       than "none", and use the default viewing coordinates.  Experiment  with
+       the  viewing  coordinates  until  the map is positioned in a desireable
+       configuration. When the map is lined up correctly, set the display res-
+       olution as low as you like for a final image.
+
+BBUUGGSS
+       Several  additions  to  this program have been suggested. These include
+       the following:
+
+               Border the image with a visually appealing curtain.
+
+               Add x,y,z coordinates and scale information  to  the  displayed
+              3-d image.
+
+               Provide a graphic-oriented user interface for identifying view-
+              ing parameters.
+
+               Display output more quickly by doing mathematics in integers.
+
+               Add the option of plotting vector map layers.
+
+
+SSEEEE AALLSSOO
+       _3_d_._v_i_e_w_._s_h_,
+
+       _d_._d_i_s_p_l_a_y_,
+
+       _d_._e_r_a_s_e_,
+
+       _d_._f_r_a_m_e_,
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_1_0_/_3_1 _0_8_:_4_0_:_4_7 _$
+
+
+
+GRASS 5.0                                                              d.3d(1)

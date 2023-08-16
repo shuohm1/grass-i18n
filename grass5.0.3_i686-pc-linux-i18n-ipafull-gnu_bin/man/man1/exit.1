@@ -1,0 +1,53 @@
+exit(1)                       Grass User's Manual                      exit(1)
+
+
+
+NNAAMMEE
+       _e_x_i_t  - Exits the user from the current GRASS session.
+
+SSYYNNOOPPSSIISS
+       eexxiitt
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _e_x_i_t command ends the user's current GRASS session and returns the
+       user to the directory in which he was working prior to entering  GRASS.
+       When  the  user  exits GRASS, he is asked whether he wishes to save the
+       files and data stored under  his  current  mapset,  and  (if  maps  are
+       present)  whether  the  user  wishes  to selectively remove map layers,
+       before exiting the system.  By default,  if  the  user  presses  RETURN
+       without  responding  to these questions, all maps in the user's current
+       mapset are saved.  However, because such maps can consume much  storage
+       space on the computer, the user should remove any unneeded files before
+       exiting.  (The user can also remove  data  before  attempting  to  _e_x_i_t
+       GRASS using the _g_._r_e_m_o_v_e command.)
+
+
+       Before  typing  _e_x_i_t,  the  polite  user should remember to release the
+       graphics display monitor (using the command dd..mmoonn --rr) for use by  other
+       GRASS users. Otherwise, the display device may be locked for use by the
+       user, even though the user has exited GRASS, until  another  user  runs
+       _d_._m_o_n and unlocks this monitor for others' use.
+
+
+       Each time the user re-enters GRASS, the variables described in _g_._g_i_s_e_n_v
+       are re-set. If the user wishes to change the mapset, location, or  data
+       base on which he is working (i.e., those affected by any GRASS programs
+       running during the user's current GRASS session), the  user  must  _e_x_i_t
+       GRASS and then re-enter GRASS and specify a different mapset, location,
+       and/or data base location on the GRASS start-up page. When the user re-
+       enters  GRASS,  these  variable settings (the current mapset, location,
+       and data base) are set by default to those used in the user's  previous
+       GRASS session, unless changed by the user.
+
+NNOOTTEESS
+       This  program requires no command line arguments; the user simply types
+       eexxiitt on the command line to exit GRASS.
+
+SSEEEE AALLSSOO
+       _d_._m_o_n_, _g_._g_i_s_e_n_v_, _g_._r_e_m_o_v_e
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                              exit(1)

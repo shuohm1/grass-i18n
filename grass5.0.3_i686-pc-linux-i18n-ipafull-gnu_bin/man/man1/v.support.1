@@ -1,0 +1,122 @@
+v.support(1)                  Grass User's Manual                 v.support(1)
+
+
+
+NNAAMMEE
+       vv..ssuuppppoorrtt   -  Creates  GRASS  support  files for (binary) GRASS vector
+       data.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ssuuppppoorrtt
+       vv..ssuuppppoorrtt hheellpp
+       vv..ssuuppppoorrtt [--sspprr] mmaapp==_n_a_m_e [ooppttiioonn==_n_a_m_e] [tthhrreesshhoolldd==_v_a_l_u_e] [eerrrr==_n_a_m_e]
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._s_u_p_p_o_r_t builds GRASS support files for  (binary)  GRASS  vector  data
+       files.   These  support  files  supply topology (dig_plus) and category
+       (dig_att) information that are needed by other GRASS programs (e.g., by
+       _v_._d_i_g_i_t, _v_._t_o_._r_a_s_t, etc.).
+
+
+       The program gives the user the options of:
+
+               building  topological information (the dig_plus file) needed by
+              _v_._d_i_g_i_t for the vector data file, and/or
+
+               editing the category label (dig_cats) file associated with  the
+              vector data file.
+
+
+OOPPTTIIOONNSS
+       Program parameters and flags have the following meanings.
+
+   FFllaaggss::
+       --ss     Snap nodes.  Valid only with _b_u_i_l_d option.
+
+       --pp     Prompt  user for threshold value.  Valid only with _b_u_i_l_d option.
+              This flag is designed to be used only by the  _v_._i_m_p_o_r_t  program,
+              and can usually be ignore.
+
+       --rr     Reset corners of map region from range of data values.
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name  of  binary  GRASS vector data file for which support files
+              are to be created or modified.  This map layer must exist in the
+              user's current GRASS mapset.
+
+       ooppttiioonn==_n_a_m_e
+              Build  topology  information (dig_plus file), or edit categories
+              (dig_att file) for _m_a_p.
+              Options:  _b_u_i_l_d, _e_d_i_t
+              Default:  _e_d_i_t
+
+       tthhrreesshhoolldd==_v_a_l_u_e
+              Snapping threshold value to  be  used  when  building  topology.
+              Specified value is always saved in file header.  (Note: snapping
+              is done only with _b_u_i_l_d option and --ss flag).
+
+       eerrrr==_v_a_l_u_e
+              Name of new vector binary file, where are saved all  area  edges
+              with topology problems like free ends or not closed areas.
+
+       The user can run this program non-interactively by specifying parameter
+       values (and optionally, flag settings) on the command line.
+
+
+       Alternately, the user can simply type the command vv..ssuuppppoorrtt on the com-
+       mand  line.   In  this event, the program will prompt the user to enter
+       parameter values and flag settings.
+
+
+       If the _b_u_i_l_d option is chosen, the user  may  further  specify  the  --ss
+       flag,  to  snap  nodes in the vector file.  If nodes are to be snapped,
+       the user can either:  (1) use the calculated default  threshold  (based
+       on  the  scale of vector data); (2) enter the -p flag, causing the pro-
+       gram to prompt the user for a snapping threshold value;  or (3) enter a
+       specific threshold value on the command line.
+
+
+       The  spatial  assignment of category values (found in the dig_att file)
+       is also performed during building of file topology.
+
+
+       The _e_d_i_t option allows the user to edit the category labels to be asso-
+       ciated  with  the  category  values  attached to the vector data during
+       topology building.  These labels, if created, are then used for  raster
+       map  layers  derived  from  their  vector counterparts.  The labels are
+       placed in the dig_cats directory.
+
+NNOOTTEESS
+       A dig_plus file must be created for each imported vector map before  it
+       can  be  used  in  post-GRASS 3.0 versions of _d_i_g_i_t (now referred to as
+       _v_._d_i_g_i_t).
+
+
+       Topological information for GRASS vector files can also be built  using
+       _o_p_t_i_o_n _4 of the _v_._i_m_p_o_r_t program.
+
+
+       This  program  will  convert  pre-4.0 version GRASS vector files to 4.0
+       format.
+
+
+       _v_._s_u_p_p_o_r_t creates support files only for binary vector files located in
+       the user's current mapset.
+
+SSEEEE AALLSSOO
+       _v_._b_u_i_l_d_._p_o_l_y_l_i_n_e_s, _v_._d_i_g_i_t, _v_._i_m_p_o_r_t, _v_._i_n_._a_s_c_i_i, _v_._p_r_u_n_e, _v_._t_o_._r_a_s_t
+
+AAUUTTHHOORRSS
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+       Michael Higgins, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_8_/_2_8 _1_7_:_0_6_:_3_4 _$
+
+
+
+GRASS 5.0                                                         v.support(1)

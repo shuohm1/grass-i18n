@@ -1,0 +1,97 @@
+r.clump(1)                    Grass User's Manual                   r.clump(1)
+
+
+
+NNAAMMEE
+       rr..cclluummpp   -  Recategorizes data in a raster map layer by grouping cells
+       that form physically discrete areas into unique categories.
+       _(_G_R_A_S_S Raster Program)
+
+SSYYNNOOPPSSIISS
+       rr..cclluummpp
+       rr..cclluummpp help
+       rr..cclluummpp [--qq] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [TTIITTLLEE==_"_s_t_r_i_n_g_"]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_l_u_m_p finds all areas of contiguous cell category values in the input
+       raster  map layer _n_a_m_e. It assigns a unique category value to each such
+       area ("clump") in the resulting output raster map layer _n_a_m_e.   If  the
+       user  does  not provide input and output map layer names on the command
+       line, the program will prompt the user for these names, using the stan-
+       dard parser interface (see manual entry for _p_a_r_s_e_r).  Category distinc-
+       tions in the input raster map layer are preserved.  This means that  if
+       distinct  category  values  are  adjacent,  they  will  NOT  be clumped
+       together.  (The user can run _r_._r_e_c_l_a_s_s prior to _r_._c_l_u_m_p to recategorize
+       cells and reassign cell category values.)
+
+
+
+   FFllaagg::
+       --qq     Run  quietly,  without  printing messages on program progress to
+              standard output.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing raster map layer being used for input.
+
+       oouuttppuutt==_n_a_m_e
+              Name of new raster map layer to contain program output.
+
+       TTIITTLLEE== Optional TITLE for output raster map layer, in quotes.   If  the
+              user fails to assign a TITLE for the _o_u_t_p_u_t map layer, none will
+              be assigned it.
+
+
+AALLGGOORRIITTHHMM
+       _r_._c_l_u_m_p moves a 2x2 matrix over the input raster map layer.  The  lower
+       right-hand  corner of the matrix is grouped with the cells above it, or
+       to the left of it.  (Diagonal cells are not considered.)
+
+NNOOTTEESS
+       _r_._c_l_u_m_p works properly with raster map layers that contain  only  "fat"
+       areas  (more than a single cell in width).  Linear elements (lines that
+       are a single cell wide) may or may not be clumped together depending on
+       the direction of the line -- horizontal and vertical lines of cells are
+       considered to be contiguous, but diagonal lines of cells are  not  con-
+       sidered to be contiguous and are broken up into separate clumps.
+
+
+       A random color table and other support files are generated for the _o_u_t_-
+       _p_u_t raster map layer.
+
+SSEEEE AALLSSOO
+       _r_._a_v_e_r_a_g_e
+
+       _r_._b_u_f_f_e_r
+
+       _r_._c_o_m_b_i_n_e
+
+       _r_._g_r_o_w
+
+       _r_._i_n_f_e_r
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._m_f_i_l_t_e_r
+
+       _r_._n_e_i_g_h_b_o_r_s
+
+       _r_._p_o_l_y
+
+       _r_._r_e_c_l_a_s_s
+
+       _r_._s_u_p_p_o_r_t
+
+       _r_._w_e_i_g_h_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                           r.clump(1)

@@ -1,0 +1,46 @@
+r.out.rlc(1)                  Grass User's Manual                 r.out.rlc(1)
+
+
+
+NNAAMMEE
+       rr..oouutt..rrllcc - converts a GRASS raster file to a RLC encoded image file
+
+
+
+UUssaaggee::
+       rr..oouutt..rrllcc [-v] iinnppuutt==name oouuttppuutt==name
+
+FFllaaggss::
+       -q   Run verbose
+
+
+
+PPaarraammeetteerrss::
+       input   Raster map to export
+
+
+       output   export file name
+
+
+
+
+       This  program  converts a GRASS raster file to a RLC encoded image file
+       at the pixel resolution of the CURRENTLY DEFINED REGION.  e.g., to  get
+       the resolution of the raster map, do:
+
+
+       g.region rast=[mapname]
+
+
+       before running r.out.rlc.
+
+
+
+SSEEEE AALLSSOO
+       _r_._i_n_._b_i_n_, _r_._i_n_._a_s_c_i_i _r_._o_u_t_._a_s_c_i_i _r_._i_n_._a_r_c_, _r_._o_u_t_._a_r_c
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.out.rlc(1)

@@ -1,0 +1,58 @@
+s.mask(1)                     Grass User's Manual                    s.mask(1)
+
+
+
+NNAAMMEE
+       ss..mmaasskk  - Filter a sites list with a raster mask
+
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..mmaasskk
+       ss..mmaasskk hheellpp
+       ss..mmaasskk [--rr] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e rraasstteerr==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       Use  _s_._m_a_s_k  to filter a sites list with a raster mask.  The raster can
+       be any available raster.  Sites are filtered first by the region,  then
+       by  whether the site falls in a cell with a non-NULL value.  The region
+       used for filtering is the current region by default.  However, the user
+       may  specify  that  the  raster  mask's region be used instead.  If the
+       raster mask's region is used, both it's extents and resolution are used
+       in the filtering process.
+
+
+       Upon  succesful  completion,  _s_._m_a_s_k will print out the total number of
+       sites examined and the number of sites output.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --rr     Use the raster's extents and cell resolution,  rather  than  the
+              current region settings.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The name of the existing sites list to filter.
+
+       oouuttppuutt==_n_a_m_e
+              The name of the sites list to output.
+
+       rraasstteerr==_n_a_m_e
+              The name of the raster to use as the mask.
+
+
+SSEEEE AALLSSOO
+       d.sites parser
+
+AAUUTTHHOORR
+       Eric G. Miller
+
+
+       Inspired by code supplied by Helen Mitasova and Jaro Hofierka.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_1_6 _2_2_:_2_7_:_5_7 _$
+
+
+
+GRASS 5.0                                                            s.mask(1)

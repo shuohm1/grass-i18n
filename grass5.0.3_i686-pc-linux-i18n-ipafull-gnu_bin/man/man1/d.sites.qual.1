@@ -1,0 +1,134 @@
+d.sites.qual(1)               Grass User's Manual              d.sites.qual(1)
+
+
+
+NNAAMMEE
+       _d_._s_i_t_e_s_._q_u_a_l  -  Displays  a  subset  of  a  sites  list  based on site
+       attributes (_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m)
+
+SSYYNNOOPPSSIISS
+       dd..ssiitteess..qquuaall
+
+       dd..ssiitteess..qquuaall hheellpp
+
+       dd..ssiitteess..qquuaall [[--nn]] ssiitteeffiillee=_n_a_m_e [ccoolloorr=_n_a_m_e]  [ssiizzee=_v_a_l_u_e]  [ttyyppee=_n_a_m_e]
+       [rruulleess=_n_a_m_e[,_n_a_m_e,...]]  [oouuttppuutt=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._s_i_t_e_s_._q_u_a_l displays sites from a sites file only if they match crite-
+       ria established by rruulleess.
+
+       Syntax of rule string is:
+       where D, C, or A specify Dimension, Category, or Attribute and RANGE is
+       one of:
+
+       examples:
+
+                DD33..110000--220000      _d_i_m_e_n_s_i_o_n _3 _i_n _r_a_n_g_e _1_0_0 _t_o _2_0_0
+                CC..eeqq77..22         _c_a_t_e_g_o_r_y _e_q_u_a_l _7_._2 _(_n_o_t_e _n_o _n_u_m_b_e_r _a_f_t_e_r _C_)
+                AA22..ggee55000000       _2_n_d _d_o_u_b_l_e _a_t_t_r_i_b_u_t_e _>_= _5_0_0_0
+                AA11..--22..00----11..00    _1_s_t _d_o_u_b_l_e _a_t_t_r_i_b_u_t_e _i_n _r_a_n_g_e _-_2_._0 _t_o _-_1_._0
+       If an output filename is provided, a new sites file containing the sub-
+       set
+       defined by the command will be written in  the  user's  mapset.  Header
+       information
+       will  be  copied from the original sites file and the d.sites.qual com-
+       mand
+       and current window will be written as comments to the  new  file.  Note
+       that
+       only  those  qualifying  sites within the current window are written to
+       the
+       new file. The --nn flag is useful when calling d.sites.qual from a
+       script, as the number of qualifying sites may be needed to further pro-
+       cess
+       the file or report to the user in an interface, as in d.siter.
+
+
+OOPPTTIIOONNSS
+       This program can be run non-interactively or interactively. If the user
+       gives the name of a GRASS site_lists  map  and  (optionally)  specifies
+       other
+       parameter values on the command line the program will be run non-inter-
+       actively;
+       any parameter values left unspecified are set to their  default  values
+       (see
+       below). Alternately, the user can type simply  dd..ssiitteess..qquuaall on the com-
+       mand
+       line; in this case, the program will prompt the user for parameter val-
+       ues
+       using the standard GRASS parser interface described in the manual entry
+       for parser.
+
+
+       FFllaaggss
+
+
+       --nn
+
+       Output number of sites displayed
+
+
+
+       PPaarraammeetteerrss
+
+
+       ssiitteeffiillee
+
+       Name of a site file
+
+       ccoolloorr
+
+       Sets the current color to that stated:
+
+       options: red, orange, yellow, green, blue, indigo, white, black, brown,
+       magenta, aqua, gray, grey
+
+       default: gray
+
+
+
+       ssiizzee
+
+       Size, in pixels, in which the icon is to be drawn
+
+       options: 0-1000
+
+       default: 5
+
+
+       ttyyppee
+
+       Specify the type of the icon
+
+       options: x, diamond, box, +
+
+       default: x
+
+
+
+       rruulleess
+
+       qualifying rules for display: [D|C|A]#.RANGE
+
+       where RANGE is one of #-#, ge#, le#, eq#
+
+
+
+       oouuttppuutt
+
+       Name of a site file to output drawn sites
+
+
+SSEEEE AALLSSOO
+       d.siter
+
+
+AAUUTTHHOORR
+       Bill Brown, UI GMS Laboratory
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                      d.sites.qual(1)

@@ -1,0 +1,66 @@
+d.rhumbline(1)                Grass User's Manual               d.rhumbline(1)
+
+
+
+NNAAMMEE
+       dd..rrhhuummbblliinnee   -  Displays  the  rhumbline  joining  two  user-specified
+       points, in the active frame on the user's graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..rrhhuummbblliinnee
+       dd..rrhhuummbblliinnee hheellpp
+       dd..rrhhuummbblliinnee ccoooorr==_l_o_n_1_,_l_a_t_1_,_l_o_n_2_,_l_a_t_2 [llccoolloorr==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       A rhumbline is a line following a constant angle of the compass  (i.e.,
+       a  line  of  constant  direction).   There are 32 points on the compass
+       (points are roughly 11 degrees 15 minutes apart).  _d_._r_h_u_m_b_l_i_n_e displays
+       the rhumbline joining any two user-specified points in the active frame
+       on the user's graphics monitor.  The named  coordinate  locations  must
+       fall within the boundaries of the user's current geographic region.
+
+
+       The  user  can  run  this  program either interactively or non-interac-
+       tively.  If the user simply types dd..rrhhuummbblliinnee on the command line with-
+       out  specifying  parameter  values, the mouse will be activated and the
+       user will be asked to use the mouse to indicate the  two  endpoints  of
+       the  rhumbline.   The  rhumbline  is  then  drawn  in the default color
+       (white). The program also outputs the coordinate locations of  the  two
+       endpoints  on  the  user's  terminal and the number associated with the
+       mouse button depressed by the user in a  format  useful  for  input  to
+       other programs.
+
+
+       Alternately,  the  user  can  specify  the  starting  and ending longi-
+       tude/latitude coordinates of the rhumbline and (optionally)  the  color
+       in  which  the  rhumbline  will be displayed; in this case, the program
+       will run non-interactively.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ccoooorr==_l_o_n_1_,_l_a_t_1_,_l_o_n_2_,_l_a_t_2
+              Starting and ending coordinates of the  rhumblines  to  be  dis-
+              played, given as longitudes and latitudes.
+
+       llccoolloorr==_n_a_m_e
+              Rhumbline color.
+              Options: red, orange, yellow, green, blue, magenta, indigo, vio-
+              let, gray, white, black
+              Default: white
+
+
+NNOOTTEESS
+       This program works only with longitude-latitude data bases.
+
+SSEEEE AALLSSOO
+       _d_._g_e_o_d_e_s_i_c
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       d.rhumbline(1)

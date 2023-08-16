@@ -1,0 +1,101 @@
+r.line(1)                     Grass User's Manual                    r.line(1)
+
+
+
+NNAAMMEE
+       rr..lliinnee   - Creates a new binary GRASS vector (_v_._d_i_g_i_t) file by extract-
+       ing linear features from a thinned raster file.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..lliinnee
+       rr..lliinnee hheellpp
+       rr..lliinnee iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ttyyppee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._l_i_n_e scans the named  raster  map  layer  (iinnppuutt==_n_a_m_e)  and  extracts
+       thinned linear features into the named vector file (oouuttppuutt==_n_a_m_e).
+
+OOPPTTIIOONNSS
+       The  user  can  run  this  program either non-interactively or interac-
+       tively.  The program will be run non-interactively if the  user  speci-
+       fies  program  arguments  on  the  command line, using the form: rr..lliinnee
+       iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ttyyppee==_n_a_m_e]
+
+       If the user specifies input raster and output vector map names  on  the
+       command  line,  any other parameter values left unspecified on the com-
+       mand line will be set to their  default  values  (see  below).   Alter-
+       nately,  the  user  can simply type rr..lliinnee on the command line, without
+       program arguments.  In this case, the user will be prompted for parame-
+       ter values using the standard GRASS _p_a_r_s_e_r interface.
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of existing raster file to be used as input.
+
+       oouuttppuutt==_n_a_m_e
+              Name of new vector file to be output.
+
+       ttyyppee==_n_a_m_e
+              Line type of the extracted vectors; either _l_i_n_e or _a_r_e_a.  Speci-
+              fying lliinnee will type extracted vectors as linear edges.   Speci-
+              fying aarreeaa will type extracted vectors as area edges.
+              Options:  _l_i_n_e or _a_r_e_a
+              Default:  ttyyppee==lliinnee
+
+
+
+       _r_._l_i_n_e assumes that the _i_n_p_u_t map has been thinned using _r_._t_h_i_n.
+
+NNOOTTEESS
+       _r_._l_i_n_e  extracts  vectors (aka, "arcs") from a raster file.  These arcs
+       may represent linear features (like roads or streams), or may represent
+       area  edge features (like political boundaries, or soil mapping units).
+       The attribute _t_y_p_e option allows the  user  to  establish  the  use  of
+       either linear or area edge attributes for all of the extracted vectors.
+
+
+       _r_._p_o_l_y may be used to extract  vectors  that  represent  area  features
+       (like soil mapping units, elevation ranges, etc.) from a raster file.
+
+
+       The  user must run _v_._s_u_p_p_o_r_t on the resultant vector (_v_._d_i_g_i_t) files to
+       build the _d_i_g___p_l_u_s information.
+
+
+       _r_._t_h_i_n and _r_._l_i_n_e may create excessive nodes at every junction, and may
+       create  small spurs or "dangling lines" during the thinning and vector-
+       ization process.  These excessive nodes and spurs may be removed  using
+       _v_._t_r_i_m.
+
+BBUUGGSS
+       The  input  raster  file  MUST be thinned by _r_._t_h_i_n; if not, _r_._l_i_n_e may
+       crash.
+
+SSEEEE AALLSSOO
+       _r_._p_o_l_y
+
+       _r_._t_h_i_n
+
+       _v_._d_i_g_i_t
+
+       _v_._s_u_p_p_o_r_t
+
+       _v_._t_r_i_m
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Mike Baba
+
+       DBA Systems, Inc.
+
+       10560 Arrowhead Drive
+
+       Fairfax, Virginia 22030
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            r.line(1)

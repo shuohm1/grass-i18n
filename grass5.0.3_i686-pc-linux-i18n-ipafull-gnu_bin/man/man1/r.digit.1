@@ -1,0 +1,66 @@
+r.digit(1)                    Grass User's Manual                   r.digit(1)
+
+
+
+NNAAMMEE
+       rr..ddiiggiitt  -  Interactive tool used to draw and save vector features on a
+       graphics monitor using a pointing device (mouse)
+
+SSYYNNOOPPSSIISS
+       rr..ddiiggiitt
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS tool _r_._d_i_g_i_t provides the user with  a  way  to  draw  lines,
+       areas, and circles on a monitor screen, and to save these features in a
+       cell file.  Lines, areas, and circles are to be drawn using a  pointing
+       device  (mouse).   A  mouse  button  menu indicates the consequences of
+       pressing each mouse button.  The user is requested to enter  the  cate-
+       gory  number  associated  with  the  line, area, or circle subsequently
+       drawn by the user.  Lines, areas, and circles are defined by the series
+       of points marked by the user inside the map window.  _r_._d_i_g_i_t will close
+       areas when the user has not.  By drawing a series of such features, the
+       user can repair maps, identify areas of interest, or simply draw graph-
+       ics for advertisement.  When drawing is completed, a raster  map  based
+       on  the user's instructions is generated.  It is available for use as a
+       mask, in analyses, and for display.
+
+
+       Digitizing is done in a "polygon" method.  Each area  is  circumscribed
+       completely.   Two or more areas and/or lines might define a single part
+       of a map.  Each part of the map, however, is  assigned  only  the  LAST
+       area or line which covered it.
+
+   TTHHEE PPRROOCCEESSSS::
+              Choose to define an area or line, quit, or finish.  If you quit,
+              the session exits with nothing created.  If you choose to finish
+              (_d_o_n_e), you will be prompted for a new map name;  the new map is
+              then created.
+
+              If you choose to make an area or line you must identify the cat-
+              egory number for that area or line.
+
+              Using  the  mouse  trace  the line or circumscribe the area; or,
+              finish (go to Step 1).
+
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t Highly interactive tool for digitizing, editing,  and  labeling
+       vector data
+
+
+       _d_._d_i_s_p_l_a_y Tool for displaying and producing maps
+
+
+       _d_._m_a_p_g_r_a_p_h Draws simple graphics on a map
+
+
+       _r_._i_n_._p_o_l_y Tool for importing "polygon" data to raster format
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                           r.digit(1)

@@ -1,0 +1,66 @@
+r.dma2ll.sh(1)                Grass User's Manual               r.dma2ll.sh(1)
+
+
+
+NNAAMMEE
+       rr..ddmmaa22llll..sshh   -  Import USGS 1:250,000 DEM files (DMA formatted) into a
+       lat-lon region
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       rr..ddmmaa22llll..sshh  _d_e_m___f_i_l_e _r_a_s_t_e_r___n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._d_m_a_2_l_l_._s_h is a UNIX Bourne shell to ease importing  of  DMA-formatted
+       USGS 1:250,000-scale Digital Elevation Models  (DEM) data into a raster
+       map in a lat-lon database.  r.dma2ll.sh extracts the  boundary  coordi-
+       nates from the DEM file automatically.
+
+OOPPTTIIOONNSS
+       None.
+
+   PPaarraammeetteerrss::
+       ddeemm__ffiillee
+              The name of the DMA-formatted DEM file to be imported.
+
+       rraasstteerr__nnaammee
+              The  name  of  the  resulting raster map.  The new raster map is
+              created in the currently selected mapset and database.
+
+
+NNOOTTEESS
+       Little error checking is performed.  A temporary file  is  created  and
+       deleted  during  import.  If $$TTMMPPDDIIRR is set, the temporary file will be
+       created in the directory specified.  Otherwise, the temporary  file  is
+       created in //ttmmpp.
+
+
+       Environment  variables  GGIISSBBAASSEE  , GGIISSDDBBAASSEE , LLOOCCAATTIIOONN__NNAAMMEE  and MMAAPPSSEETT
+       are used to specify the GRASS database, location, and mapset.
+
+
+       Standard UNIX programs _d_d , _s_e_d  and _a_w_k are assumed.
+
+FFIILLEESS
+       DMA-formatted DEM data files can be obtained from:
+       _h_t_t_p_:_/_/_e_d_c_w_w_w_._c_r_._u_s_g_s_._g_o_v_/_d_o_c_/_e_d_c_h_o_m_e_/_n_d_c_d_b_/_n_d_c_d_b_._h_t_m_l
+       _h_t_t_p_:_/_/_e_d_c_f_t_p_._c_r_._u_s_g_s_._g_o_v_/_p_u_b_/_d_a_t_a_/_D_E_M_/_2_5_0_/
+       _f_t_p_:_/_/_e_d_c_f_t_p_._c_r_._u_s_g_s_._g_o_v_/_p_u_b_/_d_a_t_a_/_D_E_M_/_2_5_0_/
+
+SSEEEE AALLSSOO
+       _m_._d_m_a_U_S_G_S_r_e_a_d
+
+       _m_._r_o_t_9_0
+
+       _m_._i_n_._b_i_n
+
+AAUUTTHHOORR
+       Tom Poindexter, March, 1999
+
+       _t_p_o_i_n_d_e_x_@_n_y_x_._n_e_t
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                       r.dma2ll.sh(1)

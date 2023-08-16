@@ -1,0 +1,54 @@
+g.tempfile(1)                 Grass User's Manual                g.tempfile(1)
+
+
+
+NNAAMMEE
+       gg..tteemmppffiillee  - Creates a temporary file and prints the file name
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..tteemmppffiillee help
+       gg..tteemmppffiillee ppiidd==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._t_e_m_p_f_i_l_e  is designed for shell scripts that need to use large tempo-
+       rary files.  GRASS provides a mechanism for temporary files  that  does
+       not  depend on /tmp. GRASS temporary files are created in the data base
+       with the assumption that there will be enough space under the data base
+       for  large files.  GRASS periodically removes temporary files that have
+       been left behind by programs that failed to remove them  before  termi-
+       nating.
+
+
+       _g_._t_e_m_p_f_i_l_e  creates  an  unique  file  and prints the name. The user is
+       required to provide a process-id which will be used as part of the name
+       of  the  file.  Most Unix shells provide a way to get the process id of
+       the current shell.  For /bin/sh and /bin/csh this is $$.  It is  recom-
+       mended that $$ be specified as the process-id for _g_._t_e_m_p_f_i_l_e.
+
+EEXXAAMMPPLLEE
+       For /bin/sh scripts the following syntax should be used:
+                 temp1=`g.tempfile pid=$$`
+                 temp2=`g.tempfile pid=$$`
+
+       For /bin/csh scripts, the following can be used:
+                 set temp1=`g.tempfile pid=$$`
+                 set temp2=`g.tempfile pid=$$`
+
+
+NNOOTTEESS
+       Each  call  to  _g_._t_e_m_p_f_i_l_e  creates  a  different  (i.e.  unique) name.
+       Although GRASS does eventually get around to  removing  tempfiles  that
+       have  been  left  behind,  the  programmer  should make every effort to
+       remove these files. They often get large and take up disk space. If you
+       write  /bin/sh  scripts,  learn to use the /bin/sh _t_r_a_p command. If you
+       write /bin/csh scripts, learn to use the /bin/csh _o_n_i_n_t_r command.
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                        g.tempfile(1)

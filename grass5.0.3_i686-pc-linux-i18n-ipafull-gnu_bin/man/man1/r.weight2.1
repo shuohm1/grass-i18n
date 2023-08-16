@@ -1,0 +1,104 @@
+r.weight2(1)                  Grass User's Manual                 r.weight2(1)
+
+
+
+NNAAMMEE
+        rr..wweeiigghhtt22  - Weighted overlay raster map layer analysis program.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+        rr..wweeiigghhtt22 [[_o_u_t_p_u_t] [_a_c_t_i_o_n] [_c_o_l_o_r]
+        rr..wweeiigghhtt22 [oouuttppuutt==_o_p_t_i_o_n] [aaccttiioonn==_o_p_t_i_o_n] [ccoolloorr==_o_p_t_i_o_n]
+
+DDEESSCCRRIIPPTTIIOONN
+         _r_._w_e_i_g_h_t_2  is the non-interactive version of _r_._w_e_i_g_h_t.  Both programs
+       allow the user to assign numeric values (i.e., "weights") to individual
+       category  values within raster map layers.  These weights are then dis-
+       tributed locationally throughout a raster map layer based on  the  dis-
+       tribution  of  the categories with which they are associated.  The user
+       can weight the categories of several raster map layers in a data  base.
+       Such weighted raster map layers can then be overlain.
+        _r_._w_e_i_g_h_t_2  will  combine  weights  in  the overlain map layers by cell
+       location.
+
+
+       A resulting output raster map layer  depicts  the  combination  of  map
+       layer  weights  across a landscape.  These values represent a hierarchy
+       of suitability  for  some  user-defined  purpose.   To  obtain  a  more
+       detailed description, see the manual entry for _r_._w_e_i_g_h_t .
+       _O_u_t_p_u_t raster map must be specified     (no default)
+       _A_c_t_i_o_n must be either (_a_d_d or _m_u_l_t)     (default: add)
+       _C_o_l_o_r  table  for the new raster map (grey | wave | ramp)     (default:
+       grey)
+
+       Once the  _r_._w_e_i_g_h_t_2 command line is entered,  the  user  will  need  to
+       enter  a  raster  map layer name and assign numeric values to its cate-
+       gories.  Values can be assigned to the categories of up to  six  raster
+       map  layers  within  _r_._w_e_i_g_h_t_2 in a single analysis.  Help is available
+       to the user by typing  rr..wweeiigghhtt22 hheellpp.
+
+EEXXAAMMPPLLEE
+       The following is the format in which data should be entered to
+        _r_._w_e_i_g_h_t_2:  Raster_layer1  [Reclass  rule  1a]   [Reclass   rule   1b]
+       Raster_layer2 [Reclass rule 2a] etc.  end
+
+       Raster_layer:   _r_a_s_t_e_r___m_a_p  OR  "_r_a_s_t_e_r___m_a_p  _i_n  _m_a_p_s_e_t"  Reclass rule:
+       (example)  1 = 5 OR 20 thru 50 = 10 (must leave spaces between the cat-
+       egory, =, and value entries)
+
+
+       Example: (the prompts are shown in bold) >>   r.weight2 sites add wave >>
+       soils
+
+
+       ssooiillss>>  1 thru 20 = 5 ssooiillss>>  21 thru 30 = 10 ssooiillss>>  landcover
+
+
+       llaannddccoovveerr>>  1 = 2 llaannddccoovveerr>>  2 = 4 llaannddccoovveerr>>  3 thru 8 = 6 llaannddccoovveerr>>
+       end
+
+
+
+
+
+NNOOTTEESS
+       The user must be knowledgeable about _r_._w_e_i_g_h_t
+        to  run _r_._w_e_i_g_h_t_2.  _r_._w_e_i_g_h_t_2 does not provide the user with a listing
+       of raster map layers or  map  layer  categories.   Users  unsure  about
+       raster map layer names should run the GRASS program _g_._l_i_s_t .  To obtain
+       a listing of the categories for a raster map layer run _r_._r_e_p_o_r_t .
+
+
+       The user can create an input file containing the  data  needed  to  run
+       _r_._w_e_i_g_h_t_2.   This file must list the raster map layer and reclass rules
+       in the format shown in the above example.   The  prompts  must  not  be
+       included in the file.  This file can be directed into  _r_._w_e_i_g_h_t_2 at the
+       command line by typing
+
+       rr..wweeiigghhtt22 oouuttppuutt aaccttiioonn ccoolloorr <<  iinnppuutt__ffiillee
+
+
+BBUUGGSS
+       When entering data for the reclass rules, if the user does not  include
+       spaces between the category, =, and value, the program will assume that
+       the entry is a raster map layer.
+
+SSEEEE AALLSSOO
+       _g_._l_i_s_t
+
+       _r_._c_o_m_b_i_n_e
+
+       _r_._i_n_f_e_r
+
+       _r_._r_e_p_o_r_t
+
+       _r_._w_e_i_g_h_t
+
+AAUUTTHHOORR
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                         r.weight2(1)

@@ -1,0 +1,165 @@
+r.buffer(1)                   Grass User's Manual                  r.buffer(1)
+
+
+
+NNAAMMEE
+       rr..bbuuffffeerr  - Creates a raster map layer showing buffer zones surrounding
+       cells that contain non-NULL category values.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..bbuuffffeerr
+       rr..bbuuffffeerr hheellpp
+       rr..bbuuffffeerr  [--qq]   iinnppuutt==_n_a_m_e   oouuttppuutt==_n_a_m_e   ddiissttaanncceess==_v_a_l_u_e[,_v_a_l_u_e,...]
+       [uunniittss==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._b_u_f_f_e_r  creates  a  new raster map layer showing buffer (a.k.a. "dis-
+       tance" or "proximity") zones around all  cells  that  contain  non-NULL
+       category  values  in  an  existing  raster map layer.  The distances of
+       buffer zones from cells with non-zero category values are  user-chosen.
+       Suppose, for example, that you want to place buffer zones around roads.
+       This program could create the raster map layer shown below on the right
+       based  on  road  information contained in the raster map layer shown on
+       the left.
+             000000000000000000000000 222233333333333333444444
+             111000000000000000000000 111222222222223333333333
+             000111111111100000000000 222111111111122223333333
+             000000001000011100000000 332222221222211122222222
+             000000001000000011111111 333333321233222211111111
+             000000001000000000000000 433333321233333222222222
+             000000001000000000000000 444443321233333333333333
+             000000001000000000000000 444443321233443333333333
+             000000001000000000000000 444443321233444444444444
+             Category 0: No roads
+             Category 1: Road location
+             Category 2: Buffer Zone 1 around roads
+             Category 3: Buffer Zone 2 around roads
+             Category 4: Buffer Zone 3 around roads
+
+
+IINNTTEERRAACCTTIIVVEE PPRROOGGRRAAMM UUSSEE
+       The user can run the program interactively by  simply  typing  rr..bbuuffffeerr
+       without  program  arguments  on  the  command  line.   The program then
+       prompts the user for parameter values.
+
+              You are requested to identify the existing raster map layer from
+              which  distance-from calculations shall be based, and a name (of
+              your choice) for the new raster map layer which will contain the
+              results.
+
+              Then,  identify  the  units of measurement in which buffer (dis-
+              tance) zones are to be calculated,  and  the  distance  of  each
+              buffer  zone from each non-NULL cell in the _i_n_p_u_t map.  The user
+              has the option of identifying up to 60  continuous  zones.   The
+              zones  are  identified  by  specifying  the  upper limit of each
+              desired zone (_r_._b_u_f_f_e_r assumes that 0 is  the  starting  point).
+              ("Continuous"  is  used  in  the sense that each category zone's
+              lower value is the previous zone's upper value. The first buffer
+              zone always has distance 0 as its lower bound.) Distances can be
+              entered in one of four  units:  _m_e_t_e_r_s_,  _k_i_l_o_m_e_t_e_r_s_,  _f_e_e_t,  and
+              _m_i_l_e_s.
+
+              Last,  calculate  distances from cells containing user-specified
+              category values, using the "fromcell" method.   [The  "fromcell"
+              method  goes  to  each  cell that contains a category value from
+              which distances are to be calculated, and  draws  the  requested
+              distance  rings  around  them.  This method works very fast when
+              there are few cells containing the category values of  interest,
+              but  works  slowly  when there are numerous cells containing the
+              category values of interest spread throughout the area.]
+
+
+NNOONN--IINNTTEERRAACCTTIIVVEE PPRROOGGRRAAMM UUSSEE
+       The user can run _r_._b_u_f_f_e_r specifying all parameter values on  the  com-
+       mand line, using the form:
+
+
+       rr..bbuuffffeerr [--qq] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e ddiissttaanncceess==_v_a_l_u_e[,_v_a_l_u_e,...]
+
+
+
+
+   FFllaaggss::
+       --qq     Run quietly
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The name of an existing raster map layer whose non-NULL category
+              value cells are to be surrounded by buffer zones in  the  _o_u_t_p_u_t
+              map.
+
+       oouuttppuutt==_n_a_m_e
+              The name assigned to the new raster map layer containing program
+              output.  The _o_u_t_p_u_t map will contain buffer zones at  the  user-
+              specified  _d_i_s_t_a_n_c_e_s  from  non-NULL  category value cell in the
+              _i_n_p_u_t map.
+
+       ddiissttaanncceess==_v_a_l_u_e[,_v_a_l_u_e,...]
+              The distance of each buffer zone from cells having non-NULL cat-
+              egory values in the _i_n_p_u_t map.
+
+       uunniittss==_n_a_m_e
+              The  unit of measurement in which distance zone values are to be
+              calculated. Possible choices for _n_a_m_e are:  _m_e_t_e_r_s,  _k_i_l_o_m_e_t_e_r_s,
+              _f_e_e_t,  and _m_i_l_e_s.  The default units used, if unspecified by the
+              user, are _m_e_t_e_r_s.
+
+
+EEXXAAMMPPLLEE
+       In the example below, the buffer zones would be (in the  default  units
+       of meters):  0-100, 101-200, 201-300, 301-400 and 401-500.
+
+        Format:
+              rr..bbuuffffeerr [--qq] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e ddiissttaanncceess==_v_a_l_u_e[,_v_a_l_u_e,...]
+
+        Example:
+              rr..bbuuffffeerr        iinnppuutt==roads        oouuttppuutt==roads.buf         ddiiss--
+              ttaanncceess==100,200,300,400,500 uunniittss==meters
+
+
+        Result:
+              rr..ccaattss iinnppuutt==roads.buf
+                    1       distances calculated from these locations
+                    2       0-100 meters
+                    3       100-200 meters
+                    4       200-300 meters
+                    5       300-400 meters
+                    6       400-500 meters
+
+
+NNOOTTEESS
+       _r_._b_u_f_f_e_r measures distances from center of cell to center of cell using
+       Euclidean distance measure for planimetric  databases  (like  UTM)  and
+       using  ellipsoidal  geodesic  distance  measure  for latitude/longitude
+       databases.
+
+
+       _r_._b_u_f_f_e_r calculates distance zones from all cells having non-NULL cate-
+       gory  values  in  the  _i_n_p_u_t map.  If the user wishes to calculate dis-
+       tances from only selected _i_n_p_u_t map layer  category  values,  the  user
+       should  run  (for  example) _r_._r_e_c_l_a_s_s prior to _r_._b_u_f_f_e_r, to reclass all
+       categories from which distance zones are not desired to  be  calculated
+       into category NULL.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._r_e_c_l_a_s_s
+
+AAUUTTHHOORRSS
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.buffer(1)

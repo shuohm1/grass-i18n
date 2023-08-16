@@ -1,0 +1,13 @@
+interface_build {
+    {r.contour} 1
+    {Generates vector contour lines from GRASS raster map.}
+    {entry input {Input raster map:} 0 raster}
+    {entry output {Output vector map:} 0 vector}
+    {entry step {Increment between contour level (value):} 0 ""}
+    {entry levels {option: List of contour levels (value[,value,...]):} 0 ""}
+    {entry minlevel {option: Minimum contour level (value):} 0 ""}
+    {entry maxlevel {option: Maximum contour level (value):} 0 ""}
+    {entry cut {option: Minimum number of points for a contour line (default=0 -> no limit):} 0 ""}
+    {checkbox -n {Suppress single crossing error messages} "" -n}
+    {checkbox -q {Run quietly.} "" -q}
+}

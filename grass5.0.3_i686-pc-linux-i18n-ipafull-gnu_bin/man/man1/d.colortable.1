@@ -1,0 +1,117 @@
+d.colortable(1)               Grass User's Manual              d.colortable(1)
+
+
+
+NNAAMMEE
+       dd..ccoolloorrttaabbllee  - To display the color table associated with a raster map
+       layer.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ccoolloorrttaabbllee
+       dd..ccoolloorrttaabbllee hheellpp
+       dd..ccoolloorrttaabbllee mmaapp==_n_a_m_e [ccoolloorr==_n_a_m_e] [lliinneess==_v_a_l_u_e] [ccoollss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS program _d_._c_o_l_o_r_t_a_b_l_e is used to display the color table asso-
+       ciated with a raster map layer in the active frame on the graphics mon-
+       itor. The map _n_a_m_e should be an  available  raster  map  layer  in  the
+       user's current mapset search path and location.
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name  of  a raster map layer in the user's current mapset search
+              path whose color table is to be displayed.
+
+       ccoolloorr==_n_a_m_e
+              Color of the lines separating the colors of the color table.
+              Options: red, orange, yellow, green, blue, indigo, violet, gray,
+              white, and black.
+              Default: _w_h_i_t_e
+
+       lliinneess==_v_a_l_u_e
+              Number of lines to appear in the color table.
+              Options: 1 - 1000
+
+       ccoollss==_v_a_l_u_e
+              Number of columns to appear in the color table.
+              Options:  1  - 1000 If the _v_a_l_u_es of both _l_i_n_e_s and _c_o_l_s are not
+              specified by the user, _d_._c_o_l_o_r_t_a_b_l_e  divides  the  active  frame
+              equally  among  the  number  of  categories present in the named
+              raster map layer. If one option is specified, the other is auto-
+              matically set to accommodate all categories.  If both are speci-
+              fied, as many categories as possible are displayed.
+
+
+
+       The user can specify all needed parameters on the  command  line  using
+       the form:
+
+
+       dd..ccoolloorrttaabbllee mmaapp==_n_a_m_e [ccoolloorr==_n_a_m_e] [lliinneess==_v_a_l_u_e] [ccoollss==_v_a_l_u_e]
+
+
+
+       If  the  user  specifies the name of a map on the command line but does
+       not specify the values of other parameters,  parameter  default  values
+       will  be  used.   Alternately, if the user types simply dd..ccoolloorrttaabbllee on
+       the command line without any program arguments, the program will prompt
+       the  user for parameter settings using the standard GRASS parser inter-
+       face described in the manual entry for _p_a_r_s_e_r.
+
+EEXXAAMMPPLLEE
+       The  user  running  the  command:  dd..ccoolloorrttaabbllee  mmaapp==_s_o_i_l_s  [ccoolloorr==_r_e_d]
+       [lliinneess==_1] [ccoollss==_3]
+
+       would  see the active graphics frame divided into three columns extend-
+       ing the full frame height. The lines dividing the color  table  associ-
+       ated with the _s_o_i_l_s map would be displayed in red.  The user would see,
+       at most, only three of the colors from the _s_o_i_l_s color table  displayed
+       in  the  active  frame  (because  the user requested that this frame be
+       divided into three sections).
+
+NNOOTTEESS
+       If the user wishes to display the entire color table associated with  a
+       map,  the  user  should  either  stipulate a number of lines (rows) and
+       columns (cols) sufficient to accommodate the number  of  categories  in
+       the map's color table, or fail to assign values to one or both of _l_i_n_e_s
+       and/or _c_o_l_s.  If the user runs _d_._c_o_l_o_r_t_a_b_l_e using the default number of
+       lines  and  columns  (the full graphics frame), all categories from the
+       map's color table will be displayed. However, if the user requests that
+       the  color  table associated with a map which has 10 data categories be
+       displayed in a graphics frame with only 3 lines (rows) and 2 columns (a
+       total  of  six  cells), only six of the ten map categories will be dis-
+       played.
+
+
+       The user should run the command dd..ccoolloorrmmooddee mmooddee==float  before  running
+       _d_._c_o_l_o_r_t_a_b_l_e, for accurate display of the map's color table.
+
+
+       The  user  should  run the GRASS program _d_._e_r_a_s_e between runs of _d_._c_o_l_-
+       _o_r_t_a_b_l_e to avoid confusion.
+
+SSEEEE AALLSSOO
+       _d_._c_o_l_o_r_m_o_d_e
+
+       _d_._c_o_l_o_r_s
+
+       _d_._d_i_s_p_l_a_y
+
+       _d_._e_r_a_s_e
+
+       _d_._r_a_s_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_2 _$
+
+
+
+GRASS 5.0                                                      d.colortable(1)

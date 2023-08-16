@@ -1,0 +1,81 @@
+i.pca(1)                      Grass User's Manual                     i.pca(1)
+
+
+
+NNAAMMEE
+       ii..ppccaa  - Principal components analysis (pca) program for image process-
+       ing.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ppccaa
+       ii..ppccaa hheellpp
+       ii..ppccaa iinnppuutt==_n_a_m_e_,_n_a_m_e[_,_n_a_m_e_,_n_a_m_e,...]  oouuttppuutt==_n_a_m_e rreessccaallee==_m_i_n_,_m_a_x
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._p_c_a is an image processing program based on the algorithm provided by
+       Vali (1990), that processes n (2 >= n) input raster map layers and pro-
+       duces n output raster map layers containing the principal components of
+       the  input data in decreasing order of variance ("contrast").  The out-
+       put raster map layers are assigned names with .1, .2, ... .n  suffixes.
+       The   current  geographic  region  definition  and  mask  settings  are
+       respected when reading the input raster map layers.  When  the  rescale
+       option is used, the output files are rescaled to fit the min,max range.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e_,_n_a_m_e[_,_n_a_m_e_,_n_a_m_e,...]
+              Name of two or more input raster map layers.
+
+       oouuttppuutt==_n_a_m_e
+              The output raster map layer name to which  suffixes  are  added.
+              Each  output  raster  map  layer is assigned this user-specified
+              _n_a_m_e with a numerical (.1, .2, ...
+
+       rreessccaallee==_m_i_n_,_m_a_x
+              The  optional  output  category  range.  (Default:   0,255)   If
+              rescale=0,0,  no rescaling is performed on output files.
+
+
+NNOOTTEESS
+       Richards  (1986)  gives  a good example of the application of principal
+       components analysis (pca) to a time  series  of  LANDSAT  images  of  a
+       burned region in Australia.
+
+SSEEEE AALLSSOO
+       Richards, John A., RReemmoottee SSeennssiinngg DDiiggiittaall IImmaaggee AAnnaallyyssiiss, Springer-Ver-
+       lag, 1986.
+
+
+       Vali, Ali R., Personal communication, Space Research Center, University
+       of Texas, Austin, 1990.
+
+
+       _i_._c_c_a
+
+       _i_._c_l_a_s_s
+
+       _i_._f_f_t
+
+       _i_._i_f_f_t
+
+       _m_._e_i_g_e_n_s_y_s_t_e_m
+
+       _r_._c_o_v_a_r
+
+       _r_._m_a_p_c_a_l_c
+
+AAUUTTHHOORR
+       David Satnik, GIS Laboratory,
+
+
+       Major modifications for GRASS 4.1 were made by
+
+       Olga Waupotitsch and Michael Shapiro, U.S.Army Construction Engineering
+       Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                             i.pca(1)

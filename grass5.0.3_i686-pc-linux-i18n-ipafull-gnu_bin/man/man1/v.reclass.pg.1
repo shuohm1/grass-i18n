@@ -1,0 +1,113 @@
+v.reclass.pg(1)               Grass User's Manual              v.reclass.pg(1)
+
+
+
+NNAAMMEE
+       _v_._r_e_c_l_a_s_s_._p_g  -  Generate  new  vector map layer derived from attribute
+       data in the currently selected database. (GRASS-RDBMS Vector  Interface
+       Program)
+
+SSYYNNOOPPSSIISS
+       vv..rreeccllaassss..ppgg
+
+       vv..rreeccllaassss..ppgg hheellpp
+
+       vv..rreeccllaassss..ppgg  [--dd]]   iinnppuutt=name kkeeyy=name ttaabb=name ccooll=name [wwhheerree=name]
+       [oouuttppuutt=name] ttyyppee=name
+
+       vv..rreeccllaassss..ppgg [[--ssdd]] ssqqll=file iinnppuutt=name [oouuttppuutt=name] ttyyppee=name
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._r_e_c_l_a_s_s_._p_g reclasses vector maps according to the SELECT  query.  The
+       input map may be of vector area, line or vector site type, resulting in
+       the reclass map of the same type.
+
+       The sql file if chosen to input contains a single  line  like:  'select
+       key_col, reclass_col from info_tab [where _c_l_a_u_s_e]'.
+
+       The  users needs to either input two names of the columns interactively
+       or feed them from the input sql file. The first name is the old map key
+       column,  the  second  one  is  the key for the new map. Additionally, a
+       clause to choose only some vectors to be reclassed from the  input  map
+       can  be  imposed  by user, either interactively or from the input file.
+       Both columns used for creating the reclass rules  must  be  of  numeric
+       (integer) type.
+
+       If  the user omitted the output map name, the reclass map would only be
+       displayed on monitor and not created.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaagg::
+       --dd  Dissolve common boundaries between reclassed areas
+
+
+   PPaarraammeetteerrss::
+       ssqqll==ffiilleennaammee
+           Name of file containing SQL query statements
+
+       kkeeyy==ddaattaabbaasseeccoolluummnnnnaammee
+           Key column in db
+
+       ttaabb==nnaammee
+           Table containing [col]
+
+       ccooll==nnaammee
+           Column to base reclass on
+
+       wwhheerree==nnaammee
+           Where clause for query (ie. where col='paved')
+
+       ttyyppee==aarreeaa//lliinnee//ssiittee
+           Select area, line or site as type of the input/output vector map
+
+       iinnppuutt==mmaapp
+           Name of existing vector file to be reclassed using query output.
+
+       oouuttppuutt==mmaapp
+           Name of new raster (reclass) file
+
+       EEXXAAMMPPLLEE::
+
+       1.  Reclass  to  vector  map  of  quartiles  from  forest  stands   map
+       (_k_u_r_u_m_a___i_d).
+
+       _v_._r_e_c_l_a_s_s_._p_g  _-_s _-_d _s_q_l_=_r_e_c_l_a_s_s_._s_q_l _i_n_p_u_t_=_k_u_r_u_m_a___i_d _o_u_t_p_u_t_=_k_u_r_u_m_a___q_u_a_r_t
+       _t_y_p_e_=_a_r_e_a
+
+       and reclass.sql is:
+
+       _s_e_l_e_c_t _r_e_c___i_d_, _q_u_a_r_t_n_u_m _f_r_o_m _i_n_f_o___k_u_r_u_m_a
+
+       2. Reclass to vector map of forest types (_k_u_r_u_m_a___o_a_k) from map of  for-
+       est plots (_k_u_r_u_m_a___i_d) taking only oak (types 32-37).
+
+       _v_._r_e_c_l_a_s_s_._p_g   _-_d   _k_u_r_u_m_a___i_d  _k_e_y_=_r_e_c___i_d  _c_o_l_=_t_y_p_e___i_d  _t_a_b_=_i_n_f_o___k_u_r_u_m_a
+       _w_h_e_r_e_=_'_t_y_p_e___i_d _> _3_1 _a_n_d _t_y_p_e___i_d _< _3_8_' _o_u_t_p_u_t_=_k_u_r_u_m_a___o_a_k _t_y_p_e_=_a_r_e_a
+
+
+
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the PostgreSQL database software.  It uses  other
+       GRASS modules _v_._r_e_c_l_a_s_s and _d_._v_e_c_t launched from inside.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_,  _g_._s_t_a_t_s_._p_g_,  _g_._t_a_b_l_e_._p_g_, _d_._r_a_s_t_._p_g_, _d_._s_i_t_e_._p_g_, _d_._v_e_c_t_._p_g_,
+       _d_._w_h_a_t_._r_._p_g_, _d_._w_h_a_t_._s_._p_g_, _d_._w_h_a_t_._v_._p_g_, _r_._r_e_c_l_a_s_s_._p_g_, _r_._r_e_s_c_a_l_e_._p_g
+
+AAUUTTHHOORR
+       Original Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and  W.
+       Fredrick Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                      v.reclass.pg(1)

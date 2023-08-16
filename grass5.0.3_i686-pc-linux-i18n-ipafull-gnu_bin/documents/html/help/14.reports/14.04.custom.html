@@ -1,0 +1,61 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      14.04.custom
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      CUSTOMIZING REPORTS
+    </H2>
+  </CENTER>
+    <P>GRASS programs like <A HREF="./../../../../documents/html/r.report.html">r.report</A>, <A HREF="./../../../../documents/html/r.coin.html">r.coin</A>, and <A HREF="./../../../../documents/html/s.menu.html">s.menu</A> output their results
+in the form of reports.  Options made available in GRASS 5.0 allow
+the user added flexibility in designing the form of these reports.
+    <P>Users can also use GRASS programs in combination with UNIX programs like
+&quot;awk&quot;, &quot;sed&quot;, and &quot;sort&quot; to completely customize the formats of reports.
+    <P>One sample use of &quot;awk&quot; with GRASS programs appears in the Winter/1989
+issue of the newsletter <A HREF="./../../../../documents/html/help/18.biblio/clip.all.html">&quot;GRASSClippings&quot;</A> (article by Fred Limp,
+Vol 3, No 1, pp 14-16).  This script uses output from the <A HREF="./../../../../documents/html/r.stats.html">r.stats</A>
+program to calculate a region's expected total annual crop yield
+based on a raster map layer of estimated crop yield per soil type.
+It is reproduced below using GRASS 5.0 command syntax.
+    <P>  <PRE>r.stats -aq soil.yield.map | \\
+</PRE>
+awk '{sum+=$1*($2/100000)*2.47} END {print&quot;Total Yield:&quot;,sum}'
+    <P>When piping GRASS program outputs through other commands like &quot;awk&quot;,
+users should include the option to run GRASS commands quietly
+(i.e., non-verbosely).  Frequently, this will be a -q option.
+    <P>    <P>    <P>    <P>    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

@@ -1,0 +1,297 @@
+i.tape.tm3(1)                 Grass User's Manual                i.tape.tm3(1)
+
+
+
+NNAAMMEE
+       _i_._t_a_p_e_._t_m_3 - Import Landsat thematic mapper imagery.
+
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ttaappee..ttmm33 --ee [iinnppuutt_=_n_a_m_e] [bblloocckkssiizzee_=_b_l_o_c_k_s_i_z_e]
+
+       ii..ttaappee..ttmm33     [--ppqq]     [iinnppuutt_=_n_a_m_e]     ggrroouupp_=_n_a_m_e    [oouuttppuutt_=_p_r_e_f_i_x]
+       bbaannddss_=_b_a_n_d_[_,_b_a_n_d_,_._._._]   [bblloocckkssiizzee_=_b_l_o_c_k_s_i_z_e]   [rroowwss_=_f_i_r_s_t_r_o_w_,_l_a_s_t_r_o_w]
+       [ccoollss_=_f_i_r_s_t_c_o_l_,_l_a_s_t_c_o_l] [ttiittllee_=_t_i_t_l_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._t_a_p_e_._t_m_3  is a successor to _i_._t_a_p_e_._t_m.  _i_._t_a_p_e_._t_m_3 can import Landsat
+       Thematic Mapper imagery in fast format, full scene, and quadrant  scene
+       formats.  Imports may be done from 1600 BPI and 6250 BPI 9-track tapes,
+       QIC 150 tape, 8mm tape, or from disk files.  _i_._t_a_p_e_._t_m_3  is  completely
+       command-line  driven,  although  the  usual GRASS parser may be used if
+       command line options are not given.  During the import, the program may
+       also prompt for filenames to use and tapes to be mounted.
+
+
+       _i_._t_a_p_e_._t_m_3  must  be  run  in  a location with an x,y coordinate system
+       (i.e., a coordinate system with a projection 0.)  Refer to the  imagery
+       manual entry.
+
+   FFllaaggss::
+       --ee     Examine  tape  or  files.   A  summary  of  information from the
+              scene's headers is printed.  No bands  are  imported.   If  this
+              option  is  given,  all other options except input and blocksize
+              are ignored.
+
+       --pp     Display the percentage of work  done.   By  default,  _i_._t_a_p_e_._t_m_3
+              displays  the number of lines for each band that it has imported
+              so far.
+
+       --qq     Run quietly.  Error messages  are  still  printed  but  messages
+              about the import's progress are not.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==nnaammee
+              The  name of the device or file to extract imagery from.  If not
+              given, _i_._t_a_p_e_._t_m_3 will assume the import is from disk files  and
+              will prompt for file names.
+
+       ggrroouupp==nnaammee
+              The  name  of  the  group to store imported bands in.  The group
+              will be created if it does not already exist.
+
+       oouuttppuutt==pprreeffiixx
+              The prefix with which to name the  raster  maps  for  each  band
+              imported.   The  band  number  of each raster map is appended to
+              this prefix.  If omitted, the group name is used as the  prefix.
+
+       bbaannddss==bbaanndd[[,,bbaanndd,,......]]
+              The  list  of  bands  to import.  Band numbers range from 1 to 7
+              inclusive.  Band numbers may be specified  in  any  order.   For
+              fast format imagery, a band number of "P" may be used to specify
+              the panchromatic band.
+
+       bblloocckkssiizzee==bblloocckkssiizzee
+              The blocksize to use for reading tapes.  For QIC-150 tapes, this
+              value must be a multiple of 512.  The default is 32768.
+
+       rroowwss==ffiirrssttrrooww,,llaassttrrooww
+              The  range  of  rows  within  each  band  to  import.  Must have
+              firstrow <= lastrow.  Row numbers increase from top  to  bottom.
+              The topmost, or northernmost, row of each band is row 1.
+
+       ccoollss==ffiirrssttccooll,,llaassttccooll
+              The  range  of  columns  within  each band to import.  Must have
+              firstcol <= lastcol.   Column  numbers  increase  from  left  to
+              right.   The  leftmost,  or  westernmost, column of each band is
+              column 1.
+
+       ttiittllee==ttiittllee
+              The title to give each extracted band.  The default is  "Landsat
+              TM Imagery"
+
+
+   UUSSAAGGEE
+       _i_._t_a_p_e_._t_m_3  can import Landsat TM imagery in three formats: full scene,
+       quadrant scene, and fast format.  Full scene and  quadrant  scene  file
+       formats  are very similar, and differ only in the size of the image.  A
+       quadrant scene corresponds to one quarter of a full scene of  the  same
+       area.  _i_._t_a_p_e_._t_m_3 can read fast format imagery in its A and B versions.
+       See the references for file format documents.
+
+
+       Information about a TM scene can be obtained by using  the  _-_e  option.
+       It  is useful to use this option before importing imagery.  This option
+       will examine the files on tape or disk and print important  information
+       about the scene.  Fields printed include the file format, size of image
+       in pixels, scene ID, and date of creation.  Coordinates for  the  scene
+       center  or  corners  are  given depending on the file format.  For full
+       scene and quarter scene formats, the  _-_e  option  requires  the  volume
+       directory  file  and a leader and imagery file from a single band.  For
+       the fast format, the _-_e option requires only a header file.
+
+
+       _i_._t_a_p_e_._t_m_3 allows the block size to be specified.  This is  the  number
+       of  bytes  to  read from a tape at a time.  The block size is optional;
+       specifying it may or may not make the import run faster.   The  default
+       is  32768.   Look  on  the  tape's  label  to find the block size.  For
+       QIC-150 tapes, the block size must be a multiple of 512 or  the  import
+       will  fail.   The  maximum allowable block size is one megabyte (1024 *
+       1024 = 1048576 bytes.)  The block size is not used when importing  from
+       disk files.
+
+
+       The following sections describe the tape file formats and how to import
+       from disk files.  If you are copying imagery between tapes or to  disk,
+       it  is  necessary  to  understand how the files are arranged on tape so
+       that _i_._t_a_p_e_._t_m_3 will be able to import from copied tapes correctly.  If
+       you  are  importing from the original tapes or exact copies there is no
+       need to be concerned with the tape formats.
+
+   FFUULLLL SSCCEENNEE AANNDD QQUUAADDRRAANNTT SSCCEENNEE FFIILLEE FFOORRMMAATTSS
+       For full scene and quadrant scene formats, it may require more than one
+       tape  to  store  the seven bands of a single Landsat scene.  The set of
+       tapes containing imagery for a single scene is  called  a  volume  set.
+       Each  tape in a set has the same format.  The first file on the tape is
+       a volume directory file.  This is followed by a  leader  file,  imagery
+       file, and trailer file for each band on the tape.  There may be supple-
+       mental files after the the bands, but these are not used by _i_._t_a_p_e_._t_m_3.
+       For  example,  a  tape containing bands 1-3 of Landsat imagery contains
+       these files:
+              Volume Directory File
+              Band 1 Leader File
+              Band 1 Imagery File
+              Band 1 Trailer File
+              Band 2 Leader File
+              Band 2 Imagery File
+              Band 2 Trailer File
+              Band 3 Leader File
+              Band 3 Imagery File
+              Band 3 Trailer File
+              Supplemental File
+
+       When importing from tape, the program will prompt  the  user  to  mount
+       each  tape  needed.  Tapes may be mounted in any order.  Only the tapes
+       that contain the bands to be imported need be mounted.   Be  sure  that
+       tapes are rewound or positioned correctly before mounting them.
+
+   IIMMPPOORRTT FFRROOMM DDIISSKK FFIILLEESS
+       _i_._t_a_p_e_._t_m_3  can  import  imagery from disk files.  The volume directory
+       must be copied from tape to disk, as well as the leader,  imagery,  and
+       trailer  files for each band to import.  To speed the import, the file-
+       names should all have the same prefix and have a .ls# suffix,  where  #
+       is an integer that increases sequentially from zero.  The prefix may be
+       any name.  For example, if you wanted to import bands  2  and  3  of  a
+       quadrant  scene from disk files, you would copy the files from tape and
+       give them names like this:
+              Volume Directory File       landsat.ls0
+              Band 2 Leader File          landsat.ls1
+              Band 2 Imagery File         landsat.ls2
+              Band 2 Trailer File         landsat.ls3
+              Band 3 Leader File          landsat.ls4
+              Band 3 Imagery File         landsat.ls5
+              Band 3 Trailer File         landsat.ls6
+
+       The volume directory file must have the .ls0 suffix.  Only the  leader,
+       imagery,  and trailer files for the bands to be imported need be copied
+       to disk.  The prefix "landsat" is used here, but any name can be  used.
+       Each  file  must  have a .ls# suffix, though.  By naming the files this
+       way, _i_._t_a_p_e_._t_m_3 can easily read the files in the correct  order.   Once
+       these files are on disk, they may be imported with a command like this:
+
+
+       _i_._t_a_p_e_._t_m_3 _i_n_p_u_t_=_l_a_n_d_s_a_t _g_r_o_u_p_=_l_a_n_d_s_a_t _b_a_n_d_s_=_1_,_2_,_3
+
+
+       The input option specifies the prefix to use for the file  names.   The
+       .ls#  suffix  should  not  be included in the input option.  _i_._t_a_p_e_._t_m_3
+       will automatically append the .ls# suffix to each file in turn.
+
+
+       Naming the imagery files in this fashion is the easiest way  to  import
+       from  disk.   However,  _i_._t_a_p_e_._t_m_3  can import from files that have any
+       names.  The program will prompt for filenames.  Enter the filenames  at
+       each prompt in the order that the files would be read from tape in.  To
+       import this way, omit the input option in the command, like this:
+
+
+       _i_._t_a_p_e_._t_m_3 _g_r_o_u_p_=_l_a_n_d_s_a_t _b_a_n_d_s_=_1_,_2_,_3
+
+
+       If you are importing from disk files with  .ls#  filenames,  _i_._t_a_p_e_._t_m_3
+       will  prompt  for  a  filename at any time that it cannot find the next
+       file to read.
+
+   FFAASSTT FFOORRMMAATT TTMM IIMMAAGGEERRYY
+       Like full scenes and quadrant scenes, imagery in fast format  may  come
+       on multiple tapes, depending on the amount of data.  The file format is
+       very simple, consisting of a header file followed by imagery files  for
+       each of the bands.  The imagery files are flat data files; they have no
+       header information within them.  For example, a set of seven bands  for
+       a  scene  in  fast format may come on three 9-track tapes and look like
+       this:
+              Tape 1         Tape 2Tape 3
+              Header File    Header FileHeader File
+              Band 1         Band 4Band 7
+              Band 2         Band 5
+              Band 3         Band 6
+
+       Because the band files have no header information in them, the only way
+       _i_._t_a_p_e_._t_m_3  can tell which band is which is by the order the files come
+       in their header file.  If fast format imagery is ever copied  to  other
+       tapes be sure the files are kept in the same order as they came.
+
+
+       To  import  fast format imagery from disk files, copy the files to disk
+       using the same naming convention used for  quadrant  and  full  scenes.
+       The  header  file  must have a .ls0 extension.  The band 1 imagery file
+       should have a .ls1 extension, band 2  a  .ls2  extension,  etc.   If  a
+       panchromatic band is available, give it a .ls8 extension, for lack of a
+       better name.
+
+
+       If you are importing only spectral bands, the header file from any tape
+       may  be  used  as the .ls0 file.  But if you are importing the panchro-
+       matic band, use the header file from its tape.   The  headers  for  the
+       spectral bands and the panchromatic band are different; be sure to copy
+       the right one to the .ls0 file before importing.
+
+
+       When importing the panchromatic band from fast format imagery,  specify
+       the band number as "P", like this:
+
+
+       _i_._t_a_p_e_._t_m_3 _i_n_p_u_t_=_l_a_n_d_s_a_t _g_r_o_u_p_=_l_a_n_d_s_a_t _b_a_n_d_s_=_P
+
+
+       If  the input option is omitted, of if the program cannot find the file
+       for a band asked for, it will prompt for a filename to be entered.
+
+   RROOWW AANNDD CCOOLLUUMMNN EEXXTTRRAACCTTIIOONN
+       _i_._t_a_p_e_._t_m_3 can extract an entire image or a rectangular  region  within
+       an  image.  Use the rows and cols options to specify the ranges of rows
+       and columns to import.  Before importing the imagery, use the _-_e option
+       to display the number of rows and columns in the image.  Row and column
+       numbers begin at 1.  Row numbers increase from top  (north)  to  bottom
+       (south).  Column numbers increase from left (west) to right (east).  If
+       either option is omitted the full range is used.  The  program  ignores
+       the  current geographic region when importing.  When the import is com-
+       plete, the current region is set to the region extracted.
+
+NNOOTTEESS
+       Raster files created will overwrite exiting files with the  same  names
+       without warning.
+
+
+       Use  the dd(1) command to copy files to tapes.  When copying to 9-track
+       and 8mm tapes, just use the if and of options with a  large  blocksize.
+       Use  caution when copying data to QIC-150 tapes.  QIC-150 tapes require
+       all files to use record lengths that are multiples of 512.  Files whose
+       lengths  are not multiples of 512 must be padded.  Always use dddd with
+       the "sync" option when copying files to QIC-150 tape, like this:
+                 dd if=filename of=/dev/rst0 obs=32768 conv=sync
+
+       obs is the output block size; use any multiple of 512.  The larger  the
+       block size the faster the copy will be done. When Landsat imagery files
+       are copied this way they will be padded at the end, making them  longer
+       than  they  originally  were.   _i_._t_a_p_e_._t_m_3 will have no problem reading
+       padded files, but other programs may.
+
+RREEFFEERREENNCCEESS
+       Format for Thematic Mapper Computer Compatible  Tape,  Quadrant  Scene,
+       Jan 1, 1990
+
+       Format for Thematic Mapper Computer Compatible Tape, Full Scene, Jan 1,
+       1990
+
+       Fast Format Document for TM Digital Products, Version A, Mar 1, 1990
+
+       Fast Format Document for TM Digital Products, Version B, Oct 1, 1991
+
+
+       These documents describe the  file  formats  that  _i_._t_a_p_e_._t_m_3  imports.
+       They are available from EOSAT, 4300 Forbes Blvd., Lanham, MD 20706 USA.
+
+AAUUTTHHOORR
+       Christopher Lesher, DBA Systems, Inc.
+
+       Michael Shapiro, U. S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_2_7_:_4_5 _$
+
+
+
+GRASS 5.0                                                        i.tape.tm3(1)

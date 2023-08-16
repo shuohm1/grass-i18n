@@ -1,0 +1,118 @@
+m.dmaUSGSread(1)              Grass User's Manual             m.dmaUSGSread(1)
+
+
+
+NNAAMMEE
+       mm..ddmmaaUUSSGGSSrreeaadd   -  Extracts  digital terrain elevation data (DTED) pro-
+       duced by the Defense Mapping Agency (DMA) but supplied by the USGS  (in
+       a different tape format) on 1/2-inch magnetic tape.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dddd  [iiff==_t_a_p_e_d_e_v]  iibbss==_i_n_p_u_t_-_b_l_o_c_k_-_s_i_z_e  |  mm..ddmmaaUUSSGGSSrreeaadd ttoopp==_v_a_l_u_e bboott--
+       ttoomm==_v_a_l_u_e lleefftt==_v_a_l_u_e rriigghhtt==_v_a_l_u_e oouuttppuutt==_n_a_m_e llooggffiillee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._d_m_a_U_S_G_S_r_e_a_d extracts digital terrain elevation data (DTED)  that  was
+       produced  by the Defense Mapping Agency (DMA) but bought from the USGS;
+       these two agencies distribute the same data  in  a  slightly  different
+       tape  formats.  This program requires the use of the UNIX command _d_d to
+       read the 1/2-inch magnetic tape.  _m_._d_m_a_U_S_G_S_r_e_a_d should be used prior to
+       using the GRASS programs _r_._i_n_._l_l.
+
+
+       Parameters for the UNIX _d_d command are listed below.
+
+
+
+       iiff==_t_a_p_e_d_e_v
+              The  path  name of the tape drive from which input will be taken
+              (usually /dev/rmt0).
+
+       iibbss==_i_n_p_u_t_-_b_l_o_c_k_-_s_i_z_e
+              The physical blocking value of the data on tape, usually written
+              on the tape spool.  If this value is unknown, run _m_._e_x_a_m_i_n_e_._t_a_p_e
+              prior to running _m_._d_m_a_U_S_G_S_r_e_a_d.
+
+
+
+
+       Parameters for _m_._d_m_a_U_S_G_S_r_e_a_d are listed below.
+
+
+
+       ttoopp==_v_a_l_u_e
+              Beginning row number of data.
+              Options:  1-1201
+
+       bboottttoomm==_v_a_l_u_e
+              Ending row number of data.
+              Options:  1-1201
+
+       lleefftt==_v_a_l_u_e
+              Beginning column number of data.
+              Options:  1-1201
+
+       rriigghhtt==_v_a_l_u_e
+              Ending column number of data.
+              Options:  1-1201
+
+       oouuttppuutt==_n_a_m_e
+              Name of the output file to hold the extracted DEM data.
+
+       llooggffiillee==_n_a_m_e
+              Name of a file to hold related information about  the  extracted
+              data.
+
+
+EEXXAAMMPPLLEE::
+       For example, the command: dddd iiff==//ddeevv//rrmmtt00 iibbss==1100224400 || ..bbrr
+
+       mm..ddmmaaUUSSGGSSrreeaadd ttoopp==_1 bboottttoomm==_4_0_0 lleefftt==_1 rriigghhtt==_5_0_0 .br
+
+       oouuttppuutt==_d_e_m llooggffiillee==_l_o_g
+
+       will  extract  data from /dev/rmt0 and put the first 400 rows and first
+       500 columns into the file _d_e_m located in the user's current  directory.
+
+SSEEEE AALLSSOO
+       _O_p_t_i_o_n_s  _f_o_r  _A_c_q_u_i_r_i_n_g _E_l_e_v_a_t_i_o_n _D_a_t_a, by Stuart Bradshaw, (ADP Report
+       N-87/22, USACERL, 1988).
+
+
+       _D_T_E_D _a_n_d _D_E_M _E_l_e_v_a_t_i_o_n _D_a_t_a _E_x_t_r_a_c_t_i_o_n, by Stuart Bradshaw,  Mary  Mar-
+       tin, and Chester Kos (ADP Report N-87/22, USACERL, 1988).
+
+
+       and the UNIX manual entry for _d_d
+
+
+       _g_._r_e_g_i_o_n
+
+       _m_._d_t_e_d_._e_x_a_m_i_n_e
+
+       _m_._d_t_e_d_._e_x_t_r_a_c_t
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+       _m_._r_e_g_i_o_n_._l_l
+
+       _m_._r_o_t_9_0
+
+       _r_._d_e_s_c_r_i_b_e
+
+       _r_._i_n_._l_l
+
+       _r_._r_e_s_c_a_l_e
+
+       _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+AAUUTTHHOORRSS
+       James Farley, Arkansas Archeological Survey, University of Arkansas
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                     m.dmaUSGSread(1)

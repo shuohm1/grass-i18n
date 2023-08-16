@@ -1,0 +1,216 @@
+r.in.gdal(1)                  Grass User's Manual                 r.in.gdal(1)
+
+
+
+NNAAMMEE
+       rr..iinn..ggddaall  - Import GDAL supported raster file into a binary raster map
+       layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..ggddaall
+       rr..iinn..ggddaall hheellpp
+       rr..iinn..ggddaall [[--oo]] [[--ee]] iinnppuutt==_n_a_m_e [bbaanndd==_n_u_m_b_e_r] oouuttppuutt==_n_a_m_e  [ttaarrggeett==_n_a_m_e]
+       [TTIITTLLEE=="_p_h_r_a_s_e"] [llooccaattiioonn==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_._g_d_a_l allows a user to create a (binary) GRASS raster map layer, or
+       imagery group, from any GDAL supported  raster  file  format,  with  an
+       optional  title.  The imported file may also be optionally used to cre-
+       ate a new location.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --oo     Override projection (use locations projection)
+
+       --ee     Extend the DEFAULT_WIND  in  PERMANENT  mapset  to  include  the
+              region  of  the new map layer.  Old resolution is preserved, but
+              the region, and rows/cols are updated.  This will  fail  if  the
+              user doesn't have write access to the PERMANENT mapset.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing GDAL supported raster file to be imported.
+
+
+       bbaanndd==_n_u_m_b_e_r
+              Number  of  input band to extract (default is all bands). Number
+              between 1 and number of bands.
+
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to resultant  binary  raster  map  layer  or
+              imagery  group.   An imagery group is generated if more than one
+              band is imported.
+
+
+       ttaarrggeett==_n_a_m_e
+              Name of location to read projection info from for GCPs transfor-
+              mation
+
+
+       TTIITTLLEE== Title to be assigned to resultant raster map layer(s).
+
+
+       llooccaattiioonn==_n_a_m_e
+              Name of new location to create based on the file, if so desired.
+
+
+
+GGDDAALL SSuuppppoorrtteedd FFoorrmmaattss
+       Full details on GDAL supported formats are available at:
+
+
+       http://www.remotesensing.org/gdal/formats_list.html
+
+
+       Selected formats:
+       Format Name                        Georeferencing
+
+       Arc/Info Binary Grid                                 Yes
+       CEOS (Spot for instance)                             No
+       First Generation USGS DOQ                            Yes
+       New Labelled USGS DOQ                                Yes
+       Military Elevation Data (DTED)                       Yes
+       Eosat Fast Format                                    No
+       ESRI .hdr Labelled                                   Yes
+       TIFF / GeoTIFF                                       Yes
+       Erdas Imagine .hfa                                   No
+       JPEG JFIF                                            No
+       PCI .aux Labelled                                    Yes
+       Portable Network Graphics (PNG)                      No
+       USGS SDTS DEM                                        Yes
+       SAR CEOS                                             No
+
+       If GDAL doesn't support the indicated file it will  report  it  with  a
+       message like ERROR 4: `abc.e00' not recognised as a supported file for-
+       mat by GDAL, or that the format wasn't built into the version of  libg-
+       dal.1.1.so being used.
+
+
+       rr..iinn..ggddaall  will  only  operate  correctly if the GDAL shared library is
+       installed on the system and accessable (normally via  LD_LIBRARY_PATH).
+       If  not,  r.in.gdal  will  report Unable to initialize GDAL bridge.  If
+       this occurs it means that you either don't  have  GDAL  installed  (ie.
+       libgdal.1.1.so),  it  isn't  in the LD_LIBRARY_PATH, or it is the wrong
+       version.    Recent   builds   of   libgdal   may   be   available    at
+       http://gdal.velocet.ca/projects/grass, and the shared library should be
+       copied into $GISBASE/lib.  Binary distributions of GRASS will  normally
+       include libgdal.
+
+        r.in.gdal uses a number of strategies to find the GDAL shared library.
+       It first looks in $GISBASE/lib/.  Then  it  looks  for  $GDAL_HOME  and
+       finally  it  searches  without  a  path  letting  all the standard Unix
+       dlopen() search rules apply (which normally includes  LD_LIBRARY_PATH).
+
+LLooccaattiioonn CCrreeaattiioonn
+       rr..iinn..ggddaall  attempts  to  preserve projection information when importing
+       datasets if the source format includes projection information,  and  if
+       the  GDAL  driver supports it.  If the projection of the source dataset
+       does not match the projection of the current  location  rr..iinn..ggddaall  will
+       report an error message (Projection of dataset does not appear to match
+       current location) and then  report  the  PROJ_INFO  parameters  of  the
+       source dataset.
+
+
+       If  the user wishes to ignore the difference between the apparent coor-
+       dinate system of the source data and the  current  location,  they  may
+       pass the --oo flag to override the projection check.
+
+
+       If  the user wishes to import the data with the full projection defini-
+       tion, it is possible to have r.in.gdal automatically create a new loca-
+       tion  based on the projection and extents of the file being read.  This
+       is accomplished by passing the name to be used for the new location via
+       the llooccaattiioonn parameter.  Upon completion of the command, a new location
+       will have been created (with only a PERMANENT mapset), and  the  raster
+       will  have been imported with the indicated oouuttppuutt name into the PERMA-
+       NENT mapset.
+
+
+       Support for GCPs: In case the image contains GCPs they are written to a
+       POINTS  file  within  an  imagery  group. They can directly be used for
+       i.rectify. The _t_a_r_g_e_t option allows  to  automatically  re-project  the
+       GCPs  from  their  own projection into another projection read from the
+       PROJ_INFO file of the location name _t_a_r_g_e_t.
+
+NNOOTTEESS
+       I plan to make a variety of improvements to  rr..iinn..ggddaall  in  the  future
+       including support for reporting everything known about a dataset if the
+       oouuttppuutt parameter is not set.
+
+
+       The rr..iinn..ggddaall comand does support the following features,  as  long  as
+       the underlying format driver supports it:
+
+
+
+        Color Table
+              Bands  with  associated  colortables  will have the color tables
+              transferred.  Note that if the source has no colormap, r.in.gdal
+              in  GRASS  5.0  will  emit  no  colormap.   Use r.colors map=...
+              color=grey to assign a greyscale colormap.  In a future  version
+              of GRASS r.in.gdal will likely be upgraded to automatically emit
+              greyscale colormaps.
+
+        Data Types
+              Most GDAL data types are supported.  Float32  and  Float64  type
+              bands are translated as GRASS floating point cells (but not dou-
+              ble precision ...  this could be  added  if  needed),  and  most
+              other  types  are  translated  as  GRASS  integer  cells.   This
+              includes 16bit integer data sources.  Complex (some  SAR  signal
+              data  formats)  data  bands are translated to two floating point
+              cell layers (*.real and *.imaginary).
+
+
+        Georeferencing
+              If the dataset has affine georeferencing information, this  will
+              be  used  to  set  the north, south, east and west edges.  Rota-
+              tional coefficients will  be  ignored,  resulting  in  incorrect
+              positioning for rotated datasets.
+
+
+        Projection
+              The  datasets  projection will be used to compare to the current
+              location or to define a new location.   Internally  GDAL  repre-
+              sents  projections  in  OpenGIS Well Known Text format.  A large
+              subset of the total set of GRASS projections are supported.
+
+
+        Null Values
+              Raster bands for which a null value is recognised by  GDAL  will
+              have  the  null pixels transformed into GRASS style nulls during
+              import.  Many generic formats (and formats poorly  supported  by
+              GDAL) do not have a way of recognising null pixels in which case
+              r.null should be used after the import.
+
+
+        GCPs  Datasets that have Ground Control Points will have them imported
+              as  a  POINTS  file associated with the imagery group.  Datasets
+              with only one band that would otherwise have been translated  as
+              a  simple  raster map will also have an associated imagery group
+              if there are ground control points.  The  coordinate  system  of
+              the  ground control points is reported by r.in.gdal but not pre-
+              served.  It is up to the user to ensure that the location estab-
+              lished  with  i.target has a compatible coordinate system before
+              using the points with i.rectify.
+
+
+
+SSEEEE AALLSSOO
+        _r_._i_n_._a_s_c_i_i_, _r_._i_n_._a_r_c_, _r_._i_n_._b_i_n_, _r_._n_u_l_l
+
+RREEFFEERREENNCCEESS
+       GDAL Pages: http://www.remotesensing.org/gdal/,
+
+       Precompiled libgdal for GRASS: http://gdal.velocet.ca/projects/grass
+
+AAUUTTHHOORR
+       warmerdam@pobox.com).
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_8_/_1_2 _2_1_:_4_5_:_1_8 _$
+
+
+
+GRASS 5.0                                                         r.in.gdal(1)

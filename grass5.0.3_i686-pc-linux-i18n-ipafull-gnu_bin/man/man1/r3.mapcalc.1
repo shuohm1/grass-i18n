@@ -1,0 +1,307 @@
+r3.mapcalc(1)                 Grass User's Manual                r3.mapcalc(1)
+
+
+
+NNAAMMEE
+       _r_3_._m_a_p_c_a_l_c - G3D grid volume data calculator.
+
+       _(_G_R_A_S_S _3_D _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr33..mmaappccaallcc [rreessuulltt==_e_x_p_r_e_s_s_i_o_n]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_3_._m_a_p_c_a_l_c performs arithmetic on 3D grid volume data. New 3D grids can
+       be created which  are  arithmetic  expressions  involving  existing  3D
+       grids, floating point constants, and functions.
+
+PPRROOGGRRAAMM UUSSEE
+       If used without command line arguments, _r_3_._m_a_p_c_a_l_c will read its input,
+       one line at a time, from standard input (which is the keyboard,  unless
+       directed  from  a file or across a pipe).  Otherwise, the expression on
+       the command line is evaluated. _r_3_._m_a_p_c_a_l_c expects its input to have the
+       form:
+
+       rreessuulltt==_e_x_p_r_e_s_s_i_o_n
+
+       where _r_e_s_u_l_t is the name of a 3D grid to contain the result of the cal-
+       culation and _e_x_p_r_e_s_s_i_o_n is any legal  arithmetic  expression  involving
+       existing  3D grid, floating point constants, and functions known to the
+       calculator. Parentheses are allowed in the expression and may be nested
+       to any depth. _r_e_s_u_l_t will be created in the user's current mapset.
+
+       The  formula  entered to _r_3_._m_a_p_c_a_l_c by the user is recorded both in the
+       _r_e_s_u_l_t grid title (which appears in the category file for  _r_e_s_u_l_t)  and
+       in the history file for _r_e_s_u_l_t.
+
+       Some  characters have special meaning to the command shell. If the user
+       is entering input to _r_._m_a_p_c_a_l_c on the command line, expressions  should
+       be enclosed within single quotes. See NOTES, below.
+
+OOPPEERRAATTOORRSS AANNDD OORRDDEERR OOFF PPRREECCEEDDEENNCCEE
+       The following operators are supported:
+            -----------------------------------------------------------------------
+            %          modulus (remainder upon division)   Arithmetic  4
+            /          division                            Arithmetic  4
+            *          multiplication                      Arithmetic  4
+            +          addition                            Arithmetic  3
+            -          subtraction                         Arithmetic  3
+            ==         equal                               Logical     2
+            !=         not equal                           Logical     2
+            >          greater than                        Logical     2
+            >=         greater than or equal               Logical     2
+            <          less than                           Logical     2
+            <=         less than or equal                  Logical     2
+            &&         and                                 Logical     1
+            ||         or                                  Logical     1
+
+
+       applied before those with lower precedence. Division by 0  and  modulus
+       by
+       0  are  acceptable  and give a 0 result. The logical operators give a 1
+       result
+       if the comparison is true, 0 otherwise.
+
+
+33DD GGRRIIDD NNAAMMEESS
+       Anything in the expression which is not a number, operator, or function
+       name is taken to be a 3D grid name. Examples:
+
+       volume
+
+       x3
+
+       3d.his
+
+       Most  GRASS raster map layers and 3D grids meet this naming convention.
+       However, if a 3D grid has a name which conflicts with the  above  rule,
+       it
+       should be quoted. For example, the expression
+
+       x = a-b
+
+       would be interpreted as: x equals a minus b, whereas
+
+       x = "a-b"
+
+       would be interpreted as: x equals 3D grid named _a_-_b
+
+       Also
+
+       x = 3107
+
+       would create _x filled with the number 3107, while
+
+       x = "3107"
+
+       would copy the 3D grid _3_1_0_7 to the 3D grid _x.
+
+       Quotes are not required unless the 3D grid names look like numbers or
+       contain  operators,  OR  unless  the  program is run non-interactively.
+       Examples
+       given here assume the program is run interactively. See NOTES, below.
+
+       _r_3_._m_a_p_c_a_l_c will look for the 3D grids according to the user's
+       current mapset search path. It is possible to override the search path
+       and specify the mapset from which to select the 3D grid. This  is  done
+       by
+       specifying the 3D grid name in the form:
+
+       name@mapset
+
+       For example, the following is a legal expression:
+
+       result = x@PERMANENT / y@SOILS
+
+       The  mapset  specified  does  not have to be in the mapset search path.
+       (This
+       method of overriding the mapset search path is common to all GRASS com-
+       mands,
+       not just _r_3_._m_a_p_c_a_l_c.)
+
+TTHHEE NNEEIIGGHHBBOORRHHOOOODD MMOODDIIFFIIEERR
+       3D grids are data base files stored in voxel format, i.e., three-dimen-
+       sional
+       matrices of float/double values. In _r_3_._m_a_p_c_a_l_c, 3D grids may be
+       followed by a _n_e_i_g_h_b_o_r_h_o_o_d modifier that specifies a relative offset
+       from the current cell being evaluated. The format is
+       _m_a_p_[_r_,_c_,_d_],
+       where _r is the row offset, _c is the column offset and _d
+       is the depth offset. For example, _m_a_p_[_1_,_2_,_3_] refers to the cell
+       one row below, two columns to the right and 3 levels below of the  cur-
+       rent
+       cell, _m_a_p_[_-_3_,_-_2_,_-_1_] refers to the cell three rows above, two columns
+       to the left and one level below of the current cell, and _m_a_p_[_0_,_1_,_0_]
+       refers  to  the  cell one column to the right of the current cell. This
+       syntax
+       permits the development of neighborhood-type filters within a single 3D
+       grid or across multiple 3D grids.
+
+
+
+
+FFUUNNCCTTIIOONNSS
+       The functions currently supported are listed in the table below.
+
+       ---------------------------------------------------------------------------
+       abs(x)                  return absolute value of x
+       atan(x)                 inverse tangent of x (result is in degrees)
+       cos(x)                  cosine of x (x is in degrees)
+       col()                   return current column
+       depth()                 return current depth
+       eval([x,y,...,]z)       evaluate values of listed expr, pass results to
+       z
+       exp(x)                  exponential function of x
+       exp(x,y)                x to the power y
+       ewres()                 east-west resolution from WIND3D
+       if                      decision options:
+       if(x)                   1 if x not zero, 0 otherwise
+       if(x,a)                 a if x not zero, 0 otherwise
+       if(x,a,b)               a if x not zero, b otherwise
+       if(x,a,b,c)             a if x > 0, b if x is zero, c if x < 0
+       isnull(x)               1 if x not zero, 0 otherwise
+       log(x)                  natural log of x
+       log(x,b)                log of x base b
+       max(x,y[,z...])         largest value of those listed
+       median(x,y[,z...])      median value of those listed
+       min(x,y[,z...])         smallest value of those listed
+       mode(x,y[,z...])        most frequently value of those listed
+       null()                  return 0
+       nsres()                 north-south resolution from WIND3D
+       rand(x,y)               random value between x and y
+       round(x)                round x
+       row()                   return current row
+       sin(x)                  sine of x (x is in degrees)
+       sqrt(x)                 square root of x
+       tan(x)                  tangent of x (x is in degrees)
+       tbres()                 top-bottom resolution from WIND3D
+       x()                     return current x value
+       y()                     return current y value
+       z()                     return current z value
+
+       Note, that the row(), col() and depth() indexing starts with 1.
+
+EEXXAAMMPPLLEESS
+       To compute the average of two 3D grids _a and _b:
+       To form a weighted average:
+
+       To produce a binary representation of 3D grid
+       _a so that category
+       0 remains 0 and all other categories become 1:
+
+       This could also be accomplished by:
+
+       To mask 3D grid _b by 3D grid _a:
+
+
+
+RREEGGIIOONN//MMAASSKK
+       The  user  must  be  aware of the current geographic region and current
+       mask
+       settings when using _r_3_._m_a_p_c_a_l_c. All 3D grids are read into the current
+       geographic region masked by the current mask. If it is desired to  mod-
+       ify
+       an  existing  3D  grid without involving other 3D grids, the geographic
+       region
+       should
+       be set to agree with the cell header for the 3D grid. For example, sup-
+       pose
+       it is determined that the
+       _v_o_l_u_m_e 3D grid must have each category
+       value  increased  by  10  meters. The following expression is legal and
+       will
+       do the job:
+
+       Since a category value of 0 is used in GRASS for locations which do not
+       exist in 3D grid, the new 3D grid will contain the category value 10 in
+       the locations that did not exist in the original volume. Therefore, in
+       this example, it is essential that the  boundaries  of  the  geographic
+       region
+       be set to agree with the cell header.
+
+       However,  if  there  is  a  current mask, then the resultant 3D grid is
+       masked
+       when it is written; i.e., 0 category values in the mask force zero val-
+       ues
+       in the output.
+
+NNOOTTEESS
+       Extra  care  must  be  taken  if the expression is given on the command
+       line.
+       Some characters have special meaning to the UNIX shell. These include,
+       among others:
+
+       * ( ) > & |
+
+       It is advisable to put single quotes around the expression; e.g.:
+
+       Without the quotes, the *, which has special meaning to the UNIX shell,
+       would be altered and _r_3_._m_a_p_c_a_l_c would see something other than the
+       *.
+
+       If the input comes directly from the keyboard and the _r_e_s_u_l_t
+       3D grid exists, the user will be asked if it can be overwritten. Other-
+       wise,
+       the _r_e_s_u_l_t 3D grid will automatically be overwritten if it exists.
+
+       Quoting _r_e_s_u_l_t is not allowed. However, it is never necessary
+       to quote _r_e_s_u_l_t since it is always taken to be a 3D grid name.
+
+       For formulas that the user enters from standard input (rather than from
+       the command line), a line continuation feature now exists. If the user
+       adds \ to the end of an input line, _r_3_._m_a_p_c_a_l_c assumes that the
+       formula  being entered by the user continues on to the next input line.
+       There is no limit to the possible number  of  input  lines  or  to  the
+       length
+       of a formula.
+
+       If the _r_3_._m_a_p_c_a_l_c formula entered by the user is very long, the
+       map  title  will  contain only some of it, but most (if not all) of the
+       formula
+       will be placed into the history file for the _r_e_s_u_l_t map.
+
+       When the user enters input to _r_3_._m_a_p_c_a_l_c non-interactively on
+       the command line, the program will not warn the user not  to  overwrite
+       existing
+       3D grids. Users should therefore take care to assign program outputs 3D
+       grid file names that do not yet exist in their current mapsets.
+
+BBUUGGSS
+       Continuation lines must end with a  and have NO  trailing  white  space
+       (blanks
+       or tabs). If the user does leave white space at the end of continuation
+       lines, the error messages produced by _r_3_._m_a_p_c_a_l_c will be meaningless
+       and the equation will not work as the user intended.
+
+       Error messages produced by _r_3_._m_a_p_c_a_l_c are almost useless. In
+       future,
+       _r_3_._m_a_p_c_a_l_c should make some attempt to point the user to
+       the offending section of the equation, e.g.:
+
+
+               ERROR: somewhere in line 1: ...  b ++ c ...
+       Currently, there is no comment mechanism in _r_3_._m_a_p_c_a_l_c. Perhaps
+       adding a capability that would cause the entire line to be ignored when
+       the user inserted a # at the start of a line as if it were not present,
+       would do the trick.
+
+       The function should require the user to type "end" or "exit" instead
+       of simply a blank line. This would make separation of multiple scripts
+       separable by white space.
+
+
+
+SSEEEE AALLSSOO
+       _r_._m_a_p_c_a_l_c
+
+AAUUTTHHOORR
+       Tomas Paudits & Jaro Hofierka, funded by GeoModel s.r.o., Slovakia
+
+       tpaudits@mailbox.sk,
+       hofierka@geomodel.sk
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                        r3.mapcalc(1)

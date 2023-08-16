@@ -1,0 +1,49 @@
+m.bsplit(1)                   Grass User's Manual                  m.bsplit(1)
+
+
+
+NNAAMMEE
+       mm..bbsspplliitt   - Splits a large (greater than 1,048,000 megabyte) file into
+       smaller portions.
+       _(_S_C_S _G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..bbsspplliitt
+       mm..bbsspplliitt hheellpp
+       mm..bbsspplliitt iinnppuutt==_n_a_m_e _[ssiizzee==_v_a_l_u_e] [pprreeffiixx==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._b_s_p_l_i_t works much like the UNIX  command  _c_s_p_l_i_t;   however,  it  was
+       developed to be used on binary, not ASCII, files.  The first parameter,
+       _s_i_z_e, has a default value of 500000.  The user  may  assign  larger  or
+       smaller values, as long as 1000000 is not exceeded.
+
+
+       The second parameter, _p_r_e_f_i_x, is comparable to the UNIX _c_s_p_l_i_t  command
+       use of "x" as a prefix to output files.  _m_._b_s_p_l_i_t uses the  default  of
+       "bx" as a prefix on output.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              The name of the binary _i_n_p_u_t file to be split.
+
+       ssiizzee==_v_a_l_u_e
+              The  value, in megabytes, of one of the new, split-up files cre-
+              ated from the _i_n_p_u_t file.
+
+       pprreeffiixx==_n_a_m_e
+              File name prefix assigned to the new (split) files.
+
+
+SSEEEE AALLSSOO
+       The UNIX _c_s_p_l_i_t command.
+
+AAUUTTHHOORR
+       R.L.Glenn, USDA, SCS, NHQ-CGIS
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                          m.bsplit(1)

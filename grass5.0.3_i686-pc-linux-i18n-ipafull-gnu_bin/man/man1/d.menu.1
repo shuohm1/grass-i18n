@@ -1,0 +1,199 @@
+d.menu(1)                     Grass User's Manual                    d.menu(1)
+
+
+
+NNAAMMEE
+       dd..mmeennuu  -  Creates  and  displays a menu within the active frame on the
+       graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..mmeennuu
+       dd..mmeennuu hheellpp
+       dd..mmeennuu [bbccoolloorr==_n_a_m_e] [ttccoolloorr==_n_a_m_e] [ddccoolloorr==_n_a_m_e] [ssiizzee==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._m_e_n_u allows the user to create a menu containing a TITLE and options,
+       and  to  display this menu in the active frame on the graphics monitor.
+       After the menu is displayed in the active frame,  the  pointing  device
+       (mouse)  is  activated  and  must  be  used  to  select one of the menu
+       options.  The number associated with the selected menu option  is  then
+       printed  to  standard  output and the program exits.  This program pro-
+       vides GRASS macro writers with a mouse interface for users.
+
+
+       Parameters can be stated on the  command  line,  from  within  standard
+       input, or (as illustrated in EXAMPLE) from within a script file.
+
+
+       The  user  can  specify  the  menu's  background, text, and line colors
+       (bbccoolloorr, ttccoolloorr, and ddccoolloorr) and the menu size (ssiizzee)  on  the  command
+       line.  If  the  user  sets  at least one of these values on the command
+       line, any remaining values that are not specified on the  command  line
+       will  be  set  (automatically)  to  their  default  values (see below).
+       Alternately, the user can simply type dd..mmeennuu on the  command  line;  in
+       this  case,  the  program  will prompt the user for the menu colors and
+       text size using the standard GRASS parser  interface.   The  user  will
+       then  be  (silently) prompted to enter the menu's location and contents
+       through standard input (see Menu Information, below).
+
+
+
+   PPaarraammeetteerrss::
+       bbccoolloorr==_n_a_m_e
+              Sets the color of the menu background (the  rectangle  on  which
+              the text sits).
+              Options:  red,  orange,  yellow,  green,  blue,  indigo, violet,
+              magenta, brown, gray, white, and black.
+              Default: _b_l_a_c_k
+
+       ttccoolloorr==_n_a_m_e
+              Sets the color of the menu text.
+              Options: Same as those for _b_c_o_l_o_r.
+              Default: _w_h_i_t_e
+
+       ddccoolloorr==_n_a_m_e
+              Sets the line color used to divide text lines in the menu.
+              Options: Same as those for _b_c_o_l_o_r.
+              Default: _w_h_i_t_e
+
+       ssiizzee==_v_a_l_u_e
+              Sets the menu's text size to  the  specified  value.  Sizes  are
+              stated  as percentages of the height of the active graphics dis-
+              play frame.
+              Options: 1 - 100
+              Default: 3 (i.e., 3%)
+
+
+   MMeennuu IInnffoorrmmaattiioonn::
+       After the user has (optionally) specified menu  colors  and  size,  the
+       program expects the user to enter information about the menu's location
+       and content.  The menu will be placed in the lower left corner  of  the
+       active  display frame by default if the user does not position it else-
+       where using the .T or .L commands.
+
+
+       The user specifies the menu contents by typing in a menu TITLE followed
+       by  the  option choices to appear in the menu when displayed.  The user
+       _m_u_s_t enter a menu TITLE and at least one menu option.
+
+       ..TT _v_a_l_u_e
+              Specifies the menu's distance from the  active  display  frame's
+              top edge (as a percentage of the active frame's height).
+              Note: Not required
+
+       ..LL _v_a_l_u_e
+              Specifies  the  menu's  distance from the active display frame's
+              left edge (as a percentage of the active frame's width).
+              Note: Not required
+
+       _m_e_n_u _T_I_T_L_E
+              A TITLE that describes the type of options listed in  the  menu,
+              and  that  will  appear  at  the top of the menu when it is dis-
+              played.
+
+       _o_p_t_i_o_n _n_a_m_e(s)
+              The options that will appear in the menu when  displayed.   Each
+              menu  option  should  appear  on  a separate line.  The user may
+              enter as many options as desired, but must enter  at  least  one
+              menu option.
+
+       Note:  The  user should choose a menu size and location that will allow
+       all menu options to be displayed in the active frame.
+
+
+       If the user enters the menu TITLE and  option(s)  from  standard  input
+       (i.e.,  at the keyboard rather than from a file), the user should enter
+       _c_o_n_t_r_o_l_-_d  to end input and display the menu in the active frame on the
+       graphics  monitor.   (Note: The _d_._m_e_n_u program can also be incorporated
+       into UNIX Bourne shell script macros.  The below example shows how this
+       might be done.)
+
+EEXXAAMMPPLLEE
+       In the following example, the shell script _m_e_n_u_2 calls the shell script
+       _c_o_l_o_r_._s_e_l_e_c_t which contains _d_._m_e_n_u commands to display a  menu  in  the
+       current  frame  on  the  graphics  monitor.   After the user selects an
+       option from the display menu, the selection number is available for use
+       by _m_e_n_u_2.
+
+   CCoonntteennttss ooff ffiillee _m_e_n_u_2:
+
+       #! /bin/csh -f
+       set option = 0
+       set colors = (red green blue black white )
+       @ option = `color.select`
+
+       if ($option <= 5) then
+            set color = $colors[$option]
+            echo $color
+
+       endif
+       exit
+
+
+   CCoonntteennttss ooff ffiillee _c_o_l_o_r_._s_e_l_e_c_t:
+
+       #! /bin/csh -f
+       d.menu bcolor=red tcolor=green dcolor=yellow size=5 << EOF
+       Color Choices
+       Option 1
+       Option 2
+       Option 3
+       Option 4
+       Option 5
+       EOF
+
+
+
+       If  the user runs _m_e_n_u_2, a menu will be displayed on the graphics moni-
+       tor that has red background, green text, with menu options  divided  by
+       yellow lines, and a text size of 5% of the active display frame height.
+       The mouse cursor will become active, allowing the user  to  select  (by
+       pointing  with  the  mouse)  one  of the displayed menu options.  Here,
+       these menu options are called _O_p_t_i_o_n _1, _O_p_t_i_o_n _2, and  _O_p_t_i_o_n  _3,  etc.
+       The  first  line  of  text (here, the words _C_o_l_o_r _C_h_o_i_c_e_s) contains the
+       TITLE of the menu; this line is nnoott a menu option that can be chosen by
+       the user with the mouse. When the user presses one of the mouse buttons
+       while pointing to the desired menu choice, the  number  of  the  option
+       chosen  will be available for capture by the shell script _m_e_n_u_2.  _m_e_n_u_2
+       is a simple example that takes this information and only echoes  it  to
+       the screen.
+
+NNOOTTEESS
+       Although  the user can vary text size, all text within the same menu is
+       displayed in a single text size (and font). If the user specifies  that
+       items  included in the menu's text be displayed in different sizes, all
+       text will be displayed in the size stated last.
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._f_o_n_t
+
+       _d_._f_r_a_m_e
+
+       _d_._g_r_i_d
+
+       _d_._l_a_b_e_l
+
+       _d_._l_e_g_e_n_d
+
+       _d_._p_a_i_n_t_._l_a_b_e_l_s
+
+       _d_._t_e_x_t
+
+       _d_._t_i_t_l_e
+
+       _s_h_o_w_._f_o_n_t_s_._s_h
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                            d.menu(1)

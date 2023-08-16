@@ -1,0 +1,62 @@
+r.direct(1)                   Grass User's Manual                  r.direct(1)
+
+
+
+NNAAMMEE
+       rr..ddiirreecctt - Generates a flow direction map from a given elevation layer
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ddiirreecctt
+       rr..ddiirreecctt hheellpp
+       rr..ddiirreecctt iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e ttyyppee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._d_i_r_e_c_t generates a flow direction map from a given elevation layer.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              elevation map
+
+       oouuttppuutt==_n_a_m_e
+              flow direction map
+
+       ttyyppee==_n_a_m_e
+              type of flow direction map to be created.
+
+              Options: _a_g_n_p_s or _g_r_a_s_s
+
+              The _t_y_p_e is the type of format for which the user wishes to cre-
+              ate the flow direction map. The _a_g_n_p_s format gives category val-
+              ues  from  1-8, with 1 facing north and increasing values in the
+              clockwise direction. The _a_n_s_w_e_r_s format  gives  category  values
+              from  0-360  degrees,  with  0  (360)  facing  east   and values
+              increasing in the  counter  clockwise  direction  at  45  degree
+              increments.   The _g_r_a_s_s format gives the same category values as
+              the _r_._s_l_o_p_e_._a_s_p_e_c_t program.
+
+
+EExxaammppllee
+       rr..ddiirreecctt iinnppuutt==_a_n_s_i_._e_l_e_v oouuttppuutt==_a_n_s_i_._a_s_p ttyyppee==_g_r_a_s_s
+
+       will create a flow direction map ansi.asp for the type grass
+
+NNOOTTEE
+       _r_._d_i_r_e_c_t is sensitive to the ccuurrrreenntt wwiinnddooww sseettttiinngg. Thus  the  program
+       can  be  used  to generate a flow direction map for any sub-area within
+       the full map layer. Also, _r_._d_i_r_e_c_t is sensitive to any _m_a_s_k in  effect.
+
+SSEEEE AALLSSOO
+       _r_._f_i_l_l_._d_i_r
+
+       _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+AAUUTTHHOORR
+       Raghavan Srinivasan, Agricultural Engineering, Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.direct(1)

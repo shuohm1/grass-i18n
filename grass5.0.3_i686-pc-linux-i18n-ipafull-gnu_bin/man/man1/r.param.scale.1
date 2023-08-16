@@ -1,0 +1,134 @@
+r.param.scale(1)              Grass User's Manual             r.param.scale(1)
+
+
+
+NNAAMMEE
+       rr..ppaarraamm..ssccaallee  -  GRASS  module that extracts terrain parameters from a
+       DEM. Uses a multi-scale approach by fitting a bivariate quadratic poly-
+       nomial to a given window size using least squares.
+
+UUssaaggee::
+       rr..ppaarraamm..ssccaallee   [-c]   iinn==name   oouutt==name  [ss__ttooll==value]  [cc__ttooll==value]
+       [ssiizzee==value] [ppaarraamm==name] [eexxpp==value] [zzssccaallee==value]
+
+
+
+FFllaaggss::
+       -c Constrain model through central window cell
+
+PPaarraammeetteerrss::
+        iinn Input elevation raster
+
+        oouutt Output raster representing the selected morphometric parameter
+
+        ss__ttooll Slope tolerance that defines a `flat' surface (degrees)
+
+       default: 1.0
+
+        cc__ttooll Curvature tolerance that defines `planar' surface
+
+       default: 0.0001
+
+        ssiizzee Size of processing window (odd numbers only)
+
+       default: 3
+
+        ppaarraamm Morphometric parameter to calculate
+
+       options: elev,slope,aspect,profc,planc,longc,crosc,minic,maxic, feature
+
+       default: elev
+
+        eexxpp Exponent for distance weighting (0.0-4.0)
+
+       default: 0.0
+
+        zzssccaallee Vertical scaling factor
+
+       default: 1.0
+
+
+
+       The  module  calculates  the  following parameters (terminology is from
+       Wood, 1996 with related terminology
+
+       used in other GRASS modules listed in brackets)
+
+                     elev: Generalised elevation value  (for  resampling  pur-
+                     poses at different scale)
+
+                     slope:  Magnitude  of  maximum  gradient  (steepest slope
+                     angle)
+
+                     aspect: Direction of  maximum  gradient  (steepest  slope
+                     direction=flow direction)
+
+                     _p_r_o_f_c  or  profile curvature (curvature intersecting with
+                     the  plane  defined  by  _Z  axis  and  maximum   gradient
+                     direction).  Positive values describe convex profile cur-
+                     vature, negative values concave profile curvature.
+
+                     _p_l_a_n_c or plan curvature (horizontal curvature, intersect-
+                     ing with the _X_Y plane)
+
+                     _l_o_n_g_c or longitudinal curvature (profile curvature inter-
+                     secting with the plane defined by the surface normal  and
+                     maximum gradient direction)
+
+                     _c_r_o_s_c  or cross-sectional curvature (tangential curvature
+                     intersecting with the plane defined by the surface normal
+                     and  a  tangent to the contour - perpendicular to maximum
+                     gradient direction)
+
+                     _m_a_x_i_c or maximum curvature (can be in any direction)
+
+                     _m_i_n_i_c or minimum curvature (in direction perpendicular to
+                     the direction of of maximum curvature)
+
+                     _m_e_a_n_c  or  mean curvature (average of maximum and minimum
+                     curvatures).
+
+                     Morphometric features: peaks, ridges,  passes,  channels,
+                     pits and planes
+
+NNOOTTEESS
+       In  _r_._p_a_r_a_m_._s_c_a_l_e  the direction of maximum gradient (considered downs-
+       lope) is stored as (West is 0 degree, East is +/- 180 degree):
+
+                     0..+180 degree from West to North to East
+
+                     0..-180 degree from West to South to East
+       Note that the aspect map is calculated differently from r.slope.aspect.
+
+SSttiillll ttoo ddoo
+       Fix  bug  when `constrain through central cell' option selected. Create
+       color tables for all output files (presently only on features).
+
+
+
+SSEEEE AALLSSOO
+       _d_._p_a_r_a_m_._s_c_a_l_e
+
+       See also Java Code in LandSerf that implements the same procedure
+
+
+
+RREEFFEERREENNCCEE
+       Wood, J. (1996): The Geomorphological characterisation of Digital  Ele-
+       vation Models. Diss., Department of Geography, University of Leicester,
+       U.K.
+
+       online at:
+
+       www.geog.le.ac.uk/jwo/research/dem_char/thesis/index.html
+
+AAUUTTHHOORR
+       ASSIST's home
+
+       Update to FP 3/2002: L. Potrich, M. Neteler, S. Menegon (ITC-irst)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                     r.param.scale(1)

@@ -1,0 +1,105 @@
+i.composite(1)                Grass User's Manual               i.composite(1)
+
+
+
+NNAAMMEE
+       ii..ccoommppoossiittee  - An imagery function that creates a color composite image
+       from three imagery band files specified by the user.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ccoommppoossiittee
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._c_o_m_p_o_s_i_t_e creates a color composite image from three band files spec-
+       ified  by the user.  The user specifies the bands to be used by assign-
+       ing a red, blue, and/or green color to each band.  The resulting  image
+       is  a raster map layer of raw spectral data composed of the three bands
+       chosen by the  user.   The  color  composite  can  then  be  displayed,
+       painted, or manipulated as would any raster map layer in GRASS.
+
+
+       The first prompt asks the user for the imagery group whose files are to
+       be used.
+
+
+       The following menu is then displayed:
+       Please indicate which files to use for red, green, and blue
+       colors.  You may leave any color out.  You may specify more
+       than one color per file.  However, each color may only be
+       specified once.  For example, to get a full color image,
+       specify r,g,b for 3 different files.  To get a grey scale
+       image, specify rgb for a single file.
+
+                            b__    spot.1
+                            g__    spot.2
+                            r__    spot.3
+                            ___    spotclass
+                            ___    spotreject
+
+           AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                         (OR <Ctrl-C> TO CANCEL)
+
+       The user is then allowed to check the choice of bands:
+                      Colors assigned as follows:
+
+                        RED:     spot.3@mapsetname
+                        GREEN:   spot.2@mapsetname
+                        BLUE:    spot.1@mapsetname
+
+                            Look ok? (y/n) [y]
+
+                      How many color levels (number of colors = levels^3)? 10
+
+       If the number of color levels is set to 10, the  color  table  that  is
+       created  has  1000 colors (10 saturation levels (or shades) per primary
+       color (blue, green, red)).  The number of colors that can be  displayed
+       at  one  time  on  a color graphics monitor will depend on the graphics
+       monitor being used. Note that GRASS currently becomes very slow in dis-
+       playing  maps with more than 8000 colors (color level: 20). So 10 to 15
+       color levels are recommended.
+
+
+       The user is then asked to name the composite image  raster  map  layer.
+       The  percentage  completed  is echoed to the screen and _r_._s_u_p_p_o_r_t files
+       are created automatically.
+
+NNOOTTEESS
+       The user should always check the geographic region settings before run-
+       ning  most imagery commands.  It is very easy for the boundaries of the
+       geographic region to be  completely  off  the  image.   Before  running
+       _i_._c_o_m_p_o_s_i_t_e,  or  other  imagery commands, the user should probably set
+       the geographic region to match that of the  raster  map  layers  to  be
+       read.  This can be accomplished using option 4 of the _g_._r_e_g_i_o_n command.
+
+
+       This program is interactive and requires no command line arguments.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g
+
+
+       _d_._h_i_s
+
+       _d_._r_g_b
+
+       _d_._r_a_s_t
+
+       _g_._r_e_g_i_o_n
+
+       _i_._c_o_l_o_r_s
+
+       _i_._g_r_o_u_p
+
+       _r_._c_o_l_o_r_s
+
+       _r_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       i.composite(1)

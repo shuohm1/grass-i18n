@@ -1,0 +1,126 @@
+r.cn(1)                       Grass User's Manual                      r.cn(1)
+
+
+
+NNAAMMEE
+       rr..ccnn - Generates a SCS curve number map layer
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+
+
+SSYYNNOOPPSSIISS
+       rr..ccnn
+
+       rr..ccnn   ssgg==hy_soil_group   lluu=landuse_map  pprr==practice_map  hhcc==hy_condi-
+       tion_map ccnn==cn_map aammcc==AMC_number
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_n is a command-line interface for generating an SCS CN  (Curve  Num-
+       ber) map.  The command format is:
+
+
+       _r_._c_n  _s_g_=_h_y_s_o_i_l_g_r_o_u_p   _l_u_=_l_a_n_d_u_s_e_m_a_p   _p_r_=_p_r_a_c_t_i_c_e_m_a_p _h_c_=_h_y_c_o_n_d_i_t_i_o_n_m_a_p
+       _c_n_=_c_n_m_a_p _a_m_c_=_A_M_C_n_u_m_b_e_r
+
+   PPaarraammeetteerrss::
+       ssgg==mmaapp Hydrologic soil group map name
+
+       lluu==mmaapp Landuse map name
+
+       pprr==mmaapp Practice or management map name
+
+       hhcc==mmaapp Hydrologic condition map name
+
+       ccnn==mmaapp Output CN map name
+
+       aammcc==nnuummbbeerr
+              Equivalent AMC condition number for the CN output
+
+       The command-line ordering can be in any form but all key words must  be
+       there to run the program.
+
+EEXXAAMMPPLLEE
+       _r_._c_n  _s_g_=_h_y_._s_o_i_l_._g_r_o_u_p  _l_u_=_l_a_n_d_u_s_e  _h_c_=_h_y_._c_o_n_d  _p_r_=_v_e_g_._c_o_v_e_r  _c_n_=_c_n_n_a_m_e
+       _a_m_c_=_2
+       will create a CN map cnname for equivalent AMC condition II
+
+
+
+AATTTTEENNTTIIOONN
+       _r_._c_n uses information from the four map  layers  by  reading  the  cell
+       layer and its category files. So it is important to update the category
+       files (text attributes) for all four layers and it  expects  the  cate-
+       gories of the map layer exactly as shown below:
+
+
+       For  the  hhyyddrroollooggiicc  ssooiill  ggrroouupp map the text categories may be either
+       "A", "B", "C" or "D". You will reclassify an  existing  soil  type  map
+       using rr..rreeccllaassss or vv..rreeccllaassss.
+
+
+       For  the  llaanndduussee mmaapp layer the text categories may be either "fallow",
+       "row crops", "small grain", "close-seeded legumes", "rotation  meadow",
+       "pasture",  "range",  "meadow",  "woods", "farmsteads", "roads (dirt)",
+       "hard surface" or "water".
+
+
+       For the pprraaccttiiccee or management map layer the categories may  be  either
+       "straight row", "contoured" or "contoured and terraced".
+
+         For  the  hhyyddrroollooggiiccaall  ccoonnddiittiioonn  map  the categories may be "poor",
+       "fair" or "good". The rating (good, fair, poor) is based on a  combina-
+       tion of factors that affect infiltration and runoff, which includes:
+
+                     density and canopy of vegetated areas
+
+                     amount of year-round ground cover
+
+                     amount of grass or close-seeded legumes in rotations
+
+                     percent  of  residue  cover  on the land surface (good is
+                     more than 20%)
+
+                     degree of surface roughness
+
+
+       AMC is the antecedent moisture condition. AMC I: dry, AMC  II:  normal,
+       AMC III (wet). Specify this number during module run.
+
+
+       The  category  text labels can be applied to above maps using rr..ssuuppppoorrtt
+       ("Edit category file").
+
+
+       If the combination of the four layers categories does not exist in  the
+       SCS CN table, an error message is printed and the program quits.
+
+
+
+NNOOTTEE
+       The  _r_._c_n program is sensitive to the current window setting.  Thus the
+       program can be used to generate a CN map of  any  sub-area  within  the
+       full map layer. Also, _r_._c_n is sensitive to any mask in effect.
+
+
+
+RREEFFEERREENNCCEE
+       SCS Curve number method: TR-55, Urban Hydrology for Small Watersheds
+
+SSEEEE AALLSSOO
+       _r_._w_e_i_g_h_t_e_d_._c_n _r_._s_u_p_p_o_r_t _r_._r_e_c_l_a_s_s _v_._r_e_c_l_a_s_s
+
+
+
+AAUUTTHHOORRSS
+       Raghavan  Srinivasan  and Dr. Bernie A. Engel, Agricultural Engineering
+       Department, Purdue University
+
+       Extensions by Markus Neteler, University of  Hannover,  Germany  (fixes
+       for AGNPS 5)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_0_8_:_3_1 _$
+
+
+
+GRASS 5.0                                                              r.cn(1)

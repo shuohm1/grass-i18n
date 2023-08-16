@@ -1,0 +1,63 @@
+d.db(1)                       Grass User's Manual                      d.db(1)
+
+
+
+NNAAMMEE
+       dd..ddbb - Displays sites from DB table in the active graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ddbb
+       dd..ddbb hheellpp
+       dd..ddbb         ttaabbllee==_t_a_b_l_e___n_a_m_e        xx==_c_o_l_u_m_n___n_a_m_e        yy==_c_o_l_u_m_n___n_a_m_e
+       [wwhheerree==_S_Q_L___w_h_e_r_e___c_l_a_u_s_e] [ccoolloorr==_n_a_m_e] [ssiizzee==_v_a_l_u_e] [iiccoonn==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._d_b displays sites from table in database with  coordinates  in  x,  y
+       columns  using site markers of a color, size, and type specified by the
+       user.  Output is displayed in the active graphics monitor.
+
+
+
+   PPaarraammeetteerrss::
+       ttaabbllee==_n_a_m_e
+              Name of a _t_a_b_l_e in the database.
+
+       xx==_c_o_l_u_m_n___n_a_m_e
+              Name of a _c_o_l_u_m_n containing x coordinates.
+
+       yy==_c_o_l_u_m_n___n_a_m_e
+              Name of a _c_o_l_u_m_n containing y coordinates.
+
+       wwhheerree==_S_Q_L___w_h_e_r_e
+              _S_Q_L _W_H_E_R_E clause without 'where'.
+
+       ccoolloorr==_n_a_m_e
+              Sets the current color to _n_a_m_e.
+              Options: red,  orange,  yellow,  green,  blue,  indigo,  violet,
+              magenta, brown, gray, white, and black
+              Default: _g_r_a_y
+
+       ssiizzee==_v_a_l_u_e
+              Size, in pixels, in which the site icons are to be drawn.
+              Options: 0-1000
+              Default: 5
+
+       iiccoonn==_n_a_m_e
+              The type of icon to be displayed at site locations.
+              Options: x, diamond, box, +
+              Default: x
+
+
+SSEEEE AALLSSOO
+       _d_b_._c_o_n_n_e_c_t
+
+
+AAUUTTHHOORR
+       Radim Blazek, Radim.Blazek@dhv.cz
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                              d.db(1)

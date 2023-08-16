@@ -1,0 +1,251 @@
+r.flowmd(1)                   Grass User's Manual                  r.flowmd(1)
+
+
+
+NNAAMMEE
+       _r_._f_l_o_w_m_d   - construction of slope lines (flowlines),  flowpath lengths
+       and flowline  densities from  a raster digital elevation model using  a
+       modified multiple directions  algorithm.
+
+
+       _(_G_R_A_S_S _R_a_s_t_e_r_/_V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..fflloowwmmdd
+
+       rr..fflloowwmmdd hheellpp
+
+       rr..fflloowwmmdd  [--dd ] eelleevviinn==nnaammee  aassppiinn==nnaammee
+        [bbaarrrriieerriinn==nnaammee ] [sskkiipp==vvaall ] [fflloouutt==nnaammee  [llggoouutt==nnaammee ] [ddssoouutt==nnaammee ]
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._f_l_o_w_m_d
+
+
+
+        generates flowlines using a combined raster-vector approach from input
+       elevation  _e_l_e_v_i_n  ,  aspect  _a_s_p_i_n   and  optionally barrier _b_a_r_r_i_e_r_i_n
+       raster maps.
+
+        Input elevation raster map with integer values should have  values  in
+       centimeters  preventing  premature flowline stop in flat areas.  Aspect
+       used for input must follow the same rules as aspect computed  in  other
+       GRASS  programs  (see r.slope.aspect, s.surf.rst). Barriers are defined
+       by non-zero values in an input raster map _b_a_r_i_e_r_i_n . Make sure that the
+       resolution  of your current region is set to the resolution of the ele-
+       vation raster file.
+
+        There are three possible output maps which can be produced in any com-
+       bination  simultaneously:  a  vector file _f_l_o_u_t  of flowlines, a raster
+       map _l_g_o_u_t  of flowpath lengths, and a raster map _d_s_o_u_t of flowline den-
+       sities.  Flowlines  are constructed by straight line segments (vectors)
+       with endpoints creating intersections of the flowline with edges of the
+       imaginary  mesh  connecting  centers  of the grid cells.  Flowlines are
+       generated from each  cell uphill by  default;  they  can  be  generated
+       downhill  using  the  flag  --dd  .  A flowline stops if its next segment
+       would reverse the direction of flow (from up to  down  or  vice-versa),
+       cross  a  barrier,  or  arrive  at  a  cell with undefined elevation or
+       aspect.  Another option, sskkiipp =_v_a_l , indicates that only the  flowlines
+       from  every _v_a_l th cell are to be included in _f_l_o_u_t .  The default sskkiipp
+       is 1. A high sskkiipp  usually speeds up processing time and often improves
+       the readability of a visualization of _f_l_o_u_t .
+
+
+
+
+       Flowpath  length output _f_l_o_u_t  gives the horizontal length of the flow-
+       line for given grid cell in units defined by your mapset.  It  is  com-
+       puted  as  the  sum  of the planar length of all straight flowline seg-
+       ments.
+
+
+       Flowline density output _d_s_o_u_t  represents the number of generated flow-
+       lines passing through the given cell. This program uses a modified mul-
+       tiple directions algorithm. Flowline density for each flowline  passing
+       between 2 grid cell centers is   fractioned between these grid cells by
+       distance. This algorithm smoothes  flowline densities on  convex  (dis-
+       persing)  slopes.  Flowline  lengths  and densities can be computed for
+       both uphill and downhill directionss.
+
+
+
+OOPPTTIIOONNSS
+       The user can run this  program  either  interactively  or  non-interac-
+       tively. The program will be run non-interactively if the user specifies
+       program arguments and flag settings on the command line using the form:
+
+
+       rr..fflloowwmmdd   [--dd  ] eelleevviinn==nnaammee  aassppiinn==nnaammee  [bbaarrrriieerriinn==nnaammee]] [[sskkiipp==vvaall ]
+       [fflloouutt==nnaammee ] [llggoouutt==nnaammee ] [ddssoouutt==nnaammee ]
+
+
+
+
+       Alternately, the user can simply type rr..fflloowwmmdd   on  the  command  line
+       without program arguments.  In this case, the user will be prompted for
+       parameter values and flag settings  using  the  standard  GRASS  parser
+       interface.
+
+
+
+
+       FFllaagg::
+
+       [--dd ]
+           Generate flowlines downhill (default generates flowlines uphill)
+
+
+
+
+
+       PPaarraammeetteerrss::
+
+       eelleevviinn==_n_a_m_e
+           Use the existing raster file with elevations_n_a_m_e  as input.
+
+       aassppiinn==_n_a_m_e
+           Use the existing raster file with aspect_n_a_m_e  as input.
+
+       bbaarrrriieerriinn==_n_a_m_e
+            "  4m Use the existing raster file with non-zero values represent-
+           ing barriers with _n_a_m_e  as input.
+
+       sskkiipp==_v_a_l
+           Set the the number of cells skipped for origins of flowlines to _v_a_l
+           .
+
+       fflloouutt==_n_a_m_e
+           Output coordinates of flowlines to vector file named  _n_a_m_e .
+
+       llggoouutt==_n_a_m_e
+           Output flowpath length values to raster file named  _n_a_m_e .
+
+       ddssoouutt==_n_a_m_e
+           Output flowline density values to raster file named  _n_a_m_e .
+
+
+
+
+AAllggoorriitthhmm bbaacckkggrroouunndd
+       1.  Construction  of  flow-lines (slope-lines): r.flow uses an original
+       vector-grid algorithm which  uses  an  infinite  number  of  directions
+       between  0.0000... and 360.0000...  and traces the flow as a line (vec-
+       tor) in the direction of gradient (rather than from cell to cell in one
+       of  the  8  directions  = D-infinity algorithm). They are traced in any
+       direction using aspect (so there  is  no  limitation  to  8  directions
+       here). The D8 algorithm produces zig-zag lines. The value in the outlet
+       is very similar for both r.flowmd and r.flow algorithms (because it  is
+       essentially  the  watershed  area), however the spatial distribution of
+       flow, especially on hillslopes is quite different. It  is  still  a  1D
+       flow  routing  so  the  dispersal flow is not accurately described, but
+       still better than D8.
+
+       2. Computation of contributing areas: r.flowmd divides this  flow  pro-
+       portionally  to two downslope adjacent cells using the distance between
+       the intersection node (flowline node) and these adjacent cell  centres.
+       (All  these three points are always on one connection line).  Therefore
+       r.flowmd uses a multiple flow algorithm but using a flux  decomposition
+       different from Desmet & Govers (1996). D. & G. split the flux vector to
+       two ordinal components (cells) using sin, cos of the aspect value.  The
+       flux is then divided to 2 from 4 neighboring cardinal cells.  The algo-
+       rithm used in r.flowmd divides the flux to two adjacent downslope cells
+       (always  one  cardinal  and  one  diagonal  cell)  using a procedure as
+       described above.
+
+NNOOTTEESS
+       Flowlines generated uphill are used for  computation  of  the  flowpath
+       length  (slope  lenghts)  defining  the  distance between the grid cell
+       and upland area.  This can be used, for example, in water erosion  mod-
+       eling  for the computation of LS factor in standard form of USLE. Flow-
+       lines can be also generated downhill from each grid point  to  simulate
+       the  topographic  potential for quasi steady-state overland water flow.
+       Downslope flowline density multiplied by grid cell area gives the  ups-
+       lope  contributing   area.  This topographic parameter  defines an area
+       from which water  inflows to the given cell. This area is  an  estimate
+       of potential steady-state water flux and can be used in the modeling of
+       water erosion and for computation of unit stream power based LS factor.
+       The  program  has  been designed for modeling erosion on hillslopes and
+       has a very strict condition for ending the flowline.  It  is  therefore
+       not  very  suitable for the extraction of stream network or delineation
+       of watersheds unless a DEM without pits  or  flat  areas  is  available
+       (r.fill.dir can be used to fill pits).
+
+
+
+        To  label  the vector flowlines automatically, the user can use v.lla-
+       bel.
+
+FFUURRTTHHEERR NNOOTTEESS
+       Differences between _r_._f_l_o_w and _r_._f_l_o_w_m_d
+
+
+
+               r.flow has an option to compute  slope  and  aspect  internally
+              thus making the program capable to process much larger data sets
+              than r.flowmd. It has also 2 additional options for handling  of
+              large data sets but it is not known that they work properly.
+
+               the  programs handle the special cases when the flowline passes
+              exactly (or very close) through the grid vertices differently.
+
+               r.flowmd has the  simplified  multiple  flow  addition  so  the
+              results are smoother.
+
+       In  conclusion, _r_._f_l_o_w_m_d produces nicer results but is slower and it do
+       support as large data sets as _r_._f_l_o_w.
+
+SSEEEE AALLSSOO
+        _r_._f_l_o_w_,
+
+       _r_._w_a_t_e_r_s_h_e_d_,
+
+       _r_._d_r_a_i_n_,
+
+       _r_._f_i_l_l_._d_i_r_,
+
+       _r_._s_l_o_p_e_._a_s_p_e_c_t_,
+
+       _s_._s_u_r_f_._r_s_t _v_._l_l_a_b_e_l
+
+       .PP
+
+
+
+
+AAUUTTHHOORR
+       Jaroslav Hofierka, GeoModel s.r.o., Bratislava, Slovakia
+
+
+
+RREEFFEERREENNCCEESS
+       Mitasova, H., L. Mitas, 1993, Interpolation by regularized spline  with
+       tension  :  I.  Theory  and implementation. Mathematical Geology 25, p.
+       641-655.  (online)
+
+       GMSL/University of Illinois at Urbana-Champaign
+
+       Mitasova, H., J. Hofierka, 1993, Interpolation  by  regularized  spline
+       with  tension : II.  Application to terrain modeling and surface geome-
+       try analysis. Mathematical Geology 25, p. 657-669. (online)
+
+        Mitasova, H., Hofierka, J., Zlocha, M., Iverson, R.  L.  (1996).  Mod-
+       elling  Topographic  Potential  for  Erosion  and Deposition Using GIS.
+       International Journal of Geographical Information Systems, 10, 629-641.
+       (online)
+
+       Mitasova,  H.(1993):  Surfaces and modeling. Grassclippings (winter and
+       spring) p.18-19.
+
+       Mitasova, H., J. Hofierka, M.  Zlocha,  L.R.  Iverson,  1996,  Modeling
+       topographic  potential for erosion and deposition using GIS. Int. Jour-
+       nal of Geographical Information Science, 10(5), 629-641.  (reply  to  a
+       comment  to  this paper appears in 1997 in Int. Journal of Geographical
+       Information Science, Vol. 11, No. 6)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.flowmd(1)

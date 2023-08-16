@@ -1,0 +1,65 @@
+monitorcap(1)                 Grass User's Manual                monitorcap(1)
+
+
+
+NNAAMMEE
+       mmoonniittoorrccaapp  - Description of device driver database file format.
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _d_._m_o_n  command  and  all  graphics commands access a device driver
+       database stored in the file $GISBASE/etc/monitorcap.   This  file  con-
+       tains  a  line for each graphics monitor on the system.  Each line con-
+       tains 6 fields separated by colons:
+
+       name   the name by which the user identifies the driver
+
+       program
+              the full pathname of the executable driver or a  pathname  rela-
+              tive to $GISBASE
+
+       description
+              A short 4 or 5 word description of the driver.
+
+       fifos  full  pathnames  to  the  input  and output fifos over which the
+              driver communicates with the libraries
+
+       tty    the name of the tty from which the driver must  be  started,  or
+              empty if there is no such restriction
+
+       msg    a  message  to  print to the user if an attempt is made to start
+              the driver from the wrong tty.
+
+
+EEXXAAMMPPLLEE
+       The following is an example of a single monitor system.  The driver may
+       be  started  from any terminal and uses /dev/fifo.a and /dev/fifo.b for
+       communication with application programs:
+
+
+       x:driver/X:graphics monitor:/dev/fifo.a
+
+       /dev/fifo.b::any terminal
+
+
+       This example has 2 monitors  on  the  system,  using  the  same  device
+       driver.  Note that each has a different _n_a_m_e field and uses a different
+       pair of fifos.  Also, each must be started on a specific terminal:
+
+
+       1:driver/X:monitor 1:/dev/fifo.1a
+        /dev/fifo.1b:/dev/tty8:tty8
+       2:driver/X:monitor 2:/dev/fifo.2a
+        /dev/fifo.2b:/dev/tty10:tty10
+
+NNOOTTEESS
+       Each line in this file must refer to a valid driver.  No comment  lines
+       are supported.  Also, no blank lines are allowed.
+
+SSEEEE AALLSSOO
+       _d_._m_o_n
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                        monitorcap(1)

@@ -1,0 +1,66 @@
+m.dted.examine(1)             Grass User's Manual            m.dted.examine(1)
+
+
+
+NNAAMMEE
+       mm..ddtteedd..eexxaammiinnee  - Provides a terse description of level 1 and 2 digital
+       terrain elevation data (DTED) files produced  and  distributed  by  the
+       Defense Mapping Agency (DMA) on 1/2-inch magnetic tapes.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..ddtteedd..eexxaammiinnee [_t_a_p_e_d_e_v]
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._d_t_e_d_._e_x_a_m_i_n_e  scans  digital  terrain elevation data (DTED - Levels 1
+       and 2) that was produced and supplied by  the  Defense  Mapping  Agency
+       (DMA)  on  1/2-inch  magnetic  tape  from  the tape device specified by
+       _t_a_p_e_d_e_v, and prints to the screen a terse description of each file.
+
+
+       If the user specifies no  _t_a_p_e_d_e_v  on  the  command  line  the  program
+       assumes  that input is coming from /dev/rmt0.  The information provided
+       by _m_._d_t_e_d_._e_x_a_m_i_n_e includes the UTM borders, cell resolution, and number
+       of elevation profiles in each file.
+
+BBUUGGSS
+       The  header  file  for  DTED  Level  1  and 2 data was changed in 1987.
+       _m_._d_t_e_d_._e_x_a_m_i_n_e and _m_._d_t_e_d_._e_x_t_r_a_c_t operate only on DTED data  containing
+       pre-1987  headers.   DTED  data  containing the pre-1987 headers may be
+       purchased from the Defense Mapping Agency (DMA) upon request.
+
+SSEEEE AALLSSOO
+       _P_u_r_s_u_a_n_c_e _o_f _E_l_e_v_a_t_i_o_n _D_a_t_a, by Stuart Bradshaw, USACERL
+       _D_T_E_D _a_n_d _D_E_M _E_l_e_v_a_t_i_o_n _D_a_t_a _E_x_t_r_a_c_t_i_o_n, by Stuart Bradshaw,  Mary  Mar-
+       tin, and Chester Kos, USACERL
+
+
+       _g_._r_e_g_i_o_n
+
+       _m_._d_m_a_U_S_G_S_r_e_a_d
+
+       _m_._d_t_e_d_._e_x_t_r_a_c_t
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+       _m_._r_e_g_i_o_n_._l_l
+
+       _m_._r_o_t_9_0
+
+       _r_._d_e_s_c_r_i_b_e
+
+       _r_._i_n_._l_l
+
+       _r_._r_e_s_c_a_l_e
+
+       _r_._s_l_o_p_e_._a_s_p_e_c_t
+
+AAUUTTHHOORRSS
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+       Andrew Heekin, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                    m.dted.examine(1)

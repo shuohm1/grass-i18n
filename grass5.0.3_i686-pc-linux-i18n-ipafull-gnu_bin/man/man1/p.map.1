@@ -1,0 +1,766 @@
+p.map(1)                      Grass User's Manual                     p.map(1)
+
+
+
+NNAAMMEE
+       _p_._m_a_p - Hardcopy color map output utility.
+
+       _(_G_R_A_S_S _H_a_r_d_c_o_p_y _O_u_t_p_u_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       pp..mmaapp
+
+       pp..mmaapp hheellpp
+
+       pp..mmaapp [iinnppuutt==_n_a_m_e] [ssccaallee==_m_a_p_s_c_a_l_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _p_._m_a_p  produces hardcopy color map products on your system's color out-
+       put device. Output can include a raster map, any number of vector over-
+       lays, site data, text labels, and other spatial data.
+
+       This  program has 2 distincts modes of operation. The command-line mode
+       requires the user to prepare a file of mapping instructions  describing
+       the various spatial and textual information to be printed prior to run-
+       ning _p_._m_a_p.  The interactive mode  (i.e.,  no  command-line  arguments)
+       will  prompt  the  user for items to be mapped and does not require the
+       user to prepare a file of instructions.
+
+       The command-line parameters are:
+
+       iinnppuutt==_n_a_m_e
+           File containing mapping instructions. (or enter  iinnppuutt==--  to  enter
+           from keyboard). These instructions are described in detail below.
+
+       ssccaallee==_m_a_p_s_c_a_l_e
+           Scale of the output map, e.g. 1:25000
+
+           Default: 1panel
+
+       This  parameter  is  provided  as a convenience. It is identical to the
+       _s_c_a_l_e mapping instruction described below.
+
+
+       Note: the user must select an output device using _p_._s_e_l_e_c_t before  run-
+       ning _p_._m_a_p. Also, the _p_r_e_v_i_e_w device can be selected to view the output
+       from _p_._m_a_p on the graphics monitor instead of sending  it  to  a  paper
+       printer.
+
+MMAAPPPPIINNGG IINNSSTTRRUUCCTTIIOONNSS
+       The mapping instructions allow the user to specify various spatial data
+       to be plotted. These instructions are normally prepared  in  a  regular
+       text  file  using  a  system  editor. Some instructions are single line
+       instructions while others are multiple line. Multiple line instructions
+       consist of the main instruction followed by a subsection of one or more
+       additional instructions.
+
+ccoolloorrmmooddee
+       Selects the appropriate method to color raster map layers and images.
+
+
+       There are two methods: _a_p_p_r_o_x_i_m_a_t_e and _b_e_s_t_. From a  user  perspective,
+       _a_p_p_r_o_x_i_m_a_t_e can be used for raster map layers with few categories, such
+       as soils, and _b_e_s_t should be used for images  like  LANDSAT  images  or
+       NHAP  photos, or maps with many categories. The _a_p_p_r_o_x_i_m_a_t_e mode treats
+       each pixel independently, giving it the printer color that best approx-
+       imates  the  true  color.  The  _b_e_s_t mode "blends" colors from pixel to
+       pixel using a dithering technique to  simulate  more  colors  than  the
+       printer can actually print. The default, if unspecified, is _b_e_s_t_.
+
+       This  example would select the _a_p_p_r_o_x_i_m_a_t_e colormode. The assumption is
+       that the raster map layer being printed is has few colors or  that  the
+       colors would not look good dithered.
+               ccoolloorrmmooddee approx
+
+
+
+ccoolloorrttaabbllee
+       Includes  the  color table for the raster map layer in the legend below
+       the map
+
+
+       The color table will display the colors for each raster map layer cate-
+       gory  value and the category label. To get a color table, you must have
+       previously requested  a  raster  map  layer.  Omitting  the  ccoolloorrttaabbllee
+       instruction would result in no color table. NNoottee: Be careful about ask-
+       ing for color tables for raster map layers which have many  categories,
+       such  as  elevation.  This could result in the printing of an extremely
+       long color table!!!!!
+
+       This example would print a color table as part of  the  legend  to  the
+       map.
+               ccoolloorrttaabbllee y
+
+
+
+ccoommmmeennttss
+       Prints  comments  beneath the map . You may submit comment text line by
+       line during _p_._m_a_p execution or a via a prepared comments file.
+               comments
+               eenndd
+
+
+       This example prints the comment "This is a comment" in the legend below
+       the map.
+               ccoommmmeennttss
+               This is a comment.
+               eenndd
+
+
+       This  example prints whatever is in the file _v_e_g_._c_o_m_m_e_n_t_s in the legend
+       below the map.
+               rraasstteerr vegetation
+               ccoommmmeennttss veg.comments
+               eenndd
+
+
+       Presumably, the file _v_e_g_._c_o_m_m_e_n_t_s contain comments  pertaining  to  the
+       raster map layer _v_e_g_e_t_a_t_i_o_n, such as "This map was created by classify-
+       ing a LANDSAT TM image".
+
+ddeeffppaatt
+       Defines area fill patterns to be used in the _s_e_t_p_a_t instruction.
+               pattern
+               ccoolloorr # color
+               eenndd
+
+
+       The pattern is given a name on the _d_e_f_p_a_t instruction line. The pattern
+       which  follows  is  composed  of a sequence of numbers 0-9 (and blanks,
+       which are equivalent to 0). The blanks or zeros indicate holes  in  the
+       pattern where the normal category color would show thru. The other num-
+       ber 1-9 indicate pattern pixels and can  be  assigned  any  color.  The
+       default  color  for  all the digits will be black unless specified with
+       the _c_o_l_o_r instruction.  The color option will  begin  by  entering  the
+       word _c_o_l_o_r followed by one of the digits (1-9) in the pattern, followed
+       by one of the NAMED COLORS. This should be repeated  for  each  of  the
+       digits  specified  to avoid using black. The instruction _e_n_d terminates
+       the pattern definition.  Of course, the user can define  more  patterns
+       by entering more _d_e_f_p_a_t instructions.
+
+       NNOOTTEE::  Do  NOT  indent the pattern. Leading blank spaces will be inter-
+       preted as 0's.
+
+       This example creates a black horizontal line pattern.
+               ddeeffppaatt horiz
+               1
+               0
+               0
+               0
+               ccoolloorr 1 black
+               eenndd
+
+
+       This example creates a green vertical line pattern.
+               ddeeffppaatt vert
+               1000
+               ccoolloorr 1 green
+               eenndd
+
+
+       This example creates a red diagonal line pattern.
+               ddeeffppaatt diag
+               00001
+               0001
+               001
+               01
+               1
+               ccoolloorr 1 red
+               eenndd
+
+
+       This example creates a two-toned tree pattern with  orange  trunks  and
+       green leaves.
+               ddeeffppaatt tree
+                    2
+                   222
+                  22122
+                 22 1 22
+                    1
+
+
+
+                              2
+                             222
+                            22122
+                           22 1 22
+                              1
+               ccoolloorr 1 orange
+               ccoolloorr 2 black
+               eenndd
+
+
+
+eennddppaanneell
+       Specifies  which  panel  number  to end printing. The default is 0, and
+       will print all panels from the startpanel to the last panel.
+               eennddppaanneell 4
+
+
+       This example would end output at panel 4.
+
+ggrriidd
+       Overlays a coordinate grid onto the output map.
+               ccoolloorr color
+               nnuummbbeerrss # [color]
+               eenndd
+
+
+       The ssppaacciinngg of the grid is given (in the geographic  coordinate  system
+       units)  on the main instruction line. The subsection instructions allow
+       the user to specify the ccoolloorr of the  grid  lines,  whether  coordinate
+       nnuummbbeerrss  should  appear  on  the  grid lines, and if they should appear
+       every grid line (1), every other grid line (2), etc.,  and  what  color
+       the numbers should be. The defaults are black grid lines, unnumbered.
+
+       This  example would overlay a green grid with a spacing of 10000 meters
+       (for a metered database, like UTM) onto the output map. Alternate  grid
+       lines would be numbered with red numbers.
+               ggrriidd 10000
+               ccoolloorr green
+               nnuummbbeerrss 2 red
+               eenndd
+
+
+
+llaabbeellss
+       Selects a labels file for output (see manual entry for _p_._l_a_b_e_l_s_)_.
+       This example would paint labels from the labels
+       file called
+       _t_o_w_n_._n_a_m_e_s. Presumably, these labels would indicate
+       the names of towns on the map.
+
+               llaabbeellss town.names
+
+
+lliinnee
+       Draws lines on the output map.
+
+               lliinnee x% y% x% y%
+               ccoolloorr color
+               wwiiddtthh #
+               mmaasskkeedd [y|n]
+               eenndd
+
+
+       The  beginning  and  ending  points of the line are entered on the main
+       instruction.  These points can be defined either by map coordinates  or
+       by  using percentages of the geographic region. The user may also spec-
+       ify line ccoolloorr, wwiiddtthh in pixels, and if the line is to be mmaasskkeedd by the
+       current mask.  (See manual entry for _r_._m_a_s_k for more information on the
+       mask.)
+
+       This example would draw a yellow line from the point x=10% y=80% to the
+       point  x=30%  y=70%.  This line would be 2 pixels wide and would appear
+       even if there is a mask.
+               lliinnee 10% 80% 30% 70%
+               ccoolloorr yellow
+               wwiiddtthh 2
+               mmaasskkeedd n
+               eenndd
+
+
+       Of course, multiple lines may be drawn with multiple _l_i_n_e instructions.
+
+oouuttlliinnee
+       Outlines the areas of a raster map layer with a specified color.
+               ccoolloorr  color
+               eenndd
+
+
+       Distinct  areas  of  the  raster  map will be separated from each other
+       visually by drawing a  border  (or  outline)  in  the  specified  ccoolloorr
+       (default:  black). Note: it is important the user enter the instruction
+       eenndd even if a color is not chosen. (It is hoped that in the future  the
+       outline  of  a  different raster map layer other than the one currently
+       being painted may be placed on the map.)
+
+       This example would outline the category areas of the _s_o_i_l_s  raster  map
+       layer in grey.
+               rraasstteerr soils
+               oouuttlliinnee
+               ccoolloorr grey
+               eenndd
+
+
+
+ppooiinntt
+       Places additional points or icons on the output map.
+               ppooiinntt x% y%
+               ccoolloorr color
+               iiccoonn iconfile|_l_i_s_t
+               ssiizzee #
+               mmaasskkeedd [y|n]
+               eenndd
+
+
+       The  point  location  is entered in the main instruction line by giving
+       either the map coordinates or by using percentages  of  the  geographic
+       region.  The user may also specify the point ccoolloorr, the iiccoonn file to be
+       used to represent the point location (see  the  the  manual  entry  for
+       _p_._i_c_o_n_s_),  the  ssiizzee of the icon in integer multiples of the pattern in
+       the icon file, and whether the point is to be  mmaasskkeedd  by  the  current
+       mask. (See manual entry for _r_._m_a_s_k for more information on the mask.)
+
+       This  example  would place a purple diamond (from icon file _d_i_a_m_o_n_d) at
+       the point (E456000 N7890000). This diamond would be the same size it is
+       in the diamond icon file and would not be masked by the current mask.
+               ppooiinntt 456000 7890000
+               ccoolloorr purple
+               iiccoonn diamond
+               ssiizzee 1
+               mmaasskkeedd n
+               eenndd
+       Of course, multiple points may be drawn with multiple
+       _p_o_i_n_t instructions.
+
+rraasstteerr
+       Selects a raster map layer for output.
+
+       For each _p_._m_a_p run, only one raster map layer can be requested.
+       If  no  raster  map  layer is requested, a completely white map will be
+       produced.
+       It can be useful to select no raster map layer in order  to  provide  a
+       white
+       background for vector images.
+
+       This example would paint a map of the raster
+       map layer _s_o_i_l_s.
+
+               rraasstteerr soils
+
+
+rreeaadd
+       Provides _p_._m_a_p with a previously prepared input stream.
+
+       Mapping instructions can be placed into a file and read into
+       _p_._m_a_p_.
+
+       NNoottee::_p_._m_a_p will not search for this file. The user must
+       be in the correct directory or specify the full path on the rreeaadd
+       instruction.  (Note  to /bin/csh users: ~ won't work with this instruc-
+       tion).
+
+       This example reads the UNIX file _p_m_a_p_._r_o_a_d_s into _p_._m_a_p.
+       This file may contain all the _p_._m_a_p instructions for placing the
+       vector map layer _r_o_a_d_s onto the output map.
+
+               rreeaadd pmap.roads
+       The user may have created this file because this vector  map  layer  is
+       particularly
+       useful for many _p_._m_a_p outputs. By using the rreeaadd option,
+       the user need not enter all the input for the vveeccttoorr instruction,
+       but  simply rreeaadd the previously prepared file with the correct instruc-
+       tions.
+
+rreeggiioonn
+       Places the outline of a smaller geographic region on the output.
+
+               ccoolloorr color
+               wwiiddtthh #
+               eenndd
+       Geographic region settings are created and saved using _g_._r_e_g_i_o_n.
+       The _p_._m_a_p _r_e_g_i_o_n option can be used to show an outline of
+       a smaller region which was printed on a separate run of _p_._m_a_p on
+       other user-created maps.
+
+       The user can specify the ccoolloorr and the wwiiddtthh (in pixel
+       units) of the outline. The default is  a  black  border  of  one  pixel
+       width.
+
+       This  example  would  place a white outline, 2 pixels wide, of the geo-
+       graphic
+       region called _f_i_r_e_._z_o_n_e_s onto the output map. This geographic region
+       would have been created and saved using _g_._r_e_g_i_o_n.
+
+               rreeggiioonn fire.zones
+               ccoolloorr white
+               wwiiddtthh 2
+               eenndd
+
+
+ssccaallee
+       Selects a scale for the output map.
+
+       The scale can be selected either as:
+
+       a relative ratio, e.g. 1:25000;
+
+       an absolute width of the printed map, e.g. 10 inches;
+
+       the number of printed paper panels, e.g. 3 panels;
+
+       the number of miles per inch, e.g. 1 inch equals 4 miles.
+
+
+
+
+       This example would set the scale of the map to 1 unit = 25000 units.
+
+               ssccaallee 1:25000
+
+
+sseettccoolloorr
+       Overrides the color assigned to one or more categories  of  the  raster
+       map
+       layer.
+
+       This example would set the color for categories 2,5 and 8 of the raster
+       map layer _w_a_t_e_r_s_h_e_d_s to white and category 10 to green. (NNOOTTEE:
+       no spaces are inserted between the category values.)
+
+               rraasstteerr watersheds
+               sseettccoolloorr 2,5,8 white
+               sseettccoolloorr 10 green
+
+
+       Of course, _s_e_t_c_o_l_o_r can be requested more than  once  to  override  the
+       default  color for additional categories. More than one category can be
+       changed for each request by listing all the category  values  separated
+       by commas (but with no spaces).
+
+sseettppaatt
+       Assigns  a (previously defined) pattern on a raster map layer category.
+         or    sseettppaatt _b_u_i_l_t_i_n
+         or    sseettppaatt _a_l_l
+       The user can choose to use: the name  of  a  specific  pattern  created
+       using
+       ddeeffppaatt (see above); the patterns built into _p_._m_a_p; or all
+       the patterns the user may have created.
+
+       This example assigns the vertical pattern created using
+       ddeeffppaatt
+       (see example in ddeeffppaatt above) to category 3 of the raster map layer
+       _v_e_g_e_t_a_t_i_o_n and the tree pattern (see example in ddeeffppaatt above)
+       to category 10.
+
+               rraasstteerr veg
+               sseettppaatt 3 vert
+               sseettppaatt 10 tree
+       This example reads a previously prepared UNIX file
+       _h_o_r_i_z_._p_a_t with
+       the correct ddeeffppaatt instructions for creating a black horizontal
+       pattern (see example in
+       ddeeffppaatt above) and assigns that pattern to
+       category 5 of the raster map layer _s_o_i_l_s via the sseettppaatt instruction.
+
+               rraasstteerr soils
+               rreeaadd horiz.pat
+               sseettppaatt 5 horiz
+       To select the builtin patterns:
+
+               rraasstteerr soils
+               sseettppaatt builtin
+       To select individual builtin patterns:
+
+               rraasstteerr soils
+               sseettppaatt 5 #1
+               sseettppaatt 10 #2
+
+
+ssttaarrttppaanneell
+       Specifies  at  which  panel  number to begin printing. Default is 0 and
+       would
+       start printing from the first panel.
+
+               ssttaarrttppaanneell 2
+       This example would begin printing at panel 2.
+
+ssiitteess
+       Selects sites data to be placed on the output map (see manual entry for
+       _s_._m_e_n_u).
+
+               ccoolloorr color
+               iiccoonn iconfile |_l_i_s_t
+               ssiizzee #
+               ddeesscc [y|n]
+               eenndd
+       The user may specify the the ccoolloorr of the sites (see section on
+       NAMED COLORS below); the iiccoonn to be used to represent the presence
+       of a site (see the manual entry for _p_._i_c_o_n_s);
+       the ssiizzee of the icon (number of times larger than the size it is
+       in the icon file); and whether or not the ddeessccription associated
+       with each site is also to be printed.
+
+       This example would paint a sites map with blue
+       windmills (from an icon file created by the user using the
+       _p_._i_c_o_n_s
+       GRASS  command)  placed  at all windmill locations (from a sites list).
+       These
+       windmills would be two times larger than the size of the  icon  in  the
+       icon
+       file  and  have  descriptions  from  the sites list file printed beside
+       them.
+
+               ssiitteess windmills
+               ccoolloorr blue
+               iiccoonn windmill
+               ssiizzee 2
+               ddeesscc y
+               eenndd
+
+
+tteexxtt
+       Places text on the map.
+
+               tteexxtt  x% y% text
+               ffoonntt fontname
+               ccoolloorr color|none
+               wwiiddtthh #
+               hhccoolloorr color|none
+               hhwwiiddtthh #
+               bbaacckkggrroouunndd color|none
+               bboorrddeerr color|none
+               ssiizzee #
+               rreeff reference point
+               xxooffffsseett #
+               yyooffffsseett #
+               ooppaaqquuee [y|n]
+               eenndd
+       The user specifies where the text will be placed by providing map coor-
+       dinates
+       or  percentages  of  the  geographic region map. The text follows these
+       coordinates
+       on the same instruction line. More than one line of text can be  speci-
+       fied
+       by notating the end of a line with
+       \\nn (e.g. USA\nCERL).
+
+       The user can then specify various text features:
+
+       ffoonntt:: cyrilc gothgbt gothgrt gothitt greekc greekcs greekp greeks
+       italicc  italiccs  italict  romanc romancs romand romans romant scriptc
+       scripts
+       (The default font is romans);
+
+       ccoolloorr (see NAMED COLORS);
+
+       wwiiddtthh of the lines used to draw the text (to make thicker letters);
+
+       ssiizzee as the vertical height of the letters in meters on the ground
+       (text size will grow or shrink depending on the scale at which the map
+       is painted);
+
+       the highlight color (hhccoolloorr) and the width of the highlight color
+       (hhwwiiddtthh);
+
+       the text-enclosing-box bbaacckkggrroouunndd color; the text box bboorrddeerr
+       color;
+
+       rreeff.. This reference point specifies the text handle - what part
+       of the text should be placed on the location specified by the map coor-
+       dinates.
+       Reference points can refer to: [lower|upper|center] [left|right|center]
+       of the text to be printed;
+
+       yyooffffsseett, which provides finer placement of text by shifting the
+       text a vertical distance in pixels from the specified north. The verti-
+       cal
+       offset will shift the location to the south if positive, north if nega-
+       tive;
+
+       xxooffffsseett, which shifts the text a horizontal distance in pixels
+       from the specified east The horizontal offset will shift  the  location
+       east
+       if positive, west if negative;
+
+       whether or not the text should be ooppaaqquuee to vectors. Entering
+       nnoo to the opaque option will allow the user to see any vectors which
+       go  through  the text's background box. Otherwise, they will end at the
+       box's
+       edge.
+
+       This example would place the text
+       _S_P_E_A_R_F_I_S_H _L_A_N_D _C_O_V_E_R at the
+       coordinates E650000 N7365000. The text would be a  total  of  3  pixels
+       wide
+       (2  pixels of red text and 1 pixel black highlight), have a white back-
+       ground
+       enclosed in a red box, and be 500 meters in size. The lower right  cor-
+       ner
+       of  the  text would be centered over the coordinates provided. All vec-
+       tors
+       on the map would stop at the border of this text.
+
+               tteexxtt 650000 7365000 SPEARFISH LAND COVER
+               ffoonntt romand
+               ccoolloorr red
+               wwiiddtthh 2
+               hhccoolloorr black
+               hhwwiiddtthh 1
+               bbaacckkggrroouunndd white
+               bboorrddeerr red
+               ssiizzee 500
+               rreeff lower left
+               ooppaaqquuee y
+               eenndd
+
+
+vveeccttoorr
+       Selects a vector map layer for output.
+
+               ccoolloorr [#] color
+               wwiiddtthh #
+               hhccoolloorr color
+               hhwwiiddtthh #
+               mmaasskkeedd [y|n]
+               ssttyyllee  0-9
+               eenndd
+       The user can specify the ccoolloorr of the vectors; the wwiiddtthh
+       of the vectors lines in pixels; the highlight color (hhccoolloorr) for
+       the vector lines; the width of the highlight color (hhwwiiddtthh) in pixels;
+       whether or not the raster map layer is to be mmaasskkeedd by the current
+       mask (see manual entry _r_._m_a_s_k for more
+       information on the mask); and the line ssttyyllee. The line style allows
+       the vectors to be dashed in different patterns and colors. This is done
+       by  typing  a series of numbers (0-9) in a desired sequence or pattern.
+       Colors
+       for the numbers (1-9) can be assigned using the ccoolloorr instruction.
+       Blanks and non-digit characters are recognized as 0's.  Using  0  would
+       allow
+       the  colors  of  the  raster  map  layer (or the background color if no
+       raster
+       map layer was selected) to show through.
+
+       This example would paint a map of the vector
+       map layer named _s_t_r_e_a_m_s. These streams would be a total of 3 pixels
+       wide (the inner two pixels blue and the outer highlight  pixel  white).
+       The
+       map would not show streams outside of the current mask.
+
+               vveeccttoorr streams
+               ccoolloorr blue
+               wwiiddtthh 2
+               hhccoolloorr white
+               hhwwiiddtthh 1
+               mmaasskkeedd y
+               eenndd
+       This example would paint a map of the vector map
+       layer _r_o_a_d_s. These roads would be 2 pixels wide and would be dashed
+       blank-black-red (the blank areas would show what lies under the roads).
+       This map would show roads inside and outside of the current mask.
+
+               vveeccttoorr roads
+               wwiiddtthh 2
+               ssttyyllee 001122
+               ccoolloorr 1 black
+               ccoolloorr 2 red
+               mmaasskkeedd n
+               eenndd
+
+
+vveerrbboossee
+       Changes the amount of talking _p_._m_a_p will do.
+
+       A higher value implies more chatter. The default  is  2.  This  example
+       sets
+       the amount of chatter to a minimum.
+
+               vveerrbboossee 0
+
+
+eenndd
+       Terminates input and begin painting the map.
+
+
+
+NNAAMMEEDD CCOOLLOORRSS
+       The following are the colors that are accepted by _p_._m_a_p:
+
+               black
+               blue
+               brown
+               cyan
+               gray
+               green
+               grey
+               indigo
+               magenta
+               orange
+               purple
+               red
+               violet
+               white
+               yellow
+
+
+IICCOONNSS VVSS.. PPAATTTTEERRNNSS
+       Icons and patterns as used in _p_._m_a_p are not the same thing. Patterns
+       are defined and are normally used to cover those extended areas covered
+       by a raster map layer category. A pattern will repeat above, below and
+       adjacent to itself. Icons are used to represent a single point.
+
+       Patterns are supported directly within
+       _p_._m_a_p using the
+       _d_e_f_p_a_t
+       instruction, while icons must be created using the
+       _p_._i_c_o_n_s
+       program.
+
+EEXXAAMMPPLLEE pp..mmaapp IINNPPUUTT FFIILLEE
+       The following is an example of a _p_._m_a_p script file. The file has
+       been name
+       _s_p_e_a_r_._s_o_i_l_s. For the purposes of illustration, the file
+       is in two columns. This script file can be entered at the command line:
+
+       pp..mmaapp iinnppuutt==_s_p_e_a_r_._s_o_i_l_s
+
+       rraasstteerr soils            ddeeffppaatt diag
+       vveeccttoorr streams          000001
+          ccoolloorr blue           00001
+          wwiiddtthh 2              0001
+          hhccoolloorr white         001
+          hhwwiiddtthh 1             01
+          mmaasskkeedd y             1
+          eenndd                     ccoolloorr 1 red
+       vveeccttoorr roads               eenndd
+          wwiiddtthh 2              sseettppaatt 4 diag
+          ssttyyllee 001122         tteexxtt 608000.00 3476004.73 SPEARFISH SOILS MAP
+          ccoolloorr 1 black           ccoolloorr red
+          ccoolloorr 2 red             wwiiddtthh 2
+          mmaasskkeedd n                hhccoolloorr black
+          eenndd                     hhwwiiddtthh 1
+       llaabbeellss town.names          bbaacckkggrroouunndd white
+       rreeggiioonn subregion           bboorrddeerr red
+          ccoolloorr white             ssiizzee 500
+          wwiiddtthh 2                 rreeff lower left
+          eenndd                     ooppaaqquuee y
+       ggrriidd 10000                 eenndd
+          ccoolloorr green          lliinnee 606969.73 3423092.91 616969.73 3423092.91
+          nnuummbbeerrss 2 red           ccoolloorr yellow
+          eenndd                     wwiiddtthh 2
+       oouuttlliinnee                    ooppaaqquuee yes
+          ccoolloorr black             eenndd
+          eenndd                  ppooiinntt 40% 60%
+       ccoolloorrttaabbllee y               ccoolloorr purple
+       ccoommmmeennttss                   iiccoonn diamond
+          This is a comment       ssiizzee 2
+          eenndd                     mmaasskkeedd n
+       ssccaallee 1:25000              eenndd
+       sseettccoolloorr 6,8,9 white    eenndd
+       sseettccoolloorr 10 green
+
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       If the user simply enter _p_._m_a_p without arguments, then a simple prompt-
+       ing session occurs. Some, but not all of the  non-interactive  requests
+       are available at this level.
+
+SSEEEE AALLSSOO
+       _p_._c_h_a_r_t
+
+       _p_._i_c_o_n_s
+
+       _p_._l_a_b_e_l_s
+
+       _p_._s_e_l_e_c_t
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                             p.map(1)

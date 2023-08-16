@@ -1,0 +1,233 @@
+r.coin(1)                     Grass User's Manual                    r.coin(1)
+
+
+
+NNAAMMEE
+       rr..ccooiinn   -  Tabulates the mutual occurrence (coincidence) of categories
+       for two raster map layers.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ccooiinn
+       rr..ccooiinn hheellpp
+       rr..ccooiinn [--qqww] mmaapp11==_n_a_m_e mmaapp22==_n_a_m_e uunniittss==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_o_i_n tabulates the mutual occurrence of two raster map layers'  cate-
+       gories with respect to one another.  This analysis program respects the
+       current geographic region and mask settings.
+
+
+       The user can run the program non-interactively by specifying all needed
+       flags settings and parameter values on the command line, in the form:
+
+
+       rr..ccooiinn [--qqww] mmaapp11==_n_a_m_e mmaapp22==_n_a_m_e uunniittss==_n_a_m_e
+
+
+
+
+   FFllaaggss::
+       --qq     Run quietly, and supress the printing of program status messages
+              to standard output.
+
+       --ww     Print a wide report, in 132 columns (default: 80 columns)
+
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp11==_n_a_m_e
+              Name of first raster map layer.
+
+       mmaapp22==_n_a_m_e
+              Name of second raster map layer.
+
+       uunniittss==_n_a_m_e
+              Units of measure in which to output report results.
+              Options: _c_, _p_, _x_, _y_, _a_, _h_, _k_, _m
+
+
+
+       Alternately, the user can run _r_._c_o_i_n  interactively  by  simply  typing
+       rr..ccooiinn  without  command line arguments; in this case, the user will be
+       prompted for the names of the two raster map layers which will  be  the
+       subjects  of the coincidence analysis.  _r_._c_o_i_n then tabulates the coin-
+       cidence of category values among the two map layers  and  prepares  the
+       basic table from which the report is to be created.  This tabulation is
+       followed by an indication of how long the coincidence  table  will  be.
+       If  the table is extremely long, the user may decide that viewing it is
+       not so important after all, and may cancel the request at  this  point.
+       Assuming  the user continues, _r_._c_o_i_n then allows the user to choose one
+       of eight units of measure in which the report  results  can  be  given.
+       These units are:
+
+
+
+       _c cells
+
+       _p percent cover of region
+
+       _x percent of  category (column)
+
+       _y percent of  category (row)
+
+       _a acres
+
+       _h hectares
+
+       _k square kilometers
+
+       _m square miles
+
+
+
+       Note  that  three  of  these options give results as percentage values:
+       "p" is based on the grand total number of cells; "x" is based  on  only
+       column  totals;  and "y" is based on only row totals.  Only one unit of
+       measure can be selected per report output.  Type in  just  one  of  the
+       letters  designating a unit of measure followed by a for review.  After
+       reviewing the report on the screen, the user is given several  options.
+       The  report  may  be  saved  to  a  file  and/or sent to a printer.  If
+       printed, it may be printed with either 80 or 132 columns.  Finally, the
+       user  is  given  the option to rerun the coincidence tabulation using a
+       different unit of measurement.
+
+
+       Below is a sample of tabular output produced by _r_._c_o_i_n.  Here, map out-
+       put is stated in units of square miles.  The report tabulates the coin-
+       cidence of the Spearfish sample database's _o_w_n_e_r and  _r_o_a_d  raster  map
+       layers' categories.  The _o_w_n_e_r categories in this case refer to whether
+       the land is in private hands (category 1) or is owned by the U.S.  For-
+       est Service (category 2). The _r_o_a_d_s map layer categories refer to vari-
+       ous types of roads (with the exception of  category  value  "0",  which
+       indicates  "no  data";  i.e.,  map  locations at which no roads exist).
+       _r_._c_o_i_n does not report category labels. The user should run _r_._r_e_p_o_r_t or
+       _r_._c_a_t_s to obtain this information.
+
+
+       The  body  of  the report is arranged in panels. The map layer with the
+       most categories is arranged along the vertical axis of the  table;  the
+       other,  along the horizontal axis.  Each panel has a maximum of 5 cate-
+       gories (9 if printed) across the top. In addition, the last two columns
+       reflect  a  cross  total of each column for each row.  All of the cate-
+       gories of the map layer arranged along the vertical axis  are  included
+       in  each  panel.   There is a total at the bottom of each column repre-
+       senting the sum of all the rows in that column. A second  total  repre-
+       sents  the  sum of all the non-zero category rows. A cross total (Table
+       Row Total) of all columns for each row appears in a separate panel.
+
+
+       Note how the following information may  be  obtained  from  the  sample
+       report.
+
+
+       In  the  Spearfish  data base, in area not owned by the Forest Service,
+       there are 50.63 square miles of land not used for roads. Roads make  up
+       9.27 square miles of land in this area.
+
+
+       Of  the  total  102.70 square miles in Spearfish, 42.80 square miles is
+       owned by the Forest Service.
+       In total, there are 14.58 square miles of roads.
+
+
+       There are more category 2 roads outside Forest Service land  (2.92  mi.
+       sq.)  than there are inside Forest land boundaries (0.72 mi. sq.).
+
+
+       Following is a sample report.
+       +------------------------------------------------------------+
+       |                    COINCIDENCE TABULATION REPORT           |
+       |------------------------------------------------------------|
+       |Location: spearfish    Mapset: PERMANENT   Date: Wed Jun 1  |
+       |                                                            |
+       | Layer 1: owner          -- Ownership                       |
+       | Layer 2: roads          -- Roads                           |
+       | Mask:    none                                              |
+       |                                                            |
+       | Units:   square miles                                      |
+       |------------------------------------------------------------|
+       | Window:                North: 4928000.00                   |
+       |          West: 590000.00               East: 609000.00     |
+       |                        South: 4914000.00                   |
+       +------------------------------------------------------------+
+
+       Panel #1 of 1
+       +--------------------------------------------------------+
+       |        | owner                 |    Panel Row Total    |
+       |   cat# |         1 |         2 |   w cat 0 | w/o cat 0 |
+       |--------------------------------------------------------|
+       |r     0 |     50.63 |     37.49 |     88.12 |     88.12 |
+       |o     1 |      1.53 |      0.68 |      2.21 |      2.21 |
+       |a     2 |      2.92 |      0.72 |      3.64 |      3.64 |
+       |d     3 |      3.97 |      2.57 |      6.54 |      6.54 |
+       |s     4 |      0.65 |      1.36 |      2.00 |      2.00 |
+       |      5 |      0.19 |      0.00 |      0.19 |      0.19 |
+       |--------------------------------------------------------|
+       |Total   |           |           |           |           |
+       |with 0  |     59.90 |     42.80 |    102.70 |    102.70 |
+       |--------------------------------------------------------|
+       |w/o 0   |      9.27 |      5.32 |     14.58 |     14.58 |
+       +--------------------------------------------------------+
+
+
+       +--------------------------------+
+       |        |    Table Row Total    |
+       |   cat# |   w cat 0 | w/o cat 0 |
+       |--------------------------------|
+       |r     0 |     88.12 |     88.12 |
+       |o     1 |      2.21 |      2.21 |
+       |a     2 |      3.64 |      3.64 |
+       |d     3 |      6.54 |      6.54 |
+       |s     4 |      2.00 |      2.00 |
+       |      5 |      0.19 |      0.19 |
+       |--------------------------------|
+       |Total   |           |           |
+       |with 0  |    102.70 |    102.70 |
+       |--------------------------------|
+       |w/o 0   |     14.58 |     14.58 |
+       +--------------------------------+
+
+
+NNOOTTEESS
+       It  is  nnoott  a  good idea to run _r_._c_o_i_n on a map layer which has a mon-
+       strous number of categories  (e.g.,  unreclassed  elevation).   Because
+       _r_._c_o_i_n reports information for each and every category, it is better to
+       reclassify those categories (using _r_e_c_l_a_s_s) into a more manageable num-
+       ber prior to running _r_._c_o_i_n on the reclassed raster map layer.
+
+
+       _r_._c_o_i_n  calculates  the coincidence of two raster map layers.  Although
+       _r_._c_o_i_n allows the user to rerun the report using different units, it is
+       not  possible to simply rerun the report with different map layers.  In
+       order to choose new map layers, it is necessary to rerun _r_._c_o_i_n_.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _m_._i_p_f
+
+       _r_._c_a_t_s
+
+       _r_._d_e_s_c_r_i_b_e
+
+       _r_._m_a_s_k
+
+       _r_._r_e_c_l_a_s_s
+
+       _r_._r_e_p_o_r_t
+
+       _r_._s_t_a_t_s
+
+AAUUTTHHOORRSS
+       Michael O'Shea,
+       Michael Shapiro,
+
+       U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                            r.coin(1)

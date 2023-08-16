@@ -1,0 +1,117 @@
+d.vect.area(1)                Grass User's Manual               d.vect.area(1)
+
+
+
+NNAAMMEE
+       _d_._a_r_e_a - Draws vector areas to the GRASS display
+
+       _(_G_R_A_S_S _D_i_s_p_l_a_y_/_V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..vveecctt..aarreeaa [--rr] mmaapp_=_n_a_m_e [ffiillllccoolloorr_=_n_a_m_e_|_R_:_G_:_B] [lliinneeccoolloorr_=_n_a_m_e_|_R_:_G_:_B]
+       [ccaattnnuumm_=_v_a_l_u_e_[_,_v_a_l_u_e_,_._._._]]  [lleeggeenndd_=_f_i_l_e_n_a_m_e_|_"_-_"]
+
+   FFllaaggss::
+       --rr     Fill all areas with a randomly selected color from a small color
+              palette,  and draw all boundaries in black. The palette is simi-
+              lar to the GRASS named colors, but replaces white and black with
+              other colors.
+
+
+   PPaarraammeetteerrss::
+       mmaapp    Name of existing vector map to be displayed
+
+       ffiillllccoolloorr
+              Color  desired for filling polygons. May be specified as a stan-
+              dard grass color name, or as an RGB triplet  (e.g.  80:198:255).
+              Fill  can be disabled by specifying a color of "none".  Default:
+              white
+
+       lliinneeccoolloorr
+              Color desired for drawing area boundaries.  May be specified  as
+              a  standard  grass  color  name,  or  as  an  RGB  triplet (e.g.
+              127:127:127).  Line drawing can  be  disabled  by  specifying  a
+              color of "none".  Default: black
+
+       ccaattnnuumm List  of  category  numbers  to  restrict which areas are drawn.
+              Ignored if either the _-_r flag or the _l_e_g_e_n_d options are used.
+
+       lleeggeenndd Name of a legend file specifying what color to use for each cat-
+              egory  (see below). If "-" is specified, the legend will be read
+              from standard input.  Default: none
+
+
+DDEESSCCRRIIPPTTIIOONN
+       Use _d_._v_e_c_t_._a_r_e_a to draw labelled areas from a vector map to  the  GRASS
+       display.   Using, the "_-_r" flag, the program will cycle through a small
+       color palette, overriding any _f_i_l_l_c_o_l_o_r or _l_i_n_e_c_o_l_o_r  argument.   If  a
+       _l_e_g_e_n_d  file  is specified, it will be used.  Otherwise, the color used
+       for filling areas is as specified.
+
+
+       The _f_i_l_l_c_o_l_o_r argument may be any of the standard named  GRASS  colors,
+       or  and  RGB  (red, green, blue) triplet.  An RGB triplet must have the
+       form _:_:_<_;_n_u_m_>_; where _n_u_m is between 0 and 255.  If "none" is specified,
+       no  fill  will  be done.  Specifying "none" does not make sense for the
+       random color option, since it always draws lines in black.
+
+
+       The _l_i_n_e_c_o_l_o_r argument specifies the color  to  use  for  drawing  area
+       boundary  lines.  It has the same format as _f_i_l_l_c_o_l_o_r, and also accepts
+       the "none" color to disable line drawing.
+
+
+       An optional list of category numbers may  be  used  to  restrict  which
+       areas  are drawn (only valid with the _f_i_l_l_c_o_l_o_r and _l_i_n_e_c_o_l_o_r options).
+
+
+       More control can be had by creating a _l_e_g_e_n_d file.  At the time of this
+       writing,  GRASS  does  not have any management functions for specifying
+       how vectors should be drawn, so this file must be  created  by  "hand".
+       The easiest way to create such a file, is to copy the category file for
+       the vector map, and edit it to contain color specifications.  The  for-
+       mat  of  the  _l_e_g_e_n_d  file is _c_a_t_e_g_o_r_y _r_e_d _g_r_e_e_n _b_l_u_e _[_r_e_d _g_r_e_e_n _b_l_u_e_],
+       with one entry per line.  The first RGB color specifies the fill color,
+       while  the optional second one specifies the boundary line color.  If a
+       category for a map is not included in this file, it will not  be  drawn
+       unless  there  is  a  special  "default"  entry  with a category of -1.
+       Boundary lines are not drawn unless either a boundary color  is  speci-
+       fied for the category, or there is a default boundary color.  Using the
+       keyword "none" for either _f_i_l_l_c_o_l_o_r or _l_i_n_e_c_o_l_o_r in conjunction with  a
+       legend will override drawing fill or boundary lines.
+
+       EExxaammppllee LLeeggeenndd FFiillee
+              -1 255 255 255 127 127 127
+
+              1  210 198 168
+
+              5  168 198 220
+
+
+
+
+       In the above, all labelled areas will be drawn in white (255, 255, 255)
+       with dark gray boundaries (127, 127, 127) except those labelled as cat-
+       egories  1  or  5.   If the "default" entry had been omitted, then only
+       areas labelled 1 or 5 would have been drawn.  Since the entries  for  1
+       and  5  don't specify a color for boundary lines, no boundary lines are
+       drawn.
+
+
+       One may place comments on any line in the legend file  by  starting  it
+       with  a  non-numeric character ('#' is a good choice).  Empty lines are
+       ignored.
+
+NNOOTTEESS
+       It is expected that the legend specification aspect of this module will
+       change  when  an  infrastructure  for managing vector drawing styles is
+       implemented.
+
+AAUUTTHHOORR
+       Eric G. Miller
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_2_/_2_5 _0_4_:_1_8_:_5_2 _$
+
+
+
+GRASS 5.0                                                       d.vect.area(1)

@@ -1,0 +1,92 @@
+pngdriver(1)                  Grass User's Manual                 pngdriver(1)
+
+
+
+NNAAMMEE
+        PPNNGG ddrriivveerr  - driver to create PNG images
+
+       _(_d_r_i_v_e_r_s_)
+
+DDEESSCCRRIIPPTTIIOONN
+       The PNG driver generates PNG pictures from GRASS display commands.
+
+UUSSAAGGEE
+   EEnnvviirroonnmmeenntt vvaarriiaabblleessSSeevveerraall eennvviirroonnmmeenntt vvaarriiaabblleess eeffffeecctt tthhee ooppeerraattiioonn
+       of the PNG driver.
+
+                     GGRRAASSSS__WWIIDDTTHH==xxxxxx
+                     the width of the image map (default is 640).
+
+
+                     GGRRAASSSS__HHEEIIGGHHTT==yyyyyy
+                     the height of the image map (default is 480).
+
+
+                     GGRRAASSSS__PPNNGGFFIILLEE==ffiilleennaammee
+                     the  filename  to  put the resulting image in, default is
+                     mmaapp..ppnngg.
+
+                     GGRRAASSSS__BBAACCKKGGRROOUUNNDDCCOOLLOORR==RRRRGGGGBBBB
+                     specifies the background color to  use  in  RGB  notation
+                     (hex values). Default is 000000000000 (black).
+
+
+                     GGRRAASSSS__TTRRAANNSSPPAARREENNTT==[[TTRRUUEE||FFAALLSSEE]]
+                     sets  transparent  background  on  (TRUE)  or off (FALSE,
+                     default).
+
+                     GGRRAASSSS__TTRRUUEECCOOLLOORR==[[TTRRUUEE||FFAALLSSEE]]
+                     sets true-color support if built with GD-2.0
+
+   EExxaammppllee
+              Start up the driver
+
+              d.mon start=PNG d.mon select=PNG
+
+
+              Display raster map and vector polygons
+
+
+                       d.rast _s_o_m_e_r_a_s_t_e_r_m_a_p
+                       d.vect map=_s_o_m_e_v_e_c_t_o_r_m_a_p color=red
+
+
+               Stop the driver subsequently. This  will  write  a  file  named
+              _m_a_p_._p_n_g to be created in your current directory:
+                       d.mon stop=PNG
+
+
+
+NNOOTTEESS
+       The  PNG driver uses the Gd library (http://www.boutell.com/gd/) devel-
+       oped by Boutell.Com, Inc. The Gd library in turn relies on libpng  (see
+       the  libpng home page) and zlib (see the info-zip home page), all which
+       needs to be installed for the PNG driver to work (it's worth it).
+
+
+       Note that the PNG driver  is  limited  to  8bit  colors  when  compiled
+       against  libgd1.x.  From libgd2.x onwards true color support is option-
+       ally provided.
+
+
+       The resolution of the _P_N_G raster map is defined by the map extents. Use
+       _g_._r_e_g_i_o_n  _-_p to get the number of rows and cols and use the environment
+       variables to set the PNG size.
+
+
+
+SSEEEE AALLSSOO
+        _H_T_M_L_M_A_P _d_r_i_v_e_r_, _c_e_l_l_d_r_i_v_e_r_, _X_D_R_I_V_E_R_, _d_._a_r_e_a_, _d_._m_o_n_, _d_._v_e_c_t
+
+AAUUTTHHOORR
+       Per Henrik Johansen
+
+       _p_h_j_@_n_o_r_g_i_t_._n_o
+
+       _N_O_R_G_I_T _A_S
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_6_/_1_6 _1_5_:_2_9_:_1_8 _$
+
+
+
+GRASS 5.0                                                         pngdriver(1)

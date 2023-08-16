@@ -1,0 +1,172 @@
+i.ortho.photo(1)              Grass User's Manual             i.ortho.photo(1)
+
+
+
+NNAAMMEE
+       ii..oorrtthhoo..pphhoottoo  - An interactive imagery function for the ortho-rectifi-
+       cation of imagery group files.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..oorrtthhoo..pphhoottoo
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._o_r_t_h_o_._p_h_o_t_o allows the user to ortho-rectify imagery group files.  An
+       imagery  group  consists  of several scanned aerial photographs (raster
+       files) of a common area.  Imagery groups can  be  created  or  modified
+       using  the  GRASS  Image Processing Program _i_._g_r_o_u_p, or using the first
+       menu option described below.  _i_._o_r_t_h_o_._p_h_o_t_o guides the user through the
+       steps  required  to  ortho-rectify the raster files in a single imagery
+       group.
+
+
+       The first menu in _i_._o_r_t_h_o_._p_h_o_t_o provides the user  with  the  following
+       options:
+
+       Initialization Options:
+              1) Select/Modify imagery group
+
+              2) Select/Modify imagery group target
+
+              3) Select/Modify target elevation model
+
+              4) Select/Modify imagery group camera
+
+
+       Transformation Parameter Computation:
+              5) Compute image-to-photo transformation parameters
+
+              6) Initialize exposure station parameters
+
+              7) Compute photo-to-target transformation parameters
+
+
+       Ortho-rectification Option:
+              8) Ortho-rectify imagery group raster files
+
+       RETURN to exit
+              >
+
+       To  ortho-rectify aerial images the user has to follow the menu options
+       step by step. Generally the user builds a target location containing  a
+       projected  DEM  and  a map reference (topo sheet or other map). Another
+       xy-location will contain the aerial  photo.  The  entire  rectification
+       process is started within the xy-location. First the target to the pro-
+       jected location has to be set (i.target),  then  the  image  references
+       (fiducial  points) will be defined. After describing the camera parame-
+       ters, reference points from aerial image to the  topo  sheet  from  the
+       target location will be set. The local elevation will be taken from the
+       target DEM. Finally the aerial image will be rectified.
+
+
+       The options to follow are described as follows:
+
+       _1_. _S_e_l_e_c_t_/_M_o_d_i_f_y _i_m_a_g_e_r_y _g_r_o_u_p
+              The current imagery group is display at the top of the  previous
+              menu.   You  may  select another (new or existing) imagery group
+              for the ortho-rectification program  using  option  (1).   After
+              choosing  option  (1) you will be prompted for the name of a new
+              or existing imagery group.  Option (1)  using  the  GRASS  Image
+              Processing  Program  _i_._g_r_o_u_p,  for  creation  or modification of
+              imagery groups.  For more information on imagery group  creation
+              or modification please the the GRASS manual page for _i_._g_r_o_u_p.
+
+       _2_. _S_e_l_e_c_t_/_M_o_d_i_f_y _i_m_a_g_e_r_y _g_r_o_u_p _t_a_r_g_e_t
+              The target location and mapset may be selected or modified using
+              option (2).  After choosing option (2) you will be prompted  for
+              the  names  of  the target location and mapset, where the ortho-
+              rectified raster files will reside.  The target location is also
+              the  location  from which the elevation model (raster file) will
+              be selected -- see option (3).  Option (2) uses the GRASS  Image
+              Processing  Program  _i_._t_a_r_g_e_t,  for selection or modification of
+              the imagery group target location and mapset.  For more informa-
+              tion  on  imagery group selection or modification please the the
+              GRASS manual page for _i_._t_a_r_g_e_t.
+
+       _3_. _S_e_l_e_c_t_/_M_o_d_i_f_y _t_a_r_g_e_t _e_l_e_v_a_t_i_o_n _m_o_d_e_l
+              Option (3) allows you to select the raster file from the  target
+              location to be used as the elevation model.  The elevation model
+              is required for both the computation of photo-to-target  parame-
+              ters  (option  6) and for the ortho-rectification of the imagery
+              group files (option 8).  The raster file select for  the  eleva-
+              tion model should cover the entire area of the image group to be
+              ortho-rectified.  Currently, the elevation model raster file  is
+              expected to be in units of meters.  DTED and DEM files are suit-
+              able for use as the elevation model in  the  ortho-rectification
+              program.   After  selection  option (3) you will be prompted for
+              the name of the raster file in the target location that you want
+              to use as the elevation model.
+
+       _4_. _S_e_l_e_c_t_/_M_o_d_i_f_y _i_m_a_g_e_r_y _g_r_o_u_p _c_a_m_e_r_a
+              Using  option  (4)  you may select or create an camera reference
+              file that will be used with the current imagery group.  A camera
+              reference file contains information on the internal characteris-
+              tics of the aerial camera, as well as the geometry of the  fidu-
+              cial  or reseau marks.  The most important characteristic of the
+              camera is its focal length.  Fiducial or reseau marks  locations
+              are  required  to  compute the scanned image to photo-coordinate
+              transformation  parameter  (option  5).   For  a  more  detailed
+              description  of  option (4) please see the GRASS manual page for
+              _p_h_o_t_o_._c_a_m_e_r_a.
+
+       _5_. _C_o_m_p_u_t_e _i_m_a_g_e_-_t_o_-_p_h_o_t_o _t_r_a_n_s_f_o_r_m_a_t_i_o_n _p_a_r_a_m_e_t_e_r_s
+              The scanned image to photo-coordinate transformation  parameters
+              are  computed  using option (5).  In this interactive option you
+              associate scanned reference  points  (fiducials,  reseau  marks,
+              etc.)  with their known photo coordinates from the camera refer-
+              ence file.  Complete documentation for this option is  available
+              under the manual entry _p_h_o_t_o_._2_i_m_a_g_e.
+
+       _6_. _I_n_i_t_i_a_l_i_z_e _e_x_p_o_s_u_r_e _s_t_a_t_i_o_n _p_a_r_a_m_e_t_e_r_s
+              The  use of photo.init (menu 6) is only required when rectifying
+              a tilted or oblique aerial photo.
+
+              If option (6)  is  selected,  initial  camera  exposure  station
+              parameters  and  initial  variances may be selected or modified.
+              Complete documentation for this option is  available  under  the
+              manual entry _p_h_o_t_o_._i_n_i_t.
+
+       _7_. _C_o_m_p_u_t_e _p_h_o_t_o_-_t_o_-_t_a_r_g_e_t _t_r_a_n_s_f_o_r_m_a_t_i_o_n _p_a_r_a_m_e_t_e_r_s
+              The  photo to target transformation parameters are compute using
+              option(7).  Here control  points  are  marked  on  one  or  more
+              imagery  group  files and associated with there known positional
+              and elevation  coordinates.   Complete  documentation  for  this
+              option is available under the manual entry _p_h_o_t_o_._2_t_a_r_g_e_t.
+
+       _8_. _O_r_t_h_o_-_p_h_o_t_o _i_m_a_g_e_r_y _g_r_o_u_p _f_i_l_e_s
+              Option  (8) is used to perform the actual image ortho-rectifica-
+              tion after all of the transformation parameters have  been  com-
+              puted.  Ortho-rectified raster files will be created in the tar-
+              get location for each selected  imagery  group  file.   You  may
+              select  either  the current window in the target location or the
+              minimal bounding window for the ortho-rectified image.  Complete
+              documentation  for  this  option  is  available under the manual
+              entry _p_h_o_t_o_._r_e_c_t_i_f_y.
+
+
+NNOOTTEESS
+       _i_._o_r_t_h_o_._p_h_o_t_o currently requires the elevation model to be  in  meters,
+       and the target location to be a metric coordinate system.
+
+SSEEEE AALLSSOO
+       _p_h_o_t_o_._c_a_m_e_r_a
+
+       _p_h_o_t_o_._2_i_m_a_g_e
+
+       _p_h_o_t_o_._2_t_a_r_g_e_t
+
+       _p_h_o_t_o_._i_n_i_t
+
+       _p_h_o_t_o_._r_e_c_t_i_f_y
+
+AAUUTTHHOORR
+       Mike Baba,  DBA Systems, Inc.
+
+
+       Updated rectification and elevation map to FP 1/2002 Markus Neteler
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_9_/_0_9 _1_3_:_1_0_:_1_8 _$
+
+
+
+GRASS 5.0                                                     i.ortho.photo(1)

@@ -1,0 +1,139 @@
+shade.clr.sh(1)               Grass User's Manual              shade.clr.sh(1)
+
+
+
+NNAAMMEE
+       sshhaaddee..ccllrr..sshh  - Creates a color shaded relief map based on current res-
+       olution settings and sun altitude and color azimuths values entered  by
+       the user.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       sshhaaddee..ccllrr..sshh
+
+       sshhaaddee..ccllrr..sshh hheellpp
+
+       sshhaaddee..ccllrr..sshh   [aallttiittuuddee==_v_a_l_u_e]   [rr__aazziimmuutthh==_v_a_l_u_e]   [gg__aazziimmuutthh==_v_a_l_u_e]
+       [bb__aazziimmuutthh==_v_a_l_u_e] [eelleevvaattiioonn==_n_a_m_e] [sshhaaddee==_v_a_l_u_e_|_m_|_f]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_h_a_d_e_._c_l_r_._s_h is a Bourne shell (sh(1)) script that  creates  a  colored
+       raster  shaded  relief  map based on current resolution settings and on
+       sun altitude and color light azimuth values entered by the  user.   The
+       new  shaded relief map is named _._s_h_a_d_e and stored in the user's current
+       mapset.
+
+
+       If no parameters are provided on startup, this program is  interactive;
+       thus if the user enters the command: sshhaaddee..ccllrr..sshh
+
+       The program then prompts the user to enter values for:
+
+              The  aallttiittuuddee  of  the sun in degrees above the horizon (a value
+              between 0 and 90 degrees), and
+
+              The aazziimmuutthh of the red, green, and blue lights in degrees to the
+              east of north (a value between -1 and 360 degrees).
+
+              The name of a raster map layer whose cell category values are to
+              provide eelleevvaattiioonn values for the shaded relief map.   Typically,
+              this would be a map layer of elevation;  however, any raster map
+              layer can be named.
+
+              The scaling parameter, which compensates for a  different  hori-
+              zontal ssccaallee than vertical scale.  For example, when a latitude-
+              longitude projection is used with an elevation map  measured  in
+              meters.   If  'scale'  is  a number then the ewres and nsres are
+              multiplied by that scale to calculate the shading. If 'scale' is
+              the  letter  M (either case) the number of meters in a degree of
+              latitude is used as the scale.   If  'scale'  is  the  letter  F
+              (either  case) then the number of feet in a degree is used.  The
+              script scales latitude  and  longitude  equally,  so  it's  only
+              approximately  right, but for shading its close enough. It makes
+              the difference between a usable and unusable shade.
+
+       Specifically, _s_h_a_d_e_._c_l_r_._s_h executes the following _r_._m_a_p_c_a_l_c statement:
+
+       r.mapcalc << EOF
+
+              $ELEV.shade = eval( \
+
+              x=($elev[-1,-1] + 2.*$elev[0,-1] + $elev[1,-1] \
+
+              -$elev[-1,1] - 2.*$elev[0,1] - $elev[1,1])/(8.*ewres()*$shade) ,
+              \
+
+              y=($elev[-1,-1] + 2.*$elev[-1,0] + $elev[-1,1] \
+
+              -$elev[1,-1]  - 2.*$elev[1,0] - $elev[1,1])/(8.* nsres()*$shade)
+              , \
+
+              slope=90.-atan(sqrt(x*x + y*y)), \
+
+              a=round(atan(x,y)), \
+
+              a=if(isnull(a),1,a), \
+
+              aspect=if(x!=0||y!=0,if(a,a,360.)), \
+
+              rang = sin($alt)*sin(slope) + cos($alt)*cos(slope)  *  cos($raz-
+              aspect),\
+
+              red = int(if(rang < 0.,0.,4.9*rang)), \
+
+              gang  =  sin($alt)*sin(slope) + cos($alt)*cos(slope) * cos($gaz-
+              aspect),\
+
+              green = int(if(gang < 0.,0.,4.9*gang)), \
+
+              bang = sin($alt)*sin(slope) + cos($alt)*cos(slope)  *  cos($baz-
+              aspect), \
+
+              blue = int(if(bang < 0.,0.,4.9*bang)), \
+
+              1. + red + 5. * green + 25. * blue )
+
+
+       EOF
+
+
+
+       Refer  to the manual entry for _r_._m_a_p_c_a_l_c for an explanation of the fil-
+       tering syntax shown in the above expression.   See,  for  example,  the
+       section on "The Neighborhood Modifier".
+
+
+       _s_h_a_d_e_._c_l_r_._s_h  then  runs  _r_._c_o_l_o_r_s  to  assign a color table to the new
+       shaded relief map _._s_h_a_d_e.
+
+FFIILLEESS
+       This program is simply a shell script.  Users are  encouraged  to  make
+       their   own   shell   scripts  using  similar  techniques.   See  $GIS-
+       BASE/scripts/shade.clr.sh.
+
+SSEEEE AALLSSOO
+       _A_n _A_l_g_e_b_r_a _f_o_r _G_I_S _a_n_d _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g, by  Michael  Shapiro  and  Jim
+       Westervelt,  U.S.  Army  Construction  Engineering  Research Laboratory
+       (March/1991) (get from GRASS web site).
+
+
+       _s_h_a_d_e_._r_e_l_._s_h
+
+       _b_l_e_n_d_._s_h
+
+       _g_._a_s_k
+
+       _g_._r_e_g_i_o_n
+
+       _r_._c_o_l_o_r_s
+
+       _r_._m_a_p_c_a_l_c
+
+AAUUTTHHOORR
+       Jim Westervelt, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_6 _0_7_:_0_3_:_4_7 _$
+
+
+
+GRASS 5.0                                                      shade.clr.sh(1)

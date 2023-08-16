@@ -1,0 +1,84 @@
+v.in.dlg.scs(1)               Grass User's Manual              v.in.dlg.scs(1)
+
+
+
+NNAAMMEE
+       vv..iinn..ddllgg..ssccss  - Developed to handle DLG-3 ASCII import of data, specif-
+       ically a DLG WITHOUT category/attribute codes.   DLG  files  with  this
+       affliction  will  require  a flat ASCII file having a 1 to 1 correspon-
+       dence between DLG area number and a text label.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ddllgg..ssccss
+       vv..iinn..ddllgg..ssccss hheellpp
+       vv..iinn..ddllgg..ssccss [ --uuff] [ddllgg==_n_a_m_e] [bbddllgg==_n_a_m_e] [aatttt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       Under  normal  circumstances  the  _v_._i_n_._d_l_g  program  will  handle  the
+       requirements  of  reading  DLG  data  and creating vector maps from it.
+       However, _v_._i_n_._d_l_g assumes that the DLG-s file will contain  major/minor
+       category numbers;  this is NOT always the case.  In some instances, the
+       user may want label names with the DLG data; the current DLG-3 specifi-
+       cation  does  not provide that.  SCS has developed this program to meet
+       that need.
+
+
+       Notes:
+
+        This program is normally NOT called from the command line.
+              _v_._i_m_p_o_r_t will create the command string, then execute it.
+              This program converts an ASCII DLG file to  a  binary  DLG  file
+              with  attribute  codes  in the major minor fields, and creates a
+              _d_i_g___c_a_t_s file with the correct  code/label  correspondence.  The
+              program  _v_._a_._b_._d_l_g  must be run after this program to create the
+              GRASS vector files.
+              It is assumed that the DLG data file contains only  one  set  of
+              geographic  information;  ie.  areas, or lines, or points.  This
+              program WILL FAIL if mixed data is encountered.
+              Degenerate lines are accepted in this program as point data.
+
+
+       DLG.att File format
+
+        The DLG.att attribute file format is simple:
+
+
+       field 1 - DLG [area|line|point] number
+       field 2 - Label
+
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --uu     DLG file contains universe area.
+
+       --ff     An attribute file is included.
+
+
+
+
+   PPaarraammeetteerrss::
+       ddllgg==_n_a_m_e
+              ASCII DLG (_d_l_g) file name.
+
+       bbddllgg==_n_a_m_e
+              Binary DLG (_b_d_l_g) file name.
+
+       aatttt==_n_a_m_e
+              DLG attribute (_d_l_g_._a_t_t) file name.
+
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t, _v_._i_m_p_o_r_t, _v_._i_n_._d_l_g
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS P.W.Carlson, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_1_9 _0_9_:_1_4_:_3_7 _$
+
+
+
+GRASS 5.0                                                      v.in.dlg.scs(1)

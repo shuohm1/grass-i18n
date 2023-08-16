@@ -1,0 +1,96 @@
+m.ll2gc(1)                    Grass User's Manual                   m.ll2gc(1)
+
+
+
+NNAAMMEE
+       mm..llll22ggcc  - Converts geographic coordinates to geocentric coordinates.
+       (GRASS Data Import/Processing Program)
+
+SSYYNNOOPPSSIISS
+       mm..llll22ggcc llaatt==_d_d_._m_m_._s_s{_n|_s} lloonn==_d_d_._m_m_._s_s{_e|_w} [hh==_h_e_i_g_h_t] ss==_s_p_h_e_r_o_i_d
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._l_l_2_g_c returns geocentric coordinates for geographic coordinates (lat-
+       itude and longitude).  Geographic coordinates are in degrees,  minutes,
+       and  seconds  and  must include designation of north or south {_n|_s} and
+       east or west {_e|_w}.  The spheroid on which they are based must also  be
+       entered.  The height (in meters) above the spheroid is optional.
+
+
+       The  list  of spheroids available is somewhat dynamic.  It may not con-
+       tain exactly the ones listed below.  To determine the current  list  of
+       possible spheroids, type in: mm..llll22ggcc llaatt==_0_n lloonn==_0_w ss==_h_e_l_p
+
+       A  list  of  available spheroids will be printed on the screen.  If the
+       spheroid desired is not on the list, the values for the semi-major axis
+       and  the  eccentricity squared for the spheroid may be entered in place
+       of   a   spheroid   name   in   the   following    format:    ss==aa==_s_e_m_i_-
+       _m_a_j_o_r___a_x_i_s,ee==_e_c_c_e_n_t_r_i_c_i_t_y___s_q_u_a_r_e_d
+
+
+   SSOOMMEE PPOOSSSSIIBBLLEE SSPPHHEERROOIIDDSS
+       (_T_h_e _o_n_-_l_i_n_e _l_i_s_t_i_n_g _i_n_c_l_u_d_e_s _o_n_l_y _t_h_e _s_p_h_e_r_o_i_d _n_a_m_e_s)
+       Spheroid      |   Commonly  used  for:|  Semi-major axis|  Eccentricity
+       sqrd
+       _____________|____________________|_________________|___________________
+       australian   |  Australia         |  6378160.0      |  0.0066945419
+       bessel       |  Japan             |  6377739.155    |  0.0066743722
+       clark66      |  N. America        |  6378206.4      |  0.006768658
+       clark80      |  France, Africa    |  6378249.145    |  0.0068035113
+       everest      |  India, Burma      |  6377276.345    |  0.0066378466
+       international|  Europe            |  6378388.0      |  0.00672267
+       wgs72        |  worldwide coverage|  6378135.0      |  0.006694317778
+
+
+EEXXAAMMPPLLEE
+       mm..llll22ggcc llaatt==_0_n lloonn==_9_0_w ss==_w_g_s_7_2
+
+       Results: 4
+              x=0.0
+
+              y=6378135.0
+
+              z=0.0
+
+       The  distances  designated  by  "x," "y" and "z" are in meters from the
+       center of the earth. Because the sample point is on the equator and  is
+       at  90  degrees  west, two of the three parameters have a value of zero
+       (i.e., the point is at the origin of those two dimensions).
+
+NNOOTTEESS
+       For a brief discussion of spheroids see _m_._l_l_2_u.
+
+
+       Geographic coordinates (latitude/longitude) describe the location of  a
+       point  on  the  earth relative to the equator in the north/south direc-
+       tions and relative to Greenwich in the east/west directions.  The  same
+       point will have different coordinates depending on the spheroid used as
+       the approximation of the shape of the earth.   The  geocentric  coordi-
+       nates  given here describe the point on the basis of the same spheroid,
+       but they use the center of the spheroid as their origin.  This  can  be
+       thought  of  as  being  the  center of the earth, which is why they are
+       called "geocentric."  Describing the location of a point in a  spheroid
+       requires  three  points:  x, y, and z;  these are measured out from the
+       center along three different axes.  The distances given are in  meters.
+
+
+       This  is  an  experimental  program.   It is part of initial efforts to
+       incorporate geographic coordinates into GRASS.
+
+SSEEEE AALLSSOO
+       _m_._d_a_t_u_m_._s_h_i_f_t
+
+       _m_._g_c_2_l_l
+
+       _m_._l_l_2_u
+
+       _m_._u_2_l_l
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           m.ll2gc(1)

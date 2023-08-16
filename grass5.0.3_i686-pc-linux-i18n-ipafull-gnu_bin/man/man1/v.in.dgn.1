@@ -1,0 +1,76 @@
+v.in.dgn(1)                   Grass User's Manual                  v.in.dgn(1)
+
+
+
+NNAAMMEE
+       vv..iinn..ddggnn  - Imports Microstation DGN vector files.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinn..ddggnn
+       vv..iinn..ddggnn hheellpp
+       vv..iinn..ddggnn    [--cc]    ddggnn=_n_a_m_e    oouuttppuutt=_n_a_m_e   [lleevveell=_v_a_l_u_e_[_,_v_a_l_u_e_,_._._._]]
+       [ccoolloorr=_v_a_l_u_e_[_,_v_a_l_u_e_,_._._.] [ssttaarrttccaatt=_v_a_l_u_e] [ttyyppee=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._i_n_._d_g_n creates new GRASS vector map in the current mapset.   v.in.dgn
+       supports lliinnee,, lliinnee ssttrriinngg,, sshhaappee aanndd tteexxtt DGN element types. For other
+       types warning is printed on standard error output.  Texts are  imported
+       as  category  labels  or  categories.   v.support must be run on vector
+       after import.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --cc     Use texts as  category  values  (dig_att)  instead  of  category
+              labels (dig_cats).
+
+
+
+
+   PPaarraammeetteerrss::
+       ddggnn==_n_a_m_e
+              Full path to DGN file.
+
+
+
+       oouuttppuutt==_n_a_m_e
+              Name for output vector map.
+
+
+
+       lleevveell==_v_a_l_u_e
+              Comma  separated list of levels to be imported. Default value -1
+              specifies all levels. Values 1-63 allowed.
+
+
+
+       ccoolloorr==_v_a_l_u_e
+              Comma separated list of colors to be imported. Default value  -1
+              specifies all colors. Values 0-255 allowed.
+
+
+
+       ssttaarrttccaatt==_v_a_l_u_e
+              First  category  wich  will be used for texts (if -c flag is not
+              specified).
+
+
+
+       ttyyppee==_n_a_m_e
+              Type which will be assigned to lines and  categories  in  vector
+              file (lliinnee or aarreeaa available).
+
+
+BBUUGGSS
+       Text  position  for  any  other  than  lower-left  justification is not
+       exactly the same as in Microstation.
+
+SSEEEE AALLSSOO
+       _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORRSS
+       Radim Blazek
+
+
+
+GRASS 5.0                                                          v.in.dgn(1)

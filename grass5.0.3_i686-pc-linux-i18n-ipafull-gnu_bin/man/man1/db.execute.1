@@ -1,0 +1,42 @@
+db.execute(1)                 Grass User's Manual                db.execute(1)
+
+
+
+NNAAMMEE
+       _d_b_._e_x_e_c_u_t_e - execute any SQL statement
+
+       _(_G_R_A_S_S _D_a_t_a_b_a_s_e _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ddbb..eexxeeccuuttee  [ddrriivveerr_=_n_a_m_e]  [ddaattaabbaassee_=_n_a_m_e] [llooccaattiioonn_=_n_a_m_e] [iinnppuutt_=_f_i_l_e_-
+       _n_a_m_e]
+
+   PPaarraammeetteerrss::
+       ddrriivveerr Driver name
+
+       ddaattaabbaassee
+              Database name
+
+       llooccaattiioonn
+              Database location
+
+       iinnppuutt  Filename with sql statement
+
+
+SSEEEE AALLSSOO
+       _d_b_._t_a_b_l_e_s
+
+EEXXAAMMPPLLEE
+       echo 'create table soils ("cat" int, "soiltype" text)' | db.execute
+
+
+       cat file.sql | db.execute
+
+AAUUTTHHOORR
+       CERL
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                        db.execute(1)

@@ -1,0 +1,48 @@
+s.datum.shift(1)              Grass User's Manual             s.datum.shift(1)
+
+
+
+NNAAMMEE
+       ss..ddaattuumm..sshhiifftt   -  Allows the user to apply a datum transformation on a
+       sites file
+
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..ddaattuumm..sshhiifftt
+
+       ss..ddaattuumm..sshhiifftt hheellpp
+
+       ss..ddaattuumm..sshhiifftt iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e[[iiddaattuumm==_n_a_m_e] ooddaattuumm==_n_a_m_e [[--mm]]
+
+DDEESSCCRRIIPPTTIIOONN
+       Allows the user to perform a datum transformation on a sites file.  The
+       map  datum  of the output file is read from the current location if not
+       specified on the command line. Each site  will  retain  all  associated
+       category,  double,  and  string  attributes.  The header information is
+       copied and an additional  header  comment  is  written  containing  the
+       _s_._d_a_t_u_m_._s_h_i_f_t command line used to create the new file.
+
+   PPaarraammeetteerrss::
+       iinnppuutt  Name of the input sites list.
+
+       oouuttppuutt Name of the output sites list.
+
+       iiddaattuumm Map Datum of the input sites list.
+
+       ooddaattuumm Map Datum of the output sites list.
+
+       --mm     use Molodensky formula, faster but less precise.
+
+
+SSEEEE AALLSSOO
+       _m_._d_a_t_u_m_._s_h_i_f_t
+
+AAUUTTHHOORR
+       Andreas Lange, andreas.lange@rhein-main.de
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                     s.datum.shift(1)

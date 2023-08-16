@@ -1,0 +1,58 @@
+p.select(1)                   Grass User's Manual                  p.select(1)
+
+
+
+NNAAMMEE
+       pp..sseelleecctt  - Selects a device (printer) for GRASS hardcopy output.
+       _(_G_R_A_S_S _H_a_r_d_c_o_p_y _O_u_t_p_u_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       pp..sseelleecctt
+       pp..sseelleecctt hheellpp
+       pp..sseelleecctt [--llppqq] [ppaaiinntteerr==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _p_._s_e_l_e_c_t  allows  the user to select the device for GRASS hardcopy out-
+       put.  The user must select a device  _b_e_f_o_r_e  running  the  other  GRASS
+       hardcopy output functions (e.g., _p_._m_a_p, _p_._l_a_b_e_l_s, _p_._c_h_a_r_t).
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ll     List all available painters.
+
+       --pp     Print name of currently selected painter.
+
+       --qq     Quietly select painter.
+
+
+   PPaarraammeetteerr::
+       ppaaiinntteerr==_n_a_m_e
+              Name of painter to select.
+              Options:  (this  will  be  a  list  of available hardcopy output
+              devices, and also _p_r_e_v_i_e_w, the user's graphics monitor)
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       If the user runs _p_._s_e_l_e_c_t without specifying program arguments  on  the
+       command  line, the program will prompt the user for the name of a hard-
+       copy output device to select.
+
+NNOOTTEE
+       The options available with _p_._s_e_l_e_c_t vary  from  system  to  system  and
+       depend upon which drivers have been compiled.
+
+SSEEEE AALLSSOO
+       _p_._c_h_a_r_t
+
+       _p_._l_a_b_e_l_s
+
+       _p_._m_a_p
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          p.select(1)

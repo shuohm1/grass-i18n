@@ -1,0 +1,94 @@
+s.voronoi(1)                  Grass User's Manual                 s.voronoi(1)
+
+
+
+NNAAMMEE
+       ss..vvoorroonnooii  - Uses a GRASS sites list to produce a Voronoi diagram
+
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..vvoorroonnooii     [--aaqq]     ssiitteess==_n_a_m_e    vveecctt==_n_a_m_e    [ccaattnnuumm==_n_o_|_k_e_e_p_|_g_e_n]
+       [llaabbeellss==_n_o_|_c_a_t_|_s_t_r_,_#_|_d_e_c_,_#]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._v_o_r_o_n_o_i uses an existing sites list (ssiitteess) to create a Voronoi  dia-
+       gram (Thiessen polygons) in a binary vector file (vveecctt).
+
+
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ssiitteess==_n_a_m_e
+              Name of existing sites file.
+
+       vveecctt==_n_a_m_e
+              Name of the output file (binary vector file).
+
+       ccaattnnuumm==_n_o_|_k_e_e_p_|_g_e_n
+              What  to use as category numbers for the vector output: _n_o cate-
+              gory numbers, _k_e_e_p from input file, or _g_e_nerate as  serial  num-
+              ber.
+
+              options: _n_o, _k_e_e_p, or _g_e_n
+
+              default: _k_e_e_p
+
+       llaabbeellss==_n_o_|_c_a_t_|_s_t_r_,_#_|_d_e_c_,_#
+              Site file field to use for generating the label. "_#" is the _n-th
+              string or decimal field associated with the site record.
+
+              options: _n_o; _c_a_t; _s_t_r_,_#; or _d_e_c_,_#
+
+              default: _n_o
+
+
+   FFllaaggss::
+       --aa     Use all sites found in the named sites file, rather than  limit-
+              ing  output  to  sites  falling  within  the  current geographic
+              region.
+
+       --qq     Quiet. Cut out the chatter.
+
+
+NNOOTTEESS
+        _s_._v_o_r_o_n_o_i can be run either non-interactively or  interactively.   The
+       program will be run non-interactively if the user specifies the name of
+       an existing site list file  and a name for a vect file, using the form
+
+       s.voronoi [-aq] sites=name1 vect=name2 catnum=optCatnum labels=optLabel
+
+       where  name1 is the name of an existing site list file and name2 is the
+       name of vector output file. optCatnum can be "keep" only  if  the  site
+       file  category  number  is  integer.  optLabel  can be "no", no labels;
+       "cat", use site file category number as label;  str,_n_u_m,  use  the  _n_u_m
+       string  type  field  of the site file as label; or dec,_n_u_m, use the _n_u_m
+       decimal type field of the site file as label.
+
+        Alternately, the  user  can  simply  type   ss..vvoorroonnooii   on   the  com-
+       mand   line,   without  program arguments.  In this case, the user will
+       be   prompted   for   parameter   values    using     the    standard
+       GRASS    parser    interface  described in the manual entry for parser.
+
+EEXXAAMMPPLLEESS
+       To create a Voronoi diagram keeping the original  category  number  and
+       using the first decimal field as the output label use:
+
+
+RREEFFEERREENNCCEESS
+       _S_t_e_v_e _J_. _F_o_r_t_u_n_e_,  _(_1_9_8_7_)_.  _A _S_w_e_e_p_l_i_n_e _A_l_g_o_r_i_t_h_m _f_o_r _V_o_r_o_n_o_i _D_i_a_g_r_a_m_s_,
+       _A_l_g_o_r_i_t_h_m_i_c_a _2_, _1_5_3_-_1_7_4_.
+
+SSEEEE AALLSSOO
+        _v_._a_u_t_o_c_o_r_r_, _v_._s_p_a_g_, _v_._s_u_p_p_o_r_t_, _s_._d_e_l_a_u_n_a_y_, _s_._h_u_l_l_, _s_._s_w_e_e_p
+
+AAUUTTHHOORR
+       James Darrell McCauley, Purdue University
+
+       GRASS 5 update, improvements: Andrea Aime, Modena, Italy
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_3 _$
+
+
+
+GRASS 5.0                                                         s.voronoi(1)

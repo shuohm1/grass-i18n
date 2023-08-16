@@ -1,0 +1,158 @@
+r.random(1)                   Grass User's Manual                  r.random(1)
+
+
+
+NNAAMMEE
+       rr..rraannddoomm   -  Creates  a raster map layer and site list file containing
+       randomly located sites.
+       _(_G_R_A_S_S Raster Program)
+
+SSYYNNOOPPSSIISS
+       rr..rraannddoomm
+       rr..rraannddoomm hheellpp
+       rr..rraannddoomm  [--iiqqzz]   iinnppuutt==_n_a_m_e   nnssiitteess==_n_u_m_b_e_r[%%]   [rraasstteerr__oouuttppuutt==_n_a_m_e]
+       [ssiitteess__oouuttppuutt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The program _r_._r_a_n_d_o_m allows the user to create a raster map layer and a
+       site list file containing coordinates of points  whose  locations  have
+       been randomly determined.  The program locates these randomly generated
+       sites within the current geographic region and mask (if any),  on  non-
+       zero  category  value  data  areas  within  a user-specified raster map
+       layer.  If the user sets the --zz flag, sites will be randomly  generated
+       across all cells (even those with NULL values).
+
+
+       The  _r_a_s_t_e_r___o_u_t_p_u_t  raster  map  layer is created in the user's current
+       mapset.  The category values and corresponding category  names  already
+       associated  with  the  random site locations in the _i_n_p_u_t map layer are
+       assigned to these sites in the _r_a_s_t_e_r___o_u_t_p_u_t map layer. If  the  --zz  is
+       specified,  then  a  unique  entry is made for the value used where the
+       _i_n_p_u_t was NULL.  This value is at least 1 less than the smallest  value
+       in the _i_n_p_u_t raster and is given a medium gray color.
+
+
+       The  _s_i_t_e___l_i_s_t_s  file  created  by  _r_._r_a_n_d_o_m  contains a listing of the
+       sites' coordinates; these coordinates are the _c_e_n_t_e_r _p_o_i_n_t_s of the ran-
+       domly  selected  cells.   A double attribute contains the cell value of
+       the _i_n_p_u_t raster (or the assigned value when --zz is used.
+
+OOPPTTIIOONNSS
+       The user may specify the quantity of random locations to  be  generated
+       either  as  a  _p_o_s_i_t_i_v_e  _i_n_t_e_g_e_r  (e.g., 10), or as a _p_e_r_c_e_n_t_a_g_e _o_f _t_h_e
+       _r_a_s_t_e_r _m_a_p _l_a_y_e_r_'_s _c_e_l_l_s (e.g., 10%, or 3.05%).  The  number  of  cells
+       considered  for  the percentage reflects whether or not the --zz flag was
+       given.   Options are 0-100; percentages less than one  percent  may  be
+       stated as decimals.
+
+
+       _r_._r_a_n_d_o_m  can  be run interactively or non-interactively.  The user may
+       provide program arguments on the command line, specifying an input  map
+       layer  name  (iinnppuutt==_n_a_m_e),  output  raster  map layer name (rraasstteerr__oouutt--
+       ppuutt==_n_a_m_e), output site list file name (ssiitteess__oouuttppuutt==_n_a_m_e), and the num-
+       ber  of  sites  to  be  randomly  generated  as a total number of sites
+       (nnssiitteess==_n_u_m_b_e_r) or as a percentage of the map's size  (nnssiitteess==_n_u_m_b_e_r%%).
+       The  user  can  also  direct  that  _r_._r_a_n_d_o_m run quietly (using the --qq)
+       option, and/or direct _r_._r_a_n_d_o_m to also generate random  site  locations
+       against cells containing NULL values (using the --zz option).  The --ii can
+       be used to get a count of the total cells and NULL cells given the cur-
+       rent region settings.
+
+
+       Alternately,  the  user  can  simply  type rr..rraannddoomm on the command line
+       without program arguments. In this case, the user will be prompted  for
+       needed inputs and option choices using the standard GRASS _p_a_r_s_e_r inter-
+       face.
+
+
+
+   FFllaaggss::
+       --qq     Run quietly. _r_._r_a_n_d_o_m will normally  print  output  messages  to
+              standard  output  as  it  runs.  The --qq option will suppress the
+              printing of these messages.
+
+       --zz     Include NULL cells in the pool from which _r_._r_a_n_d_o_m will randomly
+              generate site locations.
+
+       --ii     Print  the  raster  map's name and location, the total number of
+              cells under the current region settings, and the number of  NULL
+              valued cells under the current region settings.  Then exit with-
+              out doing anything.  Useful for deciding on the number of  sites
+              to have _r_._r_a_n_d_o_m create.
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              An existing raster map layer in the user's current mapset search
+              path.  _r_._r_a_n_d_o_m will randomly generate sites on a user-specified
+              portion of the cells in this _i_n_p_u_t raster map.
+
+       nnssiitteess==_n_u_m_b_e_r
+              Specify the quantity of sites to be randomly generated as either
+              a _p_o_s_i_t_i_v_e integer, or as a _p_e_r_c_e_n_t_a_g_e value of  the  number  of
+              cells  in the _i_n_p_u_t map layer.  If stated as a positive integer,
+              _n_u_m_b_e_r is the number of sites (i.e., number of cells) to  appear
+              in the _r_a_s_t_e_r___o_u_t_p_u_t layer and/or _s_i_t_e_s___o_u_t_p_u_t file.
+              Options: Non-percentage values should be given as positive inte-
+              ger values less than or equal to the  number  of  cells  in  the
+              input  map  layer.  Percentage values given should be within the
+              range 0.00 - 100.00 (decimal values are allowed).
+
+       rraasstteerr__oouuttppuutt==_n_a_m_e
+              The new raster map layer to hold program output. This  map  will
+              contain the sites randomly generated by _r_._r_a_n_d_o_m. If the -z flag
+              is not set, all sites will be assigned whatever category  values
+              were  assigned  these  cell  locations  in  the _i_n_p_u_t raster map
+              layer.  If the -z flag is set, all sites except those falling on
+              NULL cells in the _i_n_p_u_t value will be assigned the category val-
+              ues assigned these cells in the input layer;  sites  falling  on
+              NULL  cells  in the _i_n_p_u_t layer will be assigned to a newly cre-
+              ated category in the _r_a_s_t_e_r___o_u_t_p_u_t layer with at least one inte-
+              ger value less than the minimum value in the _i_n_p_u_t layer.
+
+       ssiitteess__oouuttppuutt==_n_a_m_e
+              The  new  GRASS  _s_i_t_e___l_i_s_t_s  file to hold program output.  If no
+              _s_i_t_e_s___o_u_t_p_u_t  file  name  is  given  on  the  command  line,  no
+              _s_i_t_e___l_i_s_t_s file will be created by _r_._r_a_n_d_o_m.  (See _r_a_s_t_e_r___o_u_t_p_u_t
+              parameter description, above.)  Note. Although the user need not
+              request   that   _r_._r_a_n_d_o_m   output   both  a  raster  map  layer
+              (_r_a_s_t_e_r___o_u_t_p_u_t) and a site list file  (_s_i_t_e_s___o_u_t_p_u_t),  the  user
+              must specify that at least one of these outputs be produced.
+
+
+NNOOTTEESS
+       To create random site locations within some, but not all, non-zero cat-
+       egories of the input raster map layer, the user  must  first  create  a
+       reclassified  raster  map layer of the original raster map layer (e.g.,
+       using the GRASS program _r_._r_e_c_l_a_s_s) that contains only the desired cate-
+       gories,  and then use the reclassed raster map layer as input to _r_._r_a_n_-
+       _d_o_m.
+
+BBUUGGSS
+       It's not possible to use the --ii flag and not also  specify  the  nnssiitteess
+       parameter.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _r_._m_a_s_k
+
+       _r_._r_e_c_l_a_s_s
+
+       _s_._r_a_n_d_o_m
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Dr. James Hinthorne, GIS Laboratory, Central Washington University
+
+
+       Modified for GRASS 5.0 by Eric G. Miller
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.random(1)

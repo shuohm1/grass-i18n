@@ -1,0 +1,290 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      08.14.3.kur
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    Installing a Kurta Series 3  Digitizer.
+  </CENTER>
+    <P>This file covers how to set up the hardware for a Kurta digitizer.
+    <P>To prepare the Kurta digitizer for map development use.
+    <P>There are two sets of switches on the back.
+The set of 8 switches should be set to this:
+    <P>
+  <CENTER>
+    switches:   12345678
+  </CENTER>
+
+  <CENTER>
+    setting:    11000000       1 is up, 0 is down
+  </CENTER>
+    <P>The second set of switches controls the baud rate and should be this:
+    <P>
+  <CENTER>
+    switches:   1234
+  </CENTER>
+
+  <CENTER>
+    setting:    1000           1 is up, 0 is down
+  </CENTER>
+    <P>    <P>    <P>The cabling between the digitizer and the computer differ for different
+computers.  Some known cable configurations that have worked:
+    <P>
+  <CENTER>
+    AT&amp;T 3B2:
+  </CENTER>
+    <P>
+  <CENTER>
+    3B2        Kurta
+  </CENTER>
+  <PRE>	---        -----
+</PRE>
+
+  <CENTER>
+    <H2>
+      2          3
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      3          2
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    <H2>
+      4          5
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      5          4
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    <H2>
+      6          20
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      7          7
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      20         6
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    2 and 3 switched.  4 and 5 switched.  7 straight thru.
+  </CENTER>
+
+  <CENTER>
+    6 and 20 switched.
+  </CENTER>
+    <P>
+  <CENTER>
+    <H2>
+      MASSCOMP:
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    MASS       Kurta
+  </CENTER>
+  <PRE>	----       -----
+</PRE>
+
+  <CENTER>
+    <H2>
+      2          2
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      3          3
+    </H2>
+  </CENTER>
+    <P>
+  <CENTER>
+    <H2>
+      5          5
+    </H2>
+  </CENTER>
+
+  <CENTER>
+    <H2>
+      7          7
+    </H2>
+  </CENTER>
+    <P>A straight thru ribbon cable will work on the Masscomp or just the pins
+listed above 2, 3, 5, 7.
+    <P>    <P>If the <A HREF="./../../../../documents/html/v.digit.html">v.digit</A> program isn't working, make sure that the tty the digitizer
+is on has the getty off, the tty permissions are set to 'crw-rw-rw', the
+'digitcap' file is correct for your system configuration, and the switch
+settings on the digitizer are correct.  There are some diagnostic programs
+under $GISBASE/src/mapdev/digitizers/kurta/Diagnostics.  Read the README
+file in the Diagnostics directory for specific information on the programs.
+If none of the programs work, then there is something wrong with either the
+cabling or the digitizer.
+    <P>  <PRE>---------------------------------------------------------------------
+</PRE>
+Additional Documentation for Kurta Digitizers:
+    <P>KURTA Corporation
+4610 South 35th Street
+Phoenix, Arizona  85040          ph.  (602) 276 - 5533
+    <P>    <P>Documentation for Kurta series III.
+16 button cursor.
+    <P>'v.digit' is using the Kurta output binary format 2.
+Cursor buttons are used in this device driver.
+    <P>
+  <CENTER>
+    Switch settings of kurta digitizer for 'v.digit'.
+  </CENTER>
+
+  <CENTER>
+    These are for series III.
+  </CENTER>
+
+  <CENTER>
+    PROGRAM switches:  1100 0000       (1 - on/up, 0 - off/down)
+  </CENTER>
+
+  <CENTER>
+    Mode/Baud:  1000
+  </CENTER>
+    <P>
+  <CENTER>
+    These settings give remote (request),  1000 PPI, english, and binary
+  </CENTER>
+
+  <CENTER>
+    output format 2, at 9600 baud.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    Data Output Resolution:          pg. 9
+  </CENTER>
+    <P>
+  <CENTER>
+    English              Metric
+  </CENTER>
+    <P>
+  <CENTER>
+    (low)  'E':  200 PPI            203.2 PPI (80 points per centimeter)
+  </CENTER>
+
+  <CENTER>
+    (high) 'F':  1000 PPI          1016   PPI (400 points per centimeter)
+  </CENTER>
+    <P>
+  <CENTER>
+    default is 1000 PPI.
+  </CENTER>
+    <P>
+  <CENTER>
+    Request Output:
+  </CENTER>
+    <P>
+  <CENTER>
+    When in request mode (which v.digit runs), prompt the digitizer for
+  </CENTER>
+
+  <CENTER>
+    output by sending it a &quot;2&quot; .
+  </CENTER>
+    <P>
+  <CENTER>
+    Output Rate:				pg. 11
+  </CENTER>
+    <P>
+  <CENTER>
+    Max of 50 X Y pairs per second at 9600 baud.
+  </CENTER>
+
+  <CENTER>
+    Max of 100 X Y pairs per second at 19.2K baud.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    Origin Selection:			pg. 11
+  </CENTER>
+    <P>
+  <CENTER>
+    Origin will be in the lower left corner and is fixed in this position
+  </CENTER>
+
+  <CENTER>
+    unless a set origin control input character is sent to the digitizer.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    Accuracy (+ 1 LSB):		pg. 14
+  </CENTER>
+    <P>
+  <CENTER>
+    Standard is +/- .01 inch with cursor.
+  </CENTER>
+    <P>    <P>Notes:
+Kurta does not remember any programmable commands after a reset or the
+power is turned off.
+    <P>ASCII output bytes are multiplied by a power of 10. 
+Binary output is multiplied by power of 2.
+    <P>X and Y are same resolution.
+    <P>Status is the number of the button pushed on the cursor, unless the 
+digitizer is in remote (request) mode;  then its always 0.
+    <P>    <P>Problems:
+    <P>Can only get output from Kurta for format 8 in remote (request) mode.
+    <P>Format 7 is sporadic in point mode.  Meaning that the characters read
+have no pattern. 
+    <P>  <PRE>----------------------------------------------------------------
+</PRE>
+README file:
+    <P>There are diagnostic programs for the Kurta in the sub-directory
+Diagnostics.
+    <P>The code in the B directory is for the  ucb universe before it was
+rewritten for the ATT universe.
+    <P>The file DOC contains documentation for the Kurta digitizer (for
+programmers who wish to expand the capabilities of the device driver).
+    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

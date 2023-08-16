@@ -1,0 +1,92 @@
+r.info(1)                     Grass User's Manual                    r.info(1)
+
+
+
+NNAAMMEE
+       _r_._i_n_f_o   -  Outputs basic information about a user-specified raster map
+       layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinnffoo
+       rr..iinnffoo hheellpp
+       rr..iinnffoo [--rr] map=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_f_o reports some basic information about a user-specified raster map
+       layer.   This  map layer must exist in the user's current mapset search
+       path.  Information about the map's boundaries, resolution,  projection,
+       data  type, category number, data base location and mapset, and history
+       are put into a table and written to  standard  output.   The  types  of
+       information  listed  can  also  be  found in the _c_a_t_s, _c_e_l_l_h_d, and _h_i_s_t
+       directories under the mapset in which the named map is stored.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --rr     print range only and exit
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              name of an existing raster map layer
+
+       The program will be run non-interactively if  the  user  specifies  the
+       name  of a raster map layer on the command line, using the form: rr..iinnffoo
+       mmaapp==_n_a_m_e
+
+       where _n_a_m_e is the name of a raster map layer on which  the  user  seeks
+       information.  The  user  can save the tabular output to a file by using
+       the UNIX redirection mechanism (>); for example, the user might save  a
+       report  on  the  _s_o_i_l_s  map  layer in a file called _s_o_i_l_._r_p_t by typing:
+       rr..iinnffoo mmaapp==_s_o_i_l_s > _s_o_i_l_._r_p_t
+
+       Alternately, the user can simply type rr..iinnffoo on the command line, with-
+       out  program arguments. In this case, the user will be prompted for the
+       name of a raster map layer using the standard GRASS  _p_a_r_s_e_r  interface.
+       The  user is asked whether he wishes to print the report and/or save it
+       in a file.  If saved, the report is stored in a user-named file in  the
+       user's home directory.
+
+
+       Below  is  the  report produced by _r_._i_n_f_o for the raster map _g_e_o_l_o_g_y in
+       the Spearfish sample data base.
+       |------------------------------------------------------------|
+       | Layer:    geology        Date: Mon May  4 10:00:14 1987 :  |
+       | Location: spearfish      Login of Creator: grass           |
+       | Mapset:   PERMANENT                                        |
+       | Title:    Geology                                          |
+       |------------------------------------------------------------|
+       |                                                            |
+       |   Type of Map:  raster          Number of Categories: 9    |
+       |   Rows:         140                                        |
+       |   Columns:      190                                        |
+       |   Total Cells:  26600                                      |
+       |                                                            |
+       |   Projection: UTM (zone 13)                                |
+       |      N: 4928000.00    S: 4914000.00   Res: 100.00          |
+       |      E:  609000.00    W:  590000.00   Res: 100.00          |
+       |                                                            |
+       |   Data Source:                                             |
+       |   Raster file produced by EROS Data Center                 |
+       |                                                            |
+       |                                                            |
+       |   Data Description:                                        |
+       |   Shows the geology for the map area                       |
+       |                                                            |
+       |   Comments:                                                |
+       |                                                            |
+       |------------------------------------------------------------|
+
+
+SSEEEE AALLSSOO
+       _g_._m_a_p_s_e_t_s_, _r_._c_o_i_n_, _r_._d_e_s_c_r_i_b_e_, _r_._r_e_p_o_r_t_,  _r_._s_t_a_t_s_,  _r_._s_u_p_p_o_r_t_,  _r_._w_h_a_t_,
+       and _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael O'Shea, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_5_/_0_6 _1_3_:_3_5_:_0_0 _$
+
+
+
+GRASS 5.0                                                            r.info(1)

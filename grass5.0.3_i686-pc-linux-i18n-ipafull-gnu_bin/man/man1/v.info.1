@@ -1,0 +1,56 @@
+v.info(1)                     Grass User's Manual                    v.info(1)
+
+
+
+NNAAMMEE
+       _v_._i_n_f_o   -  Outputs basic information about a user-specified vector map
+       layer.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..iinnffoo
+
+       vv..iinnffoo hheellpp
+
+       vv..iinnffoo iinnppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN _v_._i_n_f_o reports some basic information about a
+       user-specified vector map layer and  the  topology  status.   This  map
+       layer must exist in the user's current mapset search path.  Information
+       about the map's boundaries, projection, data type,  topology  presence,
+       category number, number of lines, areas and islands, data base location
+       and mapset, and history are put into a table and  written  to  standard
+       output.  The types of information listed can also be found in the cats,
+       cellhd, and hist directories under the mapset in which the named map is
+       stored.
+
+
+       The  program  will  be  run non-interactively if the user specifies the
+       name of a vector map layer on the command line, using the form:
+
+
+       _v_._i_n_f_o _i_n_p_u_t_=_n_a_m_e
+
+
+       where _i_n_p_u_t is the name of a vector map layer on which the  user  seeks
+       information.   The  user can save the tabular output to a file by using
+       the UNIX redirection mechanism (>); for example, the user might save  a
+       report  on the _s_t_r_e_a_m_s map layer in a file called _s_t_r_e_a_m_._r_p_t by typing:
+       rr..iinnffoo iinnppuutt==_s_t_r_e_a_m_s > _s_t_r_e_a_m_._r_p_t
+
+       Alternately, the user can simply type _v_._i_n_f_o on the command line, with-
+       out  program arguments. In this case, the user will be prompted for the
+       name of a vector map layer using the standard GRASS  _p_a_r_s_e_r  interface.
+       The  user is asked whether he wishes to print the report and/or save it
+       in a file.  If saved, the report is stored in a user-named file in  the
+       user's home directory.
+
+SSEEEE AALLSSOO
+       _v_._w_h_a_t
+
+AAUUTTHHOORR
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                            v.info(1)

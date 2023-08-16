@@ -1,0 +1,132 @@
+d.what.vect(1)                Grass User's Manual               d.what.vect(1)
+
+
+
+NNAAMMEE
+       dd..wwhhaatt..vveecctt  - Allows the user to interactively query the category con-
+       tents of a (binary) vector map layer at user-selected locations  within
+       the current geographic region.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..wwhhaatt..vveecctt
+       dd..wwhhaatt..vveecctt hheellpp
+       dd..wwhhaatt..vveecctt [--11tt] mmaapp==_n_a_m_e [ttaabbllee==_n_a_m_e] [kkeeyy==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._w_h_a_t_._v_e_c_t  outputs  the category value(s) associated with user-speci-
+       fied location(s) in a user-specified vector  map  layer.  This  program
+       currently returns only category values for line types in the user-spec-
+       ified vector file.
+
+
+       The program will query the contents of the vector map  layer  named  by
+       the  user  on the command line. This map layer must exist in the user's
+       current mapset search path.
+
+
+       The program activates the mouse, and expects the user to  indicate  the
+       location(s)  to  be  queried  by depressing a mouse button over desired
+       location(s) within the current geographic region in the active  display
+       frame on the graphic monitor.
+
+
+       Alternatively user can specify ttaabbllee== and kkeeyy== and window with database
+       attributes will be opened for each selected object with assigned  cate-
+       gory.
+
+   FFllaagg::
+       --11     Identify and query just one point location. Only one mouse click
+              is executed. This option is provided for shell scripts and  pro-
+              grams that want to obtain only one point from the user.
+
+       --tt     Provide  only  terse output. This option is provided to simplify
+              the parsing of output by  other  programs.  Database  connection
+              must be set up by db.connect first.
+
+
+   PPaarraammeetteerr::
+       mmaapp==_n_a_m_e
+              Name  of  an  existing  binary  vector  map in the user's mapset
+              search path.
+
+       ttaabbllee==_n_a_m_e
+              Name of database table containing attributes.
+
+       kkeeyy==_n_a_m_e
+              Name of database table key (id) column.
+
+
+EEXXAAMMPPLLEE
+       A sample _d_._w_h_a_t_._v_e_c_t session is given below. Although it is not  neces-
+       sary  that  the  user  first  display a vector map to be queried in the
+       active display frame, it is helpful to have a map displayed  there  for
+       reference.
+
+
+
+       dd..vveecctt mmaapp==_r_o_a_d_s_._2_4_0_0_0
+              Displays the 1:24,000 scale _r_o_a_d_s vector map layer on the graph-
+              ics monitor.
+
+
+       dd..wwhhaatt..vveecctt mmaapp==_r_o_a_d_s_._2_4_0_0_0 After typing this, the user moves the mouse
+       to a desired location on the displayed _r_o_a_d_s map layer, and presses the
+       left mouse button to query the category value of the _r_o_a_d_s  vector  map
+       at this location. The program then outputs the category value of a line
+       type corresponding to this user-selected map location, for  the  vector
+       map queried by the user.
+
+
+       The query may be repeated as often as desired using the left mouse but-
+       ton.  The right button on the mouse is used  to  quit  the  _d_._w_h_a_t_._v_e_c_t
+       session.
+
+
+       Users can also use this program inside of shell scripts that require as
+       input a map category value and a mouse button depressed.  Users can set
+       the -1 flag to run _d_._w_h_a_t_._v_e_c_t only once, and return only the map cate-
+       gory value found and the number of the mouse button  depressed.  (Mouse
+       button return values are as follows: 0 indicates no button was pressed,
+       1 indicates that the left mouse button was  pressed,  2  indicates  the
+       middle  button was pressed, and 3 indicates that the right mouse button
+       was pressed.)
+
+NNOOTTEESS
+       Currently, _d_._w_h_a_t_._v_e_c_t only outputs category values for lines.  It does
+       not  output  category  labels  for lines, nor output category values or
+       category labels for areas in a vector file.
+
+
+       _d_._w_h_a_t_._v_e_c_t will always print its output to the user's terminal screen.
+       _d_._w_h_a_t_._v_e_c_t  output  can  be redirected into a file; however, if it is,
+       the output will go both to the screen and to the  file.   For  example:
+       dd..wwhhaatt..vveecctt mmaapp==_r_o_a_d_s >> wwhhaatt..oouutt
+
+       will  both send _d_._w_h_a_t_._v_e_c_t output to the screen and capture its output
+       in the file named _w_h_a_t_._o_u_t.
+
+
+       _d_._w_h_a_t_._r_a_s_t can be used to interactively query the  map  category  con-
+       tents of multiple raster map layers at user-selected locations.
+
+SSEEEE AALLSSOO
+       _d_._r_a_s_t
+
+       _d_._v_e_c_t
+
+       _d_._w_h_a_t_._r_a_s_t
+
+       _g_._r_e_g_i_o_n
+
+       _d_b_._c_o_n_n_e_c_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Jim Hinthorne, Central Washington University
+       Upgrades: Dennis Finch, National Park Service
+
+
+
+GRASS 5.0                                                       d.what.vect(1)

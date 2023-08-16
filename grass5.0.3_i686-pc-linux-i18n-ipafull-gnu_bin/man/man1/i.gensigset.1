@@ -1,0 +1,171 @@
+i.gensigset(1)                Grass User's Manual               i.gensigset(1)
+
+
+
+NNAAMMEE
+       _i_._g_e_n_s_i_g_s_e_t  - generate statistics for _i_._s_m_a_p from raster map layer.
+       _(_G_R_A_S_S _I_m_a_g_e_r_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ggeennssiiggsseett
+       ii..ggeennssiiggsseett hheellpp
+       ii..ggeennssiiggsseett   ttrraaiinniinnggmmaapp==_n_a_m_e   ggrroouupp==_n_a_m_e   ssuubbggrroouupp==_n_a_m_e  ssiiggnnaattuurree--
+       ffiillee==_n_a_m_e [mmaaxxssiigg==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._g_e_n_s_i_g_s_e_t is a  non-interactive  method  for  generating  input  into
+       _i_._s_m_a_p_.   It is used as the first pass in the a two-pass classification
+       process.  It reads a raster map layer, called the training  map,  which
+       has some of the pixels or regions already classified.  _i_._g_e_n_s_i_g_s_e_t will
+       then extract spectral signatures from an image based on the classifica-
+       tion of the pixels in the training map and make these signatures avail-
+       able to _i_._s_m_a_p_.
+
+
+       The user would then execute the GRASS  program  _i_._s_m_a_p  to  create  the
+       final classified map.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss
+       ttrraaiinniinnggmmaapp==_n_a_m_e
+              ground truth training map
+
+
+       This  raster layer, supplied as input by the user, has some of its pix-
+       els already classified, and the rest  (probably  most)  of  the  pixels
+       unclassified.  Classified means that the pixel has a non-zero value and
+       unclassified means that the pixel has a zero value.
+
+
+       This map must be prepared by the user in advance.  The  user  must  use
+       _r_._d_i_g_i_t,  a  combination  of  _v_._d_i_g_i_t  and  _v_._t_o_._r_a_s_t,  or  some  other
+       import/developement process (e.g., _v_._i_n_._t_r_a_n_s_e_c_t_s_) to define the  areas
+       representative of the classes in the image.
+
+
+       At  present,  there  is no fully-interactive tool specifically designed
+       for producing this layer.
+
+       ggrroouupp==_n_a_m_e
+              imagery group
+
+
+       This is the name of the group that contains the band files  which  com-
+       prise  the  image  to  be analyzed. The _i_._g_r_o_u_p command is used to con-
+       struct groups of raster layers which comprise an image.
+
+
+
+       ssuubbggrroouupp==_n_a_m_e
+              subgroup containing image files
+
+
+       This names the subgroup within the group that selects a subset  of  the
+       bands  to be analyzed. The _i_._g_r_o_u_p command is also used to prepare this
+       subgroup.  The subgroup mechanism allows the user to select a subset of
+       all the band files that form an image.
+
+       ssiiggnnaattuurreeffiillee==_n_a_m_e
+              resultant signature file
+
+
+       This  is the resultant signature file (containing the means and covari-
+       ance matrices) for each class in the training map  that  is  associated
+       with the band files in the subgroup selected.
+
+
+
+       mmaaxxssiigg==_v_a_l_u_e
+              maximum number of sub-signatures in any class
+              default: 10
+
+
+       The  spectral signatures which are produced by this program are "mixed"
+       signatures (see NOTES).  Each signature contains one or more  subsigna-
+       tures  (represeting  subclasses).  The algorithm in this program starts
+       with a maximum number of subclasses and reduces this number to a  mini-
+       mal  number  of subclasses which are spectrally distinct.  The user has
+       the option to set this starting value with this option.
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       If none of the arguments are specified on the command line, _i_._g_e_n_s_i_g_s_e_t
+       will interactively prompt for the names of these maps and files.
+
+
+       It  should  be  noted that interactive mode here only means interactive
+       prompting for maps and files.  It does not mean  visualization  of  the
+       signatures that result from the process.
+
+
+
+NNOOTTEESS
+       The  algorithm  in  _i_._g_e_n_s_i_g_s_e_t determines the parameters of a spectral
+       class model known as a Gaussian mixture distribution.   The  parameters
+       are  estimated  using multispectral image data and a training map which
+       labels the class of a subset of the image pixels.   The  mixture  class
+       parameters are stored as a class signature which can be used for subse-
+       quent segmentation (i.e., classification) of the multispectral image.
+
+
+       The Gaussian mixture class is a useful model because it can be used  to
+       describe  the  behavior  of  an information class which contains pixels
+       with a variety of distinct spectral characteristics.  For example, for-
+       est, grasslands or urban areas are examples of information classes that
+       a user may wish to separate in an image.  However, each of these infor-
+       mation  classes  may  contain  subclasses each with its own distinctive
+       spectral characteristic.  For example, a forest may contain  a  variety
+       of different tree species each with its own spectral behavior.
+
+
+       The objective of mixture classes is to improve segmentation performance
+       by modeling each information class as a probabilistic  mixture  with  a
+       variety  of  subclasses.  The mixture class model also removes the need
+       to perform an initial unsupervised segmentation  for  the  purposes  of
+       identifying  these  subclasses.   However, if misclassified samples are
+       used in the training process, these erroneous samples may be grouped as
+       a separate undesired subclass.  Therefore, care should be taken to pro-
+       vided accurate training data.
+
+
+       This clustering algorithm estimates both the number  of  distinct  sub-
+       classes  in  each  class, and the spectral mean and covariance for each
+       subclass.  The number of subclasses is estimated using Rissanen's mini-
+       mum  description  length (MDL) criteria [1].  This criteria attempts to
+       determine the number of subclasses which "best" describe the data.  The
+       approximate  maximum likelihood estimates of the mean and covariance of
+       the subclasses are computed using  the  expectation  maximization  (EM)
+       algorithm [3].
+
+RREEFFEERREENNCCEESS
+              J.  Rissanen,  "A Universal Prior for Integers and Estimation by
+              Minimum Description Length," _A_n_n_a_l_s _o_f _S_t_a_t_i_s_t_i_c_s_, vol. 11,  no.
+              2, pp. 417-431, 1983.
+
+              A.  Dempster,  N.  Laird  and D. Rubin, "Maximum Likelihood from
+              Incomplete Data via the EM Algorithm," _J_. _R_o_y_. _S_t_a_t_i_s_t_. _S_o_c_.  _B_,
+              vol. 39, no. 1, pp. 1-38, 1977.
+
+              E.  Redner and H. Walker, "Mixture Densities, Maximum Likelihood
+              and the EM Algorithm," _S_I_A_M _R_e_v_i_e_w_, vol. 26, no. 2, April  1984.
+
+
+SSEEEE AALLSSOO
+       _i_._g_r_o_u_p for creating groups and subgroups
+
+
+       _v_._d_i_g_i_t and _r_._d_i_g_i_t for interactively creating the training map.
+
+
+       _i_._s_m_a_p  for  creating  a final classification layer from the signatures
+       generated by _i_._g_e_n_s_i_g_s_e_t_.
+
+AAUUTTHHOORRSS
+       Charles Bouman, School of Electrical Engineering, Purdue University
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                       i.gensigset(1)

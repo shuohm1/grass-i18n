@@ -1,0 +1,79 @@
+paint(1)                      Grass User's Manual                     paint(1)
+
+
+
+NNAAMMEE
+       ppaaiinntt  - Description of hardcopy color output system for GRASS.
+
+IINNTTRROODDUUCCTTIIOONN
+       The ppaaiinntt system allows the user to produce color hardcopy maps of vec-
+       tor, raster, and sites file data at any scale.  For a discussion of the
+       GRASS  ppaaiinntt  functions,  see the manual entries for _p_._c_h_a_r_t, _p_._c_o_l_o_r_s,
+       _p_._i_c_o_n_s, _p_._l_a_b_e_l_s, _p_._m_a_p, and _p_._s_e_l_e_c_t.
+
+PPAAIINNTT DDEEVVIICCEESS
+       The GRASS paint system supports multiple color printers using a  _d_e_v_i_c_e
+       driver  concept.   The paint (p.)  functions listed above send graphics
+       requests to device-dependent paint drivers.   These  drivers  translate
+       the  application  requests  into  device-dependent  requests to produce
+       hardcopy maps.
+
+IINNSSTTAALLLLIINNGG AA PPAAIINNTT DDRRIIVVEERR
+       A number of paint  drivers  have  been  distributed  with  GRASS.   The
+       installation of a driver is a 2 step process.  The first involves iden-
+       tifying the driver(s) which correspond to printer(s) connected to  your
+       system  and  compiling those drivers.  The second involves telling each
+       driver which i/o port it is to use.
+
+              The   source   code   for   the   drivers   lives    in    $GIS-
+              BASE/../src/paint/Drivers  (The  variable  GISBASE refers to the
+              directory in which GRASS is installed on your system.)
+              The selection and compilation of the drivers is done when  GRASS
+              is compiled as a whole.
+
+              The port configuration is handled using the UNIX _l_n command.
+
+       Each  driver  expects  to send its output to /dev/_d_r_i_v_e_r.  For example,
+       the tteekk44669955 driver expects to find a tektronix 4695 (or  4696)  printer
+       on /dev/tek4695.
+
+
+       Suppose  the  printer  is  actually  on /dev/tty10.  Then, a link named
+       /dev/tek4695 is made to /dev/tty10: ln /dev/tty10 /dev/tek4695
+
+
+NNOOTTEESS
+       There are 2 drivers which do not use i/o ports.   One  is  the  pprreevviieeww
+       driver,  which  sends  its  output  to the graphics screen instead of a
+       hardcopy printer.  This driver is very handy and should  definitely  be
+       compiled on your system.
+
+
+       The  other is the nnuullll driver, which is used for debugging purposes and
+       probably should not be compiled on your system.
+
+
+       If you compile either of these drivers, you  shouldn't  create  a  /dev
+       file for them.
+
+SSEEEE AALLSSOO
+       _p_._c_h_a_r_t
+
+       _p_._c_o_l_o_r_s
+
+       _p_._i_c_o_n_s
+
+       _p_._l_a_b_e_l_s
+
+       _p_._m_a_p
+
+       _p_._s_e_l_e_c_t
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                             paint(1)

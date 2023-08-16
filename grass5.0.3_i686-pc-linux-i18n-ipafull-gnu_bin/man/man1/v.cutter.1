@@ -1,0 +1,102 @@
+v.cutter(1)                   Grass User's Manual                  v.cutter(1)
+
+
+
+NNAAMMEE
+       vv..ccuutttteerr  - Polygon Cookie Cutter
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ccuutttteerr
+       vv..ccuutttteerr hheellpp
+       vv..ccuutttteerr   [[--oo]]  [[--ll]]  [[--aa]]  [[--qq]]  ccuutttteerr==_n_a_m_e  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e
+       ttyyppee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       This program provides a way to generate new maps based on an  intersec-
+       tion  of  two  existing  maps.   It  in effect provides a way to create
+       masked versions of vector maps.  Lines, sites, and polygons are clipped
+       correctly.  By default v.cutter will extract line-type arcs.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --qq     Run quietly.  Don't print percent information.
+
+       --oo     Only  intersect  labeled areas.  Intersection of unlabeled areas
+              may  not  be  dependable.   The  flag  is  meaningful  only  for
+              type=area or type=both.
+
+       --aa     Extract  area-edge  arc types only.  The flag is meaningful only
+              for type=line or type=both.  By default the  program  uses  both
+              area-edge and line arc types.
+
+       --ll     Extract  line  arc  types only.  The flag is meaningful only for
+              type=line or type=both.  By default the program uses both  area-
+              edge and line arc types.
+
+
+   PPaarraammeetteerrss::
+       ccuutttteerr==_m_a_p_n_a_m_e
+              Name of the binary vector file to use for the cookie cutter.
+
+       iinnppuutt==_m_a_p_n_a_m_e
+              Name of the binary vector file which is to be cut.
+
+       oouuttppuutt==_m_a_p_n_a_m_e
+              Name of new vector file to be created.
+
+       ttyyppee==_o_b_j_e_c_t _t_y_p_e
+              Type  of object (area, line or both) to extract.  The default is
+              to extract lines.
+
+
+
+
+NNOOTTEESS
+       If v.cutter is only used to extract lines then  it  automatically  runs
+       _v_._s_u_p_p_o_r_t  on the output file.  If v.cutter is used to extract polygons
+       then the user may need to run  _v_._s_p_a_g  _-_i  after  running  _v_._c_u_t_t_e_r  to
+       remove identical lines.
+
+
+       If  type=area  then  the edge created by the cutter file will appear on
+       closed polygons in the output. If type=line  then  the  edge  does  not
+       appear in the output.
+
+
+       The  attributes of the output map will be generated from the attributes
+       of the _i_n_p_u_t map.
+
+BBUUGGSS
+       There are a few rare situations that are  not  currently  handled  cor-
+       rectly.   These  mostly  involve nodes or vertices intersecting exactly
+       with lines of the opposite map.  You will know  you  have  hit  one  of
+       these cases because a lot of strange text will start spitting out.
+
+
+       Borders between areas with the same attributes are not dissolved.
+
+
+       There are many places where the code could be optimized greatly.
+
+
+
+SSEEEE AALLSSOO
+       _v_._s_p_a_g
+
+       _v_._d_i_g_i_t
+
+       _v_._s_u_p_p_o_r_t
+
+       _v_._c_l_e_a_n
+
+AAUUTTHHOORR
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_1_5 _1_5_:_1_8_:_1_6 _$
+
+
+
+GRASS 5.0                                                          v.cutter(1)

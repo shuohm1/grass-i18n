@@ -1,0 +1,121 @@
+g.remove(1)                   Grass User's Manual                  g.remove(1)
+
+
+
+NNAAMMEE
+       gg..rreemmoovvee   -  Removes  data  base element files from the user's current
+       mapset.
+       _(_G_R_A_S_S _F_i_l_e _M_a_n_a_g_e_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       gg..rreemmoovvee
+       gg..rreemmoovvee hheellpp
+       gg..rreemmoovvee         [rraasstt==_n_a_m_e[,_n_a_m_e,...]]          [vveecctt==_n_a_m_e[,_n_a_m_e,...]]
+       [iiccoonn==_n_a_m_e[,_n_a_m_e,...]]                         [llaabbeellss==_n_a_m_e[,_n_a_m_e,...]]
+       [ssiitteess==_n_a_m_e[,_n_a_m_e,...]]                        [rreeggiioonn==_n_a_m_e[,_n_a_m_e,...]]
+       [ggrroouupp==_n_a_m_e[,_n_a_m_e,...]]
+
+DDEESSCCRRIIPPTTIIOONN
+       _g_._r_e_m_o_v_e  allows  the  user to remove specified data base element files
+       from the current mapset.
+
+OOPPTTIIOONNSS
+       If _g_._r_e_m_o_v_e is invoked without arguments on the command  line,  a  menu
+       will appear listing possible data element types, as below:
+
+              raster maps
+
+              vector maps
+
+              paint icon files
+
+              paint label files
+
+              site list files
+
+              region files
+
+              imagery group files
+
+       RETURN to exit
+
+
+       Once  the element type is selected, the user is prompted to name a spe-
+       cific file of this element type for removal.   (This  list  will  vary,
+       depending  on  what  files  currently exist in the user's mapset.)  The
+       specified file is removed, and the user is again prompted for the  name
+       of a file of this element type to be removed.  When prompted for a file
+       name, the user may enter lliisstt to see a list of existing files  of  this
+       element type, or hit RETURN to get back to the above menu.
+
+
+       Alternately,  the  user  can  specify  the  data  base element type and
+       file(s) to be removed on the command line.  Data base element types are
+       specified by the names to the left, below.
+
+   PPaarraammeetteerrss::
+       rraasstt==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of raster file(s) to be removed.
+
+       vveecctt==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of vector file(s) to be removed.
+
+       iiccoonn==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of paint icon file(s) to be removed.
+
+       llaabbeellss==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of paint labels file(s) to be removed.
+
+       ssiitteess==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of site list file(s) to be removed.
+
+       rreeggiioonn==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of region file(s) to be removed.
+
+       ggrroouupp==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of imagery group file(s) to be removed.
+
+       The data base element file(s) named by the user on the command line are
+       subsequently removed from the user's current mapset.
+
+EEXXAAMMPPLLEE
+       For example, the below command will cause the raster files named _s_o_i_l_s,
+       _s_l_o_p_e, and _t_e_m_p, the vector files named _r_o_a_d_s and _r_a_i_l, and the imagery
+       group files named _n_h_a_p_._1 and _n_h_a_p_._2, and these files'  associated  sup-
+       port  files  (e.g.,  cell  header  files,  category files, etc.), to be
+       removed from the user's current mapset.  gg..rreemmoovvee rraasstt==_s_o_i_l_s_,_s_l_o_p_e_,_t_e_m_p
+       vveecctt==_r_o_a_d_s_,_r_a_i_l ggrroouupp==_n_h_a_p_._1_,_n_h_a_p_._2
+
+
+NNOOTTEE
+       If  a  particular  data  base element file has support files associated
+       with it (e.g., as is commonly the case  with  raster  files),  _g_._r_e_m_o_v_e
+       will  remove  these support files along with the data base element file
+       specified.
+
+
+       The user can only use _g_._r_e_m_o_v_e to remove data files existing under  the
+       user's _c_u_r_r_e_n_t _m_a_p_s_e_t.
+
+
+       To remove multiple files, the script _g_._m_r_e_m_o_v_e may be used.
+
+FFIILLEESS
+       $GISBASE/etc/element_list  lists  the  element types whose files can be
+       removed by the user.
+
+SSEEEE AALLSSOO
+       _g_._c_o_p_y
+
+       _g_._l_i_s_t
+
+       _g_._r_e_n_a_m_e _g_._m_r_e_m_o_v_e
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                          g.remove(1)

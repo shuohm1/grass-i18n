@@ -1,0 +1,97 @@
+s.probplt(1)                  Grass User's Manual                 s.probplt(1)
+
+
+
+NNAAMMEE
+       ss..pprroobbpplloott  - Normal probability plot of a GRASS site list.
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..pprroobbpplloott
+       ss..pprroobbpplloott hheellpp
+       ss..pprroobbpplloott [--aallqq] ssiitteess==_n_a_m_e wwiiddtthh==_v_a_l_u_e [ggrraapphh==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._p_r_o_b_p_l_o_t does normal or lognormal probability plots of site values.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --aa     Use  all sites found in the named _s_i_t_e_s file, rather than limit-
+              ing output  to  sites  falling  within  the  current  geographic
+              region.
+
+       --ll     Lognormal probability plot instead of normal.
+
+       --qq     Quiet. Cut out the chatter.
+
+
+   PPaarraammeetteerrss::
+       ssiitteess==_n_a_m_e
+              Name of an existing sites file.
+
+       wwiiddtthh==_v_a_l_u_e
+              Width of bins.
+
+       ggrraapphh==_n_a_m_e
+              Basename to save graphing data/commands files.  Graphs are saved
+              in the current working directory with  the  extensions  _._g_p  and
+              _._d_a_t
+
+
+NNOOTTEESS
+       The  plotting  program can be selected by setting the environment vari-
+       able GGRRAASSSS__GGNNUUPPLLOOTT .
+
+EEXXAAMMPPLLEE
+       Given a sites file named _e_x_a_m_p_l_e in the following format:
+       83.8|92.2|3.5689
+       83.8|82.2|3.9269
+       83.8|80.2|3.5389
+       83.8|69.2|3.7452
+
+       Suppose that we wish to examine normality of  the  site  values  (third
+       column).   The  first step is to examine minimum and maximum and deter-
+       mine with the histogram bin width using ss..uunniivvaarr:
+
+
+       ss..uunniivvaarr --ggqq ssiitteess==example
+
+       This command outputs:
+       n=216
+       min=1.489
+       max=3.9419
+
+       along with other useful statistics. For this range and number of obser-
+       vations,  we  randomly select 0.1 as the histogram bin width. Then, the
+       following command graphs a probability plot and saves it in the current
+       working directory with a basename of _m_y_p_l_o_t: ss..pprroobbpplltt --qq ssiitteess==example
+       wwiiddtthh==0.1 ggrraapphh==myplot
+
+       To view the graph again, try ggnnuupplloott myplot.gp
+
+       Using  _g_n_u_p_l_o_t,  the  graphs  may  be  output  as  PostScript,   LaTeX,
+       FrameMaker MIF, or many other formats.
+
+SSEEEE AALLSSOO
+       _s_._u_n_i_v_a_r
+
+       _s_._n_o_r_m_a_l
+
+       _g_n_u_p_l_o_t
+
+BBUUGGSS
+       Please  send  all  bug  fixes  and  comments to the author or the grass
+       development team.
+
+       http://www.geog.uni-hannover.
+
+AAUUTTHHOORR
+       James Darrell McCauley ,
+
+       when he was at: Agricultural Engineering Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         s.probplt(1)

@@ -1,0 +1,119 @@
+m.proj2(1)                    Grass User's Manual                   m.proj2(1)
+
+
+
+NNAAMMEE
+       mm..pprroojj22   - Calculates conversion coordinates for geographic positions.
+       _(_G_R_A_S_S _M_a_p _D_e_v_e_l_o_p_m_e_n_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+        mm..pprroojj22       [[iinnpprroojj==nnaammee[[,,nnaammee,,......]]]]       [[oouuttpprroojj==nnaammee[[,,nnaammee,,......]]]]
+       [[iinnppuutt==nnaammee]] [[oouuttppuutt==nnaammee]]
+
+
+
+   PPaarraammeetteerrss::
+       iinnpprroojj Comma separated input projection parameters
+
+       oouuttpprroojj
+              Comma separated output projection parameters
+
+       iinnppuutt  Input coordinate file
+
+       oouuttppuutt Output coordinate file
+
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program allows a user to (optionally interactively) convert coor-
+       dinates from one projection to another. It allows  a  user  to  convert
+       coordinates from a file, writing to a file.
+
+
+       Note:   The  program  does not transform GRASS files, it is designed to
+       determine coordinate values on an individual position.
+
+
+       The map projections currently supported are listed  in  etc/projections
+       file.
+
+        Each  of the above projections (with the exception of State Plane) can
+       be computed with the spheroids listed in etc/ellipse.table file.
+
+
+
+IINNPPUUTT FFIILLEE FFOORRMMAATT
+       When reading from a file of LATITUDE/LONGITUDE data the
+              file will contain three (2) columns of  information:  the  first
+              column  -  latitude    -  in degrees minutes seconds, the second
+              column - longitude - in degrees minutes seconds,
+
+
+
+       For example:
+            +40 36 31.4563 -87 2 7.8193
+            40n 36 31.4563 87w 2 7.8193
+
+
+
+
+       When reading from a file of PROJECTION COORDINATES data the
+              file will contain three (2) columns of  information:  the  first
+              column  -  easting - ground coordinates the second column - nor-
+              thing - ground coordinates
+
+
+
+       For example:
+             500000.00     4496918.64
+            -424489.11     1908736.13
+
+
+
+
+
+UUSSAAGGEE EEXXAAMMPPLLEE
+       For example, if desired to transform points from UTM projection to  the
+       Gauss-Kr"uer Grid System it can be done by running:
+                m.proj2
+       inproj="proj=utm,name=utm,a=6378137.0,es=0.006694380,.br
+                zone=32,unfact=1.0" outproj="proj=tmerc,name=tmerc,.br
+                a=6377397.155,es=0.0066743720,lat_0=0.0,lon_0=9.0,k=1.0,.br
+                x_0=3500000.0" input=utm.coord output=new.gk.coord
+
+
+
+       Projection parameters have to be provided, in above case: "proj"  (pro-
+       jection  type),  "name"  (projection  name), "a" (ellipsoid: equatorial
+       radius), "es" (ellipsoid: eccentricity squared), "zone" (zone  for  the
+       area),  "unfact"  (conversion  factor  from meters to other units, e.g.
+       feet), "lat_0" (standard parallel),  "lon_0"  (central  meridian),  "k"
+       (scale  factor)  and "x_0" (false easting). Sometimes false northing is
+       needed which is coded as "y_0". Internally, the underlying PROJ 4  pro-
+       jection  library  performs  an inverse projection to latitude-longitude
+       and then projects the coordinate list to the target projection.
+
+
+       NNoottee:: NO column headings are required, just the numbers.
+
+BBUUGGSS
+       Datum transformations are not yet supported.
+
+
+
+RReeffeerreenncceess::
+       [1]Evenden, G.I.  (1990) Cartographic  projection  procedures  for  the
+       UNIX environment - a user's manual.  USGS Open-File Report 90-284 (Also
+       see Interim Report and 2nd Interim Report on Release 4, Evenden  1994).
+
+SSEEEE AALLSSOO
+         _m_._p_r_o_j_,  _s_._p_r_o_j_, _v_._p_r_o_j_, _g_._s_e_t_p_r_o_j_, _i_._r_e_c_t_i_f_y_, _i_._r_e_c_t_i_f_y_3_, _r_._s_u_p_p_o_r_t_,
+       _r_._s_t_a_t_s_, _s_._s_a_m_p_l_e_, _s_._s_u_r_f_._i_d_w_, _s_._s_u_r_f_._r_s_t
+
+AAUUTTHHOORR
+       Bob Covill, code based on m.proj
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_0_8_:_3_1 _$
+
+
+
+GRASS 5.0                                                           m.proj2(1)

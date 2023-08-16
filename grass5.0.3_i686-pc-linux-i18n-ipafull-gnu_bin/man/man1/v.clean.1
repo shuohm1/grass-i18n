@@ -1,0 +1,45 @@
+v.clean(1)                    Grass User's Manual                   v.clean(1)
+
+
+
+NNAAMMEE
+       vv..cclleeaann  - Cleans out _d_e_a_d lines in GRASS vector files.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..cclleeaann
+       vv..cclleeaann hheellpp
+       vv..cclleeaann mmaapp==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       When  programs like digit delete lines, they do not really go away, but
+       are simply marked as deleted. This is done primarily for speed.  But  a
+       side  effect  is  that  vector  files can end up carrying a lot of dead
+       weight with them.
+
+
+       _v_._c_l_e_a_n will go through a vector file and remove all dead lines in  the
+       file thus potentially reducing the size of the file.
+
+
+       You do _n_o_t have to run _v_._s_u_p_p_o_r_t afterwards.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerr::
+       mmaapp    Name of the GRASS vector file to be cleaned.
+
+
+BBUUGGSS
+       None known.
+
+SSEEEE AALLSSOO
+        _v_._c_l_e_a_n_, _v_._d_i_g_i_t_, _v_._p_r_u_n_e_, _v_._r_m_d_u_p_, _v_._s_p_a_g_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       David Gerdes, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.clean(1)

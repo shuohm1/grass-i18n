@@ -1,0 +1,126 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      02.06.bkup
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    Coordinate Systems and Projections
+  </CENTER>
+    <P>A map coordinate system is either a geographic coordinate system
+(like <A HREF="./../../../../documents/html/help/16.glossary/utm.def.html">UTM</A> or latitude/longitude) or an arbitrary coordinate system
+(like the x,y coordinate system initially assigned to imported
+satellite imagery) used to reference the locations of objects in a
+two-dimensional space.
+    <P>A map projection describes the manner in which the spherical surface of the
+earth is represented on a two-dimensional surface.  It attempts to
+minimize distortion in area, shape, distance, and direction.
+    <P>All of the data stored beneath the same GRASS &quot;location&quot; directory must
+use the same map coordinate system and map projection.  This means that
+latitude/longitude data, Universal Transverse Mercator data, State Plane
+coordinate system data, and unrectified (x,y) imagery data, should be
+stored under different GRASS &quot;locations&quot; and &quot;mapsets&quot;.
+Often, one wishes to combine data that are available in different
+coordinate systems and/or different map projections.  To do this, users
+must convert these data to a common map coordinate system and projection.
+    <P>The commands listed below are useful to those importing and exporting data
+to and from GRASS.  They can be used to perform map coordinate system and
+map projection conversions.
+    <P>
+  <CENTER>
+    <A HREF="./../../../../documents/html/m.ll2u.html">m.ll2u</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/m.u2ll.html">m.u2ll</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/m.region.ll.html">m.region.ll</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/r.mapcalc.html">r.mapcalc</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/v.transform.html">v.transform</A>
+  </CENTER>
+    <P>&quot;m.ll2u&quot; converts latitude/longitude (ll) map coordinates to Universal
+Transverse Mercator (UTM) map coordinates, while &quot;mu2ll&quot; performs the
+reverse operation.  &quot;m.region.ll&quot; converts UTM data falling within the
+user's current geographic region to latitude/longitude map coordinates.
+    <P>The user can select from any of the map projections whose ellipsoids of
+rotation (spheroids) are already known by GRASS when converting to/from
+latitude/longitude coordinates; the user can specify an ellipsoid other
+than those listed by adding its equatorial radius and either the polar
+radius, degree of flattening, or eccentricity squared to the ellipsoid
+parameter definition file stored in $GISBASE/etc/ellipse.table.
+    <P>Refer to this file and to the manual entries for &quot;m.ll2u&quot;, &quot;m.u2ll&quot;, and
+&quot;m.region.ll&quot; for a description of these spheroids of rotation.
+    <P>    <P>Satellite imagery data are generally made available in an x,y coordinate
+system.  In order to analyze imagery data in combination with other GRASS
+data layers, it is necessary that all these data be rectified to the same
+map coordinate system and projection.  Several GRASS programs are used to
+rectify imagery data.
+    <P>
+  <CENTER>
+    <A HREF="./../../../../documents/html/i.points.html">i.points</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/i.rectify.html">i.rectify</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/i.rectify.blk.html">i.rectify.blk</A>
+  </CENTER>
+    <P>The user must run <A HREF="./../../../../documents/html/i.target.html">i.target</A> to &quot;target&quot; the rectified image to another
+GRASS database with the new map coordinate system before running these
+programs.  Read the section on <A HREF="./../../../../documents/html/help/09.imagery/09.05.rect.html">Geometric Rectification</A> under the
+<A HREF="./../../../../documents/html/help/09.imagery/09.menu.html">Image Processing</A> section for a more detailed description of the
+image rectification process.
+    <P>    <P>&quot;r.mapcalc&quot; is a map calculator that allows the user to perform various
+mathematical functions on raster data layers.  The paper
+<A HREF="./../../../../documents/html/help/18.biblio/unpub.rmap.90.html">&quot;r.mapcalc: An Algebra for GIS and Image Processing&quot;</A> (Shapiro, 1990)
+describes ways in which &quot;r.mapcalc&quot; can be used to perform various
+mathematical functions on raster map layers.
+    <P>    <P>&quot;v.transform&quot; transforms an ASCII vector map layer from one map coordinate
+system into another.  It performs the transformation using a set of from
+4 to 10 points known in both systems.
+    <P>    <P>See also the references for:
+<A HREF="./../../../../documents/html/help/18.biblio/snyder.html">&quot;Map Projections - A Working Manual&quot;</A> (Snyder, 1989),
+<A HREF="./../../../../documents/html/help/18.biblio/seppelin.html">&quot;The Department of Defense World Geodetic System 1972&quot;</A> (Seppelin, 1974).
+    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

@@ -1,0 +1,56 @@
+v.out.dlg(1)                  Grass User's Manual                 v.out.dlg(1)
+
+
+
+NNAAMMEE
+       vv..oouutt..ddllgg  - Converts binary GRASS vector data to DLG-3 Optional vector
+       data format.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..ddllgg
+       vv..oouutt..ddllgg hheellpp
+       vv..oouutt..ddllgg iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The GRASS program _v_._o_u_t_._d_l_g allows the user  to  convert  GRASS  vector
+       data  to  DLG-3 Optional format, for export to other systems.  The user
+       can run the program non-interactively by specifying all  program  argu-
+       ments  on  the  command  line,  in  the form: vv..oouutt..ddllgg iinnppuutt==_n_a_m_e oouutt--
+       ppuutt==_n_a_m_e
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of the binary GRASS vector data file  to  be  converted  to
+              DLG-3 format.
+
+       oouuttppuutt==_n_a_m_e
+              Name  to  be  assigned  to the DLG-3 Optional format output file
+              created.
+
+
+
+       If the user does not give the names of an input and output file on  the
+       command line, the program will prompt the user to enter these names.
+
+NNOOTTEESS
+       The  _v_._o_u_t_._d_l_g  program  requires  that the _i_n_p_u_t vector map layer have
+       full topological information associated with it.  This means  that  the
+       GRASS  program  _v_._s_u_p_p_o_r_t  should  have  been  the last program to have
+       effected any changes upon the vector map layer before it is run through
+       _v_._o_u_t_._d_l_g.  If  this  is  not the case, _v_._o_u_t_._d_l_g will terminate with a
+       message that _v_._s_u_p_p_o_r_t needs to be run.  The output from _v_._o_u_t_._d_l_g will
+       be placed in _$_L_O_C_A_T_I_O_N_/_d_l_g.
+
+SSEEEE AALLSSOO
+       _v_._i_m_p_o_r_t_, _v_._i_n_._a_s_c_i_i_, _v_._i_n_._d_l_g_, _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       David Gerdes, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         v.out.dlg(1)

@@ -1,0 +1,80 @@
+独立行政法人情報処理推進機構のフォント(IPAフォント)付き
+GRASS国際化版(i18n) readme テキスト
+
+GRASSで日本語表示を行うためのTrueTypeフォント（IPAフォント）
+をアーカイブに同封しました。IPAフォント5書体すべてを同封した
+フルバージョンとゴシック体フォントのみを同封した１フォントバ
+ージョンの２つのアーカイブがあります。
+
+A.GRASSでの利用方法
+・インストール
+1.次のIPAフォント付きバイナリーパッケージファイルをダウンロードしてください
+
+１フォントバージョン
+grass5.0.3_i686-pc-linux-i18n-ipa1-gnu_bin.tar.gz
+
+フルフォントバージョン
+grass5.0.3_i686-pc-linux-i18n-ipafull-gnu_bin.tar.gz
+
+2.次のインストール用スクリプトファイルをダウンロードしてください
+
+１フォントバージョン用
+grass5_i686-pc-linux-i18n-ipa1-gnu_install.sh
+
+フルフォントバージョン
+grass5_i686-pc-linux-i18n-ipafull-gnu_install.sh
+
+ダウンロードしたら、次のコマンド（一例です）でインストールしてください。
+sh grass5_i686-pc-linux-i18n-ipa1-gnu_install.sh \
+grass5.0.3_i686-pc-linux-i18n-ipa1-gnu_bin.tar.gz [dest_dir] [bin_dir]
+
+[dest_dir]：GRASSのインストールディレクトリ（デフォルト：/usr/local/grass5)
+[bin_dis]：grass5コマンドインストールディレクトリ（デフォルト：/usr/local/bin）
+
+インストール作業はrootで行ってください。
+
+・IPAフォントの指定
+IPAフォントは、デフォルトインストールでは、/usr/local/grass5/fonts
+以下のディレクトリーにインストールされます。
+IPAフォントは次の５書体です。
+・ipag.ttf    ゴシック体 IPAフォント（１フォントバージョン添付）
+・ipagp.ttf   ゴシック体プロポーショナル IPAフォント
+・ipagui.ttf  ゴシック体UI IPAフォント
+・ipam.ttf    明朝体 IPAフォント
+・ipamp.ttf   明朝体プロポーショナル IPAフォント
+
+このフォントをGRASSで使用するには、次のコマンドを実行します。
+
+1.GRASSを起動します
+ $ grass5
+
+2.モニターを開始します
+ GRASS:~>d.mon start=x0
+
+3.フォントを指定します
+d.font.freetypeコマンドで指定します。
+
+例）ゴシック体IPAフォントを使い、EUC-JPエンコーディングを指定
+ GRASS:~>d.font.freetype font=/usr/local/grass5/fonts/ipag.ttf charset=EUC-JP
+ 
+4.monitorでのtruetypeフォント設定解除
+ GRASS:~>d.font.freetype font=
+
+
+B.GRASSのライセンスについて
+GRASSはフリーソフトウェアであり、ライセンスはオリジナル版GRASS
+に準拠します。詳しくはパッケージ添付のCOPYING、GPL.TXTをご参照ください。
+
+
+C.IPAフォントの使用ならびに再配布条件について
+IPAフォントの使用条件については、パッケージ同封の license-ipafonts.eucjp
+をご覧ください。
+
+
+GRASS国際化（i18n）プロジェクト　メンバー：
+升本 眞二, Venkatesh Raghavan, 野々垣 進, 根本 達也, 平井 尚喜（大阪市立大学）, 
+萩原　顕, 丹羽　誠, 森　亮（株式会社オークニー）, 
+服部 典弘 (株式会社イー・ソリューション・サービス)
+
+本プロジェクトは情報処理振興事業協会(IPA)の「オープンソフトウェア活用基盤整備事業」
+による委託事業「オープンGISプラットフォームの開発」として採択されました。

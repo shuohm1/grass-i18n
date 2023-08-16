@@ -1,0 +1,93 @@
+v.digit(1)                    Grass User's Manual                   v.digit(1)
+
+
+
+NNAAMMEE
+       vv..ddiiggiitt   -  A  menu-driven, highly interactive map development program
+       used for vector digitizing, editing,  labeling  and  converting  vector
+       data to raster format.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ddiiggiitt
+
+DDEESSCCRRIIPPTTIIOONN
+       The  GRASS  program  _v_._d_i_g_i_t  is  a menu-driven, highly interactive map
+       development program used for inputting analog map  data  into  a  GRASS
+       vector  format.  _v_._d_i_g_i_t contains programs for vector digitizing, edit-
+       ing, labeling, windowing, and converting vector data  to  GRASS  raster
+       format.
+
+
+       _v_._d_i_g_i_t  consists of two parts: an initialization procedure, and a mul-
+       tiple menu-driven environment.
+
+              The initialization  procedure  involves  choosing  a  digitizer,
+              choosing  the  name  of  a vector map layer to digitize, and, if
+              needed, registering a map  to  the  digitizing  surface.  It  is
+              important to specify the map scale.
+
+              The  second  part  of  _v_._d_i_g_i_t is a multiple-menu environment in
+              which digitizing,  editing,  labeling,  and  other  options  are
+              available.  It is within this second portion of _v_._d_i_g_i_t that all
+              vector creation occurs.
+
+
+NNOOTTEESS
+       _v_._d_i_g_i_t was written to optimize digitizing speed and  performance.   It
+       has  a  convenient graphic display format and very convenient windowing
+       capabilities. Features are color-coded for ease of  identification  and
+       verification.   Different color schemes may be user-chosen to customize
+       a digitizing session.
+
+
+       Area, line, and point features may be digitized in  both  "stream"  and
+       "point" modes. Both a mouse and a digitizer may be used to perform win-
+       dowing functions.  Labeling and editing are done from  within  _v_._d_i_g_i_t,
+       rather than through a separate set of programs.
+
+
+       _v_._d_i_g_i_t  has  capabilities  that  allow users to display raster maps in
+       background (Customize menu, Backdrop), to overlay already existing vec-
+       tor  map layers onto the feature being digitized (Customize menu, Over-
+       lay), and set a multitude of parameters to furtherly customize a  digi-
+       tizing session.
+
+
+       _v_._d_i_g_i_t  may  be  used  with  or without a digitizer.  Many options are
+       available if no digitizer is used, i.e. digitizer support by mouse.
+
+
+       All options available within _v_._d_i_g_i_t are contained  within  ten  menus.
+       Movement  from  menu  to  menu  is done by chosing the movement options
+       specified at the bottom of each menu.
+
+
+       DDiiggiittiizzeerr ssuuppppoorrtt
+
+
+       GRASS is using device  independent  code  written  originally  by  John
+       Dabritz  formerly  of  the Forest Service, which uses ascii description
+       files to define how to communicate with the digitizer.  The  result  is
+       that  we  should  be able to support just about any digitizer out there
+       now with a minimum of work.  Refer to the "digitizer definition manual"
+       for information on the format of these files.
+
+SSEEEE AALLSSOO
+       GRASS 4.0 map digitizing manual: v.digit
+
+
+       _v_._i_m_p_o_r_t_,  _v_._i_n_._a_s_c_i_i_,  _v_._o_u_t_._a_s_c_i_i_, _v_._s_p_a_g_, _v_._o_u_t_._r_a_s_t_, _v_._t_r_i_m_, _v_._s_u_p_-
+       _p_o_r_t
+
+AAUUTTHHOORRSS
+       David Gerdes,
+       Mike Higgins,
+       U.S. Army Construction Engineering Research Laboratory
+       Improvements by Huidae Cho
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.digit(1)

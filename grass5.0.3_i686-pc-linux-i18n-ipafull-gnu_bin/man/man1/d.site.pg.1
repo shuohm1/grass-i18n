@@ -1,0 +1,169 @@
+d.site.pg(1)                  Grass User's Manual                 d.site.pg(1)
+
+
+
+NNAAMMEE
+       _d_._s_i_t_e_._p_g  -  Display  select sites from a database query. (GRASS-RDBMS
+       Interface Display Program)
+
+SSYYNNOOPPSSIISS
+       dd..ssiittee..ppgg
+
+       dd..ssiittee..ppgg hheellpp
+
+       dd..ssiittee..ppgg  [ssqqll=file]  ttaabb=name  ccoooorrddxx=name  ccoooorrddyy=name   [ccaattss=name]
+       [wwhheerree=name] [mmaapp=name] [pplloott=color,icon,size]
+
+
+
+AALLTTEERRNNAATTEE
+       dd..vveecctt..ppgg --ss hheellpp
+
+       dd..vveecctt..ppgg --ss ssqqll_=filename [mmaapp_=name] [pplloott==color,icon,size]
+
+DDEESSCCRRIIPPTTIIOONN
+       Query sites in a PostgreSQL database using an SQL file or by specifying
+       conditions directly.  Optionally, plot display  or  send  output  to  a
+       site_lists "map".
+
+       _d_._s_i_t_e_._p_g  displays  select  point location information returned from a
+       database query. The site locations returned from the database query are
+       displayed  as  icons  in the active frame. The user controls the color,
+       size and icon used in the graphic output. As option, a site list of the
+       database output is generated and placed in the current mapset/location.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       ttaabb==ddaattaabbaasseettaabblleennaammee
+           Table containing X, Y coordinate values.
+
+       ccoooorrddxx==ddaattaabbaassee__xx__ccoolluummnnnnaammee
+           Column containing x coordinate values.
+
+       ccoooorrddyy==ddaattaabbaassee__yy__ccoolluummnnnnaammee
+           Column containing y coordinate values.
+
+       wwhheerree==SSQQLLwwhheerreeccllaauussee
+           SQL "where" clause which specifies the query criteria to be used in
+           subsetting  the  database.  The  information specified in the where
+           option must indicate the column(s) to be used, the operators to  be
+           used  in the evaluation and the values which the data in the column
+           will be evaluated against.
+
+       For example, if you want to select only those records  from  the  table
+       well  where  the value for depth is either 58 or 75 the following could
+       be entered: _w_e_l_l_._d_e_p_t_h _= _5_8 _o_r _w_e_l_l_._d_e_p_t_h _= _7_5
+
+
+
+
+
+       To select all wells in an area where the value for well is  between  50
+       and 120: _w_e_l_l_._d_e_p_t_h _> _5_0 _a_n_d _w_e_l_l_._d_e_p_t_h _< _1_2_0
+
+
+
+
+
+       To  select all wells of depth greater than 75 where the value for owner
+       is not equal to SMITH: _w_e_l_l_._d_e_p_t_h _> _7_5 _a_n_d _w_e_l_l_._o_w_n_e_r _!_= _'_S_M_I_T_H_'
+
+       If the database column used as the selection criteria  is  a  character
+       field  then the associated value must be placed in quotes. To determine
+       the data types  associated  with  columns  in  the  currently  selected
+       database use the _g_._c_o_l_u_m_n_._p_g command with the _-_v flag.
+
+       In addition to the operators presented in the examples above a range of
+       relational operators including and, or, etc. are supported.
+
+       Queries more complex are best implemented using a prepared SQL file.
+
+       mmaapp==lliisstt
+           Name of sites list to output
+
+
+       ccaattss==nnaammee Name of the category field to be assigned  in  the  new  site
+       list
+
+       pplloott==ccoolloorr,,iiccoonn,,ssiizzee
+           Colors:  red, orange, yellow, green, blue, indigo, violet, magenta,
+           brown, gray, white, black Icon: diamond, box,  plus,  x  Size:  1-9
+           Default: gray, x, 3
+
+
+       ssqqll==ffiilleennaammee
+           SQL statements specifying well formed selection criteria
+
+
+
+AALLTTEERRNNAATTEE CCOOMMMMAANNDD LLIINNEE UUSSAAGGEE
+       The alternate command line usage is provided to simplify the process of
+       retrieving information from more than one table in the query  criteria.
+       The  alternate  command  line  structure is selected using the the _[_-_s_]
+       flag on the command line. When using this flag the  user  must  include
+       the  name  of  a  text file on the command line as well. This file must
+       include a complete, well formed SQL  SELECT  statement  specifying  the
+       query  criteria  to retrieve values which correspond to category values
+       in a GRASS data layer.
+
+   FFllaagg::
+       --ss  SQL select statements are input from a prepared file
+
+   PPaarraammeetteerrss::
+       mmaapp==lliisstt
+           Name of sites list to output
+
+       pplloott==ccoolloorr,,iiccoonn,,ssiizzee
+           Colors: red, orange, yellow, green, blue, indigo, violet,  magenta,
+           brown,  gray,  white,  black  Icon: diamond, box, plus, x Size: 1-9
+           Default: gray, x, 3
+
+
+
+       ssqqll==ffiilleennaammee
+           SQL statements specifying well formed selection criteria
+
+
+
+
+           EEXXAAMMPPLLEE::
+
+       1. _d_._s_i_t_e_._p_g _t_a_b_=_i_z_b _c_o_o_r_d_x_=_x_c_o_o_r _c_o_o_r_d_y_=_y_c_o_o_r  _w_h_e_r_e_=_"_h_o_w___b_i_g_~_'_s_m_a_l_l_'_"
+       _p_l_o_t_=_w_h_i_t_e_,_d_i_a_m_o_n_d_,_9
+
+       RReessuulltt:: displays only 'small' huts in white color diamonds size 9
+
+       2. _d_._s_i_t_e_._p_g _-_s _s_q_l_=_i_z_b_3_._s_q_l _m_a_p_=_h_u_t_s___g_o_o_d
+
+       izb3.sql is:
+
+       _s_e_l_e_c_t   _x_c_o_o_r_,_y_c_o_o_r_,_o_w_n_e_r   _f_r_o_m  _i_z_b  _w_h_e_r_e  _h_o_w___g_o_o_d  _~  _'_g_o_o_d_'  _a_n_d
+       _i_z_b___i_n_f_o_._n_a_m_e_=_n_a_m_e _a_n_d _i_z_b___i_n_f_o_._r_e_c___i_d_=_n_u_m
+
+       RReessuulltt:: displays only 'good' huts (and  only  huts  which  have  'name'
+       coinciding  with  that  taken  from a table _i_z_b___i_n_f_o, linked on the hut
+       number) and creates site map called _h_u_t_s___g_o_o_d with categories
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_, _g_._s_t_a_t_s_._p_g_, _g_._t_a_b_l_e_._p_g_, _d_._r_a_s_t_._p_g_, _d_._v_e_c_t_._p_g_, _d_._w_h_a_t_._r_._p_g_,
+       _d_._w_h_a_t_._s_._p_g_, _d_._w_h_a_t_._v_._p_g_, _r_._r_e_c_l_a_s_s_._p_g_, _r_._r_e_s_c_a_l_e_._p_g_, _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original  Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and W.
+       Fredrick Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                         d.site.pg(1)

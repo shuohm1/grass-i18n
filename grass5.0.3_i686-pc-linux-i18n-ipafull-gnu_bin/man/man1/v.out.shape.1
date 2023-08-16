@@ -1,0 +1,112 @@
+v.out.shape(1)                Grass User's Manual               v.out.shape(1)
+
+
+
+NNAAMMEE
+       _v_._o_u_t_._s_h_a_p_e - export GRASS vector files to ESRI Shapefile
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..sshhaappee   [-valA]   map=_n_a_m_e   type=_a_r_e_a_,_l_i_n_e_,_p_o_i_n_t   [mapset=_n_a_m_e]
+       [cats=_[_n_o_n_e_]_,_s_t_r_i_n_g_,_i_n_t_e_g_e_r_,_f_l_o_a_t]  [prefix=_n_a_m_e]  [log=_f_i_l_e_n_a_m_e]  [ta-
+       ble=_n_a_m_e] [key=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       vv..oouutt..sshhaappee will export GRASS vectors files to ESRI Shapefile format.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       _-_v Verbose messages
+
+
+       _-_a Restrict lines exported to arcs of type area-edge
+
+
+       _-_l Restrict lines exported to arcs of type line
+
+
+       _-_A Output all area rings (include unlabelled areas)
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              name  of  input  vector  map.  Must  be  level  2.(Run v.support
+              option=build)
+
+       ttyyppee==_o_p_t_i_o_n
+              coverage type.
+              OOppttiioonnss: area, line, point
+
+       mmaappsseett==_n_a_m_e
+              name of mapset containing vector file (default current).
+
+       ccaattss==_o_p_t_i_o_n
+              If category support is available, a  third  field  is  generated
+              containing data of the selected type. Note `float' uses a double
+              precision number. Otherwise ignored.
+              OOppttiioonnss: none(default),string,integer,float.
+
+       pprreeffiixx==_n_a_m_e
+              prefix for SHAPE output filenames. Default  is  name  of  vector
+              map.
+
+       lloogg==_f_i_l_e_n_a_m_e
+              choose  a  logfile. If the file cannot be opened, standard error
+              stream is used.
+
+       ttaabbllee==_n_a_m_e
+              name of database table used as attributes source.
+
+       kkeeyy==_n_a_m_e
+              key column in table used for linking rows to shapes.
+
+
+NNOOTTEESS
+       The vector file export program, v.out.shape, will prompt you  to  enter
+       the name of a GRASS vector file to be exported to SHAPE and for various
+       options, see above.
+
+
+       A GRASS vector file to be exported to SHAPE may contain POINT, LINE and
+       POLYGON  coverage. If you select more types for conversion, more layers
+       will be produced with the appended suffixes __lliinnee,  __ppooiinntt  and  __aarreeaa.
+       Lines used as area edges however are not duplicated in the lines layer.
+       If one layer is empty the unused files are deleted.
+
+
+       If _t_a_b_l_e_= option is specified, dbf table structure and data is used for
+       output  dbf  table.  _k_e_y_= option is name of column used as link between
+       table rows and GRASS categories. Database  connection  must  be  estab-
+       lished  by  db.connect  first.  Supported  column types are numbers and
+       strings (int, double, char, varchar,...). Time and other types are  not
+       supported.
+
+
+       When  exporting  area  features,  the _-_A flag specifies that all areas,
+       whether labelled or not,  should  be  exported.   This  may  result  in
+       exporting  area  features  that  really represent "holes" in other area
+       features.
+
+BBUUGGSS
+       If data are read from table, problem with char and varchar column types
+       may occur. For example for MySQL column width is set according to first
+       record instead of column size. PostgreSQL tables are OK. Problem is  in
+       ODBC driver and database specific drivers.
+
+SSEEEE AALLSSOO
+       _v_._i_n_._s_h_a_p_e_,   _m_._i_n_._e_0_0_,   _v_._o_u_t_._e_0_0_,  _v_._i_n_._a_r_c_,  _v_._o_u_t_._a_r_c_,  _v_._o_u_t_._d_l_g_,
+       _d_b_._c_o_n_n_e_c_t
+
+AAUUTTHHOORR
+       David D. Gray
+
+
+
+       Depends on shapelib-1.2.8 or later by Frank Warmerdam.
+
+
+       DBMI support by Radim Blazek
+
+
+
+GRASS 5.0                                                       v.out.shape(1)

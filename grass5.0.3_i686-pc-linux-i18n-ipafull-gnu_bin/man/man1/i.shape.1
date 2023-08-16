@@ -1,0 +1,81 @@
+i.shape(1)                    Grass User's Manual                   i.shape(1)
+
+
+
+NNAAMMEE
+       ii..sshhaappee   - Performs spatial shape identification and classification on
+       a raster map
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..sshhaappee
+       ii..sshhaappee hheellpp
+       ii..sshhaappee iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [wwiiddtthh==_v_a_l_u_e] [tthhrreesshhoolldd==_v_a_l_u_e]  [oorriieenn--
+       ttaattiioonnss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       Reads  a GRASS raster map as input.  Calculates spatial shape identifi-
+       cation and classification on a raster map. Be  sure  to  carefully  set
+       your  resolution  (using _g_._r_e_g_i_o_n) before running this program, or else
+       your computer could run out of memory.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerr::
+       iinnppuutt==_n_a_m_e
+              Name of input raster map layer.
+
+       oouuttppuutt==_n_a_m_e
+              Fourier transformation output file
+
+       wwiiddtthh==_v_a_l_u_e
+              This parameter determines the x-y extent of the Gaussian filter.
+              The  default  value is 9;  higher and lower values can be tested
+              by the user.   Increasing  the  width  will  result  in  finding
+              "edges" representing more gradual changes in cell values.
+              Default:  9
+
+       tthhrreesshhoolldd==_v_a_l_u_e
+              This parameter determines the "sensitivity" of the Gaussian fil-
+              ter.  The default value is 10;  higher and lower values  can  be
+              tested  by the user.  Increasing the threshold value will result
+              in fewer edges being found.
+              Default:  10
+
+       oorriieennttaattiioonnss==_v_a_l_u_e
+              This value is the number of azimuth directions the cells on  the
+              output  raster  map  layer  are categorized into (similar to the
+              aspect raster map layer produced by the _r_._s_l_o_p_e_._a_s_p_e_c_t program).
+              For  example, a value of 16 would result in detected edges being
+              categorized into one of 16 bins depending on  the  direction  of
+              the edge at that point.
+              Default:  1
+
+       The  current  region  definition  and  mask settings are respected when
+       reading the input map.
+
+NNOOTTEESS
+       [..]
+
+SSEEEE AALLSSOO
+       _i_._f_f_t
+
+       _i_._i_f_f_t
+
+       _r_._m_a_p_c_a_l_c
+
+       _g_._r_e_g_i_o_n
+
+       _i_._t_e_x_t_u_r_e
+
+       _i_._z_c
+
+AAUUTTHHOORR
+       Hong Chun Zhuang
+
+       Sep.21,1992 at EC, CERL
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           i.shape(1)

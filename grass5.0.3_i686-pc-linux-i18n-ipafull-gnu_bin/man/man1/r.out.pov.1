@@ -1,0 +1,125 @@
+r.out.pov(1)                  Grass User's Manual                 r.out.pov(1)
+
+
+
+NNAAMMEE
+       r.out.pov  -  Converts  a raster map layer into a height-field file for
+       POVRAY.
+
+        (GRASS Raster Data Export Program)
+
+SSYYNNOOPPSSIISS
+       rr..oouutt..ppoovv
+
+       rr..oouutt..ppoovv hheellpp
+
+       rr..oouutt..ppoovv   [-h]   mmaapp==name   ttggaa==name   [hhffttyyppee==value]    [bbiiaass==value]
+       [ssccaallee==value]
+
+DDEESSCCRRIIPPTTIIOONN
+       r.out.pov converts a user-specified raster map layer (map==name) into a
+       height-field file for  POVray  (tga==name).  The  hftype==value  option
+       (where  value  is  either 0 or 1) specifies the height-field type. When
+       the user enters 0 the output will be actual heights. If entered  1  the
+       cell-values  will  be  normalized.  If hftype is 0 (actual heights) the
+       bias==value can be used to add or substract a value from  heights.  Use
+       scale==value  to  scale  your  heights  by  value.  The  GRASS  program
+       r.out.pov can be used to create height- field files for Persistence  of
+       Vision  (POV)  raytracer.  POV  can use a height-field defined in Targa
+       (.TGA) image file format where the RGB pixel  values  are  24  bits  (3
+       bytes).  A  16  bit  unsigned integer height-field value is assigned as
+       follows: RED = high byte, GREEN = low byte, BLUE = empty.
+
+
+
+PPaarraammeetteerrss::
+       mmaapp==name Name of an existing raster map layer.
+
+        ttggaa==name Name of TARGA outputfile (one should add the extension
+
+        hhffttyyppee==value 0=actual heights, 1=normalized heights.
+
+        bbiiaass==value Bias which is added or substracted to heights.
+
+        ssccaallee==value Value to stretch or shrink elevations.
+
+        _r_._o_u_t_._p_o_v can be run either non-interactively or  interactively.   The
+       program will be run non-interactively if the user specifies the name of
+       a raster map layer and a name for tga (output), using the form
+
+
+       r.out.pov map=inname tga=outname
+
+        where inname is the name of a raster map layer to be converted to  POV
+       format,  and  outname  is  the name of the outputfile. Further optional
+       values can be entered.
+
+        Alternately, the user can simply type _r_._o_u_t_._p_o_v on the  command  line,
+       without  program arguments. In this case, the user will be prompted for
+       parameter values using the standard GRASS parser interface described in
+       the manual entry for parser.
+
+
+       r.out.pov map=elevation tga=out.tga
+
+EEXXAAMMPPLLEE
+       An example Povray script file may look like this:
+
+
+
+       #include "shapes.inc"
+       #include "colors.inc"
+       #include "textures.inc"
+
+       #declare Scale = 7;
+
+       light_source { <40000, Scale*3000, 5000> color MainLight }
+
+       camera {
+          location < 23000, Scale*2000, 0>
+          angle  90
+          look_at < 23000, Scale*1400, 5000>
+       }
+
+       height_field  {
+          tga "dem.lr.tga"
+          smooth
+          water_level 0.11  // 726 / 6553.6 = 0.111
+           texture {
+             pigment {
+                 image_map  { // image is always projected from -z, with front
+       facing  +z, top to +Y
+                    ppm "map.lr.ppm"
+                    once
+                 }
+                 rotate x*90 // align map to height_field
+             }
+           }
+          finish {
+                 ambient 0.2         // Very dark shadows
+                 diffuse 0.8         // Whiten the whites
+                 phong 0.2           // shiny
+                 phong_size 100.0    // with tight highlights
+                 specular 0.5
+                 roughness 0.05
+          }
+          scale < 14500, Scale*6553.6, 13000 >
+          translate <18300, 0, 1100>
+       }
+
+
+AAUUTTHHOORR
+       Klaus Meyer, GEUM.tec GbR, eMail: _G_E_U_M_._t_e_c_@_g_e_u_m_._d_e
+
+
+
+NNOOTTIICCEE
+       This program is part of the contrib section of the GRASS  distribution.
+       As  such,  it is externally contributed code that has not been examined
+       or tested by the Office of GRASS Integration.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_3_/_1_6 _1_2_:_2_5_:_1_9 _$
+
+
+
+GRASS 5.0                                                         r.out.pov(1)

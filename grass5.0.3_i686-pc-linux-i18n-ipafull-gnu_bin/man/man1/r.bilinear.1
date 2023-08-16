@@ -1,0 +1,116 @@
+r.bilinear(1)                 Grass User's Manual                r.bilinear(1)
+
+
+
+NNAAMMEE
+       rr..bbiilliinneeaarr - bilinear interpolation utility for raster map layers.
+
+SSYYNNOOPPSSIISS
+       rr..bbiilliinneeaarr [--qq] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [nnoorrtthh==_v_a_l_u_e] [ssoouutthh==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._b_i_l_i_n_e_a_r  fills  a grid cell (raster) matrix with interpolated values
+       generated from a set of input layer data points.  It uses the  bilinear
+       interpolation  method,  a simple algorithm usually applied only to com-
+       pletely defined raster areas (input data void  of  null  data  values).
+       Here  the  values  of 4 input cells are used to define an interpolation
+       function of constant gradient within each rectangular area  defined  by
+       the cell centers.  User should be aware that the gradient of the inter-
+       polation functions changes discontinuously  across  lines  intersecting
+       the cell centers of the input raster.
+
+
+       If  there  is  a  current working mask, it applies to the output raster
+       file.  Only those cells falling within the mask will be assigned inter-
+       polated  values.   The  procedure for selection of input data will con-
+       sider all input data relevant to interpolating values at the cell  cen-
+       ters  of the current geographic region, ignoring the curent mask.  Note
+       that cells of the output raster that cannot be bounded by 4 input  cell
+       centers are set to null.
+
+
+       The command line input is as follows:
+
+
+
+   FFllaaggss::
+       --qq     specifies  that  _r_._b_i_l_i_n_e_a_r run quietly (supressing the printing
+              of program messages to standard output)
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an input raster map  layer  containing  data  values  to
+              apply in the interpolation.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to new output raster map that represents the
+              surface generated from the data values in the input layer.
+
+       nnoorrtthh==_v_a_l_u_e
+              Input raster value for the north pole (90N).  Valid  for  longi-
+              tude-latitude grids only.
+
+       ssoouutthh==_v_a_l_u_e
+              Input  raster  value for the south pole (90S).  Valid for longi-
+              tude-latitude grids only.
+
+
+NNOOTTEESS
+       The nnoorrtthh and ssoouutthh parameters have been included to allow for specific
+       input  values to be assigned to the north and/or south poles for longi-
+       tude-latitude grids.  These data, if included, are used to  interpolate
+       values  for  cells  that  are north or south of a line intersecting the
+       cell centers of the first or last row  of  input,  respectively.   When
+       utilized, the interpolation procedure will be continuous from the north
+       and/or south boundary of the current geographic region.  This option is
+       necessary,  since  the  data structure defining a raster will not allow
+       for data to be assigned to a cell centered at 90N or 90S.  By including
+       the  option,  the  user  can create output surfaces that are continuous
+       between the poles.  The interpolation will be "wrap-around"  from  west
+       to  east  (across  latitude)  only if the input raster has an east edge
+       identical to its west edge.
+
+
+       For longitude-latitude databases, the interpolation algorithm is  based
+       on  degree  fractions,  not on the absolute distances between cell cen-
+       ters.  Any attempt to implement the latter would violate the  integrity
+       of the interpolation method.
+
+
+       _r_._b_i_l_i_n_e_a_r may be used in some instances as an alternative to the near-
+       est neighbor approach inherent to _r_._r_e_s_a_m_p_l_e.  Note, however, that  the
+       extent  of  non-null  data  area of the output raster must be less than
+       that of the input raster.  The only exception to  this  occurs  in  the
+       case  where  the nnoorrtthh and ssoouutthh parameters are utilized for longitude-
+       latitude rasters.
+
+
+
+SSEEEE AALLSSOO
+       _r_._s_u_r_f_._i_d_w
+
+       _r_._s_u_r_f_._i_d_w_2
+
+       _g_._r_e_g_i_o_n
+
+       _r_._r_e_s_a_m_p_l_e
+
+AAUUTTHHOORR
+       Greg Koerper
+
+       ManTech Environmental Technology, Inc.
+
+       Global Climate Research Project
+
+       U.S. EPA Environmental Research Laboratory
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_2_/_2_5 _1_3_:_0_3_:_5_4 _$
+
+
+
+GRASS 5.0                                                        r.bilinear(1)

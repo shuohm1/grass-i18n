@@ -1,0 +1,104 @@
+d.font(1)                     Grass User's Manual                    d.font(1)
+
+
+
+NNAAMMEE
+       dd..ffoonntt - Selects the font in which text will be displayed on the user's
+       graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ffoonntt
+       dd..ffoonntt hheellpp
+       dd..ffoonntt ffoonntt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._f_o_n_t allows the user to select use of a specific text font  for  dis-
+       play  of text on the graphics monitor.  The GRASS program _s_h_o_w_._f_o_n_t_s_._s_h
+       is a UNIX Bourne shell macro which names and displays  the  fonts  that
+       can be selected using _d_._f_o_n_t.  If the user does not specify a font when
+       using other GRASS programs that display text, the font type  _r_o_m_a_n_s  is
+       used by default.
+
+
+       The  user  can  run  this  program either non-interactively or interac-
+       tively.  If the user specifies a font type name on the command line the
+       program  will  run non-interactively.  Alternately, the user can simply
+       type dd..ffoonntt on the command line; in this case, the program will  prompt
+       the  user  for a display text font type using the standard GRASS inter-
+       face described in the manual entry for _p_a_r_s_e_r.
+
+
+       PPaarraammeetteerr::
+
+       ffoonntt==_n_a_m_e
+              Name of a font type, from among the font types italicized below.
+              Default: _r_o_m_a_n_s
+              Options: (italized)
+
+              _c_y_r_i_l_c Cyrillic
+
+              _g_o_t_h_g_b_t Gothic Great Britain triplex
+
+              _g_o_t_h_g_r_t Gothic German triplex
+
+              _g_o_t_h_i_t_t Gothic Italian triplex
+
+              _g_r_e_e_k_c Greek complex
+
+              _g_r_e_e_k_c_s Greek complex script
+
+              _g_r_e_e_k_p Greek plain
+
+              _g_r_e_e_k_s Greek simplex
+
+              _i_t_a_l_i_c_c Italian complex
+
+              _i_t_a_l_i_c_c_s Italian complex small
+
+              _i_t_a_l_i_c_t Italian triplex
+
+              _r_o_m_a_n_c Roman complex
+
+              _r_o_m_a_n_c_s Roman complex small
+
+              _r_o_m_a_n_d Roman duplex
+
+              _r_o_m_a_n_p Roman plain
+
+              _r_o_m_a_n_s Roman simplex
+
+              _r_o_m_a_n_t Roman triplex
+
+              _s_c_r_i_p_t_c Script complex
+
+              _s_c_r_i_p_t_s Script simplex
+
+
+NNOOTTEESS
+       The  font type _r_o_m_a_n_s is the fastest font type to display to the graph-
+       ics monitor.
+
+SSEEEE AALLSSOO
+       _d_._t_e_x_t
+
+       _d_._t_i_t_l_e
+
+       _s_h_o_w_._f_o_n_t_s_._s_h
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James Westervelt, U.S. Army Construction Engineering  Research  Labora-
+       tory
+
+
+       _d_._f_o_n_t  uses  the public domain version of the Hershey Fonts created by
+       Dr. A.V. Hershey while working at the U.S.  National  Bureau  of  Stan-
+       dards.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                            d.font(1)

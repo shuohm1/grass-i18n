@@ -1,0 +1,42 @@
+m.dem.examine(1)              Grass User's Manual             m.dem.examine(1)
+
+
+
+NNAAMMEE
+       mm..ddeemm..eexxaammiinnee  - Provides a terse description of USGS Digital Elevation
+       Model (DEM) data files stored on 1/2-inch magnetic tape.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..ddeemm..eexxaammiinnee iinnppuutt==_n_a_m_e bblloocckkssiizzee==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._d_e_m_._e_x_a_m_i_n_e reads Digital Elevation  Model  (DEM)  terrain  elevation
+       data produced and supplied by the USGS from the input file specified by
+       _n_a_m_e, in the block size specified by _v_a_l_u_e.  If no input file is  named
+       on  the  command  line, the program assumes that /dev/rmt0 is the input
+       file.  The information provided  to  the  user  comes  from  each  file
+       included  on tape.  Included are the maximum and minimum elevation val-
+       ues and the approximate  UTM  boundaries  of  each  file.  The  program
+       assumes  unlabeled  tapes  in  ASCII  format  with no header or trailer
+       files.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _m_._d_e_m_._e_x_t_r_a_c_t
+
+       _m_._e_x_a_m_i_n_e_._t_a_p_e
+
+       _r_._r_e_s_c_a_l_e
+
+       _r_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       Andrew Heekin, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                     m.dem.examine(1)

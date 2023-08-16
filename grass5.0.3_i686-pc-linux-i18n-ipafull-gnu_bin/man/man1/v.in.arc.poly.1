@@ -1,0 +1,97 @@
+v.in.arc.poly(1)              Grass User's Manual             v.in.arc.poly(1)
+
+
+
+NNAAMMEE
+       vv..iinn..aarrcc..ppoollyy  - Import areas from ARC/INFO ungenerate format.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+
+
+SSYYNNOOPPSSIISS
+       vv..iinn..aarrcc..ppoollyy _A_R_C_/_I_N_F_O_-_f_i_l_e _G_R_A_S_S_-_v_e_c_t_o_r_f_i_l_e
+
+
+
+OOBBJJEECCTTIIVVEESS::
+       The  two programs and the shell-script are made for importing area data
+       created by ARC/INFO-UNGENERATE to GRASS. The main problems  when  using
+       v.in.arc followed by v.support directly are errors in the assignment of
+       the area labels to the polygons. This is caused by polygons with  iden-
+       tical  starting  points (first data pair), which are used for assigning
+       the nodes. During this node creation in v.support the node of polygon 1
+       may  be  located within the area of polygon2 due to internal approxima-
+       tion processes. In this case, no area labels are  assigned.   To  solve
+       this problem, the whole file has to be scanned and searched for identi-
+       cal starting points. The coordinates of either one of the polygon-pairs
+       with  identical  starting  points  have  to be permutated. Then, during
+       v.support, different nodes will be created and the  assignment  of  the
+       area labels will be done correctly.
+
+
+
+SSTTRRUUCCTTUURREE OOFF IINNPPUUTT DDAATTAA
+       We have got our ARC/INFO files in the following format:
+                  1    3457065.250000    6095126.000000
+           3457198.000000    6096357.500000
+           3457459.750000    6095341.500000
+           3457321.500000    6094720.000000
+           3457247.500000    6094485.500000
+           3457247.500000    6094485.500000
+           3456976.250000    6094512.000000
+           3456552.250000    6094553.500000
+           3456552.250000    6094553.500000
+           3456630.250000    6094656.000000
+           3457078.250000    6095642.500000
+           3457198.000000    6096357.500000
+       END
+       END
+
+       The  first line specifies the polygon ID and the label points. The fol-
+       lowing lines define the x and y coordinates (here in  a  Gauss  Krueger
+       projection) until the keyword END.
+
+       Thus,  all  informations  needed  for  v.in.arc, i.e. the polygons, the
+       label points and the label text, are collected in this file.
+
+
+
+IINN__AARRCC
+       The first program "in_arc.c" extracts these informations from the orig-
+       inal  file  and  creates  the  lines file, the label point file and the
+       label text file. During this process, each polygon gets  a  unique  ID,
+       starting  with  1.  The correlation to the original ID is stored in the
+       label text file.
+
+
+
+PPEERRMMUUTT
+       Based on this data structure, the  program  "permut"  scans  the  whole
+       polygon file for identical nodes and removes these nodes by permutation
+       of the data points. This is done in several iteration steps, until  all
+       identical  nodes  are removed. The program uses a temporary file, which
+       will be copied after each iteration step to  the  original  file.  Thus
+       after  finishing the program, the original file contains the permutated
+       polygons.
+
+
+
+vv..iinn..aarrcc..ppoollyy
+       This shell script has been written to import the ARC/INFO data automat-
+       ically  into  GRASS,  using  these  two conversion programs. It will be
+       called by:
+            v.in.arc.poly ARC/INFO-file GRASS-vectorfile
+
+       First, this shell script runs in_arc to extract the lines, label  point
+       and  label text information. It places the created files (*.ply, *.pnt,
+       *.txt) into the /arc directory of the current mapset. Second, the  pro-
+       gram permut will be called, replacing the *.ply file created by in_arc.
+       In the steps 3 and 4, the data will  be  imported  using  v.in.arc  and
+       v.support,  resulting  in  the  GRASS-vectorfile specified when calling
+       v.in.arc.poly.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                     v.in.arc.poly(1)

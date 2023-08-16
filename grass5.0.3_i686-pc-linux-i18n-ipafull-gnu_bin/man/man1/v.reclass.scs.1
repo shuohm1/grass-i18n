@@ -1,0 +1,204 @@
+v.reclass.scs(1)              Grass User's Manual             v.reclass.scs(1)
+
+
+
+NNAAMMEE
+       vv..rreeccllaassss  - Changes vector category values for an existing vector map.
+       _(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..rreeccllaassss
+       vv..rreeccllaassss hheellpp
+       vv..rreeccllaassss [ --dd] ttyyppee==_n_a_m_e iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e ffiillee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._r_e_c_l_a_s_s allows a user to create a new vector map based on the reclas-
+       sification  of  an  existing vector map.  The user provides the program
+       with a category conversion file, input vector map name, an output  vec-
+       tor  map  name,  and  the type of input map.  There is an option (d) to
+       dissolve common boundaries between adjoining map areas of the same  re-
+       classed category value.
+
+
+       NNoottee::  The  dissolve  option will work on only those areas which are of
+       the same conversion category value.  If a map area is inside (island) a
+       converted  area  and is NOT converted to the same value, its boundaries
+       are output to the resultant map.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --dd     Dissolve common boundaries (default is no) .
+
+
+
+
+
+
+   PPaarraammeetteerrss::
+       ttyyppee==_n_a_m_e
+              Select area, line, or site.
+              Options:  area, line, site
+
+       iinnppuutt==_n_a_m_e
+              Vector input map name.
+
+       oouuttppuutt==_n_a_m_e
+              Vector output map name.
+
+       ffiillee==_n_a_m_e
+              Text file name for category conversion.
+
+
+EEXXAAMMPPLLEE
+       vv..rreeccllaassss --dd iinnppuutt==_s_o_i_l_s oouuttppuutt==_s_o_i_l___g_r_o_u_p_a ttyyppee==_a_r_e_a
+               ffiillee==_c_o_n_v_e_r_t_1_,_c_o_n_v_e_r_t_2_,_c_o_n_v_e_r_t_3
+
+
+       the input map _s_o_i_l_s contains 15 map area categories,
+       the conversion files contain :
+         convert1     convert2  convert3
+          1:1               3:2           2:3
+         10:1               4:2           7:3
+         12:1               5:2           8:3
+         15:1               6:2           9:3
+                      11:2          13:3
+                   14:3
+
+       Produces a new vector area file _s_o_i_l___g_r_o_u_p_a  containing  'area'  bound-
+       aries  from  _s_o_i_l_s_s  with area category values of 1,10,12,15 changed to
+       category 1;  values of 3-6,11 changed to  2;   and  values  2,7-9,13-14
+       changed to 3.  Any common boundaries are dissolved.
+
+
+       NOTE:
+       The format for "category label" is:
+       if NO SPACES in the labels    if SPACES in the labels
+                Abc                      area name 1:
+                Def1                     area name 2:
+                12A                      .    .   .
+                WWd                    area name n:
+
+
+
+
+       The format for "category value" is:
+
+        1
+
+        10
+
+        12
+
+        15
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       vv..rreeccllaassss
+       o  The first question asked is the map type:
+
+
+
+       Enter the type of map (area, line, site) [area] :
+              The default is for areas.
+
+
+       o  The next question is if common boundaries are dissolved :
+
+
+
+        Do you want common boundaries dissolved ?(y/n) [n]
+
+
+       The default is no, meaning all exiting boundaries will be retained.
+
+
+       o  The next question is an option for using category labels :
+
+
+
+        Do you want to use category names ?(y/n) [n]
+
+
+       The default is no, meaning the user will be using category values.
+
+
+       o  The next question asks for the name of the input map :
+
+
+
+        Enter vector map
+              Enter 'list' for a list of exiting vector files
+              Hit RETURN to cancel request
+              >
+
+
+       Any map is the user's search list is available.
+
+
+       o  The next question asks for the name of the output map :
+
+
+
+        Enter name for resultant vector map
+              Enter 'list' for a list of exiting vector files
+              Hit RETURN to cancel request
+              >
+
+
+       If  the  name is for an existing map, the user will be asked if the map
+       can be over-written.
+
+
+       o  The next question asks if a file of labels/categories is to be  used
+       :
+
+
+       If names was selected previously:
+
+
+
+        Do you want to use a file of labels?(y/n) [n]
+
+
+       If names was NOT selected previously:
+
+
+
+        Do you want to use a file of categories?(y/n) [n]
+
+
+       o  At this time the user will be asked for category 1 information:
+
+
+
+        1. be asked to enter a file name - if file input was selected, or
+              2. be asked to enter the information manually.
+
+
+       Then the user will be asked for category 2 information:
+       Then the user will be asked for category 3 information:
+       Then the user will be asked for category n information:
+
+
+       o    When no entry is provided the program will begin.
+
+
+
+
+
+NNOOTTEESS
+       This manual-page differs from the v.reclass documentation available via
+       _g_._m_a_n_u_a_l from the GRASS prompt (Comment WW).
+
+
+
+SSEEEE AALLSSOO
+       _v_._e_x_t_r_a_c_t
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                     v.reclass.scs(1)

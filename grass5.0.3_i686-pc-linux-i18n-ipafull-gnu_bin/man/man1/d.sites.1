@@ -1,0 +1,77 @@
+d.sites(1)                    Grass User's Manual                   d.sites(1)
+
+
+
+NNAAMMEE
+       dd..ssiitteess  -  Displays  site  markers  in the active display frame on the
+       graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ssiitteess
+       dd..ssiitteess hheellpp
+       dd..ssiitteess ssiitteeffiillee==_n_a_m_e [ccoolloorr==_n_a_m_e] [ssiizzee==_v_a_l_u_e] [ttyyppee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._s_i_t_e_s displays a GRASS _s_i_t_e___l_i_s_t_s map using site markers of a  color,
+       size,  and  type  specified  by  the  user.  Output is displayed in the
+       active frame on the graphics monitor.
+
+
+       This program can be run non-interactively  or  interactively.   If  the
+       user  gives  the name of a GRASS _s_i_t_e___l_i_s_t_s map and (optionally) speci-
+       fies other parameter values on the command line the program will be run
+       non-interactively;  any  parameter  values  left unspecified are set to
+       their default values (see below).  Alternately, the user can type  sim-
+       ply  dd..ssiitteess on the command line; in this case, the program will prompt
+       the user for parameter values using the standard  GRASS  _p_a_r_s_e_r  inter-
+       face.
+
+
+
+   PPaarraammeetteerrss::
+       ssiitteeffiillee==_n_a_m_e
+              Name  of  a  GRASS  _s_i_t_e___l_i_s_t_s  map in the user's current mapset
+              search path.
+
+       ccoolloorr==_n_a_m_e
+              Sets the current color to _n_a_m_e.
+              Options: red,  orange,  yellow,  green,  blue,  indigo,  violet,
+              magenta, brown, gray, white, and black
+              Default: _g_r_a_y
+
+       ssiizzee==_v_a_l_u_e
+              Size, in pixels, in which the site icons are to be drawn.
+              Options: 0-1000
+              Default: 5
+
+       ttyyppee==_n_a_m_e
+              The type of icon to be displayed at site locations.
+              Options: x, diamond, box, +
+              Default: x
+
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._i_c_o_n_s
+
+       _d_._p_o_i_n_t_s
+
+       _d_._r_a_s_t
+
+       _d_._v_e_c_t
+
+       _g_._r_e_g_i_o_n
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James  Westervelt,  U.S. Army Construction Engineering Research Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           d.sites(1)

@@ -1,0 +1,116 @@
+r.mask.points(1)              Grass User's Manual             r.mask.points(1)
+
+
+
+NNAAMMEE
+       rr..mmaasskk..ppooiinnttss  -Examines and filters lists of points constituting lines
+       to determine if they fall within current region and mask and optionally
+       an additional raster map.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..mmaasskk..ppooiinnttss
+       rr..mmaasskk..ppooiinnttss hheellpp
+       rr..mmaasskk..ppooiinnttss [ --rr] [[mmaasskk==_n_a_m_e] [[iinnppuutt==_n_a_m_e] [[ffss==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       rr..mmaasskk..ppooiinnttss  filters a list of points based on the current region and
+       current mask.  The point list consists of lines which have the  follow-
+       ing format
+            easting        northing  [text]
+                         .
+                         .
+                         .
+            easting        northing  [text]
+
+       The  eastings and northings define points in the coordinate space. Each
+       line is examined to determine if the point  falls  within  the  current
+       region,  current mask (if any), and optionally an additional raster map
+       that acts as a secondary mask. If the point falls outside  the  current
+       region  or falls in a grid cell that has value zero (either in the cur-
+       rent mask, or the specified mask file), then the entire  line  is  sup-
+       pressed.  Otherwise it is printed exactly as it is input.  There may be
+       arbitrary text following the coordinate pairs and this text  is  output
+       as well.
+
+OOPPTTIIOONNSS
+       FFllaaggss
+
+       --rr     Coordinates are reversed: north east
+
+
+       Normal  input  has  the  east  first  and the north second. This option
+       allows the order of the coordinates to be north first and east next.
+
+
+       PPaarraammeetteerrss
+
+       mmaasskk==_n_a_m_e
+              Raster map used to mask points
+
+
+       This parameter is optional. If not specified, then the points are  mask
+       by  the  default  mask  (if there is one). If it is specified, then the
+       points are mask by this layer as well as the default mask.
+
+       iinnppuutt==_n_a_m_e
+              Unix input containing point list
+
+
+       If not specified it is assumed that the user will either  redirect  the
+       input from a file:
+
+
+       rr..mmaasskk..ppooiinnttss < file
+
+
+
+       or pipe the results from some other process (e.g., a DBMS query) into
+        _r_._m_a_s_k_._p_o_i_n_t_s
+
+
+       some_process | rr..mmaasskk..ppooiinnttss
+
+
+
+
+       ffss==_c_h_a_r_a_c_t_e_r
+              Input field separator character
+
+
+       If  the coordinates are not separated by white space, but by some other
+       character, this option specifies that  character.  For  example,  if  a
+       colon is used between the east and north, then
+        _r_._m_a_s_k_._._p_o_i_n_t can be told this by:
+
+
+        rr..mmaasskk..ppooiinnttss ffss==_:
+
+
+
+
+
+NNOOTTEESS
+       Lines  that make it through the filtering are output intact. This means
+       that if the coordinates are reversed they will remain reversed on  out-
+       put.  If there is a field separator, it will also be output.
+
+SSEEEE AALLSSOO
+       _r_._m_a_s_k
+
+       _s_._o_u_t_._a_s_c_i_i
+
+       _s_._i_n_._a_s_c_i_i
+
+       _d_._p_o_i_n_t_s
+
+
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                     r.mask.points(1)

@@ -1,0 +1,60 @@
+r.out.elas(1)                 Grass User's Manual                r.out.elas(1)
+
+
+
+NNAAMMEE
+       rr..oouutt..eellaass  - Export a GRASS raster map layer to an ELAS raster file
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..oouutt..eellaass
+       rr..oouutt..eellaass hheellpp
+       rr..oouutt..eellaass [[--hh]] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       r.out.elas" exports a GRASS cell file to an ELAS raster file.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ff     Floating-point ELAS output file will be created.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              GRASS input cell file name.
+
+       oouuttppuutt==_n_a_m_e
+              ELAS output raster file name.
+
+       "r.out.elas"  will  transfer  and  convert a GRASS cell file to an ELAS
+       raster file. The GRASS cell file will be a 1 to 4 byte integer per ele-
+       ment  file.  This  GRASS  cell file may be converted to either a 1 to 4
+       byte integer per element ELAS file (default) or a 4 byte floating-point
+       per  element  ELAS file. Color values will be transferred from GRASS to
+       ELAS for GRASS 1 byte integer per  element  files  only.   "r.out.elas"
+       only  transfers GRASS cell files that have either an unreferenced XY or
+       UTM projection. Whether the GRASS cell file is either  an  unreferenced
+       XY  or  UTM projection, the ELAS file created will be a UTM projection.
+       "r.out.elas" will transfer the GRASS cell file based  on  the  selected
+       region  and  will only transfer the portion of the GRASS cell file that
+       is within that selected region.  "r.out.elas" will notify the  user  as
+       to  whether the current region has the same values as the "cellhd" file
+       for the GRASS cell file being  transferred  to  ELAS.  Since  the  area
+       transferred to ELAS is determined by the region (WIND file) and not the
+       cellhd file then the notification of a difference between  these  files
+       will  indicate  that not all of the GRASS cell file will be transferred
+       to ELAS. Also, this program will notify the  user  as  to  whether  the
+       raster "MASK" is on or not.
+
+SSEEEE AALLSSOO
+        _r_._o_u_t_._b_i_n_, _r_._i_n_._a_s_c_i_i_, _r_._o_u_t_._a_s_c_i_i_, _r_._i_n_._a_r_c_, _r_._o_u_t_._a_r_c_, _r_._i_n_._g_d_a_l
+
+AAUUTTHHOORR
+       Bruce Powell, National Park Service
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.out.elas(1)

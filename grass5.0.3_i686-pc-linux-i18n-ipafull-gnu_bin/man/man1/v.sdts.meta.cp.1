@@ -1,0 +1,104 @@
+v.sdts.meta.cp(1)             Grass User's Manual            v.sdts.meta.cp(1)
+
+
+
+NNAAMMEE
+       vv..ssddttss..mmeettaa..ccpp   -  installs supplementary metadata file preparatory to
+       creation of an SDTS export dataset.
+       _(_G_R_A_S_S _V_e_c_t_o_r _D_a_t_a _E_x_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ssddttss..mmeettaa..ccpp
+       vv..ssddttss..mmeettaa..ccpp hheellpp
+       vv..ssddttss..mmeettaa..ccpp [--ff] mmeettaaffiillee=_n_a_m_e mmaapp=nnaammee
+
+DDEESSCCRRIIPPTTIIOONN
+       The program provides assistance for  the  preparation  of  supplemental
+       metadata for an SDTS export dataset.  The user specifies a map layer in
+       his current mapset, and then a file of metadata information  pertaining
+       to  the named map.  The program copies the specified metadata file to a
+       standard location (in the user's mapset, under the _d_i_g___m_i_s_c directory).
+       Later,  when _v_._o_u_t_._s_d_t_s is run for the same map layer, the items in the
+       metadata file will be incorporated in  various  places  in  the  export
+       dataset.
+
+
+       While  the  metadata  file can be prepared by the user, it's format and
+       contents are strictly defined.  An alternative is to use the  interface
+       program,  _v_._s_d_t_s_._m_e_t_a,  with  which  the user can prepare and install a
+       correctly formatted metadata file.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --ff     force overwriting of pre-exisiting metadata file.
+
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              name of vector map layer to which the  specified  metadata  file
+              applies.
+
+       mmeettaaffiillee==_n_a_m_e
+              name  of  file to be installed as a metadata file for the speci-
+              fied map.
+
+
+
+
+NNOOTTEESS
+       The format of the metadata source file is rather highly specified. Fol-
+       lowing  is  a  list of the items that can be included in the file. Note
+       that each item is preceded by a particular code. The code, and the fol-
+       lowing ':' must be entered intact for each included metadata item.  The
+       colon is then immediately followed by the user-supplied information:
+
+
+       IDEN_MPDT:(creation date of original source map; YYYY or YYMMDD format)
+
+
+       IDEN_TITL:(general  TITLE  for  contents of transfer, for TITL field in
+       IDEN module. If not specified, vector header "map_name" will be used)
+
+
+       IDEN_COMT:(general comment on transfer, for IDEN module's COMT field)
+
+
+       XREF_HDAT:(name of geodetic datum to which export data are  referenced,
+       for HDAT fieid in XREF module.)
+
+
+       DDSH_ENT_NAME:(for  Dictionary/Schema  module;  name  of kind of entity
+       that _d_i_g___a_t_t and _d_i_g___c_a_t_s values represent. If not specified, map  name
+       will be used.)
+
+
+       DDDF_GRASS_ENT:(definition  for  entity in "DDSH_ENT_NAME", for Dictio-
+       nary/ Definition module. if not supplied, simple default is used.)
+
+
+       DDDF_ATTR_NUM:(definition for _d_i_g___a_t_t values, for Dictionary/Definition
+       module; if not specified, simple default is used.)
+
+
+       DDDF_ATTR_LABEL:(definition for _d_i_g___c_a_t_s values, for Dictionary/Defini-
+       tion module; if not specified, simple default is used.)
+
+
+       As noted above, the metadata file can be prepared, and installed, with-
+       out the user having to worry about format details, with _v_._s_d_t_s_._m_e_t_a.
+
+SSEEEE AALLSSOO
+       _m_._s_d_t_s_._r_e_a_d_,   _v_._i_n_._s_d_t_s_,   _v_._o_u_t_._s_d_t_s_,  _v_._s_d_t_s_._d_p_._c_p_,  _v_._s_d_t_s_._m_e_t_a_._c_p_,
+       _v_._s_d_t_s_._m_e_t_a
+
+AAUUTTHHOORRSS
+       David Stigberg, U.S.Army Construction Engineering Research Laboratory
+       Tin Qian, University of Illinois
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                    v.sdts.meta.cp(1)

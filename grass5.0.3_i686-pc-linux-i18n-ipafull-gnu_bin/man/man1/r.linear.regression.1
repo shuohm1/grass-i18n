@@ -1,0 +1,108 @@
+r.linear.regression(1)        Grass User's Manual       r.linear.regression(1)
+
+
+
+AATTTTEENNTTIIOONN::
+       This  page  is  not  yet properly corrected! It was taken from _r_._r_a_t_i_o_-
+       _n_a_l_._r_e_g_r_e_s_s_i_o_n.  So  be  careful  and  send   a   better   version   to
+       neteler@itc.it
+
+NNAAMMEE
+       rr..lliinneeaarr..rreeggrreessssiioonn - linear regression calculation from data stored in
+       ASCII file
+
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..lliinneeaarr..rreeggrreessssiioonn
+
+       rr..lliinneeaarr..rreeggrreessssiioonn hheellpp
+
+       rr..lliinneeaarr..rreeggrreessssiioonn iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The _r_._l_i_n_e_a_r_._r_e_g_r_e_s_s_i_o_n program calculates the linear regression model.
+       If  it  is  used  as  an image processing tool, the multispectral space
+       remote sensing data will be the regression variables (ASCII  file)  and
+       the  ground vegetation coverage measurements will be the response vari-
+       ables (also ASCII file) and this command will be useful  for  obtaining
+       linear regression models from the remote-sensing data which have corre-
+       sponding ground measurement  and  for  predicting  vegetation  coverage
+       using  other  remote-sensing  data  which  have no corresponding ground
+       truth records. The input file has the following format
+
+
+       regression valuables x1, x2, ... response variable  y  channel  1  (x1)
+       channel 2 (x2) ... coverage
+
+
+       For  a three channel remote-sensing data the following is an example of
+       input ASCII file
+       0.4350         0.2616         0.7016         0.98
+       0.4140         0.2620         0.6520         0.99
+       0.4940         0.3500         0.5580         0.34
+       0.5983         0.5350         0.5650         0.10
+       0.4883         0.3733         0.5533         0.88
+       0.4150         0.2916         0.5116         0.60
+       0.5566         0.5250         0.5466         0.09
+       0.4420         0.2820         0.6800         0.86
+       0.4220         0.2620         0.6260         0.88
+       0.4766         0.3666         0.5933         0.61
+       0.5180         0.4300         0.5140         0.60
+       0.4416         0.2700         0.7383         0.96
+       0.4583         0.3116         0.5133         0.76
+       0.4300         0.2750         0.7233         0.98
+       0.4320         0.2760         0.6460         1.00
+       0.4733         0.3566         0.5616         0.53
+       0.4200         0.2450         0.7966         1.00
+       0.4850         0.3533         0.7216         0.99
+       0.4360         0.2620         0.7620         0.99
+       0.4283         0.2650         0.6783         0.91
+       0.4633         0.3200         0.6750         0.94
+
+
+       The resulted regression model (coefficient numbers) and related  infor-
+       mation  about  the  confidencial  test, goodness or utility test (e.g.,
+       correlation coefficient r between observed and calculated  coverage,  F
+       value and t value) are put on the output file (ASCII file also).
+
+
+
+              The formular of linear regression can be:
+                                       y=a[0]x[0] + a[1],
+                                       y=a[0]x[0] + a[1]x[1] + a[2]
+                                       y=a[0]x[0] + a[1]x[1] + a[2]x[2] + a[4]
+
+
+
+
+       _r_._l_i_n_e_a_r_._r_e_g_r_e_s_s_i_o_n will be run non-interactively if the user specifies
+       program arguments on the command line, using the form:
+
+
+       _r_._l_i_n_e_a_r_._r_e_g_r_e_s_s_i_o_n _i_n_p_u_t_=_n_a_m_e _o_u_t_p_u_t_=_n_a_m_e
+
+
+       But  after  run, the computer will prompt the user to select model num-
+       ber.  Alternately, the user can simply type: _r_._l_i_n_e_a_r_._r_e_g_r_e_s_s_i_o_n on the
+       command  line without program arguments. In this case, the user will be
+       prompted for parameter values using the standard GRASS  user  interface
+       described in the manual entry for _p_a_r_s_e_r.
+
+SSEEEE AALLSSOO
+        _i_._n_d_v_i_, _r_._r_a_t_i_o_n_a_l_._r_e_g_r_e_s_s_i_o_n
+
+AAUUTTHHOORRSS
+       Hong  C. Zhuang, U.S. Army Construction Engineering Research Laboratory
+       Department of Electrical Computer Engineering, University  of  Illinois
+       at Urbana-Champaign.
+
+
+       Michael  Shapiro,  U.S.  Army Construction Engineering Research Labora-
+       tory.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                               r.linear.regression(1)

@@ -1,0 +1,66 @@
+i.rvi.prediction(1)           Grass User's Manual          i.rvi.prediction(1)
+
+
+
+NNAAMMEE
+       ii..rrvvii..pprreeddiiccttiioonn   -  Calculates  ground features, e.g. plant cover, by
+       remote sensing data using a given regression model
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..rrvvii..pprreeddiiccttiioonn
+       ii..rrvvii..pprreeddiiccttiioonn hheellpp
+       ii..rrvvii..pprreeddiiccttiioonn  mmooddeell==_n_a_m_e  bbaanndd11==_n_a_m_e  bbaanndd22==_n_a_m_e  bbaanndd33==_n_a_m_e   oouutt--
+       ppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       This  programs  calculate  ground  feature, e.g. plant cover, by remote
+       sensing data using a given  regression  model.  The  input  imagery  is
+       assumed  with  three optical bands: visible band1 and band2 and another
+       infrared band3
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerr::
+       mmooddeell==_n_a_m_e
+              rvi regression model input file
+
+       bbaanndd11==_n_a_m_e
+              visible band1 input file
+
+       bbaanndd22==_n_a_m_e
+              visible band2 input file
+
+       bbaanndd33==_n_a_m_e
+              infrared band3 input file
+
+       oouuttppuutt==_n_a_m_e
+              output ground feature calculated
+
+       The current region definition and  mask  settings  are  respected  when
+       reading the input map.
+
+NNOOTTEESS
+       The  ground  feature of each pixel by remote sensing data is calculated
+       using rvi regression model.  After  run  r.rational.regression,  a  rvi
+       model is a coefficient vector with the definition of:
+
+
+
+                                 a[0]x1 + a[1]x2 + a[2]x3 + a[6]
+               ground feature = ---------------------------------
+                                 a[3]x1 + a[4]x2 + a[5]x3 + 1.0
+
+
+SSEEEE AALLSSOO
+       _r_._r_a_t_i_o_n_a_l_._r_e_g_r_e_s_s_i_o_n
+
+       _r_._l_i_n_e_a_r_._r_e_g_r_e_s_s_i_o_n
+
+AAUUTTHHOORR
+       CERL
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                  i.rvi.prediction(1)

@@ -1,0 +1,168 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      08.14.5.hit
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    Installing a Hitachi Digitizer.
+  </CENTER>
+    <P>This file covers how to set up hardware for a Hitachi digitizer.
+    <P>To prepare the Hitachi digitizer for MAPDEV use:
+    <P>*YET TO BE WRITTEN.
+    <P>  <PRE>-----------------------------------------------------------------
+</PRE>
+    <P>Additional documentation for Hitachi digitizer drivers:
+    <P>Hitachi Seiko, Ltd.
+    <P>    <P>
+  <CENTER>
+    Documentation for Hitachi 3548BL Digitizer Table (36&quot; X 48&quot;) with
+  </CENTER>
+
+  <CENTER>
+    12 button cursor.
+  </CENTER>
+    <P>
+  <CENTER>
+    'v.digit' is using the Hitachi serial output format.  (Model DP004)
+  </CENTER>
+
+  <CENTER>
+    Cursor buttons are used in this device driver.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    Data Output Resolution and selection digit:
+  </CENTER>
+    <P>
+  <CENTER>
+    Send a &quot;0&quot; for 0.025 mm resolution
+  </CENTER>
+
+  <CENTER>
+    Send a &quot;1&quot; for 0.1 mm resolution
+  </CENTER>
+
+  <CENTER>
+    Send a &quot;2&quot; for 4096 'fragmentations'
+  </CENTER>
+
+  <CENTER>
+    Send a &quot;3&quot; for 0.001 inch resolution
+  </CENTER>
+    <P>
+  <CENTER>
+    Default can be strapped if desired.  This driver code sets resolution
+  </CENTER>
+
+  <CENTER>
+    to 0.001 inch.
+  </CENTER>
+    <P>
+  <CENTER>
+    Request Output:
+  </CENTER>
+    <P>
+  <CENTER>
+    Set &quot;request mode&quot; by sending a &quot;7&quot;.
+  </CENTER>
+
+  <CENTER>
+    When in request mode (which v.digit runs), prompt the digitizer for
+  </CENTER>
+
+  <CENTER>
+    output by sending it a &quot;R&quot;.
+  </CENTER>
+    <P>
+  <CENTER>
+    Output Rate:
+  </CENTER>
+    <P>
+  <CENTER>
+    Max of 50 X Y pairs per second at 9600 baud.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    Origin Selection:
+  </CENTER>
+    <P>
+  <CENTER>
+    Origin will be in the lower left corner and is fixed in this position.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    Accuracy:
+  </CENTER>
+    <P>
+  <CENTER>
+    Standard is +/- .01 inch with cursor.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    Notes:
+  </CENTER>
+
+  <CENTER>
+    Hitachi does not remember any programmable commands after a reset
+  </CENTER>
+
+  <CENTER>
+    or the power is turned off.
+  </CENTER>
+    <P>    <P>
+  <CENTER>
+    X and Y are same resolution.
+  </CENTER>
+    <P>
+  <CENTER>
+    Status is the number of the button pushed on the cursor.
+  </CENTER>
+    <P>  <PRE>--------------------------------------------------------------------
+</PRE>
+README File:
+    <P>This driver was written by Jim Hinthorne, of Central Washington University
+in Washington.  I have made a diagnostic program in the Diagnostic
+directory, made some slight changes to the code, and documented switch
+settings and cable configurations.  The switch settings and cable
+configurations are in the troff'able  file &quot;hitachi.doc&quot;, which is also
+in this directory ($GISBASE/src/mapdev/digitizers/hitachi).
+    <P>WARNING:  I checked this out for Berkeley UNIX only.  I did not check it out
+for SYS V.  Be aware of how the tty is opened.  (CS8 or CS7)
+    <P>
+  <CENTER>
+    -michael higgins
+  </CENTER>
+    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

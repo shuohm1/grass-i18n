@@ -1,0 +1,92 @@
+GRASS国際化版(i18n)　機能概要
+
+オリジナル版のGRASS5.0.3をベースに国際化対応させた
+GRASS i18n版の機能概要を紹介します。
+
+・国際化される部分
+(1)tcltkgrassのメニュー
+GRASSのGUIであるtcltkgrassのメニューを国際化対応しました。
+国際化版のtcltkgrassは、オリジナル版と区別するために、
+tcltkgrass-i18nというコマンドならびに一連のモジュールから
+構成されています。
+設定されたロケール（環境変数LANG）に応じて、EUC-JP、SJIS、
+UTF-8の日本語ならびに英語（LANG=C）で表示可能です。
+
+使い方
+・GRASSの起動
+ $ grass5
+
+・tcltkgrass-i18n（国際化版）の起動
+ GRASS:~>tcltkgrass-i18n&
+
+注記）
+tcltkgrassのxterm経由のコマンドを国際化に対応させるため、
+mltermを使用しています。mltermはあらかじめインストールして
+おいてください。
+
+
+(2)コマンド　ヘルプ
+tcltkgrassに含まれるGRASSの主要なコマンド　ヘルプを国際化
+対応しました。
+コマンド　ヘルプは、GRASSのシェルから、
+ GRASS:~>d.mon help　（一例）
+または、tcltkgrassのメニューからはコマンドダイアログの実行
+(RUN)ボタンをマウスで右クリックすると表示されます。
+
+(3)モニター上のテキスト
+GRASSのモニター上に表示されるテキスト（文字列）を国際化対
+応しました。
+国際化は、オリジナル版のベクトルフォントではなく、TrueType
+フォントを使うことで、日本語等のテキストを表示可能として
+います。
+TrueTypeフォントを設定するためのコマンドとして、
+d.font.freetype コマンドを追加し、フォント、エンコードの
+設定を行います。
+この国際化により、サイトラベルや凡例などに日本語を使うこ
+とが出来るようになります。
+
+使い方
+・monitorでのtruetypeフォントの表示設定
+ GRASS:~>d.mon start x0
+ GRASS:~>d.font.freetype [font=trutypefontname] [charset=encoding]
+ 
+ [font]：使用するtruetypeフォントのフルパス名
+ [charset]：文字のエンコーディング（EUC-JP、UTF-8、SJIS）
+ 例）RedHat Linux9での例
+ GRASS:~>d.font.freetype font=/usr/share/fonts/ja/TrueType/kochi-gothic.ttf charset=EUC-JP
+ 
+・monitorでのtruetypeフォント設定解除
+ GRASS:~>d.font.freetype font=
+
+注記）
+truetypeフォント設定時は、d.site.labelsなどのfontオプションは
+無視されます。
+
+
+(4)ポストスクリプト出力の日本語対応
+ポストスクリプト出力を日本語対応しました。
+
+・国際化されない部分
+(1)入出力メッセージ
+GRASSの各コマンドが出すメッセージ、情報（例えば、r.info等）
+はオリジナル版（英語）の出力となります。
+
+(2)manページ
+GRASSはmanコマンドによるマニュアルを持っていますが、この
+マニュアルはオリジナル版（英語）の出力となります。
+
+
+・ライセンス
+このプログラムはフリーソフトウェアであり、ライセンスはオリジナル版GRASS
+に準拠します。詳しくはパッケージ添付のCOPYING、GPL.TXTをご参照ください。
+
+GRASS国際化（i18n）プロジェクト　メンバー：
+升本 眞二, Venkatesh Raghavan, 野々垣 進, 根本 達也, 平井 尚喜（大阪市立大学）, 
+萩原　顕, 丹羽　誠, 森　亮（株式会社オークニー）, 
+服部 典弘 (株式会社イー・ソリューション・サービス)
+
+プロジェクトスポンサー：
+独立行政法人 情報処理推進機構（IPA；Information-technology Promotion Agency, Japan）
+
+本プロジェクトは情報処理振興事業協会(IPA)の「オープンソフトウェア活用基盤整備事業」
+による委託事業「オープンGISプラットフォームの開発」として採択されました。

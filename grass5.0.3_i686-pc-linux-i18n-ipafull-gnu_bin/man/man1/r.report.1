@@ -1,0 +1,186 @@
+r.report(1)                   Grass User's Manual                  r.report(1)
+
+
+
+NNAAMMEE
+       rr..rreeppoorrtt  - Reports statistics for raster map layers.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..rreeppoorrtt
+       rr..rreeppoorrtt hheellpp
+       rr..rreeppoorrtt   [--hhmmffqqeezznnNNCCii]  mmaapp==_n_a_m_e[,_n_a_m_e,...]   [uunniittss==_n_a_m_e[,_n_a_m_e,...]]
+       [ppll==_v_a_l_u_e] [ppww==_v_a_l_u_e] [oouuttppuutt==_n_a_m_e] [nnuullll==_s_t_r_i_n_g][nnsstteeppss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._r_e_p_o_r_t allows the user to set up a series of report parameters to  be
+       applied  to  a raster map layer, and creates a report.  If invoked with
+       command line arguments, the report will print out to the  screen  only.
+       However,  output  may  be redirected to a file or another program using
+       the UNIX redirection mechanism. If invoked without command  line  argu-
+       ments,  the user is given the option of printing out each report and/or
+       saving output to a file.
+
+
+       The program will be run non-interactively, if the  user  specifies  the
+       names of raster map layers and any desired options on the command line,
+       using   the    form    rr..rreeppoorrtt    [--hhmmffqqeezznnNNCCii]    mmaapp==_n_a_m_e[,_n_a_m_e,...]
+       [uunniittss==_n_a_m_e[,_n_a_m_e,...]] [ppll==_v_a_l_u_e] [ppww==_v_a_l_u_e] [oouuttppuutt==_n_a_m_e]
+
+       where  each  map  _n_a_m_e  is  the  name of a raster map layer on which to
+       report, each unit _n_a_m_e is a unit of measure in which results are to  be
+       reported,  the  pl  _v_a_l_u_e gives the page length, the pw _v_a_l_u_e gives the
+       page width, and the (optional) flags --hh, --ee, --mm, --ff, --qq,  --zz,  --nn,  --NN,
+       --CC, and --ii have the meanings stated below.
+
+   FFllaaggss::
+       --hh     Suppress the print-out of page headers.
+
+       --mm     Report on zero values, because a mask is being used.
+
+       --ff     Use formfeeds between pages when printing report output.
+
+       --qq     Run  quietly, without printing program messages to standard out-
+              put.
+
+       --ee     Use scientific format for the numbers that are too long  to  fit
+              in the tab table field if their decimal form is used.
+
+       --zz     Report  only  non-zero  data  values.  Zero  data  will  not  be
+              reported. However, for multiple map layers this  means  that  if
+              zero values occur in every map layer, they will not be reported;
+              if non-zero category values occur in any map layer  (along  with
+              zeros in others), the non-zero values along with the zero values
+              will be reported.
+
+       --nn     Filter out all no data cells.
+
+       --NN     Filter out cells where all maps have no data.
+
+       --CC     Report for cats fp ranges (fp maps only).
+
+       --ii     Read fp map as integer (use map's quant rules).
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e_,_n_a_m_e_,_._._.
+              Names of raster map(s) on which to report.
+
+       uunniittss==_n_a_m_e
+              Units of measure in which results  are  to  be  reported.  These
+              units  are  based  on  the number of cells in the user's _a_r_e_a of
+              interest (i.e., cells within the current geographic region defi-
+              nition,  and  the  current mask [if any]). These are established
+              with the programs _r_._m_a_s_k, respectively.  Options: Possible units
+              of  measurement  are:  mmii  (cover  measured  in square _m_i_l_e_s) mmee
+              (cover measured in square _m_e_t_e_r_s) kk (cover  measured  in  square
+              _k_i_l_o_m_e_t_e_r_s)  aa  (cover  measured  in _a_c_r_e_s) hh (cover measured in
+              _h_e_c_t_a_r_e_s) cc (the number of _c_e_l_l_s in the area of interest) pp (the
+              _p_e_r_c_e_n_t _c_o_v_e_r, excluding no data areas)
+
+       ppll==_v_a_l_u_e
+              Page length, in lines, in which report will be output.  Default:
+              0 (lines)
+
+       ppww==_v_a_l_u_e
+              Page width, in characters,  in  which  report  will  be  output.
+              Default: 79 (characters)
+
+       oouuttppuutt==_n_a_m_e
+              The name of a file to store the report in. If not specified, the
+              report is printed on the terminal screen.
+
+       nnuullll==_s_t_r_i_n_g
+              String representing no data cell value.
+
+       nnsstteeppss==_v_a_l_u_e
+              Number of fp subranges to collect stats from.
+
+
+
+       Alternately, the user can simply type _r_._r_e_p_o_r_t  on  the  command  line,
+       without  program arguments. In this case, the user will be prompted for
+       program flag settings and parameter values.
+
+
+       The report itself consists of two parts, a header section and the  main
+       body of the report.
+
+
+       The header section of the report identifies the raster map layer(s) (by
+       map layer name and TITLE),  location,  mapset,  report  date,  and  the
+       region of interest. The area of interest is described in two parts: the
+       user's current geographic region is presented, and  the  mask  is  pre-
+       sented (if any is used).
+
+
+       The  main body of the report consists of from one to three tables which
+       present the statistics for each category and the totals for  each  unit
+       column.
+
+
+       Note  that, unlike _r_._s_t_a_t_s, _r_._r_e_p_o_r_t allows the user to select the spe-
+       cific units of measure in which statistics will be reported.
+
+
+       Following is the result of a _r_._r_e_p_o_r_t run on the raster map layer _g_e_o_l_-
+       _o_g_y  (located  in  the  Spearfish, SD sample data base), with the units
+       expressed in square miles and acres. Here, _r_._r_e_p_o_r_t output is  directed
+       into the file _r_e_p_o_r_t_._f_i_l_e.
+
+EEXXAAMMPPLLEE::
+       rr..rreeppoorrtt mmaapp==_g_e_o_l_o_g_y uunniittss==_m_i_l_e_s_,_a_c_r_e_s > _r_e_p_o_r_t_._f_i_l_e
+
+
+        ____________________________________________________________
+       |                 RASTER MAP CATEGORY REPORT                 |
+       | LOCATION: spearfish                      Fri Sep 2 09:20:09|
+       |____________________________________________________________|
+       |           north:   4928000.00   east:   609000.00          |
+       | REGION:   south:   4914000.00   west:   590000.00          |
+       |           res:         100.00   res:       100.00          |
+       |____________________________________________________________|
+       | MASK:     none                                             |
+       |____________________________________________________________|
+       | MAP:      geology in PERMANENT                             |
+       |____________________________________________________________|
+       |         Category Information     |    Acres       Square   |
+       |    #      description            |                Miles    |
+       |________|_________________________|_________________________|
+       |    0   |  no data                |     415.13|      0.65   |
+       |    1   |  metamorphic            |    2597.02|      4.06   |
+       |    2   |  transition             |      32.12|      0.05   |
+       |    3   |  igneous                |    8117.24|     12.68   |
+       |    4   |  sandstone              |   16691.60|     26.08   |
+       |    5   |  limestone              |   13681.93|     21.38   |
+       |    6   |  shale                  |   10304.07|     16.10   |
+       |    7   |  sandy shale            |    2517.95|      3.93   |
+       |    8   |  claysand               |    3229.60|      5.05   |
+       |    9   |  sand                   |    8141.95|     12.72   |
+       |__________________________________|___________|_____________|
+       |                 TOTAL            |   65728.60|    102.70   |
+       |__________________________________|___________|_____________|
+
+
+NNOOTTEESS
+       If  the user runs _r_._r_e_p_o_r_t interactively and saves the report output in
+       a file, this file will be placed into the user's current working direc-
+       tory.
+
+
+       If the user runs _r_._r_e_p_o_r_t non-interactively, report output can be saved
+       by redirecting it to a file or a printer  using  the  UNIX  redirection
+       mechanism.
+
+SSEEEE AALLSSOO
+       _r_._s_t_a_t_s
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.report(1)

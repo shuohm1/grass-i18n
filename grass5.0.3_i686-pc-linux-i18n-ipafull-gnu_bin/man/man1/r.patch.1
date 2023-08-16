@@ -1,0 +1,137 @@
+r.patch(1)                    Grass User's Manual                   r.patch(1)
+
+
+
+NNAAMMEE
+       rr..ppaattcchh  - Creates a composite raster map layer by using known category
+       values from one (or more) map layer(s) to fill in areas of "no data" in
+       another map layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ppaattcchh
+       rr..ppaattcchh hheellpp
+       rr..ppaattcchh [--qqzz] iinnppuutt==_n_a_m_e[,_n_a_m_e,...]  oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       The  GRASS  program _r_._p_a_t_c_h allows the user to assign known data values
+       from other raster map layers to the _"_n_o  _d_a_t_a_"  areas  (those  assigned
+       category  value  NULL/0)  in another raster map layer.  This program is
+       useful for making a composite raster map layer from two or  more  adja-
+       cent  map  layers,  for filling in "holes" in a raster map layer's data
+       (e.g., in digital elevation data), or for updating an older  map  layer
+       with  more  recent  data.  The current geographic region definition and
+       mask settings are respected.
+
+
+       The program will be run non-interactively if the user specifies program
+       arguments   on   the  command  line,  using  the  form:  rr..ppaattcchh  [--qqzz]
+       iinnppuutt==_n_a_m_e[,_n_a_m_e,...]  oouuttppuutt==_n_a_m_e
+
+       where each input _n_a_m_e is the name of a raster map layer to be  patched,
+       the  output  _n_a_m_e  is the name assigned to the new composite raster map
+       layer containing the patched result, and the (optional) --qq flag directs
+       _r_._p_a_t_c_h to run quietly.
+
+
+       The  first  _n_a_m_e  listed in the string iinnppuutt==_n_a_m_e,_n_a_m_e,_n_a_m_e, ... is the
+       name of the base map whose zero data values will  be  attempted  to  be
+       filled  by  non-zero data values in the second through tenth input _n_a_m_e
+       maps listed.  The second through tenth input _n_a_m_e maps will be used  to
+       supply  remaining  missing  (zero)  data values for the first input map
+       _n_a_m_e, based on the order  in  which  they  are  listed  in  the  string
+       iinnppuutt==_n_a_m_e,_n_a_m_e,_n_a_m_e, ...
+
+
+       Alternately,  the  user  can  simply  type rr..ppaattcchh on the command line,
+       without program arguments. In this case, the user will be prompted  for
+       the  flag  setting and parameter values using the standard GRASS _p_a_r_s_e_r
+       interface.
+
+   FFllaagg::
+       --qq     Directs that _r_._p_a_t_c_h run quietly, suppressing output of messages
+              on program progress to standard output.
+
+       --zz     Use zero (0) for transparency instead of NULL.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e,_n_a_m_e,...
+              The name(s) of between one and 200 existing raster map layers to
+              be patched together. The first of the maximal  200  maps  listed
+              will  be  used  as a base map, and the second through tenth maps
+              listed will be used to supply missing (zero) category values for
+              the first map.
+
+       oouuttppuutt==_n_a_m_e
+              The  name of the new raster map to contain the resultant patched
+              output.
+
+
+EEXXAAMMPPLLEE
+       Below, the raster map layer on the far left is ppaattcchheedd with the  middle
+       (_p_a_t_c_h_i_n_g)  raster map layer, to produce the _c_o_m_p_o_s_i_t_e raster map layer
+       on the right.
+         1 1 1 0 2 2 0 0    0 0 1 1 0 0 0 0    1 1 1 1 2 2 0 0
+         1 1 0 2 2 2 0 0    0 0 1 1 0 0 0 0    1 1 1 2 2 2 0 0
+         3 3 3 3 2 2 0 0    0 0 0 0 0 0 0 0    3 3 3 3 2 2 0 0
+         3 3 3 3 0 0 0 0    4 4 4 4 4 4 4 4    3 3 3 3 4 4 4 4
+         3 3 3 0 0 0 0 0    4 4 4 4 4 4 4 4    3 3 3 4 4 4 4 4
+         0 0 0 0 0 0 0 0    4 4 4 4 4 4 4 4    4 4 4 4 4 4 4 4
+
+       Switching the _p_a_t_c_h_e_d and the _p_a_t_c_h_i_n_g raster map layers  produces  the
+       following results:
+         0 0 1 1 0 0 0 0    1 1 1 0 2 2 0 0    1 1 1 1 2 2 0 0
+         0 0 1 1 0 0 0 0    1 1 0 2 2 2 0 0    1 1 1 1 2 2 0 0
+         0 0 0 0 0 0 0 0    3 3 3 3 2 2 0 0    3 3 3 3 2 2 0 0
+         4 4 4 4 4 4 4 4    3 3 3 3 0 0 0 0    4 4 4 4 4 4 4 4
+         4 4 4 4 4 4 4 4    3 3 3 0 0 0 0 0    4 4 4 4 4 4 4 4
+         4 4 4 4 4 4 4 4    0 0 0 0 0 0 0 0    4 4 4 4 4 4 4 4
+
+
+NNOOTTEESS
+       Frequently,  this program is used to patch together adjacent map layers
+       which have been  digitized  separately.   The  programs  _v_._m_k_q_u_a_d_s  and
+       _v_._m_k_g_r_i_d can be used to make adjacent maps align neatly.
+
+
+       The  user  should  check  the current geographic region settings before
+       running _r_._p_a_t_c_h, to ensure that the region boundaries encompass all  of
+       the data desired to be included in the composite map.
+
+
+       Use  of  _r_._p_a_t_c_h  is  generally  followed  by use of the GRASS programs
+       _g_._r_e_m_o_v_e and _g_._r_e_n_a_m_e; _g_._r_e_m_o_v_e is used to  remove  the  original  (un-
+       patched)  raster  map  layers, while _g_._r_e_n_a_m_e is used to then assign to
+       the newly-created composite (patched) raster map layer the name of  the
+       original raster map layer.
+
+
+       _r_._p_a_t_c_h creates support files for the patched, composite output map.
+
+SSEEEE AALLSSOO
+       _g_._r_e_g_i_o_n
+
+       _g_._r_e_m_o_v_e
+
+       _g_._r_e_n_a_m_e
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._s_u_p_p_o_r_t
+
+       _v_._m_k_g_r_i_d
+
+       _v_._m_k_q_u_a_d_s
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+       -z flag by Huidae Cho
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_4 _1_0_:_3_2_:_0_5 _$
+
+
+
+GRASS 5.0                                                           r.patch(1)

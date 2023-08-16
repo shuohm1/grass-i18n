@@ -1,0 +1,99 @@
+r.in.miads(1)                 Grass User's Manual                r.in.miads(1)
+
+
+
+NNAAMMEE
+       rr..iinn..mmiiaaddss   -  Converts  a  MIADS output ASCII text file into an GRASS
+       raster import (_r_._i_n_._a_s_c_i_i) formatted file.
+       _(_S_C_S _G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..mmiiaaddss
+       rr..iinn..mmiiaaddss hheellpp
+       rr..iinn..mmiiaaddss iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  ssttrriipp==_v_a_l_u_e  lliinnee==_v_a_l_u_e  cceellll==_v_a_l_u_e
+       NNoorrtthhiinngg==_v_a_l_u_e EEaassttiinngg==_v_a_l_u_e ssiizzee==_v_a_l_u_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_._m_i_a_d_s  allows  a  user to create a _r_._i_n_._a_s_c_i_i formatted ASCII file
+       from a MIADS output printer format ASCII file.
+       The program will actively read the MIADS data file, selectively  remove
+       and process each strip, creating a individual _r_._i_n_._a_s_c_i_i formatted file
+       for each strip, and finally create one category file  for  all  strips.
+       The  program  also  produces  a  report  file summarizing all pertinent
+       information for each strip.
+
+
+       The resulting _r_._i_n_._a_s_c_i_i files for each strip are then used in conjunc-
+       tion  with  the  GRASS commands _r_._i_n_._a_s_c_i_i and _r_._p_a_t_c_h to create a com-
+       plete raster file.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              MIADS input file name.
+
+       oouuttppuutt==_n_a_m_e
+              GRASS raster data output file name.
+
+       ssttrriipp==_v_a_l_u_e
+              MIADSs strip number of reference cell.
+
+       lliinnee==_v_a_l_u_e
+              MIADSs line number of reference cell.
+
+       cceellll==_v_a_l_u_e
+              MIADS cell number of reference cell.
+
+       NNoorrtthhiinngg==_v_a_l_u_e
+              UTM Easting at the cell reference.
+
+       EEaassttiinngg==_v_a_l_u_e
+              UTM Northing at the cell reference.
+
+       ssiizzee==_v_a_l_u_e
+              Cell size (length one side) in meters.
+
+
+
+
+
+       SCS has developed scripts _r_u_n_._m_i_a_d_s, _g_e_t_s_t_r_i_p,  and  _s_t_r_i_p_._9_9_s.   These
+       scripts make the MIADS to GRASS conversion easier.
+
+
+       _r_u_n_._m_i_a_d_s -
+
+        SCS macro to perform the complete conversion of a MIADS printer format
+       data
+              set to a GRASS raster file.
+
+
+       _g_e_t_s_t_r_i_p -
+
+         Reads  each  MIADS  strip file and converts it to a independent GRASS
+       data
+              file.  Support may be run on any one of these strip files;  how-
+              ever, there is no category information  available.   Each  strip
+              may be viewed at this time with _d_._r_a_s_t or _d_._d_i_s_p_l_a_y.
+
+
+       _s_t_r_i_p_._9_9_s -
+
+        Special pre-_r_._i_n_._m_i_a_d_s macro that removes the 99's from the MIADS data
+              file.  This effectively removes border information, replacing it
+              with "no data" values.
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y, _d_._r_a_s_t, _r_._i_n_._a_s_c_i_i, _r_._p_a_t_c_h, _r_._s_u_p_p_o_r_t
+
+AAUUTTHHOORR
+       _r_._i_n_._m_i_a_d_s - R.L.Glenn, USDA, SCS, NHQ-CGIS
+       _r_u_n_._m_i_a_d_s_, _s_t_r_i_p_._9_9_s - Harold Kane, USDA, SCS, Oklahoma State Office
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.in.miads(1)

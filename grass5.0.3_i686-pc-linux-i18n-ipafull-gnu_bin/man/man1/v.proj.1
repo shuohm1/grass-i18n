@@ -1,0 +1,85 @@
+v.proj(1)                     Grass User's Manual                    v.proj(1)
+
+
+
+NNAAMMEE
+       vv..pprroojj  - Allows projection conversion of vector files.
+
+SSYYNNOOPPSSIISS
+       vv..pprroojj
+       vv..pprroojj hheellpp
+       vv..pprroojj   [--ssll]   iinnppuutt==_n_a_m_e  llooccaattiioonn==_n_a_m_e  [ddbbaassee==_n_a_m_e]  [mmaappsseett==_n_a_m_e]
+       [oouutt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       allows a user to convert a vector map in a specified mapset of a speci-
+       fied  location  (different from current) with projection of input loca-
+       tion to the vector map in a current mapset  of  current  location  with
+       projection  of current location (both projections are defined by corre-
+       sponding PROJ_INFO files).
+
+
+       _v_._p_r_o_j will create _d_i_g, _d_i_g___a_t_t, and _d_i_g___c_a_t_s directories in the output
+       mapset, if they do NOT exist.  Map files for _d_i_g, _d_i_g___a_t_t, and _d_i_g___c_a_t_s
+       are also created for the new map layer.
+
+   FFllaaggss::
+       --ss     Automatically run "v.support" on newly created vector file.
+
+       --ll     List vector files in input location and exit
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of the input vector map.
+
+       llooccaattiioonn==_n_a_m_e
+              Name of the location containing input vector map
+
+       ddbbaassee==_n_a_m_e
+              path to GRASS database of input location
+
+       mmaappsseett==_n_a_m_e
+              Name of the mapset containing input vector map
+
+       oouuttppuutt==_n_a_m_e
+              Name of the output vector map.
+
+
+
+       If the user simply types vv..pprroojj without specifying parameter values  on
+       the command line, the program will prompt the user to enter these.
+
+NNOOTTEESS
+       If oouutt is not specified it is set to be the same as input map name.
+       If ddbbaassee is not specified it is assumed to be the current database.
+       If sseett is not specified, its name is assumed to be the same as the cur-
+       rent mapset's name.
+
+
+       v.proj supports transformations between nad27 and nad83.   It  performs
+       the  transformation  automatically  based on the datum specified in the
+       mapset region.  See BUGS section.
+
+BBUUGGSS
+       Currently v.proj does not support general datum conversions.   It  only
+       supports  conversion between nad27 and nad83, and only within the CONUS
+       conversion grid; 20 degrees to 50 degrees north latitude, 63 degrees to
+       131  degrees  west  longitude.  That covers all of the conterminous USA
+       plus Mexico north of Mexico City and most of Canada farther south  than
+       Winnipeg, Manitoba.
+
+SSEEEE AALLSSOO
+         _m_._p_r_o_j_,  _r_._p_r_o_j_, _s_._p_r_o_j_, _g_._s_e_t_p_r_o_j_, _i_._r_e_c_t_i_f_y_, _i_._r_e_c_t_i_f_y_3_, _r_._s_u_p_p_o_r_t_,
+       _r_._s_t_a_t_s_, _s_._s_a_m_p_l_e_, _s_._s_u_r_f_._i_d_w_, _s_._s_u_r_f_._r_s_t
+
+AAUUTTHHOORRSS
+       Irina Kosinovsky, US ARMY CERL
+       M.L. Holko, USDA, SCS, NHQ-CGIS
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_2_2 _1_6_:_0_8_:_2_9 _$
+
+
+
+GRASS 5.0                                                            v.proj(1)

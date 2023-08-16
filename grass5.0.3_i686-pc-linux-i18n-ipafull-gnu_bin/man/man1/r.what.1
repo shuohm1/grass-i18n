@@ -1,0 +1,121 @@
+r.what(1)                     Grass User's Manual                    r.what(1)
+
+
+
+NNAAMMEE
+       rr..wwhhaatt   - Queries raster map layers on their category values and cate-
+       gory labels.
+
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..wwhhaatt
+       rr..wwhhaatt hheellpp
+       rr..wwhhaatt [--ffccii] iinnppuutt==_n_a_m_e[,_n_a_m_e,...] [ccaacchhee==_v_a_l_u_e] [nnuullll==_s_t_r_i_n_g]
+       rr..wwhhaatt  [--ffccii]  iinnppuutt==_n_a_m_e[,_n_a_m_e,...]   [<   _i_n_p_u_t_f_i_l_e]   [ccaacchhee==_v_a_l_u_e]
+       [nnuullll==_s_t_r_i_n_g]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._w_h_a_t  outputs  the  category  values  and  (optionally)  the category
+       labels associated with user-specified locations on raster input map(s).
+       Locations  are specified as geographic x,y coordinate pairs (i.e., pair
+       of eastings and northings); the user can also (optionally) associate  a
+       label with each location.
+
+
+       The  program  will  be  run non-interactively if the user specifies the
+       program  parameter values and (optionally) the flag setting on the com-
+       mand line, using the form: rr..wwhhaatt [--ff] iinnppuutt==_n_a_m_e[,_n_a_m_e,...]
+
+       where  each input _n_a_m_e is the name of a raster map layer whose category
+       values are to be queried, and the (optional) flag --ff directs _r_._w_h_a_t  to
+       also  output category labels. The user can also redirect a user-created
+       ASCII input file containing a list of geographic coordinate  pairs  and
+       (optionally) user-named labels, into _r_._w_h_a_t using the form: rr..wwhhaatt [--ff]
+       iinnppuutt==_n_a_m_e[,_n_a_m_e,...]  [< _i_n_p_u_t_f_i_l_e]
+
+       If the user does not redirect an input file  containing  these  coordi-
+       nates into the program, the program will query the user for point loca-
+       tions and labels.
+
+
+       Alternately, the user can simply type: rr..wwhhaatt
+
+       on the command line, without program arguments. In this case, the  user
+       will  be  prompted  for the flag setting and parameter values using the
+       standard GRASS _p_a_r_s_e_r.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ff     Also output the category label(s) associated with the cell(s) at
+              the user-specified location(s).
+
+       --cc     Turn on cache reporting.
+
+       --ii     Output integer category values, not cell values.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e[_,_n_a_m_e_,_n_a_m_e_,_._._.]
+              The  name(s)  of  one  or  more existing raster map layers to be
+              queried.
+
+       ccaacchhee==_v_a_l_u_e
+              Size of point cache.
+
+       nnuullll==_s_t_r_i_n_g
+              Character string to represent no data cell.
+
+
+EEXXAAMMPPLLEESS
+       The contents of the ASCII _i_n_p_u_t_f_i_l_e to _r_._w_h_a_t can be typed  in  at  the
+       keyboard,  redirected  from a file, or piped from another program (like
+       _d_._w_h_e_r_e). Each line of the input consists of an  easting,  a  northing,
+       and  an  optional label, which are separated by spaces. The word eenndd is
+       typed to end input of coordinates to _r_._w_h_a_t. For example:
+
+       635342.21 7654321.09 site 1
+              653324.88 7563412.42 site 2 end
+
+       _r_._w_h_a_t output consists of the input geographic location and label, and,
+       for each user-named raster map layer, the category value, and (if _-_f is
+       specified) the category label associated with the cell(s) at this  geo-
+       graphic  location.  Sample  input  (in  regular font) to and output (in
+       plain text) from _r_._w_h_a_t are given below.
+
+        rr..wwhhaatt iinnppuutt=soils,aspect
+              635342.21 7654321.09 site 1 653324.88 7563412.42 site 2 end
+
+       635342.21|7654321.09|site 1|45|21
+
+              653324.88|7563412.42|site 2|44|20
+
+
+
+        rr..wwhhaatt --ff iinnppuutt==soils,aspect
+
+              635342.21 7654321.09 site 1
+
+              653324.88 7563412.42 site 2
+
+              end
+
+       635342.21|7654321.09|site 1|45|NaC|21|30 degrees NW
+              653324.88|7563412.42|site 2|44|NdC|20|15 degrees NW
+
+
+NNOOTTEESS
+       The maximum number of raster map layers that can be queried at one time
+       is 14.
+
+SSEEEE AALLSSOO
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            r.what(1)

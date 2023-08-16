@@ -1,0 +1,151 @@
+r.in.bin(1)                   Grass User's Manual                  r.in.bin(1)
+
+
+
+NNAAMMEE
+       rr..iinn..bbiinn   - Import a binary raster file into a GRASS raster map layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..bbiinn
+       rr..iinn..bbiinn hheellpp
+       rr..iinn..bbiinn  [[--ss]]  [[--ff]]  [[--bb]]  [[--hh]]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e   bbyytteess==_v_a_l_u_e
+       [ttiittllee=="_p_h_r_a_s_e"]   [nnoorrtthh==_v_a_l_u_e   ]   [ssoouutthh==_v_a_l_u_e   ]   [eeaasstt==_v_a_l_u_e  ]
+       [wweesstt==_v_a_l_u_e ] [rr==_v_a_l_u_e] [cc==_v_a_l_u_e ] [aannuullll==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_._b_i_n allows a user to create a (binary) GRASS raster map layer from
+       a variety of binary raster data formats.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+        --ss    Signed  one  byte data (range -128 - 127). Interpret high bit (>
+              127) as a negative value.
+
+        --ff    Import the data to a Float type GRASS raster map layer  (default
+              is Integer)
+
+        --bb    Byte  swap  the  binary  data  during  import. This includes the
+              header if -h specified.
+
+        --hh    Read region information from a Generic Mapping Tools (GMT)  type
+              binary  header.   Is compatible with GMT binary grid types 1 and
+              2.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing binary raster file to be imported.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to resultant GRASS raster map layer.
+
+       bbyytteess==_v_a_l_u_e
+              Number of bytes per cell (1, 2, 4)
+
+       ttiittllee== Title to be assigned to resultant raster map layer.
+
+       nnoorrtthh==_v_a_l_u_e
+              Northern limit of geographic region
+
+       ssoouutthh==_v_a_l_u_e
+              Southern limit of geographic region
+
+       eeaasstt==_v_a_l_u_e
+              Eastern limit of geographic region
+
+       wweesstt==_v_a_l_u_e
+              Western limit of geographic region
+
+       rr==_v_a_l_u_e
+              Number of rows
+
+       cc==_v_a_l_u_e
+              Number of columns
+
+       aannuullll==_v_a_l_u_e
+              Set Value to NULL
+
+       The north, south, east, and west field values entered are  the  coordi-
+       nates  of  the edges of the geographic region.  The rows and cols field
+       values entered describe the dimensions of the matrix of data to follow.
+       If  input is a GMT binary array (-h flag), the six dimension fields are
+       obtained from the GMT header.  If the bytes  field  is  entered  incor-
+       rectly an error will be generated suggesting a closer bytes value.
+
+
+       _r_._i_n_._b_i_n  can  be  used  to  import  numerous  binary arrays including:
+       etopo30, etopo-5, Globe DEM, BIL, AVHRR and GMT binary arrays (ID  1  &
+       2)
+
+
+
+EEXXAAMMPPLLEE
+       The following is a sample call of _r_._i_n_._b_i_n to import GTOPO30 DEM data:
+
+
+       r.in.bin  -s input=E020N90.DEM output=gtopo30 bytes=2 north=90 south=40
+       east=60 west=20 r=6000 c=4800
+
+
+       (you can add "anull=-9999" if you want sea level to have a NULL value)
+
+
+       The following is a sample call of _r_._i_n_._b_i_n  to  import  a  GMT  type  1
+       (float) binary array:
+
+
+       r.in.bin -hf input=sample.grd output=sample.grass
+
+
+       (-b could be used to swap bytes if required)
+
+
+       The following is a sample call of _r_._i_n_._b_i_n to import an AVHRR image:
+
+
+       r.in.bin in=p07_b6.dat out=avhrr c=128 r=128
+
+NNOOTTEESS
+       If optional parameters are not supplied, rr..iinn..bbiinn attempts to calculate
+       them. For example if the rows and columns parameters are  not  entered,
+       rr..iinn..bbiinn  automatically calculates them by subtracting south from north
+       and west from east. This will  only  produce  correct  results  if  the
+       raster  resolution  equals 1. Also, if the north, south, east, and west
+       parameters are not entered, rr..iinn..bbiinn assigns them  from  the  rows  and
+       columns  parameters.  In  the  above AVHRR example, the raster would be
+       assigned a north=128, south=0, east=128, west=0.
+
+
+       The geographic coordinates north, south, east, and  west  describe  the
+       outer  edges of the geographic region.  They run along the edges of the
+       cells at the edge of the geographic region and _n_o_t through  the  center
+       of the cells at the edges.
+
+
+       Notes on (non)signed data:
+
+
+       If  you  use  the -s flag the highest bit is the sign bit. If this is 1
+       the data is negative, and the data interval is  half  of  the  unsigned
+       (not exactly).
+
+
+       This  flag  is  only  used if bbyytteess== 1. If bbyytteess== is greater than 1 the
+       flag is ignored.
+
+SSEEEE AALLSSOO
+        _r_._o_u_t_._b_i_n_, _r_._i_n_._a_s_c_i_i_, _r_._o_u_t_._a_s_c_i_i_, _r_._i_n_._a_r_c_, _r_._o_u_t_._a_r_c_, _r_._i_n_._g_d_a_l
+
+AAUUTTHHOORRSS
+       Jacques Bouchard, France (bouchard@onera.fr)
+
+       Bob Covill, Canada (bcovill@tekmap.ns.ca)
+
+       Man page: Zsolt Felker (felker@c160.pki.matav.hu)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_0_8_:_3_1 _$
+
+
+
+GRASS 5.0                                                          r.in.bin(1)

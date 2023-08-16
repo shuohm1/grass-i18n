@@ -1,0 +1,58 @@
+d.rast.leg.sh(1)              Grass User's Manual             d.rast.leg.sh(1)
+
+
+
+NNAAMMEE
+       dd..rraasstt..lleegg..sshh   -  Displays  a  raster map and its legend on a graphics
+       window.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       dd..rraasstt..lleegg..sshh
+       dd..rraasstt..lleegg..sshh hheellpp
+       dd..rraasstt..lleegg..sshh  _r_a_s_t___m_a_p [_n_u_m___o_f___l_i_n_e_s]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._r_a_s_t_._l_e_g_._s_h is a UNIX Bourne shell  macro  which  clears  the  entire
+       screen,  divides  it into a main (left) and a minor (right) frames, and
+       then display a raster map in the main frame and the map legend  in  the
+       minor frame. The main frame remains active when the program finishs.
+
+OOPPTTIIOONNSS
+       The user can run the program interactively or non-interactively.
+
+   PPaarraammeetteerrss::
+       rraasstt__mmaapp
+              A raster map to be displayed.
+
+       nnuumm__ooff__lliinneess
+              Number  of  lines to appear in the legend. If this number is not
+              given, the legend frame will display as many lines as number  of
+              categories  in  the  map,  otherwise,  it will display the first
+              nnuumm__ooff__lliinneess minus 1 categories with the rest being truncated.
+
+
+NNOOTTEESS
+       The user may adjust the nnuumm__ooff__lliinneess parameter or the size of  graphics
+       window to get an appropriate result.
+
+FFIILLEESS
+       See the file _d_._r_a_s_t_._l_e_g_._s_h under $GISBASE/scripts.
+
+SSEEEE AALLSSOO
+       _d_._l_e_g_e_n_d
+
+       _d_._r_a_s_t
+
+AAUUTTHHOORRSS
+       Jianping Xu,
+
+       Scott Madry,
+
+       Rutgers University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                     d.rast.leg.sh(1)

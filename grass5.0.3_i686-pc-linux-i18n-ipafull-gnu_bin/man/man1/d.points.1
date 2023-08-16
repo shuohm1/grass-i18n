@@ -1,0 +1,108 @@
+d.points(1)                   Grass User's Manual                  d.points(1)
+
+
+
+NNAAMMEE
+       dd..ppooiinnttss  - Displays point graphics in the active frame on the graphics
+       display monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ppooiinnttss
+       dd..ppooiinnttss hheellpp
+       dd..ppooiinnttss [ccoolloorr==_n_a_m_e] [ssiizzee==_v_a_l_u_e] [ttyyppee==_n_a_m_e] [ffiillee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._p_o_i_n_t_s displays points whose coordinate locations  are  specified  by
+       the user and located within the current geographic region in the active
+       display frame on the graphics  monitor.   Point  coordinates  are  read
+       either  from  standard  input  or  from  a file stated by the ffiillee==_n_a_m_e
+       option. When entering coordinates  through  standard  input,  the  user
+       presses _c_o_n_t_r_o_l_-_d to signal the end of input to _d_._p_o_i_n_t_s.
+
+OOPPTTIIOONNSS
+       The  program  can  be run interactively or non-interactively.  The user
+       can run the program completely non-interactively by specifying the name
+       of  a points ffiillee (containing the geographic coordinates of icons to be
+       sited) and the values of all needed parameters on the command line.  If
+       the name of an input ffiillee to _d_._p_o_i_n_t_s is given on the command line, any
+       other parameter values left unspecified on the command line (e.g.,  the
+       icon ccoolloorr, ssiizzee, and/or ttyyppee) are set to their default values.
+
+
+       The  user can instead elect to run the program partially interactively,
+       by specifying any/all of the parameters  _e_x_c_e_p_t  the  points  ffiillee==_n_a_m_e
+       parameter  on the command line.  In this case, _d_._p_o_i_n_t_s will expect the
+       user to enter icon locations from standard input  (i.e.,  at  the  key-
+       board) and will prompt the user for these locations. Each icon location
+       should be entered as an easting and northing pair separated by a space,
+       followed  by  a carriage return.  Coordinates should be stated in what-
+       ever map coordinate system is used by the user's  current  GRASS  loca-
+       tion.   The  user presses _c_o_n_t_r_o_l_-_d to signal the end of standard input
+       to _d_._p_o_i_n_t_s.
+
+
+       Alternately, the user can simply type dd..ppooiinnttss on the command line, and
+       be  prompted for the values of all parameters (the user can still input
+       icon coordinates from an input file using this form). In this case, the
+       user is presented with the standard GRASS _p_a_r_s_e_r interface.
+
+   PPaarraammeetteerrss::
+       ccoolloorr==_n_a_m_e
+              Sets the current color to the _n_a_m_e stated.
+              Options: red, orange, yellow, green, blue, indigo, violet, gray,
+              white, and black
+              Default: _g_r_a_y
+
+       ssiizzee==_v_a_l_u_e
+              Size of icon in pixels.
+              Options: 0-1000 (pixels)
+              Default: 5 (pixels)
+
+       ttyyppee==_n_a_m_e
+              Sets the shape (type) of the icon to be drawn to _n_a_m_e.
+              Options: x, diamond, box, +
+              Default: +
+
+       ffiillee==_n_a_m_e
+              Take input from the UNIX file _n_a_m_e.  (Note: This file must be in
+              the user's current directory or given by its full path name.)
+              Default: Standard input.
+              The file contents should consist of a series of geographic coor-
+              dinates that fit within the boundaries of the current geographic
+              region falling within the active display frame (refer to _d_._w_h_e_r_e
+              or _g_._r_e_g_i_o_n for these coordinates).  Each icon  location  should
+              be  specified  by  an easting and northing (in that order) sepa-
+              rated by a single  blank  space,  and  followed  by  a  carriage
+              return.  Eastings and northings should be stated in whatever map
+              coordinate system is being used  by  the  user's  current  GRASS
+              location.
+
+
+NNOOTTEESS
+       _d_._p_o_i_n_t_s  will  display a point at the location specified in the active
+       frame, even if the point lies outside the boundaries  of  current  geo-
+       graphic region.
+
+SSEEEE AALLSSOO
+       _d_._f_r_a_m_e
+
+       _d_._w_h_e_r_e
+
+       _d_._s_i_t_e_s
+
+       _g_._r_e_g_i_o_n
+
+       _s_._o_u_t_._a_s_c_i_i
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       James  Westervelt,  U.S. Army Construction Engineering Research Labora-
+       tory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                          d.points(1)

@@ -1,0 +1,213 @@
+d.profile(1)                  Grass User's Manual                 d.profile(1)
+
+
+
+NNAAMMEE
+       dd..pprrooffiillee  - Displays profiles of a user-specified raster map layer.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..pprrooffiillee
+       dd..pprrooffiillee rraasstt==_n_a_m_e [ddrraasstt==_n_a_m_e] [pplloottffiillee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This  command  works  only interactively. It clears the entire graphics
+       screen and provides a graphical interaction allowing the  selection  of
+       transects  for  which profiles are then generated. Input parameters can
+       be specified on the command line for quicker start-up.
+
+UUSSEERR PPRROOMMPPTTSS
+       First, you will be presented with a  prompt  asking  you  to  choose  a
+       raster  map  layer  to  be  profiled.  Then you will be prompted for an
+       optional display raster.  The optional display  raster  will  be  shown
+       rather  than  the  profiled  raster.  This is useful to be able to more
+       easily see ground features, such as might be visible in an aerial photo
+       or  satellite  image. Finally, you will be prompted for the name prefix
+       for output file(s) containing the profile data.  This  is  an  optional
+       feature.
+
+
+       After  parameters  are given, the raster layer will be displayed in the
+       left half of the graphics monitor, and the right half will  be  divided
+       into  four  frames.  There will also be two frames along the top of the
+       monitor: a mouse-button menu frame on the left, and a status  frame  on
+       the right.
+
+
+       The  mouse-button  menu  initially offers you three options: Mouse But-
+       tons:
+
+       Left: Where am I?
+
+       Middle: Mark FIRST Point of Profile Line.
+
+       Right: QUIT this.
+
+
+       You may query the displayed raster map layer by indicating points  with
+       the left mouse-button. The coordinates and category value of each point
+       that you indicate will be displayed on in the  status  frame.   If  you
+       mark the first point of the profile line you will be presented with the
+       following mouse-button menu: Mouse Buttons:
+
+       Left: Where am I?
+
+       Middle: Mark SECOND Point of Profile Line.
+
+       Right: QUIT this.
+
+
+       Once you mark the second point of the profile line,  the  profile  line
+       will be labeled (with a letter from A to D) and displayed in one of the
+       four display frames on the right hand side of the screen. You will then
+       be presented with a third mouse-button menu: Mouse Buttons:
+
+       Left: DO ANOTHER
+
+       Middle: CLEAR DISPLAY
+
+       Right: QUIT this.
+
+
+       If you would like to view another profile, click on the left mouse-but-
+       ton.  If you would like to redisplay the raster map layer and clear out
+       the four profile frames, click on the middle mouse-button. If you would
+       like to quit, then click on the right button.
+
+
+       If you selected the pplloottffiillee option, you will have  up  to  four  files
+       starting  with  the _n_a_m_e and followed by a suffix of the plot letter _A_,
+       _B_, _C_, or _D.  The plots that are written to these files reflect the last
+       of  each plot done with that letter (i.e. They will match what's in the
+       display when you quit).
+
+
+       The format of the plot files is not geared toward any particular  soft-
+       ware,  but should be easy to coax into a number of other programs.  The
+       first three lines contain some header information about the plot,  each
+       prefixed  with  a  #  sign  to denote a comment.  A fourth comment line
+       describes the data that follows.  It consists of the  distance  (always
+       in meters), the cell value (in whatever units it is in), the easting in
+       decimal format, and the northing in decimal format.  The number of val-
+       ues  will  vary depending on the length of the profile, cell resolution
+       and the slope angle of the profile line.  Below  is  an  example  of  a
+       plotfile:
+
+
+       # Profile A of elev.ft@snows
+
+       #   From   (702879.29679757,   4287317.55920185)  to  (702722.40973589,
+       4287061.72632285)
+
+       # Stats: Count = 644, Min = 2424.658936, Max = 2513.246094
+
+       # dist value east north
+
+       0.000000 2513.246094 702879.102364 4287317.516912
+
+       0.000000 2513.246094 702878.713496 4287317.118970
+
+       0.556395 2513.246094 702878.324629 4287316.721029
+
+       1.112790 2513.246094 702878.324629 4287316.323088
+
+
+
+
+NNOOTTEESS
+       You might notice the first two 'dist'  values  in  the  profile  output
+       above  are  both zero.  This is due to the fact the cell resolution for
+       this file is less than one meter, and so the function  that  calculates
+       the distance considers the distance between the first cell and the sec-
+       ond to be zero.  You might also notice, the coordinates  given  in  the
+       header  and  displayed  on screen are slightly different from the first
+       and last coordinates given in the profile data output.  This is because
+       the profile data output finds the eastings and northings for the center
+       of the cells while the coordinate  transformations  from  mouse  clicks
+       might  yield slightly different coordinates which still fall within the
+       same cell boundaries.  The difference should always be  less  than  the
+       distance  between  the center and any corner (not edge!) of the cell at
+       the resolution of the profiled raster.
+
+
+       Only four output plotfiles can be made.  Each time  a  new  profile  is
+       run,  the  plotfile is immediately written to the file _n_a_m_e._l_e_t_t_e_r. One
+       can take advantage of this fact to create an unlimited number of  plot-
+       files simply by renaming the output files before running more profiles.
+       This may not always be the case, but it is at the time of this writing.
+
+
+       Useful enhancements to _d_._p_r_o_f_i_l_e would include:
+
+              Adding an option to display profiles using category colors, like
+              a bar-chart.
+
+              Allowing profile lines to be defined by a series of points,  not
+              just two.
+
+              Allowing  profiles  to  be saved in a file, for later viewing by
+              GRASS.
+
+              Allowing the user to enter profile line points by typing coordi-
+              nates.
+
+
+   PPeerrll SSccrriipptt ttoo ccoonnvveerrtt oouuttppuutt ttoo aa ssiittee__lliisstt
+       The script below will convert the pplloottffiillee output to the site_list for-
+       mat.  It probably won't work 100% for lat/lon datasets.
+
+
+       ##!! //uussrr//bbiinn//ppeerrll --ww
+
+       # prof2sites.pl: converts the output of d.profile to a site_list
+
+
+       mmyy (_$_d_i_s_t, _$_e_l_e_v, _$_e_a_s_t, _$_n_o_r_t_h);
+
+
+       wwhhiillee ()
+
+       {
+
+       iiff (m/^#/)
+
+       {
+
+       pprriinntt "_$__";
+
+       }
+
+       eellssee
+
+       {
+
+       cchhoommpp;
+
+       (_$_d_i_s_t, _$_e_l_e_v, _$_e_a_s_t, _$_n_o_r_t_h) = sspplliitt / /;
+
+       pprriinntt "_$_e_a_s_t|_$_n_o_r_t_h|_$_e_l_e_v|#1 _$_d_i_s_t @Profile0;
+
+       }
+
+       }
+
+
+BBUUGGSS
+       None known.
+
+AAUUTTHHOORR
+       Dave Johnson
+
+        DBA Systems, Inc.  10560 Arrowhead Drive
+
+       Fairfax, Virginia 22030
+
+
+       Modified by Eric G. Miller for  profile  output,  support  of  floating
+       point rasters, and optional display raster (02-Dec-2000).
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                         d.profile(1)

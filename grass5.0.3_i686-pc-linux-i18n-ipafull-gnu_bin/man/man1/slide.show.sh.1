@@ -1,0 +1,75 @@
+slide.show.sh(1)              Grass User's Manual             slide.show.sh(1)
+
+
+
+NNAAMMEE
+       sslliiddee..sshhooww..sshh  - Displays a series of raster/vector map layers existing
+       in the user's current mapset search path on the graphics monitor.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       sslliiddee..sshhooww..sshh [aaccrroossss==_v_a_l_u_e] [ddoowwnn==_v_a_l_u_e] [pprreeffiixx==_n_a_m_e] [mmaappsseettss==_l_i_s_t]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_l_i_d_e_._s_h_o_w_._s_h is a UNIX Bourne shell  macro  which  clears  the  entire
+       screen, creates a series of display frames on the graphics monitor, and
+       displays in slideshow format  each  of  the  raster/vector  map  layers
+       listed  in  the user-specified _m_a_p_s_e_t_s.  This is a shell script example
+       which makes extensive use  of  GRASS  and  UNIX  commands.   Users  are
+       encouraged  to  examine  this  macro  and develop similar on-line demos
+       using their own data files.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       aaccrroossss==_v_a_l_u_e
+              The number of display frames across the graphics monitor  screen
+              to be used for map display.
+
+              Default:  4
+
+       ddoowwnn==_v_a_l_u_e
+              The number of display frames down the graphics monitor screen to
+              be used for map display.
+
+              Default:  3
+
+       pprreeffiixx==_n_a_m_e
+              Specify character(s) to view selected maps only.
+
+              default: * (show all maps)
+
+       mmaappsseettss==_l_i_s_t
+              The names of the mapsets under the user's current location whose
+              raster map layers are to be displayed, separated by commas.
+
+              Default:  All mapsets listed in the user's current mapset search
+              path.
+
+
+FFIILLEESS
+       See the file $GISBASE/scripts/slide.show.sh.
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._e_r_a_s_e
+
+       _d_._t_e_x_t
+
+       _g_._m_a_p_s_e_t_s
+
+       _3_d_._v_i_e_w_._s_h
+
+       _g_r_a_s_s_._l_o_g_o_._s_h
+
+       _s_h_o_w_._f_o_n_t_s_._s_h
+
+AAUUTTHHOORR
+       James Westervelt, U.S.Army Construction Engineering Research Laboratory
+       Vector update, fixes: Markus Neteler
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                     slide.show.sh(1)

@@ -1,0 +1,131 @@
+r.surf.idw(1)                 Grass User's Manual                r.surf.idw(1)
+
+
+
+NNAAMMEE
+       rr..ssuurrff..iiddww - Surface interpolation utility for raster map layers.
+
+SSYYNNOOPPSSIISS
+       rr..ssuurrff..iiddww [--ee] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [nnppooiinnttss==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._s_u_r_f_._i_d_w  fills  a grid cell (raster) matrix with interpolated values
+       generated from a set of input layer data points. It  uses  a  numerical
+       approximation technique based on distance squared weighting of the val-
+       ues of nearest data points. The number of nearest data points  used  to
+       determined  the  interpolated  value  of a cell can be specified by the
+       user (default: 12 nearest data points).
+
+
+       If there is a current working mask, it applies  to  the  output  raster
+       file.  Only those cells falling within the mask will be assigned inter-
+       polated values. The search  procedure  for  the  selection  of  nearest
+       neighboring  points will consider all input data, without regard to the
+       mask.
+
+OOPPTTIIOONNSS
+       The command line input is as follows:
+
+   FFllaagg::
+       --ee     Error analysis option that interpolates values  only  for  those
+              cells  of  the  input  raster map which have non-zero values and
+              outputs the difference (see NOTES below).
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an input raster map layer containing an  incomplete  set
+              of data values. (i.e., some grid cells contain known data values
+              while the rest contain zero (0)).
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to new output raster map that represents the
+              surface generated from the known data values in the input layer.
+
+       nnppooiinnttss==_v_a_l_u_e
+              Number of nearest data points used to determine the interpolated
+              value of an output raster cell.
+              Default: 12
+
+
+NNOOTTEESS
+       _r_._s_u_r_f_._i_d_w  is a surface generation utility which uses inverse distance
+       squared weighting (as described  in  AApppplliieedd  GGeeoossttaattiissttiiccss  by  E.  H.
+       Isaaks  and R. M.  Srivastava, Oxford University Press, 1989) to assign
+       interpolated values. The  implementation  includes  a  customized  data
+       structure  somewhat  akin  to  a sparse matrix which enhances the effi-
+       ciency with which nearest data points are selected.  For  latitude/lon-
+       gitude  projections, distances are calculated from point to point along
+       a geodesic.
+
+
+       Unlike _r_._s_u_r_f_._i_d_w_2, which processes  all  input  data  points  in  each
+       interpolation  cycle,  _r_._s_u_r_f_._i_d_w  attempts  to  minimize the number of
+       input data for which distances must be calculated.  Execution speed  is
+       therefore a function of the search effort, and does not increase appre-
+       ciably with the number of input data points.
+
+
+       _r_._s_u_r_f_._i_d_w will generally outperform _r_._s_u_r_f_._i_d_w_2 except when the  input
+       data layer contains few non-zero data, i.e. when the cost of the search
+       exceeds the cost of the additional distance calculations  performed  by
+       _r_._s_u_r_f_._i_d_w_2.   The  relative performance of these utilities will depend
+       on the comparative speed of boolean, integer and floating point  opera-
+       tions on a particular platform.
+
+
+       Worst  case  search  performance by _r_._s_u_r_f_._i_d_w occurs when the interpo-
+       lated cell is located outside of the region in  which  input  data  are
+       distributed.  It therefore behooves the user to employ a mask when geo-
+       graphic region boundaries  include  large  areas  outside  the  general
+       extent of the input data.
+
+
+       The  degree  of  smoothing  produced by the interpolation will increase
+       relative to the number of nearest data points considered.  The  utility
+       may  be used with regularly or irregularly spaced input data.  However,
+       the output result for the former may include unacceptable  nonconformi-
+       ties in the surface pattern.
+
+
+       The  --ee flag option provides a standard surface-generation error analy-
+       sis facility. It produces an output raster map  of  the  difference  of
+       interpolated values minus input values for those cells whose input data
+       are non-zero. For each interpolation cycle, the known value of the cell
+       under consideration is ignored, and the remaining input values are used
+       to interpolate a result. The output raster map may be compared  to  the
+       input  raster  map  to analyze the distribution of interpolation error.
+       This procedure may be helpful in choosing the number of nearest  neigh-
+       bors considered for surface generation.
+
+SSEEEE AALLSSOO
+       _r_._m_a_s_k
+
+       _r_._s_u_r_f_._c_o_n_t_o_u_r
+
+       _r_._s_u_r_f_._i_d_w_2
+
+       _s_._s_u_r_f_._i_d_w
+
+       _s_._s_u_r_f_._r_s_t
+
+       _r_._s_u_r_f_._g_a_u_s_s
+
+       _r_._s_u_r_f_._f_r_a_c_t_a_l
+
+       _r_._s_u_r_f_._r_a_n_d_o_m
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Greg Koerper
+       Global Climate Research Project
+       U.S. EPA Environmental Research Laboratory
+       200 S.W. 35th Street, JSB
+       Corvallis, OR 97333
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.surf.idw(1)

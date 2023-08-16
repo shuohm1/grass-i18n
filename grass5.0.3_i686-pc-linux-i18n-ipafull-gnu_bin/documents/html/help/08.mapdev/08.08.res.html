@@ -1,0 +1,81 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      08.08.res
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      ISSUES OF RESOLUTION AND ACCURACY
+    </H2>
+  </CENTER>
+    <P>In raster data format, data are stored on a grid containing rectangular
+<A HREF="./../../../../documents/html/help/16.glossary/cell.def.html">cells</A> of uniform size.  The cell is the smallest unit in which
+information can be stored.  Cell dimensions are defined by the user.
+    <P>Each cell within the grid can be assigned a data value and a
+<A HREF="./../../../../documents/html/help/16.glossary/catlab.def.html">category label</A> describing the type of data found there.  Because each
+cell covers an area rather than a single point, this data value may be
+a generalization of all the actual data values found within this area on
+the earth.  Whether the data values assigned to each cell represent a
+generalization, or represent all of the actual data found within the
+cell, will depend on the cell's dimensions and the specific nature of
+the data.  The user should define cell dimensions carefully.
+    <P>Grid cell size is linked to map <A HREF="./../../../../documents/html/help/16.glossary/scale.def.html">scale</A> and <A HREF="./../../../../documents/html/help/16.glossary/res.def.html">resolution</A>.  Smaller grid
+cell size allows more data to be stored for a given geographic <A HREF="./../../../../documents/html/help/16.glossary/area.def.html">area</A>.
+Therefore, smaller grid cells are associated with a larger scale and
+a finer resolution than are larger grid cells. The cell resolution
+represents the size (area) of the piece of the earth to be represented
+by one cell in a raster map layer.
+    <P>For a graphic example illustrating the impact of different cell
+resolutions, see <A HREF="./../../../../documents/html/help/02.db.setup/02.07.1.sample.html">Raster Map Layer Resolution: An Example</A>.
+    <P>Each cell is also associated with a specific geographic x,y coordinate
+location.  In GRASS, the user specifies cell dimensions in the x
+(east-west) and y (north-south) directions, for each map.  It is
+permissible to make the east-west resolution different from the
+north-south resolution.
+    <P>Once the resolution of a new raster map layer is set, the geographic
+information available in that map layer is set.  The user may subsequently
+use the GRASS <A HREF="./../../../../documents/html/g.region.html">g.region</A> command to change the working resolution of a
+raster map layer, but the original resolution of the map remains intact
+and available to the user regardless of any resampling performed as a
+result of changes in the cell resolution designation in the current
+geographic region.  
+    <P>Increasing the resolution of an existing raster map layer will only
+subdivide the information from the existing cells.  It is important to
+understand that increasing the cell resolution of an existing raster map
+layer cannot actually access more data than were originally present.
+    <P>For further information read:
+<A HREF="./../../../../documents/html/help/18.biblio/sr.n-90.16.html">&quot;Cartographic Issues in the Development of a Digital GRASS Database&quot;</A>.
+    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

@@ -1,0 +1,75 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      04.06.digit
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>
+  <CENTER>
+    <H2>
+      DEFINING FRAMES AND REGIONS FOR DIGITIZING
+    </H2>
+  </CENTER>
+    <P>The GRASS <A HREF="./../../../../documents/html/v.digit.html">v.digit</A> program is used to <A HREF="./../../../../documents/html/help/16.glossary/digitize.def.html">digitize</A> data in GRASS <A HREF="./../../../../documents/html/help/16.glossary/vector.def.html">vector</A>
+format.  Unlike most other GRASS programs, the &quot;v.digit&quot; program does
+NOT use the boundaries and <A HREF="./../../../../documents/html/help/16.glossary/res.def.html">resolution</A> of the user's current
+<A HREF="./../../../../documents/html/help/16.glossary/georeg.def.html">geographic region</A>.  Instead, the user establishes map boundaries
+(the &quot;digitizing region&quot;) when entering &quot;v.digit&quot;, and modifies the
+map's resolution by setting the digitizing &quot;<A HREF="./../../../../documents/html/help/16.glossary/threshold.def.html">threshold</A>&quot; in the 
+&quot;v.digit&quot; Customize Menu.
+    <P>When the user begins to digitize a file with &quot;v.digit&quot;, the program
+asks the user to define the boundaries of the geographic region being
+digitized.  Once the edges of this region are established, &quot;v.digit&quot;
+will recognize only data digitized by the user within these boundaries.
+This region is referred to as the &quot;digitizing region&quot;.
+    <P>Users can set different digitizing regions for each map digitized. 
+Typically, users might elect to set these boundaries equal to those of
+the default region; however, this is up to the user.  The current
+geographic region setting stored in the user's &quot;WIND&quot; file does not
+affect the user's digitizing session.  Conversely, digitizing region
+setting does not affect the user's current geographic region setting.
+    <P>Inside &quot;v.digit&quot;, the user can graphically zoom into different areas
+within the digitizing region to aid digitizing.  These zoom-in areas
+are referred to as &quot;working frames&quot;.  They do not affect which areas
+can be digitized, but only affect which areas of a map will be seen on
+the graphics monitor.  Establishing working frames in &quot;v.digit&quot; does
+NOT alter the user's digitizing region nor the user's current
+geographic region settings.
+    <P>Note:  The current geographic region settings become important after
+all digitizing is done, when the user converts a digitized vector map
+to <A HREF="./../../../../documents/html/help/16.glossary/rastdata.def.html">raster</A> format.
+    <P>For more information on digitizing maps, select the topic area
+&quot;Digitizing and Map Development,&quot; located at the Help System Main
+Menu.
+    <P>    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:47 2004</I>
+    </P>
+  </BODY>
+</HTML>

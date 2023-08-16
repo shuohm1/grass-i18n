@@ -1,0 +1,124 @@
+r.statistics(1)               Grass User's Manual              r.statistics(1)
+
+
+
+NNAAMMEE
+       rr..ssttaattiissttiiccss  -  Category  or  object oriented statistics (GRASS Raster
+       Program)
+
+SSYYNNOOPPSSIISS
+       rr..ssttaattiissttiiccss rr..ssttaattiissttiiccss hheellpp rr..ssttaattiissttiiccss [[--cc]]  bbaassee_=_n_a_m_e  ccoovveerr_=_n_a_m_e
+       mmeetthhoodd_=_n_a_m_e [oouuttppuutt_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._s_t_a_t_i_s_t_i_c_s  is  a  tool, where different class, resp. object oriented
+       statistical analysis methods are possible.
+
+       The methods are the following:
+
+
+       [english] - [german]
+
+
+       distribution - Verteilung in Prozent
+
+
+       average - Durchschnitt
+
+
+       mode - Modalwert
+
+
+       median - Median
+
+
+       average deviation - Durchschnittliche Abweichung
+
+
+       standard deviation - Standardabweichung
+
+
+       variance - Varianz
+
+
+       skewness - Schiefe der Verteilung
+
+
+       kurtosis - Relative Abflachung (-) oder Zuspitzung (+)
+
+
+       minimum - Minimum
+
+
+       maximum - Maximum
+
+
+       sum - Summe
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaagg::
+       --cc     Values are taken from category  lables  of  the  covering-layer,
+              instead of covering-layer itself.
+
+
+   PPaarraammeetteerrss::
+       bbaassee   Base raster map
+
+       ccoovveerr  Cover raster map
+
+       mmeetthhoodd Statistical method Options: distribution, average, mode, median,
+              avedev, stddev, variance, skewness, kurtosis, min, max, sum
+
+       oouuttppuutt Name of the new layer (not when using 'distribution')
+
+       The calculations will be performed for areas with data of the covering-
+       layers which belong in the base-layer o the same category.
+
+
+       Setting  the  _-_c  flag the category lables of the covering raster layer
+       will be used.  This is nice to avoid the GRASS limitation  to  interger
+       in raster maps because using category values floating point numbers can
+       be stored.
+
+
+       The output-layer is a reclassified version of the base-layer with iden-
+       tical  category  values.  The results of the calculations are stored in
+       the category labels of the output-layer.
+
+
+       The described output is valid for all calculations  with  exception  of
+       distribution.  Here  the output is given to stdout. A file name eventu-
+       ally specified will be ignored. The result will be a table  with  three
+       columns.   In  the  1. column are the category values of the base-layer
+       (a), in the 2. column the associated value of the cover-Layers (b)  and
+       in the 3. column the percentage of b from a. Example:
+                                        1   124  23
+                                        1   201  47
+                                        1   273  30
+                                        2   101  5
+                                        2   152  16
+                                        2   167  60
+                                        2   187  19
+                                             .
+                                             .
+                                             .
+
+
+RREEMMAARRKK
+       The  source  code of average, mode and median was taken from some GRASS
+       raster modules.
+
+BBUUGGSS
+       unkown
+
+SSEEEE AALLSSOO
+       _r_._n_e_i_g_h_b_o_r_s
+
+AAUUTTHHOORR
+       Martin Schroeder, Geographisches Institut Heidelberg, Germany
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                      r.statistics(1)

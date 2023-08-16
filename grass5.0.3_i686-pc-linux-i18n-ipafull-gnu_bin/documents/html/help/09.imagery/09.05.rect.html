@@ -1,0 +1,70 @@
+
+<HTML>
+  <HEAD>
+    <TITLE>
+      09.05.rect
+    </TITLE>
+  </HEAD>
+  <BODY bgcolor="white">
+    <TABLE>
+      <TR>
+        <TD><IMG SRC="./../../grass.smlogo.gif" ALT="GRASS Logo" ALIGN="center"></TD>
+        <TD ALIGN="center" VALIGN="middle"><H1>GRASS Help System</H1></TD>
+      </TR>
+    </TABLE>
+    <P>
+    <HR width=100% align=center size=6 noshade></HR>
+</P>    <P>
+  <CENTER>
+    <H2>
+      GEOMETRIC RECTIFICATION
+    </H2>
+  </CENTER>
+    <P>Rectification is the mapping of an <A HREF="./../../../../documents/html/help/16.glossary/img.def.html">image</A> from one coordinate
+system to another.  The geometry of an image extracted from tape 
+into a GRASS LOCATION having an x,y coordinate system is not
+planimetric.  To make an image planimetric, that is, to convert the
+x,y coordinate system into a standard map coordinate system (e.g.,
+the <A HREF="./../../../../documents/html/help/16.glossary/utm.def.html">UTM</A> coordinate system or the <A HREF="./../../../../documents/html/help/16.glossary/stplnsys.def.html">State Plane</A> coordinate system),
+points from a map having the standard coordinates must be associated
+with the the same points on an image to be rectified.  This is done by
+marking points on an image and then inputting standard coordinates
+from a map.  A squares regression is then calculated using the two
+types of coordinates for each marked point.  A matrix containing
+transformation coefficients is the result.  The coefficients are then
+used to calculate a standard coordinate for each x,y pixel in the image.
+The rectified planimetric image can then be deposited in a <A HREF="./../../../../documents/html/help/16.glossary/target.def.html">target</A>
+database.
+    <P>The GRASS programs that are used in image rectification are:
+    <P>
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/Commands.def/ipts.def.html">-  i.points</A>             <A HREF="./../../../../documents/html/help/Commands.def/irect.def.html">-  i.rectify</A>
+  </CENTER>
+
+  <CENTER>
+    <A HREF="./../../../../documents/html/help/Commands.def/ibldblk.def.html">-  i.build.blk</A>          <A HREF="./../../../../documents/html/help/Commands.def/irecblk.def.html">-  i.rectify.blk</A>
+  </CENTER>
+    <P>For more information on a specific command, select a command and press
+ESC.
+    <P>    <P>    <HR width=100% align=center size=6 noshade></HR>
+
+    <P>
+      <A HREF="./../index.html">GRASS Help</A>
+      <BR>
+
+    <P>
+      <A HREF="./../../../../documents/html/index.html">GRASS Documentation</A>
+      <BR>
+
+    <P>
+      <A HREF="http://grass.itc.it/index2.html">GRASS WWW Home</A>
+      <BR>
+
+    <P>
+      <HR width=100% align=center size=6 noshade></HR>
+    <B>Please use your browser buttons to navigate this documentation!</B>
+      <BR>
+      <I>Automatically created on: Tue Mar  2 11:14:48 2004</I>
+    </P>
+  </BODY>
+</HTML>

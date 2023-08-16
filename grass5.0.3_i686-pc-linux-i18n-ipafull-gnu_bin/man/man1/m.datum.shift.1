@@ -1,0 +1,147 @@
+m.datum.shift(1)              Grass User's Manual             m.datum.shift(1)
+
+
+
+NNAAMMEE
+       mm..ddaattuumm..sshhiifftt  - Datum shift program.
+       _(_G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..ddaattuumm..sshhiifftt llaatt==_d_d_._m_m_._s_s{_n|_s} lloonn==_d_d_._m_m_._s_s{_e|_w} hh==_h_e_i_g_t_h _a_b_o_v_e _e_l_l_i_p_-
+       _s_o_i_d
+       iidd==_i_n_p_u_t___d_a_t_u_m oodd==_o_u_t_p_u_t___d_a_t_u_m
+       iiss==_i_n_p_u_t___s_p_h_e_r_o_i_d ooss==_o_u_t_p_u_t___s_p_h_e_r_o_i_d ddxx==_x_s_h_i_f_t ddyy==_y_s_h_i_f_t ddzz==_z_s_h_i_f_t
+       --bb _u_s_e _b_l_o_c_k _s_h_i_f_t _m_e_t_h_o_d
+
+       --mm _u_s_e _M_o_l_o_d_e_n_s_k_y _f_o_r_m_u_l_a
+
+       --ww _u_s_e _B_u_r_s_a _W_o_l_f _7 _p_a_r_a_m_e_t_e_r _t_r_a_n_s_f_o_r_m_a_t_i_o_n _(_n_o_t _y_e_t _i_m_p_l_e_m_e_n_t_e_d_)
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _m_._d_a_t_u_m_._s_h_i_f_t returns geographic coordinates based on a different datum
+       (and spheroid/ellipsoid) than the one used to obtain the original coor-
+       dinates.
+
+
+       The input and output spheroids, _i_s and _o_s, are the  spheroids  for  two
+       different  datums.  The input spheroid is the one on which the original
+       coordinates are based. The output spheroid is that on which the  resul-
+       tant  coordinates  will be based. The "shifting" occurs between the two
+       datums.  The shift values, _d_x, _d_y, and _d_z, are constants. They indicate
+       the  mean  differences  between  points  in the second datum versus the
+       first as measured in meters.
+
+
+       If both input and output datum _i_d and _o_d are listed in the system datum
+       table, it is sufficient to provide input and output datum for the datum
+       shift. The shift values, _d_x, _d_y and _d_z are read from the datum table.
+
+
+       The list of datums and spheroids available is somewhat dynamic.  It may
+       not  contain  exactly  the ones listed below.  To determine the current
+       list of possible spheroids, type in the command:  mm..ddaattuumm..sshhiifftt  llaatt==_0_n
+       lloonn==_0_w ddxx==_0 ddyy==_0 ddzz==_0 iiss==_h_e_l_p ooss==_h_e_l_p
+
+       A list of available spheroids will be printed on the screen.  To deter-
+       mine the  current  list  of  possible  datums,  type  in  the  command:
+       mm..ddaattuumm..sshhiifftt llaatt==_0_n lloonn==_0_w iidd==_h_e_l_p oodd==_h_e_l_p
+
+       If  the datum or spheroid desired is not on the list, the values should
+       be added to the system datum.table or ellipse.table.
+
+
+       The height above the ellipsoid is  usually  not  known  in  GRASS.  You
+       should  approximate this by zero (default for _h). Obviously the result-
+       ing height is not a reasonable value.
+
+EEXXAAMMPPLLEE
+       mm..ddaattuumm..sshhiifftt llaatt==_0_n lloonn==_1_7_5_w iiss==_c_l_a_r_k_6_6 ooss==_w_g_s_7_2 ddxx==_-_2_2 ddyy==_1_5_7 ddzz==_1_7_6
+
+
+
+       Results: 3
+              lat=0.00.05.72999N
+
+              lon=174.59.55.004133W
+
+              (h  =  107 [m])
+
+
+
+NNOOTTEESS
+       Essentially, the program  follows  these  steps  for  the  block  shift
+       method.   The original point, as defined by a latitude and a longitude,
+       is converted to geocentric coordinates.  The shift values are added  to
+       the  geocentric  coordinates.   The summed values are then converted to
+       latitude and longitude based on the output spheroid.
+
+
+       The Molodensky method uses a one-step calculation without converting to
+       and  from geocentric coordinates. The Molodensky formula may be inaccu-
+       rate for latitudes near the poles. The  coordinate  conversion  library
+       will  take  this into account and use the block shift formula for those
+       latitudes.
+
+
+       Some hints on accuracy:
+
+       Generally the accuracy depends on the transformation  method  used  and
+       the  accuracy and spatially applicability of the parameters supplied to
+       the transformation function.  You always must check if the  formula  is
+       applicable to your problem and supplies the needed accuracy!
+       block shift with cartesian coordinates ~ 10 m
+
+       molodensky transformation ~ 5 m
+
+       bursa-wolf transformation ~ 1 m
+
+       3d  similarity  transformation ~ 1 m (needs national similarity parame-
+       ters)
+
+       multiple regression equation (MRE) transformation,
+       other methods up to 10 cm (generally not needed for GRASS)
+
+       The transformation parameters in datum.table  are  meant  to  transform
+       from  local  datum  to  wgs84 with the Block shift method or Molodensky
+       function. (reverse the sign for the reverse transformation  from  wgs84
+       to  the local datum).  All transformations need input and output ellip-
+       soid for the calculation of Rm and Rn.
+       You can not use the parameters for the Block shift and Molodensky  for-
+       mula with any other datum shift formula. The Bursa-Wolf datum transfor-
+       mation needs 7 parameters (3 xyz-shift, 3 xyz-rotational, 1 scale  fac-
+       tor),  which  can  not be used with any other formula.  Specifically do
+       not use the 3 xyz-shift parameters for the Bursa-  Wolf  transformation
+       with  the  Block shift or Molodensky formula, as the parameters are not
+       independent from another.
+
+
+       For a brief discussion of spheroids and datums see _m_._l_l_2_u.  For a brief
+       discussion of geocentric coordinates see _m_._l_l_2_g_c.
+
+
+       This remains under testing and is still an experimental program.
+
+SSEEEE AALLSSOO
+       _m_._g_c_2_l_l
+
+       _m_._l_l_2_g_c
+
+       _m_._l_l_2_u
+
+       _m_._u_2_l_l
+
+       _s_._i_n_._g_a_r_m_i_n_._s_h
+
+       _v_._i_n_._g_a_r_m_i_n_._s_h
+
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+       Andreas Lange, andreas.lange@rhein-main.de
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_5_/_2_3 _1_0_:_2_3_:_3_0 _$
+
+
+
+GRASS 5.0                                                     m.datum.shift(1)

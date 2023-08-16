@@ -1,0 +1,114 @@
+s.surf.krig(1)                Grass User's Manual               s.surf.krig(1)
+
+
+
+NNAAMMEE
+       ss..ssuurrff..kkrriigg
+
+       Surface interpolation from site data via kriging
+
+SSYYNNOOPPSSIISS
+       ss..ssuurrff..kkrriigg
+
+       ss..ssuurrff..kkrriigg --hheellpp
+
+       ss..ssuurrff..kkrriigg iinnppuutt=name  [zzddiimmeennssiioonn=index] [zznnuummeerriicc=index]
+           [zzssttrriinngg=index]  oouuttzz==name  oouuttvvaarrzz==name mmooddeell==name [nnppooiinnttss==count]
+           [rraannggee==semivariogram range] [ppoowweerr==exponetial power]  [nnuuggggeett==semi-
+           variogram nugget] [ssiillll==semivariogram sill] [mmaaxx__llaagg==max_lag]
+
+DDEESSCCRRIIPPTTIIOONN
+       Is missing.
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of input site map
+
+       zzddiimmeennssiioonn==index
+           Index of dimension field if appropriate
+
+       zznnuummeerriicc==index
+           Index of numeric field if appropriate
+
+       zzssttrriinngg==index
+           Index of string field if appropriate
+
+       oouuttzz==_n_a_m_e
+           Name of output z value raster map
+
+       oouuttvvaarrzz==_n_a_m_e
+           Name of output z variance raster map
+
+       oouuttvvaarrzz==_n_a_m_e
+           Name of output z variance raster map
+
+       mmooddeell==_t_y_p_e
+           Type of semivariogram model to be used
+
+           options: power,spherical,exp,log,gaussian
+
+       nnppooiinnttss==_v_a_l_u_e
+           Number of interpolation points
+
+           default: 12
+
+       rraannggee==_v_a_l_u_e
+           Not used with log or power models
+
+           default: 1.0
+
+       ppoowweerr==_v_a_l_u_e
+           Only for use with the power model
+
+           default: 1.0
+
+       nnuuggggeett==_v_a_l_u_e
+           The variogram nugget variance
+
+           default: 0.0
+
+       ssiillll==_v_a_l_u_e
+           The variogram sill scaled to the sample variance
+
+           default: 1.0
+
+        mmaaxx__llaagg==_v_a_l_u_e
+           The max_lag is only used with the power model
+
+           default: 1000.0
+
+
+NNOOTTEE
+       You   have  to  play with the parameters to get a reasonable result and
+       not a segmentation violation
+
+
+       At least one of the options zdimension | znumeric  |  zstring  must  be
+       selected  and  supplied  with  a valid (0-based) index value. This will
+       contain the values of the spot heights.
+
+
+
+AAUUTTHHOORRSS
+       Chris Skelly
+
+       School of Earth Sciences
+
+       Macquarie Univerity
+
+       North Ryde 2109 NSW Australia
+
+
+
+       Darrel McCauley
+
+
+       David D. Gray   09/2000
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                       s.surf.krig(1)

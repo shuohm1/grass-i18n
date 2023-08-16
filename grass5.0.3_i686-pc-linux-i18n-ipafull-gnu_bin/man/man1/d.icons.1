@@ -1,0 +1,168 @@
+d.icons(1)                    Grass User's Manual                   d.icons(1)
+
+
+
+NNAAMMEE
+       dd..iiccoonnss   - Displays points, as icons, at user-defined locations in the
+       active display frame on the graphics monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..iiccoonnss
+       dd..iiccoonnss hheellpp
+       dd..iiccoonnss [--rr] iiccoonn==_n_a_m_e [ccoolloorr==_n_a_m_e] [ssiizzee==_v_a_l_u_e] [ppooiinnttss==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._i_c_o_n_s graphically displays point (site) locations  as  icons  in  the
+       active  frame on the graphics monitor.  Geographic coordinates are read
+       either from standard input or from an input file whose name  is  stated
+       by  the user.  At each site location, a user-defined icon is displayed.
+
+OOPPTTIIOONNSS
+       The user must enter at least the name of an _i_c_o_n file storing a graphic
+       representation  of the icon to be displayed, and the geographic coordi-
+       nates of the points at which they will appear.
+
+
+       The user can run this  program  either  non-interactively  or  interac-
+       tively.   The  program will be run non-interactively if the user speci-
+       fies the name of an _i_c_o_n file and (optionally) any other desired param-
+       eters  on  the  command  line,  using  the form: dd..iiccoonnss [--rr] iiccoonn==_n_a_m_e
+       [ccoolloorr==_n_a_m_e] [ssiizzee==_v_a_l_u_e] [ppooiinnttss==_n_a_m_e]
+
+       If the user fails to specify the name of a _p_o_i_n_t_s file on  the  command
+       line,  the program will prompt the user to enter geographic coordinates
+       from standard input.  If the user specifies at least  the  name  of  an
+       _i_c_o_n file on the command line, any other parameter values left unspeci-
+       fied by the user will be set to their default values (see below).
+
+
+       Alternately, the user can simply type: dd..iiccoonnss
+
+       on the command line, without program arguments.  In this case, the user
+       will  be  prompted for needed parameter values using the standard GRASS
+       user interface described in the manual  entry  for  _p_a_r_s_e_r.   The  geo-
+       graphic  coordinates  at  which  icons are to be displayed can still be
+       input from an input file (_p_o_i_n_t_s) in interactive use.
+
+   FFllaagg::
+       --rr     Coordinates are input in reverse order (i.e., as _n_o_r_t_h_i_n_g  _e_a_s_t_-
+              _i_n_g).
+
+
+   PPaarraammeetteerrss::
+       iiccoonn==_n_a_m_e
+              The name of an existing file containing a graphic representation
+              of the icon to be drawn.  _i_c_o_n files can be created by the  user
+              using  the _p_._i_c_o_n_s command and are stored under the _i_c_o_n_s direc-
+              tory under the user's current mapset.
+
+       ccoolloorr==_n_a_m_e
+              Sets the current icon color to the _n_a_m_e stated.
+              Options: red, orange, yellow, green, blue, indigo, violet, gray,
+              white, and black
+              Default: white
+
+       ssiizzee==_v_a_l_u_e
+              The icon scaling factor.
+              Options: 1-1000
+              Default: 1
+
+       ppooiinnttss==_n_a_m_e
+              The name of a UNIX file containing the geographic coordinates of
+              sites at which icons are to be drawn.   Since  this  is  a  UNIX
+              file,  the user should specify the name using standard UNIX file
+              naming conventions.  If this file is not in the  user's  current
+              working  directory,  its pathname should be specified.  The file
+              contents should consist of a series  of  geographic  coordinates
+              that  fall  within  the  boundaries  of  the  current geographic
+              region.  Each site location should be stated on a separate  line
+              as an easting and northing (in that order) separated by a single
+              blank space.  If no _p_o_i_n_t_s file is specified by the user,  input
+              is  taken  from  standard  input and should be given in the same
+              form; to end standard input, type _e_n_d (or press control-d).
+
+
+EEXXAAMMPPLLEE
+       An _i_c_o_n_s file contains a graphic representation of the icon to be  dis-
+       played.  Here,  spaces  represent  areas of no color, and x's represent
+       areas of color. For example, the user might construct  an  icon  resem-
+       bling a cross in the following way:
+         x
+         x
+       xxxxx
+         x
+         x
+         x
+
+
+       This  icon  might  be  stored  in a file called _c_r_o_s_s (under the user's
+       $LOCATION/icons directory). If the user specified that this be the _i_c_o_n
+       file  used  while  running _d_._i_c_o_n_s, this cross would then appear in the
+       _c_o_l_o_r and _s_i_z_e specified by the user, at each site  location  named  in
+       the _p_o_i_n_t_s file.
+
+
+       Note: icons are created with the _p_._i_c_o_n_s command.
+
+
+       The  _p_o_i_n_t_s file lists the geographic coordinates of site locations (at
+       which icons will be displayed). This file should take the form:
+       easting northing
+       easting northing
+       easting northing
+
+
+       If the user sets the --rr flag, the order of these coordinates should  be
+       reversed (i.e., coordinates should be given as _n_o_r_t_h_i_n_g _e_a_s_t_i_n_g).
+
+
+       If the points file is not specified, then the corrdinates are read from
+       the keyboard or across a pipe. This feature allows users to  enter  the
+       coordinates  by  hand, or, more usefully, to get then from another pro-
+       gram. For example, to display icons at locations specified in  a  sites
+       list: ss..oouutt..aasscciiii _n_a_m_e | dd..iiccoonnss iiccoonn==_c_r_o_s_s
+
+       where  _n_a_m_e  is  the  name  of a site list, and _c_r_o_s_s is the name of an
+       icon.
+
+SSEEEE AALLSSOO
+       _d_._p_o_i_n_t_s
+
+       _d_._s_i_t_e_s
+
+       _d_._w_h_e_r_e
+
+       _p_._i_c_o_n_s
+
+       _s_._d_b_._r_i_m
+
+       _s_._o_u_t_._a_s_c_i_i
+
+       _v_._d_b_._r_i_m
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Contributed by:
+
+
+       Dave Johnson
+
+        DBA Systems, Inc.
+
+        10560 Arrowhead Drive
+
+        Fairfax, Virginia 22030
+
+
+       Modified by:
+
+
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                           d.icons(1)

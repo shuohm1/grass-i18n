@@ -1,0 +1,92 @@
+photo.rectify(1)              Grass User's Manual             photo.rectify(1)
+
+
+
+_T_h_i_s  _i_s _n_o_t _a _c_o_m_m_a_n_d _i_n _i_t_s_e_l_f_, _b_u_t _a_n _o_p_t_i_o_n _o_f _t_h_e _c_o_m_m_a_n_d _i_._o_r_t_h_o_._p_h_o_t_o .
+
+NNAAMMEE
+       _p_h_o_t_o_._r_e_c_t_i_f_y - An imagery function that rectifies an image by  comput-
+       ing a coordinate transformation for each cell in the image using param-
+       eters computed by the GRASS programs _p_h_o_t_o_._2_i_m_a_g_e and _p_h_o_t_o_._2_t_a_r_g_e_t.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       Selected from _i_._o_r_t_h_o_._p_h_o_t_o
+
+DDEESSCCRRIIPPTTIIOONN
+       _p_h_o_t_o_._r_e_c_t_i_f_y rectifies an image by using the image to photo coordinate
+       transformation  matrix  created  by  photo.2image and the rectification
+       parameters created by photo.2target. Rectification is  the  process  by
+       which  the  geometry  of  an image is made planimetric.  This is accom-
+       plished by mapping an image from one coordinate system to  another.  In
+       photo.rectify the parameters computed by photo.2image and photo.2target
+       are used in equations to convert x,y image coordinates to standard  map
+       coordinates for each pixel in the image.  The result is an image with a
+       standard map coordinate system, compensated for relief distortions  and
+       photographic  tilt.  Upon completion of the program the rectified image
+       is deposited in a previously targeted GRASS LOCATION.
+
+        You are asked to select the file(s) within the  imagery  group  to  be
+       rectified:
+
+        Please select the file(s) to rectify by naming an output file
+
+
+       gs13.1    in    PERMANENT      gs13.orect...    gs14.1   in   PERMANENT
+       .............  (enter list by any name to get a list of  existing  cell
+       files) AFTER COMPLETING ALL ANSWERS, HIT  TO CONTINUE (OR  TO CANCEL)
+
+
+
+
+
+       More than one file may be rectified at a time.  Each file should have a
+       unique output file name.
+
+
+       The next prompt asks you to select one of two windows:
+
+
+
+             Please select one of the following options
+             1.   Use the current window in the target location
+             2.   Determine the smallest window which covers the image
+             >
+
+
+        _p_h_o_t_o_._r_e_c_t_i_f_y will only rectify that portion of the image that  occurs
+       within  the  chosen window.  Only that portion will be relocated in the
+       target database. It is therefore important to check the current  window
+       in the target LOCATION if choice number one is selected.
+
+
+       _p_h_o_t_o_._r_e_c_t_i_f_y will run in the background and notify you by mail when it
+       is finished. The process may take an hour or more depending on the size
+       of  the  image,  the  number  files, and the size and resolution of the
+       selected window.
+
+        The rectified image will be located in the target  LOCATION  when  the
+       program  is  completed. The original unrectified files are not modified
+       or removed.
+
+SSEEEE AALLSSOO
+        _i_._o_r_t_h_o_._p_h_o_t_o
+
+       _p_h_o_t_o_._c_a_m_e_r_a
+
+       _p_h_o_t_o_._2_i_m_a_g_e
+
+       _p_h_o_t_o_._2_t_a_r_g_e_t
+
+       _p_h_o_t_o_._i_n_i_t
+
+AAUUTTHHOORR
+       Mike Baba,  DBA Systems, Inc.
+
+       Updated rectification and elevation map to FP 1/2002 Markus Neteler
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_2_/_2_8 _2_3_:_4_6_:_5_7 _$
+
+
+
+GRASS 5.0                                                     photo.rectify(1)

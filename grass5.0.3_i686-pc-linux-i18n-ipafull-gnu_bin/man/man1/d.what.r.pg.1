@@ -1,0 +1,144 @@
+d.what.r.pg(1)                Grass User's Manual               d.what.r.pg(1)
+
+
+
+NNAAMMEE
+       _d_._w_h_a_t_._r_._p_g - Report database attributes associated with a raster cate-
+       gory value at a specified location.  (GRASS-RDBMS  Attribute  Interface
+       Program)
+
+SSYYNNOOPPSSIISS
+       dd..wwhhaatt..rr..ppgg
+
+       dd..wwhhaatt..rr..ppgg hheellpp
+
+       dd..wwhhaatt..rr..ppgg mmaapp_=_n_a_m_e ttaabb_=_n_a_m_e ccooll_=_n_a_m_e [hhvv=name]
+
+
+
+AALLTTEERRNNAATTEE
+       dd..wwhhaatt..rr..ppgg --ss hheellpp
+
+       dd..wwhhaatt..rr..ppgg --ss ssqqll_=_f_i_l_e_n_a_m_e mmaapp_=_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _d_._w_h_a_t_._r_._p_g  reports  database  attributes  from the currently selected
+       database associated with a raster category at a specific location on  a
+       raster  map. The currently selected database is identified by the GRASS
+       environment variable $PG_DBASE  which  is  set  using  the  _g_._s_e_l_e_c_t_._p_g
+       GRASS-RDBMS interface tool. If this environment variable is not set the
+       program terminates with a message to the user. The current raster loca-
+       tion  is  selected by the user with the mouse. If the alternate form of
+       this command is selected with the _-_s flag the user has greater  control
+       over  the manner in which the attribute information is displayed. Using
+       the _-_s option the attributes from more than one table can  be  returned
+       and displayed.
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       mmaapp==mmaapp
+           Name  of  an existing raster map with category values linked to the
+           currently selected database.
+
+       ttaabb==ddaattaabbaasseettaabblleennaammee
+           Table in the currently selected database containing a column  asso-
+           ciated with raster category values.
+
+       ccooll==ddaattaabbaasseeccoolluummnnnnaammee
+           Column associated with raster category values.
+
+           hhvv Type of database output - [h/v] default: h
+
+
+AALLTTEERRNNAATTEE CCOOMMMMAANNDD LLIINNEE UUSSAAGGEE
+       The alternate command line usage is provided to simplify the process of
+       retrieving information from more than one table in the query  criteria.
+       The  alternate  command  line  structure is selected using the the _[_-_s_]
+       flag on the command line. When using this flag the  user  must  include
+       the  name  of  a  text file on the command line as well. This file must
+       include a complete, well formed SQL  SELECT  statement  specifying  the
+       query  criteria  needed to retrieve values which correspond to category
+       values in a GRASS data layer.
+
+       The user must also specify the name of the GRASS data layer  containing
+       these  category  values  on  the  command  line. The following examples
+       illustrate the syntax which must  be  used  in  constructing  a  SELECT
+       statement for use with the _-_s flag.
+
+       EEXXAAMMPPLLEE::
+
+       11.. _d_._w_h_a_t_._r_._p_g _-_s _s_q_l_=_r_a_s_t_e_r_._s_q_l _m_a_p_=_b_l_a_g___f_o_r_e_s_t___k_u_r
+
+       and raster.sql is:
+
+       _s_e_l_e_c_t _r_e_c___i_d_, _t_y_p_e___i_d _f_r_o_m _i_n_f_o___k_u_r_u_m_a _w_h_e_r_e _t_y_p_e___i_d _= _?
+
+       RReessuulltt::
+
+       Reports  two  fields  from  the  table  info_kuruma associated with the
+       raster category value at the current mouse location the raster map.
+
+       22.. _d_._w_h_a_t_._r_._p_g _-_s _s_q_l_=_r_a_s_t_e_r_2_._s_q_l _m_a_p_=_b_l_a_g___f_o_r_e_s_t___k_u_r
+
+       and raster2.sql is:
+
+       _s_e_l_e_c_t _r_e_c___i_d_, _t_y_p_e___i_d_, _c_e_n_s_u_s___i_n_f_o_._t_y_p_e___g_o_o_d  _f_r_o_m  _i_n_f_o___k_u_r_u_m_a  _w_h_e_r_e
+       _t_y_p_e___i_d _= _? _a_n_d _r_e_c___i_d _= _c_e_n_s_u_s___i_n_f_o_._r_e_c___i_d
+
+       RReessuulltt::
+
+       Reports  fields  from two tables info_kuruma and census_info associated
+       with the raster category value at the current mouse location the raster
+       map.
+
+       33.. _d_._w_h_a_t_._r_._p_g _-_s _k_u_r___r_a_s_t___i_d _s_q_l_=_p_r_o_c_e_s_s_._s_q_l
+
+       process.sql is:
+
+       _u_p_d_a_t_e   _c_e_n_s_u_s___i_n_f_o   _s_e_t  _t_y_p_e___g_o_o_d  _=  _'_1_'  _w_h_e_r_e  _r_e_c___i_d  _=  _?  _a_n_d
+       _i_n_f_o___k_u_r_u_m_a_._t_y_p_e___i_d _= _3_5 _a_n_d _i_n_f_o___k_u_r_u_m_a_._r_e_c___i_d _= _r_e_c___i_d_;
+
+       RReessuulltt:: this would only change field of the census_info table  for  the
+       clicked polygon or line,
+
+       if  the corresponding type taken from _i_n_f_o___k_u_r_u_m_a table is equal to 35.
+
+
+
+   FFllaagg::
+       --ss  SQL select statements are input from a prepared file.
+
+
+   PPaarraammeetteerrss::
+       ssqqll==ffiilleennaammee
+           SQL statements specifying well formed selection criteria.
+
+       mmaapp==mmaapp
+           Name of an existing raster map with category  values  linked  to  a
+           database.
+
+           hhvv Type of database output - [h/v] default: h
+
+
+BBUUGGSS
+       None known.
+
+NNOOTTEE
+       This program requires the Postgres database software.
+
+SSEEEE AALLSSOO
+       _g_._s_e_l_e_c_t_._p_g_,  _g_._s_t_a_t_s_._p_g_,  _g_._t_a_b_l_e_._p_g_, _d_._r_a_s_t_._p_g_, _d_._s_i_t_e_._p_g_, _d_._v_e_c_t_._p_g_,
+       _d_._w_h_a_t_._s_._p_g_, _d_._w_h_a_t_._v_._p_g_, _r_._r_e_c_l_a_s_s_._p_g_, _r_._r_e_s_c_a_l_e_._p_g_, _v_._r_e_c_l_a_s_s_._p_g
+
+AAUUTTHHOORR
+       Original Informix  SQL-tools:  James  A.  Farley,  Wang  Song,  and  W.
+       Fredrick Limp University of Arkansas, CAST
+
+       Postgres modifications: Janne Soimasuo, Faculty of Forestry, University
+       of Joensuu, Finland.
+
+       Updated to GRASS 5 by Alex Shevlakov (sixote@yahoo.com)
+
+
+
+GRASS 5.0                                                       d.what.r.pg(1)

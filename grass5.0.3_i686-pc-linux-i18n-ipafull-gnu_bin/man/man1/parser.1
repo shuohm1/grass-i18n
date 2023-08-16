@@ -1,0 +1,59 @@
+parser(1)                     Grass User's Manual                    parser(1)
+
+
+
+NNAAMMEE
+       GGRRAASSSS  ppaarrsseerr  iinntteerrffaaccee   -  A set of GRASS routines that standardizes
+       GRASS commands.
+
+DDEESSCCRRIIPPTTIIOONN
+       A set of routines in GRASS provides a mechanism for command-line  pars-
+       ing.  The  routines standardize commands that expect command-line argu-
+       ments.  When a user is familiar with the general form  of  command-line
+       input  as  defined by the parser, it simplifies the necessity of remem-
+       bering (or at least guessing) required command-line arguments  for  any
+       GRASS command.
+
+
+       The parser behaves in one of three ways:
+
+              If no command-line arguments are entered by the user, the parser
+              searches for an interactive version of the  command.  If  it  is
+              found, control is passed over to this interactive version. If it
+              is not found, the parser prompts the user for programmer-defined
+              options  and flags. This prompting conforms to the same standard
+              for every GRASS command that uses the parser routines.
+
+
+
+              If command-line arguments are entered but do not include all the
+              options  and  flags  that the programmer has defined as required
+              arguments, three things happen:
+
+              the parser passes an error message to the user indicating  which
+              required  options  and/or  flags  were missing from the command-
+              line,
+
+              then the parser displays a complete usage message for that  com-
+              mand, and finally
+
+               the parser cancels execution of the command.
+
+
+
+
+              If  all  necessary  options and flags are entered on the command
+              line by the user, the parser executes the command with the given
+              options and flags.
+
+
+
+       _T_h_i_s  _p_a_g_e _w_a_s _d_e_r_i_v_e_d _f_r_o_m _t_h_e GRASS 4.1 Programmer's Manual, Command-
+       Line Parsing, _w_h_i_c_h _o_f_f_e_r_s _d_e_t_a_i_l_e_d _i_n_f_o_r_m_a_t_i_o_n _a_b_o_u_t _t_h_e _G_R_A_S_S _p_a_r_s_i_n_g
+       _r_o_u_t_i_n_e_s_.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            parser(1)

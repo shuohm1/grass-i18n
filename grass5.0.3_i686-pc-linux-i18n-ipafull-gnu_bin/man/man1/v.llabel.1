@@ -1,0 +1,102 @@
+v.llabel(1)                   Grass User's Manual                  v.llabel(1)
+
+
+
+NNAAMMEE
+       vv..llllaabbeell   -  Bulk-labels  unlabeled  points or lines in a binary GRASS
+       vector file.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..llllaabbeell
+       vv..llllaabbeell hheellpp
+       vv..llllaabbeell [--iinn] mmaapp==_n_a_m_e [ttyyppee==_n_a_m_e] [vvaalluuee==_v_a_l_u_e] [llaabbeell==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._l_l_a_b_e_l allows the user to bulk-label currently  unlabeled  points  or
+       lines  (not  areas)  in  a binary GRASS vector file (i.e., a _d_i_g file).
+       The user must run _v_._s_u_p_p_o_r_t on the vector file before running  _v_._l_l_a_b_e_l
+       if  any  modifications  have  been made to the file since the last time
+       _v_._s_u_p_p_o_r_t was run on it, to ensure that all lines are properly  identi-
+       fied in the file topology.
+
+
+       The  program  also runs _v_._s_u_p_p_o_r_t on the vector file after labelling so
+       that the changes will be made evident.
+
+
+       _v_._s_u_p_p_o_r_t builds GRASS support files for  (binary)  GRASS  vector  data
+       files.   These  support  files  supply topology (_d_i_g___p_l_u_s) and category
+       (_d_i_g___a_t_t, _d_i_g___c_a_t_s) information that are needed by other GRASS programs
+       (e.g., by _v_._d_i_g_i_t, _v_._t_o_._r_a_s_t, etc.).
+
+OOPPTTIIOONNSS
+       Program parameters and flags have the following meanings.
+
+   FFllaaggss::
+       --ii     Label  incrementally.   For each unique, unlabeled line or point
+              in the vector file, increment the category value by one,  start-
+              ing from the initial default or user-assigned _v_a_l_u_e.
+
+       --nn     Do not run _v_._s_u_p_p_o_r_t.  There may occasionally be instances where
+              the user prefers not to run _v_._s_u_p_p_o_r_t immediately.
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name of binary GRASS vector data file whose unlabeled lines  are
+              to be labelled.  This map layer must exist in the user's current
+              GRASS mapset.
+
+       ttyyppee==_n_a_m_e
+              Select type of primitives to  be  labeled.   Primitives  include
+              points, line arcs, area edge arcs and points.  v.llabel does not
+              label areas.
+
+              Options: point, edge, line
+              Default:  all
+
+       vvaalluuee==_v_a_l_u_e
+              The category value to be assigned to  all  unlabeled  points  or
+              lines  in the vector map layer.  If the _-_i flag is set, _v_._l_l_a_b_e_l
+              will increment the initial _v_a_l_u_e by one for  each  unique  unla-
+              beled point or line in the vector map.
+              Default:  1
+
+       llaabbeell==_v_a_l_u_e
+              The category label to assign to all unlabeled points or lines in
+              the vector map layer.  If unspecified, all added categories will
+              be given an empty label the the _d_i_g___c_a_t_s file.
+
+       The user can run this program non-interactively by specifying parameter
+       values (and optionally, the flag setting) on the command line.
+
+
+       Alternately, the user can simply type the command vv..llllaabbeell on the  com-
+       mand  line.   In  this event, the program will prompt the user to enter
+       parameter values and flag settings.
+
+NNOOTTEESS
+       A _d_i_g___p_l_u_s file must be created for each imported vector map before  it
+       can be used in _v_._d_i_g_i_t.
+
+
+       Topological  information for GRASS vector files can also be built using
+       _o_p_t_i_o_n _4 of the _v_._i_m_p_o_r_t.  program.
+
+
+       The user can bulk-label unlabeled line features in a binary vector file
+       using _v_._d_i_g_i_t.
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t, _v_._i_n_._a_s_c_i_i, _v_._s_u_p_p_o_r_t, and _v_._a_l_a_b_e_l
+
+AAUUTTHHOORRSS
+       James Darrell McCauley, Agricultural Engineering, Purdue University
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_1_3 _1_4_:_3_8_:_2_9 _$
+
+
+
+GRASS 5.0                                                          v.llabel(1)

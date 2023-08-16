@@ -1,0 +1,110 @@
+d.rgb(1)                      Grass User's Manual                     d.rgb(1)
+
+
+
+NNAAMMEE
+       dd..rrggbb  - Displays three user-specified raster map layers as red, green,
+       and blue overlays in the active graphics frame.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..rrggbb
+       dd..rrggbb hheellpp
+       dd..rrggbb [--oo] rreedd==_n_a_m_e ggrreeeenn==_n_a_m_e bblluuee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _R_G_B stands for red, green, and blue.  This  program  visually  combines
+       three raster map layers to form a color image. For each layer, the cor-
+       responding component from the layer's color table is used (e.g. for the
+       red  layer, the red component is used, and so on). In general, the lay-
+       ers should use a grey-scale color table.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --oo     Overlay the resulting raster map layer onto whatever is  already
+              displayed in the active graphics frame. Any no-data areas in any
+              of the named raster maps will seem transparent, and  reveal  the
+              underlying  image previously displayed in the graphics frame. If
+              the --oo flag is set, only cells containing non-null  values  will
+              be  displayed  from  the  _o_v_e_r_l_a_i_d  raster  map. All other areas
+              (i.e., the portions of the overlaid map that contain  null  val-
+              ues) will leave the underlying display untouched.
+
+
+   PPaarraammeetteerrss::
+       rreedd==_n_a_m_e
+              Name of raster map layer to be used for RED component.
+
+       ggrreeeenn==_n_a_m_e
+              Name of raster map layer to be used for GREEN component.
+
+       bblluuee==_n_a_m_e
+              Name of raster map layer to be used for BLUE component.
+
+
+NNOOTTEESS
+       This  is  a  new version of dd..rrggbb, which sends the data to the graphics
+       monitor in true-color RGB format.  Unlike the previous version, it does
+       not  attempt to quantize the combined image into a fixed number of col-
+       ors.  Nor does it have an option to generate a  composite  layer.   The
+       image  and  raster map layers will not display properly if the graphics
+       device does not have a reasonable sampling of the RGB color-space.
+
+
+       If the color quality of a satellite image color composite appears poor,
+       run _r_._c_o_l_o_r_s on the selected satellite channels.
+
+
+       Example: rr..iinnffoo --rr _i_m_a_g_e_._1
+
+       min=0
+
+       max=255
+
+       rr..ccoolloorrss mmaapp==_i_m_a_g_e_._1 ccoolloorr==_r_u_l_e_s << EOF
+
+       0 black
+
+       255 white
+
+       EOF
+
+       rr..ccoolloorrss mmaapp==_i_m_a_g_e_._2 rraasstt==_i_m_a_g_e_._1 rr..ccoolloorrss mmaapp==_i_m_a_g_e_._3 rraasstt==_i_m_a_g_e_._1
+
+       _N_o_t_e_: _F_u_t_u_r_e _G_R_A_S_S _v_e_r_s_i_o_n_s _m_a_y _d_o _t_h_i_s _f_o_r _y_o_u _a_u_t_o_m_a_t_i_c_a_l_l_y_.
+
+
+       To  write out the color composite to a R/G/B raster maps, use _r_._c_o_m_p_o_s_-
+       _i_t_e (three maps) or _i_._c_o_m_p_o_s_i_t_e (single composite map).
+
+SSEEEE AALLSSOO
+       _b_l_e_n_d_._s_h
+
+       _d_._c_o_l_o_r_m_o_d_e
+
+       _d_._c_o_l_o_r_s
+
+       _d_._c_o_l_o_r_t_a_b_l_e
+
+       _d_._h_i_s
+
+       _h_s_v_._r_g_b_._s_h
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_g_b_._h_s_v_._s_h
+
+       _i_._c_o_m_p_o_s_i_t_e
+
+       _r_._c_o_l_o_r_s
+
+       _r_._c_o_m_p_o_s_i_t_e
+
+AAUUTTHHOORR
+       Glynn Clements
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_5 _0_7_:_4_9_:_3_0 _$
+
+
+
+GRASS 5.0                                                             d.rgb(1)

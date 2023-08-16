@@ -1,0 +1,101 @@
+m.qcalc(1)                    Grass User's Manual                   m.qcalc(1)
+
+
+
+NNAAMMEE
+       mm..qqccaallcc   -  Creates  tables, performs conversions, and performs simple
+       math calculations.
+       _(_S_C_S _G_R_A_S_S _D_a_t_a _I_m_p_o_r_t_/_P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       mm..qqccaallcc
+       mm..qqccaallcc hheellpp
+       mm..qqccaallcc [ --ssaahhccmm] iinniitt==_v_a_l_u_e [eenndd==_v_a_l_u_e] [iinnccrr==_v_a_l_u_e] [uunniitt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program
+
+               allows a user to create a table of cell sizes, showing how many
+              square feet, acres, and hectares each cell would represent.
+
+              allows  a  user  to create a table of acreage sizes, showing how
+              many square feet, hectares, and what cell size would  be  repre-
+              sented.
+
+              allows  a  user  to create a table of hectare sizes, showing how
+              many square feet, acres, and what cell size would represented.
+
+              allows a user to convert values among feet, meters,  miles,  and
+              kilometers.
+
+              allows a user to use the UNIX _b_c simple math calculator.
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+   FFllaaggss::
+       --ss     Create a cell size table.
+
+       --aa     Create an acres size table.
+
+       --hh     Create a hectares size table.
+
+       --cc     Convert value to user-stated units.
+
+       --mm     Perform a math calculation.
+
+
+
+
+   PPaarraammeetteerrss::
+       iinniitt==_v_a_l_u_e
+              Initial value.
+
+       eenndd==_v_a_l_u_e
+              Ending value.
+
+       iinnccrr==_v_a_l_u_e
+              Increment value.
+
+       uunniitt==_n_a_m_e
+              Units of measure.
+              Options:  ft, mt, mi, km
+
+
+EEXXAAMMPPLLEE
+       The command:
+
+
+       gg..qqccaallcc --ss iinniitt==_1_0_0 eenndd==_4_0_0 iinnccrr==_1_0_0
+
+
+
+       produces the following table:
+            Cell Size Sq.Ft.   Acres   Hectares
+            100 x 100    107639.31     2.47       1.00
+            200 x 200    430557.23     9.88       4.00
+            300 x 300    968753.77    22.24       9.00
+            400 x 400   1722228.93    39.54      16.00
+
+
+       The command:
+
+
+       gg..qqccaallcc --cc iinniitt==_1_0_0 uunniitt==_f_t
+
+
+
+       produces the following:
+            Feet Meters    Miles     Kilometers
+            100.0     30.4 0.02 0.03
+
+
+AAUUTTHHOORR
+       R.L.Glenn, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                           m.qcalc(1)

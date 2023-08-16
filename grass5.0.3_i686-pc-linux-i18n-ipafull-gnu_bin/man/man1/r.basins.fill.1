@@ -1,0 +1,85 @@
+r.basins.fill(1)              Grass User's Manual             r.basins.fill(1)
+
+
+
+NNAAMMEE
+       rr..bbaassiinnss..ffiillll   -  Generates  a raster map layer showing watershed sub-
+       basins.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..bbaassiinnss..ffiillll
+       rr..bbaassiinnss..ffiillll hheellpp
+       rr..bbaassiinnss..ffiillll nnuummbbeerr==_v_a_l_u_e cc__mmaapp==_n_a_m_e tt__mmaapp==_n_a_m_e rreessuulltt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._b_a_s_i_n_s_._f_i_l_l generates a raster map layer depicting  subbasins,  based
+       on  input  raster  map  layers for the coded stream network (where each
+       channel segment has been "coded" with a unique category value) and  for
+       the  ridges  within  a given watershed.  The raster map layer depicting
+       ridges should include the ridge which  defines  the  perimeter  of  the
+       watershed.   The  coded  stream network can be generated as part of the
+       _r_._w_a_t_e_r_s_h_e_d program, but the map layer of ridges will need to  be  cre-
+       ated by hand, either through digitizing done in _v_._d_i_g_i_t, or through the
+       on-screen digitizing option accessible within _d_._d_i_s_p_l_a_y.
+
+
+       The resulting output raster map layer will code the subbasins with cat-
+       egory  values  matching  those  of the channel segments passing through
+       them.  A user-supplied number of passes through the data is made in  an
+       attempt  to  fill  in these subbasins.  If the resulting map layer from
+       this program appears to have  holes  within  a  subbasin,  the  program
+       should be rerun with a higher number of passes.
+
+
+       The  user  can  run  _r_._b_a_s_i_n_s_._f_i_l_l either interactively or non-interac-
+       tively.  If the user simply types rr..bbaassiinnss..ffiillll without other arguments
+       on  the  command  line, the program will prompt the user for the needed
+       parameters using the standard GRASS _p_a_r_s_e_r interface.
+
+
+       If the user wishes to run the program non-interactively, the  following
+       parameter values must be specified on the command line:
+
+
+
+   PPaarraammeetteerrss::
+       nnuummbbeerr==_v_a_l_u_e
+              The number of passes to be made through the dataset.
+
+       cc__mmaapp==_n_a_m_e
+              The coded stream network file name.
+
+       tt__mmaapp==_n_a_m_e
+              The thinned ridge network file name.
+
+       rreessuulltt==_n_a_m_e
+              The resultant watershed partition file name.
+
+
+NNOOTTEESS
+       The  current  geographic  region setting is ignored.  Instead, the geo-
+       graphic region for the entire input stream's map layer is used.
+
+SSEEEE AALLSSOO
+       See Appendix A of the GGRRAASSSS Tutorial: r.watershed for  further  details
+       on the combined use of _r_._b_a_s_i_n_s_._f_i_l_l and _r_._w_a_t_e_r_s_h_e_d.
+
+
+       _d_._d_i_s_p_l_a_y
+
+       _r_._w_a_t_e_r_s_h_e_d
+
+       _v_._d_i_g_i_t
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORRSS
+       Dale White, Dept. of Geography, Pennsylvania State University
+       Larry Band, Dept. of Geography, University of Toronto, Canada
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                     r.basins.fill(1)

@@ -1,0 +1,85 @@
+v.mkgrid.contrib(1)           Grass User's Manual          v.mkgrid.contrib(1)
+
+
+
+NNAAMMEE
+       vv..mmkkggrriidd  - Creates a (binary) GRASS vector map of a user-defined grid.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..mmkkggrriidd
+       vv..mmkkggrriidd hheellpp
+       vv..mmkkggrriidd  mmaapp==_n_a_m_e  ggrriidd==_r_o_w_s_,_c_o_l_u_m_n_s  ccoooorrddiinnaattee==_x_,_y  bbooxx==_l_e_n_g_t_h_,_w_i_d_t_h
+       [aannggllee==_d_e_g_r_e_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._m_k_g_r_i_d  will  create  a binary format, vector map representation of a
+       regular coordinate grid.
+
+
+
+   FFllaaggss::
+       --qq     Quiet. Cut out the chatter.
+
+
+
+
+   PPaarraammeetteerrss::
+       mmaapp==_n_a_m_e
+              Name to be assigned to binary vector map layer output.
+
+       ggrriidd==_r_o_w_s_,_c_o_l_u_m_n_s
+              Number of ROWS and COLUMNS to appear in grid.
+
+       ccoooorrddiinnaattee==_x_,_y
+              Lower left EASTING and NORTHING coordinates of vector map  layer
+              output.
+
+       bbooxx==_l_e_n_g_t_h_,_w_i_d_t_h
+              LENGTH and WIDTH of boxes in grid.
+
+       [aannggllee==_d_e_g_r_e_e]
+              optional rotate grid counter-clockwise about the origin (ccoooorrddii--
+              nnaattee).
+
+
+
+       If the user simply types vv..mmkkggrriidd on the command line without  specify-
+       ing parameter values, the program will prompt the user for inputs using
+       the standard interface described in the manual entry for _p_a_r_s_e_r.
+
+NNOOTTEESS
+       The new binary vector map output is placed under the _d_i_g  directory  in
+       the  user's  current mapset, and can be used like any vector map layer.
+       Run _v_._s_u_p_p_o_r_t to build the topology  information  for  the  vector  map
+       before using _v_._m_k_g_r_i_d map layer outputs in the _v_._d_i_g_i_t program.
+
+
+       Since  the  grid  is computer-generated, the corner coordinates will be
+       exact and can be used when patching together several _v_._m_k_g_r_i_d grids.
+
+
+       This is NOT to be used to generate a vector map  of  USGS  quadrangles,
+       because  USGS quads are not exact rectangles.  To generate a vector map
+       of USGS quads, use the program _v_._m_k_q_u_a_d_s.
+
+
+       The program ignores the current GRASS geographic region  settings.   It
+       will  create  the complete grid even if part of this grid falls outside
+       the current geographic region.
+
+
+       Rotating the grid should not usually be necessary under  normal  usage,
+       but this option is available.
+
+SSEEEE AALLSSOO
+       v.digit, v.mkquads, v.patch, v.support and parser
+
+AAUUTTHHOORR
+       Michael Higgins, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                  v.mkgrid.contrib(1)

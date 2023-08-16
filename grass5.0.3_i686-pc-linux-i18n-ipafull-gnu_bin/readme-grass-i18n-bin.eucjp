@@ -1,0 +1,79 @@
+GRASS国際化版(i18n)　readme テキスト
+
+GRASS国際化版のバイナリーパッケージです。オリジナル版の
+GRASS5.0.3をベースに、国際化対応しました。
+
+
+・インストール
+1.次のバイナリーパッケージファイルをダウンロードしてください
+　grass5.0.3_i686-pc-linux-i18n-gnu_bin.tar.gz
+
+2.次のインストール用スクリプトファイルをダウンロードしてください
+　grass5_i686-pc-linux-i18n-gnu_install.sh
+
+ダウンロードしたら、次のコマンド（一例です）でインストールしてください。
+sh grass5_i686-pc-linux-i18n-gnu_install.sh \
+grass5.0.3_i686-pc-linux-i18n-gnu_bin.tar.gz [dest_dir] [bin_dir]
+
+[dest_dir]：GRASSのインストールディレクトリ（デフォルト：/usr/local/grass5)
+[bin_dis]：grass5コマンドインストールディレクトリ（デフォルト：/usr/local/bin）
+
+インストール作業はrootで行ってください。
+
+
+・使い方
+
+1.GRASSの起動
+ $ grass5
+
+2.tcltkgrass-i18n（国際化版）の起動
+ GRASS:~>tcltkgrass-i18n&
+
+注記）
+tcltkgrassのxterm経由のコマンドを国際化に対応させるため、mltermを
+使用しています。mltermはあらかじめインストールしておいてください。
+
+3.monitorでのtruetypeフォントの表示設定
+ GRASS:~>d.mon start=x0
+ GRASS:~>d.font.freetype [font=trutypefontname] [charset=encoding]
+ 
+ [font]：使用するtruetypeフォントのフルパス名
+ [charset]：文字のエンコーディング（EUC-JP、UTF-8、SJIS）
+ 例）RedHat Linux9での例
+ GRASS:~>d.font.freetype font=/usr/share/fonts/ja/TrueType/kochi-gothic.ttf charset=EUC-JP
+ 
+4.monitorでのtruetypeフォント設定解除
+ GRASS:~>d.font.freetype font=
+
+注記）
+truetypeフォント設定時は、d.site.labelsなどのfontオプションは
+無視されます。
+
+
+・バイナリー作成環境
+1.Radhat Linux 9上でコンパイルしました。
+
+2.configureオプション
+ # ./configure --with-nls --with-freetype --with-freetype-includes=/usr/include/freetype2 \
+   --with-tcltk-includes=/usr/include
+
+3.追加アプリケーション＆ライブラリ
+　libfftw2.1.5
+　Tcl/Tk8.4（標準ダイアログの国際化表示のため）および日本メッセージファイル：ja.msg
+　mlterm2.8.0pl1
+　libfftw以外はGRASS実行時に必要です。
+
+
+・ライセンス
+このプログラムはフリーソフトウェアであり、ライセンスはオリジナル版GRASS
+に準拠します。詳しくはパッケージ添付のCOPYING、GPL.TXTをご参照ください。
+
+GRASS国際化（i18n）プロジェクト　メンバー：
+升本 眞二, Venkatesh Raghavan, 野々垣 進, 根本 達也, 平井 尚喜（大阪市立大学）, 
+萩原　顕, 丹羽　誠, 森　亮（株式会社オークニー）, 
+服部 典弘 (株式会社イー・ソリューション・サービス)
+
+プロジェクトスポンサー：
+独立行政法人 情報処理推進機構（IPA；Information-technology Promotion Agency, Japan）
+本プロジェクトは情報処理振興事業協会(IPA)の「オープンソフトウェア活用基盤整備事業」
+による委託事業「オープンGISプラットフォームの開発」として採択されました。

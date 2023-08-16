@@ -1,0 +1,109 @@
+v.reclass.inf(1)              Grass User's Manual             v.reclass.inf(1)
+
+
+
+NNAAMMEE
+       vv..rreeccllaassss..iinnff   -  Generate new vector map layer derived from attribute
+       data in the currently selected database.
+       _(_G_R_A_S_S_-_R_D_B_M_S _V_e_c_t_o_r _I_n_t_e_r_f_a_c_e _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..rreeccllaassss..iinnff
+       vv..rreeccllaassss..iinnff hheellpp
+       vv..rreeccllaassss..iinnff [[--dd]] ssqqll==_n_a_m_e kkeeyy==_n_a_m_e ttyyppee==_n_a_m_e iinnppuutt==_n_a_m_e [[oouuttppuutt==_n_a_m_e_]
+
+DDEESSCCRRIIPPTTIIOONN
+       v.reclass.inf  generates a new vector map layer based on the results of
+       one or more queries to the currently selected database.  The user  con-
+       structs a series of mutually exclusive SQL select statments designed to
+       return groups of records from  the  database.  Each  group  of  records
+       should  be  internally consistent in terms of attribute characteristics
+       specified by the user in the SELECT clause. These groups should also be
+       mutually  exclusive, thereby insuring that a row returned by one SELECT
+       clause is not also returned by a subsequent SELECT clause.  Each  group
+       of  records  therefore  forms  the  basis  for a single category in the
+       resulting GRASS vector map. v.reclass.inf processes each SELECT  state-
+       ment in order returning groups of records which will form a single cat-
+       egory in the resulting map.  As each SELECT statement is processed  the
+       group  of  records returned receives a common category value. The cate-
+       gory value is incremented by one for each  subsequent  SELECT  statment
+       which  is  processed.  The resulting reclass map will have one category
+       for each of the original SELECT statements.
+
+
+       For example, the rows associated with the first SELECT  statement  will
+       be  assigned  to  category  1,  those associated with the second SELECT
+       statement will be assigned to category 2 and so on. The output map will
+       contain only those line segments associated with database rows returned
+       by the SELECT statement(s).
+
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+       FFllaaggss::
+
+       --dd     Disolve common boundaries between reclassed areas.
+
+
+       PPaarraammeetteerrss::
+
+       ssqqll==_f_i_l_e_n_a_m_e
+              Name of file containing SQL query statements.
+
+       kkeeyy==_d_a_t_a_b_a_s_e___c_o_l_u_m_n___n_a_m_e
+              Key column in db.
+
+       ttyyppee==_a_r_e_a_/_l_i_n_e_.
+              Key column in db.
+
+       iinnppuutt==_m_a_p
+              Name of existing vector file to be reclassed using query output.
+
+       oouuttppuutt==_m_a_p
+              Name of new raster (reclass),  file.
+
+
+
+
+
+EEXXAAMMPPLLEE:: pprroodduucceess vveeccttoorr mmaapp ooff pprriimmaarryy aanndd sseeccoonnddaarryy rrooaaddss..
+       vv..rreeccllaassss..iinnff ssqqll==_v_e_c_t_._s_q_l kkeeyy==_t_l_i_d iinnppuutt==_t_._r_o_a_d_s_._i_n_f oouuttppuutt==_t_._r_o_a_d_s_._1_2
+
+
+
+             _v_e_c_t_._s_q_l:
+
+            SELECT UNIQUE tlid,cfcc FROM type1
+            WHERE cfcc MATCHES "A1*"
+            ORDER BY tlid;
+            SELECT UNIQUE tlid,cfcc FROM type1
+            WHERE cfcc MATCHES "A2*"
+            ORDER BY tlid
+
+
+BBUUGGSS
+       None known.
+
+
+
+NNOOTTEE
+       This program requires the Informix database software.
+
+
+
+SSEEEE AALLSSOO
+       g.column.inf,  g.select.inf,  g.stats.inf,   g.table.inf,   d.rast.inf,
+       d.site.inf,   d.vect.inf,   d.what.r.inf,  d.what.s.inf,  d.what.v.inf,
+       r.rescale.inf
+
+
+
+AAUUTTHHOORR
+       James A. Farley, Wang Song and W. Fredrick Limp University of Arkansas,
+       CAST
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                     v.reclass.inf(1)

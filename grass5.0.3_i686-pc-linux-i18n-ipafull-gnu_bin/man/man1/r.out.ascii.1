@@ -1,0 +1,95 @@
+r.out.ascii(1)                Grass User's Manual               r.out.ascii(1)
+
+
+
+NNAAMMEE
+       rr..oouutt..aasscciiii  - Converts a raster map layer into an ASCII text file.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _E_x_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..oouutt..aasscciiii
+       rr..oouutt..aasscciiii hheellpp
+       rr..oouutt..aasscciiii [--hhssMMii] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ddpp==_v_a_l_u_e] [nnuullll==_s_t_r_i_n_g]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._o_u_t_._a_s_c_i_i  converts  a  user-specified  raster map layer (iinnppuutt==_n_a_m_e)
+       into an ASCII text file (oouuttppuutt==_n_a_m_e) suitable for export to other com-
+       puter systems.
+
+
+       The  GRASS  program _r_._i_n_._a_s_c_i_i can be used to perform the reverse func-
+       tion, converting an ASCII file in suitable format to GRASS raster  file
+       format.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --hh     Suppress printing of header information.
+
+       --ss     Write SURFER .grd ASCII GRID instead of GRASS ASCII GRID
+
+              (with reverted row order, different header)
+
+       --MM     Write  MODFLOW  (USGS)  free-format array instead of GRASS ASCII
+              GRID
+
+
+       --ii     Output integer category values, not cell values.
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==nnaammee
+              Name of an existing raster map layer.
+
+       oouuttppuutt Name of an output ASCII file (use output=- for stdout)
+
+       ddpp==vvaalluuee
+              Number of decimal places.
+
+       nnuullll==ssttrriinngg
+              Character string to represent no data cell.
+
+       _r_._o_u_t_._a_s_c_i_i can be run either non-interactively or interactively.   The
+       program will be run non-interactively if the user specifies the name of
+       a raster map layer and (optionally) a value  for  _d_p,  using  the  form
+       rr..oouutt..aasscciiii iinnppuutt==_i_n_n_a_m_e oouuttppuutt==_o_u_t_n_a_m_e [ddpp==_v_a_l_u_e]
+
+       where _i_n_n_a_m_e is the name of a raster map layer to be converted to ASCII
+       format, _o_u_t_n_a_m_e is the name of the exported file, and _v_a_l_u_e is the num-
+       ber  of  digits  (per cell) to be printed to output.  The user can also
+       the _-_h option to suppress the output of file header information.
+
+
+       To write a SURFER .grd ASCII GRID file (with  reverted  row  order  and
+       different  header)  use  the  _-_s flag: rr..oouutt..aasscciiii --ss iinnppuutt==_i_n_n_a_m_e oouutt--
+       ppuutt==_o_u_t_n_a_m_e_._g_r_d [ddpp==_v_a_l_u_e]
+
+       NULL data are coded to  "1.70141e+038"  for  SURFER  ASCII  GRID  files
+       (ignoring the _n_u_l_l_= parameter).
+
+
+       Alternately,  the user can simply type rr..oouutt..aasscciiii on the command line,
+       without program arguments.  In this case, the user will be prompted for
+       parameter values using the standard GRASS _p_a_r_s_e_r interface.
+
+NNOOTTEESS
+       The output from _r_._o_u_t_._a_s_c_i_i may be placed into a file by using the UNIX
+       redirection  mechanism;  e.g.:  rr..oouutt..aasscciiii  iinnppuutt==soils   oouuttppuutt==--   >
+       out.file
+
+       The  output file out.file can then be printed or copied onto a CDROM or
+       floppy disk for export purposes.
+
+SSEEEE AALLSSOO
+       _r_._i_n_._a_s_c_i_i_, _r_._i_n_._a_r_c_, _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+
+       Surfer support by Markus Neteler
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_2_/_0_5 _1_1_:_0_6_:_5_1 _$
+
+
+
+GRASS 5.0                                                       r.out.ascii(1)

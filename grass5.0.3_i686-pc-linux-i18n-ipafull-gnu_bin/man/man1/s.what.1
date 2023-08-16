@@ -1,0 +1,86 @@
+s.what(1)                     Grass User's Manual                    s.what(1)
+
+
+
+NNAAMMEE
+       ss..wwhhaatt  - Allows the user to query site list descriptions.
+
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..wwhhaatt
+       ss..wwhhaatt hheellpp
+       ss..wwhhaatt                     [--qq]                     mmaapp==_n_a_m_e[,_n_a_m_e,...]
+       [eeaasstt__nnoorrtthh==_e_a_s_t_,_n_o_r_t_h[,_e_a_s_t_,_n_o_r_t_h,...]
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._w_h_a_t outputs the category values and (optionally) the category labels
+       associated  with user-specified locations on sites input map(s).  Loca-
+       tions are specified as geographic x,y coordinate pairs (i.e.,  pair  of
+       eastings and northings).
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --qq     Load quietly
+
+
+   PPaarraammeetteerrss::
+       mmaapp==   The  name(s)  of  one  or  more  existing sites map layers to be
+              queried.
+
+       eeaasstt__nnoorrtthh==
+              One or multiple coordinate pairs for query
+
+
+EEXXAAMMPPLLEESS
+       The contents of the ASCII _i_n_p_u_t_f_i_l_e to _s_._w_h_a_t can be typed  in  at  the
+       keyboard,  redirected  from a file, or piped from another program (like
+       _d_._w_h_e_r_e). Each line of the input consists of an  easting,  a  northing,
+       and  an  optional label, which are separated by spaces. The word eenndd is
+       typed to end input of coordinates to _s_._w_h_a_t. For example:
+
+       635342.21 7654321.09 site 1
+              653324.88 7563412.42 site 2 end
+
+       _s_._w_h_a_t output consists of the input geographic location and label, and,
+       for  each user-named sites map layer, the category value.  Sample input
+       (in regular font) to and output (in plain text) from _s_._w_h_a_t  are  given
+       below.
+
+        ss..wwhhaatt mmaapp=soils,aspect
+              635342.21 7654321.09 site 1 653324.88 7563412.42 site 2 end
+
+       sites in mapset  635342.21|7654321.09|site 1|45|21
+
+              sites in mapset  653324.88|7563412.42|site 2|44|20
+
+
+
+        ss..wwhhaatt --ff mmaapp==soils,aspect
+
+              635342.21 7654321.09 site 1
+
+              653324.88 7563412.42 site 2
+
+              end
+
+       sites in mapset  635342.21|7654321.09|site 1|45|NaC|21|30 degrees NW
+              sites   in   mapset    653324.88|7563412.42|site  2|44|NdC|20|15
+              degrees NW
+
+
+NNOOTTEESS
+       The maximum number of sites map layers that can be queried at one  time
+       is 14.
+
+SSEEEE AALLSSOO
+        _d_._s_i_t_e_s_, _d_._w_h_e_r_e_, _s_._i_n_f_o_, _s_._u_n_i_v_a_r_, _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Huidae Cho grass@geni.cemtlo.com>
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_6_/_1_6 _1_5_:_2_9_:_1_8 _$
+
+
+
+GRASS 5.0                                                            s.what(1)

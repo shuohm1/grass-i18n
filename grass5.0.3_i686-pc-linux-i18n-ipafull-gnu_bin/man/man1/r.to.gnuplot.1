@@ -1,0 +1,73 @@
+r.to.gnuplot(1)               Grass User's Manual              r.to.gnuplot(1)
+
+
+
+NNAAMMEE
+       rr..ttoo..ggnnuupplloott  - outputs a raster map in _g_n_u_p_l_o_t format
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       rr..ttoo..ggnnuupplloott hheellpp
+       rr..ttoo..ggnnuupplloott _n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._t_o_._g_n_u_p_l_o_t is a Bourne shell script that converts a raster map into a
+       format suitable for plotting with _g_n_u_p_l_o_t and  writes  the  results  to
+       standard output.
+
+OOPPTTIIOONNSS
+       This program runs non-interactively;  the user must state all parameter
+       values on the command line.
+
+   PPaarraammeetteerr::
+       _n_a_m_e   Name of a raster map layer.
+
+
+EEXXAAMMPPLLEE
+       Typing the following at the  command  line:  rr..ttoo..ggnnuupplloott  eelleevvaattiioonn  >>
+       eelleevv..ddaatt
+
+       will  write  the raster data to _e_l_e_v_._d_a_t.  The following dialogue: ggnnuu--
+       pplloott
+
+       gnuplot> sseett ppaarraammeettrriicc
+
+       gnuplot> sseett ccoonnttoouurr bbaassee
+
+       gnuplot> sseett nnoossuurrffaaccee
+
+       gnuplot> sseett vviieeww 118800,,00
+
+       gnuplot> sspplloott ''eelleevv..ddaatt'' nnooTTIITTLLEE wwiitthh lliinneess
+
+       will plot a contour map of _e_l_e_v_a_t_i_o_n.
+
+NNOOTTEESS
+       Similar procedures may be used to plot wire-mesh surfaces.
+
+
+       _g_n_u_p_l_o_t may be used to simultaneously plot surfaces and  contours  from
+       multiple raster maps.
+
+
+       Output  may be saved as PostScript, FrameMaker, TeX, etc (approximately
+       2 dozen output formats).
+
+FFIILLEESS
+       $GISBASE/scripts/r.to.gnuplot.
+
+SSEEEE AALLSSOO
+       _r_._s_t_a_t_s
+
+       _v_._t_o_._g_n_u_p_l_o_t
+
+       _g_n_u_p_l_o_t
+
+AAUUTTHHOORR
+       James Darrell McCauley, Agricultural Engineering, Purdue University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                      r.to.gnuplot(1)

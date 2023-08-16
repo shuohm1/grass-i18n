@@ -1,0 +1,258 @@
+i.group(1)                    Grass User's Manual                   i.group(1)
+
+
+
+NNAAMMEE
+       ii..ggrroouupp   -  An imagery function that creates and edits groups and sub-
+       groups of (raster) imagery files.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ggrroouupp
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._g_r_o_u_p allows the user to collect raster  map  layers  in  an  imagery
+       group  by  assigning them to user-named subgroups or other groups. This
+       enables the user to run analyses on any combination of the  raster  map
+       layers  in  a  group.   The  user  creates the groups and subgroups and
+       selects the raster map layers that are to reside in them. Imagery anal-
+       ysis  programs  like _i_._r_e_c_t_i_f_y, _i_._o_r_t_h_o_._r_e_c_t_i_f_y and others ask the user
+       for the name of an imagery group whose data are to be analyzed. Imagery
+       analysis  programs like _i_._m_a_x_l_i_k ask the user for the imagery group and
+       imagery subgroup whose data are to be analyzed.
+
+
+       The interactive mode provides extended functionality.
+
+
+       The first menu if the interactive mode in the _i_._g_r_o_u_p program asks  the
+       user  to select a _g_r_o_u_p.  If the group does not exist, the user will be
+       asked if he or she would like to create a new group.
+       This program edits imagery groups. You may add raster map
+       layers to, or remove such layers from, an imagery group.
+       You may also create new groups.
+              Please enter the group to be created/modified
+
+         GROUP: _____________ (enter 'list' for a list of groups)
+
+
+           AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                          (OR <Ctrl-C> TO EXIT)
+
+       If the word _l_i_s_t is entered, groups that have already been  created  in
+       the  user's  current  LOCATION_NAME  and MAPSET(S) will be listed.  The
+       second menu in _i_._g_r_o_u_p provides the user with the following options:
+            1.    Select a different group
+            2.    Edit group TITLE
+            3.    Include new raster (cell) files in the group
+                  or remove raster (cell) files from the group
+            4.    Assign colors to the group
+            5.    Create a new subgroup within the group
+
+                  RETURN to exit
+
+
+
+       The options are described as follows:
+
+              _S_e_l_e_c_t _a _d_i_f_f_e_r_e_n_t _g_r_o_u_p
+              If option number 1 is chosen, the following menu is displayed:
+                   Please enter the group to be created/modified
+
+              GROUP: _____________ (enter 'list' for a list of groups)
+
+
+                AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                               (OR <Ctrl-C> TO EXIT)
+
+              If the word _l_i_s_t is entered, groups that have already been  cre-
+              ated  in  the  current  LOCATION_NAME and MAPSET(S) will be dis-
+              played.
+
+
+
+              _E_d_i_t _g_r_o_u_p _T_I_T_L_E
+              If option number 2 is selected, an entry space  is  provided  to
+              type  in  the  group TITLE.  This TITLE is useful in identifying
+              each group:
+                   TITLE______________________________________
+
+
+              This option offers an opportunity to go back and change
+              the entry if it is not correct by asking: Look ok?
+              (y/n).
+
+
+              _I_n_c_l_u_d_e _n_e_w _r_a_s_t_e_r _(_c_e_l_l_) _f_i_l_e_s _i_n _t_h_e _g_r_o_u_p  _o_r  _r_e_m_o_v_e  _r_a_s_t_e_r
+              _(_c_e_l_l_) _f_i_l_e_s _f_r_o_m _t_h_e _g_r_o_u_p
+              When choosing option number 3, the following menu is displayed:
+                  LOCATION: location   GROUP: spot   MAPSET: demo
+
+              If you wish to delete a file from group [spot], remove
+              the 'x' from in front of the file name.
+
+                               x_    spot.1 in demo
+                               x_    spot.2 in demo
+                               x_    spot.3 in demo
+
+
+                AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                              (OR <Ctrl-C> TO CANCEL)
+
+              Next,a  menu  listing all the other raster map layers present in
+              the current MAPSET(S) will be displayed:
+               LOCATION: location      GROUP: spot      MAPSET: demo
+
+              Please mark an 'x' by the files to be added in
+              group [spot]
+
+                                   MAPSET: demo
+
+                                  x_   composite1
+                                  x_   spotclass1
+                                  __   spotclass2
+
+                AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                              (OR <Ctrl-C> TO CANCEL)
+
+              If more than one MAPSET is selected,  menus  for  those  mapsets
+              will  also be displayed.  All raster map layers selected with an
+              'x' will be included in the group being updated.
+
+
+       The user will then have the opportunity to check the  contents  of  the
+       group that was just modified:
+        Group [spot] references the following raster files
+
+                         __________________
+                        spot.1       in demo
+                        spot.2       in demo
+                        spot.3       in demo
+                        composite1   in demo
+                        spotclass1   in demo
+                         __________________
+                           Look ok? (y/n)
+
+       If  the  user responds with the letter _y then the following sentence is
+       displayed on the screen:
+       Group [spot] updated!
+
+       And the main menu for _i_._g_r_o_u_p returns.
+
+
+       If the user responds _n, the menu containing the group  files  after  it
+       was modified will be displayed and the user will be asked to place an _x
+       in front of those raster map layers that are to  be  removed  from  the
+       group.   Then, a menu listing all of the other raster map layers in the
+       current MAPSET will be displayed again, and  the  user  will  be  again
+       asked to place an _x in front of raster map layers to be included in the
+       group.  This gives the user the opportunity to correct mistakes or make
+       changes  in  the  choice of raster map layers to be selected in a group
+       without exiting _i_._g_r_o_u_p.
+
+              _A_s_s_i_g_n _c_o_l_o_r_s _t_o _t_h_e _g_r_o_u_p
+              Option number 4 provides the following menu:
+              Please indicate which files to use for red, green, and
+              blue colors.  You may leave any color out. You may
+              specify more than one color per file.  However, each
+              color may only be specified once.  For example, to get
+              a full color image, specify r,g,b for 3 different
+              files.  To get a grey scale image, specify rgb for a
+              single file.
+
+                                 b__    spot.1
+                                 g__    spot.2
+                                 r__    spot.3
+                                 ___    composite1
+                                 ___    spotclass1
+
+                     <<<; r,g,b can only be specified once >>>;
+
+                AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                              (OR <Ctrl-C> TO CANCEL)
+
+              This menu allows you to select a color for each imagery band  or
+              for each file for display.  Note, however, that composite images
+              and classified images are already assigned colors  during  their
+              creation.
+
+
+       An opportunity to change the choice of colors is offered after escaping
+       the menu by:
+       Look ok? (y/n)
+
+
+              _C_r_e_a_t_e _a _n_e_w _s_u_b_g_r_o_u_p _w_i_t_h_i_n _t_h_e _g_r_o_u_p
+
+              The following menu enables the user to create a subgroup out  of
+              any  combination  of raster map layers in the group.  Any number
+              of subgroups may be created by repeating the option.
+                  LOCATION: location                MAPSET: spot
+
+              GROUP: spot1
+              SUBGROUP: ___________ ('list' will show available
+              subgroups)
+
+                AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                              (OR <Ctrl-C> TO CANCEL)
+
+              After selecting or creating a subgroup, this menu is displayed:
+                  Mark an 'x' by the files to form subgroup [123]
+
+                                 x_    spot.1
+                                 x_    spot.2
+                                 x_    spot.3
+                                 __    composite1
+                                 __    spotclass1
+
+                AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                              (OR <Ctrl-C> TO CANCEL)
+
+              The user is then given the opportunity to check the contents  of
+              the subgroup:
+              Subgroup [123] references the following raster
+              (cell) files
+
+                                __________________
+                                 spot.1   in demo
+                                 spot.2   in demo
+                                 spot.3   in demo
+                                __________________
+                                  Look ok? (y/n)
+
+              If  the  user  responds  with  the letter _n, the group menu will
+              appear again enabling the user to select raster  map  layers  to
+              form the subgroup.
+
+
+NNOOTTEESS
+       The  _i_._g_r_o_u_p  options  are only available for imagery map layers in the
+       current LOCATION_NAME.
+
+
+       Subgroup names may not contain more than 12 characters.
+
+
+       This program is interactive and requires no command line arguments.
+
+SSEEEE AALLSSOO
+       _G_R_A_S_S _T_u_t_o_r_i_a_l_: _I_m_a_g_e _P_r_o _c_e_s_s_i_n_g
+
+
+       _i_._c_l_u_s_t_e_r
+
+       _i_._m_a_x_l_i_k
+
+       _i_._p_o_i_n_t_s
+
+       _i_._r_e_c_t_i_f_y
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+       Parser support: Bob Covill (Tekmap, Canada)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_3_/_0_1 _0_0_:_2_7_:_4_5 _$
+
+
+
+GRASS 5.0                                                           i.group(1)

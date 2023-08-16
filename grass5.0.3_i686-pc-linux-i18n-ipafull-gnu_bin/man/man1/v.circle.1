@@ -1,0 +1,81 @@
+v.circle(1)                   Grass User's Manual                  v.circle(1)
+
+
+
+NNAAMMEE
+       vv..cciirrccllee   -  Creates  a  vector file which consists of circle(s) which
+       uses each point in a "site_lists" file as  the  center  of  those  cir-
+       cle(s).
+       (GRASS Vector Program)
+
+SSYYNNOOPPSSIISS
+       vv..cciirrccllee
+       vv..cciirrccllee hheellpp
+       vv..cciirrccllee   [   --ss]   ssiitteeffiillee==_n_a_m_e   [[rraaddiiuuss==_v_a_l_u_e_]   [[rraaddiiuuss__uuoomm==_n_a_m_e_]
+       [[aarreeaa==_v_a_l_u_e_] [[aarreeaa__uuoomm==_n_a_m_e_] oouuttppuutt==_n_a_m_e
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       "v.circle" will create "polygon" circle(s) around points read  from  an
+       existing "site_lists" file.  The "site_lists" point(s) will be the cen-
+       ter(s) for those circle(s) with one  circle  created  per  point.   The
+       "polygon"  circle(s)  will  be  written  to a binary vector file.  Each
+       "polygon" circle will have 361 points with each point on the circumfer-
+       ence of the circle representing 1 degree of arc.
+
+
+
+CCOOMMMMAANNDD LLIINNEE OOPPTTIIOONNSS
+       Flags
+
+       _-_s     Automatically run "v.support" on newly created vector file.
+
+
+
+PPaarraammeetteerrss
+       rraaddiiuuss Radius of circle(s) with "site_lists" point(s) as center(s).  If
+              radius selected then area values are not used for  computations.
+              If  both  radius  and  area selected, then radius has precedence
+              over area.
+              default: 0.0
+
+
+
+       rraaddiiuuss__uuoomm
+              Radius unit of measure,  ie. (m)meters,  ft(feet),  (mi)miles.
+              default: m
+
+
+
+       aarreeaa   Area of circle(s) with "site_lists" point(s) as  center(s).   If
+              area  selected then radius values are not used for computations.
+              default: 0.0
+
+
+
+       aarreeaa__uuoomm
+              Area unit  of  measure,   ie.  sqm(square  meters),   ac(acres),
+              sqmi(square miles),  hec(hectares).
+              default: sqm
+
+
+
+       ssiitteeffiillee
+              GRASS site_lists file (input).
+
+       oouuttppuutt Vector file to be created (output).
+
+
+
+SSEEEE AALLSSOO
+       s.buffer, v.bubble
+
+AAUUTTHHOORR
+       Bruce Powell, National Park Service
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          v.circle(1)

@@ -1,0 +1,112 @@
+r.in.ll(1)                    Grass User's Manual                   r.in.ll(1)
+
+
+
+NNAAMMEE
+       rr..iinn..llll  - Converts raster data referenced using latitude and longitude
+       coordinates to a UTM-referenced map layer in GRASS raster format.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..llll
+       rr..iinn..llll hheellpp
+       rr..iinn..llll [--ss]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  bbppcc==_v_a_l_u_e  ccoorrnneerr==_c_o_r_n_e_r_,_l_a_t_,_l_o_n
+       ddiimmeennssiioonn==_r_o_w_s_,_c_o_l_s rreess==_l_a_t_r_e_s_,_l_o_n_r_e_s sspphheerrooiidd==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       This  program converts raster data referenced using latitude and longi-
+       tude coordinates to a UTM-referenced map layer in GRASS raster  format.
+       _r_._i_n_._l_l  is  primarily used as the final program in converting DTED and
+       DEM digital elevation data to GRASS raster format, but is  not  limited
+       to  this  use.   _r_._i_n_._l_l uses the user's current geographic region set-
+       tings.  Only data that falls within the current geographic region  will
+       appear in the final raster map layer.
+
+OOPPTTIIOONNSS
+       _r_._i_n_._l_l requires the user to enter the following information:
+
+   FFllaaggss::
+       --ss     Signed data (high bit means negative value).
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing input raster map layer.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to the output raster map layer.
+
+       bbppcc==_v_a_l_u_e
+              Number of bytes per cell.
+
+       ccoorrnneerr==_c_o_r_n_e_r_,_l_a_t_,_l_o_n
+              One corner latitude and longitude of the input.
+              Format: {nw|ne|sw|se},dd:mm:ss{N|S},ddd:mm:ss{E|W}
+
+
+       The  latitude  and  longitude  are  specified  as dddd..mmmm..ssssHH where dd is
+       degrees, mm is minutes, ss is seconds, and H is the hemisphere (NN or  SS
+       for latitudes, EE or WW for longitudes).
+
+
+       For example, to specify the southwest corner: ccoorrnneerr==_s_w_,_4_6_N_,_1_2_0_W
+
+
+       Note:  the  latitude  and longitude specified are for the center of the
+       corner cell.
+
+       ddiimmeennssiioonn==_r_o_w_s_,_c_o_l_s
+              Number of rows and columns in the input file.
+
+       rreess==_l_a_t_r_e_s_,_l_o_n_r_e_s
+              Resolution of the input (in arc seconds).
+
+       sspphheerrooiidd==_n_a_m_e
+              Name of spheroid to be used for coordinate conversion.
+              Options: airy,  australian,  bessel,  clark66,  everest,  grs80,
+              hayford, international, krasovsky, wgs66, wgs72, wgs84
+
+
+EEXXAAMMPPLLEE
+       The   command  line:  rr..iinn..llll  iinnppuutt==_r_o_t_._o_u_t  oouuttppuutt==_i_m_p_o_r_t_._o_u_t  ddiimmeenn--
+       ssiioonn==_3_5_8_,_3_0_1 bbppcc==_2 rreess==_3_,_3 ccoorrnneerr==_s_w_,_3_7_:_1_3_N_,_1_0_3_:_4_5_W sspphheerrooiidd==_w_g_s_7_2
+
+       reads data from the file _r_o_t_._o_u_t, converts the data, and stores them in
+       the  file  _i_m_p_o_r_t_._o_u_t. The data to be converted are made up of 358 rows
+       and 301 columns, and have a resolution of 3x3 arc seconds.
+
+NNOOTTEESS
+       In the conversion of DTED and DEM elevation data to  raster  map  layer
+       format, _r_._i_n_._l_l follows execution of the data rotation program _m_._r_o_t_9_0.
+       Because the user can glean  information  on  the  number  of  rows  and
+       columns,  the resolutions of the latitude and longitude, and the number
+       of bytes per column from the header file produced by the  tape  extrac-
+       tion  programs _m_._d_t_e_d_._e_x_t_r_a_c_t and _m_._d_m_a_U_S_G_S_r_e_a_d, the user should recall
+       that _m_._r_o_t_9_0 has rotated the files produced by the tape extraction pro-
+       grams  90 degrees; this means that the user should INTERCHANGE the num-
+       bers of rows and columns present  in  the  header  file  for  input  to
+       _r_._i_n_._l_l.   The number of rows shown in the tape extract header file now
+       become the number of columns in the _m_._r_o_t_9_0 output file; the number  of
+       columns  shown  in  the  tape extract header file are now the number of
+       rows present in the _m_._r_o_t_9_0 output file.
+
+
+       The user should also note that the raster map layer imported into GRASS
+       will  be  based  on the current geographic region settings.  The bound-
+       aries of this geographic region  should  therefore  be  checked  before
+       importing  the raster map layer.  Data outside of the geographic region
+       will not be imported and missing data will  be  assigned  the  category
+       value "no data".
+
+SSEEEE AALLSSOO
+       _m_._d_m_a_U_S_G_S_r_e_a_d,  _m_._d_t_e_d_._e_x_a_m_i_n_e,  _m_._d_t_e_d_._e_x_t_r_a_c_t,  _m_._r_o_t_9_0,  _r_._i_n_._a_s_c_i_i,
+       _r_._i_n_._b_i_n
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                           r.in.ll(1)

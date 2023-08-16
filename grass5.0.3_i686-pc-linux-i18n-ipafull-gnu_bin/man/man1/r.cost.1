@@ -1,0 +1,286 @@
+r.cost(1)                     Grass User's Manual                    r.cost(1)
+
+
+
+NNAAMMEE
+       rr..ccoosstt - Outputs a raster map layer showing the cumulative cost of mov-
+       ing between different geographic locations on an input raster map layer
+       whose cell category values represent cost.
+       _(_G_R_A_S_S _R_a_s_t_e_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..ccoosstt
+       rr..ccoosstt hheellpp
+       rr..ccoosstt   [--vv]   [--kk]  [--nn]  iinnppuutt==_n_a_m_e  oouuttppuutt==_n_a_m_e  [ssttaarrtt__ssiitteess==_n_a_m_e]
+       [ssttoopp__ssiitteess==_n_a_m_e]     [ssttaarrtt__rraasstt==_n_a_m_e]      [ccoooorrddiinnaattee==_x,_y[,_x,_y,...]]
+       [ssttoopp__ccoooorrddiinnaattee==_x,_y[,_x,_y,...]]  [mmaaxx__ccoosstt==_c_o_s_t] [nnuullll__vvaalluuee==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._c_o_s_t  determines the cumulative cost of moving to each cell on a _c_o_s_t
+       _s_u_r_f_a_c_e (the input raster map layer) from other user-specified  cell(s)
+       whose  locations  are specified by their geographic coordinate(s). Each
+       cell in the original cost surface map will  contain  a  category  value
+       which  represents the cost of traversing that cell. _r_._c_o_s_t will produce
+       an output raster map layer in which each cell contains the lowest total
+       cost  of  traversing the space between each cell and the user-specified
+       points. (Diagonal costs are multiplied by a factor that depends on  the
+       dimensions  of  the  cell.)  This  program  uses the current geographic
+       region settings.  The output map will be of the same data  format  than
+       the input map, integer or floating point.
+
+OOPPTTIIOONNSS
+       _r_._c_o_s_t  can  be run either non-interactively or interactively. The pro-
+       gram will be run non-interactively if the user specifies the  names  of
+       raster map layers and any desired options on the command line.
+
+   FFllaaggss::
+       --vv     Run verbosely.
+
+       --kk     Use the 'Knight's move'; slower, but more accurate.
+
+       --nn     Keep null values in output map
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of raster map containing grid cell cost information.
+
+       oouuttppuutt==_n_a_m_e
+              Name of raster map to contain results.
+
+       ssttaarrtt__ssiitteess==_n_a_m_e
+              Starting points site file.
+
+       ssttoopp__ssiitteess==_n_a_m_e
+              Stop points site file.
+
+       ssttaarrtt__rraasstt==_n_a_m_e
+              Starting points raster file.
+
+       ccoooorrddiinnaattee==_x,_y[,_x,_y,...]
+              The map E and N grid coordinates of a starting point (E,N).
+
+       ssttoopp__ccoooorrddiinnaattee==_x,_y[,_x,_y,...]
+              The map E and N grid coordinates of a stopping point (E,N).
+
+       mmaaxx__ccoosstt==_c_o_s_t
+              An optional maximum cumulative cost (default: 0).
+
+       nnuullll__vvaalluuee==_v_a_l_u_e
+              Cost  assigned  to  null  cells.  By  default,  null  cells  are
+              excluded.
+
+
+       The iinnppuutt_n_a_m_e is the name of a raster map layer representing  the  cost
+       surface map, the oouuttppuutt==_n_a_m_e is the name of a raster map layer of cumu-
+       lative cost, and each _x,_y coordinate pair gives the geographic location
+       of  a point from which the transportation cost should be figured. These
+       starting  points  could  be  read  from  a  sites  file   through   the
+       ssttaarrtt__ssiitteess==_n_a_m_e   option   or   from   a   raster   map   through  the
+       ssttaarrtt__rraasstt==_n_a_m_e option.  _r_._c_o_s_t will stop cumulating costs when  either
+       _m_a_x_c_o_s_t is reached, or one of the stop points given with the ssttoopp__ccoooorr--
+       ddiinnaatteess==_x_,_y is reached.  Alternatively, the stop  points  can  be  read
+       from  a  site file through the ssttoopp__ssiitteess==_n_a_m_e option. Both points read
+       from a site file and those given o the command line will  be  processd.
+       The  null  cells  in the input map can be assigned a (positive floating
+       point) cost with the _n_u_l_l___v_a_l_u_e option.
+
+       Alternately, the user can simply type rr..ccoosstt on the command line, with-
+       out  program  arguments.  In  this  case, the user will be prompted for
+       parameter values using the standard GRASS _p_a_r_s_e_r interface.
+
+       _r_._c_o_s_t can be run with two different methods of identifying the  start-
+       ing  point(s).  One or more points (geographic coordinate pairs) can be
+       provided on the command line, sites file or raster map.   All  non-NULL
+       cells are considered to be starting points.
+
+   FFllaaggss::
+       --vv
+
+       Processing  is  tracked verbosely. This program can run for a very long
+       time.
+
+       --kk
+
+       The Knight's move is used which improves the accuracy of the output. In
+       the  diagram below, the center location (O) represents a grid cell from
+       which cumulative distances are calculated. Those neighbors marked  with
+       an  X  are  always  considered for cumulative cost updates. With the --kk
+       option, the neighbors marked with a K are also considered.
+        .   .   . K .   . K .   .   .
+        . . . . . . . . . . . . . . .
+        .   . K . X . X . X . K .   .
+        . . . . . . . . . . . . . . .
+        .   .   . X . O . X .   .   .
+        . . . . . . . . . . . . . . .
+        .   . K . X . X . X . K .   .
+        . . . . . . . . . . . . . . .
+        .   .   . K .   . K .   .   .
+        . . . . . . . . . . . . . . .
+
+
+
+       --nn
+
+       When input map null cells are given a cost with the nnuullll__vvaalluuee  option,
+       the  corresponding  cells  in  the output map are no longer null cells.
+       With this option, the null cells of the input map are retained as  null
+       cells in the output map.
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+
+       Name  of input raster map layer whose category values represent surface
+       cost.
+
+       oouuttppuutt==_n_a_m_e
+
+       Name of raster map layer to contain output.
+
+
+       ssttaarrtt__ssiitteess==_n_a_m_e
+
+        _n_a_m_e is the name of a site file that holds the coordinates of starting
+       points from which the transportation cost should be figured.
+
+
+       ssttoopp__ssiitteess==_n_a_m_e
+
+        _n_a_m_e  is the name of a site file that hold the coordinates of stopping
+       points. During execution, once the  cumulative  cost  to  all  stopping
+       points has been determined, processing stops.
+
+       ccoooorrddiinnaattee==_x,_y[,_x,_y,...]
+
+       Each  x,y coordinate pair gives the easting and northing (respectively)
+       geographic coordinates of a starting point from which to figure cumula-
+       tive  transportation costs for each cell. As many points as desired can
+       be entered by the user.
+
+       ssttoopp__ccoooorrddiinnaattee==_x,_y[,_x,_y,...]
+
+       Each x,y coordinate pair gives the easting and northing  (respectively)
+       geographic  coordinates of a stopping point. During execution, once the
+       cumulative cost to all stopping points has been determined,  processing
+       stops. As many points as desired can be entered by the user.
+
+       mmaaxx__ccoosstt==_m_a_x_c_o_s_t
+
+       This  is the cost limit that forces rr..ccoosstt to restart the current point
+       to be considered a stop point.
+
+       nnuullll__vvaalluuee==_v_a_l_u_e
+
+       The optional value that will be assigned to the null cells in the input
+       map. This is a positive floating point value.
+
+EEXXAAMMPPLLEE
+       Consider the following example:
+              Input:
+                COST SURFACE
+              . . . . . . . . . . . . . . .
+              . 2 . 2 . 1 . 1 . 5 . 5 . 5 .
+              . . . . . . . . . . . . . . .
+              . 2 . 2 . 8 . 8 . 5 . 2 . 1 .
+              . . . . . . . . . . . . . . .
+              . 7 . 1 . 1 . 8 . 2 . 2 . 2 .
+              . . . . . . . . . . . . . . .
+              . 8 . 7 . 8 . 8 . 8 . 8 . 5 .
+              . . . . . . . . . . _____ . .
+              . 8 . 8 . 1 . 1 . 5 | 3 | 9 .
+              . . . . . . . . . . |___| . .
+              . 8 . 1 . 1 . 2 . 5 . 3 . 9 .
+              . . . . . . . . . . . . . . .
+
+       Output (using -k):                Output (not using -k):
+          COST SURFACE                      CUMULATIVE COST SURFACE
+        . . . . . . . . . . . . . . .     . . . . * * * * * . . . . . .
+        . 21. 21. 20. 19. 17. 15. 14.     . 22. 21* 21* 20* 17. 15. 14.
+        . . . . . . . . . . . . . . .     . . . . * * * * * . . . . . .
+        . 20. 19. 22. 19. 15. 12. 11.     . 20. 19. 22* 20* 15. 12. 11.
+        . . . . . . . . . . . . . . .     . . . . . . * * * * * . . . .
+        . 22. 18. 17. 17. 12. 11.  9.     . 22. 18. 17* 18* 13* 11.  9.
+        . . . . . . . . . . . . . . .     . . . . . . * * * * * . . . .
+        . 21. 14. 13. 12.  8.  6.  6.     . 21. 14. 13. 12.  8.  6.  6.
+        . . . . . . . . . . _____ . .     . . . . . . . . . . . . . . .
+        . 16. 13.  8.  7.  4|  0|  6.     . 16. 13.  8. 7 .  4.  0.  6.
+        . . . . . . . . . . |___| . .     . . . . . . . . . . . . . . .
+        . 14.  9.  8.  9.  6.  3.  8.     . 14.  9.  8. 9 .  6.  3.  8.
+        . . . . . . . . . . . . . . .     . . . . . . . . . . . . . . .
+
+
+
+       The  user-provided  ending location in the above example is the boxed 33
+       in the left-hand map. The costs in the output map represent  the  total
+       cost  of  moving from each box ("cell") to one or more (here, only one)
+       starting location(s). Cells surrounded by asterisks are those that  are
+       different between operations using and not using the Knight's move (--kk)
+       option. This output map can be viewed, for  example,  as  an  elevation
+       model  in  which  the  starting location(s) is/are the lowest point(s).
+       Outputs from _r_._c_o_s_t can be used as inputs to _r_._d_r_a_i_n, in order to trace
+       the  least-cost path given in this model between any given cell and the
+       _r_._c_o_s_t starting location(s). The two programs, when used together, gen-
+       erate  least-cost  paths  or  corridors  between  any two map locations
+       (cells).
+
+NNUULLLL CCEELLLLSS
+       By defaults, null cells in the input raster map are excluded  from  the
+       algorithm, and thus retained on output.
+
+       If one wants rr..ccoosstt to transparently cross the null cells, one must use
+       the option nnuullll__vvaalluuee==_0_._0..  Then, null cells  just  propagate  adjacent
+       costs. These cells could then be retained as null cells into the output
+       map through the --nn flag.
+
+NNOOTTEESS
+       Sometimes, when the differences among iinntteeggeerr cell category values  the
+       _r_._c_o_s_t  cumulative  cost surface output are small, this cumulative cost
+       output cannot accurately be used as input to _r_._d_r_a_i_n (_r_._d_r_a_i_n will out-
+       put  bad  results). This problem can be circumvented by making the dif-
+       ferences between cell category values in  the  cumulative  cost  output
+       bigger. It is recommended that, if the output from _r_._c_o_s_t is to be used
+       as input to _r_._d_r_a_i_n, the user multiply the input cost  surface  map  to
+       _r_._c_o_s_t  by  the  value  of  the  map's  cell resolution, before running
+       _r_._c_o_s_t. This can be done using _r_._m_a_p_c_a_l_c or  other  programs.  The  map
+       resolution  can  be  found  using _g_._r_e_g_i_o_n.  This problem doesn't arise
+       with floating point maps.
+
+SSEEEE AALLSSOO
+       _g_._c_o_p_y
+
+       _g_._r_e_g_i_o_n
+
+       _g_._r_e_n_a_m_e
+
+       _r_._d_r_a_i_n
+
+       _r_._i_n_._a_s_c_i_i
+
+       _r_._m_a_p_c_a_l_c
+
+       _r_._o_u_t_._a_s_c_i_i
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Antony Awaida,
+
+       Intelligent Engineering
+
+       Systems Laboratory,
+
+       M.I.T.
+
+       James Westervelt,
+
+       U.S.Army Construction Engineering Research Laboratory
+
+       Updated for Grass 5
+
+       Pierre de Mouveaux (pmx@audiovu.com)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                            r.cost(1)

@@ -1,0 +1,65 @@
+r.circle(1)                   Grass User's Manual                  r.circle(1)
+
+
+
+NNAAMMEE
+       rr..cciirrccllee  -  Creates  a raster map containing concentric rings around a
+       given point.
+
+SSYYNNOOPPSSIISS
+       rr..cciirrccllee  [[--bb]]  oouuttppuutt==_n_a_m_e  ccoooorrddiinnaattee==_x_,_y   [mmiinn==_v_a_l_u_e]   [mmaaxx==_v_a_l_u_e]
+       [mmuulltt==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This  module  creates a raster map containing concentric rings around a
+       given point.  The cell values are increasing  linear  from  the  center
+       point  to  outer  rings.  Minimum  and  maximum radius can be selected.
+       Optionally a "donut" ring can be created to use as (binary) filter  for
+       _i_._i_f_f_t inverse Fourier transform (apply filter with _r_._m_a_s_k).
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --bb     Generate binary raster map
+
+
+   PPaarraammeetteerrss::
+       oouuttppuutt==_n_a_m_e
+              Name for new raster file
+
+       ccoooorrddiinnaattee==_x_,_y
+              The coordinate of the center (easting, northing)
+
+       mmiinn==_v_a_l_u_e
+              Minimum radius for ring/circle map (in cell units)
+
+       mmaaxx==_v_a_l_u_e
+              Maximum radius for ring/circle map (in cell units)
+
+       mmuulltt==_v_a_l_u_e
+              Multiplier
+
+
+EEXXAAMMPPLLEESS
+       Generate a circle at current map center with a radius of 300m:
+             EASTCENTER=`g.region -c |  awk ' /region center easting:/ { print
+       $4 }'`
+             NORTHCENTER=`g.region -c | awk  '  /region  center  northing:/  {
+       print $4 }'`
+             r.circle    -b   out=circle   coordinate=$EASTCENTER,$NORTHCENTER
+       max=300
+
+
+SSEEEE AALLSSOO
+       _g_._r_e_m_o_v_e, _g_._r_e_n_a_m_e, _i_._f_f_t, _i_._i_f_f_t, _r_._m_a_s_k
+
+AAUUTTHHOORR
+       Bill Brown, U.S. Army Construction Engineering Research Laboratory
+
+       Additional flag/min/max parameter by Markus Neteler, University of Han-
+       nover
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.circle(1)

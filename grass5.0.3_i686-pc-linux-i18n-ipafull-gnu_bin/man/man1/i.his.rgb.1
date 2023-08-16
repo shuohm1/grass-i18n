@@ -1,0 +1,81 @@
+i.his.rgb(1)                  Grass User's Manual                 i.his.rgb(1)
+
+
+
+NNAAMMEE
+       ii..hhiiss..rrggbb   -  Hue-intensity-saturation  (his)  to red-green-blue (rgb)
+       raster map color transformation function.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..hhiiss..rrggbb
+       ii..hhiiss..rrggbb hheellpp
+       ii..hhiiss..rrggbb  hhuuee__iinnppuutt==_n_a_m_e  iinntteennssiittyy__iinnppuutt==_n_a_m_e   ssaattuurraattiioonn__iinnppuutt==_n_a_m_e
+       rreedd__oouuttppuutt==_n_a_m_e ggrreeeenn__oouuttppuutt==_n_a_m_e bblluuee__oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._h_i_s_._r_g_b  is  an  image  processing program that processes three input
+       raster map layers as hue, intensity and saturation components and  pro-
+       duces  three  output  raster map layers representing the red, green and
+       blue components of this data.  The output raster map layers are created
+       by  a  standard  hue-intensity-saturation (his) to red-green-blue (rgb)
+       color transformation.  Each output raster map layer is given  a  linear
+       gray  scale  color  table.  The current geographic region and mask set-
+       tings are respected.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       hhuuee__iinnppuutt==_n_a_m_e
+              Name of input raster map layer representing _h_u_e.
+
+       iinntteennssiittyy__iinnppuutt==_n_a_m_e
+              Name of input raster map layer representing _i_n_t_e_n_s_i_t_y.
+
+       ssaattuurraattiioonn__iinnppuutt==_n_a_m_e
+              Name of input raster map layer representing _s_a_t_u_r_a_t_i_o_n.
+
+       rreedd__oouuttppuutt==_n_a_m_e
+              Output raster map layer representing the _r_e_d  component  in  the
+              data.
+
+       ggrreeeenn__oouuttppuutt==_n_a_m_e
+              Output  raster map layer representing the _g_r_e_e_n component in the
+              data.
+
+       bblluuee__oouuttppuutt==_n_a_m_e
+              Output raster map layer representing the _b_l_u_e component  in  the
+              data.
+
+
+NNOOTTEESS
+       It  is  not  possible  to  process  three bands with _i_._h_i_s_._r_g_b and then
+       exactly recover the original bands with _i_._r_g_b_._h_i_s.  This is due to loss
+       of  precision because of integer computations and rounding.  Tests have
+       shown that more than 70% of the original cell values will be reproduced
+       exactly  after  transformation  in both directions and that 99% will be
+       within plus or minus 1.  A few cell  values  may  differ  significantly
+       from their original values.
+
+SSEEEE AALLSSOO
+       _h_s_v_._r_g_b_._s_h
+
+       _i_._c_o_l_o_r_s
+
+       _i_._r_g_b_._h_i_s
+
+       _r_._c_o_l_o_r_s
+
+       _r_g_b_._h_s_v_._s_h
+
+AAUUTTHHOORR
+       David Satnik, GIS Laboratory, Central Washington University
+
+
+       with  acknowledgements  to Ali Vali, Univ. of Texas Space Research Cen-
+       ter, for the core routine.
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                         i.his.rgb(1)

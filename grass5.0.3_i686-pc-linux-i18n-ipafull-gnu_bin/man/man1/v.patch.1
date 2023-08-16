@@ -1,0 +1,96 @@
+v.patch(1)                    Grass User's Manual                   v.patch(1)
+
+
+
+NNAAMMEE
+       vv..ppaattcchh   -  Creates  a  new binary vector map layer by combining other
+       binary vector map layers.
+       _(_G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..ppaattcchh
+       vv..ppaattcchh hheellpp
+       vv..ppaattcchh iinnppuutt==_n_a_m_e[,_n_a_m_e,...]  oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._p_a_t_c_h allows the user to combine any  number  of  vector  map  layers
+       together to create one composite vector map layer.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e,_n_a_m_e, ...
+              Name(s) of input vector map(s) to be patched together.
+
+       oouuttppuutt==_n_a_m_e
+              Name assigned to composite "patched" vector output map.
+
+
+
+       The  program  will  be  run non-interactively if the user specifies the
+       names of the vector map(s) to be patched and the name of an output file
+       to  store  the  resulting  composite  patched vector map on the command
+       line, in the form: vv..ppaattcchh iinnppuutt==_n_a_m_e[,_n_a_m_e,...]  oouuttppuutt==_n_a_m_e
+
+
+
+       Alternately, if the user runs _v_._p_a_t_c_h without specifying input and out-
+       put file names on the command line (by typing simply vv..ppaattcchh), the pro-
+       gram will prompt the user for inputs using the standard GRASS interface
+       described in the manual entry for _p_a_r_s_e_r.
+
+NNOOTTEESS
+       The  vector  map layers to be patched together must exist in the user's
+       current mapset search path, and the composite  vector  map  layer  name
+       given must not already exist in the user's current mapset.
+
+
+       After  running  _v_._p_a_t_c_h,  the header file will contain only information
+       taken  from  the  first  _i_n_p_u_t  file   name   given   in   the   string
+       iinnppuutt==_n_a_m_e_,_n_a_m_e_,  _._._.,  with  the  exception of the geographic region's
+       edge information, and the scale and threshold information.  (The user's
+       current  geographic  region  settings  are ignored; this information is
+       instead extracted from the vector file headers.) In the  new  composite
+       vector  map  layer,  the  boundaries  of  the geographic region will be
+       expanded to encompass all of the geographic area included  in  the  map
+       layers  being  patched, and the scale will be set equal to the smallest
+       (i.e., most gross) scale used by any of the patched  map  layers  (this
+       will  affect  default  node-snapping thresholds).  The map threshold is
+       calculated automatically from the map scales given in the file headers,
+       and (currently) is not used directly.  The composite vector map layer's
+       header will probably need to be edited; this can be  done  from  within
+       the GRASS program _v_._d_i_g_i_t.
+
+
+       The  GRASS  programs  _v_._m_k_g_r_i_d and _v_._m_k_q_u_a_d_s can be used to ensure that
+       the borders of the maps to be patched together align neatly.
+
+
+       Any vectors that are duplicated among the maps being  patched  together
+       (e.g., border lines) will have to be edited or removed after _v_._p_a_t_c_h is
+       run.  Such editing can be done using _v_._d_i_g_i_t.
+
+
+       After running _v_._p_a_t_c_h the user must run _v_._s_u_p_p_o_r_t on the composite vec-
+       tor map layer in order to create a dig_plus (topology) file for it.  At
+       this time, you can request that a  _v_e_r_y  small  snapping  threshold  be
+       used, to cause the nodes that match up across vector map layers to snap
+       together without affecting the integrity of the remainder of the vector
+       map layer.
+
+BBUUGGSS
+       The  dig_cats  and  reg  file  information  for  the maps being patched
+       together is not copied to the composite, patched map layer.   The  user
+       should therefore run _v_._s_u_p_p_o_r_t on the output file produced by this pro-
+       gram.
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t, _v_._i_n_._a_s_c_i_i, _v_._m_k_g_r_i_d, _v_._m_k_q_u_a_d_s, _v_._s_u_p_p_o_r_t, and _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Dave Gerdes, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                           v.patch(1)

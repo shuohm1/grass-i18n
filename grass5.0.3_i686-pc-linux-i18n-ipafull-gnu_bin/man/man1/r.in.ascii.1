@@ -1,0 +1,159 @@
+r.in.ascii(1)                 Grass User's Manual                r.in.ascii(1)
+
+
+
+NNAAMMEE
+       rr..iinn..aasscciiii   - Convert an ASCII raster text file into a (binary) raster
+       map layer.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..aasscciiii
+       rr..iinn..aasscciiii hheellpp
+       rr..iinn..aasscciiii [--iiffddss] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [TTIITTLLEE=="_p_h_r_a_s_e"] [mmuulltt==_m_u_l_t_i_-
+       _p_l_i_e_r]
+
+DDEESSCCRRIIPPTTIIOONN
+       _r_._i_n_._a_s_c_i_i  allows  a  user to create a (binary) GRASS raster map layer
+       from an ASCII raster input file with (optional) TITLE.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --ii     integer values are imported
+
+       --ff     floating point values are imported
+
+       --dd     double floating point values are imported
+
+       --ss     SURFER (Golden Software) ascii grid file will be imported
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing ASCII raster file to be imported.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to resultant binary raster map layer.
+
+       TTIITTLLEE== Title to be assigned to resultant raster map layer.
+
+       mmuulltt==_m_u_l_t_i_p_l_i_e_r
+              Multiply all raster cell values by _m_u_l_t_i_p_l_i_e_r.  _m_u_l_t_i_p_l_i_e_r is  a
+              floating point value, and has a default value of 1.0.
+
+       The  iinnppuutt  file  has a header section which describes the location and
+       size of the data, followed by the data itself.
+
+
+       The header has 6 lines:
+
+
+       north:   xxxxxx.xx
+
+       south:   xxxxxx.xx
+
+       east:    xxxxxx.xx
+
+       west:    xxxxxx.xx
+
+       rows:    r
+
+       cols:    c
+
+       The north, south, east, and west field values entered are  the  coordi-
+       nates  of  the edges of the geographic region.  The rows and cols field
+       values entered describe the dimensions of the matrix of data to follow.
+       The data which follows is _r rows of _c integers.
+
+
+       Optionally  the  following parameters can be defined in the header sec-
+       tion:
+
+
+       null: nn
+
+       type: float
+
+       multiplier: 2.
+
+
+
+       "null" defines a string or number to be converted  to  NULL  value  (no
+       data).
+
+       "type" defines the data type (int, float double) and is not required.
+
+       "multiplier" is an optional parameter to multiply each cell value.
+
+EEXXAAMMPPLLEE
+       The following is a sample iinnppuutt file to _r_._i_n_._a_s_c_i_i:
+
+
+       north:                   4299000.00
+
+       south:                   4247000.00
+
+       east:                     528000.00
+
+       west:                     500000.00
+
+       rows:                         10
+
+       cols:                         15
+
+       null:                      -9999
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+       1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+
+NNOOTTEESS
+       The  geographic  coordinates  north, south, east, and west describe the
+       outer edges of the geographic region.  They run along the edges of  the
+       cells  at  the edge of the geographic region and _n_o_t through the center
+       of the cells at the edges.
+
+
+       The data (which follows the header section) must contain r _x c  values,
+       but  it  is not necessary that all the data for a row be on one line. A
+       row may be split over many lines.
+
+
+       _r_._i_n_._a_s_c_i_i handles floating point cell values.
+
+
+       The header information in ESRI Raster ASCII files differs  from  GRASS.
+       To  convert  an  Arc/Info  (ArcView)  ASCII grid file into GRASS, click
+       here.  Also, see _r_._i_n_._a_r_c to import ESRI Raster ASCII files.
+
+SSEEEE AALLSSOO
+        _m_._f_l_i_p_, _r_._o_u_t_._a_s_c_i_i_, _r_._i_n_._a_r_c_, _r_._o_u_t_._a_r_c_, _r_._i_n_._b_i_n_, _G_R_A_S_S  _A_S_C_I_I  _f_o_r_-
+       _m_a_t_s
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S. Army Construction Engineering Research Laboratory
+
+       Surfer support by Roger Miller
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_7_/_0_4 _0_8_:_3_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                        r.in.ascii(1)

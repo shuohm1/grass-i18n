@@ -1,0 +1,61 @@
+v.rmedge(1)                   Grass User's Manual                  v.rmedge(1)
+
+
+
+NNAAMMEE
+       vv..rrmmeeddggee   -  Selects edge vectors from an existing vector map, removes
+       them, and creates a new vector map.
+       _"_(_S_C_S _G_R_A_S_S _V_e_c_t_o_r _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       vv..rrmmeeddggee
+       vv..rrmmeeddggee hheellpp
+       vv..rrmmeeddggee iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       allows a user to create a new vector map from an existing  vector  map,
+       however _A_L_L _O_U_T_E_R boundaries will be gone. Any outer edge that needs to
+       be retained will require adding another outside boundary,  _v_._d_i_g_i_t  can
+       be used to provide this additional boundary.
+
+
+
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of vector input file.
+
+       oouuttppuutt==_n_a_m_e
+              Name of vector output file.
+
+
+NNOOTTEESS
+       When  using  _v_._d_i_g_i_t  to add an additional boundary to a map, it may be
+       necessary to break the boundary of an existing  area.   The  user   _*_*_*
+       _M_U_S_T  _R_E_M_E_M_B_E_R  _*_*_*  that  breaking  the  boundary  of a named area _*_*_*
+       _R_E_M_O_V_E_S _T_H_E _L_A_B_E_L _*_*_*, and the area _*_*_* _M_U_S_T _B_E _R_E_-_L_A_B_E_L_E_D _*_*_* prior to
+       leaving _v_._d_i_g_i_t;
+       -OR-
+       _*_*_* _v_._r_m_e_d_g_e _w_i_l_l _R_E_M_O_V_E _t_h_a_t _a_r_e_a _b_o_u_n_d_a_r_y _A_L_S_O _*_*_*
+
+
+       This will result in MISSING data in a patching operation.
+
+SSEEEE AALLSSOO
+       _v_._d_i_g_i_t
+
+       _v_._m_e_r_g_e
+
+       _v_._p_a_t_c_h
+
+AAUUTTHHOORR
+       R.L. Glenn, USDA, SCS, NHQ-CGIS
+
+
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                          v.rmedge(1)

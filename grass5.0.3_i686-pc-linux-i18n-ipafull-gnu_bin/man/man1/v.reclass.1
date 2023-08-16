@@ -1,0 +1,241 @@
+v.reclass(1)                  Grass User's Manual                 v.reclass(1)
+
+
+
+NNAAMMEE
+       vv..rreeccllaassss  -  Creates  a  new map layer whose category values are based
+       upon the user's reclassification of categories in  an  existing  vector
+       map layer. (SCS GRASS Vector Program)
+
+SSYYNNOOPPSSIISS
+       vv..rreeccllaassss
+
+       vv..rreeccllaassss hheellpp
+
+       vv..rreeccllaassss   [[--dd]]   iinnppuutt_=_n_a_m_e  oouuttppuutt_=_n_a_m_e  ttyyppee_=_a_r_e_a_,  _l_i_n_e_,  _o_r  _s_i_t_e
+       [ttiittllee_=_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _v_._r_e_c_l_a_s_s creates an output map layer based  on  an  input  vector  map
+       layer.  The  output  map  layer will be a reclassification of the input
+       map layer based on reclass rules input to _v_._r_e_c_l_a_s_s.  A title  for  the
+       output map layer may be (optionally) specified by the user.
+
+
+       The  reclass  rules  are  read from standard input (i.e., from the key-
+       board, redirected from a file, or piped through another program).
+
+OOPPTTIIOONNSS
+       The user can run this  program  either  non-interactively  or  interac-
+       tively.   The  program will be run non-interactively if the user speci-
+       fies program arguments and flag settings on the command line using  the
+       form:
+
+
+       _v_._r_e_c_l_a_s_s   _[_-_d_]   _i_n_p_u_t_=_n_a_m_e   _o_u_t_p_u_t_=_n_a_m_e  _t_y_p_e_=_a_r_e_a_,  _l_i_n_e_, _o_r  _s_i_t_e
+       _[_t_i_t_l_e_=_n_a_m_e_]
+
+
+       After the user types in the above information on the command line,  the
+       program will (silently) prompt the user for reclass rules to be applied
+       to the input  map  layer  categories.   The  form  of  these  rules  is
+       described  in further detail in the sections on non-interactive program
+       use reclass rules and examples, below.
+
+   FFllaagg::
+       --dd     Dissolve common boundaries between areas
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==nnaammee
+              Vector input map name.
+
+       oouuttppuutt==nnaammee
+              Vector output map name.
+
+       ttyyppee==nnaammee
+              Select type of vector input file.  Options: area, line, site
+
+
+
+       Alternately, the user can simply type _v_._r_e_c_l_a_s_s on  the  command  line,
+       without program arguments.  In this case, the user will be prompted for
+       all needed inputs.  Before using _v_._r_e_c_l_a_s_s one must know the following:
+
+
+       1       The  new categories desired; and, which old categories fit into
+       which new categories.
+
+
+       2      The names of the new categories.
+
+IINNTTEERRAACCTTIIVVEE PPRROOGGRRAAMM UUSSEE:: EEXXAAMMPPLLEE
+       Suppose we want to reclassify the vector map layer roads, consisting of
+       five  categories,  into  the three new categories: paved roads, unpaved
+       roads, and railroad tracks.  The user is asked whether the reclass  ta-
+       ble  is  to be established with each category value initially set to 0,
+       or with each category value initially set to its own value.   A  screen
+       like that shown below then appears, listing the categories of the roads
+       vector map layer to be reclassified and prompting the user for the  new
+       category values to be assigned them.
+
+               ENTER NEW CATEGORY NUMBERS FOR THESE CATEGORIES
+
+             OLD CATEGORY NAME       OLD       NEW
+                                          NUM       NUM
+             no data                      0         0__
+             Hard Surface, 2 lanes             1         0__
+             Loose Surface, 1 lane             2         0__
+             Improved Dirt                3         0__
+             Unimproved Dirt Trail             4         0__
+             Railroad, single track            5         0__
+
+             AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                        (OR <Ctrl-C> TO CANCEL)
+
+       In  the  following  screen  the  new  category values have been entered
+       beside the appropriate old category  names.   Cells  assigned  category
+       values 2, 3, and 4 in the old vector map layer are now assigned the new
+       category value 2 in the reclassed map; cell data formerly  assigned  to
+       category  value  5  in  the old vector map map are now assigned the new
+       category value 3 in the reclassed map.
+               ENTER NEW CATEGORY NUMBERS FOR THESE CATEGORIES
+
+             OLD CATEGORY NAME       OLD       NEW
+                                          NUM       NUM
+             no data                      0         0__
+             Hard Surface, 2 lanes             1         1__
+             Loose Surface, 1 lane             2         2__
+             Improved Dirt                3         2__
+             Unimproved Dirt Trail             4         2__
+             Railroad, single track            5         3__
+
+             AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                        (OR <Ctrl-C> TO CANCEL)
+
+       Hitting the escape key  will  bring  up  the  following  screen,  which
+       prompts  the user to enter a new title and category label for the newly
+       reclassed categories.
+                ENTER NEW CATEGORY NAMES FOR THESE CATEGORIES
+
+              TITLE:  Roads Reclassified
+                CAT        NEW CATEGORY NAME
+                NUM
+                 0         no data
+                 1         Paved Roads
+                 2         Unpaved Roads
+                 3         Railroad, single track
+
+              AFTER COMPLETING ALL ANSWERS, HIT <ESC> TO CONTINUE
+                      (OR <Ctrl-C> TO CANCEL)
+
+       Based upon the information supplied by the user  in  the  above  sample
+       screens,  the new output map and supporting category files are created.
+
+NNOONN--IINNTTEERRAACCTTIIVVEE PPRROOGGRRAAMM UUSSEE:: RREECCLLAASSSS RRUULLEESS
+       In non-interactive program use, the names of an input map, output  map,
+       type  of input map, and output map title are given on the command line.
+       However, the reclass rules are still read from  standard  input  (i.e.,
+       from  the  keyboard,  redirected  from a file, or piped through another
+       program).
+
+
+       Once the user has specified an input vector map layer, output map layer
+       name,  type of input map layer, and (optionally) output map layer title
+       by typing:
+
+
+       _v_._r_e_c_l_a_s_s  _[_-_d  _]  _i_n_p_u_t_=_n_a_m_e  _o_u_t_p_u_t_=_n_a_m_e  _t_y_p_e_=_a_r_e_a_,  _l_i_n_e_,  _o_r  _s_i_t_e
+       _[_t_i_t_l_e_=_n_a_m_e_]
+
+
+       Each line of input must have the following format:
+
+
+       _i_n_p_u_t___c_a_t_e_g_o_r_i_e_s_=_o_u_t_p_u_t___c_a_t_e_g_o_r_y _[_l_a_b_e_l_]
+
+
+       where  the  input lines specify the category values in the input vector
+       map layer to be reclassified to the new output_category category value.
+       Specification of a label to be associated with the new output map layer
+       category is optional.  If specified, it is  recorded  as  the  category
+       label  for  the new category value.  The equal sign = is required.  The
+       input_category(ies) may consist of single category values or a range of
+       such  values  in  the  format "low thru high."  The word "thru" must be
+       present.
+
+
+       A line containing only the word end terminates the input.
+
+NNOONN--IINNTTEERRAACCTTIIVVEE PPRROOGGRRAAMM UUSSEE:: EEXXAAMMPPLLEESS
+       The following examples may help clarify the reclass rules.
+
+
+       1    This example reclassifies categories 1, 3 and 5 in the input  vec-
+       tor  map  layer to category 1 with category label "poor quality" in the
+       output map layer, and reclassifies input vector map layer categories 2,
+       4,  and 6 to category 2 with the label "good quality" in the output map
+       layer.
+                 1 3 5   =  1   poor quality
+                 2 4 6   =  2   good quality
+
+       2    This example reclassifies input vector map layer categories 1 thru
+       10  to  output map layer category 1, input map layer categories 11 thru
+       20 to output map layer category 2, and input map  layer  categories  21
+       thru 30 to output map layer category 3, all without labels.
+                  1 thru 10       =   1
+                 11 thru 20       =   2
+                 21 thru 30       =   3
+
+       3    Subsequent  rules  override  previous rules.  Therefore, the below
+       example reclassifies input vector map layer categories 1 thru 19 and 51
+       thru  100 to category 1 in the output map layer, input vector map layer
+       categories 20 thru 24 and 26 thru 50 to the output map  layer  category
+       2, and input vector map layer category 25 to the output category 3.
+                 1 thru 100        =   1   poor quality
+                 20 thru 50        =   2   medium quality
+                  25     =   3   good quality
+
+       4    The previous example could also have been entered as:
+                  1 thru 19      51 thru 100   =   1     poor quality
+                 20 thru 24      26 thru 50    =   2     medium quality
+                      25        =   3     good quality
+
+       or as:
+                  1 thru 19         =     1   poor quality
+                 51 thru 100    =    1
+                 20 thru 24         =     2
+                 26 thru 50         =     2   medium quality
+                  25      =     3   good quality
+
+       The  final  example was given to show how the labels are handled.  If a
+       new category value appears in more than one rule (as is the  case  with
+       new  category  values  1  and  2),  the  last label which was specified
+       becomes the label for that category.   In  this  case  the  labels  are
+       assigned exactly as in the two previous examples.
+
+NNOOTTEESS
+       The  _v_._r_e_c_l_a_s_s  program generates a new vector map layer. The _v_._s_u_p_p_o_r_t
+       program will have to be run on the newly created vector  map  layer  to
+       build topology.  The dissolve _[_-_d_] option will work on only those areas
+       which are of the same conversion category value.   If  a  map  area  is
+       inside  (island)  a  converted  area  and  is NOT converted to the same
+       value, its boundaries are output to the resultant map.
+
+WWAARRNNIINNGG
+       Category values which are not explicitly reclassified to a new value by
+       the user will be reclassified to 0.
+
+SSEEEE AALLSSOO
+       _v_._s_u_p_p_o_r_t
+
+AAUUTTHHOORRSS
+       Paul H. Fukuhara, USDA SCS, NCG-GSS
+
+       R. L. Glenn, USDA SCS, NHQ-CGIS
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         v.reclass(1)

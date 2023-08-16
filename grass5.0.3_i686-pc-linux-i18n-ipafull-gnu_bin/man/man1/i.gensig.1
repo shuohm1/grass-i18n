@@ -1,0 +1,100 @@
+i.gensig(1)                   Grass User's Manual                  i.gensig(1)
+
+
+
+NNAAMMEE
+       _i_._g_e_n_s_i_g  - Generates statistics for _i_._m_a_x_l_i_k
+        from raster map layer.
+       _(_G_R_A_S_S _I_m_a_g_e_r_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..ggeennssiigg
+       ii..ggeennssiigg hheellpp
+       ii..ggeennssiigg ttrraaiinniinnggmmaapp==_n_a_m_e ggrroouupp==_n_a_m_e ssuubbggrroouupp==_n_a_m_e ssiiggnnaattuurreeffiillee==_n_a_m_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._g_e_n_s_i_g  is  a non-interactive method for generating input into _i_._m_a_x_-
+       _l_i_k.  It can be used as the first pass in the GRASS two-pass  classifi-
+       cation  process  (instead  of _i_._c_l_u_s_t_e_r or _i_._c_l_a_s_s).  It reads a raster
+       map layer, called the training map, which has some  of  the  pixels  or
+       regions already classified.  _i_._g_e_n_s_i_g will then extract spectral signa-
+       tures from an image based on the classification of the  pixels  in  the
+       training map and make these signatures available to _i_._m_a_x_l_i_k.
+
+
+       The user would then execute the GRASS program _i_._m_a_x_l_i_k to actually cre-
+       ate the final classified map.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss
+       ttrraaiinniinnggmmaapp==_n_a_m_e
+              ground truth training map
+
+
+       This map must be prepared by the user in advance. Programs like _v_._d_i_g_i_t
+       or  _r_._d_i_g_i_t  can  be used to define representative areas of the classes
+       the user defines to be in the image.  Of course other methods could  be
+       devised  by the user for creating this training map - _i_._g_e_n_s_i_g makes no
+       assumption about the origin of this map layer. It simply creates signa-
+       tures  for  the classes defined in the training map for the image to be
+       classified (the image is specified in other options - see below).
+
+       ggrroouupp==_n_a_m_e
+              imagery group
+
+
+       This is the name of the group that contains the band files  which  com-
+       prise  the  image  to be analyzed. The _i_._g_r_o_u_p  command is used to con-
+       struct groups of raster layers which comprise an image.
+
+
+
+       ssuubbggrroouupp==_n_a_m_e
+              subgroup containing image files
+
+
+       This names the subgroup within the group that selects a subset  of  the
+       bands to be analyzed. The _i_._g_r_o_u_p  command is also used to prepare this
+       subgroup.  The subgroup mechanism allows the user to select a subset of
+       all the band files that form an image.
+
+       ssiiggnnaattuurreeffiillee==_n_a_m_e
+              resultant signature file
+
+
+       This  is the resultant signature file (containing the means and covari-
+       ance matrices) for each class in the training map  that  is  associated
+       with the band files in the subgroup select (see above).
+
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+       If  none  of  the arguments are specified on the command line, _i_._g_e_n_s_i_g
+       will interactively prompt for the names of these maps and files.
+
+
+       It should be noted that interactive mode here  only  means  interactive
+       prompting  for  maps  and files.  It does not mean visualization of the
+       signatures that result from the process.
+
+SSEEEE AALLSSOO
+       _i_._g_r_o_u_p for creating groups and subgroups.
+
+
+       _v_._d_i_g_i_t and _r_._d_i_g_i_t for interactively  creating the training map.
+
+
+       _i_._c_l_u_s_t_e_r for unsupervised clustering as an alternative to _i_._g_e_n_s_i_g  to
+       create signatures.
+
+
+       _i_._c_l_a_s_s for a graphic/interactive as an alternative to _i_._g_e_n_s_i_g to cre-
+       ate signatures.
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                          i.gensig(1)

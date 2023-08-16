@@ -1,0 +1,70 @@
+v.out.e00(1)                  Grass User's Manual                 v.out.e00(1)
+
+
+
+NNAAMMEE
+       _v_._o_u_t_._e_0_0 - Write an Arc-Info line/polygon coverage in e00 format
+
+SSYYNNOOPPSSIISS
+       vv..oouutt..ee0000
+
+       vv..oouutt..ee0000 hheellpp
+
+       vv..oouutt..ee0000 iinnppuutt==_n_a_m_e [mmaappsseett==_n_a_m_e] [oouuttppuutt==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _v_._o_u_t_._e_0_0 program is designed to create an ESRI Arc/Info e00 ascii
+       file from a Grass vector file.
+
+       _v_._o_u_t_._e_0_0 will be run non-interactively if the user  specifies  program
+       arguments on the command line, using the form:
+
+       vv..oouutt..ee0000 iinnppuutt==_n_a_m_e [oouuttppuutt==_n_a_m_e]
+
+       Alternately, the user can simply type:
+
+       vv..oouutt..ee0000
+
+       on  the command line without program arguments.  In this case, the user
+       will be prompted for parameter values using  the  standard  GRASS  user
+       interface described in the manual entry for _p_a_r_s_e_r.
+
+FFEEAATTUURREESS
+       _v_._o_u_t_._e_0_0  attempts  to  create  an  Arc/Info  export file (.e00) for a
+       line/polygon coverage.  The attribut of each Grass line or area will be
+       the  Arc/Info  coverage-ID.   If there is no attribute, the coverage-ID
+       will be the same as the coverage-# (numbered from 1 to  the  number  of
+       lines or areas).
+
+OOPPTTIIOONNSS
+       _v_._o_u_t_._e_0_0 requires the user to enter the following information:
+
+   PPaarraammeetteerrss::
+       mmaappsseett==_n_a_m_e
+           Mapset holding vector map to be exported (Default = current)
+
+       oouuttppuutt==_n_a_m_e
+           Name  of output file.  If no name is given, _v_._o_u_t_._e_0_0 will write on
+           the standard output.
+
+
+BBUUGGSS AANNDD CCAAVVEEAATT
+       Since e00 is NOT a public format, this program is mainly based on anal-
+       ysis of existing files.
+
+NNOOTTEESS
+SSEEEE AALLSSOO
+       _m_._i_n_._e_0_0, _s_._o_u_t_._e_0_0, _v_._i_n_._s_h_a_p_e.
+
+AAUUTTHHOORR
+       Michel J. Wurtz, CEREG,
+
+       Ecole Nationale du Genie de l'Eau et de l'Environnement.
+
+       mw@engees.u-strasbg.fr
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                         v.out.e00(1)

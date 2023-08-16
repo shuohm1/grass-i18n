@@ -1,0 +1,181 @@
+s.territory(1)                Grass User's Manual               s.territory(1)
+
+
+
+NNAAMMEE
+       _s_._t_e_r_r_i_t_o_r_y - Calculates territory consumption for animal based on dis-
+       tributed positions.
+
+       _(_G_R_A_S_S _S_i_t_e_s _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..tteerrrriittoorryy
+
+       ss..tteerrrriittoorryy hheellpp
+
+       ss..tteerrrriittoorryy   rraasstt==_v_a_l_u_e    ssiitteess==_n_a_m_e    [oouuttppuutt==_n_a_m_e]    [ccllaaiimm==_n_a_m_e]
+       [tthhrreesshh==_n_a_m_e] [iinnccrr==_n_a_m_e]
+
+
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._t_e_r_r_i_t_o_r_y  calculates  territory consumption for animal based on dis-
+       tributed positions.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       rraasstt==_v_a_l_u_e
+              Name of incidence or density file
+
+
+       ssiitteess==_n_a_m_e
+              Name of sites file with threshold locations
+
+       oouuttppuutt==_n_a_m_e
+              Name of new sites file to contain radius
+
+       ccllaaiimm==_n_a_m_e
+              Simultaneous growth map. (ignored if site output given)
+
+       tthhrreesshh==_n_a_m_e
+              Field in sites file containing thresholds. Threshold  is  target
+              amount of resources that site wants to consume
+
+       iinnccrr==_n_a_m_e
+              Field  in  sites file containing radius increment (meters). incr
+              is radius increment for each iteration
+
+                    - default incr is min distance between cells
+
+                    - not currently implemented for sequential, only simult.
+
+
+NNOOTTEESS
+       OOUUTTPPUUTT is a sites file containing:
+
+           easting|northing|#cat %threshold %radius
+
+       where radius is the minimum radius of a circle which  surrounds  enough
+       cells in the incidence map to sum up to threshold.
+
+       If neither a sites output file nor a claim map is named, output is sim-
+       ply the radius followed by a newline for each site (for easier  use  in
+       scripts).
+
+       EEXXAAMMPPLLEESS::
+
+                     Lion's territory
+
+              you  have sites for lion's lairs with food needs as the "thresh-
+              old"
+
+              you have an incidence map for  frequency of prey or hunting suc-
+              cess probability (Kg/week or something)
+
+              s.territory  creates  a  circular  range for each lair which you
+              might use to create vector or raster files and predict areas  of
+              conflict in overlapping "territories"
+
+
+
+                     School children
+
+              you  have sites for schools with school capacity as the "thresh-
+              old"
+
+              you have population density maps for school-age children
+
+              s.territory creates ranges for each  school  that  encompass  an
+              area in which enough children live to fill the school
+
+
+       AALLGGOORRIITTHHMM::
+
+
+
+           radius increment set to lesser of ns_res and ew_res
+
+           ( or incr if given )
+
+           for each site
+
+           {
+
+             for (radius = increment; cells remaining; incr+=incr)
+
+             {
+
+
+       sum incidence cell centers which fall within radius
+
+
+       if >= threshold, break
+
+             }
+
+           }
+
+
+
+                      _i_m_p_l_e_m_e_n_t_a_t_i_o_n _(_f_a_s_t_, _h_i_g_h _m_e_m_o_r_y_)_:
+
+                     read density map into buffer
+
+                     use additional buffer to calculate distances(squared)
+
+                     to current site (as needed)
+
+                     if distance_squared > prev radius, add it in
+
+
+                      _i_m_p_l_e_m_e_n_t_a_t_i_o_n   _f_o_r   _s_i_m_u_l_t_a_n_e_o_u_s  _g_r_o_w_t_h  _(_m_u_c_h  _m_u_c_h
+                     _s_l_o_w_e_r_)_:
+
+                     reads density map, then repeatedly traverses
+
+                     output map looking for null cells, then checking to
+
+                     see if it's in any of the sites current radius, etc.
+
+
+                     _a_l_t_e_r_n_a_t_i_v_e_s_:
+       1. let max increase until entire map is covered,
+
+              using zero for outside incidence
+
+              >>> currently implemented
+
+           2. use a rectangular(square) territory rather than circle?
+
+           3. somehow "weight" expansion toward successful areas
+
+           4. save combined nearest distances map
+
+
+
+       ADDENDUM
+
+       Think about:
+
+       1.  Make already claimed territory uninhabitable - as each site is
+
+           processed, zero out resources within territory.
+
+           >>> This can be done in scripts, using masks. (slower though)
+
+       2.  Instead of just going through in order, attack them all at the
+
+           same time, zeroing out resources as it goes and assigning a
+
+           category value to a "claim" map.
+
+
+
+AAUUTTHHOORR
+       Bill Brown, GMSL, 1999
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                       s.territory(1)

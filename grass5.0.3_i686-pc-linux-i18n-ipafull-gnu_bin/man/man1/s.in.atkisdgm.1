@@ -1,0 +1,48 @@
+s.in.atkisdgm(1)              Grass User's Manual             s.in.atkisdgm(1)
+
+
+
+NNAAMMEE
+       ss..iinn..aattkkiissddggmm   -  Imports  a German ATKIS DEM file (.dgm) into a GRASS
+       site list file.
+
+       _(_G_R_A_S_S _S_i_t_e_s _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ss..iinn..aattkkiissddggmm
+       ss..iinn..aattkkiissddggmm hheellpp
+       ss..iinn..aattkkiissddggmm _d_g_m_f_i_l_e
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_._i_n_._a_t_k_i_s_d_g_m imports  a  German  ATKIS  DEM  file  (.dgm)  ("Digitales
+       Gel"ademodell")  into  a  GRASS site list file.  ATKIS is the "Amtliches
+       Topographisch-Kartographisches Informationssystem".
+
+
+       Input can be entered from the file _d_g_m_f_i_l_e. The standardized ATKIS  DGM
+       structure  is recognized properly. Output is stored in the file _d_g_m_f_i_l_e
+       (identical name) and placed  in  the  site_lists  directory  under  the
+       user's current mapset.
+
+   PPaarraammeetteerrss::
+       _d_g_m_f_i_l_e
+              Name  of an ATKIS DGM file containing site locations and labels.
+
+
+NNOOTTEESS
+       As the ATKIS-DGM files represent a regular elevation grid,  these  maps
+       can be directly converted into raster format with _s_._t_o_._r_a_s_t.
+
+SSEEEE AALLSSOO
+       _s_._i_n_f_o_, _s_._i_n_._a_s_c_i_i_, _s_._i_n_._a_t_k_i_s_k_t_b_, _s_._o_u_t_._s_h_a_p_e_, _s_._o_u_t_._a_s_c_i_i_, _s_._t_o_._r_a_s_t
+
+AAUUTTHHOORRSS
+       Markus Neteler, University of Hannover
+
+       Otto Dassau
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                     s.in.atkisdgm(1)

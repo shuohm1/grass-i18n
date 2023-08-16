@@ -1,0 +1,154 @@
+d.mon(1)                      Grass User's Manual                     d.mon(1)
+
+
+
+NNAAMMEE
+       dd..mmoonn - To establish and control use of a graphics display monitor.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..mmoonn
+       dd..mmoonn hheellpp
+       dd..mmoonn [--llLLpprrss] [ssttaarrtt==_n_a_m_e] [ssttoopp==_n_a_m_e] [sseelleecctt==_n_a_m_e] [uunnlloocckk==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       The  GRASS  program _d_._m_o_n allows the user to start, select, list, query
+       the status of, release control of, stop, and unlock control of,  avail-
+       able  graphics monitors.  The user can run this program either interac-
+       tively (through a series of menus), or non-interactively by typing  the
+       name  of the monitor to start, stop, select, or unlock, and any desired
+       flags on the command line.
+
+
+
+   FFllaaggss::
+       --ll     List all monitors
+
+       --LL     List all monitors (with current status)
+
+       --pp     Print name of currently selected monitor
+
+       --rr     Release currently selected monitor
+
+       --ss     Do not automatically select when starting
+
+
+   PPaarraammeetteerrss::
+       ssttaarrtt==_n_a_m_e
+              Name of graphics monitor to start
+
+       ssttoopp==_n_a_m_e
+              Name of graphics monitor to stop
+
+       sseelleecctt==_n_a_m_e
+              Name of graphics monitor to select
+
+       uunnlloocckk==_n_a_m_e
+              Name of graphics monitor to unlock
+
+       When the user enters the command  dd..mmoonn  without  specifying  parameter
+       values, the below menu appears on the screen:
+                               MONITOR MENU
+       Making sure that the graphics monitor is running:
+
+         1      - Start a graphics monitor
+                (also automatically selects this monitor)
+         2      - Stop a graphics monitor
+
+       Choosing a graphics monitor for your graphics:
+
+         3      - Select a graphics device for output
+                (currently selected monitor:  name)
+         4      - Release control of the graphics driver
+                (let someone else use it)
+                (option 4 appears only after selection of a monitor)
+
+       RETURN   quit
+
+       These parameters perform the following functions:
+
+              SSttaarrtt aa MMoonniittoorr..
+              In  order  to  display  on-screen  GRASS graphics, the user must
+              _s_t_a_r_t and _s_e_l_e_c_t a graphics monitor.  By default, the _s_t_a_r_t com-
+              mand  actually runs two commands, to both start and select what-
+              ever monitor is named by the user. (The user can get a  list  of
+              available  monitors  by setting the -l or -L flag on the command
+              line.)
+
+
+       When a  monitor  is  _s_t_a_r_t_e_d,  it  is  therefore  also  (automatically)
+       _s_e_l_e_c_t_e_d  for  output,  unless the _-_s flag is set by the user; the user
+       can also explictly _s_e_l_e_c_t a monitor that  has  been  started  (see  (3)
+       below).   After  a  monitor  is  started, a blank graphics frame should
+       appear on whatever terminal the user is using to display graphics.
+
+
+       The desired monitor should be started once and need  not  be  restarted
+       unless it is stopped (option _2) for some reason. A monitor may continue
+       to run for any length of time, even when no GRASS session is being run.
+       The monitor program runs in the background.
+
+              SSttoopp aa MMoonniittoorr..
+              Sometimes  the monitor program needs to be stopped (terminated).
+              Choosing option 2 will terminate a user-specified  monitor  pro-
+              gram.   A  graphics  monitor  has two different types of status:
+              monitor program _n_o_t _r_u_n_n_i_n_g, and  monitor  _r_u_n_n_i_n_g.   A  monitor
+              that has been started and/or selected will be listed as running;
+              a monitor that has been stopped (or not started) will be  listed
+              as  not running.  The -L (list status) flag will list the status
+              of each monitor connected to the system.
+
+              SSeelleecctt aa MMoonniittoorr..
+              When the user _s_t_a_r_t_s  a  monitor,  it  is  also  (automatically)
+              _s_e_l_e_c_t_e_d  for  graphics output unless the user sets the _-_s flag.
+              In order to use (direct graphics output to) a monitor, the  user
+              must  _s_e_l_e_c_t that monitor for use, either by simply starting the
+              monitor without the -s flag or by explictly selecting the  moni-
+              tor  for  output  using  option  3. Only running monitors can be
+              selected for graphics output.  Once the user has _s_e_l_e_c_t_e_d a mon-
+              itor for output, no other user can use this monitor for graphics
+              output until the monitor driver is either _r_e_l_e_a_s_e_d (by the user)
+              or _u_n_l_o_c_k_e_d (by any user on the system).
+
+
+       The  user can run multiple graphics monitors by simply starting each of
+       the graphics monitors drivers he wishes to direct output to.
+
+              RReelleeaassee aa MMoonniittoorr..
+
+               Once a user has _s_e_l_e_c_t_e_d a monitor for graphics output,  it  is
+              locked for use by that user until either: (1) the user voluntar-
+              ily releases control of the monitor for use by  another  (option
+              4),  or (2) another GRASS user _u_n_l_o_c_k_s the user's control of the
+              monitor.  Menu option 4 appears  only  to  the  person  who  has
+              selected  the  monitor (since only that user can release control
+              of his selected graphics monitor.) If  another  user  wishes  to
+              _u_n_l_o_c_k  the  user's  control  of the monitor, that user must run
+              _d_._m_o_n from the command line and set the uunnlloocckk==_n_a_m_e parameter.
+
+       You may choose multiple options within the  _d_._m_o_n  program.   To  leave
+       (exit) the _d_._m_o_n menu, press the  key.
+
+NNOOTTEESS
+       The  _d_._m_o_n  program  can  regulate control of graphics monitors both in
+       systems using multiple monitors and in systems using a single  graphics
+       monitor.
+
+SSEEEE AALLSSOO
+       _d_._e_r_a_s_e
+
+       _d_._f_r_a_m_e
+
+       _m_o_n_i_t_o_r_c_a_p
+
+AAUUTTHHOORR
+       Michael  Shapiro,  U.S.  Army Construction Engineering Research Labora-
+       tory,
+
+       Full 24bit support by Roberto Flor, ITC-Irst, Trento, Italy
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_4_/_0_9 _0_0_:_3_1_:_2_6 _$
+
+
+
+GRASS 5.0                                                             d.mon(1)

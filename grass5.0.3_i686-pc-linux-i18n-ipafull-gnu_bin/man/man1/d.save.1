@@ -1,0 +1,79 @@
+d.save(1)                     Grass User's Manual                    d.save(1)
+
+
+
+NNAAMMEE
+       dd..ssaavvee  - Creates a list of commands for recreating screen graphics.
+       _(_G_R_A_S_S _D_i_s_p_l_a_y _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       dd..ssaavvee
+       dd..ssaavvee hheellpp
+       dd..ssaavvee     [--ccaa]     [ffrraammee==_n_a_m_e[,_n_a_m_e,...]]     [rreemmoovvee==_v_a_l[,_v_a_l,...]]
+       [mmoovvee==_f_r_o_m_,_t_o[,_f_r_o_m_,_t_o,...]]
+
+DDEESSCCRRIIPPTTIIOONN
+       When GRASS display (_d_.) commands are used to generate graphical  images
+       on the graphics monitor, some commands are noted in lists that the cur-
+       rent graphics driver (see manual entry for _d_._m_o_n) maintains. This  com-
+       mand,  _d_._s_a_v_e,  uses this information to create a shell script that can
+       be used to recreate graphics in another  frame  at  another  time.  The
+       shell  script  is sent to standard output (the user's terminal). If you
+       wish to save the shell script created by _d_._s_a_v_e, its output  should  be
+       redirected to a file; for example: dd..ssaavvee >> ssccrriipptt..oouutt
+
+       The  user can run the program non-interactively by specifying flag set-
+       tings and parameter values on the  command  line.  If  the  user  types
+       dd..ssaavvee  without  specifying  these  program arguments, the user will be
+       prompted for inputs through the standard user  interface  described  in
+       the manual entry for _p_a_r_s_e_r.
+
+OOPPTTIIOONNSS
+   FFllaaggss::
+       --cc     Shell  script  will  contain  only  information for regenerating
+              graphics from the active (current) frame. Use of this flag over-
+              rides the _f_r_a_m_e option (below).
+
+       --aa     Save  information  needed  to  regenerate  all the frames on the
+              graphics monitor. The shell script can  be  used  to  completely
+              reconstruct the contents of the graphics screen.
+
+
+   PPaarraammeetteerr::
+       ffrraammee==_n_a_m_e[,_n_a_m_e,...]
+              Name(s) of those display frame(s) to be saved.
+              Options: All available frames
+              Default: Active frame
+
+       rreemmoovvee==_v_a_l[,_v_a_l,...]
+              List no's to be removed.
+
+       mmoovvee==_f_r_o_m_,_t_o[,_f_r_o_m_,_t_o,...]
+              List  no's  to  be moved, "from" to "to".  remove option will be
+              done first, if any.
+
+
+NNOOTTEESS
+       List no's are displayed in the right-most comments.
+
+
+       Display commands used interactively, and those that take their  graphic
+       instructions from standard input, will not be saved by _d_._s_a_v_e.
+
+SSEEEE AALLSSOO
+       _d_._f_r_a_m_e
+
+       _d_._m_o_n
+
+       _g_._r_e_g_i_o_n
+
+       _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       David Satnik, Central Washington University
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_3_/_0_8_/_2_0 _0_8_:_1_0_:_1_2 _$
+
+
+
+GRASS 5.0                                                            d.save(1)

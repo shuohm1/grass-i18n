@@ -1,0 +1,56 @@
+r.in.gif(1)                   Grass User's Manual                  r.in.gif(1)
+
+
+
+NNAAMMEE
+       rr..iinn..ggiiff  - Converts a GIF87 (8bit) raster file to a GRASS raster file.
+       _(_G_R_A_S_S _R_a_s_t_e_r _D_a_t_a _I_m_p_o_r_t _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       rr..iinn..ggiiff [--vv] iinnppuutt==_n_a_m_e oouuttppuutt==_n_a_m_e [ttiittllee==_n_a_m_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       This program converts a GIF raster file (8bit) to a GRASS raster  file.
+       Output  is placed in the _/_c_e_l_l directory under the user's current GRASS
+       mapset.
+
+OOPPTTIIOONNSS
+   FFllaagg::
+       --vv     Verbose mode
+
+
+   PPaarraammeetteerrss::
+       iinnppuutt==_n_a_m_e
+              Name of an existing GIF raster file to be imported.
+
+       oouuttppuutt==_n_a_m_e
+              Name to be assigned to resultant binary raster map layer.
+
+       ttiittllee== Title to be assigned to resultant raster map layer.
+
+
+
+       The program prompts the user to enter the name of the GIF  raster  file
+       to be converted and the name to be assigned to the GRASS raster file to
+       contain the resultant image.  The user should adjust  boundary  coordi-
+       nates stored in the cell header after import using  _r_._s_u_p_p_o_r_t .
+
+
+       The  user  must, of course, first create the GIF raster file to be con-
+       verted (e.g., from a scanning system that produces GIF raster file for-
+       mat).
+
+NNOOTTEE
+       The GIF89 format is currently not accepted.
+
+SSEEEE AALLSSOO
+        _r_._s_u_p_p_o_r_t and _p_a_r_s_e_r
+
+AAUUTTHHOORR
+       Michael Shapiro, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_4 _$
+
+
+
+GRASS 5.0                                                          r.in.gif(1)

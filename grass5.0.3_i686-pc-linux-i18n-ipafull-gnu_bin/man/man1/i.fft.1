@@ -1,0 +1,90 @@
+i.fft(1)                      Grass User's Manual                     i.fft(1)
+
+
+
+NNAAMMEE
+       ii..fffftt  - Fast Fourier Transform (FFT) for image processing.
+       _(_G_R_A_S_S _I_m_a_g_e _P_r_o_c_e_s_s_i_n_g _P_r_o_g_r_a_m_)
+
+SSYYNNOOPPSSIISS
+       ii..fffftt
+       ii..fffftt hheellpp
+       ii..fffftt     iinnppuutt__iimmaaggee==_n_a_m_e     rreeaall__iimmaaggee==_n_a_m_e     iimmaaggiinnaarryy__iimmaaggee==_n_a_m_e
+       [rraannggee==_v_a_l_u_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       _i_._f_f_t is an image processing program based on the FFT  algorithm  given
+       by  Frigo et al. (1998), that processes a single input raster map layer
+       (iinnppuutt__iimmaaggee) and constructs the real and imaginary Fourier  components
+       in frequency space.
+
+OOPPTTIIOONNSS
+   PPaarraammeetteerrss::
+       iinnppuutt__iimmaaggee==_n_a_m_e
+              Input  raster  map  layer on which the fast Fourier transform is
+              run.
+
+       rreeaall__iimmaaggee==_n_a_m_e
+              Output real part arrays stored as raster map layer.
+
+       iimmaaggiinnaarryy__iimmaaggee==_n_a_m_e
+              Output imaginary part arrays stored as raster map layer.
+
+       rraannggee==_v_a_l_u_e
+              Range of values used during fast Fourier transformation.
+
+
+NNOOTTEESS
+       The real and imaginary components are stored as arrays  of  doubles  in
+       the  _c_e_l_l___m_i_s_c  directory  (for  use  in the inverse transform program,
+       _i_._i_f_f_t), and are also scaled and  formatted  into  the  rreeaall__iimmaaggee  and
+       iimmaaggiinnaarryy__iimmaaggee  raster  map  layers  for inspection, masking, etc.  In
+       these raster map layers the low frequency components are in the  center
+       and   the   high  frequency  components  are  toward  the  edges.   The
+       iinnppuutt__iimmaaggee need not be square;  before processing, the X and Y  dimen-
+       sions  of  the  iinnppuutt__iimmaaggee  are padded with zeroes to the next highest
+       power of two in extent (i.e., 256 x 256 is processed at that size,  but
+       200  x 400 is padded to 256 x 512).  The cell category values for view-
+       ing, etc., are calculated by taking the natural log of the actual  val-
+       ues  then  rescaling to 255, or whatever optional range is given on the
+       command line, as suggested  by  Richards  (1986).   A  color  table  is
+       assigned to the resultant map layer.
+
+
+       The  current  geographic  region  and  mask settings are respected when
+       reading the input file.  The presence of a mask will, in general,  make
+       the  resulting fast Fourier transform invalid, or at least difficult to
+       interpret.
+
+SSEEEE AALLSSOO
+       M. Frigo and S. G. Johnson (1998): "FFTW: An Adaptive  Software  Archi-
+       tecture  for the FFT". See www.FFTW.org: FFTW is a C subroutine library
+       for computing the Discrete Fourier  Transform  (DFT)  in  one  or  more
+       dimensions, of both real and complex data, and of arbitrary input size.
+
+
+       RReemmoottee SSeennssiinngg DDiiggiittaall IImmaaggee AAnnaallyyssiiss, by John A.  Richards,  Springer-
+       Verlag, 1986.
+
+
+       Personal  communication,  between  progam author and Ali R. Vali, Space
+       Research Center, University of Texas, Austin, 1990.
+
+
+       _i_._c_c_a
+
+       _i_._c_l_a_s_s
+
+       _i_._i_f_f_t
+
+       _i_._p_c_a
+
+AAUUTTHHOORR
+       David Satnik, GIS Laboratory, Central Washington University
+       Glynn Clements (FFTW support)
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_3 _$
+
+
+
+GRASS 5.0                                                             i.fft(1)

@@ -1,0 +1,60 @@
+show.fonts.sh(1)              Grass User's Manual             show.fonts.sh(1)
+
+
+
+NNAAMMEE
+       sshhooww..ffoonnttss..sshh   - Displays and names available font types in the active
+       display frame on the graphics monitor.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       sshhooww..ffoonnttss..sshh
+
+DDEESSCCRRIIPPTTIIOONN
+       _s_h_o_w_._f_o_n_t_s_._s_h is a UNIX Bourne shell macro which runs  the  _d_._e_r_a_s_e  _-_a
+       command,  then  names  and displays the font types that can be selected
+       using _d_._f_o_n_t.  This macro also  runs  the  GRASS  commands  _d_._f_o_n_t  and
+       _d_._t_e_x_t.  See the manual entry for _d_._f_o_n_t for instructions on choosing a
+       font type.
+
+
+       No program arguments are required to run this program.
+
+BBUUGGSS
+       The font is set to _r_o_m_a_n_s (Roman simplex) after running  _s_h_o_w_._f_o_n_t_s_._s_h.
+       There  is no mechanism to query the current font, so there is no way to
+       automatically restore the font.  The user will have to reset  the  font
+       type using _d_._f_o_n_t if _r_o_m_a_n_s is not desired.
+
+FFIILLEESS
+       This program is simply a shell script stored under the $GISBASE/scripts
+       directory.  Users are encouraged to examine the shell  script  programs
+       stored here and to produce others for their own use.
+
+SSEEEE AALLSSOO
+       _d_._d_i_s_p_l_a_y
+
+       _d_._e_r_a_s_e
+
+       _d_._f_o_n_t
+
+       _g_r_a_s_s_._l_o_g_o_._s_h
+
+       _d_._l_a_b_e_l
+
+       _d_._l_e_g_e_n_d
+
+       _d_._p_a_i_n_t_._l_a_b_e_l_s
+
+       _d_._t_e_x_t
+
+       _d_._t_i_t_l_e
+
+AAUUTTHHOORR
+       James Westervelt, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_5 _$
+
+
+
+GRASS 5.0                                                     show.fonts.sh(1)

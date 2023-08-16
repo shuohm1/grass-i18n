@@ -1,0 +1,96 @@
+3d.view.sh(1)                 Grass User's Manual                3d.view.sh(1)
+
+
+
+NNAAMMEE
+       33dd..vviieeww..sshh   -  Displays  several 3-dimensional views of a landscape on
+       the user's graphics monitor.
+       _(_G_R_A_S_S _S_h_e_l_l _S_c_r_i_p_t_)
+
+SSYYNNOOPPSSIISS
+       33dd..vviieeww..sshh
+       33dd..vviieeww..sshh hheellpp
+       33dd..vviieeww..sshh  ffiillee==_m_a_p_n_a_m_e  eeff==_m_a_p_n_a_m_e  vvhh==_v_i_e_w_i_n_g___h_e_i_g_h_t   ssvv==_s_i_n_k___v_a_l_u_e
+       eexxaagg==_e_x_a_g llff==_l_i_n_e___f_r_e_q_u_e_n_c_y bbaacckk==_b_a_c_k_g_r_o_u_n_d___c_o_l_o_r
+
+DDEESSCCRRIIPPTTIIOONN
+       _3_d_._v_i_e_w_._s_h  is  a  Bourne  shell  (sh(1))  script that displays several
+       3-dimensional views of a landscape on the user's graphics monitor.   It
+       erases  the  graphics  monitor  and then prepares it for the display of
+       nine equally-sized frames.  The user-specified raster map layer  (given
+       by  ffiillee=_n_a_m_e)  is  displayed  using  _d_._r_a_s_t  in the middle frame.  The
+       remaining frames are then used to display 3-d perspective  views.   The
+       top  middle  panel  is  a  view  from the north, the top right from the
+       north-east, the right from the east, and so on.  Each is drawn  with  a
+       call  to the _d_._3_d program.  The viewing angles are calculated automati-
+       cally.
+
+OOPPTTIIOONNSS
+       If options are not stated on the command line, default values  will  be
+       used.  These values are listed under Parameters, below.
+
+   PPaarraammeetteerrss::
+       ffiillee==_m_a_p_n_a_m_e
+              Name of raster map layer to be displayed.
+              Default:  _e_l_e_v_a_t_i_o_n
+
+       eeff==_m_a_p_n_a_m_e
+              Name  of  raster map layer whose category values will supply the
+              elevation values used to generate 3-d perspective views.
+              Default:  _e_l_e_v_a_t_i_o_n
+
+       vvhh==_v_i_e_w_i_n_g___h_e_i_g_h_t
+              Height (in meters) of the location from  which  scenes  will  be
+              viewed.
+              Default:  30000
+
+       ssvv==_s_i_n_k___v_a_l_u_e
+              Sink  factor  value, causing the image to be displayed lower, or
+              higher, on the graphics screen.
+              Default:  0
+
+       eexxaagg==_v_e_r_t_i_c_a_l___e_x_a_g_g_e_r_a_t_i_o_n
+              Vertical exaggeration factor of  the  values  in  the  elevation
+              file.
+              Default:  3
+
+       llff==_l_i_n_e___f_r_e_q_u_e_n_c_y
+              Contour  intervals  at which vector grid lines will be drawn, in
+              meters.
+              Default:  20
+
+       bbaacckk==_b_a_c_k_g_r_o_u_n_d___c_o_l_o_r
+              Color of the background of the display frames.
+              Options:  red, orange,  yellow,  green,  blue,  indigo,  violet,
+              magenta, brown, gray, white, and black
+              Default:  black
+
+
+NNOOTTEESS
+       In  the  _s_p_e_a_r_f_i_s_h  sample  data  base, the user must specify a viewing
+       height when running _3_d_._v_i_e_w_._s_h.  Note also that  the  raster  elevation
+       map  layers  in  the  PERMANENT mapset under spearfish are named _e_l_e_v_a_-
+       _t_i_o_n_._d_e_m and _e_l_e_v_a_t_i_o_n_._d_m_a.
+
+
+       This program will not prompt the user for inputs;  if  the  user  types
+       33dd..vviieeww..sshh  without program arguments on the command line, default val-
+       ues will be used.
+
+FFIILLEESS
+       This program is simply a shell script.  Users are  encouraged  to  make
+       their   own   shell   scripts  using  similar  techniques.   See  $GIS-
+       BASE/scripts/3d.view.sh.
+
+SSEEEE AALLSSOO
+       _d_._3_d
+       _d_._r_a_s_t
+
+AAUUTTHHOORR
+       James Westervelt, U.S.Army Construction Engineering Research Laboratory
+
+       _L_a_s_t _c_h_a_n_g_e_d_: _$_D_a_t_e_: _2_0_0_2_/_0_1_/_2_5 _0_5_:_4_5_:_3_2 _$
+
+
+
+GRASS 5.0                                                        3d.view.sh(1)
